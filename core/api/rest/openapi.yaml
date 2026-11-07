@@ -38,13 +38,32 @@ info:
     Dans une liste, un élément que l'utilisateur n'a pas le droit de lire est
     simplement absent ; demandé directement, il renvoie 403.
 
-    La nouvelle UI ouvre une session avec `POST /session` (cookie de session
-    du core, `SameSite=Strict`, même domaine que le core, pas de CORS). En
+    La nouvelle UI ouvre une session avec `POST /session` (cookie
+    `SameSite=Strict`, même domaine que le core, pas de CORS). En
     session, toute requête d'écriture (`POST`, `PUT`, `PATCH`, `DELETE`) doit
     porter l'en-tête `X-CSRF-Token` avec le jeton reçu à l'ouverture ou lu
     sur `/me` ; sans lui, 403 `csrf_invalid`. Le jeton n'est pas demandé avec
     `Authorization: Bearer`. Une session expirée renvoie 401
     `session_expired`, pour que l'UI revienne à l'écran de connexion.
+
+    ### Sessions de l'API
+    L'API n'utilise pas la session PHP du core (`$_SESSION`) ; l'ancienne
+    interface garde la sienne, inchangée. Chaque session de la nouvelle UI
+    est une ligne de la table `session` (moteur en mémoire) :
+
+    | Colonne | Rôle |
+    |---|---|
+    | `id` | Identifiant de la session, exposé par `/me/sessions` |
+    | `user_id` | Utilisateur |
+    | `token_hash` | Empreinte du jeton porté par le cookie (index unique) ; le jeton lui-même n'est jamais stocké |
+    | `csrf_token` | Jeton CSRF aléatoire, indépendant du jeton de session |
+    | `ip` | Adresse de connexion |
+    | `created_at` | Ouverture |
+    | `last_seen_at` | Dernière requête |
+    | `expires_at` | Expiration |
+
+    La table étant en mémoire, un redémarrage de MySQL ferme toutes les
+    sessions : chacun doit se reconnecter (choix de sécurité assumé).
 
 servers:
   - url: /api/v1
@@ -68,6 +87,8 @@ tags:
     description: Lecture et gestion des fichiers log, administrateurs uniquement.
   - name: Plugins
     description: Plugins installés.
+  - name: Utilisateurs
+    description: Comptes utilisateurs et leurs droits, administrateurs uniquement.
   - name: Session
     description: Utilisateur connecté.
   - name: Commandes
@@ -450,8 +471,9 @@ paths:
         `core/php/authentification.php` : compte actif, utilisateur « local
         uniquement », double authentification hors du réseau local,
         enregistrement de l'appareil, journal et bannissement après trop
-        d'échecs. Pose le cookie de session et renvoie l'utilisateur avec le
-        jeton CSRF. Seule route accessible sans être connecté.
+        d'échecs. Crée une ligne dans la table `session`, pose le cookie
+        (qui porte le jeton, dont seule l'empreinte est stockée) et renvoie
+        l'utilisateur avec le jeton CSRF. Seule route accessible sans être connecté.
       security: []
       requestBody:
         required: true
@@ -485,7 +507,7 @@ paths:
       operationId: closeSession
       summary: Fermer la session (déconnexion)
       description: |
-        Remplace `logout()`. Avec `forgetDevice=true`, oublie aussi cet
+        Remplace `logout()` : supprime la ligne de la table `session`. Avec `forgetDevice=true`, oublie aussi cet
         appareil (cookie `registerDevice`). Demande l'en-tête `X-CSRF-Token`.
       security:
         - sessionCookie: []
@@ -519,6 +541,488 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Me' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Session]
+      operationId: updateMe
+      summary: Modifier son propre compte
+      description: |
+        Remplace l'ajax `user::saveProfils` (page « Préférences »), pour tout
+        profil. Seuls le mot de passe et les préférences de `MePreferences`
+        sont acceptés ; le profil, l'activation et les droits restent aux
+        administrateurs. `preferences` est fusionné clé par clé ; une clé
+        inconnue (y compris les préférences de plugins `plugin::<id>::<clé>`,
+        à traiter avec la spec des plugins) renvoie 422. Changer de mot de
+        passe demande l'ancien (`currentPassword`) : s'il est faux, 422
+        `invalid_current_password`. Le jeton API se gère avec `/me/token`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MeUpdate' }
+            example: { preferences: { homePage: 'core::dashboard', defaultDashboardObject: 3 } }
+      responses:
+        '200':
+          description: Compte modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Me' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`), ou compte système.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /me/token:
+    get:
+      tags: [Session]
+      operationId: getMyToken
+      summary: Lire son jeton API
+      description: |
+        Renvoie le jeton (`hash` du core) à utiliser dans `Authorization:
+        Bearer …`. Le jeton n'apparaît jamais dans `/users`, même pour un
+        administrateur. Comptes système refusés.
+      responses:
+        '200':
+          description: Le jeton.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ApiToken' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Session]
+      operationId: regenerateMyToken
+      summary: Régénérer son jeton API
+      description: |
+        Crée un nouveau jeton ; l'ancien cesse aussitôt de fonctionner (les
+        intégrations qui l'utilisent devront être mises à jour). Remet à zéro
+        la date de rotation automatique (`hashGenerated`).
+      responses:
+        '201':
+          description: Le nouveau jeton.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ApiToken' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`), ou compte système.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /me/devices:
+    get:
+      tags: [Session]
+      operationId: listMyDevices
+      summary: Lister ses appareils enregistrés
+      description: |
+        Appareils retenus par « Rester connecté » (`options.registerDevice`).
+        La clé est l'empreinte du cookie, jamais le cookie lui-même ; le
+        `session_id` n'est pas renvoyé.
+      responses:
+        '200':
+          description: Les appareils.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeviceList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    delete:
+      tags: [Session]
+      operationId: forgetMyDevices
+      summary: Oublier tous ses appareils
+      description: Remplace `user::removeRegisterDevice` sans `key` pour son propre compte.
+      responses:
+        '204': { description: Appareils oubliés. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /me/devices/{key}:
+    parameters:
+      - $ref: '#/components/parameters/DeviceKey'
+    delete:
+      tags: [Session]
+      operationId: forgetMyDevice
+      summary: Oublier un appareil
+      description: Remplace `user::removeRegisterDevice` avec `key`.
+      responses:
+        '204': { description: Appareil oublié. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404':
+          description: 'Appareil inconnu (`code: device_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /me/sessions:
+    get:
+      tags: [Session]
+      operationId: listMySessions
+      summary: Lister ses sessions ouvertes
+      description: |
+        Sessions de la nouvelle UI ouvertes avec son compte (table
+        `session`). Les connexions à l'ancienne interface n'y figurent pas.
+        Le jeton de session n'est jamais renvoyé, seulement l'`id` de la ligne.
+      responses:
+        '200':
+          description: Les sessions.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SessionInfoList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /me/sessions/{sessionId}:
+    parameters:
+      - $ref: '#/components/parameters/SessionId'
+    delete:
+      tags: [Session]
+      operationId: closeMySession
+      summary: Fermer une de ses sessions
+      description: |
+        Remplace `user::deleteSession`, limité à ses propres sessions (une
+        session d'un autre compte renvoie 404). Oublie aussi l'appareil lié.
+        Pour fermer la session courante, utiliser `DELETE /session`.
+      responses:
+        '204': { description: Session fermée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404':
+          description: 'Session inconnue (`code: session_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users:
+    get:
+      tags: [Utilisateurs]
+      operationId: listUsers
+      summary: Lister les utilisateurs (administrateur)
+      description: |
+        Remplace l'ajax `user::all`. Renvoie tous les comptes, y compris les
+        comptes système `internal_report` et `jeedom_support` (marqués
+        `kind: system`) et les comptes techniques des démons de plugins
+        (`kind: plugin`). Jamais de mot de passe, de `hash` ni de donnée de
+        double authentification.
+      parameters:
+        - name: profils
+          in: query
+          description: Ne garder que ce profil.
+          schema: { $ref: '#/components/schemas/UserProfile' }
+        - name: enable
+          in: query
+          description: Ne garder que les comptes actifs (`true`) ou désactivés (`false`).
+          schema: { type: boolean }
+        - name: kind
+          in: query
+          description: Ne garder que cette nature de compte (ex. `human` pour masquer les comptes système et de plugins).
+          schema: { $ref: '#/components/schemas/UserKind' }
+      responses:
+        '200':
+          description: Liste des utilisateurs.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Utilisateurs]
+      operationId: createUser
+      summary: Créer un utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::save` sans `id`. Seuls `login` et `password`
+        sont acceptés : le compte est créé avec le profil `user`, actif, et
+        l'accès API désactivé (`options.api::mode = disable`). Le profil, les
+        options et les droits se règlent ensuite avec `PATCH /users/{id}` et
+        `PUT /users/{id}/rights`. Refusé si l'authentification LDAP est
+        active (les comptes viennent alors de l'annuaire).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserCreate' }
+            example: { login: marie, password: 'Un-mot-de-passe-solide' }
+      responses:
+        '201':
+          description: Utilisateur créé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/UserConflict' }
+        '422':
+          description: |
+            Données invalides (`validation_error` : login ou mot de passe
+            vide, login réservé `internal_report` / `jeedom_support`), ou
+            `ldap_enabled` : création impossible tant que LDAP est actif.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users/{id}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: getUser
+      summary: Lire un utilisateur (administrateur)
+      description: Remplace l'ajax `user::get` avec `id`.
+      responses:
+        '200':
+          description: L'utilisateur.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    patch:
+      tags: [Utilisateurs]
+      operationId: updateUser
+      summary: Modifier un utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::save` avec `id`. Seuls les champs de
+        `UserUpdate` sont acceptés ; `options` est fusionné clé par clé.
+        Règles reprises du core :
+        - les comptes système (`internal_report`, `jeedom_support`) ne sont
+          pas modifiables : 403 `user_system` ;
+        - on ne peut pas se désactiver soi-même ni retirer son propre profil
+          administrateur : 422 `user_self_lockout` ;
+        - le dernier administrateur actif ne peut être ni désactivé ni
+          rétrogradé : 422 `last_admin` ;
+        - désactiver un compte (`enable: false`) ferme toutes ses sessions :
+          celles de la nouvelle UI (table `session`) et celles de l'ancienne
+          interface (sessions PHP).
+
+        Les droits par élément ne passent pas ici mais par
+        `/users/{id}/rights`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserUpdate' }
+            example: { profils: restrict, options: { localOnly: 1 } }
+      responses:
+        '200':
+          description: Utilisateur modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Droits insuffisants, ou compte système non modifiable (`code: user_system`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '409': { $ref: '#/components/responses/UserConflict' }
+        '422':
+          description: |
+            Données invalides (`validation_error`), `user_self_lockout`
+            (se désactiver ou quitter son profil admin) ou `last_admin`.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+    delete:
+      tags: [Utilisateurs]
+      operationId: deleteUser
+      summary: Supprimer un utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::remove`. Refusé si LDAP est actif ou si c'est
+        son propre compte.
+      responses:
+        '204': { description: Utilisateur supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422':
+          description: '`ldap_enabled` (suppression impossible tant que LDAP est actif) ou `user_self_delete`.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users/{id}/devices:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: listUserDevices
+      summary: Lister les appareils enregistrés d'un utilisateur (administrateur)
+      description: Même contenu que `GET /me/devices`, pour un autre compte.
+      responses:
+        '200':
+          description: Les appareils.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeviceList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    delete:
+      tags: [Utilisateurs]
+      operationId: forgetUserDevices
+      summary: Oublier tous les appareils d'un utilisateur (administrateur)
+      description: Remplace `user::removeRegisterDevice` avec `user_id` et sans `key`.
+      responses:
+        '204': { description: Appareils oubliés. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+
+  /users/{id}/devices/{key}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/DeviceKey'
+    delete:
+      tags: [Utilisateurs]
+      operationId: forgetUserDevice
+      summary: Oublier un appareil d'un utilisateur (administrateur)
+      description: Remplace `user::removeRegisterDevice` avec `user_id` et `key`.
+      responses:
+        '204': { description: Appareil oublié. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: 'Utilisateur inconnu (`user_not_found`) ou appareil inconnu (`device_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users/{id}/sessions:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: listUserSessions
+      summary: Lister les sessions d'un utilisateur (administrateur)
+      description: Même contenu que `GET /me/sessions` (sessions de la nouvelle UI uniquement), pour un autre compte.
+      responses:
+        '200':
+          description: Les sessions.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SessionInfoList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    delete:
+      tags: [Utilisateurs]
+      operationId: closeUserSessions
+      summary: Fermer toutes les sessions d'un utilisateur (administrateur)
+      description: |
+        Ferme ses sessions de la nouvelle UI (table `session`) et ses
+        sessions PHP de l'ancienne interface, comme à la désactivation.
+      responses:
+        '204': { description: Sessions fermées. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+
+  /users/{id}/sessions/{sessionId}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/SessionId'
+    delete:
+      tags: [Utilisateurs]
+      operationId: closeUserSession
+      summary: Fermer une session d'un utilisateur (administrateur)
+      description: Remplace `user::deleteSession` pour un autre compte.
+      responses:
+        '204': { description: Session fermée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: 'Utilisateur inconnu (`user_not_found`) ou session inconnue de cet utilisateur (`session_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users/{id}/rights:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: getUserRights
+      summary: Lire les droits par élément (administrateur)
+      description: |
+        Droits d'un utilisateur au profil `restrict` sur chaque élément
+        (champ `rights` du core). Une clé absente vaut `n` (aucun accès). Les
+        droits n'ont d'effet que pour le profil `restrict`.
+      responses:
+        '200':
+          description: Les droits.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserRights' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    put:
+      tags: [Utilisateurs]
+      operationId: replaceUserRights
+      summary: Remplacer les droits par élément (administrateur)
+      description: |
+        Remplace l'enregistrement de la fenêtre « Droits » (`user::save` avec
+        `rights`). Le corps devient l'ensemble des droits : une clé omise
+        repasse à `n`. Comptes système refusés (403 `user_system`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserRights' }
+      responses:
+        '200':
+          description: Droits enregistrés.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserRights' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Droits insuffisants, ou compte système (`code: user_system`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /users/{id}/rights/copy:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    post:
+      tags: [Utilisateurs]
+      operationId: copyUserRights
+      summary: Copier les droits vers un autre utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::copyRights`. Les droits de `{id}` sont écrits
+        sur l'utilisateur `to`, clé par clé : les clés que `{id}` n'a pas
+        restent inchangées chez `to`, comme aujourd'hui.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [to]
+              properties:
+                to: { type: integer, minimum: 1, description: Utilisateur qui reçoit les droits., example: 4 }
+      responses:
+        '200':
+          description: Droits de l'utilisateur cible après copie.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserRights' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Droits insuffisants, ou cible compte système (`code: user_system`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422':
+          description: '`to` inconnu ou égal à `{id}` (`validation_error`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /objects:
     get:
@@ -2149,6 +2653,24 @@ components:
       required: true
       description: Identifiant du scénario.
       schema: { type: integer, minimum: 1 }
+    UserId:
+      name: id
+      in: path
+      required: true
+      description: Identifiant de l'utilisateur.
+      schema: { type: integer, minimum: 1 }
+    DeviceKey:
+      name: key
+      in: path
+      required: true
+      description: Empreinte de l'appareil, lue dans la liste des appareils.
+      schema: { type: string, pattern: '^[0-9a-f]{128}$' }
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      description: Identifiant de la session (colonne `id` de la table `session`), lu dans la liste des sessions.
+      schema: { type: string, minLength: 1 }
 
   schemas:
     LogList:
@@ -2571,12 +3093,202 @@ components:
         id: { type: integer, example: 1 }
         login: { type: string, example: admin }
         isAdmin: { type: boolean, description: Profil administrateur., example: true }
+        profils: { $ref: '#/components/schemas/UserProfile' }
+        preferences: { $ref: '#/components/schemas/MePreferences' }
         csrfToken:
           type: [string, 'null']
           description: |
             Jeton à renvoyer dans l'en-tête `X-CSRF-Token` des écritures en
             session (relu ici au rechargement de la page). `null` avec un
             jeton `Bearer`.
+
+    UserProfile:
+      type: string
+      enum: [admin, user, restrict]
+      description: |
+        `admin` : tous les droits. `user` : lecture et commandes, sans
+        administration. `restrict` : seulement les éléments autorisés dans
+        `/users/{id}/rights`.
+
+    UserKind:
+      type: string
+      enum: [human, system, plugin]
+      description: |
+        Nature du compte. `human` : compte de connexion classique.
+        `system` : comptes créés par le core (`internal_report`,
+        `jeedom_support`), non modifiables. `plugin` : réservé aux futurs
+        comptes techniques des démons de plugins (sans connexion, droits
+        limités au plugin). Ils sont listés dans `/users` ; aucun n'existe
+        encore dans le core.
+
+    User:
+      type: object
+      description: |
+        Utilisateur vu par un administrateur. Jamais renvoyés : `password`,
+        `hash`, et tout ce qui touche à la double authentification
+        (`twoFactorAuthentification`, son secret), ni les `session_id` des
+        appareils.
+      required: [id, login, profils, enable, kind]
+      properties:
+        id: { type: integer, readOnly: true, example: 2 }
+        login: { type: string, example: marie }
+        profils: { $ref: '#/components/schemas/UserProfile' }
+        enable: { type: boolean, example: true }
+        kind: { $ref: '#/components/schemas/UserKind' }
+        twoFactorEnabled:
+          type: boolean
+          readOnly: true
+          description: Double authentification activée (indicateur seul, ni code ni secret).
+        lastConnection:
+          type: [string, 'null']
+          format: date-time
+          readOnly: true
+          description: Dernière connexion (`options.lastConnection`).
+        options: { $ref: '#/components/schemas/UserAdminOptions' }
+      example:
+        id: 2
+        login: marie
+        profils: user
+        enable: true
+        kind: human
+        twoFactorEnabled: false
+        lastConnection: '2026-11-06T18:42:00+01:00'
+        options: { localOnly: 0, api::mode: disable, doNotRotateHash: 0 }
+
+    UserAdminOptions:
+      type: object
+      description: Options réglées par un administrateur (sous-ensemble de `options` du core).
+      properties:
+        localOnly: { type: integer, enum: [0, 1], description: Connexion autorisée seulement depuis le réseau local. }
+        'api::mode':
+          type: string
+          enum: [enable, whiteip, localhost, disable]
+          description: Accès à l'API avec le jeton de cet utilisateur.
+        doNotRotateHash: { type: integer, enum: [0, 1], description: Ne pas régénérer automatiquement le jeton tous les 3 mois. }
+
+    UserCreate:
+      type: object
+      additionalProperties: false
+      required: [login, password]
+      properties:
+        login: { type: string, minLength: 1, maxLength: 255, example: marie }
+        password: { type: string, format: password, minLength: 1, writeOnly: true }
+
+    UserUpdate:
+      type: object
+      additionalProperties: false
+      description: Liste blanche des champs modifiables par un administrateur.
+      properties:
+        login: { type: string, minLength: 1, maxLength: 255 }
+        password: { type: string, format: password, minLength: 1, writeOnly: true, description: Nouveau mot de passe. }
+        profils: { $ref: '#/components/schemas/UserProfile' }
+        enable: { type: boolean }
+        options: { $ref: '#/components/schemas/UserAdminOptions' }
+
+    UserList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/User' }
+        total: { type: integer, example: 3 }
+
+    UserRightValue:
+      type: string
+      enum: [n, r, rx]
+      description: '`n` aucun accès, `r` lecture, `rx` lecture et exécution (commandes, lancement).'
+
+    UserRights:
+      type: object
+      description: |
+        Droits par élément. Clé = type d'élément suivi de son identifiant
+        (`eqLogic12`, `jeeObject3`, `scenario5`, `view1`, `plan2`,
+        `plan3d1`) ou `menu::<page>` pour les pages de l'interface.
+      propertyNames:
+        pattern: '^((eqLogic|jeeObject|scenario|view|plan|plan3d)[0-9]+|menu::[A-Za-z0-9_]+)$'
+      additionalProperties: { $ref: '#/components/schemas/UserRightValue' }
+      example: { eqLogic12: rx, jeeObject3: r, scenario5: n }
+
+    MePreferences:
+      type: object
+      additionalProperties: false
+      description: |
+        Préférences de l'utilisateur (sous-ensemble de `options` du core).
+        Les clés `plugin::<id>::<clé>` des plugins sont refusées pour
+        l'instant : elles seront déclarées par chaque plugin.
+      properties:
+        homePage: { type: string, example: 'core::dashboard', description: Page d'accueil sur ordinateur. }
+        homePageMobile: { type: string }
+        defaultDashboardObject: { type: [integer, 'null'], description: Objet affiché par défaut sur le dashboard. }
+        defaultMobileObject: { type: [integer, 'null'] }
+        defaultDesktopView: { type: [integer, 'null'] }
+        defaultMobileView: { type: [integer, 'null'] }
+        defaultDashboardPlan: { type: [integer, 'null'] }
+        defaultMobilePlan: { type: [integer, 'null'] }
+        defaultDashboardPlan3d: { type: [integer, 'null'] }
+        defaultMobilePlan3d: { type: [integer, 'null'] }
+        defaultPlanFullScreen: { type: integer, enum: [0, 1] }
+        defaultPlan3dFullScreen: { type: integer, enum: [0, 1] }
+        displayViewByDefault: { type: integer, enum: [0, 1] }
+        'notification::cmd':
+          type: string
+          description: Commande de notification, au format `#[Objet][Équipement][Commande]#`.
+          example: '#[Maison][Téléphone][Notification]#'
+
+    ApiToken:
+      type: object
+      required: [token, generatedAt]
+      properties:
+        token: { type: string, description: Jeton API (`hash` du core)., example: 'aBcD…' }
+        generatedAt:
+          type: [string, 'null']
+          format: date-time
+          description: Date de création du jeton (`options.hashGenerated`).
+
+    MeUpdate:
+      type: object
+      additionalProperties: false
+      dependentRequired:
+        password: [currentPassword]
+      properties:
+        currentPassword: { type: string, format: password, minLength: 1, writeOnly: true, description: 'Mot de passe actuel, obligatoire avec `password`.' }
+        password: { type: string, format: password, minLength: 1, writeOnly: true, description: Nouveau mot de passe. }
+        preferences: { $ref: '#/components/schemas/MePreferences' }
+
+    Device:
+      type: object
+      required: [key, datetime, ip]
+      properties:
+        key: { type: string, description: Empreinte (sha512) du cookie `registerDevice`. }
+        datetime: { type: string, format: date-time, description: Dernière utilisation. }
+        ip: { type: string, example: 192.168.1.20 }
+        current: { type: boolean, description: Appareil de la requête en cours. }
+
+    DeviceList:
+      type: object
+      required: [items, total]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Device' } }
+        total: { type: integer }
+
+    SessionInfo:
+      type: object
+      required: [id, ip, datetime]
+      properties:
+        id: { type: string, description: Colonne `id` de la table `session`. }
+        createdAt: { type: string, format: date-time, description: Ouverture. }
+        expiresAt: { type: string, format: date-time, description: Expiration. }
+        ip: { type: string }
+        datetime: { type: string, format: date-time, description: Dernière activité. }
+        current: { type: boolean, description: Session de la requête en cours. }
+
+    SessionInfoList:
+      type: object
+      required: [items, total]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/SessionInfo' } }
+        total: { type: integer }
 
     LoginRequest:
       type: object
@@ -3265,3 +3977,13 @@ components:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
 
+    UserNotFound:
+      description: 'Utilisateur inconnu (`code: user_not_found`).'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    UserConflict:
+      description: 'Un utilisateur porte déjà ce login (`code: user_login_taken`, le login est unique).'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
