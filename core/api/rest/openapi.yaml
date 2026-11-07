@@ -529,8 +529,11 @@ paths:
         Remplace l'ajax `user::saveProfils` (page « Préférences »), pour tout
         profil. Seuls le mot de passe et les préférences de `MePreferences`
         sont acceptés ; le profil, l'activation et les droits restent aux
-        administrateurs. `preferences` est fusionné clé par clé. Le `hash`
-        (jeton API) n'est ni lu ni modifié ici pour l'instant.
+        administrateurs. `preferences` est fusionné clé par clé ; une clé
+        inconnue (y compris les préférences de plugins `plugin::<id>::<clé>`,
+        à traiter avec la spec des plugins) renvoie 422. Changer de mot de
+        passe demande l'ancien (`currentPassword`) : s'il est faux, 422
+        `invalid_current_password`. Le jeton API se gère avec `/me/token`.
       requestBody:
         required: true
         content:
@@ -550,6 +553,44 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
         '422': { $ref: '#/components/responses/ValidationError' }
+
+  /me/token:
+    get:
+      tags: [Session]
+      operationId: getMyToken
+      summary: Lire son jeton API
+      description: |
+        Renvoie le jeton (`hash` du core) à utiliser dans `Authorization:
+        Bearer …`. Le jeton n'apparaît jamais dans `/users`, même pour un
+        administrateur. Comptes système refusés.
+      responses:
+        '200':
+          description: Le jeton.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ApiToken' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Session]
+      operationId: regenerateMyToken
+      summary: Régénérer son jeton API
+      description: |
+        Crée un nouveau jeton ; l'ancien cesse aussitôt de fonctionner (les
+        intégrations qui l'utilisent devront être mises à jour). Remet à zéro
+        la date de rotation automatique (`hashGenerated`).
+      responses:
+        '201':
+          description: Le nouveau jeton.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ApiToken' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`), ou compte système.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /me/devices:
     get:
@@ -578,11 +619,7 @@ paths:
 
   /me/devices/{key}:
     parameters:
-      - name: key
-        in: path
-        required: true
-        description: Empreinte de l'appareil, lue dans `GET /me/devices`.
-        schema: { type: string, pattern: '^[0-9a-f]{128}$' }
+      - $ref: '#/components/parameters/DeviceKey'
     delete:
       tags: [Session]
       operationId: forgetMyDevice
@@ -615,11 +652,7 @@ paths:
 
   /me/sessions/{sessionId}:
     parameters:
-      - name: sessionId
-        in: path
-        required: true
-        description: Identifiant opaque lu dans `GET /me/sessions`.
-        schema: { type: string, minLength: 1 }
+      - $ref: '#/components/parameters/SessionId'
     delete:
       tags: [Session]
       operationId: closeMySession
@@ -3161,8 +3194,8 @@ components:
       additionalProperties: false
       description: |
         Préférences de l'utilisateur (sous-ensemble de `options` du core).
-        Les clés `plugin::<id>::<clé>` déclarées par les plugins restent à
-        traiter (voir PR).
+        Les clés `plugin::<id>::<clé>` des plugins sont refusées pour
+        l'instant : elles seront déclarées par chaque plugin.
       properties:
         homePage: { type: string, example: 'core::dashboard', description: Page d'accueil sur ordinateur. }
         homePageMobile: { type: string }
@@ -3182,10 +3215,23 @@ components:
           description: Commande de notification, au format `#[Objet][Équipement][Commande]#`.
           example: '#[Maison][Téléphone][Notification]#'
 
+    ApiToken:
+      type: object
+      required: [token, generatedAt]
+      properties:
+        token: { type: string, description: Jeton API (`hash` du core)., example: 'aBcD…' }
+        generatedAt:
+          type: [string, 'null']
+          format: date-time
+          description: Date de création du jeton (`options.hashGenerated`).
+
     MeUpdate:
       type: object
       additionalProperties: false
+      dependentRequired:
+        password: [currentPassword]
       properties:
+        currentPassword: { type: string, format: password, minLength: 1, writeOnly: true, description: 'Mot de passe actuel, obligatoire avec `password`.' }
         password: { type: string, format: password, minLength: 1, writeOnly: true, description: Nouveau mot de passe. }
         preferences: { $ref: '#/components/schemas/MePreferences' }
 
