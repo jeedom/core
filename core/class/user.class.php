@@ -596,6 +596,29 @@ class user {
 		return (is_numeric($this->id) && $this->login != '' && $this->enable == 1);
 	}
 
+	/**
+	 * Close all the PHP sessions opened with this account
+	 */
+	public function closeSessions(): void {
+		$sessions = listSession();
+		foreach ($sessions as $sessionId => $sessionData) {
+			if (isset($sessionData['user_id']) && $sessionData['user_id'] == $this->getId()) {
+				deleteSession($sessionId);
+			}
+		}
+	}
+
+	/**
+	 * Copy the rights of this user to another one, key by key
+	 */
+	public function copyRightsTo(user $_to): void {
+		$rights = $this->getRights();
+		foreach ($rights as $key => $value) {
+			$_to->setRights($key, $value);
+		}
+		$_to->save();
+	}
+
 	public function validateTwoFactorCode($_code) {
 		$google2fa = new Google2FA();
 		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code, 8);
