@@ -73,7 +73,7 @@ final class UsersController
         }
         self::requireNoLdap('Création impossible tant que l\'authentification LDAP est active.');
         $login = self::validLogin($body['login'], null);
-        $password = self::validPassword($body['password'], 'password');
+        $password = self::validPassword($body['password'], 'password', $login);
         $user = new \user();
         $user->setLogin($login);
         $user->setPassword($password);
@@ -102,7 +102,7 @@ final class UsersController
         }
         $options = array_key_exists('options', $body) ? self::validAdminOptions($body['options']) : [];
         $login = array_key_exists('login', $body) ? self::validLogin($body['login'], $user) : null;
-        $password = array_key_exists('password', $body) ? self::validPassword($body['password'], 'password') : null;
+        $password = array_key_exists('password', $body) ? self::validPassword($body['password'], 'password', $login ?? (string) $user->getLogin()) : null;
         $disable = ($body['enable'] ?? null) === false;
         $demote = isset($body['profils']) && $body['profils'] !== 'admin';
         if ((int) $user->getId() === (int) $me->getId() && ($disable || $demote)) {
@@ -250,7 +250,7 @@ final class UsersController
         $preferences = array_key_exists('preferences', $body) ? self::validPreferences($body['preferences']) : [];
         $password = null;
         if (array_key_exists('password', $body)) {
-            $password = self::validPassword($body['password'], 'password');
+            $password = self::validPassword($body['password'], 'password', (string) $user->getLogin());
             $current = $body['currentPassword'] ?? null;
             if (!is_string($current) || $current === '') {
                 throw ApiError::field(422, 'validation_error', 'currentPassword', 'Le mot de passe actuel est obligatoire pour en changer.');
@@ -531,10 +531,16 @@ final class UsersController
         return $login;
     }
 
-    private static function validPassword(mixed $password, string $field): string
+    /** Règle `NewPassword` : 8 caractères, une lettre, un chiffre, différent de l'identifiant. */
+    private static function validPassword(mixed $password, string $field, string $login): string
     {
         if (!is_string($password) || $password === '') {
             throw ApiError::field(422, 'validation_error', $field, 'Un mot de passe non vide est attendu.');
+        }
+        if (mb_strlen($password) < 8 || !preg_match('/[A-Za-z]/', $password) || !preg_match('/[0-9]/', $password)
+            || mb_strtolower($password) === mb_strtolower($login)) {
+            throw ApiError::field(422, 'weak_password', $field,
+                'Le mot de passe doit faire au moins 8 caractères, avec au moins une lettre et un chiffre, et être différent de l\'identifiant.');
         }
         return $password;
     }
