@@ -723,6 +723,7 @@ paths:
               schema: { $ref: '#/components/schemas/UserList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
     post:
       tags: [Utilisateurs]
       operationId: createUser
