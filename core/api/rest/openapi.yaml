@@ -521,6 +521,121 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Me' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Session]
+      operationId: updateMe
+      summary: Modifier son propre compte
+      description: |
+        Remplace l'ajax `user::saveProfils` (page « Préférences »), pour tout
+        profil. Seuls le mot de passe et les préférences de `MePreferences`
+        sont acceptés ; le profil, l'activation et les droits restent aux
+        administrateurs. `preferences` est fusionné clé par clé. Le `hash`
+        (jeton API) n'est ni lu ni modifié ici pour l'instant.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MeUpdate' }
+            example: { preferences: { homePage: 'core::dashboard', defaultDashboardObject: 3 } }
+      responses:
+        '200':
+          description: Compte modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Me' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`), ou compte système.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /me/devices:
+    get:
+      tags: [Session]
+      operationId: listMyDevices
+      summary: Lister ses appareils enregistrés
+      description: |
+        Appareils retenus par « Rester connecté » (`options.registerDevice`).
+        La clé est l'empreinte du cookie, jamais le cookie lui-même ; le
+        `session_id` n'est pas renvoyé.
+      responses:
+        '200':
+          description: Les appareils.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeviceList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    delete:
+      tags: [Session]
+      operationId: forgetMyDevices
+      summary: Oublier tous ses appareils
+      description: Remplace `user::removeRegisterDevice` sans `key` pour son propre compte.
+      responses:
+        '204': { description: Appareils oubliés. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /me/devices/{key}:
+    parameters:
+      - name: key
+        in: path
+        required: true
+        description: Empreinte de l'appareil, lue dans `GET /me/devices`.
+        schema: { type: string, pattern: '^[0-9a-f]{128}$' }
+    delete:
+      tags: [Session]
+      operationId: forgetMyDevice
+      summary: Oublier un appareil
+      description: Remplace `user::removeRegisterDevice` avec `key`.
+      responses:
+        '204': { description: Appareil oublié. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404':
+          description: 'Appareil inconnu (`code: device_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /me/sessions:
+    get:
+      tags: [Session]
+      operationId: listMySessions
+      summary: Lister ses sessions ouvertes
+      description: |
+        Sessions du core ouvertes avec son compte. L'identifiant renvoyé est
+        opaque (dérivé de l'identifiant de session, jamais celui-ci).
+      responses:
+        '200':
+          description: Les sessions.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SessionInfoList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /me/sessions/{sessionId}:
+    parameters:
+      - name: sessionId
+        in: path
+        required: true
+        description: Identifiant opaque lu dans `GET /me/sessions`.
+        schema: { type: string, minLength: 1 }
+    delete:
+      tags: [Session]
+      operationId: closeMySession
+      summary: Fermer une de ses sessions
+      description: |
+        Remplace `user::deleteSession`, limité à ses propres sessions (une
+        session d'un autre compte renvoie 404). Oublie aussi l'appareil lié.
+        Pour fermer la session courante, utiliser `DELETE /session`.
+      responses:
+        '204': { description: Session fermée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404':
+          description: 'Session inconnue (`code: session_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /users:
     get:
@@ -2809,6 +2924,8 @@ components:
         id: { type: integer, example: 1 }
         login: { type: string, example: admin }
         isAdmin: { type: boolean, description: Profil administrateur., example: true }
+        profils: { $ref: '#/components/schemas/UserProfile' }
+        preferences: { $ref: '#/components/schemas/MePreferences' }
         csrfToken:
           type: [string, 'null']
           description: |
@@ -2923,6 +3040,71 @@ components:
         pattern: '^((eqLogic|jeeObject|scenario|view|plan|plan3d)[0-9]+|menu::[A-Za-z0-9_]+)$'
       additionalProperties: { $ref: '#/components/schemas/UserRightValue' }
       example: { eqLogic12: rx, jeeObject3: r, scenario5: n }
+
+    MePreferences:
+      type: object
+      additionalProperties: false
+      description: |
+        Préférences de l'utilisateur (sous-ensemble de `options` du core).
+        Les clés `plugin::<id>::<clé>` déclarées par les plugins restent à
+        traiter (voir PR).
+      properties:
+        homePage: { type: string, example: 'core::dashboard', description: Page d'accueil sur ordinateur. }
+        homePageMobile: { type: string }
+        defaultDashboardObject: { type: [integer, 'null'], description: Objet affiché par défaut sur le dashboard. }
+        defaultMobileObject: { type: [integer, 'null'] }
+        defaultDesktopView: { type: [integer, 'null'] }
+        defaultMobileView: { type: [integer, 'null'] }
+        defaultDashboardPlan: { type: [integer, 'null'] }
+        defaultMobilePlan: { type: [integer, 'null'] }
+        defaultDashboardPlan3d: { type: [integer, 'null'] }
+        defaultMobilePlan3d: { type: [integer, 'null'] }
+        defaultPlanFullScreen: { type: integer, enum: [0, 1] }
+        defaultPlan3dFullScreen: { type: integer, enum: [0, 1] }
+        displayViewByDefault: { type: integer, enum: [0, 1] }
+        'notification::cmd':
+          type: string
+          description: Commande de notification, au format `#[Objet][Équipement][Commande]#`.
+          example: '#[Maison][Téléphone][Notification]#'
+
+    MeUpdate:
+      type: object
+      additionalProperties: false
+      properties:
+        password: { type: string, format: password, minLength: 1, writeOnly: true, description: Nouveau mot de passe. }
+        preferences: { $ref: '#/components/schemas/MePreferences' }
+
+    Device:
+      type: object
+      required: [key, datetime, ip]
+      properties:
+        key: { type: string, description: Empreinte (sha512) du cookie `registerDevice`. }
+        datetime: { type: string, format: date-time, description: Dernière utilisation. }
+        ip: { type: string, example: 192.168.1.20 }
+        current: { type: boolean, description: Appareil de la requête en cours. }
+
+    DeviceList:
+      type: object
+      required: [items, total]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Device' } }
+        total: { type: integer }
+
+    SessionInfo:
+      type: object
+      required: [id, ip, datetime]
+      properties:
+        id: { type: string, description: Identifiant opaque. }
+        ip: { type: string }
+        datetime: { type: string, format: date-time, description: Dernière activité. }
+        current: { type: boolean, description: Session de la requête en cours. }
+
+    SessionInfoList:
+      type: object
+      required: [items, total]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/SessionInfo' } }
+        total: { type: integer }
 
     LoginRequest:
       type: object
