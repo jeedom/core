@@ -68,6 +68,8 @@ tags:
     description: Lecture et gestion des fichiers log, administrateurs uniquement.
   - name: Plugins
     description: Plugins installés.
+  - name: Utilisateurs
+    description: Comptes utilisateurs et leurs droits, administrateurs uniquement.
   - name: Session
     description: Utilisateur connecté.
   - name: Commandes
@@ -519,6 +521,148 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Me' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /users:
+    get:
+      tags: [Utilisateurs]
+      operationId: listUsers
+      summary: Lister les utilisateurs (administrateur)
+      description: |
+        Remplace l'ajax `user::all`. Renvoie tous les comptes, y compris les
+        comptes système `internal_report` et `jeedom_support` (marqués
+        `system: true`). Jamais de mot de passe, de `hash` ni de donnée de
+        double authentification.
+      parameters:
+        - name: profils
+          in: query
+          description: Ne garder que ce profil.
+          schema: { $ref: '#/components/schemas/UserProfile' }
+        - name: enable
+          in: query
+          description: Ne garder que les comptes actifs (`true`) ou désactivés (`false`).
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Liste des utilisateurs.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Utilisateurs]
+      operationId: createUser
+      summary: Créer un utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::save` sans `id`. Seuls `login` et `password`
+        sont acceptés : le compte est créé avec le profil `user`, actif, et
+        l'accès API désactivé (`options.api::mode = disable`). Le profil, les
+        options et les droits se règlent ensuite avec `PATCH /users/{id}` et
+        `PUT /users/{id}/rights`. Refusé si l'authentification LDAP est
+        active (les comptes viennent alors de l'annuaire).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserCreate' }
+            example: { login: marie, password: 'Un-mot-de-passe-solide' }
+      responses:
+        '201':
+          description: Utilisateur créé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/UserConflict' }
+        '422':
+          description: |
+            Données invalides (`validation_error` : login ou mot de passe
+            vide, login réservé `internal_report` / `jeedom_support`), ou
+            `ldap_enabled` : création impossible tant que LDAP est actif.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users/{id}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: getUser
+      summary: Lire un utilisateur (administrateur)
+      description: Remplace l'ajax `user::get` avec `id`.
+      responses:
+        '200':
+          description: L'utilisateur.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    patch:
+      tags: [Utilisateurs]
+      operationId: updateUser
+      summary: Modifier un utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::save` avec `id`. Seuls les champs de
+        `UserUpdate` sont acceptés ; `options` est fusionné clé par clé.
+        Règles reprises du core :
+        - les comptes système (`internal_report`, `jeedom_support`) ne sont
+          pas modifiables : 403 `user_system` ;
+        - on ne peut pas se désactiver soi-même ni retirer son propre profil
+          administrateur : 422 `user_self_lockout` ;
+        - le dernier administrateur actif ne peut être ni désactivé ni
+          rétrogradé : 422 `last_admin` ;
+        - désactiver un compte (`enable: false`) ferme toutes ses sessions.
+
+        Les droits par élément ne passent pas ici mais par
+        `/users/{id}/rights`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserUpdate' }
+            example: { profils: restrict, options: { localOnly: 1 } }
+      responses:
+        '200':
+          description: Utilisateur modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Droits insuffisants, ou compte système non modifiable (`code: user_system`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '409': { $ref: '#/components/responses/UserConflict' }
+        '422':
+          description: |
+            Données invalides (`validation_error`), `user_self_lockout`
+            (se désactiver ou quitter son profil admin) ou `last_admin`.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+    delete:
+      tags: [Utilisateurs]
+      operationId: deleteUser
+      summary: Supprimer un utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::remove`. Refusé si LDAP est actif ou si c'est
+        son propre compte.
+      responses:
+        '204': { description: Utilisateur supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422':
+          description: '`ldap_enabled` (suppression impossible tant que LDAP est actif) ou `user_self_delete`.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /objects:
     get:
@@ -2149,6 +2293,12 @@ components:
       required: true
       description: Identifiant du scénario.
       schema: { type: integer, minimum: 1 }
+    UserId:
+      name: id
+      in: path
+      required: true
+      description: Identifiant de l'utilisateur.
+      schema: { type: integer, minimum: 1 }
 
   schemas:
     LogList:
@@ -2577,6 +2727,98 @@ components:
             Jeton à renvoyer dans l'en-tête `X-CSRF-Token` des écritures en
             session (relu ici au rechargement de la page). `null` avec un
             jeton `Bearer`.
+
+    UserProfile:
+      type: string
+      enum: [admin, user, restrict]
+      description: |
+        `admin` : tous les droits. `user` : lecture et commandes, sans
+        administration. `restrict` : seulement les éléments autorisés dans
+        `/users/{id}/rights`.
+
+    UserKind:
+      type: string
+      enum: [human, system, plugin]
+      description: |
+        Nature du compte. `human` : compte de connexion classique.
+        `system` : comptes créés par le core (`internal_report`,
+        `jeedom_support`), non modifiables. `plugin` : réservé aux futurs
+        comptes techniques des démons de plugins (sans connexion, droits
+        limités au plugin) ; aucun n'existe encore, voir les questions
+        ouvertes de la PR.
+
+    User:
+      type: object
+      description: |
+        Utilisateur vu par un administrateur. Jamais renvoyés : `password`,
+        `hash`, et tout ce qui touche à la double authentification
+        (`twoFactorAuthentification`, son secret), ni les `session_id` des
+        appareils.
+      required: [id, login, profils, enable, kind]
+      properties:
+        id: { type: integer, readOnly: true, example: 2 }
+        login: { type: string, example: marie }
+        profils: { $ref: '#/components/schemas/UserProfile' }
+        enable: { type: boolean, example: true }
+        kind: { $ref: '#/components/schemas/UserKind' }
+        twoFactorEnabled:
+          type: boolean
+          readOnly: true
+          description: Double authentification activée (indicateur seul, ni code ni secret).
+        lastConnection:
+          type: [string, 'null']
+          format: date-time
+          readOnly: true
+          description: Dernière connexion (`options.lastConnection`).
+        options: { $ref: '#/components/schemas/UserAdminOptions' }
+      example:
+        id: 2
+        login: marie
+        profils: user
+        enable: true
+        kind: human
+        twoFactorEnabled: false
+        lastConnection: '2026-11-06T18:42:00+01:00'
+        options: { localOnly: 0, api::mode: disable, doNotRotateHash: 0 }
+
+    UserAdminOptions:
+      type: object
+      description: Options réglées par un administrateur (sous-ensemble de `options` du core).
+      properties:
+        localOnly: { type: integer, enum: [0, 1], description: Connexion autorisée seulement depuis le réseau local. }
+        'api::mode':
+          type: string
+          enum: [enable, whiteip, localhost, disable]
+          description: Accès à l'API avec le jeton de cet utilisateur.
+        doNotRotateHash: { type: integer, enum: [0, 1], description: Ne pas régénérer automatiquement le jeton tous les 3 mois. }
+
+    UserCreate:
+      type: object
+      additionalProperties: false
+      required: [login, password]
+      properties:
+        login: { type: string, minLength: 1, maxLength: 255, example: marie }
+        password: { type: string, format: password, minLength: 1, writeOnly: true }
+
+    UserUpdate:
+      type: object
+      additionalProperties: false
+      description: Liste blanche des champs modifiables par un administrateur.
+      properties:
+        login: { type: string, minLength: 1, maxLength: 255 }
+        password: { type: string, format: password, minLength: 1, writeOnly: true, description: Nouveau mot de passe. }
+        profils: { $ref: '#/components/schemas/UserProfile' }
+        enable: { type: boolean }
+        options: { $ref: '#/components/schemas/UserAdminOptions' }
+
+    UserList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/User' }
+        total: { type: integer, example: 3 }
 
     LoginRequest:
       type: object
@@ -3265,3 +3507,13 @@ components:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
 
+    UserNotFound:
+      description: 'Utilisateur inconnu (`code: user_not_found`).'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    UserConflict:
+      description: 'Un utilisateur porte déjà ce login (`code: user_login_taken`, le login est unique).'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
