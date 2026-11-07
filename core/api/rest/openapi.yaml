@@ -553,7 +553,9 @@ paths:
         inconnue (y compris les préférences de plugins `plugin::<id>::<clé>`,
         à traiter avec la spec des plugins) renvoie 422. Changer de mot de
         passe demande l'ancien (`currentPassword`) : s'il est faux, 422
-        `invalid_current_password`. Le jeton API se gère avec `/me/token`.
+        `invalid_current_password` ; le nouveau suit la règle de
+        `NewPassword` (sinon 422 `weak_password`). Le jeton API se gère avec
+        `/me/token`.
       requestBody:
         required: true
         content:
@@ -740,7 +742,7 @@ paths:
         content:
           application/json:
             schema: { $ref: '#/components/schemas/UserCreate' }
-            example: { login: marie, password: 'Un-mot-de-passe-solide' }
+            example: { login: marie, password: 'Un-mot-de-passe-solide-42' }
       responses:
         '201':
           description: Utilisateur créé.
@@ -753,8 +755,10 @@ paths:
         '422':
           description: |
             Données invalides (`validation_error` : login ou mot de passe
-            vide, login réservé `internal_report` / `jeedom_support`), ou
-            `ldap_enabled` : création impossible tant que LDAP est actif.
+            vide, login réservé `internal_report` / `jeedom_support`),
+            `weak_password` (mot de passe hors de la règle de
+            `NewPassword`), ou `ldap_enabled` : création impossible tant que
+            LDAP est actif.
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -818,7 +822,8 @@ paths:
         '409': { $ref: '#/components/responses/UserConflict' }
         '422':
           description: |
-            Données invalides (`validation_error`), `user_self_lockout`
+            Données invalides (`validation_error`), `weak_password` (mot de
+            passe hors de la règle de `NewPassword`), `user_self_lockout`
             (se désactiver ou quitter son profil admin) ou `last_admin`.
           content:
             application/json:
@@ -3167,13 +3172,26 @@ components:
           description: Accès à l'API avec le jeton de cet utilisateur.
         doNotRotateHash: { type: integer, enum: [0, 1], description: Ne pas régénérer automatiquement le jeton tous les 3 mois. }
 
+    NewPassword:
+      type: string
+      format: password
+      writeOnly: true
+      minLength: 8
+      pattern: '^(?=.*[A-Za-z])(?=.*[0-9])'
+      description: |
+        Nouveau mot de passe : 8 caractères au moins, avec au moins une
+        lettre et un chiffre, et différent de l'identifiant (sans tenir
+        compte des majuscules). Sinon 422 `weak_password`. La règle
+        s'applique à la création d'un compte et à chaque changement de mot
+        de passe ; les mots de passe existants restent valides.
+
     UserCreate:
       type: object
       additionalProperties: false
       required: [login, password]
       properties:
         login: { type: string, minLength: 1, maxLength: 255, example: marie }
-        password: { type: string, format: password, minLength: 1, writeOnly: true }
+        password: { $ref: '#/components/schemas/NewPassword' }
 
     UserUpdate:
       type: object
@@ -3181,7 +3199,7 @@ components:
       description: Liste blanche des champs modifiables par un administrateur.
       properties:
         login: { type: string, minLength: 1, maxLength: 255 }
-        password: { type: string, format: password, minLength: 1, writeOnly: true, description: Nouveau mot de passe. }
+        password: { $ref: '#/components/schemas/NewPassword' }
         profils: { $ref: '#/components/schemas/UserProfile' }
         enable: { type: boolean }
         options: { $ref: '#/components/schemas/UserAdminOptions' }
@@ -3254,7 +3272,7 @@ components:
         password: [currentPassword]
       properties:
         currentPassword: { type: string, format: password, minLength: 1, writeOnly: true, description: 'Mot de passe actuel, obligatoire avec `password`.' }
-        password: { type: string, format: password, minLength: 1, writeOnly: true, description: Nouveau mot de passe. }
+        password: { $ref: '#/components/schemas/NewPassword' }
         preferences: { $ref: '#/components/schemas/MePreferences' }
 
     Device:
