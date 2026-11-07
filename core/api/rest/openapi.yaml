@@ -8,7 +8,7 @@ info:
   description: |
     Brouillon de l'API REST du core Jeedom. Elle couvre la ressource pilote
     `/objects` (les objets : pièces, étages, zones…), `/eqLogics` (les
-    équipements), `/cmds` (leurs commandes) et `/scenarios`.
+    équipements), `/cmds` (leurs commandes), `/scenarios` et `/crons` (administrateurs).
 
     Elle reprend les actions de `core/ajax/object.ajax.php` et les méthodes
     JSON-RPC `jeeObject::*` / `summary::*` de `core/api/jeeApi.php`
@@ -62,6 +62,8 @@ tags:
     description: Valeurs agrégées par objet (température moyenne, lumières allumées…).
   - name: Scénarios
     description: Scénarios d'automatisation, leur contenu, leur lancement et leur journal.
+  - name: Crons
+    description: Tâches planifiées du moteur cron, administrateurs uniquement.
   - name: Plugins
     description: Plugins installés.
   - name: Session
@@ -72,6 +74,197 @@ tags:
     description: Flux d'événements en direct (SSE).
 
 paths:
+  /crons:
+    get:
+      tags:
+      - Crons
+      operationId: listCrons
+      summary: Lister les tâches cron (administrateur)
+      responses:
+        '200':
+          description: Liste des tâches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CronList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      description: Rafraîchit les états comme cron.ajax.php. Sans pagination, retourne toutes les tâches.
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type: string
+          maxLength: 200
+      - $ref: '#/components/parameters/ListLimit'
+      - $ref: '#/components/parameters/ListOffset'
+    post:
+      tags:
+      - Crons
+      operationId: createCron
+      summary: Créer une tâche cron (administrateur)
+      responses:
+        '201':
+          description: Créer une tâche cron.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '409':
+          description: Cible déjà utilisée (cron_target_taken).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CronCreate'
+  /crons/{id}:
+    patch:
+      tags:
+      - Crons
+      operationId: updateCron
+      summary: Modifier une tâche cron (administrateur)
+      responses:
+        '200':
+          description: Modifier une tâche cron.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: Tâche inconnue (cron_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '409':
+          description: Cible déjà utilisée (cron_target_taken).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CronUpdate'
+    delete:
+      tags:
+      - Crons
+      operationId: deleteCron
+      summary: Supprimer une tâche cron (administrateur)
+      responses:
+        '204':
+          description: Supprimer une tâche cron.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: Tâche inconnue (cron_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Arrête la tâche si elle est active avant de la supprimer.
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+  /crons/{id}/start:
+    post:
+      tags:
+      - Crons
+      operationId: startCron
+      summary: Lancer immédiatement une tâche cron (administrateur)
+      responses:
+        '202':
+          description: Lancer immédiatement une tâche cron.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: Tâche inconnue (cron_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Tâche déjà active (cron_running).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: 'Lancement manuel via cron::run(), même si la planification est désactivée. Refuse de relancer
+        une tâche active. Le lancement est asynchrone : recharger la liste pour suivre son état.'
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+  /crons/{id}/stop:
+    post:
+      tags:
+      - Crons
+      operationId: stopCron
+      summary: Arrêter une tâche cron (administrateur)
+      responses:
+        '200':
+          description: Arrêter une tâche cron.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: Tâche inconnue (cron_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Arrêt immédiat via cron::halt().
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+
   /plugins:
     get:
       tags: [Plugins]
@@ -1806,6 +1999,180 @@ components:
       schema: { type: integer, minimum: 1 }
 
   schemas:
+    Cron:
+      type: object
+      required:
+      - class
+      - function
+      - schedule
+      - enable
+      - deamon
+      - once
+      - timeout
+      - deamonSleepTime
+      - id
+      - state
+      - lastRun
+      - pid
+      - runtime
+      - option
+      properties:
+        class:
+          type: string
+          maxLength: 127
+          default: ''
+          description: Classe PHP, vide pour une fonction globale.
+        function:
+          type: string
+          minLength: 1
+          maxLength: 127
+        schedule:
+          type: string
+          minLength: 1
+          maxLength: 127
+          example: '*/5 * * * *'
+          description: Nouvelle expression validée avec checkAndFixCron et CronExpression. Une programmation existante inchangée est conservée.
+        enable:
+          type: boolean
+          default: true
+        deamon:
+          type: boolean
+          default: false
+        once:
+          type: boolean
+          default: false
+        timeout:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          default: 0
+          description: Durée maximale en minutes. 0 conserve le réglage global.
+        deamonSleepTime:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          default: 0
+          description: Pause du démon en secondes. 0 conserve le réglage global.
+        id:
+          type: integer
+          minimum: 1
+          readOnly: true
+        state:
+          type: string
+          readOnly: true
+          description: 'État natif : run, stop, starting, stoping, error…'
+        lastRun:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: Heure locale du serveur YYYY-MM-DD HH:mm:ss, sans conversion de fuseau.
+        pid:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        runtime:
+          type:
+          - number
+          - 'null'
+          readOnly: true
+          description: Dernière durée en secondes.
+        option:
+          readOnly: true
+          description: Options existantes retournées pour inspection et conservées lors des modifications.
+    CronCreate:
+      type: object
+      additionalProperties: false
+      required:
+      - function
+      - schedule
+      properties:
+        class:
+          type: string
+          maxLength: 127
+          default: ''
+          description: Classe PHP, vide pour une fonction globale.
+        function:
+          type: string
+          minLength: 1
+          maxLength: 127
+        schedule:
+          type: string
+          minLength: 1
+          maxLength: 127
+          example: '*/5 * * * *'
+          description: Nouvelle expression validée avec checkAndFixCron et CronExpression. Une programmation existante inchangée est conservée.
+        enable:
+          type: boolean
+          default: true
+        deamon:
+          type: boolean
+          default: false
+        once:
+          type: boolean
+          default: false
+        timeout:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          default: 0
+          description: Durée maximale en minutes. 0 conserve le réglage global.
+        deamonSleepTime:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          default: 0
+          description: Pause du démon en secondes. 0 conserve le réglage global.
+    CronUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        class:
+          type: string
+          maxLength: 127
+          description: Classe PHP, vide pour une fonction globale.
+        function:
+          type: string
+          minLength: 1
+          maxLength: 127
+        schedule:
+          type: string
+          minLength: 1
+          maxLength: 127
+          example: '*/5 * * * *'
+          description: Nouvelle expression validée avec checkAndFixCron et CronExpression. Une programmation existante inchangée est conservée.
+        enable:
+          type: boolean
+        deamon:
+          type: boolean
+        once:
+          type: boolean
+        timeout:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          description: Durée maximale en minutes. 0 conserve le réglage global.
+        deamonSleepTime:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          description: Pause du démon en secondes. 0 conserve le réglage global.
+    CronList:
+      type: object
+      required:
+      - items
+      - total
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cron'
+        total:
+          type: integer
+          minimum: 0
+
     Scenario:
       type: object
       required: [id, name, group, isActive, isVisible, mode, order, state]
@@ -2687,3 +3054,4 @@ components:
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
+

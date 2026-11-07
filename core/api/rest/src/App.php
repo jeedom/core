@@ -80,6 +80,14 @@ final class App
             $api->delete('/scenarios/{id}/log', $scenarios->emptyLog(...));
             $api->get('/scenarios/{id}/usages', $scenarios->usages(...));
 
+            $crons = new CronsController();
+            $api->get('/crons', $crons->list(...));
+            $api->post('/crons', $crons->create(...));
+            $api->patch('/crons/{id}', $crons->update(...));
+            $api->delete('/crons/{id}', $crons->delete(...));
+            $api->post('/crons/{id}/start', $crons->start(...));
+            $api->post('/crons/{id}/stop', $crons->stop(...));
+
             $api->get('/events', (new EventsController())->stream(...));
 
             $api->get('/plugins', (new PluginsController())->list(...));
@@ -128,3 +136,4 @@ final class App
         throw new ApiError(501, 'not_implemented', 'Route prévue par la spec, pas encore implémentée dans la passerelle.');
     }
 }
+
