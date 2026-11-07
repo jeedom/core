@@ -645,7 +645,8 @@ paths:
       description: |
         Remplace l'ajax `user::all`. Renvoie tous les comptes, y compris les
         comptes système `internal_report` et `jeedom_support` (marqués
-        `system: true`). Jamais de mot de passe, de `hash` ni de donnée de
+        `kind: system`) et les comptes techniques des démons de plugins
+        (`kind: plugin`). Jamais de mot de passe, de `hash` ni de donnée de
         double authentification.
       parameters:
         - name: profils
@@ -656,6 +657,10 @@ paths:
           in: query
           description: Ne garder que les comptes actifs (`true`) ou désactivés (`false`).
           schema: { type: boolean }
+        - name: kind
+          in: query
+          description: Ne garder que cette nature de compte (ex. `human` pour masquer les comptes système et de plugins).
+          schema: { $ref: '#/components/schemas/UserKind' }
       responses:
         '200':
           description: Liste des utilisateurs.
@@ -730,7 +735,9 @@ paths:
           administrateur : 422 `user_self_lockout` ;
         - le dernier administrateur actif ne peut être ni désactivé ni
           rétrogradé : 422 `last_admin` ;
-        - désactiver un compte (`enable: false`) ferme toutes ses sessions.
+        - désactiver un compte (`enable: false`) ferme toutes ses sessions :
+          celles de la nouvelle UI (table `session`) et celles de l'ancienne
+          interface (sessions PHP).
 
         Les droits par élément ne passent pas ici mais par
         `/users/{id}/rights`.
@@ -775,6 +782,102 @@ paths:
         '404': { $ref: '#/components/responses/UserNotFound' }
         '422':
           description: '`ldap_enabled` (suppression impossible tant que LDAP est actif) ou `user_self_delete`.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users/{id}/devices:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: listUserDevices
+      summary: Lister les appareils enregistrés d'un utilisateur (administrateur)
+      description: Même contenu que `GET /me/devices`, pour un autre compte.
+      responses:
+        '200':
+          description: Les appareils.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeviceList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    delete:
+      tags: [Utilisateurs]
+      operationId: forgetUserDevices
+      summary: Oublier tous les appareils d'un utilisateur (administrateur)
+      description: Remplace `user::removeRegisterDevice` avec `user_id` et sans `key`.
+      responses:
+        '204': { description: Appareils oubliés. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+
+  /users/{id}/devices/{key}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/DeviceKey'
+    delete:
+      tags: [Utilisateurs]
+      operationId: forgetUserDevice
+      summary: Oublier un appareil d'un utilisateur (administrateur)
+      description: Remplace `user::removeRegisterDevice` avec `user_id` et `key`.
+      responses:
+        '204': { description: Appareil oublié. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: 'Utilisateur inconnu (`user_not_found`) ou appareil inconnu (`device_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /users/{id}/sessions:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: listUserSessions
+      summary: Lister les sessions d'un utilisateur (administrateur)
+      description: Même contenu que `GET /me/sessions` (sessions de la nouvelle UI uniquement), pour un autre compte.
+      responses:
+        '200':
+          description: Les sessions.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SessionInfoList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    delete:
+      tags: [Utilisateurs]
+      operationId: closeUserSessions
+      summary: Fermer toutes les sessions d'un utilisateur (administrateur)
+      description: |
+        Ferme ses sessions de la nouvelle UI (table `session`) et ses
+        sessions PHP de l'ancienne interface, comme à la désactivation.
+      responses:
+        '204': { description: Sessions fermées. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+
+  /users/{id}/sessions/{sessionId}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/SessionId'
+    delete:
+      tags: [Utilisateurs]
+      operationId: closeUserSession
+      summary: Fermer une session d'un utilisateur (administrateur)
+      description: Remplace `user::deleteSession` pour un autre compte.
+      responses:
+        '204': { description: Session fermée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: 'Utilisateur inconnu (`user_not_found`) ou session inconnue de cet utilisateur (`session_not_found`).'
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -2502,6 +2605,18 @@ components:
       required: true
       description: Identifiant de l'utilisateur.
       schema: { type: integer, minimum: 1 }
+    DeviceKey:
+      name: key
+      in: path
+      required: true
+      description: Empreinte de l'appareil, lue dans la liste des appareils.
+      schema: { type: string, pattern: '^[0-9a-f]{128}$' }
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      description: Identifiant de la session (colonne `id` de la table `session`), lu dans la liste des sessions.
+      schema: { type: string, minLength: 1 }
 
   schemas:
     LogList:
@@ -2949,8 +3064,8 @@ components:
         `system` : comptes créés par le core (`internal_report`,
         `jeedom_support`), non modifiables. `plugin` : réservé aux futurs
         comptes techniques des démons de plugins (sans connexion, droits
-        limités au plugin) ; aucun n'existe encore, voir les questions
-        ouvertes de la PR.
+        limités au plugin). Ils sont listés dans `/users` ; aucun n'existe
+        encore dans le core.
 
     User:
       type: object
