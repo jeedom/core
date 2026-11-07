@@ -88,6 +88,13 @@ final class App
             $api->post('/crons/{id}/start', $crons->start(...));
             $api->post('/crons/{id}/stop', $crons->stop(...));
 
+            $logs = new LogsController();
+            $api->get('/logs', $logs->list(...));
+            $api->delete('/logs', $logs->deleteAll(...));
+            $api->get('/logs/{name}', $logs->get(...));
+            $api->delete('/logs/{name}', $logs->delete(...));
+            $api->delete('/logs/{name}/contents', $logs->clear(...));
+
             $api->get('/events', (new EventsController())->stream(...));
 
             $api->get('/plugins', (new PluginsController())->list(...));

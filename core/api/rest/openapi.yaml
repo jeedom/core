@@ -64,6 +64,8 @@ tags:
     description: Scénarios d'automatisation, leur contenu, leur lancement et leur journal.
   - name: Crons
     description: Tâches planifiées du moteur cron, administrateurs uniquement.
+  - name: Journaux
+    description: Lecture et gestion des fichiers log, administrateurs uniquement.
   - name: Plugins
     description: Plugins installés.
   - name: Session
@@ -74,6 +76,156 @@ tags:
     description: Flux d'événements en direct (SSE).
 
 paths:
+  /logs:
+    get:
+      tags:
+      - Journaux
+      operationId: listLogs
+      summary: Lister les journaux (administrateur)
+      responses:
+        '200':
+          description: Lister les journaux.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      description: Noms des fichiers du répertoire log obtenus par log::liste(), tri naturel. Aucun fichier caché,
+        répertoire ou nom contenant des caractères shell.
+    delete:
+      tags:
+      - Journaux
+      operationId: deleteLogs
+      summary: Supprimer les journaux (administrateur)
+      responses:
+        '200':
+          description: Supprimer les journaux.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogRemovalResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      description: Applique log::remove() à chaque journal autorisé. Les fichiers protégés par le core (http.error,
+        démons actifs…) sont vidés et conservés ; la réponse distingue fichiers retirés et conservés.
+  /logs/{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Za-z0-9][A-Za-z0-9_.-]{0,254}$
+    get:
+      tags:
+      - Journaux
+      operationId: getLog
+      summary: Lire un extrait brut du journal (administrateur)
+      responses:
+        '200':
+          description: Lire un extrait brut du journal.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '413':
+          description: Limite de lecture dépassée (log_line_too_long ou log_scan_limit).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '404':
+          description: Journal inconnu ou nom interdit (log_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Lignes dans l’ordre du fichier, sans HTML, avec indentation et lignes vides préservées. start est
+        un numéro de ligne commençant à 0. nextStart fournit la page suivante. Lecture bornée à 1 Mio par extrait,
+        64 Kio par ligne et 16 Mio de parcours avant start ; un dépassement de ligne/parcours renvoie 413.
+      parameters:
+      - name: start
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 1000000
+          default: 0
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 300
+    delete:
+      tags:
+      - Journaux
+      operationId: deleteLog
+      summary: Supprimer le journal (administrateur)
+      responses:
+        '200':
+          description: Supprimer le journal.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogRemoval'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: Journal inconnu ou nom interdit (log_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Applique log::remove(). removed=false signifie que le fichier existe encore, notamment lorsqu’il
+        est protégé par le core.
+  /logs/{name}/contents:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Za-z0-9][A-Za-z0-9_.-]{0,254}$
+    delete:
+      tags:
+      - Journaux
+      operationId: clearLog
+      summary: Vider le journal (administrateur)
+      responses:
+        '204':
+          description: Vider le journal.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: Journal inconnu ou nom interdit (log_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Journal non modifiable (log_not_clearable).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
   /crons:
     get:
       tags:
@@ -1999,6 +2151,64 @@ components:
       schema: { type: integer, minimum: 1 }
 
   schemas:
+    LogList:
+      type: object
+      required:
+      - items
+      - total
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        total:
+          type: integer
+          minimum: 0
+    LogPage:
+      type: object
+      required:
+      - name
+      - start
+      - lines
+      - nextStart
+      properties:
+        name:
+          type: string
+        start:
+          type: integer
+          minimum: 0
+        lines:
+          type: array
+          items:
+            type: string
+        nextStart:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          description: Début de la page suivante, null en fin de fichier.
+    LogRemoval:
+      type: object
+      required:
+      - removed
+      properties:
+        removed:
+          type: boolean
+    LogRemovalResult:
+      type: object
+      required:
+      - removed
+      - retained
+      properties:
+        removed:
+          type: array
+          items:
+            type: string
+        retained:
+          type: array
+          items:
+            type: string
+
     Cron:
       type: object
       required:
