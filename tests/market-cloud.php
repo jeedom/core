@@ -187,6 +187,10 @@ try {
     // Separate PHP workers share only on-disk configuration and the existing flock.
     resetState(); putenv('JEEDOM_CLOUD_TEST_DIRECTORY=' . $directory);
     $php = array(PHP_BINARY, '-n', '-d', 'extension_dir=' . ini_get('extension_dir'), '-d', 'extension=curl');
+    // JSON is a separate module on PHP 7.4 and built in from PHP 8 onward.
+    if (is_file(ini_get('extension_dir') . '/json.' . PHP_SHLIB_SUFFIX)) {
+        $php[] = '-d'; $php[] = 'extension=json';
+    }
     $workers = array();
     for ($i = 0; $i < 3; ++$i) {
         $process = proc_open(array_merge($php, array(__FILE__, 'worker')), array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $pipes);
@@ -194,7 +198,8 @@ try {
     }
     foreach ($workers as $worker) {
         $output = stream_get_contents($worker[1][1]); $errors = stream_get_contents($worker[1][2]); fclose($worker[1][1]); fclose($worker[1][2]);
-        check(proc_close($worker[0]) === 0 && $output === $token, 'Concurrent worker failed: ' . $errors);
+        $exit = proc_close($worker[0]);
+        check($exit === 0 && $output === $token, 'Concurrent worker failed: exit=' . $exit . ' ' . $errors . ' stdout=' . $output);
     }
     check(file_get_contents($directory . '/issued') === '1', 'Parallel workers provisioned multiple Cloud tokens');
     echo 'OK Market Cloud: ' . $checks . " checks (sessions, refresh, flock, WebDAV, streaming, cleanup and GPG)\n";
