@@ -999,12 +999,12 @@ class marketClient {
 			if (!is_array($tokens) || ($tokens['boxId'] ?? null) !== $session['boxId'] || ($tokens['tokenType'] ?? null) !== 'Bearer'
 				|| !is_string($tokens['accessToken'] ?? null) || !preg_match('/\A[A-Za-z0-9_-]{43,256}\z/D', $tokens['accessToken'])
 				|| !is_int($tokens['expiresIn'] ?? null) || $tokens['expiresIn'] < 1 || $tokens['expiresIn'] > 86400
-				|| !is_int($tokens['expiresAt'] ?? null) || $tokens['expiresAt'] > time() + 86400
-				|| min($tokens['expiresAt'], $started + $tokens['expiresIn']) <= time() + 60) {
+				|| !is_int($tokens['expiresAt'] ?? null) || $tokens['expiresAt'] < 1
+				|| $started + $tokens['expiresIn'] <= time() + 60) {
 				throw new Exception(__('Réponse de session Cloud invalide.', __FILE__));
 			}
 			config::save('market::cloudSession', array('boxId' => $session['boxId'], 'context' => $context,
-				'accessToken' => $tokens['accessToken'], 'expiresAt' => min($tokens['expiresAt'], $started + $tokens['expiresIn'])));
+				'accessToken' => $tokens['accessToken'], 'expiresAt' => $started + $tokens['expiresIn']));
 			return $tokens['accessToken'];
 		});
 	}
@@ -1367,7 +1367,18 @@ class marketClient {
 				config::save('register::id', $_result['register::id']);
 			}
 			if (isset($_result['username']) && config::byKey('market::username') != $_result['username']) {
-				config::save('market::username', $_result['username']);
+				// The authenticated Market may canonicalize the login (case, accents or rename).
+				// Keep its existing box session bound to that same account after synchronization.
+				self::locked(function () use ($_result) {
+					$connected = self::connected();
+					$session = config::byKey('market::restSession', 'core', array(), true);
+					config::save('market::username', $_result['username']);
+					if ($connected) {
+						$session['context'] = self::context();
+						config::save('market::restSession', $session);
+					}
+					config::remove('market::cloudSession');
+				});
 			}
 			if (config::byKey('market::allowDNS') == 1 && isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 				config::save('jeedom::url', $_result['jeedom::url']);

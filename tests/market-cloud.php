@@ -125,6 +125,12 @@ try {
     $session['expiresAt'] = time() + 3600; $session['boxId'] = 99; config::save('market::cloudSession', $session);
     repo_market::getCloudToken(); check(count(com_http::$calls) === 4, 'Another box token was reused');
     config::save('market::username', 'other'); failWith(401, function () { repo_market::getCloudToken(); });
+    foreach (array(-86400, 86400) as $offset) {
+        resetState(); com_http::$replies = array(array(201, array('boxId' => 7, 'tokenType' => 'Bearer', 'accessToken' => $token,
+            'expiresIn' => 86400, 'expiresAt' => time() + $offset)));
+        check(repo_market::getCloudToken() === $token, 'A Cloud clock offset refused a valid duration');
+        check(abs(config::byKey('market::cloudSession')['expiresAt'] - time() - 86400) <= 1, 'The local cache used the Cloud clock');
+    }
     resetState(); $session = config::byKey('market::restSession'); $session['expiresAt'] = 0; config::save('market::restSession', $session);
     check(repo_market::getCloudToken() === $token && count(com_http::$calls) === 2, 'Expired Market access was not refreshed');
     resetState(); com_http::$replies = array(array(401, array()), array(201, array('boxId' => 7, 'accessToken' => 'box_a_7_' . str_repeat('c', 64), 'refreshToken' => 'box_r_7_' . str_repeat('d', 64), 'expiresIn' => 3600)));
@@ -137,6 +143,11 @@ try {
     resetState(); repo_market::getCloudToken(); com_http::$replies = array(array(502, array()));
     failWith(502, function () use ($token) { repo_market::getCloudToken($token); });
     check(config::byKey('market::cloudSession') === '', 'Rejected token retained after provisioning failure');
+    resetState(); repo_market::getCloudToken();
+    marketClient::applyBoxInformation(array('username' => 'Alice'));
+    check(marketClient::connected(), 'Canonicalizing a login disconnected the box');
+    check(config::byKey('market::username') === 'Alice' && config::byKey('market::cloudSession') === '', 'Canonical login/cache was not synchronized');
+    repo_market::getCloudToken(); check(count(com_http::$calls) === 2, 'Canonical login forced another Market authentication');
     resetState(); repo_market::getCloudToken(); repo_market::disconnect();
     check(config::byKey('market::cloudSession') === '' && !marketClient::connected(), 'Disconnect retained Cloud authorization');
     resetState(); repo_market::getCloudToken();
