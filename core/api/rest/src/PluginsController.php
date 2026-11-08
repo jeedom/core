@@ -86,6 +86,7 @@ final class PluginsController
                 $update = new \update();
                 $update->setType('plugin');
                 $update->setLogicalId($plugin->getId());
+                $update->save();
             }
             $update->deleteObjet();
         });

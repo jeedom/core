@@ -96,7 +96,7 @@ class update {
     public function setConfiguration($key, $value) { $this->configuration[$key] = $value; }
     public function save() { $this->values['id'] = $this->values['id'] ?: count(self::$items) + 1; self::$items[$this->values['logicalId']] = $this; }
     public function remove() { unset(self::$items[$this->values['logicalId']]); }
-    public function deleteObjet() { unlink(plugin::getPathById($this->values['logicalId'])); $this->remove(); }
+    public function deleteObjet() { if (!$this->values['id']) throw new RuntimeException('Update record must be saved'); unlink(plugin::getPathById($this->values['logicalId'])); $this->remove(); }
     public function doUpdate() {
         self::$installs++;
         if (self::$duringInstall) (self::$duringInstall)();
