@@ -22,6 +22,25 @@ final class PluginsController
         $management = filter_var($query['management'] ?? 'false', FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
         if ($management === null) self::invalid('management');
         if ($management) Auth::requireAdmin($request);
+        $items = self::items($management, $enabled);
+        return self::respond($response, ['items' => $items, 'total' => count($items)]);
+    }
+
+    /** Installed inventory is authoritative, including plugins without an update row. */
+    public function management(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $items = self::items(true);
+        $core = \update::byTypeAndLogicalId('core', 'jeedom');
+        return self::respond($response, ['items' => $items, 'total' => count($items),
+            'core' => ['name' => 'Core Jeedom', 'version' => \jeedom::version(),
+                'source' => is_object($core) ? $core->getSource() : \config::byKey('core::repo::provider'),
+                'branch' => (string) \config::byKey('core::branch', 'core', 'master'), 'update' => self::updateSummary($core)],
+            'lastCheck' => \config::byKey('update::lastCheck', 'core', '') ?: null, 'operation' => \updateOperation::latest()]);
+    }
+
+    private static function items(bool $management, ?bool $enabled = null): array
+    {
         $items = [];
         foreach ((array) \plugin::listPlugin(false, false, true) as $plugin) {
             if (!is_object($plugin)) {
@@ -31,12 +50,13 @@ final class PluginsController
             if ($enabled !== null && $active !== $enabled) {
                 continue;
             }
-            $item = self::toArray($plugin, $active);
-            if ($management) $item['management'] = self::summary($plugin);
+            $update = \update::byTypeAndLogicalId('plugin', $plugin->getId());
+            $item = self::toArray($plugin, $active, $update ?: null);
+            if ($management) $item['management'] = self::summary($plugin, $update ?: null);
             $items[] = $item;
         }
         usort($items, static fn ($a, $b) => strcasecmp($a['name'], $b['name']));
-        return self::respond($response, ['items' => $items, 'total' => count($items)]);
+        return $items;
     }
 
     public function get(Request $request, Response $response, array $args): Response
@@ -239,7 +259,7 @@ final class PluginsController
         if (is_string($levels)) $levels = json_decode($levels, true);
         $level = 'default';
         foreach (self::LOG_LEVELS as $key => $value) if (!empty($levels[$value])) $level = $key;
-        return self::toArray($plugin, (bool) $plugin->isActive()) + [
+        return self::toArray($plugin, (bool) $plugin->isActive(), $update ?: null) + [
             'description' => trim(html_entity_decode(strip_tags((string) $plugin->getDescription()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),
             'author' => (string) $plugin->getAuthor(), 'license' => (string) $plugin->getLicense(),
             'minJeedomVersion' => (string) $plugin->getRequire(), 'minOsVersion' => (string) $plugin->getRequireOsVersion(),
@@ -261,9 +281,8 @@ final class PluginsController
         ];
     }
 
-    private static function summary(\plugin $plugin): array
+    private static function summary(\plugin $plugin, ?\update $update): array
     {
-        $update = \update::byTypeAndLogicalId('plugin', $plugin->getId());
         $hasDaemon = (bool) $plugin->getHasOwnDeamon();
         $state = null;
         if ($hasDaemon && $plugin->isActive()) {
@@ -273,7 +292,16 @@ final class PluginsController
         return ['source' => is_object($update) ? (string) $update->getSource() : null,
             'branch' => is_object($update) ? ($update->getConfiguration('version') ?: null) : null,
             'updatedAt' => is_object($update) ? ($update->getUpdateDate() ?: null) : null,
-            'hasOwnDaemon' => $hasDaemon, 'daemonState' => $state];
+            'hasOwnDaemon' => $hasDaemon, 'daemonState' => $state, 'update' => self::updateSummary($update)];
+    }
+
+    private static function updateSummary($update): ?array
+    {
+        if (!is_object($update)) return null;
+        $enabled = $update->getType() === 'core' ? \config::byKey('update::allowCore', 'core', 1) == 1 : $update->getConfiguration('doNotUpdate', 0) != 1;
+        return ['id' => (int) $update->getId(), 'status' => (string) $update->getStatus(),
+            'localVersion' => $update->getLocalVersion() ?: null, 'remoteVersion' => $update->getRemoteVersion() ?: null,
+            'updatable' => $enabled && $update->getStatus() === 'update'];
     }
 
     private static function dependencyInfo(\plugin $plugin): array
@@ -367,13 +395,12 @@ final class PluginsController
         return array_intersect_key($operation, array_flip(['id', 'pluginId', 'marketId', 'source', 'version', 'state', 'createdAt', 'startedAt', 'finishedAt', 'error']));
     }
 
-    private static function toArray(\plugin $plugin, bool $active): array
+    private static function toArray(\plugin $plugin, bool $active, ?\update $update): array
     {
         $id = (string) $plugin->getId();
         $icon = (string) $plugin->getPathImgIcon();
         // Module de la nouvelle UI, à part des pages desktop et mobile (décision du 05/11).
         $module = 'plugins/' . $id . '/ui/ui.js';
-        $update = \update::byTypeAndLogicalId('plugin', $id);
         $version = is_object($update) ? (string) $update->getLocalVersion() : '';
         return [
             'id' => $id,

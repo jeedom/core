@@ -169,20 +169,22 @@ class pluginInstallation {
 	}
 
 	public static function withLock(string $pluginId, callable $action) {
-		self::validatePluginId($pluginId);
-		$lock = fopen(jeedom::getTmpFolder('plugin-installations') . '/' . $pluginId . '.lock', 'c');
-		if ($lock === false) {
-			throw new RuntimeException('Impossible de verrouiller le plugin.', 503);
-		}
-		try {
-			if (!flock($lock, LOCK_EX | LOCK_NB)) {
-				throw new RuntimeException('Une opération sur ce plugin est déjà en cours.', 409);
+		return updateOperation::withPluginMutation(static function () use ($pluginId, $action) {
+			self::validatePluginId($pluginId);
+			$lock = fopen(jeedom::getTmpFolder('plugin-installations') . '/' . $pluginId . '.lock', 'c');
+			if ($lock === false) {
+				throw new RuntimeException('Impossible de verrouiller le plugin.', 503);
 			}
-			return $action();
-		} finally {
-			flock($lock, LOCK_UN);
-			fclose($lock);
-		}
+			try {
+				if (!flock($lock, LOCK_EX | LOCK_NB)) {
+					throw new RuntimeException('Une opération sur ce plugin est déjà en cours.', 409);
+				}
+				return $action();
+			} finally {
+				flock($lock, LOCK_UN);
+				fclose($lock);
+			}
+		});
 	}
 
 	/** Native queue entry point. Never rethrow: failed installs must not be retried automatically. */

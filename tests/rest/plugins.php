@@ -38,6 +38,7 @@ class jeedom {
     public static function getTmpFolder($name) { global $testRoot; $path = $testRoot . '/' . $name; if (!is_dir($path)) mkdir($path); return $path; }
 }
 class system {
+    public static function ps(...$args) { return []; }
     public static function getOsVersion() { return '13'; }
     public static function getDistrib() { return 'debian'; }
 }
@@ -163,6 +164,7 @@ class utils {
     public static function encrypt($value) { return base64_encode(openssl_encrypt($value, 'aes-256-cbc', str_repeat('k', 32), OPENSSL_RAW_DATA, str_repeat('i', 16))); }
     public static function decrypt($value) { return openssl_decrypt(base64_decode($value), 'aes-256-cbc', str_repeat('k', 32), OPENSSL_RAW_DATA, str_repeat('i', 16)); }
 }
+require dirname(__DIR__, 2) . '/core/class/updateOperation.class.php';
 require dirname(__DIR__, 2) . '/core/class/pluginInstallation.class.php';
 require dirname(__DIR__, 2) . '/core/class/pluginRepository.class.php';
 manifest('fixture');
@@ -287,6 +289,10 @@ call('GET', '/plugins?management=true', 403, token: 'member');
 call('GET', '/plugins/repositories', 403, token: 'member');
 check(!isset(call('GET', '/plugins')['items'][0]['management']), 'Management metadata leaked to the menu list');
 $managed = call('GET', '/plugins?management=true')['items'][0]['management'];
+call('GET', '/plugins/management', 403, token: 'member');
+$managementPage = call('GET', '/plugins/management');
+check($managementPage['core']['version'] === jeedom::version() && $managementPage['operation'] === null, 'Core or resumable operation missing');
+check($managementPage['items'][0]['id'] === 'fixture' && array_key_exists('update', $managementPage['items'][0]['management']), 'Installed inventory missing update information');
 check($managed['hasOwnDaemon'] && $managed['daemonState'] === null, 'Inactive daemon must not be reported as broken');
 $repos = call('GET', '/plugins/repositories')['items'];
 check(count($repos) === 4 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');

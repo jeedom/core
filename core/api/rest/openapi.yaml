@@ -464,6 +464,118 @@ paths:
               schema: { $ref: '#/components/schemas/PluginList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
 
+  /plugins/management:
+    get:
+      operationId: getPluginManagement
+      summary: Inventaire installé avec le Core et les états de mise à jour connus.
+      description: |
+        Administrateur uniquement. L’inventaire des plugins installés fait référence : un plugin sans
+        suivi de mise à jour reste présent, et une ancienne entrée sans plugin installé est ignorée.
+        Le contrôleur assemble les informations avec les classes natives, sans accès SQL direct.
+        Ce GET ne vérifie pas les dépôts et ne crée pas d’entrée de mise à jour.
+      responses:
+        '200':
+          description: Core, plugins, date de vérification et dernière opération.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginManagementPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /updates/check:
+    post:
+      operationId: checkComponentUpdates
+      summary: Planifier la vérification des mises à jour du Core et des plugins.
+      description: Administrateur, CSRF en session et Idempotency-Key requis. Aucun paramètre. Aucun contrôle des paquets OS.
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: { type: string, pattern: '^[A-Za-z0-9_-]{16,128}$' }
+      responses:
+        '202':
+          description: Vérification planifiée ou en cours.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '200':
+          description: Reprise idempotente d’une opération terminée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /updates/operations:
+    post:
+      operationId: startComponentUpdates
+      summary: Planifier une ou plusieurs mises à jour, Core en premier.
+      description: |
+        Administrateur, CSRF en session et Idempotency-Key requis. Sélection explicite d’identifiants
+        de la table update, limités aux plugins installés et au Core. Le worker revérifie les droits,
+        les exclusions et les identités. Le Core passe avant les plugins, avec sauvegarde native.
+        Un échec arrête la sélection restante. L’exécution indépendante survit à la fermeture du navigateur
+        et au redémarrage de la queue par le Core. Une opération concurrente ou une installation de plugin
+        donne 409. Une même clé avec une autre sélection ou un autre utilisateur donne 409.
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: { type: string, pattern: '^[A-Za-z0-9_-]{16,128}$' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [ids]
+              properties:
+                ids:
+                  type: array
+                  minItems: 1
+                  maxItems: 200
+                  uniqueItems: true
+                  items: { type: integer, minimum: 1 }
+      responses:
+        '202':
+          description: Mise à jour planifiée ou en cours.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '200':
+          description: Reprise idempotente d’une opération terminée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /updates/operation:
+    get:
+      operationId: getLatestComponentUpdate
+      summary: Retrouver la dernière vérification ou mise à jour de la box.
+      description: Administrateur uniquement. Ne démarre et ne rejoue aucune opération. Une tâche interrompue est signalée en échec.
+      responses:
+        '200':
+          description: Dernière opération, ou null.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [operation]
+                properties:
+                  operation:
+                    oneOf:
+                      - $ref: '#/components/schemas/UpdateOperation'
+                      - type: 'null'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
   /plugins/repositories:
     get:
       tags: [Plugins]
@@ -3673,6 +3785,76 @@ components:
         updatedAt: { type: [string, 'null'] }
         hasOwnDaemon: { type: boolean }
         daemonState: { type: [string, 'null'] }
+        update:
+          oneOf:
+            - $ref: '#/components/schemas/ComponentUpdate'
+            - type: 'null'
+
+    ComponentUpdate:
+      type: object
+      required: [id, status, localVersion, remoteVersion, updatable]
+      properties:
+        id: { type: integer }
+        status: { type: string, description: État natif, notamment update, ok ou hold. }
+        localVersion: { type: [string, 'null'] }
+        remoteVersion: { type: [string, 'null'] }
+        updatable: { type: boolean, description: Une mise à jour est disponible et autorisée. }
+
+    CoreComponent:
+      type: object
+      required: [name, version, source, branch, update]
+      properties:
+        name: { type: string }
+        version: { type: string }
+        source: { type: string }
+        branch: { type: string }
+        update:
+          oneOf:
+            - $ref: '#/components/schemas/ComponentUpdate'
+            - type: 'null'
+
+    PluginManagementPage:
+      type: object
+      required: [items, total, core, lastCheck, operation]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Plugin' } }
+        total: { type: integer }
+        core: { $ref: '#/components/schemas/CoreComponent' }
+        lastCheck: { type: [string, 'null'] }
+        operation:
+          oneOf:
+            - $ref: '#/components/schemas/UpdateOperation'
+            - type: 'null'
+
+    UpdateOperation:
+      type: object
+      required: [id, kind, state, items, createdAt, startedAt, finishedAt, error, progress, logName]
+      properties:
+        id: { type: string }
+        kind: { type: string, enum: [check, update] }
+        state: { type: string, enum: [queued, running, succeeded, failed] }
+        createdAt: { type: string }
+        startedAt: { type: [string, 'null'] }
+        finishedAt: { type: [string, 'null'] }
+        error: { type: [string, 'null'] }
+        logName: { type: string, enum: [update] }
+        progress:
+          type: [integer, 'null']
+          minimum: 0
+          maximum: 100
+          description: Jalons natifs du script du Core, uniquement pendant cette étape. Aucun pourcentage inventé pour les plugins ou pour l’ensemble du lot.
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, type, logicalId, name, state, error]
+            properties:
+              id: { type: integer }
+              type: { type: string, enum: [core, plugin] }
+              logicalId: { type: string }
+              name: { type: string }
+              state: { type: string, enum: [queued, running, succeeded, failed, skipped] }
+              error: { type: [string, 'null'] }
 
     PluginDetails:
       allOf:

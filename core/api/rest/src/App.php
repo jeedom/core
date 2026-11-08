@@ -99,6 +99,7 @@ final class App
 
             $plugins = new PluginsController();
             $api->get('/plugins', $plugins->list(...));
+            $api->get('/plugins/management', $plugins->management(...));
             $api->get('/plugins/repositories', $plugins->repositories(...));
             $api->post('/plugins/archives', $plugins->uploadArchive(...));
             $api->post('/plugins/repository-installations', $plugins->installFromRepository(...));
@@ -117,6 +118,11 @@ final class App
             $api->post('/plugins/{id}/daemon/stop', $plugins->stopDaemon(...));
             $api->get('/plugins/{id}/community-post', $plugins->communityPost(...));
             $api->get('/plugins/{id}/installation', $plugins->latestInstallation(...));
+
+            $updates = new UpdatesController();
+            $api->post('/updates/check', $updates->check(...));
+            $api->get('/updates/operation', $updates->latest(...));
+            $api->post('/updates/operations', $updates->start(...));
             $users = new UsersController();
             $api->get('/users', $users->list(...));
             $api->post('/users', $users->create(...));
