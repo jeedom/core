@@ -71,7 +71,7 @@ class repo_url {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
-		$result = exec('wget --no-check-certificate --progress=dot --dot=mega ' . $_update->getConfiguration('url') . ' -O ' . $tmp);
+		$result = exec('wget --no-check-certificate --progress=dot --dot=mega -O ' . escapeshellarg($tmp) . ' -- ' . escapeshellarg($_update->getConfiguration('url')));
 		log::add('update', 'alert', $result);
 		return array('path' => $tmp, 'localVersion' => date('Y-m-d H:i:s'));
 	}
@@ -115,3 +115,4 @@ class repo_url {
 
 	/*     * **********************Getteur Setteur*************************** */
 }
+

@@ -19,6 +19,9 @@ final class PluginsController
         if (isset($query['enabled']) && $enabled === null) {
             throw ApiError::field(422, 'validation_error', 'enabled', 'Un booléen est attendu.');
         }
+        $management = filter_var($query['management'] ?? 'false', FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
+        if ($management === null) self::invalid('management');
+        if ($management) Auth::requireAdmin($request);
         $items = [];
         foreach ((array) \plugin::listPlugin(false, false, true) as $plugin) {
             if (!is_object($plugin)) {
@@ -28,7 +31,9 @@ final class PluginsController
             if ($enabled !== null && $active !== $enabled) {
                 continue;
             }
-            $items[] = self::toArray($plugin, $active);
+            $item = self::toArray($plugin, $active);
+            if ($management) $item['management'] = self::summary($plugin);
+            $items[] = $item;
         }
         usort($items, static fn ($a, $b) => strcasecmp($a['name'], $b['name']));
         return self::respond($response, ['items' => $items, 'total' => count($items)]);
@@ -41,6 +46,30 @@ final class PluginsController
         $full = is_string($full) ? filter_var($full, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE) : null;
         if ($full === null) throw ApiError::field(422, 'validation_error', 'full', 'Un booléen est attendu.');
         return self::respond($response, self::details(self::find($args['id'], $full)));
+    }
+
+    public function repositories(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        return self::respond($response, ['items' => \pluginRepository::all()]);
+    }
+
+    public function uploadArchive(Request $request, Response $response): Response
+    {
+        self::requireWrite($request);
+        $files = $request->getUploadedFiles();
+        if (array_keys($files) !== ['file'] || !$files['file'] instanceof \Psr\Http\Message\UploadedFileInterface) self::invalid('file');
+        return self::respond($response, self::installationCall(static fn () => \pluginRepository::upload($files['file'])), 201);
+    }
+
+    public function installFromRepository(Request $request, Response $response): Response
+    {
+        self::requireWrite($request);
+        $body = self::body($request, ['pluginId', 'source', 'configuration']);
+        if (!is_string($body['pluginId'] ?? null) || !is_string($body['source'] ?? null) || !is_array($body['configuration'] ?? null)) self::invalid('pluginId/source/configuration');
+        $operation = self::installationCall(fn () => \pluginInstallation::startFromRepository($body['pluginId'], $body['source'], $body['configuration'],
+            (int) $request->getAttribute('user')->getId(), $request->getHeaderLine('Idempotency-Key')));
+        return self::respond($response, self::operation($operation), in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
 
     public function update(Request $request, Response $response, array $args): Response
@@ -232,6 +261,21 @@ final class PluginsController
         ];
     }
 
+    private static function summary(\plugin $plugin): array
+    {
+        $update = \update::byTypeAndLogicalId('plugin', $plugin->getId());
+        $hasDaemon = (bool) $plugin->getHasOwnDeamon();
+        $state = null;
+        if ($hasDaemon && $plugin->isActive()) {
+            try { $state = (string) ($plugin->deamon_info()['state'] ?? 'unknown'); }
+            catch (\Throwable) { $state = 'unknown'; }
+        }
+        return ['source' => is_object($update) ? (string) $update->getSource() : null,
+            'branch' => is_object($update) ? ($update->getConfiguration('version') ?: null) : null,
+            'updatedAt' => is_object($update) ? ($update->getUpdateDate() ?: null) : null,
+            'hasOwnDaemon' => $hasDaemon, 'daemonState' => $state];
+    }
+
     private static function dependencyInfo(\plugin $plugin): array
     {
         $info = $plugin->dependancy_info();
@@ -320,7 +364,7 @@ final class PluginsController
 
     private static function operation(array $operation): array
     {
-        return array_intersect_key($operation, array_flip(['id', 'pluginId', 'marketId', 'version', 'state', 'createdAt', 'startedAt', 'finishedAt', 'error']));
+        return array_intersect_key($operation, array_flip(['id', 'pluginId', 'marketId', 'source', 'version', 'state', 'createdAt', 'startedAt', 'finishedAt', 'error']));
     }
 
     private static function toArray(\plugin $plugin, bool $active): array
@@ -343,3 +387,4 @@ final class PluginsController
         ];
     }
 }
+

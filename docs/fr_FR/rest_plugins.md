@@ -34,8 +34,20 @@ Le lien Market ouvre Core UI sous `/ui/#/plugins/install?marketId=1234&version=b
 
 Les actions REST de gestion et l’installation d’un même plugin partagent un verrou. Les anciennes interfaces ne sont pas modifiées et les autres chemins historiques de mise à jour continuent de suivre leurs mécanismes natifs. Le téléchargement passe par le client `repo_market` déjà présent sur la branche ; l’API de la box ne réimplémente aucun transport Market et n’accepte pas de dépôt, d’URL ou de commande fournis par le navigateur. Le client REST Core–Market en cours de développement pourra prendre la place de ce transport sans changer les routes Core UI. Les URL authentifiées de téléchargement ne sont plus inscrites dans le journal natif par `repo_market::install`.
 
+## Liste de gestion et installation directe
+
+`GET /plugins?management=true`, réservé aux administrateurs, ajoute à chaque plugin un résumé `management` : source, branche, date de mise à jour, présence et état du démon. La liste simple utilisée par les menus reste inchangée. Un démon absent ou un plugin inactif n’est pas présenté comme une panne ; une erreur de lecture d’un démon donne `unknown` sans empêcher les autres cartes de s’afficher.
+
+- `GET /plugins/repositories` expose uniquement les sources actives compatibles avec les plugins (GitHub, URL, Fichier, Samba) et les métadonnées de leurs champs natifs, sans la configuration privée de la box. Le jeton GitHub est un champ masqué facultatif.
+- `POST /plugins/archives` reçoit un multipart `file` (ZIP, 100 Mo maximum), valide le manifeste et les chemins de l’archive sans l’extraire, puis retourne `{id, pluginId, name, size}`. Le serveur choisit le nom du fichier, conservé dans un dossier privé pendant une heure maximum. Aucun chemin local fourni par le navigateur n’est accepté.
+- `POST /plugins/repository-installations`, avec `Idempotency-Key`, reçoit `{pluginId, source, configuration}`. Les seuls paramètres acceptés sont ceux déclarés par la source. Pour Fichier, `configuration.path` contient la référence opaque du téléversement. Le manifeste doit correspondre à l’identifiant saisi. GitHub et Samba refusent les paramètres susceptibles de devenir des commandes ; les URL acceptent HTTP(S) sans identifiants et sont protégées par `escapeshellarg` dans le téléchargement natif.
+- Les installations directes partagent le verrou, la queue et les routes de suivi du Market. Les paramètres temporaires sont chiffrés avec la clé existante de Jeedom, puis supprimés en fin de tâche ; aucune réponse de suivi n’expose les paramètres privés. Le worker revérifie l’administrateur, le mode démo et la source active. Les archives sont supprimées après la tâche. Les doublons et erreurs suivent les mêmes règles que le Market. Le champ `marketId` vaut `null` pour ces installations ; `source` est renseigné et `version` contient la branche GitHub ou `null`.
+
+La page Core UI correspondante présente les cartes et une popup d’installation dont les champs dépendent de ces métadonnées. Les cartes sont rafraîchies après succès ; les plugins nouvellement installés restent inactifs et une réinstallation conserve les réglages et l’état actif.
+
 ## Vérification
 
 `php tests/rest/plugins.php` exerce le vrai routeur Slim, l’authentification Bearer/session, le CSRF et le JSON, avec les services natifs et le Market simulés. Il vérifie les droits, le mode démo, les champs refusés, les états dépendances/démon, les prérequis Market, les doubles demandes, les états de queue, les refus différés, la conservation des réglages et les échecs. Aucun plugin réel n’est téléchargé ou installé par ce test. Le workflow `REST plugin management` exécute syntaxe, PHPStan et ce parcours sur PHP 8.2 et 8.4, à chaque modification de cette branche.
 
-La page Core UI et sa confirmation restent à implémenter dans `jeedom/core-ui`. La validation d’une installation complète avec un Market et une box de recette reste à effectuer sur ces environnements.
+Le parcours de confirmation d’un lien d’installation provenant du Market reste à implémenter dans `jeedom/core-ui`. La validation d’une installation complète avec un Market et une box de recette reste à effectuer sur ces environnements.
+

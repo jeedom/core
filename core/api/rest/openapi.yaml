@@ -447,8 +447,11 @@ paths:
         Remplace `plugin::listPlugin` (ajax et JSON-RPC `plugin::listPlugin`).
         Lisible par tout utilisateur connecté : la nouvelle UI s'en sert pour
         son menu et pour charger le module d'interface des plugins actifs.
-        Triés par nom.
+        Triés par nom. `management=true` ajoute source, branche, date et état du démon, pour les administrateurs uniquement.
       parameters:
+        - name: management
+          in: query
+          schema: { type: boolean, default: false }
         - name: enabled
           in: query
           description: Filtrer sur l'état activé. Sans ce paramètre, tous les plugins installés sont renvoyés.
@@ -460,6 +463,95 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/PluginList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /plugins/repositories:
+    get:
+      tags: [Plugins]
+      operationId: listPluginRepositories
+      summary: Sources actives d’installation directe et leurs champs (administrateur)
+      responses:
+        '200':
+          description: Dépôts autorisés pour les plugins, sans paramètres privés de la box.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/PluginRepository' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /plugins/archives:
+    post:
+      tags: [Plugins]
+      operationId: uploadPluginArchive
+      summary: Téléverser une archive ZIP pour une installation directe (administrateur)
+      description: Archive privée de 100 Mo maximum, validée sans extraction. Expire après une heure. Le chemin local n’est jamais exposé.
+      parameters:
+        - $ref: '#/components/parameters/csrfToken'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        '201':
+          description: Archive validée et identifiant du plugin lu dans son manifeste.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginArchive' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /plugins/repository-installations:
+    post:
+      tags: [Plugins]
+      operationId: installPluginFromRepository
+      summary: Installer depuis un dépôt actif de la box (administrateur)
+      description: Planifie une installation native sérialisée avec celles du Market. La source et ses paramètres sont revérifiés dans le worker. Pour Fichier, configuration.path est l’identifiant opaque retourné par le téléversement, jamais un chemin local.
+      parameters:
+        - $ref: '#/components/parameters/csrfToken'
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema: { type: string, pattern: '^[A-Za-z0-9_-]{16,128}$' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [pluginId, source, configuration]
+              properties:
+                pluginId: { type: string }
+                source: { type: string, enum: [github, url, file, samba] }
+                configuration:
+                  type: object
+                  additionalProperties: { type: string }
+      responses:
+        '202':
+          description: Installation planifiée ou déjà en cours avec la même clé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginInstallation' }
+        '200':
+          description: Dernière installation retrouvée avec la même clé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginInstallation' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /plugins/{id}:
     parameters:
@@ -3042,6 +3134,11 @@ components:
         l'en-tête `X-CSRF-Token`.
 
   parameters:
+    csrfToken:
+      name: X-CSRF-Token
+      in: header
+      description: Obligatoire sur les écritures authentifiées par session.
+      schema: { type: string }
     PluginId:
       name: id
       in: path
@@ -3538,6 +3635,44 @@ components:
             s'il n'en a pas. Toujours `null` pour un plugin désactivé.
           example: plugins/zwavejs/ui/ui.js
         version: { type: [string, 'null'], description: Version installée. }
+        management: { $ref: '#/components/schemas/PluginManagement' }
+
+    PluginRepository:
+      type: object
+      required: [id, name, fields]
+      properties:
+        id: { type: string, enum: [github, url, file, samba] }
+        name: { type: string }
+        fields:
+          type: array
+          items:
+            type: object
+            required: [id, name, type, required, default]
+            properties:
+              id: { type: string }
+              name: { type: string }
+              type: { type: string, enum: [text, password, file] }
+              required: { type: boolean }
+              default: { type: string }
+
+    PluginArchive:
+      type: object
+      required: [id, pluginId, name, size]
+      properties:
+        id: { type: string }
+        pluginId: { type: string }
+        name: { type: string }
+        size: { type: integer }
+
+    PluginManagement:
+      type: object
+      required: [source, branch, updatedAt, hasOwnDaemon, daemonState]
+      properties:
+        source: { type: [string, 'null'] }
+        branch: { type: [string, 'null'] }
+        updatedAt: { type: [string, 'null'] }
+        hasOwnDaemon: { type: boolean }
+        daemonState: { type: [string, 'null'] }
 
     PluginDetails:
       allOf:
@@ -3814,13 +3949,14 @@ components:
           type: string
         pluginId:
           type: string
-        marketId:
-          type: integer
-        version:
+        source:
           type: string
-          enum:
-          - stable
-          - beta
+          description: Source d’installation directe ; absente pour une installation Market.
+        marketId:
+          type: [integer, 'null']
+        version:
+          type: [string, 'null']
+          description: Branche Market ou GitHub, null pour les sources sans branche.
         state:
           type: string
           enum:
@@ -4784,3 +4920,4 @@ components:
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
+

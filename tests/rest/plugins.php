@@ -84,6 +84,18 @@ class plugin {
     public function getCommunityPost() { return ['url' => 'https://community.jeedom.com/new-topic?body=fixture', 'plugin' => $this->getName()]; }
 }
 class update {
+    public static function listRepo() {
+        $fields = [
+            'github' => ['user' => ['name' => 'Utilisateur', 'type' => 'input'], 'repository' => ['name' => 'Dépôt', 'type' => 'input'], 'token' => ['name' => 'Token', 'type' => 'input'], 'version' => ['name' => 'Branche', 'type' => 'input', 'default' => 'master']],
+            'url' => ['url' => ['name' => 'URL', 'type' => 'input']],
+            'file' => ['path' => ['name' => 'Archive', 'type' => 'file']],
+            'samba' => ['path' => ['name' => 'Chemin', 'type' => 'input']],
+        ];
+        $repos = [];
+        foreach ($fields as $id => $parameters) $repos[$id] = ['name' => $id, 'scope' => ['plugin' => true], 'enable' => config::byKey($id . '::enable', 'core', 1), 'configuration' => ['parameters_for_add' => $parameters]];
+        $repos['market'] = ['name' => 'Market', 'scope' => ['plugin' => true], 'enable' => 1];
+        return $repos;
+    }
     public static array $items = [];
     public static int $installs = 0;
     public static bool $fail = false;
@@ -147,17 +159,23 @@ class queue {
 $demo = false;
 function unautorizedInDemo($actor = null) { global $demo; if (!$actor instanceof user) throw new RuntimeException('Acteur de la requête absent'); if ($demo) throw new RuntimeException('Mode démo'); }
 function manifest($id) { $path = plugin::getPathById($id); if (!is_dir(dirname($path))) mkdir(dirname($path), 0775, true); file_put_contents($path, json_encode(['id' => $id])); }
+class utils {
+    public static function encrypt($value) { return base64_encode(openssl_encrypt($value, 'aes-256-cbc', str_repeat('k', 32), OPENSSL_RAW_DATA, str_repeat('i', 16))); }
+    public static function decrypt($value) { return openssl_decrypt(base64_decode($value), 'aes-256-cbc', str_repeat('k', 32), OPENSSL_RAW_DATA, str_repeat('i', 16)); }
+}
 require dirname(__DIR__, 2) . '/core/class/pluginInstallation.class.php';
+require dirname(__DIR__, 2) . '/core/class/pluginRepository.class.php';
 manifest('fixture');
 $app = App::create();
 $checks = 0;
 function check($condition, $message) { global $checks; $checks++; if (!$condition) throw new RuntimeException($message); }
-function call($method, $path, $status = 200, $body = null, $token = 'admin', $headers = [], $cookies = []) {
+function call($method, $path, $status = 200, $body = null, $token = 'admin', $headers = [], $cookies = [], $files = []) {
     global $app;
     $request = (new ServerRequestFactory())->createServerRequest($method, 'http://localhost/api/v1' . $path);
     $query = parse_url($path, PHP_URL_QUERY); if ($query) { parse_str($query, $params); $request = $request->withQueryParams($params); }
     if ($body !== null) { $request->getBody()->write(json_encode($body)); $request = $request->withHeader('Content-Type', 'application/json'); }
     if ($token !== null) $request = $request->withHeader('Authorization', 'Bearer ' . $token);
+    if ($files) $request = $request->withUploadedFiles($files);
     foreach ($headers as $name => $value) $request = $request->withHeader($name, $value);
     $response = $app->handle($request->withCookieParams($cookies));
     $raw = (string) $response->getBody();
@@ -262,4 +280,71 @@ call('PATCH', '/plugins/fixture', body: ['isEnable' => false], token: null, cook
 call('DELETE', '/plugins/fixture', 403, token: 'member');
 call('DELETE', '/plugins/fixture', 204);
 check(!is_file(plugin::getPathById('fixture')), 'Native plugin removal not used');
+// Direct installation: metadata, rights, validation, queued native updates, replay and archives.
+manifest('fixture');
+call('GET', '/plugins?management=invalid', 422);
+call('GET', '/plugins?management=true', 403, token: 'member');
+call('GET', '/plugins/repositories', 403, token: 'member');
+check(!isset(call('GET', '/plugins')['items'][0]['management']), 'Management metadata leaked to the menu list');
+$managed = call('GET', '/plugins?management=true')['items'][0]['management'];
+check($managed['hasOwnDaemon'] && $managed['daemonState'] === null, 'Inactive daemon must not be reported as broken');
+$repos = call('GET', '/plugins/repositories')['items'];
+check(count($repos) === 4 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');
+config::save('github::enable', 0);
+check(count(call('GET', '/plugins/repositories')['items']) === 3, 'Disabled source exposed');
+$direct = ['pluginId' => 'directplugin', 'source' => 'github', 'configuration' => ['user' => 'jeedom', 'repository' => 'plugin-test', 'token' => 'github_secret', 'version' => 'main']];
+$directKey = ['Idempotency-Key' => 'direct-request-key-0001'];
+call('POST', '/plugins/repository-installations', 422, $direct, headers: $directKey);
+config::save('github::enable', 1);
+call('POST', '/plugins/repository-installations', 403, $direct, token: 'member', headers: $directKey);
+call('POST', '/plugins/repository-installations', 403, $direct, token: null, cookies: $cookies, headers: $directKey);
+$demo = true; call('POST', '/plugins/repository-installations', 403, $direct, headers: $directKey); call('POST', '/plugins/archives', 403); $demo = false;
+call('POST', '/plugins/repository-installations', 422, $direct);
+foreach ([['pluginId' => '../bad'], ['source' => 'market'], ['configuration' => ['user' => 'x;touch']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => '$(cmd)']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => 'main', 'unknown' => 'value']]] as $change) call('POST', '/plugins/repository-installations', 422, array_replace($direct, $change), headers: $directKey);
+$op = call('POST', '/plugins/repository-installations', 202, $direct, token: null, cookies: $cookies, headers: $directKey + ['X-CSRF-Token' => $csrf]);
+check($op['source'] === 'github' && !str_contains(json_encode($op), 'github_secret') && !str_contains(json_encode(pluginInstallation::latest('directplugin')), 'github_secret'), 'Direct installation exposed plaintext parameters');
+check(call('POST', '/plugins/repository-installations', 202, $direct, headers: $directKey)['id'] === $op['id'], 'Direct replay created another job');
+call('POST', '/plugins/repository-installations', 409, $direct, headers: ['Idempotency-Key' => 'direct-request-key-0002']);
+$different = $direct; $different['configuration']['version'] = 'beta';
+call('POST', '/plugins/repository-installations', 409, $different, headers: $directKey);
+runJob($op);
+check(call('GET', '/plugins/installations/' . $op['id'])['state'] === 'succeeded', 'Direct installation failed');
+$installed = update::byTypeAndLogicalId('plugin', 'directplugin');
+check($installed->getSource() === 'github' && $installed->getConfiguration('version') === 'main' && config::byKey('active', 'directplugin') === 0, 'Native source/branch/activation not preserved');
+check(!isset(pluginInstallation::latest('directplugin')['parameters']), 'Completed job retained its encrypted input');
+call('POST', '/plugins/repository-installations', 200, $direct, headers: $directKey);
+config::save('active', 1, 'directplugin');
+$op = call('POST', '/plugins/repository-installations', 202, $different, headers: ['Idempotency-Key' => 'direct-request-key-0003']);
+update::$fail = true; runJob($op); update::$fail = false;
+check(call('GET', '/plugins/installations/' . $op['id'])['state'] === 'failed' && update::byTypeAndLogicalId('plugin', 'directplugin')->getConfiguration('version') === 'main' && config::byKey('active', 'directplugin') === 1, 'Failed direct installation lost previous settings');
+$op = call('POST', '/plugins/repository-installations', 202, $direct, headers: ['Idempotency-Key' => 'direct-request-key-0004']);
+config::save('github::enable', 0); runJob($op); config::save('github::enable', 1);
+check(call('GET', '/plugins/installations/' . $op['id'])['state'] === 'failed', 'Worker did not recheck source enablement');
+foreach (['file:///etc/passwd', 'ftp://example.org/a.zip', 'https://user:secret@example.org/a.zip', "https://example.org/a\n.zip"] as $url) call('POST', '/plugins/repository-installations', 422, ['pluginId' => 'urlplugin', 'source' => 'url', 'configuration' => ['url' => $url]], headers: $directKey);
+$op = call('POST', '/plugins/repository-installations', 202, ['pluginId' => 'urlplugin', 'source' => 'url', 'configuration' => ['url' => 'https://example.org/a.zip?a=1&b=2']], headers: $directKey);
+runJob($op); check(update::byTypeAndLogicalId('plugin', 'urlplugin')->getSource() === 'url', 'URL installation not delegated');
+call('POST', '/plugins/repository-installations', 422, ['pluginId' => 'sambaplugin', 'source' => 'samba', 'configuration' => ['path' => '../secret.zip']], headers: $directKey);
+call('POST', '/plugins/repository-installations', 422, ['pluginId' => 'fileplugin', 'source' => 'file', 'configuration' => ['path' => '/etc/passwd']], headers: $directKey);
+function archiveFile($id, $extra = []) {
+    $path = jeedom::getTmpFolder('incoming') . '/' . bin2hex(random_bytes(8)) . '.zip';
+    $zip = new ZipArchive(); $zip->open($path, ZipArchive::CREATE);
+    $zip->addFromString('plugin_info/info.json', json_encode(['id' => $id]));
+    foreach ($extra as $name => $value) $zip->addFromString($name, $value);
+    $zip->close();
+    return new \Slim\Psr7\UploadedFile($path, 'plugin.zip', 'application/zip', filesize($path));
+}
+call('POST', '/plugins/archives', 403, token: 'member');
+call('POST', '/plugins/archives', 422);
+call('POST', '/plugins/archives', 422, files: ['file' => archiveFile('fileplugin', ['../outside.php' => 'bad'])]);
+$archive = call('POST', '/plugins/archives', 201, files: ['file' => archiveFile('fileplugin')]);
+check($archive['pluginId'] === 'fileplugin' && !str_contains(json_encode($archive), $testRoot), 'Upload did not read manifest or leaked local path');
+call('POST', '/plugins/repository-installations', 422, ['pluginId' => 'otherplugin', 'source' => 'file', 'configuration' => ['path' => $archive['id']]], headers: $directKey);
+$fileRequest = ['pluginId' => 'fileplugin', 'source' => 'file', 'configuration' => ['path' => $archive['id']]];
+$op = call('POST', '/plugins/repository-installations', 202, $fileRequest, headers: $directKey);
+$archivePath = pluginRepository::archivePath($archive['id'], 'fileplugin');
+check((fileperms($archivePath) & 0777) === 0600, 'Uploaded ZIP is not private');
+runJob($op);
+check(call('GET', '/plugins/installations/' . $op['id'])['state'] === 'succeeded' && !is_file($archivePath), 'File installation failed or retained ZIP');
+call('POST', '/plugins/repository-installations', 200, $fileRequest, headers: $directKey);
 echo "OK $checks REST plugin checks on PHP " . PHP_VERSION . "\n";
+

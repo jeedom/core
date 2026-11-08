@@ -1,6 +1,6 @@
 <?php
 
-/** Market installation jobs. The native queue executes the native update engine. */
+/** Plugin installation jobs. The native queue executes the native update engine. */
 class pluginInstallation {
 
 	public static function preview(int $marketId, string $version): array {
@@ -82,25 +82,49 @@ class pluginInstallation {
 			$operation = array('id' => $preview['pluginId'] . '.' . bin2hex(random_bytes(16)), 'pluginId' => $preview['pluginId'],
 				'marketId' => $preview['marketId'], 'version' => $preview['version'], 'state' => 'queued', 'userId' => $userId, 'requestKey' => $requestKey,
 				'createdAt' => date('c'), 'startedAt' => null, 'finishedAt' => null, 'queueId' => null, 'error' => null);
-			self::store($operation);
-			try {
-				$queue = new queue();
-				$queue->setClass(__CLASS__);
-				$queue->setFunction('execute');
-				$queue->setArguments(array($operation['id']));
-				$queue->setQueueId('rest-plugin-installations');
-				$queue->setTimeout(1800);
-				$queue->save();
-				$operation['queueId'] = (int) $queue->getId();
-				self::store($operation);
-				// Let the existing queue scheduler serialize installations and run the job.
-				$queue->start();
-			} catch (Throwable $e) {
-				self::fail($operation, $e);
-				throw new RuntimeException('Impossible de planifier l’installation.', 503);
-			}
-			return $operation;
+			return self::enqueue($operation);
 		});
+	}
+
+	public static function startFromRepository(string $id, string $source, array $configuration, int $userId, string $requestKey): array {
+		if (!preg_match('/\A[A-Za-z0-9_-]{16,128}\z/', $requestKey)) throw new InvalidArgumentException('Clé de requête invalide.', 422);
+		$configuration = pluginRepository::validate($id, $source, $configuration, false);
+		$fingerprint = hash('sha256', json_encode(array($source, $configuration), JSON_THROW_ON_ERROR));
+		return self::withLock($id, function () use ($id, $source, $configuration, $userId, $requestKey, $fingerprint) {
+			$last = self::latest($id);
+			if ($last !== null && ($last['requestKey'] ?? null) === $requestKey) {
+				if (($last['fingerprint'] ?? null) !== $fingerprint) throw new RuntimeException('Cette clé a déjà été utilisée pour une autre installation.', 409);
+				return self::status($last['id']);
+			}
+			self::assertIdle($id);
+			pluginRepository::validate($id, $source, $configuration);
+			if (config::byKey('enableQueue', 'core', 1, true) == 0) throw new RuntimeException('Les tâches en queue sont désactivées.', 409);
+			return self::enqueue(array('id' => $id . '.' . bin2hex(random_bytes(16)), 'pluginId' => $id, 'marketId' => null,
+				'source' => $source, 'version' => $configuration['version'] ?? null, 'state' => 'queued', 'userId' => $userId,
+				'requestKey' => $requestKey, 'fingerprint' => $fingerprint,
+				'parameters' => utils::encrypt(json_encode($configuration, JSON_THROW_ON_ERROR)),
+				'createdAt' => date('c'), 'startedAt' => null, 'finishedAt' => null, 'queueId' => null, 'error' => null));
+		});
+	}
+
+	private static function enqueue(array $operation): array {
+		self::store($operation);
+		try {
+			$queue = new queue();
+			$queue->setClass(__CLASS__);
+			$queue->setFunction('execute');
+			$queue->setArguments(array($operation['id']));
+			$queue->setQueueId('rest-plugin-installations');
+			$queue->setTimeout(1800);
+			$queue->save();
+			$operation['queueId'] = (int) $queue->getId();
+			self::store($operation);
+			$queue->start();
+		} catch (Throwable $e) {
+			self::fail($operation, $e);
+			throw new RuntimeException('Impossible de planifier l’installation.', 503);
+		}
+		return $operation;
 	}
 
 	/** Last operation per plugin; old operation IDs cannot select a replacement job. */
@@ -185,7 +209,16 @@ class pluginInstallation {
 						throw new RuntimeException('L’administrateur ayant demandé l’installation n’est plus autorisé.', 403);
 					}
 					unautorizedInDemo($actor);
-					$preview = self::preview($operation['marketId'], $operation['version']);
+					$configuration = null;
+					if (($operation['source'] ?? 'market') !== 'market') {
+						$configuration = json_decode(utils::decrypt($operation['parameters']), true, 512, JSON_THROW_ON_ERROR);
+						$configuration = pluginRepository::validate($operation['pluginId'], $operation['source'], $configuration);
+						if ($operation['source'] === 'file') $configuration['path'] = pluginRepository::archivePath($configuration['path'], $operation['pluginId']);
+						$preview = array('pluginId' => $operation['pluginId'], 'name' => $operation['pluginId'],
+							'isEnable' => is_file(plugin::getPathById($operation['pluginId'])) && config::byKey('active', $operation['pluginId'], 0) == 1);
+					} else {
+						$preview = self::preview($operation['marketId'], $operation['version']);
+					}
 					if ($preview['pluginId'] !== $operation['pluginId']) {
 						throw new RuntimeException('La référence du plugin a changé sur le Market.', 409);
 					}
@@ -199,7 +232,12 @@ class pluginInstallation {
 						$update->setName($preview['name']);
 						$update->setSource('market');
 					}
-					$update->setConfiguration('version', $operation['version']);
+					if ($configuration !== null) {
+						$update->setSource($operation['source']);
+						foreach ($configuration as $key => $value) $update->setConfiguration($key, $value);
+					} else {
+						$update->setConfiguration('version', $operation['version']);
+					}
 					$update->save();
 					$update->doUpdate();
 					$path = plugin::getPathById($operation['pluginId']);
@@ -211,6 +249,7 @@ class pluginInstallation {
 					$active = null;
 					$operation['state'] = 'succeeded';
 					$operation['finishedAt'] = date('c');
+					self::clearParameters($operation);
 					self::store($operation);
 				} catch (Throwable $e) {
 					try {
@@ -236,10 +275,20 @@ class pluginInstallation {
 	}
 
 	private static function fail(array $operation, Throwable $error): void {
+		self::clearParameters($operation);
 		$operation['state'] = 'failed';
 		$operation['finishedAt'] = date('c');
 		$operation['error'] = array('code' => 'installation_failed', 'message' => self::errorMessage($error));
 		self::store($operation);
+	}
+
+	private static function clearParameters(array &$operation): void {
+		if (!isset($operation['parameters'])) return;
+		try {
+			$configuration = json_decode(utils::decrypt($operation['parameters']), true, 512, JSON_THROW_ON_ERROR);
+			if (($operation['source'] ?? null) === 'file') pluginRepository::removeArchive($configuration['path']);
+		} catch (Throwable $ignored) { /* A missing or corrupt payload must not hide the installation result. */ }
+		unset($operation['parameters']);
 	}
 
 	public static function errorMessage(Throwable $error): string {
@@ -253,3 +302,4 @@ class pluginInstallation {
 		}
 	}
 }
+

@@ -99,6 +99,9 @@ final class App
 
             $plugins = new PluginsController();
             $api->get('/plugins', $plugins->list(...));
+            $api->get('/plugins/repositories', $plugins->repositories(...));
+            $api->post('/plugins/archives', $plugins->uploadArchive(...));
+            $api->post('/plugins/repository-installations', $plugins->installFromRepository(...));
             $api->get('/plugins/installation', $plugins->prepareInstallation(...));
             $api->post('/plugins/installations', $plugins->install(...));
             $api->get('/plugins/installations/{operationId}', $plugins->installation(...));
@@ -167,4 +170,5 @@ final class App
         throw new ApiError(501, 'not_implemented', 'Route prévue par la spec, pas encore implémentée dans la passerelle.');
     }
 }
+
 
