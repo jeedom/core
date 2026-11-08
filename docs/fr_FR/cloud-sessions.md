@@ -35,5 +35,3 @@ Le mot de passe de sauvegarde reste nécessaire pour le chiffrement et le déchi
 ## Vérifications
 
 `php tests/market-cloud.php` exécute les contrôles de cache, expiration, reconnexion, renouvellement REST, concurrence entre processus, erreurs Cloud, WebDAV, transferts en flux et aller-retour GPG. La CI les exécute sous PHP 7.4 et 8.4.
-
-Le Cloud fixe l’expiration en UTC. Le cache local utilise la durée restante `expiresIn`, avec une marge de 60 secondes et le temps de transport soustrait, sans comparer l’horloge du Core à celle du Cloud.

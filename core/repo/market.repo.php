@@ -999,12 +999,12 @@ class marketClient {
 			if (!is_array($tokens) || ($tokens['boxId'] ?? null) !== $session['boxId'] || ($tokens['tokenType'] ?? null) !== 'Bearer'
 				|| !is_string($tokens['accessToken'] ?? null) || !preg_match('/\A[A-Za-z0-9_-]{43,256}\z/D', $tokens['accessToken'])
 				|| !is_int($tokens['expiresIn'] ?? null) || $tokens['expiresIn'] < 1 || $tokens['expiresIn'] > 86400
-				|| !is_int($tokens['expiresAt'] ?? null) || $tokens['expiresAt'] < 1
-				|| $started + $tokens['expiresIn'] <= time() + 60) {
+				|| !is_int($tokens['expiresAt'] ?? null) || $tokens['expiresAt'] > time() + 86400
+				|| min($tokens['expiresAt'], $started + $tokens['expiresIn']) <= time() + 60) {
 				throw new Exception(__('Réponse de session Cloud invalide.', __FILE__));
 			}
 			config::save('market::cloudSession', array('boxId' => $session['boxId'], 'context' => $context,
-				'accessToken' => $tokens['accessToken'], 'expiresAt' => $started + $tokens['expiresIn']));
+				'accessToken' => $tokens['accessToken'], 'expiresAt' => min($tokens['expiresAt'], $started + $tokens['expiresIn'])));
 			return $tokens['accessToken'];
 		});
 	}
