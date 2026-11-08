@@ -1225,12 +1225,15 @@ class marketClient {
 
 	public static function synchronize() {
 		$internalIp = '';
+		$internalUrl = '';
 		try {
 			$internalIp = network::getNetworkAccess('internal', 'ip');
+			$internalUrl = network::getNetworkAccess('internal');
 		} catch (Exception $exception) {
 		}
 		$data = array(
-			'version' => jeedom::version(), 'localIp' => $internalIp,
+			'version' => jeedom::version(), 'localIp' => filter_var($internalIp, FILTER_VALIDATE_IP) ? $internalIp : '',
+			'internalUrl' => self::boxUrl($internalUrl),
 			'apiKey' => jeedom::getApiKey('apimarket'),
 			'information' => array('nbMessage' => message::nbMessage(), 'nbUpdate' => update::nbNeedUpdate(),
 				'hardware' => jeedom::getHardwareName(), 'uname' => (string) shell_exec('uname -a'), 'language' => config::byKey('language')),
@@ -1242,11 +1245,7 @@ class marketClient {
 			$data['name'] = $name;
 		}
 		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
-			$url = network::getNetworkAccess('external');
-			$data['url'] = is_string($url) && strlen($url) <= 511 && filter_var($url, FILTER_VALIDATE_URL)
-				&& in_array(strtolower(parse_url($url, PHP_URL_SCHEME)), array('http', 'https'), true)
-				&& parse_url($url, PHP_URL_USER) === null && parse_url($url, PHP_URL_PASS) === null
-				&& strpbrk($url, '<>"\\') === false ? $url : '';
+			$data['url'] = self::boxUrl(network::getNetworkAccess('external'));
 		}
 		$result = self::request('PUT', '/boxes/{boxId}/telemetry', $data);
 		$information = ($result['dns'] ?? array()) + ($result['services'] ?? array());
@@ -1259,6 +1258,13 @@ class marketClient {
 		config::save('market::allowBeta', !empty($result['allowBeta']) ? 1 : 0);
 		self::applyBoxInformation($information);
 		return 'ok';
+	}
+
+	private static function boxUrl($url) {
+		return is_string($url) && strlen($url) <= 511 && filter_var($url, FILTER_VALIDATE_URL)
+			&& in_array(strtolower(parse_url($url, PHP_URL_SCHEME)), array('http', 'https'), true)
+			&& parse_url($url, PHP_URL_USER) === null && parse_url($url, PHP_URL_PASS) === null
+			&& strpbrk($url, '<>"\\') === false ? $url : '';
 	}
 
 	public static function getPurchaseInfo() {
