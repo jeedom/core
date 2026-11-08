@@ -2,9 +2,7 @@ includes:
   - ../../phpstan.neon
 
 parameters:
-  paths:
-    - ../../core/api/rest/src/PluginsController.php
-    - ../../core/class/pluginInstallation.class.php
+  phpVersion: 80200
   scanDirectories:
     - ../../core/class
     - ../../core/repo

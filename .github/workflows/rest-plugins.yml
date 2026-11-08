@@ -48,6 +48,6 @@ jobs:
             php -l "$file" || exit 1
           done
       - name: Check plugin API types
-        run: vendor/bin/phpstan analyse --configuration=tests/rest/phpstan.neon --no-progress --error-format=github
+        run: vendor/bin/phpstan analyse --configuration=tests/rest/phpstan.neon --no-progress --error-format=github core/api/rest/src/PluginsController.php core/class/pluginInstallation.class.php
       - name: Exercise plugin REST routes and installation jobs
         run: php tests/rest/plugins.php
