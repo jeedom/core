@@ -31,13 +31,10 @@ if ($distrib == 'debian') {
 		echo '<div class="col-xs-12 text-center ' . $alertLevel . '"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
 	}
 }
-sendVarToJS('jeephp2js.showUpdate', $showUpdate);
-$logUpdate = log::getLastLine('update');
-if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', 'sudo')) == 0) {
-	sendVarToJS('jeephp2js.isUpdating', '0');
-} else {
-	sendVarToJS('jeephp2js.isUpdating', '1');
-}
+sendVarToJS([
+	'jeephp2js.showUpdate' => $showUpdate,
+	'jeephp2js.isUpdating' => update::isRunning()
+]);
 ?>
 
 <div class="row row-overflow">

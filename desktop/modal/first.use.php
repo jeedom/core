@@ -15,138 +15,241 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-
 if (!isConnect()) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('401 - {{Accès non autorisé}}');
 }
 
-$pluginJeeEasy = plugin::isInstalled('jeeasy');
-
-
-$showDoc = false;
-if (config::byKey('doc::base_url', 'core') != '') {
-	$showDoc = true;
+if (plugin::isInstalled('jeeasy')) {
+	try {
+		$jeeasy = plugin::byId('jeeasy');
+		$update = $jeeasy->getUpdate();
+		if (is_object($update)) {
+			$update->checkUpdate();
+			if ($update->getStatus() == 'update') {
+				$update->doUpdate();
+			}
+		}
+		if (!$jeeasy->isActive()) {
+			$jeeasy->setIsEnable(1);
+		}
+		echo "<script>jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1&step=welcome')</script>";
+		die();
+	} catch (\Throwable $e) {
+		log::add('jeeasy', 'error', log::exception($e));
+	}
 }
 
-$showButton = false;
 if (config::byKey('jeedom::firstUse') == 1) {
-	$showButton = true;
+	echo '<a class="btn btn-xs btn-danger" id="bt_doNotDisplayFirstUse">';
+	echo '<i class="fas fa-eye-slash"></i> {{Ne plus afficher}}';
+	echo '</a>';
 }
-
-sendVarToJS([
-  'jeephp2js.md_firstuse_pluginJeeEasy' => $pluginJeeEasy,
-  'jeephp2js.md_firstuse_showDoc' => $showDoc,
-  'jeephp2js.md_firstuse_showButton' => $showButton
-]);
-
-
 ?>
 
+<div id="first_use">
+	<h3>{{Bienvenue dans}} <?= config::byKey('product_name') ?></h3>
+	<p>
+		{{Comment souhaitez-vous commencer ?}}
+	</p>
 
-<div id="md_firstuse" data-modalType="md_firstuse">
-	<center>
-		{{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, merci d'avoir choisi cette solution pour votre habitat connecté.}}<br />
-		{{Voici 4 guides pour bien débuter avec}} <?php echo config::byKey('product_name'); ?> :
-	</center>
-	<br/><br/><br/>
-
-	<div class="row row-overflow">
-		<div class="col-xs-3">
-			<center>
-				<a href="https://start.jeedom.com/" target="_blank">
-					<i class="fas fa-image" style="font-size:40px;"></i><br />
-					{{Guide de démarrage}}
-				</a>
-			</center>
-		</div>
-		<div id="divDoc" style="display: none;">
-			<div class="col-xs-3">
-				<center>
-					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/concept/" target="_blank">
-						<i class="fas fa-cogs" style="font-size:40px;"></i><br />
-						{{Concept}}
-					</a>
-				</center>
-			</div>
-
-			<div class="col-xs-3">
-				<center>
-					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/premiers-pas/" target="_blank">
-						<i class="fas fa-check-square" style="font-size:40px;"></i><br />
-						{{Documentation de démarrage}}
-					</a>
-				</center>
-			</div>
-			<div class="col-xs-3">
-				<center>
-					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>" target="_blank">
-						<i class="fas fa-book" style="font-size:40px;"></i><br />
-						{{Documentation}}
-					</a>
-				</center>
-			</div>
-		</div>
+	<div class="col-sm-6">
+		<a class="btn btn-success" id="bt_install_jeeasy">
+			<i class="fas fa-hat-wizard"></i> {{Installer l'assistant}}
+		</a>
+		<p>
+			{{Le plugin Jeeasy est l'assistant de configuration officiel. Une fois installé, il vous accompagne pas à pas, de manière ludique et interactive, dans la prise en main de votre habitat connecté.}}
+		</p>
 	</div>
-
-	<br><br><br>
-	<center>
-		<a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
-		<a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
-		<a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
-		<a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
-	</center>
-
-	<div id="divButton" style="display: none;">
-		<br><br>
-		<div class="row">
-			<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>
-		</div>
+	<div class="col-sm-6">
+		<a class="btn btn-primary" id="bt_restore_save" href="index.php?v=d&p=backup">
+			<i class="fas fa-save"></i> {{Restaurer une sauvegarde}}
+		</a>
+		<p>
+			{{Vous disposez d'une sauvegarde d'une précédente installation ? La page de gestion des sauvegardes permet de la restaurer pour retrouver vos équipements, scénarios et plugins.}}
+		</p>
 	</div>
 </div>
 
-<script>
-(function() {// Self Isolation!
-  	if (jeephp2js.md_firstuse_showDoc == "1") {
-  		document.querySelector('#md_firstuse #divDoc').seen()
-  	}
+<div class="hidden" id="market_connect">
+	<h3>{{Connexion au Market}}</h3>
+	<p>
+		{{L'installation et l'utilisation de l'assistant de configuration nécessitent un accès au Market.}}
+		<br>
+		{{Veuillez renseigner vos identifiants de connexion.}}
+	</p>
 
-  	if (jeephp2js.md_firstuse_showButton == "1") {
-  		document.querySelector('#md_firstuse #divButton').seen()
-  	}
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-md-5">{{Utilisateur}}</label>
+			<input type="text" class="form-control col-md-4" id="in_username_market" value="<?= htmlspecialchars(config::byKey('market::username')) ?>" placeholder="{{Nom d'utilisateur Market}}">
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-5">{{Mot de passe}}</label>
+			<input type="password" class="form-control col-md-4" autocomplete="new-password" id="in_password_market" placeholder="{{Mot de passe Market}}">
+		</div>
+	</form>
 
-  	if (jeephp2js.md_firstuse_pluginJeeEasy != "") {
-		jeeDialog.dialog({
-			id: 'md_firstConfig',
-			title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>",
-			fullScreen: true,
-			onClose: function() {
-		    	jeeDialog.get('#md_firstConfig').destroy()
-		    },
-			contentUrl: 'index.php?v=d&plugin=jeeasy&modal=wizard',
-			callback: function() {
-		    	jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
-		    }
-		})
+	<a class="btn btn-sm btn-default" href="<?= config::byKey('market::address') ?>/index.php?v=d&p=register" target="_blank">
+		<i class="fas fa-sign-out-alt"></i> {{Créer un compte Market}}
+	</a>
+	<a class="btn btn-success" id="bt_validate_market">
+		<i class="fas fa-check"></i> {{Valider les identifiants Market}}
+	</a>
+</div>
+
+<footer>
+	<?php
+	if (config::byKey('mbState') == 0 && config::byKey('doc::base_url') != '') {
+		echo '<hr class="hrPrimary">';
+		echo "{{Besoin d'aide ?}} ";
+		echo '<a href="' . jeedom::getDocUrl('premiers-pas', '#market') . '" target="_blank">';
+		echo '<i class="fas fa-book"></i> {{Consultez la documentation Premiers pas}}';
+		echo '</a>';
 	}
+	?>
+</footer>
 
-	document.getElementById('bt_doNotDisplayFirstUse')?.addEventListener('click', function() {
-		jeedom.config.save({
-			configuration: {
-				'jeedom::firstUse': 0
-			},
-			error: function(error) {
-				jeedomUtils.showAlert({
-					message: error.message,
-					level: 'danger'
+<script>
+	(function() { // Self Isolation!
+		const modal = jeeDialog.get('#md_firstUse', 'dialog')
+
+		function marketErrorMessage(_error) {
+			// -32026: Market rejected the username or password
+			return _error.code == -32026 ? "{{Nom d'utilisateur ou mot de passe Market incorrect}}" : _error.message
+		}
+
+		function installJeeasy() {
+			jeedom.update.save({
+				update: {
+					'logicalId': 'jeeasy',
+					'source': 'market',
+					'configuration': {
+						// Use Jeeasy beta version only for testing purpose. Must be set to stable for release.
+						'version': 'beta'
+						// 'version': 'stable'
+					}
+				},
+				error: function(_error) {
+					jeedomUtils.showAlert({
+						attachTo: modal,
+						emptyBefore: true,
+						message: _error.message,
+						level: 'danger'
+					})
+				},
+				success: function() {
+					jeedom.plugin.toggle({
+						id: 'jeeasy',
+						state: 1,
+						error: function(_error) {
+							jeedomUtils.showAlert({
+								attachTo: modal,
+								emptyBefore: true,
+								message: _error.message,
+								level: 'danger'
+							})
+						},
+						success: function() {
+							jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1&step=welcome')
+						}
+					})
+				}
+			})
+		}
+
+		modal.addEventListener('click', function(event) {
+			let _target = null
+
+			if (_target = event.target.closest('#bt_install_jeeasy')) {
+				jeedom.repo.test({
+					repo: 'market',
+					error: function(_error) {
+						// -32699: no Market credentials saved yet, -32026: saved ones rejected
+						if (_error.code == -32699 || _error.code == -32026) {
+							document.getElementById('first_use').unseen()
+							document.getElementById('market_connect').seen()
+						}
+						if (_error.code != -32699) {
+							jeedomUtils.showAlert({
+								attachTo: modal,
+								emptyBefore: true,
+								message: marketErrorMessage(_error),
+								level: 'danger'
+							})
+						}
+					},
+					success: installJeeasy
 				})
-			},
-			success: function() {
-				jeedomUtils.showAlert({
-					message: '{{Option enregistrée}}',
-					level: 'success'
+				return
+			}
+
+			if (_target = event.target.closest('#bt_validate_market')) {
+				const username = document.getElementById('in_username_market').value.trim()
+				const password = document.getElementById('in_password_market').value
+
+				if (username == '' || password == '') {
+					jeedomUtils.showAlert({
+						attachTo: modal,
+						emptyBefore: true,
+						message: "{{Veuillez renseigner votre nom d'utilisateur et votre mot de passe Market}}",
+						level: 'warning'
+					})
+					return
+				}
+				jeedom.config.save({
+					configuration: {
+						'market::username': username,
+						'market::password': password
+					},
+					error: function(_error) {
+						jeedomUtils.showAlert({
+							attachTo: modal,
+							emptyBefore: true,
+							message: _error.message,
+							level: 'danger'
+						})
+					},
+					success: function() {
+						jeedom.repo.test({
+							repo: 'market',
+							error: function(_error) {
+								jeedomUtils.showAlert({
+									attachTo: modal,
+									emptyBefore: true,
+									message: marketErrorMessage(_error),
+									level: 'danger'
+								})
+							},
+							success: installJeeasy
+						})
+					}
 				})
+				return
+			}
+
+			if (_target = event.target.closest('#bt_doNotDisplayFirstUse')) {
+				jeedom.config.save({
+					configuration: {
+						'jeedom::firstUse': 0
+					},
+					error: function(_error) {
+						jeedomUtils.showAlert({
+							attachTo: modal,
+							emptyBefore: true,
+							message: _error.message,
+							level: 'danger'
+						})
+					},
+					success: function() {
+						jeeDialog.get('#md_firstUse').close()
+						jeedomUtils.showAlert({
+							message: '{{Demande enregistrée}}',
+							level: 'success'
+						})
+					}
+				})
+				return
 			}
 		})
-	})
-})()
+	})()
 </script>
