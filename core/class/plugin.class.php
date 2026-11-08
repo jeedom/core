@@ -1179,6 +1179,40 @@ class plugin {
 		return $this->author;
 	}
 
+	public function getFunctionality(): array {
+		return $this->functionality;
+	}
+
+	public function getUsedSpace() {
+		return $this->usedSpace;
+	}
+
+	/** Prepare a Community draft URL; never submit a post on behalf of the user. */
+	public function getCommunityPost(): array {
+		$update = $this->getUpdate();
+		$version = is_object($update) ? $update->getConfiguration('version', 'stable') : 'stable';
+		$body = 'Remplacez ce texte par votre demande en conservant les informations ci-dessous.' . "\n\n---\n";
+		$body .= '**Informations ' . config::byKey('product_name') . "**\n```\n";
+		$body .= br2nl(self::getConfigForCommunity()) . "\nPlugin : " . $this->getName();
+		$body .= "\nVersion : " . (is_object($update) ? $update->getLocalVersion() : '') . ' (' . $version . ')';
+		if ($this->getHasOwnDeamon()) {
+			$daemon = $this->deamon_info();
+			$body .= "\nStatut Démon : " . ($daemon['state'] ?? 'nok') . ' - ' . ($daemon['last_launch'] ?? 'Inconnue');
+		}
+		$body .= "\n```\n[details=\"Santé\"]\n```\n";
+		foreach (jeedom::health() as $health) {
+			$body .= $health['name'] . ' : ' . str_replace(array("\r", "\n"), ' ', (string) $health['result']) . "\n";
+		}
+		$body .= "```\n[/details]\n";
+		$class = $this->getId();
+		if (method_exists($class, 'getConfigForCommunity')) {
+			$body .= "\n**Informations complémentaires**\n" . br2nl($class::getConfigForCommunity());
+		}
+		return array('url' => 'https://community.jeedom.com/new-topic?' . http_build_query(array(
+			'category' => 'plugins/' . $this->getCategory(), 'tags' => 'plugin-' . $this->getId(), 'body' => $body)),
+			'plugin' => $this->getName());
+	}
+
 	public function getRequire() {
 		return $this->require;
 	}

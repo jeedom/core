@@ -7,15 +7,18 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
- * Ressource /plugins (core/api/rest/openapi.yaml) : plugins installés, lisibles par tout
- * utilisateur connecté (menu de la nouvelle UI, chargement des modules d'interface).
+ * Plugin menu metadata stays readable by connected users. Management and Market
+ * installation routes require an administrator and reuse the native classes.
  */
 final class PluginsController
 {
     public function list(Request $request, Response $response): Response
     {
         $query = $request->getQueryParams();
-        $enabled = isset($query['enabled']) ? filter_var($query['enabled'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE) : null;
+        $enabled = isset($query['enabled']) && is_string($query['enabled']) ? filter_var($query['enabled'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE) : null;
+        if (isset($query['enabled']) && $enabled === null) {
+            throw ApiError::field(422, 'validation_error', 'enabled', 'Un booléen est attendu.');
+        }
         $items = [];
         foreach ((array) \plugin::listPlugin(false, false, true) as $plugin) {
             if (!is_object($plugin)) {
@@ -28,7 +31,295 @@ final class PluginsController
             $items[] = self::toArray($plugin, $active);
         }
         usort($items, static fn ($a, $b) => strcasecmp($a['name'], $b['name']));
-        return Json::respond($response, ['items' => $items, 'total' => count($items)]);
+        return self::respond($response, ['items' => $items, 'total' => count($items)]);
+    }
+
+    public function get(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $full = $request->getQueryParams()['full'] ?? 'false';
+        $full = is_string($full) ? filter_var($full, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE) : null;
+        if ($full === null) throw ApiError::field(422, 'validation_error', 'full', 'Un booléen est attendu.');
+        return self::respond($response, self::details(self::find($args['id'], $full)));
+    }
+
+    public function update(Request $request, Response $response, array $args): Response
+    {
+        self::requireWrite($request);
+        $plugin = self::find($args['id']);
+        $body = self::body($request, ['isEnable', 'functionality', 'logLevel', 'heartbeatDelay', 'heartbeatRestartDaemon']);
+        foreach (['isEnable', 'heartbeatRestartDaemon'] as $field) {
+            if (array_key_exists($field, $body) && !is_bool($body[$field])) self::invalid($field);
+        }
+        if (array_key_exists('heartbeatDelay', $body) && (!is_int($body['heartbeatDelay']) || $body['heartbeatDelay'] < 0 || $body['heartbeatDelay'] > 2147483647)) self::invalid('heartbeatDelay');
+        if (isset($body['logLevel']) && !in_array($body['logLevel'], ['default', 'debug', 'info', 'warning', 'error', 'none'], true)) self::invalid('logLevel');
+        if (array_key_exists('logLevel', $body) && !is_string($body['logLevel'])) self::invalid('logLevel');
+        if (array_key_exists('functionality', $body)) {
+            if (!is_array($body['functionality'])) self::invalid('functionality');
+            foreach ($body['functionality'] as $key => $value) {
+                $supported = $plugin->getFunctionality()[$key] ?? [];
+                if (!is_bool($value) || empty($supported['exists']) || empty($supported['controlable'])) self::invalid('functionality');
+            }
+        }
+        self::mutate($plugin, static function () use ($plugin, $body): void {
+            $id = $plugin->getId();
+            if (array_key_exists('isEnable', $body) && (bool) $plugin->isActive() !== $body['isEnable']) $plugin->setIsEnable((int) $body['isEnable']);
+            foreach ($body['functionality'] ?? [] as $key => $value) \config::save('functionality::' . $key . '::enable', (int) $value, $id);
+            if (array_key_exists('heartbeatDelay', $body)) \config::save('heartbeat::delay::' . $id, $body['heartbeatDelay']);
+            if (array_key_exists('heartbeatRestartDaemon', $body)) \config::save('heartbeat::restartDeamon::' . $id, (int) $body['heartbeatRestartDaemon']);
+            if (isset($body['logLevel'])) {
+                $levels = array_fill_keys(['100', '200', '300', '400', '1000', 'default'], 0);
+                $levels[self::LOG_LEVELS[$body['logLevel']]] = 1;
+                \config::save('log::level::' . $id, $levels);
+            }
+        });
+        return self::respond($response, self::details($plugin));
+    }
+
+    public function delete(Request $request, Response $response, array $args): Response
+    {
+        self::requireWrite($request);
+        $plugin = self::find($args['id']);
+        self::mutate($plugin, static function () use ($plugin): void {
+            $update = \update::byTypeAndLogicalId('plugin', $plugin->getId());
+            if (!is_object($update)) {
+                $update = new \update();
+                $update->setType('plugin');
+                $update->setLogicalId($plugin->getId());
+            }
+            $update->deleteObjet();
+        });
+        return $response->withStatus(204);
+    }
+
+    public function dependencies(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        return self::respond($response, self::installationCall(static fn () => self::dependencyInfo(self::find($args['id']))));
+    }
+
+    public function installDependencies(Request $request, Response $response, array $args): Response
+    {
+        self::requireWrite($request);
+        self::body($request, [], true);
+        $plugin = self::find($args['id']);
+        self::mutate($plugin, static fn () => $plugin->dependancy_install(true));
+        return self::respond($response, self::dependencyInfo($plugin), 202);
+    }
+
+    public function updateDependencies(Request $request, Response $response, array $args): Response
+    {
+        self::requireWrite($request);
+        $body = self::body($request, ['auto']);
+        if (!is_bool($body['auto'] ?? null)) self::invalid('auto');
+        $plugin = self::find($args['id']);
+        self::mutate($plugin, static fn () => $plugin->dependancy_changeAutoMode((int) $body['auto']));
+        return self::respond($response, self::dependencyInfo($plugin));
+    }
+
+    public function daemon(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        return self::respond($response, self::installationCall(static fn () => self::daemonInfo(self::find($args['id']))));
+    }
+
+    public function startDaemon(Request $request, Response $response, array $args): Response
+    {
+        self::requireWrite($request);
+        $body = self::body($request, ['forceRestart'], true);
+        if (array_key_exists('forceRestart', $body) && !is_bool($body['forceRestart'])) self::invalid('forceRestart');
+        $plugin = self::find($args['id']);
+        self::mutate($plugin, static fn () => $plugin->deamon_start($body['forceRestart'] ?? false));
+        return self::respond($response, self::daemonInfo($plugin), 202);
+    }
+
+    public function stopDaemon(Request $request, Response $response, array $args): Response
+    {
+        self::requireWrite($request);
+        self::body($request, [], true);
+        $plugin = self::find($args['id']);
+        self::mutate($plugin, static fn () => $plugin->deamon_stop());
+        return self::respond($response, self::daemonInfo($plugin));
+    }
+
+    public function updateDaemon(Request $request, Response $response, array $args): Response
+    {
+        self::requireWrite($request);
+        $body = self::body($request, ['auto']);
+        if (!is_bool($body['auto'] ?? null)) self::invalid('auto');
+        $plugin = self::find($args['id']);
+        self::mutate($plugin, static fn () => $plugin->deamon_changeAutoMode((int) $body['auto']));
+        return self::respond($response, self::daemonInfo($plugin));
+    }
+
+    public function communityPost(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        return self::respond($response, self::installationCall(static fn () => self::find($args['id'])->getCommunityPost()));
+    }
+
+    public function prepareInstallation(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $query = $request->getQueryParams();
+        $id = filter_var($query['marketId'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 2147483647]]);
+        if ($id === false || !is_string($query['version'] ?? null)) self::invalid('marketId/version');
+        return self::respond($response, self::installationCall(static fn () => \pluginInstallation::preview($id, $query['version'])));
+    }
+
+    public function install(Request $request, Response $response): Response
+    {
+        self::requireWrite($request);
+        $body = self::body($request, ['marketId', 'version']);
+        if (!is_int($body['marketId'] ?? null) || !is_string($body['version'] ?? null)) self::invalid('marketId/version');
+        $key = $request->getHeaderLine('Idempotency-Key');
+        if (!preg_match('/\A[A-Za-z0-9_-]{16,128}\z/', $key)) self::invalid('Idempotency-Key');
+        $operation = self::installationCall(fn () => \pluginInstallation::start($body['marketId'], $body['version'], (int) $request->getAttribute('user')->getId(), $key));
+        return self::respond($response, self::operation($operation), in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
+    }
+
+    public function installation(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $operation = \pluginInstallation::status($args['operationId']);
+        if ($operation === null) throw new ApiError(404, 'installation_not_found', 'Installation inconnue.');
+        return self::respond($response, self::operation($operation));
+    }
+
+    public function latestInstallation(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $last = self::installationCall(static fn () => \pluginInstallation::latest($args['id']));
+        $operation = $last === null ? null : \pluginInstallation::status($last['id']);
+        return self::respond($response, ['operation' => $operation === null ? null : self::operation($operation)]);
+    }
+
+    private const LOG_LEVELS = ['debug' => '100', 'info' => '200', 'warning' => '300', 'error' => '400', 'none' => '1000', 'default' => 'default'];
+
+    private static function details(\plugin $plugin): array
+    {
+        $id = $plugin->getId();
+        $update = \update::byTypeAndLogicalId('plugin', $id);
+        $functions = [];
+        foreach ($plugin->getFunctionality() as $key => $value) {
+            $functions[$key] = ['exists' => !empty($value['exists']), 'controllable' => !empty($value['controlable']),
+                'enabled' => \config::byKey('functionality::' . $key . '::enable', $id, 1) == 1];
+        }
+        $levels = \config::byKey('log::level::' . $id, 'core', []);
+        if (is_string($levels)) $levels = json_decode($levels, true);
+        $level = 'default';
+        foreach (self::LOG_LEVELS as $key => $value) if (!empty($levels[$value])) $level = $key;
+        return self::toArray($plugin, (bool) $plugin->isActive()) + [
+            'description' => trim(html_entity_decode(strip_tags((string) $plugin->getDescription()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),
+            'author' => (string) $plugin->getAuthor(), 'license' => (string) $plugin->getLicense(),
+            'minJeedomVersion' => (string) $plugin->getRequire(), 'minOsVersion' => (string) $plugin->getRequireOsVersion(),
+            'compatible' => version_compare(\jeedom::version(), (string) $plugin->getRequire(), '>=')
+                && (\system::getDistrib() !== 'debian' || !$plugin->getRequireOsVersion() || version_compare(\system::getOsVersion(), (string) $plugin->getRequireOsVersion(), '>=')),
+            'configurationPath' => $plugin->getPathToConfigurationById() ?: null,
+            'hasDependency' => (bool) $plugin->getHasDependency() || is_file(\plugin::getPluginPath($id) . '/plugin_info/packages.json'),
+            'hasOwnDaemon' => (bool) $plugin->getHasOwnDeamon(), 'usedSpace' => is_numeric($plugin->getUsedSpace()) ? (int) $plugin->getUsedSpace() : null,
+            'installation' => trim(html_entity_decode(strip_tags((string) $plugin->getInstallation()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),
+            'links' => ['documentation' => self::webUrl($plugin->getDocumentation()), 'changelog' => self::webUrl($plugin->getChangelog()),
+                'issue' => self::webUrl($plugin->getIssue())],
+            'functionality' => (object) $functions, 'logs' => array_values(array_filter($plugin->getLogList(), self::validLog(...))),
+            'logLevel' => $level, 'heartbeatDelay' => (int) \config::byKey('heartbeat::delay::' . $id, 'core', 0),
+            'heartbeatRestartDaemon' => \config::byKey('heartbeat::restartDeamon::' . $id, 'core', 0) == 1,
+            'update' => is_object($update) ? ['id' => (int) $update->getId(), 'source' => (string) $update->getSource(),
+                'branch' => (string) $update->getConfiguration('version', 'stable'), 'status' => (string) $update->getStatus(),
+                'localVersion' => $update->getLocalVersion() ?: null, 'remoteVersion' => $update->getRemoteVersion() ?: null,
+                'updatedAt' => $update->getUpdateDate() ?: null] : null,
+        ];
+    }
+
+    private static function dependencyInfo(\plugin $plugin): array
+    {
+        $info = $plugin->dependancy_info();
+        return ['state' => (string) ($info['state'] ?? 'nok'), 'auto' => !empty($info['auto']),
+            'log' => self::validLog($info['log'] ?? null) ? $info['log'] : null,
+            'progression' => isset($info['progression']) && is_numeric($info['progression']) ? (float) $info['progression'] : null,
+            'duration' => isset($info['duration']) && is_numeric($info['duration']) ? (float) $info['duration'] : null,
+            'lastLaunch' => isset($info['last_launch']) ? (string) $info['last_launch'] : null];
+    }
+
+    private static function daemonInfo(\plugin $plugin): array
+    {
+        $info = $plugin->deamon_info();
+        return ['state' => (string) ($info['state'] ?? 'nok'), 'launchable' => (string) ($info['launchable'] ?? 'nok'),
+            'launchableMessage' => (string) ($info['launchable_message'] ?? ''), 'auto' => !empty($info['auto']),
+            'log' => self::validLog($info['log'] ?? null) ? $info['log'] : null,
+            'lastLaunch' => isset($info['last_launch']) ? (string) $info['last_launch'] : null];
+    }
+
+    private static function validLog(mixed $value): bool
+    {
+        return is_string($value) && $value !== 'nok' && $value !== '..' && preg_match('/\A[A-Za-z0-9_.-]+\z/', $value) === 1;
+    }
+
+    private static function respond(Response $response, mixed $data, int $status = 200): Response
+    {
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), $data, $status);
+    }
+
+    private static function webUrl(mixed $value): ?string
+    {
+        return is_string($value) && filter_var($value, FILTER_VALIDATE_URL)
+            && in_array(strtolower((string) parse_url($value, PHP_URL_SCHEME)), ['http', 'https'], true)
+            && parse_url($value, PHP_URL_USER) === null && parse_url($value, PHP_URL_PASS) === null ? $value : null;
+    }
+
+    private static function find(string $id, bool $full = false): \plugin
+    {
+        if (!preg_match('/\A[A-Za-z0-9_][A-Za-z0-9_-]{0,126}\z/', $id) || !is_file(\plugin::getPathById($id))) {
+            throw new ApiError(404, 'plugin_not_found', 'Plugin inconnu.');
+        }
+        try {
+            $plugin = \plugin::byId($id, $full);
+            if ($plugin->getId() !== $id) throw new \RuntimeException('Manifeste incohérent.');
+            return $plugin;
+        }
+        catch (\Throwable) { throw new ApiError(404, 'plugin_not_found', 'Plugin inconnu ou invalide.'); }
+    }
+
+    private static function requireWrite(Request $request): void
+    {
+        Auth::requireAdmin($request);
+        try { \unautorizedInDemo($request->getAttribute('user')); }
+        catch (\Exception $e) { throw new ApiError(403, 'demo_forbidden', $e->getMessage()); }
+    }
+
+    private static function body(Request $request, array $fields, bool $empty = false): array
+    {
+        $body = Json::body($request);
+        if ((!$empty && $body === []) || array_diff(array_keys($body), $fields)) throw new ApiError(422, 'validation_error', 'Champs absents, inconnus ou non modifiables.');
+        return $body;
+    }
+
+    private static function invalid(string $field): never
+    {
+        throw ApiError::field(422, 'validation_error', $field, 'Valeur invalide.');
+    }
+
+    private static function mutate(\plugin $plugin, callable $action): void
+    {
+        self::installationCall(static fn () => \pluginInstallation::withLock($plugin->getId(), static function () use ($plugin, $action) {
+            \pluginInstallation::assertIdle($plugin->getId());
+            return $action();
+        }));
+    }
+
+    private static function installationCall(callable $action): mixed
+    {
+        try { return $action(); }
+        catch (ApiError $e) { throw $e; }
+        catch (\Throwable $e) {
+            $status = in_array($e->getCode(), [401, 403, 404, 409, 422, 502, 503], true) ? (int) $e->getCode() : 409;
+            throw new ApiError($status, 'plugin_operation_failed', \pluginInstallation::errorMessage($e));
+        }
+    }
+
+    private static function operation(array $operation): array
+    {
+        return array_intersect_key($operation, array_flip(['id', 'pluginId', 'marketId', 'version', 'state', 'createdAt', 'startedAt', 'finishedAt', 'error']));
     }
 
     private static function toArray(\plugin $plugin, bool $active): array

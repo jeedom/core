@@ -1,0 +1,12 @@
+includes:
+  - ../../phpstan.neon
+
+parameters:
+  paths:
+    - ../../core/api/rest/src/PluginsController.php
+    - ../../core/class/pluginInstallation.class.php
+  scanDirectories:
+    - ../../core/class
+    - ../../core/repo
+  scanFiles:
+    - ../../core/php/utils.inc.php

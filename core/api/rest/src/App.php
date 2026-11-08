@@ -97,7 +97,23 @@ final class App
 
             $api->get('/events', (new EventsController())->stream(...));
 
-            $api->get('/plugins', (new PluginsController())->list(...));
+            $plugins = new PluginsController();
+            $api->get('/plugins', $plugins->list(...));
+            $api->get('/plugins/installation', $plugins->prepareInstallation(...));
+            $api->post('/plugins/installations', $plugins->install(...));
+            $api->get('/plugins/installations/{operationId}', $plugins->installation(...));
+            $api->get('/plugins/{id}', $plugins->get(...));
+            $api->patch('/plugins/{id}', $plugins->update(...));
+            $api->delete('/plugins/{id}', $plugins->delete(...));
+            $api->get('/plugins/{id}/dependencies', $plugins->dependencies(...));
+            $api->patch('/plugins/{id}/dependencies', $plugins->updateDependencies(...));
+            $api->post('/plugins/{id}/dependencies/install', $plugins->installDependencies(...));
+            $api->get('/plugins/{id}/daemon', $plugins->daemon(...));
+            $api->patch('/plugins/{id}/daemon', $plugins->updateDaemon(...));
+            $api->post('/plugins/{id}/daemon/start', $plugins->startDaemon(...));
+            $api->post('/plugins/{id}/daemon/stop', $plugins->stopDaemon(...));
+            $api->get('/plugins/{id}/community-post', $plugins->communityPost(...));
+            $api->get('/plugins/{id}/installation', $plugins->latestInstallation(...));
             $users = new UsersController();
             $api->get('/users', $users->list(...));
             $api->post('/users', $users->create(...));

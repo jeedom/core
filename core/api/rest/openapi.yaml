@@ -461,6 +461,457 @@ paths:
               schema: { $ref: '#/components/schemas/PluginList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
 
+  /plugins/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags:
+      - Plugins
+      operationId: getPlugin
+      summary: Lire la configuration générale d’un plugin (administrateur).
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDetails'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: full
+        in: query
+        schema:
+          type: boolean
+          default: false
+    patch:
+      tags:
+      - Plugins
+      operationId: updatePlugin
+      summary: Activer, désactiver et régler les options générales du plugin.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDetails'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginPatch'
+    delete:
+      tags:
+      - Plugins
+      operationId: deletePlugin
+      summary: Supprimer le plugin et ses équipements par le moteur natif.
+      responses:
+        '204':
+          description: Plugin supprimé.
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /plugins/{id}/dependencies:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags:
+      - Plugins
+      operationId: getPluginDependencies
+      summary: Lire l’état réel des dépendances.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDependencies'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+      - Plugins
+      operationId: updatePluginDependencyAutoMode
+      summary: Changer la gestion automatique des dépendances.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDependencies'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auto:
+                  type: boolean
+              required:
+              - auto
+              additionalProperties: false
+  /plugins/{id}/dependencies/install:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    post:
+      tags:
+      - Plugins
+      operationId: installPluginDependencies
+      summary: Lancer l’installation native des dépendances.
+      responses:
+        '202':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDependencies'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      description: L’acceptation du lancement ne signifie pas que les dépendances sont installées. Relire leur état.
+  /plugins/{id}/daemon:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags:
+      - Plugins
+      operationId: getPluginDaemon
+      summary: Lire l’état réel du démon.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDaemon'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+      - Plugins
+      operationId: updatePluginDaemonAutoMode
+      summary: Changer la gestion automatique du démon.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDaemon'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auto:
+                  type: boolean
+              required:
+              - auto
+              additionalProperties: false
+  /plugins/{id}/daemon/start:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    post:
+      tags:
+      - Plugins
+      operationId: startPluginDaemon
+      summary: Démarrer ou redémarrer le démon.
+      responses:
+        '202':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDaemon'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                forceRestart:
+                  type: boolean
+              additionalProperties: false
+  /plugins/{id}/daemon/stop:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    post:
+      tags:
+      - Plugins
+      operationId: stopPluginDaemon
+      summary: Arrêter le démon.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDaemon'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+  /plugins/{id}/community-post:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags:
+      - Plugins
+      operationId: getPluginCommunityPost
+      summary: Préparer le lien de brouillon Community, sans publier de message.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                  plugin:
+                    type: string
+                required:
+                - url
+                - plugin
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /plugins/{id}/installation:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags:
+      - Plugins
+      operationId: getLatestPluginInstallation
+      summary: Retrouver la dernière installation demandée pour ce plugin.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  operation:
+                    oneOf:
+                    - $ref: '#/components/schemas/PluginInstallation'
+                    - type: 'null'
+                required:
+                - operation
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /plugins/installation:
+    get:
+      tags:
+      - Plugins
+      operationId: preparePluginInstallation
+      summary: Préparer la confirmation d’installation depuis le Market.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginInstallationPreview'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: marketId
+        in: query
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 2147483647
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - stable
+          - beta
+      description: Administrateur. Résout l’identifiant numérique auprès du Market configuré sur la box et vérifie
+        publication, achat/licence, branche, Core, OS et plateforme. Aucune installation, activation, création de
+        tâche ou modification de branche.
+  /plugins/installations:
+    post:
+      tags:
+      - Plugins
+      operationId: startPluginInstallation
+      summary: Confirmer et planifier l’installation Market.
+      responses:
+        '202':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginInstallation'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '200':
+          description: Dernière opération terminée retrouvée par sa clé de requête.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginInstallation'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                marketId:
+                  type: integer
+                  minimum: 1
+                  maximum: 2147483647
+                version:
+                  type: string
+                  enum:
+                  - stable
+                  - beta
+              required:
+              - marketId
+              - version
+              additionalProperties: false
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          pattern: ^[A-Za-z0-9_-]{16,128}$
+      description: Administrateur, hors démo, CSRF en session. Branche explicite. La même clé pour la dernière opération
+        renvoie son état sans lancer une autre installation ; une autre clé concurrente donne 409. La queue native
+        exécute update::doUpdate et revérifie les droits, l’accès Market et la compatibilité. Première installation
+        inactive, réglages et état existants conservés. La réussite concerne les fichiers du plugin ; dépendances
+        et activation restent distinctes.
+  /plugins/installations/{operationId}:
+    get:
+      tags:
+      - Plugins
+      operationId: getPluginInstallation
+      summary: Suivre le résultat réel d’une installation.
+      responses:
+        '200':
+          description: Résultat de l’opération.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginInstallation'
+        default:
+          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
+            démo.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[A-Za-z0-9_][A-Za-z0-9_-]{0,126}\.[a-f0-9]{32}$
+      description: Administrateur. État persisté de la dernière opération de ce plugin ; une ancienne référence remplacée
+        renvoie 404. Une tâche interrompue donne failed, jamais succeeded. Aucun GET ne lance ou ne rejoue une installation.
+
   /session:
     post:
       tags: [Session]
@@ -2591,6 +3042,11 @@ components:
         l'en-tête `X-CSRF-Token`.
 
   parameters:
+    PluginId:
+      name: id
+      in: path
+      required: true
+      schema: {type: string, pattern: '^[A-Za-z0-9_][A-Za-z0-9_-]{0,126}$'}
     ObjectId:
       name: id
       in: path
@@ -3082,6 +3538,328 @@ components:
             s'il n'en a pas. Toujours `null` pour un plugin désactivé.
           example: plugins/zwavejs/ui/ui.js
         version: { type: [string, 'null'], description: Version installée. }
+
+    PluginDetails:
+      allOf:
+      - $ref: '#/components/schemas/Plugin'
+      - type: object
+        properties:
+          description:
+            type: string
+          author:
+            type: string
+          license:
+            type: string
+          minJeedomVersion:
+            type: string
+          minOsVersion:
+            type: string
+          compatible:
+            type: boolean
+          configurationPath:
+            type:
+            - string
+            - 'null'
+          hasDependency:
+            type: boolean
+          hasOwnDaemon:
+            type: boolean
+          usedSpace:
+            type:
+            - integer
+            - 'null'
+          installation:
+            type: string
+          links:
+            type: object
+            properties:
+              documentation:
+                type:
+                - string
+                - 'null'
+              changelog:
+                type:
+                - string
+                - 'null'
+              issue:
+                type:
+                - string
+                - 'null'
+            required:
+            - documentation
+            - changelog
+            - issue
+          functionality:
+            type: object
+            additionalProperties:
+              type: object
+              properties:
+                exists:
+                  type: boolean
+                controllable:
+                  type: boolean
+                enabled:
+                  type: boolean
+              required:
+              - exists
+              - controllable
+              - enabled
+          logs:
+            type: array
+            items:
+              type: string
+          logLevel:
+            type: string
+            enum:
+            - default
+            - debug
+            - info
+            - warning
+            - error
+            - none
+          heartbeatDelay:
+            type: integer
+            minimum: 0
+          heartbeatRestartDaemon:
+            type: boolean
+          update:
+            oneOf:
+            - type: object
+              properties:
+                id:
+                  type: integer
+                source:
+                  type: string
+                branch:
+                  type: string
+                status:
+                  type: string
+                localVersion:
+                  type:
+                  - string
+                  - 'null'
+                remoteVersion:
+                  type:
+                  - string
+                  - 'null'
+                updatedAt:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - id
+              - source
+              - branch
+              - status
+              - localVersion
+              - remoteVersion
+              - updatedAt
+            - type: 'null'
+        required:
+        - description
+        - author
+        - license
+        - minJeedomVersion
+        - minOsVersion
+        - compatible
+        - configurationPath
+        - hasDependency
+        - hasOwnDaemon
+        - usedSpace
+        - installation
+        - links
+        - functionality
+        - logs
+        - logLevel
+        - heartbeatDelay
+        - heartbeatRestartDaemon
+        - update
+    PluginPatch:
+      type: object
+      properties:
+        isEnable:
+          type: boolean
+        functionality:
+          type: object
+          additionalProperties:
+            type: boolean
+        logLevel:
+          type: string
+          enum:
+          - default
+          - debug
+          - info
+          - warning
+          - error
+          - none
+        heartbeatDelay:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        heartbeatRestartDaemon:
+          type: boolean
+      additionalProperties: false
+      minProperties: 1
+    PluginDependencies:
+      type: object
+      properties:
+        state:
+          type: string
+        auto:
+          type: boolean
+        log:
+          type:
+          - string
+          - 'null'
+        progression:
+          type:
+          - number
+          - 'null'
+        duration:
+          type:
+          - number
+          - 'null'
+        lastLaunch:
+          type:
+          - string
+          - 'null'
+      required:
+      - state
+      - auto
+      - log
+      - progression
+      - duration
+      - lastLaunch
+    PluginDaemon:
+      type: object
+      properties:
+        state:
+          type: string
+        launchable:
+          type: string
+        launchableMessage:
+          type: string
+        auto:
+          type: boolean
+        log:
+          type:
+          - string
+          - 'null'
+        lastLaunch:
+          type:
+          - string
+          - 'null'
+      required:
+      - state
+      - launchable
+      - launchableMessage
+      - auto
+      - log
+      - lastLaunch
+    PluginInstallationPreview:
+      type: object
+      properties:
+        marketId:
+          type: integer
+        pluginId:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+          enum:
+          - stable
+          - beta
+        publishedAt:
+          type:
+          - string
+          - 'null'
+        minJeedomVersion:
+          type:
+          - string
+          - 'null'
+        installed:
+          type: boolean
+        isEnable:
+          type: boolean
+        installedVersion:
+          type:
+          - string
+          - 'null'
+        box:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+          required:
+          - name
+          - version
+      required:
+      - marketId
+      - pluginId
+      - name
+      - version
+      - publishedAt
+      - minJeedomVersion
+      - installed
+      - isEnable
+      - installedVersion
+      - box
+    PluginInstallation:
+      type: object
+      properties:
+        id:
+          type: string
+        pluginId:
+          type: string
+        marketId:
+          type: integer
+        version:
+          type: string
+          enum:
+          - stable
+          - beta
+        state:
+          type: string
+          enum:
+          - queued
+          - running
+          - succeeded
+          - failed
+        createdAt:
+          type: string
+        startedAt:
+          type:
+          - string
+          - 'null'
+        finishedAt:
+          type:
+          - string
+          - 'null'
+        error:
+          oneOf:
+          - type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+            required:
+            - code
+            - message
+          - type: 'null'
+      required:
+      - id
+      - pluginId
+      - marketId
+      - version
+      - state
+      - createdAt
+      - startedAt
+      - finishedAt
+      - error
 
     PluginList:
       type: object

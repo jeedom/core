@@ -65,6 +65,7 @@ class repo_market {
 	private $hardwareCompatibility;
 	private $nbInstall;
 	private $allowVersion = array();
+	private $minJeedomVersion = '';
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -773,6 +774,7 @@ class repo_market {
 			$market->setDoc($_arrayMarket['doc']);
 		}
 		$market->setLogicalId($_arrayMarket['logicalId']);
+		$market->minJeedomVersion = $_arrayMarket['minJeedomVersion'] ?? '';
 		if (isset($_arrayMarket['utilization'])) {
 			$market->setUtilization($_arrayMarket['utilization']);
 		}
@@ -973,7 +975,6 @@ class repo_market {
 		$url .= '&password=' . self::getPassword();
 		$url .= '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $this->getLogicalId() . '...');
-		log::add('update', 'alert', __('URL', __FILE__) . ' ' . $url);
 		exec('wget "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update') . ' 2>&1');
 		switch ($this->getType()) {
 			case 'plugin':
@@ -1083,6 +1084,10 @@ class repo_market {
 
 	public function getId() {
 		return $this->id;
+	}
+
+	public function getMinJeedomVersion() {
+		return $this->minJeedomVersion;
 	}
 
 	public function getName() {
