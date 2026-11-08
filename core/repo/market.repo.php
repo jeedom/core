@@ -399,6 +399,11 @@ class repo_market {
 
 	/* JSON-RPC compatibility for plugins. Core and cloud operations use marketClient. */
 
+	/** Cloud Bearer shared by plugins; retry with the rejected token only after HTTP 401. */
+	public static function getCloudToken($rejectedToken = null) {
+		return marketClient::getCloudToken($rejectedToken);
+	}
+
 	public static function getPassword() {
 		$password = config::byKey('market::password');
 		if (!is_sha1($password)) {
@@ -968,189 +973,231 @@ class repo_market {
 /** Market REST session, transport and cloud services. */
 class marketClient {
 
-	/* Cloud backups. */
+	/** Return the provisioned Cloud Bearer; plugins should use repo_market::getCloudToken(). */
+	public static function getCloudToken($rejectedToken = null) {
+		return self::locked(function () use ($rejectedToken) {
+			if (!self::connected()) {
+				throw self::reconnect();
+			}
+			$market = config::byKey('market::restSession', 'core', array(), true);
+			if (!is_int($market['boxId'] ?? null) || $market['boxId'] < 1) throw self::reconnect();
+			$context = self::context();
+			$cloud = config::byKey('market::cloudSession', 'core', array(), true);
+			if (is_array($cloud) && ($cloud['boxId'] ?? null) === $market['boxId']
+				&& is_string($cloud['context'] ?? null) && hash_equals($context, $cloud['context'])
+				&& is_string($cloud['accessToken'] ?? null) && preg_match('/\A[A-Za-z0-9_-]{43,256}\z/D', $cloud['accessToken'])
+				&& ($cloud['expiresAt'] ?? 0) > time() + 60
+				&& ($rejectedToken === null || !hash_equals($cloud['accessToken'], $rejectedToken))) {
+				return $cloud['accessToken'];
+			}
+			// Remove a rejected/expired token even if provisioning subsequently fails.
+			config::remove('market::cloudSession');
+			$started = time();
+			$session = self::activeSession();
+			$tokens = self::requestWithSession('POST', '/boxes/{boxId}/cloud-session', new stdClass(), 30, null,
+				$session, function ($token) { return self::activeSession($token); });
+			if (!is_array($tokens) || ($tokens['boxId'] ?? null) !== $session['boxId'] || ($tokens['tokenType'] ?? null) !== 'Bearer'
+				|| !is_string($tokens['accessToken'] ?? null) || !preg_match('/\A[A-Za-z0-9_-]{43,256}\z/D', $tokens['accessToken'])
+				|| !is_int($tokens['expiresIn'] ?? null) || $tokens['expiresIn'] < 1 || $tokens['expiresIn'] > 86400
+				|| !is_int($tokens['expiresAt'] ?? null) || $tokens['expiresAt'] > time() + 86400
+				|| min($tokens['expiresAt'], $started + $tokens['expiresIn']) <= time() + 60) {
+				throw new Exception(__('Réponse de session Cloud invalide.', __FILE__));
+			}
+			config::save('market::cloudSession', array('boxId' => $session['boxId'], 'context' => $context,
+				'accessToken' => $tokens['accessToken'], 'expiresAt' => min($tokens['expiresAt'], $started + $tokens['expiresIn'])));
+			return $tokens['accessToken'];
+		});
+	}
+
+	/* Cloud backups. Transfers reuse com_http and stream encrypted files. */
+
+	private static function cloudRequest($method, $url, $data = null, $timeout = 30, $input = null, $destination = null, $headers = array()) {
+		$parts = parse_url($url);
+		if (!filter_var($url, FILTER_VALIDATE_URL) || !is_array($parts) || strtolower($parts['scheme'] ?? '') !== 'https'
+			|| empty($parts['host']) || isset($parts['user']) || isset($parts['pass']) || isset($parts['fragment'])) {
+			throw new Exception(__('L’adresse du service Cloud doit être une URL HTTPS valide.', __FILE__));
+		}
+		$token = self::getCloudToken();
+		for ($attempt = 0; $attempt < 2; ++$attempt) {
+			$http = new com_http($url);
+			$http->setNoSslCheck(false);
+			$http->setNoReportError(true);
+			$http->setHeader(array_merge($headers, array('Authorization: Bearer ' . $token)));
+			$options = self::httpOptions($method);
+			if ($data !== null) {
+				$options[CURLOPT_POSTFIELDS] = $data;
+			}
+			$source = null;
+			$file = null;
+			try {
+				if ($input !== null) {
+					$source = fopen($input, 'rb');
+					if ($source === false) throw new Exception(__('Impossible de lire la sauvegarde chiffrée.', __FILE__));
+					$options[CURLOPT_UPLOAD] = true;
+					$options[CURLOPT_INFILE] = $source;
+					$options[CURLOPT_INFILESIZE] = filesize($input);
+				}
+				if ($destination !== null) {
+					$file = fopen($destination, 'wb');
+					if ($file === false) throw new Exception(__('Impossible d’écrire la sauvegarde Cloud.', __FILE__));
+					$options[CURLOPT_FILE] = $file;
+				}
+				$http->setCURLOPT($options);
+				$body = $http->exec($timeout, 1);
+				$status = (int) $http->getHttpCode();
+				if ($status === 401 && $attempt === 0) {
+					$token = self::getCloudToken($token);
+					continue;
+				}
+				if ($body === false || $status < 200 || $status >= 300) {
+					throw new Exception(__('Erreur de communication avec le service Cloud.', __FILE__), $status);
+				}
+				return $body;
+			} catch (Throwable $exception) {
+				if ($destination !== null && is_file($destination)) unlink($destination);
+				throw $exception;
+			} finally {
+				if (is_resource($source)) fclose($source);
+				if (is_resource($file)) fclose($file);
+			}
+		}
+	}
+
+	private static function backupSegment($value) {
+		if (!is_string($value) || trim($value) === '' || $value === '.' || $value === '..'
+			|| strlen($value) > 255 || preg_match('~[/\\\\\x00-\x1f\x7f]~', $value)) {
+			throw new Exception(__('Nom de dossier ou de sauvegarde Cloud invalide.', __FILE__));
+		}
+		return $value;
+	}
+
+	private static function backupUrl($name = null) {
+		$url = rtrim(config::byKey('service::backup::url'), '/') . '/webdav/'
+			. rawurlencode(self::backupSegment(config::byKey('market::username'))) . '/'
+			. rawurlencode(self::backupSegment(config::byKey('market::cloud::backup::name')));
+		return $name === null ? $url : $url . '/' . rawurlencode(self::backupSegment($name));
+	}
 
 	public static function backup_createFolderIsNotExist() {
-		$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')), config::byKey('market::username'), config::byKey('market::password'));
-		$request_http->setCURLOPT(array(
-			CURLOPT_CUSTOMREQUEST => "PROPFIND"
-		));
-		$xml = simplexml_load_string($request_http->exec(10));
-		$ns = $xml->getNamespaces(true);
-		$child = $xml->children($ns['D']);
-		$found = false;
-		foreach ($child->response as $file) {
-			if ($file->propstat->prop->getcontenttype) {
-				continue;
-			}
-			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/' . urlencode(config::byKey('market::username')), '', $file->href), '/'));
-			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/' . config::byKey('market::username'), '', $folder), '/'));
-			if ($folder == '') {
-				continue;
-			}
-			if ($folder == config::byKey('market::cloud::backup::name')) {
-				$found = true;
-				break;
+		try {
+			self::cloudRequest('PROPFIND', self::backupUrl(), null, 10, null, null, array('Depth: 0'));
+		} catch (Exception $exception) {
+			if ($exception->getCode() !== 404) throw $exception;
+			try {
+				self::cloudRequest('MKCOL', self::backupUrl(), null, 10);
+			} catch (Exception $creationError) {
+				// Another backup process may have created the folder concurrently.
+				if ($creationError->getCode() !== 405) throw $creationError;
+				self::cloudRequest('PROPFIND', self::backupUrl(), null, 10, null, null, array('Depth: 0'));
 			}
 		}
-		if (!$found) {
-			$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')), config::byKey('market::username'), config::byKey('market::password'));
-			$request_http->setCURLOPT(array(
-				CURLOPT_CUSTOMREQUEST => "MKCOL"
-			));
-			$request_http->exec(10);
+	}
+
+	private static function backupFiles() {
+		self::backup_createFolderIsNotExist();
+		$body = self::cloudRequest('PROPFIND', self::backupUrl(), null, 10, null, null, array('Depth: 1'));
+		$xml = @simplexml_load_string($body, SimpleXMLElement::class, LIBXML_NONET);
+		if ($xml === false) throw new Exception(__('Réponse WebDAV Cloud invalide.', __FILE__));
+		$xml->registerXPathNamespace('dav', 'DAV:');
+		$prefix = rawurldecode((string) parse_url(self::backupUrl(), PHP_URL_PATH)) . '/';
+		$files = array();
+		foreach ($xml->xpath('/dav:multistatus/dav:response') ?: array() as $response) {
+			$file = $response->children('DAV:');
+			$path = rawurldecode((string) parse_url((string) $file->href, PHP_URL_PATH));
+			if (strpos($path, $prefix) !== 0) continue;
+			$name = substr($path, strlen($prefix));
+			if ($name === '' || substr($name, -4) !== '.gpg') continue;
+			try { self::backupSegment($name); } catch (Exception $exception) { continue; }
+			foreach ($file->propstat as $propstat) {
+				if (strpos((string) $propstat->status, ' 200 ') === false) continue;
+				$prop = $propstat->prop;
+				if (isset($prop->resourcetype->collection)) continue;
+				$files[$name] = array('name' => $name, 'size' => (int) $prop->getcontentlength,
+					'timestamp' => strtotime((string) $prop->getlastmodified));
+			}
 		}
+		return array_values($files);
 	}
 
 	public static function backup_send($_path) {
 		if (!config::byKey('service::backup::enable')) {
-			throw new Exception(__('Erreur d\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?', __FILE__));
+			throw new Exception(__('Erreur d’envoi du backup au Cloud. Avez-vous un abonnement au backup Cloud ?', __FILE__));
 		}
-		if (config::byKey('market::cloud::backup::password') == '') {
-			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour/Market)', __FILE__));
-		}
-		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
-			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
-		}
-		//self::backup_clean($_path);
+		self::backupPassword();
 		self::backup_createFolderIsNotExist();
+		$home = self::backupGpgHome();
+		$encrypted = null;
 		try {
-			if (!file_exists('/tmp/jeedom_gnupg')) {
-				mkdir('/tmp/jeedom_gnupg');
-			}
-			com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
-			$cmd = 'echo "' . config::byKey('market::cloud::backup::password') . '" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 -c ' . $_path;
-			com_shell::execute($cmd);
-			$cmd = "curl --retry 5 --retry-delay 3 --retry-max-time 60 --retry-connrefused --keepalive-time 30 --user '" . config::byKey('market::username') . ":" . config::byKey('market::password') . "' -T '" . $_path . '.gpg' . "' '" . config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')) . "/'";
-			try {
-				com_shell::execute($cmd);
-			} catch (\Exception $e) {
-				$cmd = "curl --http1.1 --retry 5 --retry-delay 3 --retry-max-time 60 --retry-connrefused --keepalive-time 30 --user '" . config::byKey('market::username') . ":" . config::byKey('market::password') . "' -T '" . $_path . '.gpg' . "' '" . config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')) . "/'";
-				com_shell::execute($cmd);
-			}
-			unlink($_path . '.gpg');
-			rrmdir('/tmp/jeedom_gnupg');
-		} catch (\Exception $e) {
-			unlink($_path . '.gpg');
-			rrmdir('/tmp/jeedom_gnupg');
-			throw $e;
+			$encrypted = tempnam($home, 'upload-');
+			if ($encrypted === false) throw new Exception(__('Impossible de préparer la sauvegarde chiffrée.', __FILE__));
+			com_shell::execute('printf %s ' . escapeshellarg(config::byKey('market::cloud::backup::password'))
+				. ' | gpg --pinentry-mode loopback --homedir ' . escapeshellarg($home) . ' --batch --yes --passphrase-fd 0 --output '
+				. escapeshellarg($encrypted) . ' -c ' . escapeshellarg($_path));
+			self::cloudRequest('PUT', self::backupUrl(basename($_path) . '.gpg'), null, 1800, $encrypted);
+		} finally {
+			rrmdir($home);
 		}
 	}
 
-	public static function backup_clean($_path) {
-		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
-			return;
+	private static function backupPassword() {
+		$password = config::byKey('market::cloud::backup::password');
+		if ($password === '') throw new Exception(__('Renseignez un mot de passe pour chiffrer les sauvegardes Cloud.', __FILE__));
+		if ($password !== config::byKey('market::cloud::backup::password_confirmation')) {
+			throw new Exception(__('Le mot de passe du backup Cloud n’est pas identique à la confirmation.', __FILE__));
 		}
-		$limit = 3700;
-		self::backup_createFolderIsNotExist();
+	}
 
-		$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')), config::byKey('market::username'), config::byKey('market::password'));
-		$request_http->setCURLOPT(array(
-			CURLOPT_CUSTOMREQUEST => "PROPFIND"
-		));
-		$xml = simplexml_load_string($request_http->exec(10));
-		$ns = $xml->getNamespaces(true);
-		$child = $xml->children($ns['D']);
-		$total_size = 0;
-		$files = [];
-		foreach ($child->response as $file) {
-			if (!$file->propstat->prop->getcontenttype) {
-				continue;
-			}
-			$files[] = array(
-				'href' => (string) $file->href,
-				'name' => (string) $file->propstat->prop->displayname,
-				'size' => (int) $file->propstat->prop->getcontentlength,
-				'timestamp' => strtotime($file->propstat->prop->getlastmodified)
-			);
-			$total_size += $file->propstat->prop->getcontentlength;
-		}
-		if (($total_size / 1024 / 1024) < $limit - (filesize($_path) / 1024 / 1024)) {
-			return;
-		}
-		echo __('Besoin de faire de la place sur le stockage distant', __FILE__) . "\n";
-		if (!empty($files)) {
-			usort($files, function ($a, $b) {
-				return $a["timestamp"] - $b["timestamp"];
-			});
-		}
-		$nb = 0;
-		while (($total_size / 1024 / 1024) > $limit - (filesize($_path) / 1024 / 1024)) {
-			if (count($files) == 0) {
-				throw new \Exception(__('Pas assez de place et aucun backup à supprimer', __FILE__));
-			}
+	private static function backupGpgHome() {
+		$home = jeedom::getTmpFolder('market') . '/gnupg-' . bin2hex(random_bytes(8));
+		if (!mkdir($home, 0700)) throw new Exception(__('Impossible de préparer le chiffrement du backup Cloud.', __FILE__));
+		return $home;
+	}
+
+	public static function backup_clean($_path) {
+		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') return;
+		$files = self::backupFiles();
+		$total = array_sum(array_column($files, 'size'));
+		$available = 3700 * 1024 * 1024 - filesize($_path);
+		usort($files, function ($a, $b) { return $a['timestamp'] <=> $b['timestamp']; });
+		$deleted = 0;
+		while ($total > $available) {
+			if (!$files || $deleted >= 100) throw new Exception(__('Pas assez de place pour la sauvegarde Cloud.', __FILE__));
 			$file = array_shift($files);
-			echo __('Supression du backup cloud :', __FILE__) . ' ' . $file['name'] . "\n";
-			$request_http = new com_http($file['href'], config::byKey('market::username'), config::byKey('market::password'));
-			$request_http->setCURLOPT(array(
-				CURLOPT_CUSTOMREQUEST => "DELETE"
-			));
-			$request_http->exec(10);
-			$total_size -= $file['size'];
-			$nb++;
-			if ($nb > 100) {
-				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 100', __FILE__));
-			}
+			self::cloudRequest('DELETE', self::backupUrl($file['name']), null, 10);
+			$total -= $file['size'];
+			++$deleted;
 		}
 	}
 
 	public static function backup_list() {
-		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
-			return array();
-		}
-		self::backup_createFolderIsNotExist();
-		$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')), config::byKey('market::username'), config::byKey('market::password'));
-		$request_http->setCURLOPT(array(
-			CURLOPT_CUSTOMREQUEST => "PROPFIND"
-		));
-		$xml = simplexml_load_string($request_http->exec(10));
-		$ns = $xml->getNamespaces(true);
-		$child = $xml->children($ns['D']);
-		$files = array();
-		foreach ($child->response as $file) {
-			if (!$file->propstat->prop->getcontenttype) {
-				continue;
-			}
-			$files[] = array(
-				'name' => (string) $file->propstat->prop->displayname,
-				'timestamp' => strtotime($file->propstat->prop->getlastmodified)
-			);
-		}
-		usort($files, function ($a, $b) {
-			return $a['timestamp'] <=> $b['timestamp'];
-		});
-		$result = array();
-		foreach ($files as $file) {
-			$result[] = $file['name'];
-		}
-		return array_reverse($result);
+		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') return array();
+		$files = self::backupFiles();
+		usort($files, function ($a, $b) { return $b['timestamp'] <=> $a['timestamp']; });
+		return array_column($files, 'name');
 	}
 
 	public static function backup_restore($_backup) {
-		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
-			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
+		self::backupPassword();
+		self::backupSegment($_backup);
+		if (substr($_backup, -4) !== '.gpg') throw new Exception(__('Sauvegarde Cloud invalide.', __FILE__));
+		$directory = calculPath(config::byKey('backup::path'));
+		if (!is_dir($directory) && !mkdir($directory, 0770, true)) throw new Exception(__('Impossible de créer le dossier de sauvegarde.', __FILE__));
+		$path = tempnam($directory, 'cloud-download-');
+		if ($path === false) throw new Exception(__('Impossible d’écrire la sauvegarde Cloud.', __FILE__));
+		$home = null;
+		try {
+			self::cloudRequest('GET', self::backupUrl($_backup), null, 1800, null, $path);
+			$home = self::backupGpgHome();
+			com_shell::execute('printf %s ' . escapeshellarg(config::byKey('market::cloud::backup::password'))
+				. ' | gpg --pinentry-mode loopback --homedir ' . escapeshellarg($home) . ' --batch --yes --passphrase-fd 0 --output '
+				. escapeshellarg($home . '/restored') . ' -d ' . escapeshellarg($path));
+			if (!rename($home . '/restored', $directory . '/cloud-' . substr($_backup, 0, -4))) {
+				throw new Exception(__('Impossible de publier la sauvegarde déchiffrée.', __FILE__));
+			}
+		} finally {
+			if (is_file($path)) unlink($path);
+			if ($home !== null) rrmdir($home);
 		}
-		$backup_dir = calculPath(config::byKey('backup::path'));
-		if (!file_exists($backup_dir)) {
-			mkdir($backup_dir, 0770, true);
-		}
-		if (!is_writable($backup_dir)) {
-			throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
-		}
-		$path = $backup_dir . '/' . $_backup;
-		if (file_exists($path)) {
-			unlink($path);
-		}
-		if (!file_exists('/tmp/jeedom_gnupg')) {
-			mkdir('/tmp/jeedom_gnupg');
-		}
-		com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
-		$cmd = 'cd ' . $backup_dir . ';wget "https://' . rawurlencode(config::byKey('market::username')) . ':' . rawurlencode(config::byKey('market::password')) . '@' . str_replace('https://', '', config::byKey('service::backup::url')) . '/webdav/' . rawurlencode(config::byKey('market::username')) . '/' . rawurlencode(config::byKey('market::cloud::backup::name')) . '/' . $_backup . '"';
-		com_shell::execute($cmd);
-		$cmd = 'echo "' . config::byKey('market::cloud::backup::password') . '" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 --output ' . $backup_dir . '/cloud-' . str_replace('.gpg', '', $_backup) . ' -d ' . $backup_dir . '/' . $_backup;
-		com_shell::execute($cmd);
-		unlink($backup_dir . '/' . $_backup);
-		rrmdir('/tmp/jeedom_gnupg');
 	}
 
 	public static function cronHourly() {
@@ -1177,18 +1224,13 @@ class marketClient {
 					'hwkey' => jeedom::getHardwareKey(),
 					'language' => config::byKey('language')
 				);
-				$url = config::byKey('service::monitoring::url') . '/service/monitoring';
-				$request_http = new com_http($url);
-				$request_http->setHeader(array(
-					'Content-Type: application/json',
-					'Autorization: ' . sha512(mb_strtolower(config::byKey('market::username')) . ':' . config::byKey('market::password'))
-				));
-				$request_http->setPost(json_encode($data));
 				try {
-					$result = json_decode($request_http->exec(60, 1), true);
+					$result = json_decode(self::cloudRequest('POST', rtrim(config::byKey('service::monitoring::url'), '/') . '/service/monitoring',
+						json_encode($data), 60, null, null, array('Content-Type: application/json')), true);
 					if ($result == null || $result['state'] != 'ok') {
 						sleep(rand(5, 45));
-						$result = json_decode($request_http->exec(60, 1), true);
+						$result = json_decode(self::cloudRequest('POST', rtrim(config::byKey('service::monitoring::url'), '/') . '/service/monitoring',
+						json_encode($data), 60, null, null, array('Content-Type: application/json')), true);
 					}
 					if ($result == null || $result['state'] != 'ok') {
 						log::add('monitoring_cloud', 'debug', __('Erreur sur le monitoring cloud :', __FILE__) . ' ' . json_encode($result));
@@ -1374,6 +1416,7 @@ class marketClient {
 				$revoked = $exception->getCode() === 401 || $exception->getCode() === 404;
 			} finally {
 				config::remove('market::restSession');
+				config::remove('market::cloudSession');
 				config::remove('market::password');
 				config::remove('market::allowBeta');
 			}
@@ -1404,16 +1447,21 @@ class marketClient {
 				$data['twoFactorCode'] = trim($twoFactorCode);
 			}
 			$tokens = self::send('POST', '/box-sessions', $data);
-			// Keep the existing password hash for plugins and the separate cloud services.
+			// Keep the existing password hash for legacy plugin JSON-RPC compatibility.
 			config::save('market::username', trim($login));
 			config::save('market::password', sha1($password));
 			self::store($tokens);
+			config::remove('market::cloudSession');
 			return true;
 		});
 	}
 
 	public static function request($method, $path, $data = null, $timeout = 30, $destination = null) {
-		$session = self::session();
+		return self::requestWithSession($method, $path, $data, $timeout, $destination, self::session(),
+			function ($token) { return self::session($token); });
+	}
+
+	private static function requestWithSession($method, $path, $data, $timeout, $destination, $session, $renew) {
 		for ($attempt = 0; $attempt < 2; ++$attempt) {
 			try {
 				$result = self::send($method, str_replace('{boxId}', (string) $session['boxId'], $path), $data,
@@ -1425,7 +1473,7 @@ class marketClient {
 				if ($exception->getCode() !== 401 || $attempt !== 0) {
 					throw $exception;
 				}
-				$session = self::session($session['accessToken']);
+				$session = $renew($session['accessToken']);
 			}
 		}
 	}
@@ -1455,6 +1503,7 @@ class marketClient {
 		} catch (Exception $exception) {
 			if ($exception->getCode() === 401) {
 				config::remove('market::restSession');
+				config::remove('market::cloudSession');
 				throw self::reconnect();
 			}
 			// Keep the same refresh token and attempt key if the response was lost.
@@ -1512,6 +1561,16 @@ class marketClient {
 		return new Exception(__('Reconnectez votre compte Market depuis Configuration > Mises à jour/Market avec votre mot de passe et votre code de double authentification si activé.', __FILE__), 401);
 	}
 
+	private static function httpOptions($method) {
+		$options = array(CURLOPT_CUSTOMREQUEST => $method, CURLOPT_FOLLOWLOCATION => false, CURLOPT_CONNECTTIMEOUT => 15);
+		if (config::byKey('proxyEnabled') == 1) {
+			$options[CURLOPT_PROXY] = config::byKey('proxyAddress');
+			$options[CURLOPT_PROXYPORT] = config::byKey('proxyPort');
+			$options[CURLOPT_PROXYUSERPWD] = config::byKey('proxyLogin') . ':' . config::byKey('proxyPassword');
+		}
+		return $options;
+	}
+
 	private static function send($method, $path, $data = null, $token = null, $timeout = 30, $destination = null, $headers = array()) {
 		$http = new com_http(self::baseUrl() . '/api/v1' . $path);
 		$http->setNoSslCheck(config::byKey('market::no_ssl_verify') == 1);
@@ -1520,17 +1579,13 @@ class marketClient {
 		if ($token !== null) {
 			$headers[] = 'Authorization: Bearer ' . $token;
 		}
-		$options = array(CURLOPT_CUSTOMREQUEST => $method, CURLOPT_FOLLOWLOCATION => false, CURLOPT_CONNECTTIMEOUT => 15);
+		$options = self::httpOptions($method);
 		if ($data !== null) {
 			$headers[] = 'Content-Type: application/json';
 			$options[CURLOPT_POSTFIELDS] = json_encode($data, JSON_THROW_ON_ERROR);
 		}
 		$http->setHeader($headers);
-		if (config::byKey('proxyEnabled') == 1) {
-			$options[CURLOPT_PROXY] = config::byKey('proxyAddress');
-			$options[CURLOPT_PROXYPORT] = config::byKey('proxyPort');
-			$options[CURLOPT_PROXYUSERPWD] = config::byKey('proxyLogin') . ':' . config::byKey('proxyPassword');
-		}
+
 		$file = null;
 		if ($destination !== null) {
 			$file = fopen($destination, 'wb');
