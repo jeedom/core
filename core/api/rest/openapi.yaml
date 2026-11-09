@@ -5648,13 +5648,13 @@ components:
           description: 'Ne charge pas jQuery/Boostrap et leurs librairies (Attention'
           default: false
         'info::latitude':
-          type: number
+          type: [number, 'null']
           description: 'Latitude'
         'info::longitude':
-          type: number
+          type: [number, 'null']
           description: 'Longitude'
         'info::altitude':
-          type: number
+          type: [number, 'null']
           description: 'Altitude du bâtiment en mètres'
     ConfigGeneralUpdate:
       type: object
@@ -5689,13 +5689,13 @@ components:
           description: 'Ne charge pas jQuery/Boostrap et leurs librairies (Attention'
           default: false
         'info::latitude':
-          type: number
+          type: [number, 'null']
           description: 'Latitude'
         'info::longitude':
-          type: number
+          type: [number, 'null']
           description: 'Longitude'
         'info::altitude':
-          type: number
+          type: [number, 'null']
           description: 'Altitude du bâtiment en mètres'
     ConfigInterface:
       type: object
@@ -5748,18 +5748,18 @@ components:
           description: 'Position'
           default: 'toast-bottom-right'
         'interface::toast::duration':
-          type: number
+          type: [number, 'null']
           description: 'Durée'
           default: 5
         'interface::advance::enable':
           type: boolean
           description: 'Activer'
         'css::background-opacity':
-          type: number
+          type: [number, 'null']
           description: 'Transparence (Opacité) des tuiles et de certains éléments d'''
           default: 1
         'css::border-radius':
-          type: number
+          type: [number, 'null']
           description: 'Arrondi des éléments d''interface (0 = pas d''arrondi)'
           default: 0
         'widget::shadow':
@@ -5769,15 +5769,15 @@ components:
           type: boolean
           description: 'Activer'
         'widget::step::height':
-          type: number
+          type: [number, 'null']
           description: 'Hauteur'
           default: 30
         'widget::step::width':
-          type: number
+          type: [number, 'null']
           description: 'Largeur'
           default: 40
         'widget::margin':
-          type: number
+          type: [number, 'null']
           description: 'Espace entre les tuiles en pixels'
           default: 1
         'interface::advance::vertCentering':
@@ -5791,30 +5791,30 @@ components:
           type: boolean
           description: 'Pleine largeur sur mobile'
         'autoreorder::weight_human_action':
-          type: number
+          type: [number, 'null']
           description: 'Poids des actions humaines dans la réorganisation automatiqu'
           default: 2
         'autoreorder::weight_automation_action':
-          type: number
+          type: [number, 'null']
           description: 'Poids des actions automatiques dans la réorganisation automa'
           default: 1
         'autoreorder::weight_history':
-          type: number
+          type: [number, 'null']
           description: 'Poids des actions de consultation de l''historique dans la ré'
           default: 1
         'showBackgroundImg':
           type: boolean
           description: 'Cocher la case pour afficher les images de fond'
         'interface::background::opacitylight':
-          type: number
+          type: [number, 'null']
           description: 'Light'
           default: 0.6
         'interface::background::opacitydark':
-          type: number
+          type: [number, 'null']
           description: 'Dark'
           default: 0.6
         'css::objectBackgroundBlur':
-          type: number
+          type: [number, 'null']
           description: 'Valeur de flou pour les images de fond sur les pages Dashboa'
           default: 0
     ConfigInterfaceUpdate:
@@ -5868,18 +5868,18 @@ components:
           description: 'Position'
           default: 'toast-bottom-right'
         'interface::toast::duration':
-          type: number
+          type: [number, 'null']
           description: 'Durée'
           default: 5
         'interface::advance::enable':
           type: boolean
           description: 'Activer'
         'css::background-opacity':
-          type: number
+          type: [number, 'null']
           description: 'Transparence (Opacité) des tuiles et de certains éléments d'''
           default: 1
         'css::border-radius':
-          type: number
+          type: [number, 'null']
           description: 'Arrondi des éléments d''interface (0 = pas d''arrondi)'
           default: 0
         'widget::shadow':
@@ -5889,15 +5889,15 @@ components:
           type: boolean
           description: 'Activer'
         'widget::step::height':
-          type: number
+          type: [number, 'null']
           description: 'Hauteur'
           default: 30
         'widget::step::width':
-          type: number
+          type: [number, 'null']
           description: 'Largeur'
           default: 40
         'widget::margin':
-          type: number
+          type: [number, 'null']
           description: 'Espace entre les tuiles en pixels'
           default: 1
         'interface::advance::vertCentering':
@@ -5911,30 +5911,30 @@ components:
           type: boolean
           description: 'Pleine largeur sur mobile'
         'autoreorder::weight_human_action':
-          type: number
+          type: [number, 'null']
           description: 'Poids des actions humaines dans la réorganisation automatiqu'
           default: 2
         'autoreorder::weight_automation_action':
-          type: number
+          type: [number, 'null']
           description: 'Poids des actions automatiques dans la réorganisation automa'
           default: 1
         'autoreorder::weight_history':
-          type: number
+          type: [number, 'null']
           description: 'Poids des actions de consultation de l''historique dans la ré'
           default: 1
         'showBackgroundImg':
           type: boolean
           description: 'Cocher la case pour afficher les images de fond'
         'interface::background::opacitylight':
-          type: number
+          type: [number, 'null']
           description: 'Light'
           default: 0.6
         'interface::background::opacitydark':
-          type: number
+          type: [number, 'null']
           description: 'Dark'
           default: 0.6
         'css::objectBackgroundBlur':
-          type: number
+          type: [number, 'null']
           description: 'Valeur de flou pour les images de fond sur les pages Dashboa'
           default: 0
     ConfigNetwork:
@@ -5979,7 +5979,7 @@ components:
           type: string
           description: 'Adresse du proxy'
         'proxyPort':
-          type: number
+          type: [number, 'null']
           description: 'Port du proxy'
         'proxyLogin':
           type: string
@@ -6031,7 +6031,7 @@ components:
           type: string
           description: 'Adresse du proxy'
         'proxyPort':
-          type: number
+          type: [number, 'null']
           description: 'Port du proxy'
         'proxyLogin':
           type: string
@@ -6050,21 +6050,21 @@ components:
       additionalProperties: false
       properties:
         'timeline::maxevent':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum d''évènements sur chaque Timeline'
           default: 500
         'addMessageForErrorLog':
           type: boolean
           description: 'Ajouter un message à chaque erreur dans les logs'
         'maxLineLog':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximal de lignes dans un fichier de log'
         'maxSizeLog':
-          type: number
+          type: [number, 'null']
           description: 'Taille maximale pour fichier de log (en Mo)'
           default: 5
         'log::level':
-          type: number
+          type: [number, 'null']
           description: 'Niveau de log par défaut'
           default: 400
         'alert::addMessageOnTimeout':
@@ -6103,21 +6103,21 @@ components:
       additionalProperties: false
       properties:
         'timeline::maxevent':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum d''évènements sur chaque Timeline'
           default: 500
         'addMessageForErrorLog':
           type: boolean
           description: 'Ajouter un message à chaque erreur dans les logs'
         'maxLineLog':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximal de lignes dans un fichier de log'
         'maxSizeLog':
-          type: number
+          type: [number, 'null']
           description: 'Taille maximale pour fichier de log (en Mo)'
           default: 5
         'log::level':
-          type: number
+          type: [number, 'null']
           description: 'Niveau de log par défaut'
           default: 400
         'alert::addMessageOnTimeout':
@@ -6156,14 +6156,14 @@ components:
       additionalProperties: false
       properties:
         'numberOfTryBeforeEqLogicDisable':
-          type: number
+          type: [number, 'null']
           description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas'
           default: 3
         'battery::warning':
-          type: number
+          type: [number, 'null']
           description: 'Si le niveau de charge passe en dessous de (%)'
         'battery::danger':
-          type: number
+          type: [number, 'null']
           description: 'Si le niveau de charge passe en dessous de (%)'
           default: 5
         'displayStatsWidget':
@@ -6171,18 +6171,18 @@ components:
           description: 'Afficher les statistiques sur les widgets'
           default: false
         'historyCalculPeriod':
-          type: number
+          type: [number, 'null']
           description: 'Période de calcul pour min, max, moyenne'
           default: 24
         'historyCalculTendance':
-          type: number
+          type: [number, 'null']
           description: 'Période de calcul pour la tendance'
         'historyArchiveTime':
-          type: number
+          type: [number, 'null']
           description: 'Délai avant archivage'
           default: 2
         'historyArchivePackage':
-          type: number
+          type: [number, 'null']
           description: 'Archiver par paquet de'
           default: 1
         'history::smooth':
@@ -6214,14 +6214,14 @@ components:
       additionalProperties: false
       properties:
         'numberOfTryBeforeEqLogicDisable':
-          type: number
+          type: [number, 'null']
           description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas'
           default: 3
         'battery::warning':
-          type: number
+          type: [number, 'null']
           description: 'Si le niveau de charge passe en dessous de (%)'
         'battery::danger':
-          type: number
+          type: [number, 'null']
           description: 'Si le niveau de charge passe en dessous de (%)'
           default: 5
         'displayStatsWidget':
@@ -6229,18 +6229,18 @@ components:
           description: 'Afficher les statistiques sur les widgets'
           default: false
         'historyCalculPeriod':
-          type: number
+          type: [number, 'null']
           description: 'Période de calcul pour min, max, moyenne'
           default: 24
         'historyCalculTendance':
-          type: number
+          type: [number, 'null']
           description: 'Période de calcul pour la tendance'
         'historyArchiveTime':
-          type: number
+          type: [number, 'null']
           description: 'Délai avant archivage'
           default: 2
         'historyArchivePackage':
-          type: number
+          type: [number, 'null']
           description: 'Archiver par paquet de'
           default: 1
         'history::smooth':
@@ -6272,10 +6272,10 @@ components:
       additionalProperties: false
       properties:
         'report::delay':
-          type: number
+          type: [number, 'null']
           description: 'Délai d''attente après génération de la page'
         'report::maxdays':
-          type: number
+          type: [number, 'null']
           description: 'Nettoyer les rapports plus anciens de'
           default: 30
     ConfigReportsUpdate:
@@ -6284,10 +6284,10 @@ components:
       additionalProperties: false
       properties:
         'report::delay':
-          type: number
+          type: [number, 'null']
           description: 'Délai d''attente après génération de la page'
         'report::maxdays':
-          type: number
+          type: [number, 'null']
           description: 'Nettoyer les rapports plus anciens de'
           default: 30
     ConfigLinks:
@@ -6296,30 +6296,30 @@ components:
       additionalProperties: false
       properties:
         'graphlink::scenario::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::jeeObject::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
         'graphlink::eqLogic::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::cmd::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::dataStore::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::prerender':
-          type: number
+          type: [number, 'null']
           description: 'Permet d’agir sur la disposition du graphique (défaut 3)'
           default: 10
         'graphlink::render':
-          type: number
+          type: [number, 'null']
           description: 'Permet d’agir sur la disposition du graphique selon les rela'
           default: 3000
     ConfigLinksUpdate:
@@ -6328,30 +6328,30 @@ components:
       additionalProperties: false
       properties:
         'graphlink::scenario::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::jeeObject::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
         'graphlink::eqLogic::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::cmd::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::dataStore::drill':
-          type: number
+          type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
           default: 3
         'graphlink::prerender':
-          type: number
+          type: [number, 'null']
           description: 'Permet d’agir sur la disposition du graphique (défaut 3)'
           default: 10
         'graphlink::render':
-          type: number
+          type: [number, 'null']
           description: 'Permet d’agir sur la disposition du graphique selon les rela'
           default: 3000
     ConfigInteractions:
@@ -6360,31 +6360,31 @@ components:
       additionalProperties: false
       properties:
         'interact::confidence1':
-          type: number
+          type: [number, 'null']
           description: '1 mot'
         'interact::confidence2':
-          type: number
+          type: [number, 'null']
           description: '2 mots'
           default: 3
         'interact::confidence3':
-          type: number
+          type: [number, 'null']
           description: '3 mots'
           default: 5
         'interact::confidence':
-          type: number
+          type: [number, 'null']
           description: '3 mots'
           default: 15
         'interact::weigh1':
-          type: number
+          type: [number, 'null']
           description: '1 mot'
         'interact::weigh2':
-          type: number
+          type: [number, 'null']
           description: '2 mots'
         'interact::weigh3':
-          type: number
+          type: [number, 'null']
           description: '3 mots'
         'interact::weigh4':
-          type: number
+          type: [number, 'null']
           description: '4 mots'
         'interact::noResponseIfEmpty':
           type: boolean
@@ -6447,31 +6447,31 @@ components:
       additionalProperties: false
       properties:
         'interact::confidence1':
-          type: number
+          type: [number, 'null']
           description: '1 mot'
         'interact::confidence2':
-          type: number
+          type: [number, 'null']
           description: '2 mots'
           default: 3
         'interact::confidence3':
-          type: number
+          type: [number, 'null']
           description: '3 mots'
           default: 5
         'interact::confidence':
-          type: number
+          type: [number, 'null']
           description: '3 mots'
           default: 15
         'interact::weigh1':
-          type: number
+          type: [number, 'null']
           description: '1 mot'
         'interact::weigh2':
-          type: number
+          type: [number, 'null']
           description: '2 mots'
         'interact::weigh3':
-          type: number
+          type: [number, 'null']
           description: '3 mots'
         'interact::weigh4':
-          type: number
+          type: [number, 'null']
           description: '4 mots'
         'interact::noResponseIfEmpty':
           type: boolean
@@ -6534,22 +6534,22 @@ components:
       additionalProperties: false
       properties:
         'session_lifetime':
-          type: number
+          type: [number, 'null']
           description: 'Durée de vie de votre connexion, en heure (si vous n''avez pa'
           default: 24
         'security::registerDeviceLifetime':
-          type: number
+          type: [number, 'null']
           description: 'Durée d''inactivité avant expiration du périphérique enregist'
         'security::maxFailedLogin':
-          type: number
+          type: [number, 'null']
           description: 'Passé ce nombre, l''IP sera bannie.'
           default: 6
         'security::timeLoginFailed':
-          type: number
+          type: [number, 'null']
           description: 'Temps en secondes.  0 : temps infini'
           default: 300
         'security::bantime':
-          type: number
+          type: [number, 'null']
           description: 'Durée en secondes.  -1 : bannissement infini'
           default: 600
         'security::whiteips':
@@ -6607,22 +6607,22 @@ components:
       additionalProperties: false
       properties:
         'session_lifetime':
-          type: number
+          type: [number, 'null']
           description: 'Durée de vie de votre connexion, en heure (si vous n''avez pa'
           default: 24
         'security::registerDeviceLifetime':
-          type: number
+          type: [number, 'null']
           description: 'Durée d''inactivité avant expiration du périphérique enregist'
         'security::maxFailedLogin':
-          type: number
+          type: [number, 'null']
           description: 'Passé ce nombre, l''IP sera bannie.'
           default: 6
         'security::timeLoginFailed':
-          type: number
+          type: [number, 'null']
           description: 'Temps en secondes.  0 : temps infini'
           default: 300
         'security::bantime':
-          type: number
+          type: [number, 'null']
           description: 'Durée en secondes.  -1 : bannissement infini'
           default: 600
         'security::whiteips':
@@ -6739,11 +6739,11 @@ components:
           description: 'Adresse Redis'
           default: '127.0.0.1'
         'cache::redisport':
-          type: number
+          type: [number, 'null']
           description: 'Port redis'
           default: 6379
         'event::waitPollingTime':
-          type: number
+          type: [number, 'null']
           description: 'Fréquence de vérification des événements en attente.'
     ConfigCacheUpdate:
       type: object
@@ -6759,11 +6759,11 @@ components:
           description: 'Adresse Redis'
           default: '127.0.0.1'
         'cache::redisport':
-          type: number
+          type: [number, 'null']
           description: 'Port redis'
           default: 6379
         'event::waitPollingTime':
-          type: number
+          type: [number, 'null']
           description: 'Fréquence de vérification des événements en attente.'
     ConfigApi:
       type: object
