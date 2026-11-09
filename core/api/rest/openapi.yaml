@@ -80,6 +80,10 @@ info:
       lisibles par un non-administrateur (thème, widgets, langue, fuseau…,
       voir `docs/inventaire-config.md` de jeevolution) ; le reste deviendra
       réservé aux administrateurs.
+    - Les clés dynamiques gardées sont décrites par motif (`patternProperties`) :
+      `{dépôt}::enable` et `{dépôt}::allowDNS`. Les niveaux de log par module
+      (`log::level::*`), les modes API par plugin (`api::*::mode`) et les
+      widgets par défaut (`widget::default::cmd::*`) ne sont pas exposés.
     - Non exposées : les clés jamais lues par le core (`info::address`,
       `info::postalCode`, `info::city`, `info::stateCode`, `info::livingSpace`,
       `info::nbOccupant`, `disableMobileUi`, `internalPort`, `externalPort`,
@@ -3731,6 +3735,44 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
+  /config/summaries:
+    get:
+      tags: [Configuration]
+      operationId: getConfigSummaries
+      summary: Lire les définitions des résumés
+      description: |
+        Onglet « Résumés » de l'administration : la clé `object:summary`, une
+        définition par clé de résumé (`temperature`, `light`…). Lisible par
+        tout utilisateur connecté (le dashboard en a besoin).
+      responses:
+        '200':
+          description: Définitions des résumés, indexées par clé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigSummaries' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    put:
+      tags: [Configuration]
+      operationId: replaceConfigSummaries
+      summary: Remplacer les définitions des résumés (administrateur)
+      description: |
+        Remplace toute la liste, comme l'administration actuelle : une clé
+        absente du corps est supprimée. La clé de chaque entrée doit être
+        égale à son champ `key` (422 sinon). Renvoie la liste relue.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigSummaries' }
+      responses:
+        '200':
+          description: Définitions après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigSummaries' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
 components:
   securitySchemes:
@@ -5539,8 +5581,9 @@ components:
     Config:
       type: object
       additionalProperties: false
-      required: [general, interface, network, logs, eqLogics, reports, links, interactions, security, updates, cache, api]
+      required: [summaries, general, interface, network, logs, eqLogics, reports, links, interactions, security, updates, cache, api]
       properties:
+        summaries: { $ref: '#/components/schemas/ConfigSummaries' }
         general: { $ref: '#/components/schemas/ConfigGeneral' }
         interface: { $ref: '#/components/schemas/ConfigInterface' }
         network: { $ref: '#/components/schemas/ConfigNetwork' }
@@ -5942,6 +5985,10 @@ components:
           type: string
           description: 'Nom d''utilisateur'
         'proxyPassword': { $ref: '#/components/schemas/ConfigSecret' }
+      patternProperties:
+        '^[A-Za-z0-9_]+::allowDNS$':
+          type: boolean
+          description: 'Accès par le DNS Jeedom, une clé par dépôt qui le propose (aujourd''hui `market::allowDNS`).'
     ConfigNetworkUpdate:
       type: object
       minProperties: 1
@@ -5993,6 +6040,10 @@ components:
           type: string
           writeOnly: true
           description: 'Mot de passe. Chaîne vide pour effacer.'
+      patternProperties:
+        '^[A-Za-z0-9_]+::allowDNS$':
+          type: boolean
+          description: 'Accès par le DNS Jeedom, une clé par dépôt qui le propose (aujourd''hui `market::allowDNS`).'
     ConfigLogs:
       type: object
       description: Onglet « Logs ». Une clé sensible est absente pour un non-administrateur.
@@ -6016,6 +6067,36 @@ components:
           type: number
           description: 'Niveau de log par défaut'
           default: 400
+        'alert::addMessageOnTimeout':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Timeout »'
+        'alert::timeoutCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Timeout »'
+        'alert::addMessageOnBatterywarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Warning »'
+        'alert::batterywarningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Warning »'
+        'alert::addMessageOnBatterydanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Danger »'
+        'alert::batterydangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Danger »'
+        'alert::addMessageOnWarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Warning »'
+        'alert::warningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Warning »'
+        'alert::addMessageOnDanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Danger »'
+        'alert::dangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Danger »'
     ConfigLogsUpdate:
       type: object
       minProperties: 1
@@ -6039,6 +6120,36 @@ components:
           type: number
           description: 'Niveau de log par défaut'
           default: 400
+        'alert::addMessageOnTimeout':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Timeout »'
+        'alert::timeoutCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Timeout »'
+        'alert::addMessageOnBatterywarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Warning »'
+        'alert::batterywarningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Warning »'
+        'alert::addMessageOnBatterydanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Danger »'
+        'alert::batterydangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Danger »'
+        'alert::addMessageOnWarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Warning »'
+        'alert::warningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Warning »'
+        'alert::addMessageOnDanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Danger »'
+        'alert::dangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Danger »'
     ConfigEqLogics:
       type: object
       description: Onglet « Équipements ». Une clé sensible est absente pour un non-administrateur.
@@ -6605,6 +6716,10 @@ components:
           type: boolean
           description: 'Vérification automatique des mises à jour'
           default: true
+      patternProperties:
+        '^[A-Za-z0-9_]+::enable$':
+          type: boolean
+          description: 'Activation d''un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Un dépôt inconnu est refusé (422).'
     ConfigUpdatesUpdate:
       type: object
       minProperties: 1
@@ -6622,6 +6737,10 @@ components:
           type: boolean
           description: 'Vérification automatique des mises à jour'
           default: true
+      patternProperties:
+        '^[A-Za-z0-9_]+::enable$':
+          type: boolean
+          description: 'Activation d''un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Un dépôt inconnu est refusé (422).'
     ConfigCache:
       type: object
       description: Onglet « Cache ». Une clé sensible est absente pour un non-administrateur.
@@ -6708,6 +6827,26 @@ components:
         'api::allow::method':
           type: string
           description: 'N''autoriser que les méthodes api (regexp)'
+    ConfigSummaries:
+      type: object
+      description: Définitions des résumés (`object:summary`), indexées par clé.
+      additionalProperties: { $ref: '#/components/schemas/ConfigSummaryDefinition' }
+    ConfigSummaryDefinition:
+      type: object
+      additionalProperties: false
+      required: [key, name]
+      properties:
+        key: { type: string, pattern: '^[A-Za-z0-9_]+$', description: 'Clé du résumé.' }
+        name: { type: string, description: 'Nom affiché.' }
+        calcul: { type: string, enum: [sum, avg, text], description: 'Méthode de calcul.' }
+        icon: { type: string, description: 'Icône (HTML de l''icône, comme aujourd''hui).' }
+        iconnul: { type: string, description: 'Icône quand la valeur est nulle.' }
+        unit: { type: string, description: 'Unité.' }
+        count: { type: string, enum: ['', binary], description: 'Méthode de comptage.' }
+        allowDisplayZero: { type: boolean, description: 'Afficher même si la valeur vaut 0.' }
+        ignoreIfCmdOlderThan: { type: [integer, string], description: 'Ignorer les commandes plus vieilles que (minutes), vide pour aucune limite.' }
+        hidenumber: { type: boolean, description: 'Masquer le nombre.' }
+        hidenulnumber: { type: boolean, description: 'Masquer le nombre s''il est nul.' }
   responses:
     Unauthorized:
       description: |
