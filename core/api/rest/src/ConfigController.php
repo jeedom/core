@@ -227,7 +227,7 @@ final class ConfigController
 
     public function update(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = Json::body($request);
         if ($body === []) {
             throw new ApiError(422, 'validation_error', 'Aucune clé à modifier.');
@@ -410,15 +410,5 @@ final class ConfigController
     private static function isAdmin(Request $request): bool
     {
         return $request->getAttribute('user')?->getProfils() === 'admin';
-    }
-
-    private static function requireWrite(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        try {
-            \unautorizedInDemo();
-        } catch (\Exception $e) {
-            throw new ApiError(403, 'demo_forbidden', $e->getMessage());
-        }
     }
 }

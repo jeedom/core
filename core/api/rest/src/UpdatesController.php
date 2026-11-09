@@ -11,7 +11,7 @@ final class UpdatesController
 {
     public function check(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         if (trim((string) $request->getBody()) !== '' && Json::body($request) !== []) throw new ApiError(422, 'validation_error', 'Aucun paramètre attendu.');
         $operation = self::call(fn () => \update::startOperation([], (int) $request->getAttribute('user')->getId(), self::key($request), 'check'));
         return self::respond($response, $operation, in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
@@ -25,7 +25,7 @@ final class UpdatesController
 
     public function start(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = Json::body($request);
         $ids = $body['ids'] ?? null;
         $force = $body['force'] ?? false;
@@ -37,13 +37,6 @@ final class UpdatesController
         foreach ($ids as $id) if (!is_int($id) || $id < 1) throw ApiError::field(422, 'validation_error', 'ids', 'Identifiant invalide.');
         $operation = self::call(fn () => \update::startOperation($ids, (int) $request->getAttribute('user')->getId(), self::key($request), 'update', $force));
         return self::respond($response, $operation, in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
-    }
-
-    private static function requireWrite(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        try { \unautorizedInDemo($request->getAttribute('user')); }
-        catch (\Exception $e) { throw new ApiError(403, 'demo_forbidden', $e->getMessage()); }
     }
 
     private static function key(Request $request): string

@@ -76,7 +76,7 @@ final class LogsController
 
     public function clear(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         self::find($args['name']);
         if (\log::clear($args['name']) !== true) {
             throw new ApiError(409, 'log_not_clearable', 'Le journal ne peut pas être vidé.');
@@ -86,7 +86,7 @@ final class LogsController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $path = self::find($args['name']);
         \log::remove($args['name']);
         clearstatcache(true, $path);
@@ -96,7 +96,7 @@ final class LogsController
 
     public function deleteAll(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $removed = [];
         $retained = [];
         foreach (self::names() as $name) {
@@ -110,16 +110,6 @@ final class LogsController
             }
         }
         return Json::respond($response, ['removed' => $removed, 'retained' => $retained]);
-    }
-
-    private static function requireWrite(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        try {
-            \unautorizedInDemo();
-        } catch (\Exception $e) {
-            throw new ApiError(403, 'demo_forbidden', $e->getMessage());
-        }
     }
 
     private static function validName(string $name): bool

@@ -360,7 +360,6 @@ class update {
 				try {
 					$actor = user::byId($operation['userId']);
 					if (!is_object($actor) || !$actor->isValidAndEnabled() || $actor->getProfils() !== 'admin') throw new RuntimeException('Administrateur désactivé ou droits retirés.');
-					unautorizedInDemo($actor);
 					log::clear('update');
 					if ($operation['kind'] === 'check') {
 						self::checkAllUpdate('core', true, false);

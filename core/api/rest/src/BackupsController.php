@@ -23,14 +23,14 @@ final class BackupsController
 
     public function create(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         self::start(static fn () => \jeedom::backup(true));
         return self::accepted($response, 'backup');
     }
 
     public function upload(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $files = $request->getUploadedFiles();
         if (($request->getParsedBody() ?? []) !== [] || array_keys($files) !== ['file'] || !$files['file'] instanceof UploadedFileInterface) {
             throw ApiError::field(422, 'validation_error', 'file', 'Un fichier .tar.gz est attendu.');
@@ -53,7 +53,7 @@ final class BackupsController
 
     public function download(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $path = self::find($args['id']);
         $handle = @fopen($path, 'rb');
         if ($handle === false) {
@@ -70,7 +70,7 @@ final class BackupsController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         if (!\jeedom::removeBackup(self::find($args['id']))) {
             throw new ApiError(409, 'backup_not_removable', 'Impossible de supprimer cette sauvegarde.');
         }
@@ -79,7 +79,7 @@ final class BackupsController
 
     public function restore(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $path = self::find($args['id']);
         self::start(static fn () => \jeedom::restore($path, true));
         return self::accepted($response, 'restore');
@@ -111,7 +111,7 @@ final class BackupsController
 
     public function import(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $repo = self::repository($args['repositoryId']);
         $name = self::name($args['id']);
         if (!self::validRemoteName($repo, $name)) {
@@ -123,21 +123,11 @@ final class BackupsController
 
     public function export(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $repo = self::repository('market');
         $path = self::find($args['id']);
         self::transfer(static fn () => $repo::backup_send($path));
         return $response->withStatus(204);
-    }
-
-    private static function requireWrite(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        try {
-            \unautorizedInDemo($request->getAttribute('user'));
-        } catch (\Exception $e) {
-            throw new ApiError(403, 'demo_forbidden', $e->getMessage());
-        }
     }
 
     private static function archive(string $path): array

@@ -93,7 +93,7 @@ final class PluginsController
 
     public function uploadArchive(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $files = $request->getUploadedFiles();
         if (array_keys($files) !== ['file'] || !$files['file'] instanceof \Psr\Http\Message\UploadedFileInterface) self::invalid('file');
         return self::respond($response, self::installationCall(static fn () => \pluginRepository::upload($files['file'])), 201);
@@ -101,7 +101,7 @@ final class PluginsController
 
     public function installFromRepository(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = self::body($request, ['pluginId', 'source', 'configuration']);
         if (!is_string($body['pluginId'] ?? null) || !is_string($body['source'] ?? null) || !is_array($body['configuration'] ?? null)) self::invalid('pluginId/source/configuration');
         $operation = self::installationCall(fn () => \plugin::startRepositoryInstallation($body['pluginId'], $body['source'], $body['configuration'],
@@ -111,7 +111,7 @@ final class PluginsController
 
     public function update(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $plugin = self::find($args['id']);
         $body = self::body($request, ['isEnable', 'functionality', 'logLevel', 'heartbeatDelay', 'heartbeatRestartDaemon']);
         foreach (['isEnable', 'heartbeatRestartDaemon'] as $field) {
@@ -144,7 +144,7 @@ final class PluginsController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $plugin = self::find($args['id']);
         self::mutate($plugin, static function () use ($plugin): void {
             $update = \update::byTypeAndLogicalId('plugin', $plugin->getId());
@@ -167,7 +167,7 @@ final class PluginsController
 
     public function installDependencies(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         self::body($request, [], true);
         $plugin = self::find($args['id']);
         self::mutate($plugin, static fn () => $plugin->dependancy_install(true));
@@ -176,7 +176,7 @@ final class PluginsController
 
     public function updateDependencies(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = self::body($request, ['auto']);
         if (!is_bool($body['auto'] ?? null)) self::invalid('auto');
         $plugin = self::find($args['id']);
@@ -192,7 +192,7 @@ final class PluginsController
 
     public function startDaemon(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = self::body($request, ['forceRestart'], true);
         if (array_key_exists('forceRestart', $body) && !is_bool($body['forceRestart'])) self::invalid('forceRestart');
         $plugin = self::find($args['id']);
@@ -202,7 +202,7 @@ final class PluginsController
 
     public function stopDaemon(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         self::body($request, [], true);
         $plugin = self::find($args['id']);
         self::mutate($plugin, static fn () => $plugin->deamon_stop());
@@ -211,7 +211,7 @@ final class PluginsController
 
     public function updateDaemon(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = self::body($request, ['auto']);
         if (!is_bool($body['auto'] ?? null)) self::invalid('auto');
         $plugin = self::find($args['id']);
@@ -236,7 +236,7 @@ final class PluginsController
 
     public function install(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = self::body($request, ['marketId', 'version']);
         if (!is_int($body['marketId'] ?? null) || !is_string($body['version'] ?? null)) self::invalid('marketId/version');
         $key = $request->getHeaderLine('Idempotency-Key');
@@ -369,13 +369,6 @@ final class PluginsController
             return $plugin;
         }
         catch (\Throwable) { throw new ApiError(404, 'plugin_not_found', 'Plugin inconnu ou invalide.'); }
-    }
-
-    private static function requireWrite(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        try { \unautorizedInDemo($request->getAttribute('user')); }
-        catch (\Exception $e) { throw new ApiError(403, 'demo_forbidden', $e->getMessage()); }
     }
 
     private static function body(Request $request, array $fields, bool $empty = false): array

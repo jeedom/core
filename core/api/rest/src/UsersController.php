@@ -63,7 +63,8 @@ final class UsersController
 
     public function create(Request $request, Response $response): Response
     {
-        $me = self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
+        $me = $request->getAttribute('user');
         $body = Json::body($request);
         self::rejectUnknown($body, ['login', 'password']);
         foreach (['login', 'password'] as $field) {
@@ -87,7 +88,8 @@ final class UsersController
 
     public function update(Request $request, Response $response, array $args): Response
     {
-        $me = self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
+        $me = $request->getAttribute('user');
         $user = self::findWritable($args['id']);
         $body = Json::body($request);
         self::rejectUnknown($body, ['login', 'password', 'profils', 'enable', 'options']);
@@ -134,7 +136,8 @@ final class UsersController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        $me = self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
+        $me = $request->getAttribute('user');
         $user = self::find($args['id']);
         self::requireNoLdap('Suppression impossible tant que l\'authentification LDAP est active.');
         if ((int) $user->getId() === (int) $me->getId()) {
@@ -156,19 +159,20 @@ final class UsersController
 
     public function forgetDevices(Request $request, Response $response, array $args): Response
     {
-        self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
         return self::forget($request, $response, self::find($args['id']), null);
     }
 
     public function forgetDevice(Request $request, Response $response, array $args): Response
     {
-        self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
         return self::forget($request, $response, self::find($args['id']), $args['key']);
     }
 
     public function closeSessions(Request $request, Response $response, array $args): Response
     {
-        $actor = self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
+        $actor = $request->getAttribute('user');
         $user = self::find($args['id']);
         \session::revokeAll((int) $user->getId());
         if ($request->getAttribute('webSessionId') !== null && (int) $actor->getId() === (int) $user->getId()) {
@@ -185,7 +189,7 @@ final class UsersController
 
     public function closeSession(Request $request, Response $response, array $args): Response
     {
-        self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
         self::closeOne($request, self::find($args['id']), $args['sessionId']);
         return $response->withStatus(204);
     }
@@ -198,7 +202,7 @@ final class UsersController
 
     public function replaceRights(Request $request, Response $response, array $args): Response
     {
-        self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
         $user = self::findWritable($args['id']);
         $body = Json::body($request);
         foreach ($body as $key => $value) {
@@ -224,7 +228,7 @@ final class UsersController
 
     public function copyRights(Request $request, Response $response, array $args): Response
     {
-        self::requireAdminWrite($request);
+        Auth::requireAdmin($request);
         $from = self::find($args['id']);
         $body = Json::body($request);
         self::rejectUnknown($body, ['to']);
@@ -335,7 +339,6 @@ final class UsersController
     public function closeMySession(Request $request, Response $response, array $args): Response
     {
         $user = self::reload($request->getAttribute('user'));
-        self::refuseDemo($user);
         self::closeOne($request, $user, $args['sessionId']);
         return $response->withStatus(204);
     }
@@ -484,30 +487,12 @@ final class UsersController
         if (self::isSystem($user)) {
             throw new ApiError(403, 'user_system', 'Les comptes système ne sont pas modifiables.');
         }
-        self::refuseDemo($user);
         return $user;
     }
 
     public static function isSystem(\user $user): bool
     {
         return in_array($user->getLogin(), self::SYSTEM_LOGINS, true);
-    }
-
-    private static function requireAdminWrite(Request $request): \user
-    {
-        Auth::requireAdmin($request);
-        $me = $request->getAttribute('user');
-        self::refuseDemo($me);
-        return $me;
-    }
-
-    private static function refuseDemo(\user $user): void
-    {
-        try {
-            \unautorizedInDemo($user);
-        } catch (\Exception $e) {
-            throw new ApiError(403, 'demo_forbidden', $e->getMessage());
-        }
     }
 
     /**

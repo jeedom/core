@@ -105,8 +105,6 @@ class queue {
     public static function all() { return self::$items; }
 }
 class repo_market { public static function downloadObject($update) {} }
-$demo = false;
-function unautorizedInDemo($actor = null) { global $demo; if (!$actor instanceof user || $demo) throw new RuntimeException('Mode démo'); }
 update::$items = [new update(1, 'core', 'jeedom'), new update(2, 'plugin', 'hue'), new update(3, 'plugin', 'weather'),
     new update(4, 'plugin', 'held', 'hold'), new update(5, 'plugin', 'blocked', 'update', true), new update(6, 'os', 'debian')];
 foreach (['hue', 'weather', 'held', 'blocked', 'manual'] as $id) file_put_contents(plugin::getPathById($id), '{}');
@@ -138,7 +136,6 @@ resetOperation(); system::$commands = [];
 foreach ([[], ['ids' => []], ['ids' => [1, 1]], ['ids' => ['1']], ['ids' => [true]], ['ids' => [[1]]], ['ids' => [0]], ['ids' => [2], 'os' => true]] as $body) call('POST', '/updates/operations', 422, $body);
 call('POST', '/updates/operations', 422, ['ids' => [2]], key: null);
 foreach ([4, 5, 6, 999] as $id) call('POST', '/updates/operations', 409, ['ids' => [$id]]);
-$demo = true; call('POST', '/updates/operations', 403, ['ids' => [2]]); call('POST', '/updates/check', 403); $demo = false;
 system::$nativeBusy = true; call('POST', '/updates/operations', 409, ['ids' => [2]]); system::$nativeBusy = false;
 $job = call('POST', '/updates/operations', 202, ['ids' => [1, 2, 3]]);
 check(array_column($job['items'], 'id') === [1, 2, 3], 'Core must run before plugins');

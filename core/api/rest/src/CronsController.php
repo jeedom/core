@@ -26,7 +26,7 @@ final class CronsController
 
     public function create(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $body = Json::body($request);
         foreach (['function', 'schedule'] as $field) {
             if (!array_key_exists($field, $body)) {
@@ -40,7 +40,7 @@ final class CronsController
 
     public function update(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $cron = self::find($args['id']);
         $body = Json::body($request);
         if ($body === []) {
@@ -52,14 +52,14 @@ final class CronsController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         self::find($args['id'])->remove();
         return $response->withStatus(204);
     }
 
     public function start(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $cron = self::find($args['id']);
         // run() relance de force une tâche déjà active : l'API refuse ce cas explicitement.
         if ($cron->running() || in_array($cron->getState(), ['starting', 'stoping', 'stopping'], true)) {
@@ -71,20 +71,10 @@ final class CronsController
 
     public function stop(Request $request, Response $response, array $args): Response
     {
-        self::requireWrite($request);
+        Auth::requireAdmin($request);
         $cron = self::find($args['id']);
         $cron->halt();
         return Json::respond($response, self::toArray($cron));
-    }
-
-    private static function requireWrite(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        try {
-            \unautorizedInDemo();
-        } catch (\Exception $e) {
-            throw new ApiError(403, 'demo_forbidden', $e->getMessage());
-        }
     }
 
     private static function find(string $id): \cron

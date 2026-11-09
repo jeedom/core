@@ -27,7 +27,7 @@ final class SystemController
 
     public function reboot(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         self::requireSudo();
         \jeedom::rebootSystem();
         return $response->withStatus(204);
@@ -35,7 +35,7 @@ final class SystemController
 
     public function shutdown(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         self::requireSudo();
         \jeedom::haltSystem();
         return $response->withStatus(204);
@@ -43,28 +43,28 @@ final class SystemController
 
     public function syncTime(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         \jeedom::forceSyncHour();
         return $response->withStatus(204);
     }
 
     public function resetTimeReference(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         \cache::delete('hour');
         return $response->withStatus(204);
     }
 
     public function consistency(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         \jeedom::consistency();
         return Json::respond($response, ['log' => 'consistency'], 202);
     }
 
     public function repairPermissions(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         self::requireSudo();
         \jeedom::cleanFileSystemRight();
         return $response->withStatus(204);
@@ -72,7 +72,7 @@ final class SystemController
 
     public function cleanDatabase(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         \jeedom::cleanDatabase();
         return Json::respond($response, ['log' => 'cleaningdb'], 202);
     }
@@ -85,7 +85,7 @@ final class SystemController
 
     public function repairDatabaseSchema(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         $table = self::textField($request, 'table');
         $schema = self::referenceSchema();
         if ($table !== 'all' && !in_array($table, array_column($schema['tables'], 'name'), true)) {
@@ -97,7 +97,7 @@ final class SystemController
 
     public function queryDatabase(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         $sql = self::textField($request, 'sql');
         try {
             $result = \DB::executeConsoleQuery($sql);
@@ -109,7 +109,7 @@ final class SystemController
 
     public function ssh(Request $request, Response $response): Response
     {
-        self::requireWrite($request);
+        self::requireAdmin($request);
         return self::respond($response, \system::executeConsoleCommand(self::textField($request, 'command')));
     }
 
@@ -118,16 +118,6 @@ final class SystemController
         Auth::requireAdmin($request);
         if ((int) $request->getAttribute('user')->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
             throw new ApiError(403, 'forbidden', 'Ce compte est limité au réseau local.');
-        }
-    }
-
-    private static function requireWrite(Request $request): void
-    {
-        self::requireAdmin($request);
-        try {
-            \unautorizedInDemo($request->getAttribute('user'));
-        } catch (\Exception $e) {
-            throw new ApiError(403, 'demo_forbidden', $e->getMessage());
         }
     }
 

@@ -840,7 +840,6 @@ class plugin {
 					if (!is_object($actor) || !$actor->isValidAndEnabled() || $actor->getProfils() !== 'admin') {
 						throw new RuntimeException('L’administrateur ayant demandé l’installation n’est plus autorisé.', 403);
 					}
-					unautorizedInDemo($actor);
 					$configuration = null;
 					if (($operation['source'] ?? 'market') !== 'market') {
 						$configuration = json_decode(utils::decrypt($operation['parameters']), true, 512, JSON_THROW_ON_ERROR);

@@ -182,8 +182,6 @@ class queue {
     public function getState() { return $this->state; }
     public function running() { return $this->running; }
 }
-$demo = false;
-function unautorizedInDemo($actor = null) { global $demo; if (!$actor instanceof user) throw new RuntimeException('Acteur de la requête absent'); if ($demo) throw new RuntimeException('Mode démo'); }
 function manifest($id) { $path = plugin::getPathById($id); if (!is_dir(dirname($path))) mkdir(dirname($path), 0775, true); file_put_contents($path, json_encode(['id' => $id])); }
 class utils {
     public static function encrypt($value) { return base64_encode(openssl_encrypt($value, 'aes-256-cbc', str_repeat('k', 32), OPENSSL_RAW_DATA, str_repeat('i', 16))); }
@@ -232,11 +230,6 @@ call('PATCH', '/plugins/fixture', body: ['isEnable' => true, 'functionality' => 
 check(config::byKey('active', 'fixture') === 1 && config::byKey('functionality::cron::enable', 'fixture') === 0, 'Native activation/options not saved');
 foreach ([['isEnable' => 1], ['heartbeatDelay' => -1], ['heartbeatDelay' => '5'], ['logLevel' => null], ['apiKey' => 'secret'], ['functionality' => ['health' => false]], ['functionality' => ['unknown' => true]], ['isEnable' => false, 'logLevel' => 'invalid']] as $invalid) call('PATCH', '/plugins/fixture', 422, $invalid);
 check(config::byKey('active', 'fixture') === 1, 'Invalid request partly applied');
-$demo = true;
-call('PATCH', '/plugins/fixture', 403, ['isEnable' => false]);
-call('POST', '/plugins/fixture/dependencies/install', 403, (object) []);
-call('POST', '/plugins/installations', 403, ['marketId' => 123, 'version' => 'stable'], headers: $key);
-$demo = false;
 call('GET', '/plugins/fixture/dependencies');
 call('PATCH', '/plugins/fixture/dependencies', body: ['auto' => false]);
 call('POST', '/plugins/fixture/dependencies/install', 202, (object) []);
@@ -354,7 +347,6 @@ call('POST', '/plugins/installations/repository', 422, $direct, headers: $direct
 config::save('github::enable', 1);
 call('POST', '/plugins/installations/repository', 403, $direct, token: 'member', headers: $directKey);
 call('POST', '/plugins/installations/repository', 403, $direct, token: null, cookies: $cookies, headers: $directKey);
-$demo = true; call('POST', '/plugins/installations/repository', 403, $direct, headers: $directKey); call('POST', '/plugins/archives', 403); $demo = false;
 call('POST', '/plugins/installations/repository', 422, $direct);
 foreach ([['pluginId' => '../bad'], ['source' => 'market'], ['configuration' => ['user' => 'x;touch']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => '$(cmd)']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => 'main', 'unknown' => 'value']]] as $change) call('POST', '/plugins/installations/repository', 422, array_replace($direct, $change), headers: $directKey);
 $dispatchCount = count(queue::$dispatches);
