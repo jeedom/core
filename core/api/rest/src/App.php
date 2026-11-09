@@ -100,6 +100,12 @@ final class App
             $api->get('/config', $config->get(...));
             $api->patch('/config', $config->update(...));
 
+            $messages = new MessagesController();
+            $api->get('/messages', $messages->list(...));
+            $api->delete('/messages', $messages->clear(...));
+            $api->get('/messages/count', $messages->count(...));
+            $api->delete('/messages/{id}', $messages->delete(...));
+
             $logs = new LogsController();
             $api->get('/logs', $logs->list(...));
             $api->delete('/logs', $logs->deleteAll(...));
