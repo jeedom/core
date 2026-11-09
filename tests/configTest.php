@@ -20,8 +20,8 @@ use PHPUnit\Framework\TestCase;
 
 
 class configTest extends TestCase {
-	public function testCloudSessionIsEncrypted() {
-		$this->assertTrue(config::shouldBeEncrypted('market::cloudSession'));
+	public function testMarketSessionIsEncrypted() {
+		$this->assertTrue(config::shouldBeEncrypted('market::restSession'));
 	}
 
 	public function testSave() {

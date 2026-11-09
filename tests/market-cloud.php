@@ -52,7 +52,7 @@ class com_shell {
     }
 }
 class com_http {
-    public static $calls = array(), $replies = array(), $cloud = 'a', $archive = 'encrypted-fixture';
+    public static $calls = array(), $replies = array(), $archive = 'encrypted-fixture';
     public static $parallel = false;
     public $url, $headers = array(), $options = array(), $ssl = true, $quiet = false, $status = 200;
     public function __construct($url, $username = '', $password = '') { $this->url = $url; check($username === '' && $password === '', 'Basic authentication remains'); }
@@ -69,12 +69,13 @@ class com_http {
         if (self::$replies) {
             $reply = array_shift(self::$replies);
             if (is_callable($reply)) $reply = $reply($this);
-        } elseif (strpos($this->url, '/cloud-session') !== false) {
-            check($this->options[CURLOPT_POSTFIELDS] === '{}', 'Provisioning must use an empty JSON object');
-            if (self::$parallel) { file_put_contents($directory . '/issued', '1', FILE_APPEND); usleep(150000); }
-            $reply = array(201, array('boxId' => 7, 'tokenType' => 'Bearer', 'accessToken' => str_repeat(self::$cloud, 64), 'expiresIn' => 86400, 'expiresAt' => time() + 86400));
         } elseif (strpos($this->url, '/box-sessions') !== false) {
-            $reply = array(201, array('boxId' => 7, 'accessToken' => 'box_a_7_' . str_repeat('c', 64), 'refreshToken' => 'box_r_7_' . str_repeat('d', 64), 'expiresIn' => 3600));
+            if (self::$parallel) {
+                check(strpos($this->url, '/box-sessions/refresh') !== false, 'A worker bypassed the normal Market refresh');
+                file_put_contents($directory . '/issued', '1', FILE_APPEND);
+                usleep(150000);
+            }
+            $reply = array(201, array('boxId' => 7, 'accessToken' => 'box_a_7_' . str_repeat('c', 64), 'refreshToken' => 'box_r_7_' . str_repeat('d', 64), 'expiresIn' => 86400));
         } elseif ($this->options[CURLOPT_CUSTOMREQUEST] === 'PROPFIND') {
             $reply = array(207, dav());
         } elseif (isset($this->options[CURLOPT_INFILE])) {
@@ -102,10 +103,10 @@ function resetState() {
     global $directory;
     $context = hash('sha256', "https://market.example.test\0alice\0" . jeedom::getHardwareKey());
     file_put_contents($directory . '/config.json', json_encode(array('market::address' => 'https://market.example.test', 'market::username' => 'alice', 'market::password' => 'private-legacy-hash',
-        'market::restSession' => array('boxId' => 7, 'context' => $context, 'accessToken' => 'box_a_7_' . str_repeat('a', 64), 'refreshToken' => 'box_r_7_' . str_repeat('b', 64), 'expiresAt' => time() + 3600),
+        'market::restSession' => array('boxId' => 7, 'context' => $context, 'accessToken' => 'box_a_7_' . str_repeat('a', 64), 'refreshToken' => 'box_r_7_' . str_repeat('b', 64), 'expiresAt' => time() + 86400),
         'service::backup::url' => 'https://backup.example.test', 'service::backup::enable' => 1, 'market::cloud::backup::name' => 'My box',
         'market::cloud::backup::password' => 'fixture-encryption-password', 'market::cloud::backup::password_confirmation' => 'fixture-encryption-password', 'backup::path' => $directory)));
-    com_http::$calls = com_http::$replies = array(); com_http::$cloud = 'a';
+    com_http::$calls = com_http::$replies = array();
 }
 // Load the source without a configured Jeedom database or installed plugins.
 $source = file_get_contents($root . '/core/repo/market.repo.php');
@@ -113,47 +114,35 @@ eval('?>' . str_replace("require_once __DIR__ . '/../../core/php/core.inc.php';"
 if ($child) { com_http::$parallel = true; echo repo_market::getCloudToken(); exit; }
 try {
     resetState();
-    $token = repo_market::getCloudToken();
-    check($token === str_repeat('a', 64) && count(com_http::$calls) === 1, 'Initial token was not provisioned');
-    check(repo_market::getCloudToken() === $token && count(com_http::$calls) === 1, 'Valid token was not reused');
-    check(config::byKey('market::cloudSession')['expiresAt'] <= time() + 86400, 'Cloud lifetime extended');
-    com_http::$cloud = 'b'; $new = repo_market::getCloudToken($token);
-    check($new !== $token && count(com_http::$calls) === 2, 'Rejected token was reused');
-    check(repo_market::getCloudToken($token) === $new && count(com_http::$calls) === 2, 'Concurrent renewal was not reused');
-    $session = config::byKey('market::cloudSession'); $session['expiresAt'] = time() + 30; config::save('market::cloudSession', $session);
-    repo_market::getCloudToken(); check(count(com_http::$calls) === 3, 'Near-expiry token not renewed');
-    $session['expiresAt'] = time() + 3600; $session['boxId'] = 99; config::save('market::cloudSession', $session);
-    repo_market::getCloudToken(); check(count(com_http::$calls) === 4, 'Another box token was reused');
-    config::save('market::username', 'other'); failWith(401, function () { repo_market::getCloudToken(); });
-    resetState(); $session = config::byKey('market::restSession'); $session['expiresAt'] = 0; config::save('market::restSession', $session);
-    check(repo_market::getCloudToken() === $token && count(com_http::$calls) === 2, 'Expired Market access was not refreshed');
-    resetState(); com_http::$replies = array(array(401, array()), array(201, array('boxId' => 7, 'accessToken' => 'box_a_7_' . str_repeat('c', 64), 'refreshToken' => 'box_r_7_' . str_repeat('d', 64), 'expiresIn' => 3600)));
-    check(repo_market::getCloudToken() === $token && count(com_http::$calls) === 3, '401 provisioning recovery failed');
-    foreach (array('boxId' => 8, 'tokenType' => 'Basic', 'accessToken' => "private\r\nheader", 'expiresIn' => 86401, 'expiresAt' => 0) as $key => $value) {
-        resetState(); $reply = array('boxId' => 7, 'tokenType' => 'Bearer', 'accessToken' => $token, 'expiresIn' => 86400, 'expiresAt' => time() + 86400); $reply[$key] = $value;
-        com_http::$replies = array(array(201, $reply)); failWith(0, function () { repo_market::getCloudToken(); });
-        check(config::byKey('market::cloudSession') === '', 'Invalid provisioning was stored');
-    }
-    resetState(); repo_market::getCloudToken(); com_http::$replies = array(array(502, array()));
-    failWith(502, function () use ($token) { repo_market::getCloudToken($token); });
-    check(config::byKey('market::cloudSession') === '', 'Rejected token retained after provisioning failure');
-    resetState(); repo_market::getCloudToken();
+    $token = 'box_a_7_' . str_repeat('a', 64);
+    $renewed = 'box_a_7_' . str_repeat('c', 64);
+    check(repo_market::getCloudToken() === $token && !com_http::$calls, 'Cloud did not reuse the Market bearer locally');
+    config::save('market::username', 'other');
+    failWith(401, function () { repo_market::getCloudToken(); });
+    resetState();
+    $session = config::byKey('market::restSession');
+    $session['expiresAt'] = 0;
+    config::save('market::restSession', $session);
+    check(repo_market::getCloudToken() === $renewed && repo_market::getCloudToken() === $renewed, 'Expired Market bearer was not renewed and reused');
+    check(count(com_http::$calls) === 1 && strpos(com_http::$calls[0]->url, '/box-sessions/refresh') !== false, 'Cloud made a request beyond the normal Market refresh');
+    resetState();
     marketClient::applyBoxInformation(array('username' => 'Alice'));
-    check(marketClient::connected(), 'Canonicalizing a login disconnected the box');
-    check(config::byKey('market::username') === 'Alice' && config::byKey('market::cloudSession') === '', 'Canonical login/cache was not synchronized');
-    repo_market::getCloudToken(); check(count(com_http::$calls) === 2, 'Canonical login forced another Market authentication');
-    resetState(); repo_market::getCloudToken(); repo_market::disconnect();
-    check(config::byKey('market::cloudSession') === '' && !marketClient::connected(), 'Disconnect retained Cloud authorization');
-    resetState(); repo_market::getCloudToken();
+    check(marketClient::connected() && config::byKey('market::username') === 'Alice', 'Canonicalizing a login disconnected the box');
+    check(repo_market::getCloudToken() === $token && !com_http::$calls, 'Canonical login forced another Market authentication');
+    repo_market::disconnect();
+    check(config::byKey('market::restSession') === '' && !marketClient::connected(), 'Disconnect retained the shared bearer');
+    failWith(401, function () { repo_market::getCloudToken(); });
+    resetState();
     $open = new ReflectionMethod('marketClient', 'openSession'); $open->setAccessible(true); $open->invoke(null, 'alice', 'fixture-password', '');
-    check(config::byKey('market::cloudSession') === '', 'Reconnection retained previous Cloud authorization');
+    check(repo_market::getCloudToken() === $renewed && count(com_http::$calls) === 1, 'Reconnection did not replace the shared bearer');
     resetState(); check(repo_market::backup_list() === array('new.gpg', 'old.gpg'), 'WebDAV listing/isolation/order changed');
     foreach (com_http::$calls as $request) if (strpos($request->url, 'backup.example.test') !== false) {
         check(!$request->ssl && in_array('Authorization: Bearer ' . $token, $request->headers, true), 'Backup does not verify TLS/use Bearer');
     }
-    com_http::$calls = array(); com_http::$replies = array(array(401, ''), array(201, array('boxId' => 7, 'tokenType' => 'Bearer', 'accessToken' => str_repeat('b', 64), 'expiresIn' => 86400, 'expiresAt' => time() + 86400)));
-    check(repo_market::backup_list() === array('new.gpg', 'old.gpg'), 'Cloud 401 recovery failed');
-    check(count(com_http::$calls) === 4, 'Cloud 401 triggered more than one renewal');
+    com_http::$calls = array();
+    com_http::$replies = array(array(401, ''));
+    failWith(401, function () { repo_market::backup_list(); });
+    check(count(com_http::$calls) === 1 && repo_market::getCloudToken() === $token, 'Cloud 401 triggered a Market refresh');
     com_http::$replies = array(array(403, 'private-cloud-response'));
     failWith(403, function () { repo_market::backup_list(); }); check(!com_http::$replies, '403 response not consumed');
     com_http::$replies = array(array(207, ''), array(207, '<broken>'));
@@ -168,13 +157,10 @@ try {
     $last = end(com_http::$calls);
     check(json_decode($body, true)['state'] === 'ok' && $last->options[CURLOPT_POSTFIELDS] === '{"health":[]}', 'Monitoring payload changed');
     check(in_array('Authorization: Bearer ' . $token, $last->headers, true) && !$last->ssl, 'Monitoring retained the historical account key');
-    com_http::$replies = array(array(401, 'first unauthorized'), array(201, array('boxId' => 7, 'tokenType' => 'Bearer', 'accessToken' => str_repeat('b', 64), 'expiresIn' => 86400, 'expiresAt' => time() + 86400)), array(401, 'second unauthorized'));
-    failWith(401, function () use ($cloudRequest) { $cloudRequest->invoke(null, 'GET', 'https://backup.example.test/webdav/alice/My%20box/file.gpg'); });
-    check(!com_http::$replies, 'A second Cloud 401 must stop retries');
     $download = $directory . '/streamed';
-    com_http::$replies = array(array(401, 'unauthorized body'), array(201, array('boxId' => 7, 'tokenType' => 'Bearer', 'accessToken' => str_repeat('c', 64), 'expiresIn' => 86400, 'expiresAt' => time() + 86400)), array(200, 'valid encrypted body'));
+    com_http::$replies = array(array(200, 'valid encrypted body'));
     $cloudRequest->invoke(null, 'GET', 'https://backup.example.test/webdav/alice/My%20box/file.gpg', null, 30, null, $download);
-    check(file_get_contents($download) === 'valid encrypted body', 'Download retry retained an error body');
+    check(file_get_contents($download) === 'valid encrypted body', 'Download did not stream the response body');
     com_http::$replies = array(array(403, 'private error body'));
     failWith(403, function () use ($cloudRequest, $download) { $cloudRequest->invoke(null, 'GET', 'https://backup.example.test/webdav/alice/My%20box/file.gpg', null, 30, null, $download); });
     check(!file_exists($download), 'Failed download was retained as a backup');
@@ -190,7 +176,11 @@ try {
     check(count(glob($directory . '/gnupg-*')) === 0, 'Failed encryption retained a shared GPG directory');
     failWith(0, function () { repo_market::backup_restore('../unsafe.gpg'); });
     // Separate PHP workers share only on-disk configuration and the existing flock.
-    resetState(); putenv('JEEDOM_CLOUD_TEST_DIRECTORY=' . $directory);
+    resetState();
+    $session = config::byKey('market::restSession');
+    $session['expiresAt'] = 0;
+    config::save('market::restSession', $session);
+    putenv('JEEDOM_CLOUD_TEST_DIRECTORY=' . $directory);
     $php = array(PHP_BINARY, '-n', '-d', 'extension_dir=' . ini_get('extension_dir'), '-d', 'extension=curl');
     // JSON is a separate module on PHP 7.4 and built in from PHP 8 onward.
     if (is_file(ini_get('extension_dir') . '/json.' . PHP_SHLIB_SUFFIX)) {
@@ -204,8 +194,8 @@ try {
     foreach ($workers as $worker) {
         $output = stream_get_contents($worker[1][1]); $errors = stream_get_contents($worker[1][2]); fclose($worker[1][1]); fclose($worker[1][2]);
         $exit = proc_close($worker[0]);
-        check($exit === 0 && $output === $token, 'Concurrent worker failed: exit=' . $exit . ' ' . $errors . ' stdout=' . $output);
+        check($exit === 0 && $output === $renewed, 'Concurrent worker failed: exit=' . $exit . ' ' . $errors . ' stdout=' . $output);
     }
-    check(file_get_contents($directory . '/issued') === '1', 'Parallel workers provisioned multiple Cloud tokens');
+    check(file_get_contents($directory . '/issued') === '1', 'Parallel workers refreshed the Market session more than once');
     echo 'OK Market Cloud: ' . $checks . " checks (sessions, refresh, flock, WebDAV, streaming, cleanup and GPG)\n";
 } finally { rrmdir($directory); }

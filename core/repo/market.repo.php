@@ -400,8 +400,8 @@ class repo_market {
 	/* JSON-RPC compatibility for plugins. Core and cloud operations use marketClient. */
 
 	/** Cloud Bearer shared by plugins; retry with the rejected token only after HTTP 401. */
-	public static function getCloudToken($rejectedToken = null) {
-		return marketClient::getCloudToken($rejectedToken);
+	public static function getCloudToken() {
+		return marketClient::getCloudToken();
 	}
 
 	public static function getPassword() {
@@ -973,40 +973,9 @@ class repo_market {
 /** Market REST session, transport and cloud services. */
 class marketClient {
 
-	/** Return the provisioned Cloud Bearer; plugins should use repo_market::getCloudToken(). */
-	public static function getCloudToken($rejectedToken = null) {
-		return self::locked(function () use ($rejectedToken) {
-			if (!self::connected()) {
-				throw self::reconnect();
-			}
-			$market = config::byKey('market::restSession', 'core', array(), true);
-			if (!is_int($market['boxId'] ?? null) || $market['boxId'] < 1) throw self::reconnect();
-			$context = self::context();
-			$cloud = config::byKey('market::cloudSession', 'core', array(), true);
-			if (is_array($cloud) && ($cloud['boxId'] ?? null) === $market['boxId']
-				&& is_string($cloud['context'] ?? null) && hash_equals($context, $cloud['context'])
-				&& is_string($cloud['accessToken'] ?? null) && preg_match('/\A[A-Za-z0-9_-]{43,256}\z/D', $cloud['accessToken'])
-				&& ($cloud['expiresAt'] ?? 0) > time() + 60
-				&& ($rejectedToken === null || !hash_equals($cloud['accessToken'], $rejectedToken))) {
-				return $cloud['accessToken'];
-			}
-			// Remove a rejected/expired token even if provisioning subsequently fails.
-			config::remove('market::cloudSession');
-			$started = time();
-			$session = self::activeSession();
-			$tokens = self::requestWithSession('POST', '/boxes/{boxId}/cloud-session', new stdClass(), 30, null,
-				$session, function ($token) { return self::activeSession($token); });
-			if (!is_array($tokens) || ($tokens['boxId'] ?? null) !== $session['boxId'] || ($tokens['tokenType'] ?? null) !== 'Bearer'
-				|| !is_string($tokens['accessToken'] ?? null) || !preg_match('/\A[A-Za-z0-9_-]{43,256}\z/D', $tokens['accessToken'])
-				|| !is_int($tokens['expiresIn'] ?? null) || $tokens['expiresIn'] < 1 || $tokens['expiresIn'] > 86400
-				|| !is_int($tokens['expiresAt'] ?? null) || $tokens['expiresAt'] > time() + 86400
-				|| min($tokens['expiresAt'], $started + $tokens['expiresIn']) <= time() + 60) {
-				throw new Exception(__('Réponse de session Cloud invalide.', __FILE__));
-			}
-			config::save('market::cloudSession', array('boxId' => $session['boxId'], 'context' => $context,
-				'accessToken' => $tokens['accessToken'], 'expiresAt' => min($tokens['expiresAt'], $started + $tokens['expiresIn'])));
-			return $tokens['accessToken'];
-		});
+	/** Use the current Market box Bearer for Cloud requests. */
+	public static function getCloudToken() {
+		return self::session()['accessToken'];
 	}
 
 	/* Cloud backups. Transfers reuse com_http and stream encrypted files. */
@@ -1018,48 +987,42 @@ class marketClient {
 			throw new Exception(__('L’adresse du service Cloud doit être une URL HTTPS valide.', __FILE__));
 		}
 		$token = self::getCloudToken();
-		for ($attempt = 0; $attempt < 2; ++$attempt) {
-			$http = new com_http($url);
-			$http->setNoSslCheck(false);
-			$http->setNoReportError(true);
-			$http->setHeader(array_merge($headers, array('Authorization: Bearer ' . $token)));
-			$options = self::httpOptions($method);
-			if ($data !== null) {
-				$options[CURLOPT_POSTFIELDS] = $data;
+		$http = new com_http($url);
+		$http->setNoSslCheck(false);
+		$http->setNoReportError(true);
+		$http->setHeader(array_merge($headers, array('Authorization: Bearer ' . $token)));
+		$options = self::httpOptions($method);
+		if ($data !== null) {
+			$options[CURLOPT_POSTFIELDS] = $data;
+		}
+		$source = null;
+		$file = null;
+		try {
+			if ($input !== null) {
+				$source = fopen($input, 'rb');
+				if ($source === false) throw new Exception(__('Impossible de lire la sauvegarde chiffrée.', __FILE__));
+				$options[CURLOPT_UPLOAD] = true;
+				$options[CURLOPT_INFILE] = $source;
+				$options[CURLOPT_INFILESIZE] = filesize($input);
 			}
-			$source = null;
-			$file = null;
-			try {
-				if ($input !== null) {
-					$source = fopen($input, 'rb');
-					if ($source === false) throw new Exception(__('Impossible de lire la sauvegarde chiffrée.', __FILE__));
-					$options[CURLOPT_UPLOAD] = true;
-					$options[CURLOPT_INFILE] = $source;
-					$options[CURLOPT_INFILESIZE] = filesize($input);
-				}
-				if ($destination !== null) {
-					$file = fopen($destination, 'wb');
-					if ($file === false) throw new Exception(__('Impossible d’écrire la sauvegarde Cloud.', __FILE__));
-					$options[CURLOPT_FILE] = $file;
-				}
-				$http->setCURLOPT($options);
-				$body = $http->exec($timeout, 1);
-				$status = (int) $http->getHttpCode();
-				if ($status === 401 && $attempt === 0) {
-					$token = self::getCloudToken($token);
-					continue;
-				}
-				if ($body === false || $status < 200 || $status >= 300) {
-					throw new Exception(__('Erreur de communication avec le service Cloud.', __FILE__), $status);
-				}
-				return $body;
-			} catch (Throwable $exception) {
-				if ($destination !== null && is_file($destination)) unlink($destination);
-				throw $exception;
-			} finally {
-				if (is_resource($source)) fclose($source);
-				if (is_resource($file)) fclose($file);
+			if ($destination !== null) {
+				$file = fopen($destination, 'wb');
+				if ($file === false) throw new Exception(__('Impossible d’écrire la sauvegarde Cloud.', __FILE__));
+				$options[CURLOPT_FILE] = $file;
 			}
+			$http->setCURLOPT($options);
+			$body = $http->exec($timeout, 1);
+			$status = (int) $http->getHttpCode();
+			if ($body === false || $status < 200 || $status >= 300) {
+				throw new Exception(__('Erreur de communication avec le service Cloud.', __FILE__), $status);
+			}
+			return $body;
+		} catch (Throwable $exception) {
+			if ($destination !== null && is_file($destination)) unlink($destination);
+			throw $exception;
+		} finally {
+			if (is_resource($source)) fclose($source);
+			if (is_resource($file)) fclose($file);
 		}
 	}
 
@@ -1377,7 +1340,6 @@ class marketClient {
 						$session['context'] = self::context();
 						config::save('market::restSession', $session);
 					}
-					config::remove('market::cloudSession');
 				});
 			}
 			if (config::byKey('market::allowDNS') == 1 && isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
@@ -1427,7 +1389,6 @@ class marketClient {
 				$revoked = $exception->getCode() === 401 || $exception->getCode() === 404;
 			} finally {
 				config::remove('market::restSession');
-				config::remove('market::cloudSession');
 				config::remove('market::password');
 				config::remove('market::allowBeta');
 			}
@@ -1462,17 +1423,12 @@ class marketClient {
 			config::save('market::username', trim($login));
 			config::save('market::password', sha1($password));
 			self::store($tokens);
-			config::remove('market::cloudSession');
 			return true;
 		});
 	}
 
 	public static function request($method, $path, $data = null, $timeout = 30, $destination = null) {
-		return self::requestWithSession($method, $path, $data, $timeout, $destination, self::session(),
-			function ($token) { return self::session($token); });
-	}
-
-	private static function requestWithSession($method, $path, $data, $timeout, $destination, $session, $renew) {
+		$session = self::session();
 		for ($attempt = 0; $attempt < 2; ++$attempt) {
 			try {
 				$result = self::send($method, str_replace('{boxId}', (string) $session['boxId'], $path), $data,
@@ -1484,7 +1440,7 @@ class marketClient {
 				if ($exception->getCode() !== 401 || $attempt !== 0) {
 					throw $exception;
 				}
-				$session = $renew($session['accessToken']);
+				$session = self::session($session['accessToken']);
 			}
 		}
 	}
@@ -1514,7 +1470,6 @@ class marketClient {
 		} catch (Exception $exception) {
 			if ($exception->getCode() === 401) {
 				config::remove('market::restSession');
-				config::remove('market::cloudSession');
 				throw self::reconnect();
 			}
 			// Keep the same refresh token and attempt key if the response was lost.
