@@ -3,6 +3,8 @@
 /** Plugin installation jobs. The native queue executes the native update engine. */
 class pluginInstallation {
 
+	private const QUEUE_ID = 'rest-plugin-installations';
+
 	public static function preview(int $marketId, string $version): array {
 		if ($marketId < 1 || $marketId > 2147483647 || !in_array($version, array('stable', 'beta'), true)) {
 			throw new InvalidArgumentException('Identifiant Market ou branche invalide.', 422);
@@ -114,7 +116,7 @@ class pluginInstallation {
 			$queue->setClass(__CLASS__);
 			$queue->setFunction('execute');
 			$queue->setArguments(array($operation['id']));
-			$queue->setQueueId('rest-plugin-installations');
+			$queue->setQueueId(self::QUEUE_ID);
 			$queue->setTimeout(1800);
 			$queue->save();
 			$operation['queueId'] = (int) $queue->getId();
@@ -123,6 +125,12 @@ class pluginInstallation {
 		} catch (Throwable $e) {
 			self::fail($operation, $e);
 			throw new RuntimeException('Impossible de planifier l’installation.', 503);
+		}
+		try {
+			queue::runNext(self::QUEUE_ID);
+		} catch (Throwable $e) {
+			// The scheduled queue runner can still pick up the saved job.
+			log::add('queue', 'warning', 'Démarrage immédiat de l’installation impossible : ' . self::errorMessage($e));
 		}
 		return $operation;
 	}
@@ -168,15 +176,15 @@ class pluginInstallation {
 		}
 	}
 
-	public static function withLock(string $pluginId, callable $action) {
-		return updateOperation::withPluginMutation(static function () use ($pluginId, $action) {
+	public static function withLock(string $pluginId, callable $action, bool $wait = false) {
+		return updateOperation::withPluginMutation(static function () use ($pluginId, $action, $wait) {
 			self::validatePluginId($pluginId);
 			$lock = fopen(jeedom::getTmpFolder('plugin-installations') . '/' . $pluginId . '.lock', 'c');
 			if ($lock === false) {
 				throw new RuntimeException('Impossible de verrouiller le plugin.', 503);
 			}
 			try {
-				if (!flock($lock, LOCK_EX | LOCK_NB)) {
+				if (!flock($lock, $wait ? LOCK_EX : LOCK_EX | LOCK_NB)) {
 					throw new RuntimeException('Une opération sur ce plugin est déjà en cours.', 409);
 				}
 				return $action();
@@ -184,7 +192,7 @@ class pluginInstallation {
 				flock($lock, LOCK_UN);
 				fclose($lock);
 			}
-		});
+		}, $wait);
 	}
 
 	/** Native queue entry point. Never rethrow: failed installs must not be retried automatically. */
@@ -266,7 +274,7 @@ class pluginInstallation {
 					}
 					self::fail($operation, $e);
 				}
-			});
+			}, wait: true);
 		} catch (Throwable $e) {
 			if ($e->getCode() !== 409) self::fail($operation, $e);
 		}

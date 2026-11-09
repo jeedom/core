@@ -144,6 +144,8 @@ class repo_market {
 }
 class queue {
     public static array $items = [];
+    public static array $dispatches = [];
+    public static bool $failDispatch = false;
     private int $id = 0;
     public string $state = 'stop';
     public bool $running = false;
@@ -152,6 +154,10 @@ class queue {
     public function setArguments($args) { $this->arguments = $args; }
     public function save() { $this->id = count(self::$items) + 1; self::$items[$this->id] = $this; }
     public function start() { $this->state = 'starting'; }
+    public static function runNext(string $queueId): void {
+        self::$dispatches[] = $queueId;
+        if (self::$failDispatch) throw new RuntimeException('Worker unavailable');
+    }
     public function getId() { return $this->id; }
     public static function byId($id) { return self::$items[$id] ?? null; }
     public function getState() { return $this->state; }
@@ -224,7 +230,7 @@ call('PATCH', '/plugins/fixture/daemon', body: ['auto' => false]);
 call('POST', '/plugins/fixture/daemon/start', 422, ['forceRestart' => null]);
 call('GET', '/plugins/fixture/community-post');
 call('GET', '/plugins/installation?marketId=123&version=beta');
-check(update::$installs === 0 && queue::$items === [], 'GET prepared an installation with side effects');
+check(update::$installs === 0 && queue::$items === [] && queue::$dispatches === [], 'GET prepared an installation with side effects');
 foreach (['', '?marketId=123', '?marketId=123&version=pro', '?marketId=abc&version=stable', '?marketId=2147483648&version=stable'] as $query) call('GET', '/plugins/installation' . $query, 422);
 repo_market::$purchase = false; call('GET', '/plugins/installation?marketId=123&version=stable', 403); repo_market::$purchase = true;
 repo_market::$allowed = ['stable']; call('GET', '/plugins/installation?marketId=123&version=beta', 403); repo_market::$allowed[] = 'beta';
@@ -241,6 +247,7 @@ $operation = call('POST', '/plugins/installations', 202, ['marketId' => 123, 've
 check($operation['version'] === 'beta' && array_intersect_key($operation, array_flip(['queueId', 'userId', 'requestKey'])) === [], 'Wrong public operation projection');
 check(update::$installs === 0, 'POST did not queue the installation');
 check(call('POST', '/plugins/installations', 202, ['marketId' => 123, 'version' => 'beta'], headers: $key)['id'] === $operation['id'] && count(queue::$items) === 1, 'Duplicate request created another task');
+check(queue::$dispatches === ['rest-plugin-installations'], 'The first confirmation must dispatch the queue once');
 call('POST', '/plugins/installations', 409, ['marketId' => 123, 'version' => 'stable'], headers: $key);
 call('POST', '/plugins/installations', 409, ['marketId' => 123, 'version' => 'beta'], headers: ['Idempotency-Key' => 'request-key-00000002']);
 call('GET', '/plugins/installations/' . $operation['id']);
@@ -323,7 +330,11 @@ call('POST', '/plugins/repository-installations', 403, $direct, token: null, coo
 $demo = true; call('POST', '/plugins/repository-installations', 403, $direct, headers: $directKey); call('POST', '/plugins/archives', 403); $demo = false;
 call('POST', '/plugins/repository-installations', 422, $direct);
 foreach ([['pluginId' => '../bad'], ['source' => 'market'], ['configuration' => ['user' => 'x;touch']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => '$(cmd)']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => 'main', 'unknown' => 'value']]] as $change) call('POST', '/plugins/repository-installations', 422, array_replace($direct, $change), headers: $directKey);
+$dispatchCount = count(queue::$dispatches);
+queue::$failDispatch = true;
 $op = call('POST', '/plugins/repository-installations', 202, $direct, token: null, cookies: $cookies, headers: $directKey + ['X-CSRF-Token' => $csrf]);
+queue::$failDispatch = false;
+check(count(queue::$dispatches) === $dispatchCount + 1 && end(queue::$dispatches) === 'rest-plugin-installations' && $op['state'] === 'queued', 'An immediate launch failure must leave the direct installation queued');
 check($op['source'] === 'github' && !str_contains(json_encode($op), 'github_secret') && !str_contains(json_encode(pluginInstallation::latest('directplugin')), 'github_secret'), 'Direct installation exposed plaintext parameters');
 check(call('POST', '/plugins/repository-installations', 202, $direct, headers: $directKey)['id'] === $op['id'], 'Direct replay created another job');
 call('POST', '/plugins/repository-installations', 409, $direct, headers: ['Idempotency-Key' => 'direct-request-key-0002']);
