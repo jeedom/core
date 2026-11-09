@@ -334,10 +334,10 @@ paths:
       tags: [Système]
       operationId: listSystemFileRoots
       summary: Lister les racines de l’explorateur de fichiers
-      description: Réservé aux administrateurs. Seuls les répertoires de personnalisation accessibles sont renvoyés.
+      description: Réservé aux administrateurs. La racine jeedom correspond au répertoire d’installation.
       responses:
         '200':
-          description: Racines disponibles et droits d’accès.
+          description: Racine Jeedom et droits d’accès.
           content:
             application/json:
               schema: { $ref: '#/components/schemas/SystemFileRoots' }
@@ -349,7 +349,7 @@ paths:
     get:
       tags: [Système]
       operationId: listSystemFileEntries
-      summary: Lister le contenu d’un répertoire de personnalisation
+      summary: Lister le contenu d’un répertoire de Jeedom
       parameters:
         - $ref: '#/components/parameters/SystemFileRoot'
         - name: path
@@ -358,7 +358,7 @@ paths:
           schema: { type: string, maxLength: 1024, default: '' }
       responses:
         '200':
-          description: Répertoires et fichiers accessibles, sans les entrées cachées ni les liens.
+          description: Répertoires et fichiers accessibles, hors emplacements sensibles, entrées cachées et liens.
           content:
             application/json:
               schema: { $ref: '#/components/schemas/SystemFileEntries' }
@@ -380,7 +380,7 @@ paths:
     get:
       tags: [Système]
       operationId: readSystemFile
-      summary: Lire un fichier de personnalisation
+      summary: Lire un fichier de Jeedom
       description: |
         Le contenu est un texte UTF-8 limité à 1 Mio. Les extensions prises en charge
         en lecture sont css, json, md, txt, yaml, yml, htm, html, js, mjs et svg.
@@ -406,7 +406,8 @@ paths:
       summary: Enregistrer un fichier de personnalisation
       description: |
         Remplace atomiquement un fichier texte existant. L’écriture est autorisée
-        pour les extensions simples css, json, md, txt, yaml et yml.
+        sous desktop/custom, mobile/custom et data/customTemplates pour les extensions
+        simples css, json, md, txt, yaml et yml.
       parameters:
         - $ref: '#/components/parameters/csrfToken'
         - name: If-Match
@@ -4323,7 +4324,7 @@ components:
               id: { type: string }
               path: { type: string, description: Chemin relatif à Jeedom. }
               readable: { type: boolean }
-              writable: { type: boolean, description: La racine permet l’écriture des types autorisés. }
+              writable: { type: boolean, description: Un sous-répertoire de personnalisation est accessible en écriture. }
         total: { type: integer, minimum: 0 }
     SystemFileEntries:
       type: object

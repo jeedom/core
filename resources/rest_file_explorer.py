@@ -14,11 +14,13 @@ from pathlib import Path
 
 
 CORE = Path(__file__).resolve().parents[1]
-ROOTS = {
-    "desktop-custom": "desktop/custom",
-    "mobile-custom": "mobile/custom",
-    "custom-templates": "data/customTemplates",
+ROOT_ID = "jeedom"
+WRITE_DIRECTORIES = {("desktop", "custom"), ("mobile", "custom"), ("data", "customTemplates")}
+PRIVATE_DIRECTORIES = {
+    ("backup",), ("log",), ("config",), ("core", "config"), ("data", "php"), ("data", "editorTemp"),
 }
+PRIVATE_PLUGIN_DIRECTORIES = {"backup", "data", "log"}
+PRIVATE_FILENAMES = {"auth.json", "credentials.json", "secrets.json", "secrets.yaml", "secrets.yml"}
 MAX_FILE_BYTES = 1048576
 MAX_DIRECTORY_ENTRIES = 1000
 DIR_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
@@ -46,6 +48,14 @@ def valid_part(part):
     return len(name) <= 255 and not any(byte < 32 or byte == 127 for byte in name)
 
 
+def private_path(parts):
+    return (
+        any(parts[:len(directory)] == directory for directory in PRIVATE_DIRECTORIES)
+        or (len(parts) >= 3 and parts[0] == "plugins" and parts[2] in PRIVATE_PLUGIN_DIRECTORIES)
+        or any(part.casefold() in PRIVATE_FILENAMES for part in parts)
+    )
+
+
 def file_policy(name):
     stem, dot, extension = name.lower().rpartition(".")
     if not dot or extension not in READ_EXTENSIONS:
@@ -67,31 +77,36 @@ def open_directory(parts):
         yield fd
 
 
+def directory_access(parts, mode):
+    try:
+        with open_directory(parts) as fd:
+            return os.access(".", mode | os.X_OK, dir_fd=fd)
+    except OSError as error:
+        if error.errno not in NOT_FOUND | {errno.EACCES, errno.EPERM}:
+            raise
+        return False
+
+
 def roots():
     items = []
-    for root, path in ROOTS.items():
-        try:
-            with open_directory(path.split("/")) as fd:
-                if os.access(".", os.R_OK | os.X_OK, dir_fd=fd):
-                    writable = os.access(".", os.W_OK | os.X_OK, dir_fd=fd)
-                    items.append({"id": root, "path": path, "readable": True, "writable": writable})
-        except OSError as error:
-            if error.errno not in NOT_FOUND | {errno.EACCES, errno.EPERM}:
-                raise
+    if directory_access((), os.R_OK):
+        writable = any(directory_access(parts, os.R_OK | os.W_OK) for parts in WRITE_DIRECTORIES)
+        items.append({"id": ROOT_ID, "path": ".", "readable": True, "writable": writable})
     return {"items": items, "total": len(items)}
 
 
-def entries(fd, path):
+def entries(fd, parts):
     items = []
-    writable_dir = os.access(".", os.W_OK | os.X_OK, dir_fd=fd)
+    writable_dir = parts[:2] in WRITE_DIRECTORIES and os.access(".", os.W_OK | os.X_OK, dir_fd=fd)
     with os.scandir(fd) as directory:
         for count, entry in enumerate(directory, 1):
             if count > MAX_DIRECTORY_ENTRIES:
                 raise FileError(413, "directory_too_large", "Le répertoire dépasse 1 000 entrées.")
             name = entry.name
-            if not valid_part(name):
+            child_parts = parts + (name,)
+            if not valid_part(name) or private_path(child_parts):
                 continue
-            relative = "/".join(filter(None, (path, name)))
+            relative = "/".join(child_parts)
             if len(relative.encode("utf-8")) > 1024:
                 continue
             try:
@@ -210,30 +225,30 @@ def execute(operation, payload):
     if operation == "roots":
         return roots()
 
-    root = ROOTS.get(payload["root"])
-    if root is None:
+    if payload["root"] != ROOT_ID:
         raise FileError(404, "file_root_not_found", "Racine inconnue.")
     path = payload["path"]
-    parts = path.split("/") if path else []
+    parts = tuple(path.split("/")) if path else ()
     if len(parts) > 32 or (not parts and operation != "entries") or not all(map(valid_part, parts)):
         raise FileError(422, "invalid_file_path", "Un chemin relatif dans la racine est attendu.")
+    if private_path(parts):
+        raise FileError(404, "file_not_found", "Fichier ou répertoire introuvable.")
 
-    root_parts = root.split("/")
     if operation == "entries":
-        with open_directory(root_parts + parts) as fd:
-            return entries(fd, path)
+        with open_directory(parts) as fd:
+            return entries(fd, parts)
 
     name = parts[-1]
     readable, writable = file_policy(name)
     if not readable:
         raise FileError(415, "unsupported_file", "Ce type de fichier est indisponible dans l’explorateur.")
-    parent_parts = root_parts + parts[:-1]
+    parent_parts = parts[:-1]
     with open_directory(parent_parts) as fd:
         if operation == "read":
             data, _, _ = read_file(fd, name)
             return {"content": text_content(data), "etag": version(data)}
-        if not writable:
-            raise FileError(403, "file_read_only", "Ce type de fichier est en lecture seule.")
+        if not writable or parent_parts[:2] not in WRITE_DIRECTORIES:
+            raise FileError(403, "file_read_only", "Ce fichier est en lecture seule.")
         return write_file(fd, parent_parts, name, payload["etag"], payload["content"])
 
 
