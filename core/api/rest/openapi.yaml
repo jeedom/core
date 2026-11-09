@@ -329,6 +329,113 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /system/files/roots:
+    get:
+      tags: [Système]
+      operationId: listSystemFileRoots
+      summary: Lister les racines de l’explorateur de fichiers
+      description: Réservé aux administrateurs. Seuls les répertoires de personnalisation accessibles sont renvoyés.
+      responses:
+        '200':
+          description: Racines disponibles et droits d’accès.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemFileRoots' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+
+  /system/files/entries:
+    get:
+      tags: [Système]
+      operationId: listSystemFileEntries
+      summary: Lister le contenu d’un répertoire de personnalisation
+      parameters:
+        - $ref: '#/components/parameters/SystemFileRoot'
+        - name: path
+          in: query
+          description: Chemin relatif UTF-8 dans la racine. Une valeur vide ou absente désigne la racine.
+          schema: { type: string, maxLength: 1024, default: '' }
+      responses:
+        '200':
+          description: Répertoires et fichiers accessibles, sans les entrées cachées ni les liens.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemFileEntries' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '413': { $ref: '#/components/responses/SystemFileLimit' }
+        '422': { $ref: '#/components/responses/SystemFileInvalid' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+
+  /system/files/content:
+    parameters:
+      - $ref: '#/components/parameters/SystemFileRoot'
+      - name: path
+        in: query
+        required: true
+        description: Chemin relatif UTF-8 d’un fichier existant dans la racine.
+        schema: { type: string, minLength: 1, maxLength: 1024 }
+    get:
+      tags: [Système]
+      operationId: readSystemFile
+      summary: Lire un fichier de personnalisation
+      description: |
+        Le contenu est un texte UTF-8 limité à 1 Mio. Les extensions prises en charge
+        en lecture sont css, json, md, txt, yaml, yml, htm, html, js, mjs et svg.
+      responses:
+        '200':
+          description: Contenu et version du fichier.
+          headers:
+            ETag: { $ref: '#/components/headers/SystemFileETag' }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemFileContent' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '409': { $ref: '#/components/responses/SystemFileChanged' }
+        '413': { $ref: '#/components/responses/SystemFileLimit' }
+        '415': { $ref: '#/components/responses/SystemFileUnsupported' }
+        '422': { $ref: '#/components/responses/SystemFileInvalid' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+    put:
+      tags: [Système]
+      operationId: writeSystemFile
+      summary: Enregistrer un fichier de personnalisation
+      description: |
+        Remplace atomiquement un fichier texte existant. L’écriture est autorisée
+        pour les extensions simples css, json, md, txt, yaml et yml.
+      parameters:
+        - $ref: '#/components/parameters/csrfToken'
+        - name: If-Match
+          in: header
+          required: true
+          description: ETag fort renvoyé par la dernière lecture ou écriture.
+          schema: { type: string, pattern: '^"[a-f0-9]{64}"$' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SystemFileContent' }
+      responses:
+        '204':
+          description: Fichier enregistré.
+          headers:
+            ETag: { $ref: '#/components/headers/SystemFileETag' }
+        '400': { $ref: '#/components/responses/SystemFileBadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '409': { $ref: '#/components/responses/SystemFileChanged' }
+        '412': { $ref: '#/components/responses/SystemFileVersionConflict' }
+        '413': { $ref: '#/components/responses/SystemFileLimit' }
+        '415': { $ref: '#/components/responses/SystemFileUnsupported' }
+        '422': { $ref: '#/components/responses/SystemFileInvalid' }
+        '428': { $ref: '#/components/responses/SystemFilePreconditionRequired' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+
   /backups:
     get:
       tags: [Sauvegardes]
@@ -3967,7 +4074,17 @@ components:
         `__Host-JeedomSession` en HTTPS). Les requêtes d'écriture exigent
         l'en-tête `X-CSRF-Token`.
 
+  headers:
+    SystemFileETag:
+      description: ETag fort du contenu du fichier.
+      schema: { type: string, pattern: '^"[a-f0-9]{64}"$' }
   parameters:
+    SystemFileRoot:
+      name: root
+      in: query
+      required: true
+      description: Identifiant renvoyé par la liste des racines.
+      schema: { type: string, pattern: '^[a-z-]{1,32}$' }
     BackupId:
       name: id
       in: path
@@ -4193,6 +4310,42 @@ components:
       properties:
         output: { type: string, description: Sorties standard et d’erreur combinées. }
         exitCode: { type: integer }
+    SystemFileRoots:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, path, readable, writable]
+            properties:
+              id: { type: string }
+              path: { type: string, description: Chemin relatif à Jeedom. }
+              readable: { type: boolean }
+              writable: { type: boolean, description: La racine permet l’écriture des types autorisés. }
+        total: { type: integer, minimum: 0 }
+    SystemFileEntries:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [name, path, type, writable]
+            properties:
+              name: { type: string }
+              path: { type: string, description: Chemin relatif à la racine. }
+              type: { type: string, enum: [directory, file] }
+              writable: { type: boolean, description: Le fichier est éligible à l’enregistrement. }
+        total: { type: integer, minimum: 0, maximum: 1000 }
+    SystemFileContent:
+      type: object
+      additionalProperties: false
+      required: [content]
+      properties:
+        content: { type: string, maxLength: 1048576, description: Contenu UTF-8 du fichier limité à 1 Mio. }
     BackupAccepted:
       type: object
       additionalProperties: false
@@ -7082,6 +7235,51 @@ components:
         hidenumber: { type: boolean, description: 'Masquer le nombre.' }
         hidenulnumber: { type: boolean, description: 'Masquer le nombre s''il est nul.' }
   responses:
+    SystemFileBadRequest:
+      description: Corps JSON invalide ou en-tête If-Match invalide.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFileChanged:
+      description: Le fichier a changé pendant sa lecture.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFileInvalid:
+      description: Chemin relatif, identifiant de racine ou corps invalide.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFileLimit:
+      description: Limite dépassée de 1 Mio par fichier ou de 1 000 entrées par répertoire.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFileNotFound:
+      description: Racine, répertoire ou fichier introuvable.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFilePreconditionRequired:
+      description: En-tête If-Match requis pour enregistrer.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFileUnavailable:
+      description: Explorateur de fichiers indisponible.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFileUnsupported:
+      description: Type de fichier ou encodage du contenu non pris en charge.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemFileVersionConflict:
+      description: Le fichier ou son répertoire a changé depuis sa lecture.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
     SystemInvalidJson:
       description: Corps JSON absent ou invalide.
       content:

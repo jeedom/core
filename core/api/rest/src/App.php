@@ -115,6 +115,12 @@ final class App
             $api->post('/system/database/queries', $system->queryDatabase(...));
             $api->post('/system/ssh', $system->ssh(...));
 
+            $files = new FilesController();
+            $api->get('/system/files/roots', $files->roots(...));
+            $api->get('/system/files/entries', $files->entries(...));
+            $api->get('/system/files/content', $files->read(...));
+            $api->put('/system/files/content', $files->write(...));
+
             $messages = new MessagesController();
             $api->get('/messages', $messages->list(...));
             $api->delete('/messages', $messages->clear(...));

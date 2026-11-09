@@ -24,9 +24,27 @@ final class Json
     }
 
     /** @return array<string, mixed> */
-    public static function body(ServerRequestInterface $request): array
+    public static function body(ServerRequestInterface $request, ?int $maxBytes = null): array
     {
-        $raw = (string) $request->getBody();
+        $stream = $request->getBody();
+        if ($maxBytes === null) {
+            $raw = (string) $stream;
+        } else {
+            if ($stream->isSeekable()) {
+                $stream->rewind();
+            }
+            $raw = '';
+            while (strlen($raw) <= $maxBytes && !$stream->eof()) {
+                $chunk = $stream->read(min(65536, $maxBytes + 1 - strlen($raw)));
+                if ($chunk === '') {
+                    break;
+                }
+                $raw .= $chunk;
+            }
+            if (strlen($raw) > $maxBytes) {
+                throw new ApiError(413, 'request_too_large', 'Le corps de la requête dépasse la taille maximale.');
+            }
+        }
         try {
             $data = json_decode($raw === '' ? 'null' : $raw, true, 64, JSON_THROW_ON_ERROR);
         } catch (\JsonException) {
