@@ -87,7 +87,13 @@ info:
     - Non exposées : les clés jamais lues par le core (`info::address`,
       `info::postalCode`, `info::city`, `info::stateCode`, `info::livingSpace`,
       `info::nbOccupant`, `disableMobileUi`, `internalPort`, `externalPort`,
-      `update::composerUpdate`, `proxyLogins`).
+      `update::composerUpdate`), et celles que la nouvelle UI n'utilisera
+      plus (`dahsboard::column::size`, `historyCalculTendanceThresholddMin`,
+      `historyCalculTendanceThresholddMax`).
+    - Clés renommées par un script de migration du core (l'API n'expose que
+      le nouveau nom) : `proxyLogins` → `proxyLogin`, `ldap::enable` →
+      `ldap:enable`, `history::defautShowPeriod` → `history::defaultShowPeriod`,
+      `dontProtectTooFastLaunchDeamony` → `dontProtectTooFastLaunchDaemon`.
 
 servers:
   - url: /api/v1
@@ -3377,7 +3383,7 @@ paths:
         Onglet « Réseaux » de l'administration.
         Clés sensibles : `proxyPassword` (voir `ConfigSecret`).
         `proxyLogin` est la clé lue par le core (`jsonrpcClient`, `market.repo`) ;
-        l'administration actuelle enregistre `proxyLogins`, jamais lue (incohérence signalée, non corrigée dans le core).
+        l'administration actuelle enregistre `proxyLogins`, jamais lue (incohérence corrigée par migration vers `proxyLogin`).
       responses:
         '200':
           description: Réglages de l'onglet.
@@ -3450,6 +3456,7 @@ paths:
       summary: Lire la configuration « Équipements »
       description: |
         Onglet « Équipements » de l'administration.
+        `history::defaultShowPeriod` remplace `history::defautShowPeriod` (renommage avec migration).
       responses:
         '200':
           description: Réglages de l'onglet.
@@ -3596,7 +3603,8 @@ paths:
         Onglet « Sécurité » de l'administration.
         Clés sensibles : `ldap:host`, `ldap:username`, `ldap:password` (voir `ConfigSecret`).
         `ldap:enable` est la clé testée par `user::connect()` ; `ldap::enable` est
-        lue en parallèle par `user.ajax.php` et JSON-RPC (incohérence signalée, non corrigée dans le core).
+        lue en parallèle par `user.ajax.php` et JSON-RPC (incohérence corrigée par migration vers `ldap:enable`).
+        `dontProtectTooFastLaunchDaemon` remplace `dontProtectTooFastLaunchDeamony` (renommage avec migration).
       responses:
         '200':
           description: Réglages de l'onglet.
@@ -5724,10 +5732,6 @@ components:
         'mobile_theme_useAmbientLight':
           type: boolean
           description: 'Selon la luminosité'
-        'dahsboard::column::size':
-          type: string
-          description: 'Nombre de colonnes selon la taille de l''écran (1 colonne = 1'
-          default: 'col-sm-12'
         'theme_displayAsTable':
           type: boolean
           description: 'Affichage tableau'
@@ -5848,10 +5852,6 @@ components:
         'mobile_theme_useAmbientLight':
           type: boolean
           description: 'Selon la luminosité'
-        'dahsboard::column::size':
-          type: string
-          description: 'Nombre de colonnes selon la taille de l''écran (1 colonne = 1'
-          default: 'col-sm-12'
         'theme_displayAsTable':
           type: boolean
           description: 'Affichage tableau'
@@ -6185,19 +6185,11 @@ components:
           type: number
           description: 'Archiver par paquet de'
           default: 1
-        'historyCalculTendanceThresholddMin':
-          type: number
-          description: 'Seuil de calcul de tendance bas'
-          default: -0.1
-        'historyCalculTendanceThresholddMax':
-          type: number
-          description: 'Seuil de calcul de tendance haut'
-          default: 0.1
         'history::smooth':
           type: string
           description: 'Limite le nombre de valeurs historisées par les commandes en'
           default: '-2'
-        'history::defautShowPeriod':
+        'history::defaultShowPeriod':
           type: string
           description: 'Période d''affichage des graphiques par défaut'
           default: '-1 month'
@@ -6251,19 +6243,11 @@ components:
           type: number
           description: 'Archiver par paquet de'
           default: 1
-        'historyCalculTendanceThresholddMin':
-          type: number
-          description: 'Seuil de calcul de tendance bas'
-          default: -0.1
-        'historyCalculTendanceThresholddMax':
-          type: number
-          description: 'Seuil de calcul de tendance haut'
-          default: 0.1
         'history::smooth':
           type: string
           description: 'Limite le nombre de valeurs historisées par les commandes en'
           default: '-2'
-        'history::defautShowPeriod':
+        'history::defaultShowPeriod':
           type: string
           description: 'Période d''affichage des graphiques par défaut'
           default: '-1 month'
@@ -6614,7 +6598,7 @@ components:
         'dontProtectTooFastLaunchDependancy':
           type: boolean
           description: 'Autoriser l''installation des dépendances d''un même plugin à'
-        'dontProtectTooFastLaunchDeamony':
+        'dontProtectTooFastLaunchDaemon':
           type: boolean
           description: 'Autoriser le lancement du démon d''un même plugin à moins de'
     ConfigSecurityUpdate:
@@ -6696,7 +6680,7 @@ components:
         'dontProtectTooFastLaunchDependancy':
           type: boolean
           description: 'Autoriser l''installation des dépendances d''un même plugin à'
-        'dontProtectTooFastLaunchDeamony':
+        'dontProtectTooFastLaunchDaemon':
           type: boolean
           description: 'Autoriser le lancement du démon d''un même plugin à moins de'
     ConfigUpdates:
