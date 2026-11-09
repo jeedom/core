@@ -3813,7 +3813,7 @@ components:
       required: [id, status, localVersion, remoteVersion, updatable]
       properties:
         id: { type: integer }
-        status: { type: string, description: État natif, notamment update, ok ou hold. }
+        status: { type: string, description: 'État natif, notamment update, ok ou hold.' }
         localVersion: { type: [string, 'null'] }
         remoteVersion: { type: [string, 'null'] }
         updatable: { type: boolean, description: Une mise à jour est disponible et autorisée. }
