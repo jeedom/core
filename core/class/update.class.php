@@ -291,7 +291,7 @@ class update {
 	/* Opérations de mise à jour */
 
 	private const OPERATION_KEY = 'rest::updateOperation';
-	private static bool $executingOperation = false;
+	private static bool $_executingOperation = false;
 
 	public static function startOperation(array $ids, int $userId, string $requestKey, string $kind = 'update', bool $force = false): array {
 		return self::withOperationLock('mutation', static function () use ($ids, $userId, $requestKey, $kind, $force) {
@@ -353,7 +353,7 @@ class update {
 			self::withOperationLock('mutation', static function () use ($id) {
 				$operation = self::readOperation();
 				if ($operation === null || $operation['id'] !== $id || $operation['state'] !== 'queued') return;
-				self::$executingOperation = true;
+				self::$_executingOperation = true;
 				$operation['state'] = 'running';
 				$operation['startedAt'] = date('c');
 				self::storeOperation($operation);
@@ -399,14 +399,14 @@ class update {
 					$message = self::operationErrorMessage($e);
 					log::add('update', 'error', $message);
 					self::failOperation($operation, $message);
-				} finally { self::$executingOperation = false; }
+				} finally { self::$_executingOperation = false; }
 			}, LOCK_EX);
 		});
 	}
 
 	/** Serialize admission with plugin installation/mutation; workers keep the exclusive lock. */
 	public static function withPluginMutation(callable $action, bool $wait = false) {
-		if (self::$executingOperation) return $action();
+		if (self::$_executingOperation) return $action();
 		return self::withOperationLock('mutation', static function () use ($action) {
 			self::assertOperationIdle();
 			return $action();
