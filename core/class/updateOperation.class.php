@@ -87,9 +87,9 @@ class updateOperation {
 						self::validateUpdate($update, $operation['force'] ?? false);
 						if ($item['type'] === 'core') {
 							if (config::byKey('update::allowCore', 'core', 1) != 1) throw new RuntimeException('La mise à jour du Core est désactivée.');
-							// Native installer, synchronous here; no call to jeedom::update(), which clears previous logs.
+							// A waiting shell would also match the native installer's process guard.
 							system::php(escapeshellarg(__DIR__ . '/../../install/update.php') . ' core=1 plugins=0 ' . escapeshellarg('backup::before=1')
-								. ' >> ' . escapeshellarg(log::getPathToLog('update')) . ' 2>&1');
+								. ' >> ' . escapeshellarg(log::getPathToLog('update')) . ' 2>&1 &');
 							self::waitForCore();
 							// The child replaced the version file; plugins must see the new Core version.
 							clearstatcache();
