@@ -2731,22 +2731,23 @@ paths:
       summary: Suivre les événements en direct (SSE)
       description: |
         Flux `text/event-stream` qui remplace le polling de l'ajax
-        `event.ajax.php` (`event::changes`, 59 s d'attente). Lu par
-        `EventSource` côté navigateur, qui envoie le cookie de session (même
-        domaine) et se reconnecte seul. Un client hors navigateur passe
-        `Authorization: Bearer`. Le jeton n'est jamais accepté dans l'URL.
+        `event.ajax.php` (`event::changes`, 59 s d'attente). Core UI ouvre
+        le flux avec le cookie de session sur la même origine. Un client hors
+        navigateur passe `Authorization: Bearer`. Le jeton n'est jamais accepté dans l'URL.
 
-        **Format.** Chaque message porte `id` (curseur, le `datetime` de la
-        table `event` du core), `event` (type, ex. `cmd::update`) et `data`
-        (JSON, schéma `Event`). Un commentaire `: ping` est envoyé toutes les
-        15 s pour garder la connexion ouverte à travers les proxys.
+        **Format.** Un événement de la table `event` porte `id` (curseur,
+        le `datetime` de la ligne), `event` (type, ex. `cmd::update`) et
+        `data` (JSON, schéma `Event`). Un bloc `id` sans événement fournit le
+        curseur dès l'ouverture. Après 15 s sans événement, un commentaire
+        `: ping` maintient la connexion ouverte et un champ `id` indique
+        jusqu'où le serveur a lu la table.
 
         **Droits.** Chaque événement est filtré avant envoi selon
         l'utilisateur : un événement sur un élément qu'il ne peut pas lire
         n'est jamais envoyé. Les compteurs d'administration (`message::*`,
         `update::*`) sont réservés aux administrateurs.
 
-        **Reprise.** À la reconnexion, `EventSource` renvoie l'en-tête
+        **Reprise.** Le client renvoie le dernier curseur reçu dans l'en-tête
         `Last-Event-ID` : le flux reprend juste après. Le core ne garde que
         les 250 derniers événements et seulement le dernier état par
         commande ou équipement ; si le curseur est trop ancien, le flux
@@ -2755,19 +2756,28 @@ paths:
 
         **Durée.** Le serveur ferme la connexion au bout de `maxDuration`
         secondes (55 s par défaut) en ayant envoyé `retry: 1000` ;
-        le client se reconnecte sans perte grâce au curseur. Un processus
+        le client se reconnecte avec le dernier curseur reçu. Un processus
         PHP reste occupé pendant la connexion, comme aujourd'hui avec le long
         polling.
 
         **Limites.** Pour économiser les processus Apache : la nouvelle UI
-        ouvre une seule connexion par navigateur, partagée entre ses onglets,
-        et la ferme quand l'onglet est caché (reprise au retour par le
-        curseur). Le serveur accepte au plus 3 connexions simultanées par
-        utilisateur ; au-delà, 429 `too_many_streams`.
+        partage un flux par session entre ses onglets. Un onglet visible
+        porte la connexion et passe le relais en se masquant ou en se
+        fermant. Si aucun onglet abonné n'est visible, le flux est fermé.
+        La reprise utilise le dernier curseur partagé. Le serveur accepte
+        au plus 3 connexions simultanées par utilisateur ; au-delà,
+        429 `too_many_streams`.
       parameters:
+        - name: X-CSRF-Token
+          in: header
+          description: |
+            Jeton de la session connue de Core UI. S'il est envoyé pour une
+            session par cookie et que le navigateur a changé de session
+            dans un autre onglet, la route renvoie 401 `session_expired`.
+          schema: { type: string }
         - name: Last-Event-ID
           in: header
-          description: Curseur du dernier événement reçu, envoyé automatiquement par `EventSource` à la reconnexion.
+          description: Dernier curseur reçu, envoyé par le client à la reconnexion.
           schema: { type: string, example: '1730899200.1234' }
         - name: since
           in: query
@@ -2831,11 +2841,14 @@ paths:
               example: |
                 retry: 1000
 
+                id: 1730899200.1230
+
                 id: 1730899200.1234
                 event: cmd::update
                 data: {"type":"cmd::update","data":{"cmd_id":12,"value":"21.5","display_value":"21.5","unit":"°C","raw_unit":"°C","valueDate":"2026-11-06 14:00:00","collectDate":"2026-11-06 14:00:00"}}
 
                 : ping
+                id: 1730899200.1234
         '401': { $ref: '#/components/responses/Unauthorized' }
         '422': { $ref: '#/components/responses/ValidationError' }
         '429':

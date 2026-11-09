@@ -36,14 +36,13 @@ final class EventStream implements StreamInterface
         $this->deadline = $now + $maxDuration;
         $this->lastSent = $now;
         $this->buffer = 'retry: ' . self::RETRY_MS . "\n\n";
-        if ($this->cursor === null) {
+        if ($this->cursor === null || $this->cursor > $now) {
             // Sans curseur, le flux commence à l'instant de la connexion.
-            $this->cursor = (float) getmicrotime();
-        } elseif ($this->cursor > (float) getmicrotime()) {
-            $this->cursor = (float) getmicrotime();
+            $this->cursor = $now;
         } elseif ($this->isTooOld($this->cursor)) {
             $this->buffer .= self::message(null, 'resync', ['reason' => 'cursor_too_old']);
         }
+        $this->buffer .= $this->checkpoint();
         if (PHP_SAPI !== 'cli') {
             // Chaque morceau part tout de suite chez le client (pas de tampon PHP).
             while (ob_get_level() > 0) {
@@ -75,18 +74,18 @@ final class EventStream implements StreamInterface
     /** Un tour d'attente : nouveaux événements, ping, ou fin du flux. */
     private function fill(): void
     {
+        if (microtime(true) >= $this->deadline || connection_aborted()) {
+            $this->finished = true;
+            return;
+        }
         $this->pollEvents();
         $now = microtime(true);
         if ($this->buffer !== '') {
             $this->lastSent = $now;
             return;
         }
-        if ($now >= $this->deadline || connection_aborted()) {
-            $this->finished = true;
-            return;
-        }
         if ($now - $this->lastSent >= self::PING_INTERVAL) {
-            $this->buffer = ": ping\n\n";
+            $this->buffer = ": ping\n" . $this->checkpoint();
             $this->lastSent = $now;
             return;
         }
@@ -97,14 +96,14 @@ final class EventStream implements StreamInterface
     {
         $rows = \DB::Prepare(
             'SELECT `datetime`, `name`, `option` FROM `event` WHERE `datetime` > :datetime ORDER BY `datetime`',
-            ['datetime' => sprintf('%.6F', $this->cursor)],
+            ['datetime' => self::formatCursor($this->cursor)],
             \DB::FETCH_TYPE_ALL
         );
         foreach ((array) $rows as $row) {
             $this->cursor = (float) $row['datetime'];
             $data = self::decode($row['option']);
             if ($this->filter->accepts((string) $row['name'], $data)) {
-                $this->buffer .= self::message(sprintf('%.6F', $this->cursor), (string) $row['name'], $data);
+                $this->buffer .= self::message(self::formatCursor($this->cursor), (string) $row['name'], $data);
             }
         }
     }
@@ -128,6 +127,17 @@ final class EventStream implements StreamInterface
         } catch (\JsonException) {
             return (string) $option;
         }
+    }
+
+    /** Met à jour le curseur du client, y compris quand le flux est silencieux. */
+    private function checkpoint(): string
+    {
+        return 'id: ' . self::formatCursor($this->cursor) . "\n\n";
+    }
+
+    private static function formatCursor(float $cursor): string
+    {
+        return sprintf('%.6F', $cursor);
     }
 
     private static function message(?string $id, string $type, mixed $data): string

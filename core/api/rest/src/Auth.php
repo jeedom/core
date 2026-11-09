@@ -42,7 +42,8 @@ final class Auth implements MiddlewareInterface
         if (!in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true) && !$csrfOk) {
             throw new ApiError(403, 'csrf_invalid', 'Jeton CSRF absent ou invalide (en-tête X-CSRF-Token).');
         }
-        return $this->handle($request->withAttribute('user', $user)->withAttribute('csrfToken', $token), $handler);
+        return $this->handle($request->withAttribute('user', $user)
+            ->withAttribute('csrfToken', $token)->withAttribute('csrfValid', $csrfOk), $handler);
     }
 
     private function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
