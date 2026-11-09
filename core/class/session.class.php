@@ -60,7 +60,7 @@ final class session {
 	}
 
 	public static function connections(user $user, bool $remembered = false): array {
-		return DB::Prepare('SELECT id, ip, last_activity_at FROM `session`
+		return DB::Prepare('SELECT id, ip, last_activity_at, expires_at FROM `session`
 			WHERE user_id = :user AND credential_hash = :credentials AND expires_at > UTC_TIMESTAMP()'
 			. ($remembered ? ' AND remembered = 1' : '') . ' ORDER BY last_activity_at DESC, id', [
 				'user' => $user->getId(), 'credentials' => self::credentials($user),

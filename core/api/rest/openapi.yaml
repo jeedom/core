@@ -4387,6 +4387,7 @@ components:
       properties:
         key: { type: string, description: Identifiant public de la session longue. }
         datetime: { type: string, format: date-time, description: Dernière utilisation. }
+        expiresAt: { type: string, format: date-time, description: Expiration de la session longue. }
         ip: { type: string, example: 192.168.1.20 }
         current: { type: boolean, description: Appareil de la requête en cours. }
 
@@ -4404,6 +4405,7 @@ components:
         id: { type: string, pattern: '^[0-9a-f]{64}$', description: Identifiant public de la session. }
         ip: { type: string }
         datetime: { type: string, format: date-time, description: Dernière activité. }
+        expiresAt: { type: string, format: date-time, description: Expiration de la session. }
         current: { type: boolean, description: Session de la requête en cours. }
 
     SessionInfoList:
