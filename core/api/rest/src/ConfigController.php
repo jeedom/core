@@ -186,10 +186,6 @@ final class ConfigController
             'event::waitPollingTime' => 'number',
         ],
         'api' => [
-            'api::core::mode' => 'string',
-            'api::apitts::mode' => 'string',
-            'api::apipro::mode' => 'string',
-            'api::apimarket::mode' => 'string',
             'api::forbidden::method' => 'string',
             'api::allow::method' => 'string',
         ],
@@ -213,36 +209,32 @@ final class ConfigController
         'ignoreIfCmdOlderThan' => 'raw', 'hidenumber' => 'boolean', 'hidenulnumber' => 'boolean',
     ];
 
-    public static function sectionPattern(): string
+    public function get(Request $request, Response $response): Response
     {
-        return implode('|', array_keys(self::SECTIONS));
-    }
-
-    public function all(Request $request, Response $response): Response
-    {
-        $result = ['summaries' => self::readSummaries()];
-        foreach (array_keys(self::SECTIONS) as $section) {
-            $result[$section] = self::read($section, self::isAdmin($request));
+        $requested = trim((string) ($request->getQueryParams()['keys'] ?? ''));
+        if ($requested === '') {
+            $keys = array_keys(self::exposedKeys());
+        } else {
+            $keys = array_values(array_unique(array_map('trim', explode(',', $requested))));
+            foreach ($keys as $key) {
+                if (!isset(self::exposedKeys()[$key])) {
+                    throw ApiError::field(422, 'validation_error', $key, 'Clé inconnue ou non exposée.');
+                }
+            }
         }
-        return Json::respond($response, $result);
+        return Json::respond($response, (object) self::read($keys, self::isAdmin($request)));
     }
 
-    public function get(Request $request, Response $response, array $args): Response
-    {
-        return Json::respond($response, self::read($args['section'], self::isAdmin($request)));
-    }
-
-    public function update(Request $request, Response $response, array $args): Response
+    public function update(Request $request, Response $response): Response
     {
         self::requireWrite($request);
-        $section = $args['section'];
         $body = Json::body($request);
         if ($body === []) {
             throw new ApiError(422, 'validation_error', 'Aucune clé à modifier.');
         }
         $values = [];
         foreach ($body as $key => $value) {
-            $values[self::storedKey((string) $key)] = self::validate($section, (string) $key, $value);
+            $values[self::storedKey((string) $key)] = self::validate((string) $key, $value);
         }
         foreach ($values as $key => $value) {
             try {
@@ -251,47 +243,39 @@ final class ConfigController
                 throw new ApiError(422, 'validation_error', $e->getMessage());
             }
         }
-        return Json::respond($response, self::read($section, true));
+        return Json::respond($response, (object) self::read(array_map('strval', array_keys($body)), true));
     }
 
-    public function summaries(Request $request, Response $response): Response
+    /** @return array<string, string> toutes les clés exposées et leur type */
+    private static function exposedKeys(): array
     {
-        return Json::respond($response, self::readSummaries());
-    }
-
-    public function replaceSummaries(Request $request, Response $response): Response
-    {
-        self::requireWrite($request);
-        $body = Json::body($request);
-        $summaries = [];
-        foreach ($body as $key => $definition) {
-            $key = (string) $key;
-            if (!is_array($definition) || ($definition['key'] ?? null) !== $key || !preg_match('/^[A-Za-z0-9_]+$/', $key)) {
-                throw ApiError::field(422, 'validation_error', $key, 'Chaque entrée doit être un objet dont le champ « key » est égal à sa clé (lettres, chiffres, _).');
+        static $keys = null;
+        if ($keys === null) {
+            $keys = ['object:summary' => 'summary'] + array_merge(...array_values(self::SECTIONS));
+            foreach (self::REPOSITORY_KEYS as $section => $suffix) {
+                foreach (self::repositoryKeys($section) as $key) {
+                    $keys[$key] = 'boolean';
+                }
             }
-            $summaries[$key] = self::validateSummary($key, $definition);
         }
-        \config::save('object:summary', $summaries);
-        return Json::respond($response, self::readSummaries());
+        return $keys;
     }
 
-    /** @return array<string, mixed> */
-    private static function read(string $section, bool $admin): array
+    /**
+     * @param list<string> $keys
+     * @return array<string, mixed>
+     */
+    private static function read(array $keys, bool $admin): array
     {
-        $types = self::SECTIONS[$section];
-        $stored = \config::byKeys(array_map(self::storedKey(...), array_keys($types)));
+        $types = self::exposedKeys();
+        $stored = \config::byKeys(array_map(self::storedKey(...), $keys));
         $result = [];
-        foreach ($types as $key => $type) {
+        foreach ($keys as $key) {
             $storedKey = self::storedKey($key);
             if (!$admin && \config::shouldBeEncrypted($storedKey)) {
                 continue;
             }
-            $result[$key] = self::toApi($type, $stored[$storedKey] ?? '');
-        }
-        if (isset(self::REPOSITORY_KEYS[$section])) {
-            foreach (self::repositoryKeys($section) as $key) {
-                $result[$key] = self::toApi('boolean', \config::byKey($key));
-            }
+            $result[$key] = self::toApi($types[$key], $stored[$storedKey] ?? '');
         }
         return $result;
     }
@@ -302,15 +286,19 @@ final class ConfigController
             'secret' => ['isSet' => $value !== '' && $value !== null],
             'boolean' => (string) $value === '1',
             'number' => is_numeric($value) ? $value + 0 : null,
+            'summary' => (object) self::summariesToApi(is_array($value) ? $value : []),
             default => is_scalar($value) ? (string) $value : json_encode($value, JSON_UNESCAPED_UNICODE),
         };
     }
 
-    private static function validate(string $section, string $key, mixed $value): mixed
+    private static function validate(string $key, mixed $value): mixed
     {
-        $type = self::SECTIONS[$section][$key] ?? (in_array($key, self::repositoryKeys($section), true) ? 'boolean' : null);
+        $type = self::exposedKeys()[$key] ?? null;
+        if ($type === 'summary') {
+            return self::validateSummaries($value);
+        }
         $ok = match ($type) {
-            null => throw ApiError::field(422, 'validation_error', $key, 'Clé inconnue pour cet onglet.'),
+            null => throw ApiError::field(422, 'validation_error', $key, 'Clé inconnue ou non exposée.'),
             'boolean' => is_bool($value),
             'number' => $value === null || is_int($value) || is_float($value),
             default => is_string($value),
@@ -345,10 +333,10 @@ final class ConfigController
     }
 
     /** @return array<string, array<string, mixed>> */
-    private static function readSummaries(): array
+    private static function summariesToApi(array $summaries): array
     {
         $result = [];
-        foreach ((array) \config::byKey('object:summary') as $key => $definition) {
+        foreach ($summaries as $key => $definition) {
             if (!is_array($definition)) {
                 continue;
             }
@@ -368,6 +356,23 @@ final class ConfigController
         return $result;
     }
 
+    /** @return array<string, array<string, mixed>> définitions au format stocké par l'administration */
+    private static function validateSummaries(mixed $value): array
+    {
+        if (!is_array($value) || array_is_list($value) && $value !== []) {
+            throw ApiError::field(422, 'validation_error', 'object:summary', 'Un objet indexé par clé de résumé est attendu.');
+        }
+        $summaries = [];
+        foreach ($value as $key => $definition) {
+            $key = (string) $key;
+            if (!is_array($definition) || ($definition['key'] ?? null) !== $key || !preg_match('/^[A-Za-z0-9_]+$/', $key)) {
+                throw ApiError::field(422, 'validation_error', "object:summary.$key", 'Chaque entrée doit être un objet dont le champ « key » est égal à sa clé (lettres, chiffres, _).');
+            }
+            $summaries[$key] = self::validateSummary($key, $definition);
+        }
+        return $summaries;
+    }
+
     /** @return array<string, mixed> définition au format stocké par l'administration */
     private static function validateSummary(string $key, array $definition): array
     {
@@ -381,18 +386,18 @@ final class ConfigController
                 default => is_string($value),
             };
             if (!$ok) {
-                throw ApiError::field(422, 'validation_error', "$key.$field", 'Champ inconnu ou de mauvais type.');
+                throw ApiError::field(422, 'validation_error', "object:summary.$key.$field", 'Champ inconnu ou de mauvais type.');
             }
             $stored[$field] = $type === 'boolean' ? ($value ? '1' : '0') : $value;
         }
         if (trim((string) ($stored['name'] ?? '')) === '') {
-            throw ApiError::field(422, 'validation_error', "$key.name", 'Le nom est obligatoire.');
+            throw ApiError::field(422, 'validation_error', "object:summary.$key.name", 'Le nom est obligatoire.');
         }
         if (isset($stored['calcul']) && !in_array($stored['calcul'], ['sum', 'avg', 'text'], true)) {
-            throw ApiError::field(422, 'validation_error', "$key.calcul", 'Calcul attendu : sum, avg ou text.');
+            throw ApiError::field(422, 'validation_error', "object:summary.$key.calcul", 'Calcul attendu : sum, avg ou text.');
         }
         if (isset($stored['count']) && !in_array($stored['count'], ['', 'binary'], true)) {
-            throw ApiError::field(422, 'validation_error', "$key.count", 'Comptage attendu : vide ou binary.');
+            throw ApiError::field(422, 'validation_error', "object:summary.$key.count", 'Comptage attendu : vide ou binary.');
         }
         return $stored;
     }

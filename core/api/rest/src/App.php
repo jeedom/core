@@ -89,11 +89,8 @@ final class App
             $api->post('/crons/{id}/stop', $crons->stop(...));
 
             $config = new ConfigController();
-            $api->get('/config', $config->all(...));
-            $api->get('/config/summaries', $config->summaries(...));
-            $api->put('/config/summaries', $config->replaceSummaries(...));
-            $api->get('/config/{section:' . ConfigController::sectionPattern() . '}', $config->get(...));
-            $api->patch('/config/{section:' . ConfigController::sectionPattern() . '}', $config->update(...));
+            $api->get('/config', $config->get(...));
+            $api->patch('/config', $config->update(...));
 
             $logs = new LogsController();
             $api->get('/logs', $logs->list(...));
