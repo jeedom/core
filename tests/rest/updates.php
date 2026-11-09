@@ -125,7 +125,7 @@ function call($method, $path, $status = 200, $body = null, $token = 'admin', $ke
 }
 function resetOperation() { config::$values['core']['rest::updateOperation'] = null; }
 
-foreach (['/plugins/management', '/updates/operation'] as $path) { call('GET', $path, 401, token: null); call('GET', $path, 403, token: 'member'); }
+foreach (['/plugins/management', '/updates/operations/latest'] as $path) { call('GET', $path, 401, token: null); call('GET', $path, 403, token: 'member'); }
 foreach (['/updates/check', '/updates/operations'] as $path) call('POST', $path, 403, ['ids' => [2]], 'member');
 $catalog = call('GET', '/plugins/management');
 check($catalog['total'] === 3 && $catalog['core']['update']['id'] === 1, 'Installed inventory or Core missing');
@@ -150,7 +150,7 @@ call('POST', '/updates/operations', 409, ['ids' => [2]], key: 'request-key-00000
 call('POST', '/updates/check', 409);
 try { update::withPluginMutation(static fn () => null); check(false, 'Plugin mutation accepted during a queued update'); } catch (RuntimeException $e) { check($e->getCode() === 409, 'Wrong mutation conflict'); }
 update::executeOperation($job['id']);
-$finished = call('GET', '/updates/operation')['operation'];
+$finished = call('GET', '/updates/operations/latest')['operation'];
 check($finished['state'] === 'succeeded' && count(array_filter($finished['items'], fn ($item) => $item['state'] === 'succeeded')) === 3, 'Batch did not finish');
 check(update::$executed === ['core', 2, 3], 'Core did not execute before the selected plugins');
 $command = end(system::$commands);
@@ -160,33 +160,33 @@ call('POST', '/updates/operations', 200, ['ids' => [1, 2, 3]]);
 resetOperation(); update::$failure = 2;
 $job = call('POST', '/updates/operations', 202, ['ids' => [2, 3]]);
 update::executeOperation($job['id']);
-$failed = call('GET', '/updates/operation')['operation'];
+$failed = call('GET', '/updates/operations/latest')['operation'];
 check($failed['state'] === 'failed' && array_column($failed['items'], 'state') === ['failed', 'skipped'], 'Failure did not stop remaining updates');
 check(!str_contains($failed['error'], 'secret'), 'Error exposed credentials');
 resetOperation(); update::$failure = null; system::$coreFails = true;
 $job = call('POST', '/updates/operations', 202, ['ids' => [1, 2]]); update::executeOperation($job['id']);
-$failedCore = call('GET', '/updates/operation')['operation'];
+$failedCore = call('GET', '/updates/operations/latest')['operation'];
 check($failedCore['state'] === 'failed' && array_column($failedCore['items'], 'state') === ['failed', 'skipped'], 'Plugins must not start after Core failure');
 resetOperation(); system::$coreFails = false; system::$relaunch = true;
 $job = call('POST', '/updates/operations', 202, ['ids' => [1, 2]]); update::executeOperation($job['id']);
-check(call('GET', '/updates/operation')['operation']['state'] === 'succeeded' && !system::$pendingRelaunch, 'Native Core relaunch was not followed to completion');
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'succeeded' && !system::$pendingRelaunch, 'Native Core relaunch was not followed to completion');
 system::$relaunch = false;
 resetOperation(); user::$enabled = false;
 $job = call('POST', '/updates/operations', 202, ['ids' => [2]]); update::executeOperation($job['id']);
-check(call('GET', '/updates/operation')['operation']['state'] === 'failed', 'Revoked worker actor was accepted'); user::$enabled = true;
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'failed', 'Revoked worker actor was accepted'); user::$enabled = true;
 resetOperation();
 $job = call('POST', '/updates/operations', 202, ['ids' => [2]]);
 config::$values['core']['rest::updateOperation']['createdAt'] = date('c', time() - 130);
-check(call('GET', '/updates/operation')['operation']['state'] === 'failed', 'Unstarted worker remained queued forever');
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'failed', 'Unstarted worker remained queued forever');
 resetOperation();
 $job = call('POST', '/updates/operations', 202, ['ids' => [1]]);
 config::$values['core']['rest::updateOperation']['state'] = 'running';
 config::$values['core']['rest::updateOperation']['items'][0]['state'] = 'running';
 file_put_contents(log::getPathToLog('update'), "[PROGRESS][35]\n");
 $lock = fopen(jeedom::getTmpFolder('rest-updates') . '/runner.lock', 'c'); flock($lock, LOCK_EX);
-check(call('GET', '/updates/operation')['operation']['progress'] === 35, 'Native Core progress not exposed');
+check(call('GET', '/updates/operations/latest')['operation']['progress'] === 35, 'Native Core progress not exposed');
 flock($lock, LOCK_UN); fclose($lock);
-check(call('GET', '/updates/operation')['operation']['state'] === 'failed', 'Lost running worker not detected');
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'failed', 'Lost running worker not detected');
 resetOperation();
 update::$items[0] = new update(1, 'core', 'jeedom', 'ok');
 update::$items[1] = new update(2, 'plugin', 'hue', 'ok');
@@ -200,5 +200,5 @@ call('POST', '/updates/operations', 409, ['ids' => [1, 2]]);
 check(call('POST', '/updates/operations', 202, ['ids' => [1, 2], 'force' => true])['id'] === $job['id'], 'Forced update replay created a new job');
 update::$executed = [];
 update::executeOperation($job['id']);
-check(call('GET', '/updates/operation')['operation']['state'] === 'succeeded' && update::$executed === ['core', 2], 'Reinstall did not use the native Core and plugin update paths');
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'succeeded' && update::$executed === ['core', 2], 'Reinstall did not use the native Core and plugin update paths');
 echo "OK $checks REST update checks on PHP " . PHP_VERSION . "\n";

@@ -11,7 +11,7 @@ orpheline n’ajoute pas de fausse carte.
 | `GET /api/v1/plugins/management` | Plugins, Core, date de vérification et dernière opération |
 | `POST /api/v1/updates/check` | Vérification asynchrone du Core et des plugins, sans corps |
 | `POST /api/v1/updates/operations` | Mise à jour des identifiants `ids` sélectionnés |
-| `GET /api/v1/updates/operation` | Suivi reprenable sans conserver d’URL ou de stockage navigateur |
+| `GET /api/v1/updates/operations/latest` | Suivi reprenable sans conserver d’URL ou de stockage navigateur |
 | `GET /api/v1/logs/update` | Journal natif partagé, lu uniquement à la demande |
 
 Ces routes sont réservées aux administrateurs. Les écritures vérifient aussi le

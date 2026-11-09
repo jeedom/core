@@ -102,10 +102,10 @@ final class App
             $api->get('/plugins/management', $plugins->management(...));
             $api->get('/plugins/repositories', $plugins->repositories(...));
             $api->post('/plugins/archives', $plugins->uploadArchive(...));
-            $api->post('/plugins/repository-installations', $plugins->installFromRepository(...));
-            $api->get('/plugins/installation', $plugins->prepareInstallation(...));
+            $api->post('/plugins/installations/repository', $plugins->installFromRepository(...));
+            $api->get('/plugins/installations/preview', $plugins->prepareInstallation(...));
             $api->post('/plugins/installations', $plugins->install(...));
-            $api->get('/plugins/installations/{operationId}', $plugins->installation(...));
+            $api->get('/plugins/installations/{operationId}/status', $plugins->installation(...));
             $api->get('/plugins/{id}', $plugins->get(...));
             $api->get('/plugins/{id}/icon', $plugins->icon(...));
             $api->patch('/plugins/{id}', $plugins->update(...));
@@ -118,11 +118,11 @@ final class App
             $api->post('/plugins/{id}/daemon/start', $plugins->startDaemon(...));
             $api->post('/plugins/{id}/daemon/stop', $plugins->stopDaemon(...));
             $api->get('/plugins/{id}/community-post', $plugins->communityPost(...));
-            $api->get('/plugins/{id}/installation', $plugins->latestInstallation(...));
+            $api->get('/plugins/{id}/installations/latest', $plugins->latestInstallation(...));
 
             $updates = new UpdatesController();
             $api->post('/updates/check', $updates->check(...));
-            $api->get('/updates/operation', $updates->latest(...));
+            $api->get('/updates/operations/latest', $updates->latest(...));
             $api->post('/updates/operations', $updates->start(...));
             $users = new UsersController();
             $api->get('/users', $users->list(...));

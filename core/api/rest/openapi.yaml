@@ -558,7 +558,7 @@ paths:
         '409': { $ref: '#/components/responses/Conflict' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
-  /updates/operation:
+  /updates/operations/latest:
     get:
       operationId: getLatestComponentUpdate
       summary: Retrouver la dernière vérification ou mise à jour de la box.
@@ -626,7 +626,7 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
-  /plugins/repository-installations:
+  /plugins/installations/repository:
     post:
       tags: [Plugins]
       operationId: installPluginFromRepository
@@ -978,7 +978,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /plugins/{id}/installation:
+  /plugins/{id}/installations/latest:
     parameters:
     - $ref: '#/components/parameters/PluginId'
     get:
@@ -1007,7 +1007,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /plugins/installation:
+  /plugins/installations/preview:
     get:
       tags:
       - Plugins
@@ -1104,7 +1104,7 @@ paths:
         exécute update::doUpdate et revérifie les droits, l’accès Market et la compatibilité. Première installation
         inactive, réglages et état existants conservés. La réussite concerne les fichiers du plugin ; dépendances
         et activation restent distinctes.
-  /plugins/installations/{operationId}:
+  /plugins/installations/{operationId}/status:
     get:
       tags:
       - Plugins
