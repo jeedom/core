@@ -133,10 +133,9 @@ final class App
             $api->get('/users/{id}/devices', $users->devices(...));
             $api->delete('/users/{id}/devices', $users->forgetDevices(...));
             $api->delete('/users/{id}/devices/{key}', $users->forgetDevice(...));
-            // La liste et la fermeture d'une session attendent la table `session` de la spec.
-            $api->get('/users/{id}/sessions', self::notImplemented(...));
+            $api->get('/users/{id}/sessions', $users->sessions(...));
             $api->delete('/users/{id}/sessions', $users->closeSessions(...));
-            $api->delete('/users/{id}/sessions/{sessionId}', self::notImplemented(...));
+            $api->delete('/users/{id}/sessions/{sessionId}', $users->closeSession(...));
             $api->get('/users/{id}/rights', $users->rights(...));
             $api->put('/users/{id}/rights', $users->replaceRights(...));
             $api->post('/users/{id}/rights/copy', $users->copyRights(...));
@@ -148,8 +147,8 @@ final class App
             $api->get('/me/devices', $users->myDevices(...));
             $api->delete('/me/devices', $users->forgetMyDevices(...));
             $api->delete('/me/devices/{key}', $users->forgetMyDevice(...));
-            $api->get('/me/sessions', self::notImplemented(...));
-            $api->delete('/me/sessions/{sessionId}', self::notImplemented(...));
+            $api->get('/me/sessions', $users->mySessions(...));
+            $api->delete('/me/sessions/{sessionId}', $users->closeMySession(...));
             $api->delete('/session', (new SessionController())->close(...));
         })->add(new Auth());
         // Seule route sans authentification : l'ouverture de session.

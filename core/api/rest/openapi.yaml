@@ -1335,9 +1335,9 @@ paths:
       operationId: listMySessions
       summary: Lister ses sessions ouvertes
       description: |
-        Sessions de la nouvelle UI ouvertes avec son compte (table
-        `session`). Les connexions à l'ancienne interface n'y figurent pas.
-        Le jeton de session n'est jamais renvoyé, seulement l'`id` de la ligne.
+        Sessions PHP ouvertes avec son compte, nouvelle UI et ancienne
+        interface confondues (elles partagent le même stockage). L'identifiant
+        de session PHP n'est jamais renvoyé : `id` en est une empreinte HMAC.
       responses:
         '200':
           description: Les sessions.
@@ -1345,6 +1345,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/SessionInfoList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '503': { $ref: '#/components/responses/TooManySessions' }
 
   /me/sessions/{sessionId}:
     parameters:
@@ -1356,10 +1357,13 @@ paths:
       description: |
         Remplace `user::deleteSession`, limité à ses propres sessions (une
         session d'un autre compte renvoie 404). Oublie aussi l'appareil lié.
-        Pour fermer la session courante, utiliser `DELETE /session`.
+        Pour fermer la session courante, utiliser `DELETE /session` (sinon 409).
       responses:
         '204': { description: Session fermée. }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/CurrentSession' }
+        '503': { $ref: '#/components/responses/TooManySessions' }
         '404':
           description: 'Session inconnue (`code: session_not_found`).'
           content:
@@ -1573,7 +1577,7 @@ paths:
       tags: [Utilisateurs]
       operationId: listUserSessions
       summary: Lister les sessions d'un utilisateur (administrateur)
-      description: Même contenu que `GET /me/sessions` (sessions de la nouvelle UI uniquement), pour un autre compte.
+      description: Même contenu que `GET /me/sessions`, pour un autre compte.
       responses:
         '200':
           description: Les sessions.
@@ -1583,13 +1587,14 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
+        '503': { $ref: '#/components/responses/TooManySessions' }
     delete:
       tags: [Utilisateurs]
       operationId: closeUserSessions
       summary: Fermer toutes les sessions d'un utilisateur (administrateur)
       description: |
-        Ferme ses sessions de la nouvelle UI (table `session`) et ses
-        sessions PHP de l'ancienne interface, comme à la désactivation.
+        Ferme toutes ses sessions PHP (nouvelle UI et ancienne interface),
+        comme à la désactivation.
       responses:
         '204': { description: Sessions fermées. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1604,7 +1609,7 @@ paths:
       tags: [Utilisateurs]
       operationId: closeUserSession
       summary: Fermer une session d'un utilisateur (administrateur)
-      description: Remplace `user::deleteSession` pour un autre compte.
+      description: Remplace `user::deleteSession` pour un autre compte. Oublie aussi l'appareil lié.
       responses:
         '204': { description: Session fermée. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1614,6 +1619,8 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
+        '409': { $ref: '#/components/responses/CurrentSession' }
+        '503': { $ref: '#/components/responses/TooManySessions' }
 
   /users/{id}/rights:
     parameters:
@@ -3358,8 +3365,8 @@ components:
       name: sessionId
       in: path
       required: true
-      description: Identifiant de la session (colonne `id` de la table `session`), lu dans la liste des sessions.
-      schema: { type: string, minLength: 1 }
+      description: Identifiant public de la session (empreinte HMAC-SHA256 de l'id PHP), lu dans la liste des sessions.
+      schema: { type: string, pattern: '^[0-9a-f]{64}$' }
 
   schemas:
     LogList:
@@ -4408,11 +4415,9 @@ components:
 
     SessionInfo:
       type: object
-      required: [id, ip, datetime]
+      required: [id, ip, datetime, current]
       properties:
-        id: { type: string, description: Colonne `id` de la table `session`. }
-        createdAt: { type: string, format: date-time, description: Ouverture. }
-        expiresAt: { type: string, format: date-time, description: Expiration. }
+        id: { type: string, pattern: '^[0-9a-f]{64}$', description: Empreinte HMAC-SHA256 de l'id de session PHP (jamais l'id lui-même). }
         ip: { type: string }
         datetime: { type: string, format: date-time, description: Dernière activité. }
         current: { type: boolean, description: Session de la requête en cours. }
@@ -5069,6 +5074,16 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     NotFound:
       description: Objet ou clé de résumé inconnus.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    CurrentSession:
+      description: 'Session de la requête en cours (`code: current_session`) : la fermer par `DELETE /session`.'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    TooManySessions:
+      description: 'Plus de 100 sessions stockées, liste impossible (`code: too_many_sessions`).'
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
