@@ -37,7 +37,7 @@ class update {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function checkAllUpdate($_filter = '', $_findNewObject = true) {
+	public static function checkAllUpdate($_filter = '', $_findNewObject = true, bool $_saveLastCheck = true) {
 		$findCore = false;
 		if ($_findNewObject) {
 			self::findNewUpdateObject();
@@ -83,7 +83,9 @@ class update {
 				$class::checkUpdate($updates);
 			}
 		}
-		config::save('update::lastCheck', date('Y-m-d H:i:s'));
+		if ($_saveLastCheck) {
+			config::save('update::lastCheck', date('Y-m-d H:i:s'));
+		}
 	}
 
 	public static function listRepo() {

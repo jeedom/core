@@ -107,6 +107,7 @@ final class App
             $api->post('/plugins/installations', $plugins->install(...));
             $api->get('/plugins/installations/{operationId}', $plugins->installation(...));
             $api->get('/plugins/{id}', $plugins->get(...));
+            $api->get('/plugins/{id}/icon', $plugins->icon(...));
             $api->patch('/plugins/{id}', $plugins->update(...));
             $api->delete('/plugins/{id}', $plugins->delete(...));
             $api->get('/plugins/{id}/dependencies', $plugins->dependencies(...));

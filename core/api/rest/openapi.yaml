@@ -519,6 +519,8 @@ paths:
         Un échec arrête la sélection restante. L’exécution indépendante survit à la fermeture du navigateur
         et au redémarrage de la queue par le Core. Une opération concurrente ou une installation de plugin
         donne 409. Une même clé avec une autre sélection ou un autre utilisateur donne 409.
+        force permet de réinstaller la version de la source configurée sans mise à jour disponible.
+        Les exclusions et les sources désactivées restent appliquées.
       parameters:
         - in: header
           name: Idempotency-Key
@@ -539,6 +541,7 @@ paths:
                   maxItems: 200
                   uniqueItems: true
                   items: { type: integer, minimum: 1 }
+                force: { type: boolean, default: false }
       responses:
         '202':
           description: Mise à jour planifiée ou en cours.
@@ -733,6 +736,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /plugins/{id}/icon:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags: [Plugins]
+      operationId: getPluginIcon
+      summary: Télécharger l’image PNG d’un plugin installé.
+      responses:
+        '200':
+          description: Image du plugin.
+          content:
+            image/png:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
   /plugins/{id}/dependencies:
     parameters:
     - $ref: '#/components/parameters/PluginId'
@@ -3753,7 +3771,7 @@ components:
       type: object
       required: [id, name, fields]
       properties:
-        id: { type: string, enum: [github, url, file, samba] }
+        id: { type: string, enum: [market, github, url, file, samba] }
         name: { type: string }
         fields:
           type: array
@@ -3799,6 +3817,7 @@ components:
         localVersion: { type: [string, 'null'] }
         remoteVersion: { type: [string, 'null'] }
         updatable: { type: boolean, description: Une mise à jour est disponible et autorisée. }
+        reinstallable: { type: boolean, description: Une réinstallation est autorisée depuis la source configurée. }
 
     CoreComponent:
       type: object

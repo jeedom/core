@@ -82,7 +82,10 @@ class update {
     public static function all() { return self::$items; }
     public static function byTypeAndLogicalId($type, $id) { foreach (self::$items as $item) if ($item->getType() === $type && $item->getLogicalId() === $id) return $item; return null; }
     public static function byId($id) { foreach (self::$items as $item) if ($item->getId() === $id) return $item; return null; }
-    public static function checkAllUpdate($filter, $findNew = true) { self::$checked[] = $filter; }
+    public static function checkAllUpdate($filter, $findNew = true, $saveLastCheck = true) {
+        self::$checked[] = [$filter, $saveLastCheck];
+        if ($saveLastCheck) config::save('update::lastCheck', '2026-11-09 08:30:00');
+    }
     public static function refreshUpdateMessage() {}
     public function getId() { return $this->id; }
     public function getType() { return $this->type; }
@@ -100,6 +103,7 @@ class queue {
     public static array $items = [];
     public static function all() { return self::$items; }
 }
+class repo_market { public static function downloadObject($update) {} }
 $demo = false;
 function unautorizedInDemo($actor = null) { global $demo; if (!$actor instanceof user || $demo) throw new RuntimeException('Mode démo'); }
 require dirname(__DIR__, 2) . '/core/class/pluginInstallation.class.php';
@@ -129,7 +133,8 @@ check($catalog['total'] === 3 && $catalog['core']['update']['id'] === 1, 'Instal
 $manual = array_values(array_filter($catalog['items'], fn ($item) => $item['id'] === 'manual'))[0];
 check($manual['management']['update'] === null, 'Manual plugin without update must remain visible');
 $job = call('POST', '/updates/check', 202); updateOperation::execute($job['id']);
-check(update::$checked === ['core', 'plugin'], 'Check included other types');
+check(update::$checked === [['core', false], ['plugin', true]], 'Check must include only Core and plugins and record completion once');
+check(call('GET', '/plugins/management')['lastCheck'] === '2026-11-09 08:30:00', 'Last check date not visible in inventory');
 resetOperation(); system::$commands = [];
 foreach ([[], ['ids' => []], ['ids' => [1, 1]], ['ids' => ['1']], ['ids' => [true]], ['ids' => [[1]]], ['ids' => [0]], ['ids' => [2], 'os' => true]] as $body) call('POST', '/updates/operations', 422, $body);
 call('POST', '/updates/operations', 422, ['ids' => [2]], key: null);
@@ -182,4 +187,18 @@ $lock = fopen(jeedom::getTmpFolder('rest-updates') . '/runner.lock', 'c'); flock
 check(call('GET', '/updates/operation')['operation']['progress'] === 35, 'Native Core progress not exposed');
 flock($lock, LOCK_UN); fclose($lock);
 check(call('GET', '/updates/operation')['operation']['state'] === 'failed', 'Lost running worker not detected');
+resetOperation();
+update::$items[0] = new update(1, 'core', 'jeedom', 'ok');
+update::$items[1] = new update(2, 'plugin', 'hue', 'ok');
+call('POST', '/updates/operations', 422, ['ids' => [2], 'force' => 'true']);
+call('POST', '/updates/operations', 409, ['ids' => [2]]);
+call('POST', '/updates/operations', 409, ['ids' => [2], 'force' => true]); // Disabled repository.
+config::save('market::enable', 1);
+foreach ([4, 5, 6] as $id) call('POST', '/updates/operations', 409, ['ids' => [$id], 'force' => true]);
+$job = call('POST', '/updates/operations', 202, ['ids' => [2, 1], 'force' => true]);
+call('POST', '/updates/operations', 409, ['ids' => [1, 2]]);
+check(call('POST', '/updates/operations', 202, ['ids' => [1, 2], 'force' => true])['id'] === $job['id'], 'Forced update replay created a new job');
+update::$executed = [];
+updateOperation::execute($job['id']);
+check(call('GET', '/updates/operation')['operation']['state'] === 'succeeded' && update::$executed === ['core', 2], 'Reinstall did not use the native Core and plugin update paths');
 echo "OK $checks REST update checks on PHP " . PHP_VERSION . "\n";

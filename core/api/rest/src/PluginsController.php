@@ -74,6 +74,23 @@ final class PluginsController
         return self::respond($response, ['items' => \pluginRepository::all()]);
     }
 
+    public function icon(Request $request, Response $response, array $args): Response
+    {
+        $plugin = self::find($args['id']);
+        $prefix = 'plugins/' . $plugin->getId() . '/';
+        $icon = $plugin->getPathImgIcon();
+        $root = realpath(\plugin::getPluginPath($plugin->getId()));
+        $path = $root !== false && str_starts_with($icon, $prefix) ? realpath($root . '/' . substr($icon, strlen($prefix))) : false;
+        if ($path === false || !str_starts_with($path, $root . '/')
+            || !str_ends_with($path, '.png') || !is_file($path) || ($stream = @fopen($path, 'rb')) === false) {
+            throw new ApiError(404, 'plugin_icon_not_found', 'Image du plugin introuvable.');
+        }
+        return $response->withBody(new \Slim\Psr7\Stream($stream))
+            ->withHeader('Content-Type', 'image/png')
+            ->withHeader('X-Content-Type-Options', 'nosniff')
+            ->withHeader('Cache-Control', 'private, no-cache');
+    }
+
     public function uploadArchive(Request $request, Response $response): Response
     {
         self::requireWrite($request);
@@ -301,7 +318,8 @@ final class PluginsController
         $enabled = $update->getType() === 'core' ? \config::byKey('update::allowCore', 'core', 1) == 1 : $update->getConfiguration('doNotUpdate', 0) != 1;
         return ['id' => (int) $update->getId(), 'status' => (string) $update->getStatus(),
             'localVersion' => $update->getLocalVersion() ?: null, 'remoteVersion' => $update->getRemoteVersion() ?: null,
-            'updatable' => $enabled && $update->getStatus() === 'update'];
+            'updatable' => $enabled && $update->getStatus() === 'update',
+            'reinstallable' => \updateOperation::canReinstall($update)];
     }
 
     private static function dependencyInfo(\plugin $plugin): array
