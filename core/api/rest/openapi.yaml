@@ -438,9 +438,10 @@ paths:
         au plus ancien. Sans `plugin`, le core renvoie au plus les 500 derniers
         messages (`message::all()`) ; avec `plugin`, tous ceux du plugin
         (`message::byPlugin()`). `message` et `action` sont rendus comme dans
-        l'ancienne interface (`message::toArray()`) : entités décodées, balises
-        retirées sauf `<i>` et `<a>`. Le client les assainit avant de les
-        afficher en HTML.
+        l'ancienne interface (`message::toArray()`), puis assainis par l'API :
+        un fragment HTML où ne restent que `<i>` sans attribut et `<a>` avec,
+        au plus, un `href` http(s) ou relatif. Les autres attributs
+        (`onclick`, `style`…) et les liens `javascript:` sont retirés.
       parameters:
       - name: plugin
         in: query
@@ -3716,8 +3717,10 @@ components:
           type: string
         message:
           type: string
+          description: Fragment HTML assaini (`<i>`, `<a href>` http(s) ou relatif).
         action:
           type: string
+          description: Fragment HTML assaini, comme `message`.
         occurrences:
           type: integer
           minimum: 1

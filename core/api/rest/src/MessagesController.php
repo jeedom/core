@@ -66,8 +66,8 @@ final class MessagesController
             'date' => (string) $data['date'],
             'plugin' => (string) $data['plugin'],
             'logicalId' => (string) $data['logicalId'],
-            'message' => (string) $data['message'],
-            'action' => (string) $data['action'],
+            'message' => MessageHtml::sanitize((string) $data['message']),
+            'action' => MessageHtml::sanitize((string) $data['action']),
             'occurrences' => max(1, (int) ($data['occurrences'] ?? 1)),
         ];
     }
