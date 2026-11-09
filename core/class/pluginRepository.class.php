@@ -6,7 +6,11 @@ class pluginRepository {
 	public static function all(): array {
 		$items = array();
 		foreach (update::listRepo() as $id => $repo) {
-			if (!in_array($id, array('github', 'url', 'file', 'samba'), true) || empty($repo['enable']) || empty($repo['scope']['plugin'])) continue;
+			if (!in_array($id, array('market', 'github', 'url', 'file', 'samba'), true) || empty($repo['enable']) || empty($repo['scope']['plugin'])) continue;
+			if ($id === 'market') {
+				$items[] = array('id' => $id, 'name' => (string) $repo['name'], 'fields' => array());
+				continue;
+			}
 			$fields = array();
 			foreach ($repo['configuration']['parameters_for_add'] ?? array() as $key => $field) {
 				$fields[] = array('id' => $key, 'name' => (string) $field['name'],
@@ -20,6 +24,7 @@ class pluginRepository {
 
 	public static function validate(string $id, string $source, array $configuration, bool $checkArchive = true): array {
 		pluginInstallation::validatePluginId($id);
+		if ($source === 'market') throw new InvalidArgumentException('Utilisez la route d’installation Market.', 422);
 		$repo = null;
 		foreach (self::all() as $item) if ($item['id'] === $source) $repo = $item;
 		if ($repo === null) throw new InvalidArgumentException('Source d’installation absente ou désactivée.', 422);

@@ -28,12 +28,14 @@ final class UpdatesController
         self::requireWrite($request);
         $body = Json::body($request);
         $ids = $body['ids'] ?? null;
-        if (array_diff(array_keys($body), ['ids']) || !is_array($ids) || !array_is_list($ids)
+        $force = $body['force'] ?? false;
+        if (array_key_exists('force', $body) && !is_bool($body['force'])) throw ApiError::field(422, 'validation_error', 'force', 'Un booléen est attendu.');
+        if (array_diff(array_keys($body), ['ids', 'force']) || !is_array($ids) || !array_is_list($ids)
             || count($ids) < 1 || count($ids) > 200 || count(array_unique($ids, SORT_REGULAR)) !== count($ids)) {
             throw ApiError::field(422, 'validation_error', 'ids', 'Sélection invalide (1 à 200 identifiants distincts).');
         }
         foreach ($ids as $id) if (!is_int($id) || $id < 1) throw ApiError::field(422, 'validation_error', 'ids', 'Identifiant invalide.');
-        $operation = self::call(fn () => \updateOperation::start($ids, (int) $request->getAttribute('user')->getId(), self::key($request)));
+        $operation = self::call(fn () => \updateOperation::start($ids, (int) $request->getAttribute('user')->getId(), self::key($request), 'update', $force));
         return self::respond($response, $operation, in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
 

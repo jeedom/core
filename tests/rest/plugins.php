@@ -59,7 +59,7 @@ class plugin {
     public function getCategory() { return 'energy'; }
     public function isActive() { return config::byKey('active', $this->id, 0); }
     public function setIsEnable($state) { config::save('active', $state, $this->id); }
-    public function getPathImgIcon() { return 'core/img/no-image-plugin.png'; }
+    public function getPathImgIcon() { return is_file(self::getPluginPath($this->id) . '/plugin_info/icon.png') ? 'plugins/' . $this->id . '/plugin_info/icon.png' : 'core/img/no-image-plugin.png'; }
     public function getDescription() { return '<b>Description</b>'; }
     public function getAuthor() { return 'Développeur'; }
     public function getLicense() { return 'AGPL'; }
@@ -94,7 +94,7 @@ class update {
         ];
         $repos = [];
         foreach ($fields as $id => $parameters) $repos[$id] = ['name' => $id, 'scope' => ['plugin' => true], 'enable' => config::byKey($id . '::enable', 'core', 1), 'configuration' => ['parameters_for_add' => $parameters]];
-        $repos['market'] = ['name' => 'Market', 'scope' => ['plugin' => true], 'enable' => 1];
+        $repos['market'] = ['name' => 'Market', 'scope' => ['plugin' => true], 'enable' => config::byKey('market::enable')];
         return $repos;
     }
     public static array $items = [];
@@ -183,6 +183,7 @@ function call($method, $path, $status = 200, $body = null, $token = 'admin', $he
     $raw = (string) $response->getBody();
     check($response->getStatusCode() === $status, "$method $path: expected $status, got " . $response->getStatusCode() . ': ' . $raw);
     check(!isset($GLOBALS['_USER_GLOBAL']), 'REST user leaked between requests');
+    if ($response->getHeaderLine('Content-Type') === 'image/png') return $raw;
     return $raw !== '' ? json_decode($raw, true, 512, JSON_THROW_ON_ERROR) : null;
 }
 function runJob($operation) {
@@ -284,6 +285,18 @@ call('DELETE', '/plugins/fixture', 204);
 check(!is_file(plugin::getPathById('fixture')), 'Native plugin removal not used');
 // Direct installation: metadata, rights, validation, queued native updates, replay and archives.
 manifest('fixture');
+call('GET', '/plugins/fixture/icon', 401, token: null);
+call('GET', '/plugins/fixture/icon', 404);
+$png = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLbtAAAAABJRU5ErkJggg==');
+$icon = dirname(plugin::getPathById('fixture')) . '/icon.png';
+file_put_contents($icon, $png);
+check(call('GET', '/plugins/fixture/icon', token: null, cookies: $cookies) === $png, 'Plugin image not served for the browser session');
+unlink($icon);
+$outside = jeedom::getTmpFolder('plugins') . '/outside.png';
+file_put_contents($outside, $png);
+symlink($outside, $icon);
+call('GET', '/plugins/fixture/icon', 404);
+unlink($icon);
 call('GET', '/plugins?management=invalid', 422);
 call('GET', '/plugins?management=true', 403, token: 'member');
 call('GET', '/plugins/repositories', 403, token: 'member');
@@ -295,9 +308,12 @@ check($managementPage['core']['version'] === jeedom::version() && $managementPag
 check($managementPage['items'][0]['id'] === 'fixture' && array_key_exists('update', $managementPage['items'][0]['management']), 'Installed inventory missing update information');
 check($managed['hasOwnDaemon'] && $managed['daemonState'] === null, 'Inactive daemon must not be reported as broken');
 $repos = call('GET', '/plugins/repositories')['items'];
-check(count($repos) === 4 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');
+check(count($repos) === 5 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');
+check(array_column($repos, 'id') === ['github', 'url', 'file', 'samba', 'market'], 'Active Market source missing');
+config::save('market::enable', 0);
 config::save('github::enable', 0);
 check(count(call('GET', '/plugins/repositories')['items']) === 3, 'Disabled source exposed');
+config::save('market::enable', 1);
 $direct = ['pluginId' => 'directplugin', 'source' => 'github', 'configuration' => ['user' => 'jeedom', 'repository' => 'plugin-test', 'token' => 'github_secret', 'version' => 'main']];
 $directKey = ['Idempotency-Key' => 'direct-request-key-0001'];
 call('POST', '/plugins/repository-installations', 422, $direct, headers: $directKey);

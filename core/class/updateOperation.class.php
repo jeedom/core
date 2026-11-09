@@ -6,14 +6,14 @@ class updateOperation {
 	private const KEY = 'rest::updateOperation';
 	private static $executing = false;
 
-	public static function start(array $ids, int $userId, string $requestKey, string $kind = 'update'): array {
-		return self::locked('mutation', static function () use ($ids, $userId, $requestKey, $kind) {
+	public static function start(array $ids, int $userId, string $requestKey, string $kind = 'update', bool $force = false): array {
+		return self::locked('mutation', static function () use ($ids, $userId, $requestKey, $kind, $force) {
 			$last = self::read();
 			if ($last !== null && $last['requestKey'] === $requestKey) {
 				$original = array_column($last['items'], 'id');
 				$selected = $ids;
 				sort($original); sort($selected);
-				if ($original !== $selected || $last['userId'] !== $userId || $last['kind'] !== $kind) throw new RuntimeException('Clé déjà utilisée pour une autre sélection.', 409);
+				if ($original !== $selected || $last['userId'] !== $userId || $last['kind'] !== $kind || ($last['force'] ?? false) !== $force) throw new RuntimeException('Clé déjà utilisée pour une autre sélection.', 409);
 				return self::latest();
 			}
 			self::assertIdle();
@@ -21,14 +21,14 @@ class updateOperation {
 			$items = array();
 			foreach ($ids as $id) {
 				$update = update::byId($id);
-				self::validateUpdate($update);
+				self::validateUpdate($update, $force);
 				$items[] = array('id' => $id, 'type' => $update->getType(), 'logicalId' => $update->getLogicalId(),
 					'name' => $update->getType() === 'core' ? 'Core Jeedom' : plugin::byId($update->getLogicalId())->getName(), 'state' => 'queued', 'error' => null);
 			}
 			usort($items, static fn ($a, $b) => ($a['type'] === 'core' ? 0 : 1) <=> ($b['type'] === 'core' ? 0 : 1));
 			$operation = array('id' => bin2hex(random_bytes(16)), 'kind' => $kind, 'state' => 'queued', 'items' => $items,
 				'createdAt' => date('c'), 'startedAt' => null, 'finishedAt' => null, 'error' => null, 'progress' => null,
-				'logName' => 'update', 'userId' => $userId, 'requestKey' => $requestKey);
+				'logName' => 'update', 'userId' => $userId, 'requestKey' => $requestKey, 'force' => $force);
 			self::store($operation);
 			try {
 				system::php(escapeshellarg(__DIR__ . '/../php/jeeRestUpdate.php') . ' ' . escapeshellarg($operation['id']) . ' > /dev/null 2>&1 &');
@@ -76,7 +76,7 @@ class updateOperation {
 					unautorizedInDemo($actor);
 					log::clear('update');
 					if ($operation['kind'] === 'check') {
-						update::checkAllUpdate('core');
+						update::checkAllUpdate('core', true, false);
 						update::checkAllUpdate('plugin', false);
 					}
 					foreach ($operation['items'] as $index => $item) {
@@ -84,7 +84,7 @@ class updateOperation {
 						self::store($operation);
 						$update = update::byId($item['id']);
 						if (!is_object($update) || $update->getType() !== $item['type'] || $update->getLogicalId() !== $item['logicalId']) throw new RuntimeException('Le composant sélectionné a changé.');
-						self::validateUpdate($update);
+						self::validateUpdate($update, $operation['force'] ?? false);
 						if ($item['type'] === 'core') {
 							if (config::byKey('update::allowCore', 'core', 1) != 1) throw new RuntimeException('La mise à jour du Core est désactivée.');
 							// Native installer, synchronous here; no call to jeedom::update(), which clears previous logs.
@@ -113,7 +113,7 @@ class updateOperation {
 					log::add('update', 'error', $message);
 					self::fail($operation, $message);
 				} finally { self::$executing = false; }
-			});
+			}, LOCK_EX);
 		});
 	}
 
@@ -123,11 +123,22 @@ class updateOperation {
 		return self::locked('mutation', static function () use ($action) {
 			self::assertIdle();
 			return $action();
-		}, LOCK_SH);
+		}, LOCK_SH | LOCK_NB);
 	}
 
-	private static function validateUpdate($update): void {
-		if (!is_object($update) || !in_array($update->getType(), array('core', 'plugin'), true) || $update->getStatus() !== 'update') {
+	public static function canReinstall(update $update): bool {
+		if ($update->getStatus() === 'hold') return false;
+		if ($update->getType() === 'core') {
+			return $update->getLogicalId() === 'jeedom' && config::byKey('update::allowCore', 'core', 1) == 1;
+		}
+		if ($update->getType() !== 'plugin' || $update->getConfiguration('doNotUpdate', 0) == 1) return false;
+		$source = $update->getSource();
+		return config::byKey($source . '::enable') == 1 && method_exists('repo_' . $source, 'downloadObject');
+	}
+
+	private static function validateUpdate($update, bool $force): void {
+		if (!is_object($update) || !in_array($update->getType(), array('core', 'plugin'), true)
+			|| ($force ? !self::canReinstall($update) : $update->getStatus() !== 'update')) {
 			throw new RuntimeException('Un composant sélectionné ne peut pas être mis à jour.', 409);
 		}
 		if ($update->getType() === 'core') {
@@ -188,7 +199,7 @@ class updateOperation {
 	}
 
 	private static function publicOperation(array $operation): array {
-		unset($operation['userId'], $operation['requestKey']);
+		unset($operation['userId'], $operation['requestKey'], $operation['force']);
 		foreach ($operation['items'] as $item) {
 			if ($item['type'] === 'core' && $item['state'] === 'running' && preg_match_all('/\[PROGRESS\]\[(\d+)\]/', self::tail(), $matches)) {
 				$operation['progress'] = min(100, (int) end($matches[1]));
@@ -206,11 +217,11 @@ class updateOperation {
 		return $value === false ? '' : $value;
 	}
 
-	private static function locked(string $name, callable $action, int $mode = LOCK_EX) {
+	private static function locked(string $name, callable $action, int $mode = LOCK_EX | LOCK_NB) {
 		$lock = fopen(jeedom::getTmpFolder('rest-updates') . '/' . $name . '.lock', 'c');
 		if ($lock === false) throw new RuntimeException('Verrou de mise à jour indisponible.', 503);
 		try {
-			if (!flock($lock, $mode | LOCK_NB)) throw new RuntimeException('Une opération est déjà en cours.', 409);
+			if (!flock($lock, $mode)) throw new RuntimeException('Une opération est déjà en cours.', 409);
 			return $action();
 		} finally { flock($lock, LOCK_UN); fclose($lock); }
 	}
