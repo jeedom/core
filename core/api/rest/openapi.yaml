@@ -83,7 +83,7 @@ info:
       réservé aux administrateurs.
     - Les clés dynamiques gardées sont décrites par motif (`patternProperties`) :
       `{dépôt}::enable` et `{dépôt}::allowDNS`. Les niveaux de log par module
-      (`log::level::*`), les modes API par plugin (`api::*::mode`) et les
+      (`log::level::*`), les modes d'accès API (`api::*::mode`, appelés à disparaître avec les utilisateurs techniques) et les
       widgets par défaut (`widget::default::cmd::*`) ne sont pas exposés.
     - Non exposées : les clés jamais lues par le core (`info::address`,
       `info::postalCode`, `info::city`, `info::stateCode`, `info::livingSpace`,
@@ -5654,18 +5654,6 @@ components:
         'event::waitPollingTime':
           type: [number, 'null']
           description: 'Fréquence de vérification des événements en attente. (onglet cache).'
-        'api::core::mode':
-          type: string
-          description: 'Accès API (onglet api).'
-        'api::apitts::mode':
-          type: string
-          description: 'Accès API (onglet api).'
-        'api::apipro::mode':
-          type: string
-          description: 'Accès API (onglet api).'
-        'api::apimarket::mode':
-          type: string
-          description: 'Accès API (onglet api).'
         'api::forbidden::method':
           type: string
           description: 'Interdire les méthodes api (regexp) (onglet api).'
@@ -6203,18 +6191,6 @@ components:
         'event::waitPollingTime':
           type: [number, 'null']
           description: 'Fréquence de vérification des événements en attente. (onglet cache).'
-        'api::core::mode':
-          type: string
-          description: 'Accès API (onglet api).'
-        'api::apitts::mode':
-          type: string
-          description: 'Accès API (onglet api).'
-        'api::apipro::mode':
-          type: string
-          description: 'Accès API (onglet api).'
-        'api::apimarket::mode':
-          type: string
-          description: 'Accès API (onglet api).'
         'api::forbidden::method':
           type: string
           description: 'Interdire les méthodes api (regexp) (onglet api).'
