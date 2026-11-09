@@ -47,6 +47,8 @@ class config {
 		'market::cloud::backup::password',
 		'market::cloud::backup::password_confirmation',
 		'market::password',
+		'market::restSession',
+		'market::cloudSession',
 		'proxyPassword',
 		'samba::backup::ip',
 		'samba::backup::password',

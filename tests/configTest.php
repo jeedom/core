@@ -20,6 +20,10 @@ use PHPUnit\Framework\TestCase;
 
 
 class configTest extends TestCase {
+	public function testCloudSessionIsEncrypted() {
+		$this->assertTrue(config::shouldBeEncrypted('market::cloudSession'));
+	}
+
 	public function testSave() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		config::save('toto', 'toto');
