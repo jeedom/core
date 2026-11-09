@@ -52,6 +52,37 @@ info:
     La durée est de 24 h par défaut, ou de 90 jours avec « Rester connecté ».
     L'ancienne interface utilise ses propres sessions PHP.
 
+    ## Configuration (`/config`)
+    Réglages globaux du core (table `config`, `plugin = core`), lus et
+    modifiés par liste de clés : `GET /config?keys=…` et `PATCH /config`.
+    Les noms de clés sont ceux du core, limités à une liste exposée.
+    Les définitions des résumés sont la clé `object:summary`. La configuration des plugins passe
+    par `/plugins/{id}`.
+    - Lecture : tout utilisateur connecté, sauf les clés de
+      `config::shouldBeEncrypted()`, réservées aux administrateurs, comme
+      `core/ajax/config.ajax.php` ; pour un non-administrateur, elles sont
+      absentes de la réponse.
+    - Les clés sensibles ne sortent jamais en clair (schéma `ConfigSecret`).
+    - Écriture : `PATCH /config`, administrateurs uniquement.
+    - Cible future (pas encore appliquée) : une liste blanche des clés
+      lisibles par un non-administrateur (thème, widgets, langue, fuseau…,
+      voir `docs/inventaire-config.md` de jeevolution) ; le reste deviendra
+      réservé aux administrateurs.
+    - Les clés dynamiques gardées sont décrites par motif (`patternProperties`) :
+      `{dépôt}::enable` et `{dépôt}::allowDNS`. Les niveaux de log par module
+      (`log::level::*`), les modes d'accès API (`api::*::mode`, appelés à disparaître avec les utilisateurs techniques) et les
+      widgets par défaut (`widget::default::cmd::*`) ne sont pas exposés.
+    - Non exposées : les clés jamais lues par le core (`info::address`,
+      `info::postalCode`, `info::city`, `info::stateCode`, `info::livingSpace`,
+      `info::nbOccupant`, `disableMobileUi`, `internalPort`, `externalPort`,
+      `update::composerUpdate`), et celles que la nouvelle UI n'utilisera
+      plus (`dahsboard::column::size`, `historyCalculTendanceThresholddMin`,
+      `historyCalculTendanceThresholddMax`).
+    - Clés renommées par un script de migration du core (l'API n'expose que
+      le nouveau nom) : `proxyLogins` → `proxyLogin`, `ldap::enable` →
+      `ldap:enable`, `history::defautShowPeriod` → `history::defaultShowPeriod`,
+      `dontProtectTooFastLaunchDeamony` → `dontProtectTooFastLaunchDaemon`.
+
 servers:
   - url: /api/v1
 
@@ -82,6 +113,8 @@ tags:
     description: Commandes des équipements, infos (états) et actions.
   - name: Temps réel
     description: Flux d'événements en direct (SSE).
+  - name: Configuration
+    description: Réglages globaux du core, lus et modifiés par liste de clés.
 
 paths:
   /logs:
@@ -3239,6 +3272,52 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/ScenarioNotFound' }
 
+  /config:
+    get:
+      tags: [Configuration]
+      operationId: getConfig
+      summary: Lire des clés de configuration du core
+      description: |
+        Renvoie les clés demandées dans `keys` ; sans `keys`, toutes les clés
+        exposées. Une clé hors de la liste exposée refuse la requête (422).
+        Une clé chiffrée est absente de la réponse pour un non-administrateur.
+      parameters:
+        - name: keys
+          in: query
+          required: false
+          description: 'Noms de clés séparés par des virgules (ex. `name,language,timezone`).'
+          schema: { type: string }
+      responses:
+        '200':
+          description: Valeurs des clés demandées.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigValues' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfig
+      summary: Modifier des clés de configuration (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie les clés envoyées, relues.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigValuesUpdate' }
+      responses:
+        '200':
+          description: Clés envoyées, après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigValues' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -5045,6 +5124,1103 @@ components:
           enum: [cursor_too_old]
           description: Des événements ont pu être perdus ; recharger l'état par les routes REST.
 
+    ConfigValues:
+      type: object
+      description: |
+        Valeurs de configuration du core, indexées par nom de clé. Seules les
+        clés demandées sont présentes ; une clé chiffrée est absente pour un
+        non-administrateur. Le nom de l'onglet de l'administration est indiqué
+        dans chaque description.
+      additionalProperties: false
+      properties:
+        'object:summary': { $ref: '#/components/schemas/ConfigSummaries' }
+        'name':
+          type: string
+          description: 'Utilisé notamment par le market (onglet general).'
+        'display_name_login':
+          type: boolean
+          description: 'Afficher sur la page de connexion (onglet general).'
+        'language':
+          type: string
+          description: 'Sélection de la langue d''affichage (onglet general).'
+          default: 'fr_FR'
+        'tts::engine':
+          type: string
+          description: 'Sélection du moteur text-to-speech (onglet general).'
+        'timezone':
+          type: string
+          description: 'Sélection du fuseau horaire (onglet general).'
+          default: 'Europe/Brussels'
+        'ntp::optionalServer':
+          type: string
+          description: 'Permet d''ajouter un serveur de temps pour la synchronisation (onglet general).'
+        'ignoreHourCheck':
+          type: boolean
+          description: 'Cochez la case pour ne pas prendre en compte l''heure du syst (onglet general).'
+        'core::jqueryless':
+          type: boolean
+          description: 'Ne charge pas jQuery/Boostrap et leurs librairies (Attention (onglet general).'
+          default: false
+        'info::latitude':
+          type: [number, 'null']
+          description: 'Latitude (onglet general).'
+        'info::longitude':
+          type: [number, 'null']
+          description: 'Longitude (onglet general).'
+        'info::altitude':
+          type: [number, 'null']
+          description: 'Altitude du bâtiment en mètres (onglet general).'
+        'jeedom_theme_main':
+          type: string
+          description: 'Principal (onglet interface).'
+        'jeedom_theme_alternate':
+          type: string
+          description: 'Alternatif (onglet interface).'
+          default: 'core2019_Dark'
+        'mobile_theme_color':
+          type: string
+          description: 'Principal (onglet interface).'
+          default: 'core2019_Light'
+        'mobile_theme_color_night':
+          type: string
+          description: 'Alternatif (onglet interface).'
+          default: 'core2019_Dark'
+        'theme_changeAccordingTime':
+          type: boolean
+          description: 'Selon l''heure (onglet interface).'
+          default: true
+        'theme_start_day_hour':
+          type: string
+          description: 'Principal de (onglet interface).'
+          default: '08:00'
+        'theme_end_day_hour':
+          type: string
+          description: 'à (onglet interface).'
+          default: '20:00'
+        'mobile_theme_useAmbientLight':
+          type: boolean
+          description: 'Selon la luminosité (onglet interface).'
+        'theme_displayAsTable':
+          type: boolean
+          description: 'Affichage tableau (onglet interface).'
+          default: true
+        'interface::advance::coloredIcons':
+          type: boolean
+          description: 'Icônes colorées (onglet interface).'
+          default: true
+        'scenario::disableAutocomplete':
+          type: boolean
+          description: 'Désactiver l''auto-complétion des scénarios (onglet interface).'
+        'interface::toast::position':
+          type: string
+          description: 'Position (onglet interface).'
+          default: 'toast-bottom-right'
+        'interface::toast::duration':
+          type: [number, 'null']
+          description: 'Durée (onglet interface).'
+          default: 5
+        'interface::advance::enable':
+          type: boolean
+          description: 'Activer (onglet interface).'
+        'css::background-opacity':
+          type: [number, 'null']
+          description: 'Transparence (Opacité) des tuiles et de certains éléments d'' (onglet interface).'
+          default: 1
+        'css::border-radius':
+          type: [number, 'null']
+          description: 'Arrondi des éléments d''interface (0 = pas d''arrondi) (onglet interface).'
+          default: 0
+        'widget::shadow':
+          type: boolean
+          description: 'Désactiver les ombres (onglet interface).'
+        'enableCustomCss':
+          type: boolean
+          description: 'Activer (onglet interface).'
+        'widget::step::height':
+          type: [number, 'null']
+          description: 'Hauteur (onglet interface).'
+          default: 30
+        'widget::step::width':
+          type: [number, 'null']
+          description: 'Largeur (onglet interface).'
+          default: 40
+        'widget::margin':
+          type: [number, 'null']
+          description: 'Espace entre les tuiles en pixels (onglet interface).'
+          default: 1
+        'interface::advance::vertCentering':
+          type: boolean
+          description: 'Centrage vertical (onglet interface).'
+        'interface::advance::coloredcats':
+          type: boolean
+          description: 'Catégories colorées (onglet interface).'
+          default: true
+        'interface::mobile::onecolumn':
+          type: boolean
+          description: 'Pleine largeur sur mobile (onglet interface).'
+        'autoreorder::weight_human_action':
+          type: [number, 'null']
+          description: 'Poids des actions humaines dans la réorganisation automatiqu (onglet interface).'
+          default: 2
+        'autoreorder::weight_automation_action':
+          type: [number, 'null']
+          description: 'Poids des actions automatiques dans la réorganisation automa (onglet interface).'
+          default: 1
+        'autoreorder::weight_history':
+          type: [number, 'null']
+          description: 'Poids des actions de consultation de l''historique dans la ré (onglet interface).'
+          default: 1
+        'showBackgroundImg':
+          type: boolean
+          description: 'Cocher la case pour afficher les images de fond (onglet interface).'
+        'interface::background::opacitylight':
+          type: [number, 'null']
+          description: 'Light (onglet interface).'
+          default: 0.6
+        'interface::background::opacitydark':
+          type: [number, 'null']
+          description: 'Dark (onglet interface).'
+          default: 0.6
+        'css::objectBackgroundBlur':
+          type: [number, 'null']
+          description: 'Valeur de flou pour les images de fond sur les pages Dashboa (onglet interface).'
+          default: 0
+        'network::disableInternalAuto':
+          type: boolean
+          description: 'Désactiver (onglet network).'
+        'internalProtocol':
+          type: string
+          description: 'Uniquement utilisée pour la communication interne avec (onglet network).'
+        'internalAddr':
+          type: string
+          description: 'HTTP (onglet network).'
+        'internalComplement':
+          type: string
+          description: 'HTTP (onglet network).'
+        'network::disableMangement':
+          type: boolean
+          description: 'Désactiver (onglet network).'
+          default: false
+        'externalProtocol':
+          type: string
+          description: 'Adresse (onglet network).'
+          default: 'http://'
+        'externalAddr':
+          type: string
+          description: 'HTTPS (onglet network).'
+        'externalComplement':
+          type: string
+          description: 'HTTPS (onglet network).'
+        'dns::mode':
+          type: string
+          description: 'Mode (onglet network).'
+        'network::localip':
+          type: string
+          description: 'Uniquement pour les installations sous Docker (format: 192.1 (onglet network).'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'proxyAddress':
+          type: string
+          description: 'Adresse du proxy (onglet network).'
+        'proxyPort':
+          type: [number, 'null']
+          description: 'Port du proxy (onglet network).'
+        'proxyLogin':
+          type: string
+          description: 'Nom d''utilisateur (onglet network).'
+        'proxyPassword': { $ref: '#/components/schemas/ConfigSecret' }
+        'timeline::maxevent':
+          type: [number, 'null']
+          description: 'Nombre maximum d''évènements sur chaque Timeline (onglet logs).'
+          default: 500
+        'addMessageForErrorLog':
+          type: boolean
+          description: 'Ajouter un message à chaque erreur dans les logs (onglet logs).'
+        'maxLineLog':
+          type: [number, 'null']
+          description: 'Nombre maximal de lignes dans un fichier de log (onglet logs).'
+        'maxSizeLog':
+          type: [number, 'null']
+          description: 'Taille maximale pour fichier de log (en Mo) (onglet logs).'
+          default: 5
+        'log::level':
+          type: [number, 'null']
+          description: 'Niveau de log par défaut (onglet logs).'
+          default: 400
+        'alert::addMessageOnTimeout':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Timeout » (onglet logs).'
+        'alert::timeoutCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Timeout » (onglet logs).'
+        'alert::addMessageOnBatterywarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Warning » (onglet logs).'
+        'alert::batterywarningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
+        'alert::addMessageOnBatterydanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Danger » (onglet logs).'
+        'alert::batterydangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
+        'alert::addMessageOnWarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Warning » (onglet logs).'
+        'alert::warningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Warning » (onglet logs).'
+        'alert::addMessageOnDanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Danger » (onglet logs).'
+        'alert::dangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Danger » (onglet logs).'
+        'numberOfTryBeforeEqLogicDisable':
+          type: [number, 'null']
+          description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas (onglet eqLogics).'
+          default: 3
+        'battery::warning':
+          type: [number, 'null']
+          description: 'Si le niveau de charge passe en dessous de (%) (onglet eqLogics).'
+        'battery::danger':
+          type: [number, 'null']
+          description: 'Si le niveau de charge passe en dessous de (%) (onglet eqLogics).'
+          default: 5
+        'displayStatsWidget':
+          type: boolean
+          description: 'Afficher les statistiques sur les widgets (onglet eqLogics).'
+          default: false
+        'historyCalculPeriod':
+          type: [number, 'null']
+          description: 'Période de calcul pour min, max, moyenne (onglet eqLogics).'
+          default: 24
+        'historyCalculTendance':
+          type: [number, 'null']
+          description: 'Période de calcul pour la tendance (onglet eqLogics).'
+        'historyArchiveTime':
+          type: [number, 'null']
+          description: 'Délai avant archivage (onglet eqLogics).'
+          default: 2
+        'historyArchivePackage':
+          type: [number, 'null']
+          description: 'Archiver par paquet de (onglet eqLogics).'
+          default: 1
+        'history::smooth':
+          type: string
+          description: 'Limite le nombre de valeurs historisées par les commandes en (onglet eqLogics).'
+          default: '-2'
+        'history::defaultShowPeriod':
+          type: string
+          description: 'Période d''affichage des graphiques par défaut (onglet eqLogics).'
+          default: '-1 month'
+        'historyPurge':
+          type: string
+          description: 'Purger l''historique si plus vieux que (onglet eqLogics).'
+        'history::allowFuture':
+          type: boolean
+          description: 'Autorise l''affichage d''historique avec des dates dans le fut (onglet eqLogics).'
+        'cmdPushUrl':
+          type: string
+          description: 'Mettez ici l''URL à appeler lors d''une mise à jour de la vale (onglet eqLogics).'
+        'expression::autoQuote':
+          type: boolean
+          description: 'Gérer automatiquement les guillemets des chaines de caractèr (onglet eqLogics).'
+        'cmd::allowCheckState':
+          type: boolean
+          description: 'Ne pas exécuter la commande si l’équipement est déjà dans le (onglet eqLogics).'
+        'report::delay':
+          type: [number, 'null']
+          description: 'Délai d''attente après génération de la page (onglet reports).'
+        'report::maxdays':
+          type: [number, 'null']
+          description: 'Nettoyer les rapports plus anciens de (onglet reports).'
+          default: 30
+        'graphlink::scenario::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::jeeObject::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+        'graphlink::eqLogic::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::cmd::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::dataStore::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::prerender':
+          type: [number, 'null']
+          description: 'Permet d’agir sur la disposition du graphique (défaut 3) (onglet links).'
+          default: 10
+        'graphlink::render':
+          type: [number, 'null']
+          description: 'Permet d’agir sur la disposition du graphique selon les rela (onglet links).'
+          default: 3000
+        'interact::confidence1':
+          type: [number, 'null']
+          description: '1 mot (onglet interactions).'
+        'interact::confidence2':
+          type: [number, 'null']
+          description: '2 mots (onglet interactions).'
+          default: 3
+        'interact::confidence3':
+          type: [number, 'null']
+          description: '3 mots (onglet interactions).'
+          default: 5
+        'interact::confidence':
+          type: [number, 'null']
+          description: '3 mots (onglet interactions).'
+          default: 15
+        'interact::weigh1':
+          type: [number, 'null']
+          description: '1 mot (onglet interactions).'
+        'interact::weigh2':
+          type: [number, 'null']
+          description: '2 mots (onglet interactions).'
+        'interact::weigh3':
+          type: [number, 'null']
+          description: '3 mots (onglet interactions).'
+        'interact::weigh4':
+          type: [number, 'null']
+          description: '4 mots (onglet interactions).'
+        'interact::noResponseIfEmpty':
+          type: boolean
+          description: 'Par défaut Jeedom répond “je n’ai pas compris” si aucune int (onglet interactions).'
+        'interact::regexpExcludGlobal':
+          type: string
+          description: 'Regex générale d''exclusion pour les interactions (onglet interactions).'
+        'interact::autoreply::enable':
+          type: boolean
+          description: 'Activer les interactions automatiques (onglet interactions).'
+          default: true
+        'interact::contextual::enable':
+          type: boolean
+          description: 'Activer les réponses contextuelles (onglet interactions).'
+          default: true
+        'interact::contextual::startpriority':
+          type: string
+          description: 'Réponse contextuelle prioritaire si la phrase commence par (onglet interactions).'
+          default: 'et'
+        'interact::contextual::splitword':
+          type: string
+          description: 'Découper une interaction en deux si elle contient (onglet interactions).'
+          default: 'et'
+        'interact::warnme::enable':
+          type: boolean
+          description: 'Activer les interactions "préviens moi" (onglet interactions).'
+          default: true
+        'interact::warnme::start':
+          type: string
+          description: 'Réponse de type "préviens moi" si la phrase commence par (onglet interactions).'
+          default: 'previens moi si'
+        'interact::warnme::defaultreturncmd':
+          type: string
+          description: 'Commande de retour par défaut (onglet interactions).'
+        'interact::autoreply::object::synonym':
+          type: string
+          description: 'Synonymes pour les objets (onglet interactions).'
+        'interact::autoreply::eqLogic::synonym':
+          type: string
+          description: 'Synonymes pour les équipements (onglet interactions).'
+          default: 'lumiere'
+        'interact::autoreply::cmd::synonym':
+          type: string
+          description: 'Synonymes pour les commandes (onglet interactions).'
+          default: 'on'
+        'interact::autoreply::summary::synonym':
+          type: string
+          description: 'Synonymes pour les résumés (onglet interactions).'
+        'interact::autoreply::cmd::slider::max':
+          type: string
+          description: 'Synonyme commande slider maximum (onglet interactions).'
+          default: 'ferme'
+        'interact::autoreply::cmd::slider::min':
+          type: string
+          description: 'Synonyme commande slider minimum (onglet interactions).'
+          default: 'ouvre'
+        'session_lifetime':
+          type: [number, 'null']
+          description: 'Durée de vie de votre connexion, en heure (si vous n''avez pa (onglet security).'
+          default: 24
+        'security::registerDeviceLifetime':
+          type: [number, 'null']
+          description: 'Durée d''inactivité avant expiration du périphérique enregist (onglet security).'
+        'security::maxFailedLogin':
+          type: [number, 'null']
+          description: 'Passé ce nombre, l''IP sera bannie. (onglet security).'
+          default: 6
+        'security::timeLoginFailed':
+          type: [number, 'null']
+          description: 'Temps en secondes.  0 : temps infini (onglet security).'
+          default: 300
+        'security::bantime':
+          type: [number, 'null']
+          description: 'Durée en secondes.  -1 : bannissement infini (onglet security).'
+          default: 600
+        'security::whiteips':
+          type: string
+          description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.* (onglet security).'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'ldap:enable':
+          type: boolean
+          description: 'Activer l''authentification LDAP (onglet security).'
+        'ldap:samba4':
+          type: boolean
+          description: 'Samba4 (onglet security).'
+        'ldap:tls':
+          type: boolean
+          description: 'tls (onglet security).'
+        'ldap:host': { $ref: '#/components/schemas/ConfigSecret' }
+        'ldap:port':
+          type: string
+          description: 'Port à utiliser (par défaut, LDAP : 389, LDAPS : 636) (onglet security).'
+        'ldap:domain':
+          type: string
+          description: 'FQDN de la base (onglet security).'
+        'ldap:basedn':
+          type: string
+          description: 'Base DN correspondant à l''emplacement des utilisateurs (e.g (onglet security).'
+        'ldap:username': { $ref: '#/components/schemas/ConfigSecret' }
+        'ldap:password': { $ref: '#/components/schemas/ConfigSecret' }
+        'ldap::usersearch':
+          type: string
+          description: 'Champ à utiliser comme identifiant utilisateur (e.g uid) (onglet security).'
+        'ldap:filter:admin':
+          type: string
+          description: 'Filtre permettant d''identifier les administrateurs dans la b (onglet security).'
+        'ldap:filter:user':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs dans la base (onglet security).'
+        'ldap:filter:restrict':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs limités dans (onglet security).'
+        'sso:allowRemoteUser':
+          type: boolean
+          description: 'Activer l''authentification SSO (onglet security).'
+        'sso:remoteUserHeader':
+          type: string
+          description: 'Champ à utiliser pour déterminer l''entête HTTP contenant l''i (onglet security).'
+        'dontProtectTooFastLaunchDependancy':
+          type: boolean
+          description: 'Autoriser l''installation des dépendances d''un même plugin à (onglet security).'
+        'dontProtectTooFastLaunchDaemon':
+          type: boolean
+          description: 'Autoriser le lancement du démon d''un même plugin à moins de (onglet security).'
+        'core::repo::provider':
+          type: string
+          description: 'Source de mise à jour du core (onglet updates).'
+          default: 'default'
+        'core::branch':
+          type: string
+          description: 'Version installée du core, pour la vérification de mise à jo (onglet updates).'
+          default: 'master'
+        'update::autocheck':
+          type: boolean
+          description: 'Vérification automatique des mises à jour (onglet updates).'
+          default: true
+        'cache::engine':
+          type: string
+          description: 'Moteur de cache (onglet cache).'
+          default: 'FileCache'
+        'cache::redisaddr':
+          type: string
+          description: 'Adresse Redis (onglet cache).'
+          default: '127.0.0.1'
+        'cache::redisport':
+          type: [number, 'null']
+          description: 'Port redis (onglet cache).'
+          default: 6379
+        'event::waitPollingTime':
+          type: [number, 'null']
+          description: 'Fréquence de vérification des événements en attente. (onglet cache).'
+        'api::forbidden::method':
+          type: string
+          description: 'Interdire les méthodes api (regexp) (onglet api).'
+        'api::allow::method':
+          type: string
+          description: 'N''autoriser que les méthodes api (regexp) (onglet api).'
+      patternProperties:
+        '^[A-Za-z0-9_]+::enable$':
+          type: boolean
+          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Dépôt inconnu refusé (422)."
+        '^[A-Za-z0-9_]+::allowDNS$':
+          type: boolean
+          description: "Accès par le DNS Jeedom, pour les dépôts qui le proposent (aujourd'hui `market::allowDNS`)."
+    ConfigValuesUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'object:summary': { $ref: '#/components/schemas/ConfigSummaries' }
+        'name':
+          type: string
+          description: 'Utilisé notamment par le market (onglet general).'
+        'display_name_login':
+          type: boolean
+          description: 'Afficher sur la page de connexion (onglet general).'
+        'language':
+          type: string
+          description: 'Sélection de la langue d''affichage (onglet general).'
+          default: 'fr_FR'
+        'tts::engine':
+          type: string
+          description: 'Sélection du moteur text-to-speech (onglet general).'
+        'timezone':
+          type: string
+          description: 'Sélection du fuseau horaire (onglet general).'
+          default: 'Europe/Brussels'
+        'ntp::optionalServer':
+          type: string
+          description: 'Permet d''ajouter un serveur de temps pour la synchronisation (onglet general).'
+        'ignoreHourCheck':
+          type: boolean
+          description: 'Cochez la case pour ne pas prendre en compte l''heure du syst (onglet general).'
+        'core::jqueryless':
+          type: boolean
+          description: 'Ne charge pas jQuery/Boostrap et leurs librairies (Attention (onglet general).'
+          default: false
+        'info::latitude':
+          type: [number, 'null']
+          description: 'Latitude (onglet general).'
+        'info::longitude':
+          type: [number, 'null']
+          description: 'Longitude (onglet general).'
+        'info::altitude':
+          type: [number, 'null']
+          description: 'Altitude du bâtiment en mètres (onglet general).'
+        'jeedom_theme_main':
+          type: string
+          description: 'Principal (onglet interface).'
+        'jeedom_theme_alternate':
+          type: string
+          description: 'Alternatif (onglet interface).'
+          default: 'core2019_Dark'
+        'mobile_theme_color':
+          type: string
+          description: 'Principal (onglet interface).'
+          default: 'core2019_Light'
+        'mobile_theme_color_night':
+          type: string
+          description: 'Alternatif (onglet interface).'
+          default: 'core2019_Dark'
+        'theme_changeAccordingTime':
+          type: boolean
+          description: 'Selon l''heure (onglet interface).'
+          default: true
+        'theme_start_day_hour':
+          type: string
+          description: 'Principal de (onglet interface).'
+          default: '08:00'
+        'theme_end_day_hour':
+          type: string
+          description: 'à (onglet interface).'
+          default: '20:00'
+        'mobile_theme_useAmbientLight':
+          type: boolean
+          description: 'Selon la luminosité (onglet interface).'
+        'theme_displayAsTable':
+          type: boolean
+          description: 'Affichage tableau (onglet interface).'
+          default: true
+        'interface::advance::coloredIcons':
+          type: boolean
+          description: 'Icônes colorées (onglet interface).'
+          default: true
+        'scenario::disableAutocomplete':
+          type: boolean
+          description: 'Désactiver l''auto-complétion des scénarios (onglet interface).'
+        'interface::toast::position':
+          type: string
+          description: 'Position (onglet interface).'
+          default: 'toast-bottom-right'
+        'interface::toast::duration':
+          type: [number, 'null']
+          description: 'Durée (onglet interface).'
+          default: 5
+        'interface::advance::enable':
+          type: boolean
+          description: 'Activer (onglet interface).'
+        'css::background-opacity':
+          type: [number, 'null']
+          description: 'Transparence (Opacité) des tuiles et de certains éléments d'' (onglet interface).'
+          default: 1
+        'css::border-radius':
+          type: [number, 'null']
+          description: 'Arrondi des éléments d''interface (0 = pas d''arrondi) (onglet interface).'
+          default: 0
+        'widget::shadow':
+          type: boolean
+          description: 'Désactiver les ombres (onglet interface).'
+        'enableCustomCss':
+          type: boolean
+          description: 'Activer (onglet interface).'
+        'widget::step::height':
+          type: [number, 'null']
+          description: 'Hauteur (onglet interface).'
+          default: 30
+        'widget::step::width':
+          type: [number, 'null']
+          description: 'Largeur (onglet interface).'
+          default: 40
+        'widget::margin':
+          type: [number, 'null']
+          description: 'Espace entre les tuiles en pixels (onglet interface).'
+          default: 1
+        'interface::advance::vertCentering':
+          type: boolean
+          description: 'Centrage vertical (onglet interface).'
+        'interface::advance::coloredcats':
+          type: boolean
+          description: 'Catégories colorées (onglet interface).'
+          default: true
+        'interface::mobile::onecolumn':
+          type: boolean
+          description: 'Pleine largeur sur mobile (onglet interface).'
+        'autoreorder::weight_human_action':
+          type: [number, 'null']
+          description: 'Poids des actions humaines dans la réorganisation automatiqu (onglet interface).'
+          default: 2
+        'autoreorder::weight_automation_action':
+          type: [number, 'null']
+          description: 'Poids des actions automatiques dans la réorganisation automa (onglet interface).'
+          default: 1
+        'autoreorder::weight_history':
+          type: [number, 'null']
+          description: 'Poids des actions de consultation de l''historique dans la ré (onglet interface).'
+          default: 1
+        'showBackgroundImg':
+          type: boolean
+          description: 'Cocher la case pour afficher les images de fond (onglet interface).'
+        'interface::background::opacitylight':
+          type: [number, 'null']
+          description: 'Light (onglet interface).'
+          default: 0.6
+        'interface::background::opacitydark':
+          type: [number, 'null']
+          description: 'Dark (onglet interface).'
+          default: 0.6
+        'css::objectBackgroundBlur':
+          type: [number, 'null']
+          description: 'Valeur de flou pour les images de fond sur les pages Dashboa (onglet interface).'
+          default: 0
+        'network::disableInternalAuto':
+          type: boolean
+          description: 'Désactiver (onglet network).'
+        'internalProtocol':
+          type: string
+          description: 'Uniquement utilisée pour la communication interne avec (onglet network).'
+        'internalAddr':
+          type: string
+          description: 'HTTP (onglet network).'
+        'internalComplement':
+          type: string
+          description: 'HTTP (onglet network).'
+        'network::disableMangement':
+          type: boolean
+          description: 'Désactiver (onglet network).'
+          default: false
+        'externalProtocol':
+          type: string
+          description: 'Adresse (onglet network).'
+          default: 'http://'
+        'externalAddr':
+          type: string
+          description: 'HTTPS (onglet network).'
+        'externalComplement':
+          type: string
+          description: 'HTTPS (onglet network).'
+        'dns::mode':
+          type: string
+          description: 'Mode (onglet network).'
+        'network::localip':
+          type: string
+          description: 'Uniquement pour les installations sous Docker (format: 192.1 (onglet network).'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'proxyAddress':
+          type: string
+          description: 'Adresse du proxy (onglet network).'
+        'proxyPort':
+          type: [number, 'null']
+          description: 'Port du proxy (onglet network).'
+        'proxyLogin':
+          type: string
+          description: 'Nom d''utilisateur (onglet network).'
+        'proxyPassword':
+          type: string
+          writeOnly: true
+          description: 'Mot de passe (onglet network). Chaîne vide pour effacer.'
+        'timeline::maxevent':
+          type: [number, 'null']
+          description: 'Nombre maximum d''évènements sur chaque Timeline (onglet logs).'
+          default: 500
+        'addMessageForErrorLog':
+          type: boolean
+          description: 'Ajouter un message à chaque erreur dans les logs (onglet logs).'
+        'maxLineLog':
+          type: [number, 'null']
+          description: 'Nombre maximal de lignes dans un fichier de log (onglet logs).'
+        'maxSizeLog':
+          type: [number, 'null']
+          description: 'Taille maximale pour fichier de log (en Mo) (onglet logs).'
+          default: 5
+        'log::level':
+          type: [number, 'null']
+          description: 'Niveau de log par défaut (onglet logs).'
+          default: 400
+        'alert::addMessageOnTimeout':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Timeout » (onglet logs).'
+        'alert::timeoutCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Timeout » (onglet logs).'
+        'alert::addMessageOnBatterywarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Warning » (onglet logs).'
+        'alert::batterywarningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
+        'alert::addMessageOnBatterydanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Batterie en Danger » (onglet logs).'
+        'alert::batterydangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
+        'alert::addMessageOnWarning':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Warning » (onglet logs).'
+        'alert::warningCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Warning » (onglet logs).'
+        'alert::addMessageOnDanger':
+          type: boolean
+          description: 'Ajouter un message sur une alerte « Danger » (onglet logs).'
+        'alert::dangerCmd':
+          type: string
+          description: 'Commande à exécuter sur une alerte « Danger » (onglet logs).'
+        'numberOfTryBeforeEqLogicDisable':
+          type: [number, 'null']
+          description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas (onglet eqLogics).'
+          default: 3
+        'battery::warning':
+          type: [number, 'null']
+          description: 'Si le niveau de charge passe en dessous de (%) (onglet eqLogics).'
+        'battery::danger':
+          type: [number, 'null']
+          description: 'Si le niveau de charge passe en dessous de (%) (onglet eqLogics).'
+          default: 5
+        'displayStatsWidget':
+          type: boolean
+          description: 'Afficher les statistiques sur les widgets (onglet eqLogics).'
+          default: false
+        'historyCalculPeriod':
+          type: [number, 'null']
+          description: 'Période de calcul pour min, max, moyenne (onglet eqLogics).'
+          default: 24
+        'historyCalculTendance':
+          type: [number, 'null']
+          description: 'Période de calcul pour la tendance (onglet eqLogics).'
+        'historyArchiveTime':
+          type: [number, 'null']
+          description: 'Délai avant archivage (onglet eqLogics).'
+          default: 2
+        'historyArchivePackage':
+          type: [number, 'null']
+          description: 'Archiver par paquet de (onglet eqLogics).'
+          default: 1
+        'history::smooth':
+          type: string
+          description: 'Limite le nombre de valeurs historisées par les commandes en (onglet eqLogics).'
+          default: '-2'
+        'history::defaultShowPeriod':
+          type: string
+          description: 'Période d''affichage des graphiques par défaut (onglet eqLogics).'
+          default: '-1 month'
+        'historyPurge':
+          type: string
+          description: 'Purger l''historique si plus vieux que (onglet eqLogics).'
+        'history::allowFuture':
+          type: boolean
+          description: 'Autorise l''affichage d''historique avec des dates dans le fut (onglet eqLogics).'
+        'cmdPushUrl':
+          type: string
+          description: 'Mettez ici l''URL à appeler lors d''une mise à jour de la vale (onglet eqLogics).'
+        'expression::autoQuote':
+          type: boolean
+          description: 'Gérer automatiquement les guillemets des chaines de caractèr (onglet eqLogics).'
+        'cmd::allowCheckState':
+          type: boolean
+          description: 'Ne pas exécuter la commande si l’équipement est déjà dans le (onglet eqLogics).'
+        'report::delay':
+          type: [number, 'null']
+          description: 'Délai d''attente après génération de la page (onglet reports).'
+        'report::maxdays':
+          type: [number, 'null']
+          description: 'Nettoyer les rapports plus anciens de (onglet reports).'
+          default: 30
+        'graphlink::scenario::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::jeeObject::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+        'graphlink::eqLogic::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::cmd::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::dataStore::drill':
+          type: [number, 'null']
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
+          default: 3
+        'graphlink::prerender':
+          type: [number, 'null']
+          description: 'Permet d’agir sur la disposition du graphique (défaut 3) (onglet links).'
+          default: 10
+        'graphlink::render':
+          type: [number, 'null']
+          description: 'Permet d’agir sur la disposition du graphique selon les rela (onglet links).'
+          default: 3000
+        'interact::confidence1':
+          type: [number, 'null']
+          description: '1 mot (onglet interactions).'
+        'interact::confidence2':
+          type: [number, 'null']
+          description: '2 mots (onglet interactions).'
+          default: 3
+        'interact::confidence3':
+          type: [number, 'null']
+          description: '3 mots (onglet interactions).'
+          default: 5
+        'interact::confidence':
+          type: [number, 'null']
+          description: '3 mots (onglet interactions).'
+          default: 15
+        'interact::weigh1':
+          type: [number, 'null']
+          description: '1 mot (onglet interactions).'
+        'interact::weigh2':
+          type: [number, 'null']
+          description: '2 mots (onglet interactions).'
+        'interact::weigh3':
+          type: [number, 'null']
+          description: '3 mots (onglet interactions).'
+        'interact::weigh4':
+          type: [number, 'null']
+          description: '4 mots (onglet interactions).'
+        'interact::noResponseIfEmpty':
+          type: boolean
+          description: 'Par défaut Jeedom répond “je n’ai pas compris” si aucune int (onglet interactions).'
+        'interact::regexpExcludGlobal':
+          type: string
+          description: 'Regex générale d''exclusion pour les interactions (onglet interactions).'
+        'interact::autoreply::enable':
+          type: boolean
+          description: 'Activer les interactions automatiques (onglet interactions).'
+          default: true
+        'interact::contextual::enable':
+          type: boolean
+          description: 'Activer les réponses contextuelles (onglet interactions).'
+          default: true
+        'interact::contextual::startpriority':
+          type: string
+          description: 'Réponse contextuelle prioritaire si la phrase commence par (onglet interactions).'
+          default: 'et'
+        'interact::contextual::splitword':
+          type: string
+          description: 'Découper une interaction en deux si elle contient (onglet interactions).'
+          default: 'et'
+        'interact::warnme::enable':
+          type: boolean
+          description: 'Activer les interactions "préviens moi" (onglet interactions).'
+          default: true
+        'interact::warnme::start':
+          type: string
+          description: 'Réponse de type "préviens moi" si la phrase commence par (onglet interactions).'
+          default: 'previens moi si'
+        'interact::warnme::defaultreturncmd':
+          type: string
+          description: 'Commande de retour par défaut (onglet interactions).'
+        'interact::autoreply::object::synonym':
+          type: string
+          description: 'Synonymes pour les objets (onglet interactions).'
+        'interact::autoreply::eqLogic::synonym':
+          type: string
+          description: 'Synonymes pour les équipements (onglet interactions).'
+          default: 'lumiere'
+        'interact::autoreply::cmd::synonym':
+          type: string
+          description: 'Synonymes pour les commandes (onglet interactions).'
+          default: 'on'
+        'interact::autoreply::summary::synonym':
+          type: string
+          description: 'Synonymes pour les résumés (onglet interactions).'
+        'interact::autoreply::cmd::slider::max':
+          type: string
+          description: 'Synonyme commande slider maximum (onglet interactions).'
+          default: 'ferme'
+        'interact::autoreply::cmd::slider::min':
+          type: string
+          description: 'Synonyme commande slider minimum (onglet interactions).'
+          default: 'ouvre'
+        'session_lifetime':
+          type: [number, 'null']
+          description: 'Durée de vie de votre connexion, en heure (si vous n''avez pa (onglet security).'
+          default: 24
+        'security::registerDeviceLifetime':
+          type: [number, 'null']
+          description: 'Durée d''inactivité avant expiration du périphérique enregist (onglet security).'
+        'security::maxFailedLogin':
+          type: [number, 'null']
+          description: 'Passé ce nombre, l''IP sera bannie. (onglet security).'
+          default: 6
+        'security::timeLoginFailed':
+          type: [number, 'null']
+          description: 'Temps en secondes.  0 : temps infini (onglet security).'
+          default: 300
+        'security::bantime':
+          type: [number, 'null']
+          description: 'Durée en secondes.  -1 : bannissement infini (onglet security).'
+          default: 600
+        'security::whiteips':
+          type: string
+          description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.* (onglet security).'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'ldap:enable':
+          type: boolean
+          description: 'Activer l''authentification LDAP (onglet security).'
+        'ldap:samba4':
+          type: boolean
+          description: 'Samba4 (onglet security).'
+        'ldap:tls':
+          type: boolean
+          description: 'tls (onglet security).'
+        'ldap:host':
+          type: string
+          writeOnly: true
+          description: 'URL utilisée pour contacter la base, en précisant le type de (onglet security). Chaîne vide pour effacer.'
+        'ldap:port':
+          type: string
+          description: 'Port à utiliser (par défaut, LDAP : 389, LDAPS : 636) (onglet security).'
+        'ldap:domain':
+          type: string
+          description: 'FQDN de la base (onglet security).'
+        'ldap:basedn':
+          type: string
+          description: 'Base DN correspondant à l''emplacement des utilisateurs (e.g (onglet security).'
+        'ldap:username':
+          type: string
+          writeOnly: true
+          description: 'Utilisateur ayant accès à la base (si possible, utiliser un (onglet security). Chaîne vide pour effacer.'
+        'ldap:password':
+          type: string
+          writeOnly: true
+          description: 'Mot de passe de l''utilisateur (onglet security). Chaîne vide pour effacer.'
+        'ldap::usersearch':
+          type: string
+          description: 'Champ à utiliser comme identifiant utilisateur (e.g uid) (onglet security).'
+        'ldap:filter:admin':
+          type: string
+          description: 'Filtre permettant d''identifier les administrateurs dans la b (onglet security).'
+        'ldap:filter:user':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs dans la base (onglet security).'
+        'ldap:filter:restrict':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs limités dans (onglet security).'
+        'sso:allowRemoteUser':
+          type: boolean
+          description: 'Activer l''authentification SSO (onglet security).'
+        'sso:remoteUserHeader':
+          type: string
+          description: 'Champ à utiliser pour déterminer l''entête HTTP contenant l''i (onglet security).'
+        'dontProtectTooFastLaunchDependancy':
+          type: boolean
+          description: 'Autoriser l''installation des dépendances d''un même plugin à (onglet security).'
+        'dontProtectTooFastLaunchDaemon':
+          type: boolean
+          description: 'Autoriser le lancement du démon d''un même plugin à moins de (onglet security).'
+        'core::repo::provider':
+          type: string
+          description: 'Source de mise à jour du core (onglet updates).'
+          default: 'default'
+        'core::branch':
+          type: string
+          description: 'Version installée du core, pour la vérification de mise à jo (onglet updates).'
+          default: 'master'
+        'update::autocheck':
+          type: boolean
+          description: 'Vérification automatique des mises à jour (onglet updates).'
+          default: true
+        'cache::engine':
+          type: string
+          description: 'Moteur de cache (onglet cache).'
+          default: 'FileCache'
+        'cache::redisaddr':
+          type: string
+          description: 'Adresse Redis (onglet cache).'
+          default: '127.0.0.1'
+        'cache::redisport':
+          type: [number, 'null']
+          description: 'Port redis (onglet cache).'
+          default: 6379
+        'event::waitPollingTime':
+          type: [number, 'null']
+          description: 'Fréquence de vérification des événements en attente. (onglet cache).'
+        'api::forbidden::method':
+          type: string
+          description: 'Interdire les méthodes api (regexp) (onglet api).'
+        'api::allow::method':
+          type: string
+          description: 'N''autoriser que les méthodes api (regexp) (onglet api).'
+      patternProperties:
+        '^[A-Za-z0-9_]+::enable$':
+          type: boolean
+          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Dépôt inconnu refusé (422)."
+        '^[A-Za-z0-9_]+::allowDNS$':
+          type: boolean
+          description: "Accès par le DNS Jeedom, pour les dépôts qui le proposent (aujourd'hui `market::allowDNS`)."
+    ConfigSecret:
+      type: object
+      readOnly: true
+      description: |
+        Valeur sensible (clé de `config::$encryptKey`), jamais renvoyée en clair,
+        même à un administrateur : seul `isSet` indique si elle est renseignée.
+        On l'écrit en envoyant la nouvelle valeur en texte dans le PATCH.
+      required: [isSet]
+      additionalProperties: false
+      properties:
+        isSet: { type: boolean }
+    ConfigSummaries:
+      type: object
+      description: Définitions des résumés (`object:summary`), indexées par clé.
+      additionalProperties: { $ref: '#/components/schemas/ConfigSummaryDefinition' }
+    ConfigSummaryDefinition:
+      type: object
+      additionalProperties: false
+      required: [key, name]
+      properties:
+        key: { type: string, pattern: '^[A-Za-z0-9_]+$', description: 'Clé du résumé.' }
+        name: { type: string, description: 'Nom affiché.' }
+        calcul: { type: string, enum: [sum, avg, text], description: 'Méthode de calcul.' }
+        icon: { type: string, description: 'Icône (HTML de l''icône, comme aujourd''hui).' }
+        iconnul: { type: string, description: 'Icône quand la valeur est nulle.' }
+        unit: { type: string, description: 'Unité.' }
+        count: { type: string, enum: ['', binary], description: 'Méthode de comptage.' }
+        allowDisplayZero: { type: boolean, description: 'Afficher même si la valeur vaut 0.' }
+        ignoreIfCmdOlderThan: { type: [integer, string], description: 'Ignorer les commandes plus vieilles que (minutes), vide pour aucune limite.' }
+        hidenumber: { type: boolean, description: 'Masquer le nombre.' }
+        hidenulnumber: { type: boolean, description: 'Masquer le nombre s''il est nul.' }
   responses:
     Unauthorized:
       description: |
