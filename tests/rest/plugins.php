@@ -2,6 +2,7 @@
 /** Standalone REST integration suite: real Slim routes/Auth/JSON, isolated native services. */
 if (PHP_SAPI !== 'cli') throw new RuntimeException('Run directly with php tests/rest/plugins.php.');
 require dirname(__DIR__, 2) . '/vendor/autoload.php';
+require __DIR__ . '/operations-fixtures.php';
 error_reporting(E_ALL & ~E_DEPRECATED); // Existing session.sid_length setting is deprecated on PHP 8.4.
 
 use Jeedom\Api\Rest\App;
@@ -46,10 +47,7 @@ class log { public static function add(...$args) {} public static function audit
 class network { public static function getUserLocation() { return 'internal'; } }
 class eqLogic {}
 class fixture extends eqLogic {}
-require dirname(__DIR__, 2) . '/core/class/pluginInstallation.trait.php';
-class plugin {
-    use PluginInstallationOperations;
-
+defineRestOperationsFixture('plugin', <<<'PHP'
     public static int $dependencyInstalls = 0;
     public static array $daemon = ['state' => 'nok', 'launchable' => 'ok', 'launchable_message' => '', 'auto' => 1, 'log' => 'fixture', 'last_launch' => '2026-11-08'];
     public static function getPluginPath($id) { return jeedom::getTmpFolder('plugins') . '/' . $id; }
@@ -86,11 +84,8 @@ class plugin {
     public function deamon_stop() { self::$daemon['state'] = 'nok'; }
     public function deamon_changeAutoMode($auto) { self::$daemon['auto'] = $auto; }
     public function getCommunityPost() { return ['url' => 'https://community.jeedom.com/new-topic?body=fixture', 'plugin' => $this->getName()]; }
-}
-require dirname(__DIR__, 2) . '/core/class/updateOperation.trait.php';
-class update {
-    use UpdateOperations;
-
+PHP);
+defineRestOperationsFixture('update', <<<'PHP'
     public static function listRepo() {
         $fields = [
             'github' => ['user' => ['name' => 'Utilisateur', 'type' => 'input'], 'repository' => ['name' => 'Dépôt', 'type' => 'input'], 'token' => ['name' => 'Token', 'type' => 'input'], 'version' => ['name' => 'Branche', 'type' => 'input', 'default' => 'master']],
@@ -124,7 +119,7 @@ class update {
         config::save('active', 1, $this->values['logicalId']);
         $this->values['localVersion'] = '2026-11-08';
     }
-}
+PHP);
 class repo_market {
     public static int $reads = 0;
     public static bool $purchase = true;

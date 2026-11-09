@@ -2,6 +2,7 @@
 /** Real Slim/Auth/JSON routes and operation service; native updater is isolated. */
 if (PHP_SAPI !== 'cli') throw new RuntimeException('CLI only.');
 require dirname(__DIR__, 2) . '/vendor/autoload.php';
+require __DIR__ . '/operations-fixtures.php';
 use Jeedom\Api\Rest\App;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
@@ -60,10 +61,7 @@ class log {
     public static function clear($name) { file_put_contents(self::getPathToLog($name), ''); }
     public static function add($name, $level, $text) { file_put_contents(self::getPathToLog($name), $text . "\n", FILE_APPEND); }
 }
-require dirname(__DIR__, 2) . '/core/class/pluginInstallation.trait.php';
-class plugin {
-    use PluginInstallationOperations;
-
+defineRestOperationsFixture('plugin', <<<'PHP'
     public static function getPathById($id) { return jeedom::getTmpFolder('plugins') . '/' . $id . '.json'; }
     public static function listPlugin(...$args) { return array_map(static fn ($id) => new self($id), ['hue', 'weather', 'manual']); }
     public function getId() { return $this->id; }
@@ -75,11 +73,8 @@ class plugin {
     public function getName() { return strtoupper($this->id); }
     public function getPathImgIcon() { return 'https://outside.example/image.png'; }
     public function getChangelog() { return 'javascript:alert(1)'; }
-}
-require dirname(__DIR__, 2) . '/core/class/updateOperation.trait.php';
-class update {
-    use UpdateOperations;
-
+PHP);
+defineRestOperationsFixture('update', <<<'PHP'
     public static array $items = [];
     public static array $executed = [];
     public static array $checked = [];
@@ -104,7 +99,7 @@ class update {
     public function getUpdateDate() { return null; }
     public function getStatus() { return $this->status; }
     public function doUpdate() { self::$executed[] = $this->id; if (self::$failure === $this->id) throw new RuntimeException('https://user:secret@example.org/?token=secret'); }
-}
+PHP);
 class queue {
     public static array $items = [];
     public static function all() { return self::$items; }
