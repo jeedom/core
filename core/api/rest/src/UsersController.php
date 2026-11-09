@@ -419,6 +419,7 @@ final class UsersController
                 ($remembered ? 'key' : 'id') => $session['id'],
                 'ip' => $session['ip'],
                 'datetime' => str_replace(' ', 'T', $session['last_activity_at']) . 'Z',
+                'expiresAt' => str_replace(' ', 'T', $session['expires_at']) . 'Z',
                 'current' => $session['id'] === $current,
             ];
         }
