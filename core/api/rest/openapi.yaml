@@ -19,7 +19,8 @@ info:
 
     ## Conventions communes
     - Toutes les routes sont préfixées par `/api/v1`.
-    - Corps et réponses en JSON. Les champs gardent les noms du core
+    - Corps et réponses en JSON, sauf pour les transferts de fichiers documentés.
+      Les champs gardent les noms du core
       (`father_id`, `isVisible`…) pour faciliter la migration.
     - Les listes renvoient `{ "items": [...], "total": n }`.
     - Toutes les erreurs renvoient le schéma `Error`, avec un code HTTP
@@ -107,6 +108,8 @@ tags:
     description: Lecture et gestion des fichiers log, administrateurs uniquement.
   - name: Messages
     description: Centre de notifications du core (messages des plugins et du système).
+  - name: Sauvegardes
+    description: Sauvegardes locales et distantes du core, administrateurs uniquement.
   - name: Plugins
     description: Plugins installés.
   - name: Utilisateurs
@@ -121,6 +124,178 @@ tags:
     description: Réglages globaux du core, lus et modifiés par liste de clés.
 
 paths:
+  /backups:
+    get:
+      tags: [Sauvegardes]
+      operationId: listBackups
+      summary: Lister les sauvegardes locales
+      description: Archives du dossier de sauvegarde configuré, de la plus récente à la plus ancienne.
+      responses:
+        '200':
+          description: Sauvegardes locales.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BackupList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Sauvegardes]
+      operationId: startBackup
+      summary: Lancer une sauvegarde
+      description: Lance le processus natif en arrière-plan. Suivre le résultat dans le journal `backup`.
+      responses:
+        '202': { $ref: '#/components/responses/BackupAccepted' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/BackupInProgress' }
+  /backups/archives:
+    post:
+      tags: [Sauvegardes]
+      operationId: uploadBackup
+      summary: Téléverser une sauvegarde locale
+      description: Ajoute un fichier .tar.gz au dossier de sauvegarde configuré. Limite de 1 Go.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [file]
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        '201':
+          description: Sauvegarde enregistrée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Backup' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409':
+          description: Une sauvegarde porte déjà ce nom.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '413':
+          description: Le fichier dépasse la limite de 1 Go.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /backups/{id}:
+    parameters:
+      - $ref: '#/components/parameters/BackupId'
+    delete:
+      tags: [Sauvegardes]
+      operationId: deleteBackup
+      summary: Supprimer une sauvegarde locale
+      responses:
+        '204':
+          description: Sauvegarde supprimée.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/BackupNotFound' }
+        '409':
+          description: La sauvegarde ne peut pas être supprimée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /backups/{id}/archive:
+    parameters:
+      - $ref: '#/components/parameters/BackupId'
+    get:
+      tags: [Sauvegardes]
+      operationId: downloadBackup
+      summary: Télécharger une sauvegarde locale
+      responses:
+        '200':
+          description: Archive téléchargée en flux.
+          headers:
+            Content-Disposition:
+              description: Pièce jointe portant le nom du fichier.
+              schema: { type: string }
+          content:
+            application/gzip:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/BackupNotFound' }
+  /backups/{id}/restore:
+    parameters:
+      - $ref: '#/components/parameters/BackupId'
+    post:
+      tags: [Sauvegardes]
+      operationId: restoreBackup
+      summary: Restaurer Jeedom à partir d'une sauvegarde locale
+      description: Lance la restauration en arrière-plan. Suivre le résultat dans le journal `restore`.
+      responses:
+        '202': { $ref: '#/components/responses/BackupAccepted' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/BackupNotFound' }
+        '409': { $ref: '#/components/responses/BackupInProgress' }
+  /backups/repositories:
+    get:
+      tags: [Sauvegardes]
+      operationId: listBackupRepositories
+      summary: Lister les dépôts de sauvegarde activés
+      responses:
+        '200':
+          description: Dépôts disponibles.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BackupReferenceList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /backups/repositories/{repositoryId}/archives:
+    parameters:
+      - $ref: '#/components/parameters/BackupRepositoryId'
+    get:
+      tags: [Sauvegardes]
+      operationId: listRemoteBackups
+      summary: Lister les sauvegardes d'un dépôt
+      responses:
+        '200':
+          description: Sauvegardes distantes.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BackupReferenceList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/BackupNotFound' }
+        '502': { $ref: '#/components/responses/BackupRepositoryFailed' }
+  /backups/repositories/{repositoryId}/archives/{id}/import:
+    parameters:
+      - $ref: '#/components/parameters/BackupRepositoryId'
+      - $ref: '#/components/parameters/BackupId'
+    post:
+      tags: [Sauvegardes]
+      operationId: importRemoteBackup
+      summary: Rapatrier une sauvegarde dans le dossier local
+      description: Copie l'archive depuis le dépôt. La restauration de Jeedom est une opération distincte.
+      responses:
+        '204':
+          description: Sauvegarde rapatriée.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/BackupNotFound' }
+        '502': { $ref: '#/components/responses/BackupRepositoryFailed' }
+  /backups/{id}/exports:
+    parameters:
+      - $ref: '#/components/parameters/BackupId'
+    post:
+      tags: [Sauvegardes]
+      operationId: exportBackupToCloud
+      summary: Envoyer une sauvegarde locale sur le Cloud Jeedom
+      description: Le dépôt Market chiffre et envoie l'archive. Le succès confirme la fin du transfert.
+      responses:
+        '204':
+          description: Sauvegarde envoyée.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/BackupNotFound' }
+        '502': { $ref: '#/components/responses/BackupRepositoryFailed' }
   /logs:
     get:
       tags:
@@ -3588,6 +3763,18 @@ components:
         l'en-tête `X-CSRF-Token`.
 
   parameters:
+    BackupId:
+      name: id
+      in: path
+      required: true
+      description: Identifiant opaque fourni par la liste des sauvegardes.
+      schema: { type: string, pattern: '^[A-Za-z0-9_-]{1,340}$' }
+    BackupRepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Identifiant fourni par la liste des dépôts de sauvegarde.
+      schema: { type: string }
     csrfToken:
       name: X-CSRF-Token
       in: header
@@ -3686,6 +3873,48 @@ components:
       schema: { type: string, pattern: '^[0-9a-f]{64}$' }
 
   schemas:
+    Backup:
+      type: object
+      additionalProperties: false
+      required: [id, name, size, modifiedAt]
+      properties:
+        id: { type: string, description: Identifiant opaque de la sauvegarde. }
+        name: { type: string, description: Nom du fichier. }
+        size: { type: [integer, 'null'], minimum: 0, description: Taille en octets. }
+        modifiedAt: { type: [string, 'null'], format: date-time, description: Dernière modification du fichier. }
+    BackupList:
+      type: object
+      additionalProperties: false
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Backup' }
+        total: { type: integer, minimum: 0 }
+    BackupReferenceList:
+      type: object
+      additionalProperties: false
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [id, name]
+            properties:
+              id: { type: string }
+              name: { type: string }
+        total: { type: integer, minimum: 0 }
+    BackupAccepted:
+      type: object
+      additionalProperties: false
+      required: [log]
+      properties:
+        log:
+          type: string
+          enum: [backup, restore]
+          description: Nom du journal à lire via GET /logs/{name}.
     LogList:
       type: object
       required:
@@ -6568,6 +6797,26 @@ components:
   responses:
     VariableNotFound:
       description: Variable inconnue (variable_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    BackupAccepted:
+      description: Opération lancée en arrière-plan.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/BackupAccepted' }
+    BackupNotFound:
+      description: Sauvegarde introuvable ou dépôt de sauvegarde inconnu ou désactivé.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    BackupInProgress:
+      description: Une sauvegarde ou une restauration est déjà en cours en arrière-plan.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    BackupRepositoryFailed:
+      description: Le dépôt de sauvegarde n'a pas pu terminer la requête.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }

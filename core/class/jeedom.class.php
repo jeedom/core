@@ -946,26 +946,48 @@ class jeedom {
 
 	public static function backup(bool $_background = false) {
 		if ($_background) {
-			log::clear('backup');
-			$cmd = __DIR__ . '/../../install/backup.php';
-			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
-			system::php($cmd, true);
+			self::runBackupInBackground('backup');
 		} else {
 			require_once __DIR__ . '/../../install/backup.php';
 		}
 	}
 
-	private static function getBackupDir() {
-		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-			$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
-		} else {
-			$backup_dir = config::byKey('backup::path');
+	private static function runBackupInBackground(string $_action, string $_backup = ''): void {
+		$lockPath = self::getTmpFolder() . '/backup-operation.lock';
+		$lock = @fopen($lockPath, 'c') ?: @fopen($lockPath, 'r');
+		if ($lock === false) {
+			throw new RuntimeException('Impossible d’ouvrir le verrou de sauvegarde.');
 		}
-		return realpath($backup_dir);
+		try {
+			if (!flock($lock, LOCK_EX | LOCK_NB)) {
+				throw new RuntimeException('Une sauvegarde ou une restauration est déjà en cours.', 409);
+			}
+			log::clear($_action);
+			$command = system::getCmdSudo() . 'php ' . escapeshellarg(__DIR__ . '/../../install/' . $_action . '.php');
+			if ($_backup !== '') {
+				$command .= ' ' . escapeshellarg('backup=' . $_backup);
+			}
+			// Le sous-shell conserve le verrou, sans le transmettre aux démons lancés par l'opération.
+			$process = proc_open(['/bin/sh', '-c', '(' . $command . ' 3>&-; exit $?) &'], [
+				0 => ['file', '/dev/null', 'r'],
+				1 => ['file', log::getPathToLog($_action), 'a'],
+				2 => ['redirect', 1],
+				3 => $lock,
+			], $pipes);
+			if (!is_resource($process) || proc_close($process) !== 0) {
+				throw new RuntimeException('Impossible de lancer l’opération de sauvegarde.');
+			}
+		} finally {
+			fclose($lock);
+		}
 	}
 
-	private static function isValidBackup(string $_backup): bool {
-		$backupDir = self::getBackupDir();
+	private static function getBackupDir() {
+		return realpath(calculPath(config::byKey('backup::path')));
+	}
+
+	private static function isValidBackup(string $_backup, ?string $_directory = null): bool {
+		$backupDir = $_directory ?? self::getBackupDir();
 		$backupPath = realpath($_backup);
 
 		if ($backupDir == false || $backupPath === false || dirname($backupPath) !== $backupDir) {
@@ -975,23 +997,95 @@ class jeedom {
 	}
 
 	public static function listBackup(): array {
-		$backup_dir = self::getBackupDir();
-		if ($backup_dir == false) {
-			return [];
-		}
-		$backups = ls($backup_dir, '*.tar.gz', false, array('files', 'quiet', 'datetime_asc'));
 		$return = array();
-		foreach ($backups as $backup) {
-			$return[$backup_dir . '/' . $backup] = $backup . ' (' . sizeFormat(filesize($backup_dir . '/' . $backup)) . ')';
+		foreach (self::listBackupFiles() as $backup) {
+			$return[$backup] = basename($backup) . ' (' . sizeFormat(filesize($backup)) . ')';
 		}
 		return $return;
+	}
+
+	/** @return list<string> */
+	public static function listBackupFiles(): array {
+		$directory = self::getBackupDir();
+		if ($directory === false) {
+			return [];
+		}
+		$backups = [];
+		foreach (ls($directory, '*.tar.gz', false, ['files', 'quiet']) as $name) {
+			$path = $directory . '/' . $name;
+			if (self::isBackupFileName($name) && self::isValidBackup($path, $directory)) {
+				$backups[$path] = @filemtime($path);
+			}
+		}
+		arsort($backups, SORT_NUMERIC);
+		return array_keys($backups);
+	}
+
+	public static function isBackupFileName(string $_name): bool {
+		return strlen($_name) > 7 && strlen($_name) <= 255 && $_name[0] !== '.' && str_ends_with($_name, '.tar.gz')
+			&& preg_match('~\A[^/\\\\\x00-\x1f\x7f]+\z~u', $_name) === 1;
+	}
+
+	public static function isBackupImportName(string $_name): bool {
+		return self::isBackupFileName($_name) && !preg_match('/\.(?:php[0-9]*|phtml|phar)(?:\.|$)/i', $_name);
+	}
+
+	public static function getBackupPath(string $_name): ?string {
+		$directory = self::getBackupDir();
+		if ($directory === false || !self::isBackupFileName($_name)) {
+			return null;
+		}
+		$path = $directory . '/' . $_name;
+		return self::isValidBackup($path, $directory) ? $path : null;
+	}
+
+	public static function uploadBackup(\Psr\Http\Message\UploadedFileInterface $_file): string {
+		$maximum = 1000000000;
+		if (in_array($_file->getError(), [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true) || $_file->getSize() > $maximum) {
+			throw new InvalidArgumentException('Le fichier dépasse la limite de 1 Go.', 413);
+		}
+		$name = $_file->getClientFilename() ?? '';
+		if ($_file->getError() !== UPLOAD_ERR_OK || !self::isBackupImportName($name)) {
+			throw new InvalidArgumentException('Un fichier .tar.gz est attendu.', 422);
+		}
+		$directory = calculPath(config::byKey('backup::path'));
+		if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) {
+			throw new RuntimeException('Impossible de créer le dossier de sauvegarde.', 500);
+		}
+		$directory = self::getBackupDir();
+		if ($directory === false || !is_writable($directory)) {
+			throw new RuntimeException('Le dossier de sauvegarde est inaccessible en écriture.', 500);
+		}
+		$path = $directory . '/' . $name;
+		// Le fichier temporaire reste sur le même volume et hors de la liste des sauvegardes.
+		$temporary = $directory . '/.upload-' . bin2hex(random_bytes(16));
+		try {
+			$_file->moveTo($temporary);
+			if (filesize($temporary) > $maximum) {
+				throw new InvalidArgumentException('Le fichier dépasse la limite de 1 Go.', 413);
+			}
+			if (file_get_contents($temporary, false, null, 0, 3) !== "\x1f\x8b\x08") {
+				throw new InvalidArgumentException('Le fichier doit être une archive compressée gzip.', 422);
+			}
+			if (!chmod($temporary, 0600) || !@link($temporary, $path)) {
+				if (file_exists($path) || is_link($path)) {
+					throw new RuntimeException('Une sauvegarde porte déjà ce nom.', 409);
+				}
+				throw new RuntimeException('Impossible d’enregistrer la sauvegarde.', 500);
+			}
+			return $path;
+		} finally {
+			if (is_file($temporary)) {
+				unlink($temporary);
+			}
+		}
 	}
 
 	public static function removeBackup(string $_backup) {
 		if (self::isValidBackup($_backup) === false) {
 			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
-		unlink($_backup);
+		return unlink($_backup);
 	}
 
 	public static function restore(string $_backup = '', bool $_background = false) {
@@ -999,13 +1093,7 @@ class jeedom {
 			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
 		if ($_background) {
-			log::clear('restore');
-			$cmd = __DIR__ . '/../../install/restore.php';
-			if ($_backup !== '') {
-				$cmd .= ' ' . escapeshellarg('backup=' . $_backup);
-			}
-			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
-			system::php($cmd, true);
+			self::runBackupInBackground('restore', $_backup);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;

@@ -113,6 +113,18 @@ final class App
             $api->delete('/logs/{name}', $logs->delete(...));
             $api->delete('/logs/{name}/contents', $logs->clear(...));
 
+            $backups = new BackupsController();
+            $api->get('/backups', $backups->list(...));
+            $api->post('/backups', $backups->create(...));
+            $api->post('/backups/archives', $backups->upload(...));
+            $api->get('/backups/repositories', $backups->repositories(...));
+            $api->get('/backups/repositories/{repositoryId}/archives', $backups->remoteArchives(...));
+            $api->post('/backups/repositories/{repositoryId}/archives/{id}/import', $backups->import(...));
+            $api->get('/backups/{id}/archive', $backups->download(...));
+            $api->delete('/backups/{id}', $backups->delete(...));
+            $api->post('/backups/{id}/restore', $backups->restore(...));
+            $api->post('/backups/{id}/exports', $backups->export(...));
+
             $api->get('/events', (new EventsController())->stream(...));
 
             $plugins = new PluginsController();

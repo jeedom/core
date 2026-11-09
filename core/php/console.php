@@ -27,7 +27,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 
 if (isset($argv)) {
   foreach ($argv as $arg) {
-    $argList = explode('=', $arg);
+    $argList = explode('=', $arg, 2);
     if (isset($argList[0]) && isset($argList[1])) {
       $_GET[$argList[0]] = $argList[1];
     }

@@ -133,7 +133,10 @@ class repo_samba {
 
 	private static function makeSambaCommand(string $_cmd, string $_type = 'backup'): string {
 		$authfile = self::createAuthFile($_type);
-		return '(' . system::getCmdSudo() . 'smbclient  -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -A ' . $authfile . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"; ec=$?; ' . system::getCmdSudo() . 'rm -f ' . $authfile . '; exit $ec)';
+		$authfile = escapeshellarg($authfile);
+		return '(' . system::getCmdSudo() . 'smbclient -t 120 ' . escapeshellarg(config::byKey('samba::' . $_type . '::share'))
+			. ' -A ' . $authfile . ' -I ' . escapeshellarg(config::byKey('samba::' . $_type . '::ip')) . ' -c ' . escapeshellarg($_cmd)
+			. '; ec=$?; ' . system::getCmdSudo() . 'rm -f ' . $authfile . '; exit $ec)';
 	}
 
 	/**
@@ -161,18 +164,15 @@ class repo_samba {
 		$cmd = repo_samba::makeSambaCommand('cd ' . $_dir . ';ls', $_type);
 		$result = explode("\n", com_shell::execute($cmd));
 		$return = array();
-		for ($i = 2; $i < count($result) - 2; $i++) {
-			$line = array();
-			foreach (explode(" ", $result[$i]) as $value) {
-				if (trim($value) == '') {
-					continue;
-				}
-				$line[] = $value;
+		foreach ($result as $entry) {
+			if (!preg_match('/^\s*(.*?)\s{2,}\S+\s+(\d+)\s+\S+\s+(\S+\s+\d+\s+\S+\s+\d{4})\s*$/', $entry, $line)
+				|| in_array($line[1], ['.', '..'], true)) {
+				continue;
 			}
 			$file_info = array();
-			$file_info['filename'] = $line[0];
+			$file_info['filename'] = $line[1];
 			$file_info['size'] = $line[2];
-			$file_info['datetime'] = date('Y-m-d H:i:s', (int) strtotime($line[5] . ' ' . $line[4] . ' ' . $line[7] . ' ' . $line[6]));
+			$file_info['datetime'] = date('Y-m-d H:i:s', (int) strtotime($line[3]));
 			$return[] = $file_info;
 		}
 		usort($return, 'repo_samba::sortByDatetime');
@@ -221,12 +221,40 @@ class repo_samba {
 		return $return;
 	}
 
+	public static function isBackupRestoreName(string $_name): bool {
+		return jeedom::isBackupImportName($_name) && strpbrk($_name, ';"*?') === false;
+	}
+
 	public static function backup_restore($_backup) {
+		if (!self::isBackupRestoreName($_backup)) {
+			throw new InvalidArgumentException('Nom de sauvegarde Samba invalide.', 422);
+		}
 		$backup_dir = calculPath(config::byKey('backup::path'));
-		$cmd = 'cd ' . $backup_dir . ';';
-		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';get ' . $_backup);
-		com_shell::execute($cmd);
-		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $backup_dir . '/*');
+		if (!is_dir($backup_dir) && !@mkdir($backup_dir, 0770, true) && !is_dir($backup_dir)) {
+			throw new RuntimeException('Impossible de créer le dossier de sauvegarde.');
+		}
+		$temporary = $backup_dir . '/.samba-' . bin2hex(random_bytes(16));
+		if (!mkdir($temporary, 0700)) {
+			throw new RuntimeException('Impossible de préparer le rapatriement de la sauvegarde Samba.');
+		}
+		try {
+			$cmd = 'cd ' . escapeshellarg($temporary) . ' && ';
+			$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';get "' . $_backup . '"');
+			com_shell::execute($cmd);
+			$download = $temporary . '/' . $_backup;
+			if (!is_file($download) || is_link($download)) {
+				throw new RuntimeException('Sauvegarde Samba introuvable.', 404);
+			}
+			$sudo = system::getCmdSudo();
+			if ($sudo !== '') {
+				com_shell::execute($sudo . 'chown -- ' . posix_geteuid() . ':' . posix_getegid() . ' ' . escapeshellarg($download));
+			}
+			if (!chmod($download, 0600) || !rename($download, $backup_dir . '/' . $_backup)) {
+				throw new RuntimeException('Impossible d’enregistrer la sauvegarde Samba.');
+			}
+		} finally {
+			rrmdir($temporary);
+		}
 	}
 
 	public static function downloadCore($_path) {
