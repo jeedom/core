@@ -334,7 +334,16 @@ final class CmdsController
         if ($value === null || $value === '') {
             return null;
         }
-        $date = is_string($value) ? \DateTimeImmutable::createFromFormat(\DateTimeInterface::RFC3339, $value) : false;
+        // RFC 3339 (format date-time de la spec) : fractions de seconde facultatives, comme toISOString() en JavaScript.
+        $date = false;
+        if (is_string($value) && preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,6})?(Z|[+-]\d{2}:\d{2})$/', $value)) {
+            $date = \DateTimeImmutable::createFromFormat(\DateTimeInterface::RFC3339, preg_replace('/\.\d{1,6}(?=Z|[+-])/', '', $value));
+            // Refuse les dates impossibles (2026-13-40) que PHP reporterait sur le mois suivant.
+            $errors = \DateTimeImmutable::getLastErrors();
+            if ($errors !== false && $errors['warning_count'] > 0) {
+                $date = false;
+            }
+        }
         if ($date === false) {
             throw ApiError::field(422, 'validation_error', $field, 'Une date ISO 8601 est attendue (ex. 2026-11-05T10:00:00+01:00).');
         }
