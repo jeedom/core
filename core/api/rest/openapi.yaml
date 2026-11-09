@@ -383,7 +383,7 @@ paths:
       summary: Lire un fichier de Jeedom
       description: |
         Le contenu est un texte UTF-8 limité à 1 Mio. Les extensions prises en charge
-        en lecture sont css, json, md, txt, yaml, yml, htm, html, js, mjs et svg.
+        en lecture sont css, json, md, php, txt, yaml, yml, htm, html, js, mjs et svg.
       responses:
         '200':
           description: Contenu et version du fichier.
@@ -403,11 +403,12 @@ paths:
     put:
       tags: [Système]
       operationId: writeSystemFile
-      summary: Enregistrer un fichier de personnalisation
+      summary: Enregistrer un fichier de Jeedom
       description: |
-        Remplace atomiquement un fichier texte existant. L’écriture est autorisée
-        sous desktop/custom, mobile/custom et data/customTemplates pour les extensions
-        simples css, json, md, txt, yaml et yml.
+        Remplace atomiquement un fichier texte existant dans le répertoire d’installation
+        ou ses sous-répertoires accessibles. L’écriture est autorisée pour les fichiers PHP
+        (y compris les classes du Core et des plugins) et les extensions simples css, json,
+        md, txt, yaml et yml.
       parameters:
         - $ref: '#/components/parameters/csrfToken'
         - name: If-Match
@@ -4324,7 +4325,7 @@ components:
               id: { type: string }
               path: { type: string, description: Chemin relatif à Jeedom. }
               readable: { type: boolean }
-              writable: { type: boolean, description: Un sous-répertoire de personnalisation est accessible en écriture. }
+              writable: { type: boolean, description: Le répertoire racine est accessible en écriture. }
         total: { type: integer, minimum: 0 }
     SystemFileEntries:
       type: object

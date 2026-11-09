@@ -52,6 +52,9 @@ final class FilesController
         }
 
         $file = self::run('write', $location + ['etag' => $etag, 'content' => $content]);
+        if (str_ends_with(strtolower($location['path']), '.php') && function_exists('opcache_invalidate')) {
+            @opcache_invalidate(dirname(__DIR__, 4) . '/' . $location['path'], true);
+        }
         return self::noStore($response)->withHeader('ETag', $file['etag'])->withStatus(204);
     }
 

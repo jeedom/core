@@ -15,17 +15,19 @@ from pathlib import Path
 
 CORE = Path(__file__).resolve().parents[1]
 ROOT_ID = "jeedom"
-WRITE_DIRECTORIES = {("desktop", "custom"), ("mobile", "custom"), ("data", "customTemplates")}
 PRIVATE_DIRECTORIES = {
     ("backup",), ("log",), ("config",), ("core", "config"), ("data", "php"), ("data", "editorTemp"),
 }
 PRIVATE_PLUGIN_DIRECTORIES = {"backup", "data", "log"}
-PRIVATE_FILENAMES = {"auth.json", "credentials.json", "secrets.json", "secrets.yaml", "secrets.yml"}
+PRIVATE_FILENAMES = {
+    "auth.json", "common.config.php", "credentials.json", "credentials.php",
+    "secrets.json", "secrets.php", "secrets.yaml", "secrets.yml",
+}
 MAX_FILE_BYTES = 1048576
 MAX_DIRECTORY_ENTRIES = 1000
 DIR_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
 TEXT_CONTROLS = re.compile(rb"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
-WRITE_EXTENSIONS = {"css", "json", "md", "txt", "yaml", "yml"}
+WRITE_EXTENSIONS = {"css", "json", "md", "php", "txt", "yaml", "yml"}
 READ_EXTENSIONS = WRITE_EXTENSIONS | {"htm", "html", "js", "mjs", "svg"}
 SERVER_EXTENSION = re.compile(r"php[0-9]*|pht|phtml|phar|cgi|fcgi|shtm|shtml|pl|py|sh|inc")
 NOT_FOUND = {errno.ENOENT, errno.ENOTDIR, errno.ELOOP}
@@ -60,9 +62,11 @@ def file_policy(name):
     stem, dot, extension = name.lower().rpartition(".")
     if not dot or extension not in READ_EXTENSIONS:
         return False, False
+    if extension == "php":
+        return True, True
     if any(SERVER_EXTENSION.fullmatch(part) for part in stem.split(".")[1:]):
         return False, False
-    # Apache can assign handlers through any suffix. Only simple extensions are writable.
+    # Apache can assign handlers through any suffix. Other writable formats use a simple extension.
     return True, "." not in stem and extension in WRITE_EXTENSIONS
 
 
@@ -77,27 +81,22 @@ def open_directory(parts):
         yield fd
 
 
-def directory_access(parts, mode):
+def roots():
+    items = []
     try:
-        with open_directory(parts) as fd:
-            return os.access(".", mode | os.X_OK, dir_fd=fd)
+        with open_directory(()) as fd:
+            if os.access(".", os.R_OK | os.X_OK, dir_fd=fd):
+                writable = os.access(".", os.W_OK | os.X_OK, dir_fd=fd)
+                items.append({"id": ROOT_ID, "path": ".", "readable": True, "writable": writable})
     except OSError as error:
         if error.errno not in NOT_FOUND | {errno.EACCES, errno.EPERM}:
             raise
-        return False
-
-
-def roots():
-    items = []
-    if directory_access((), os.R_OK):
-        writable = any(directory_access(parts, os.R_OK | os.W_OK) for parts in WRITE_DIRECTORIES)
-        items.append({"id": ROOT_ID, "path": ".", "readable": True, "writable": writable})
     return {"items": items, "total": len(items)}
 
 
 def entries(fd, parts):
     items = []
-    writable_dir = parts[:2] in WRITE_DIRECTORIES and os.access(".", os.W_OK | os.X_OK, dir_fd=fd)
+    writable_dir = os.access(".", os.W_OK | os.X_OK, dir_fd=fd)
     with os.scandir(fd) as directory:
         for count, entry in enumerate(directory, 1):
             if count > MAX_DIRECTORY_ENTRIES:
@@ -247,7 +246,7 @@ def execute(operation, payload):
         if operation == "read":
             data, _, _ = read_file(fd, name)
             return {"content": text_content(data), "etag": version(data)}
-        if not writable or parent_parts[:2] not in WRITE_DIRECTORIES:
+        if not writable:
             raise FileError(403, "file_read_only", "Ce fichier est en lecture seule.")
         return write_file(fd, parent_parts, name, payload["etag"], payload["content"])
 
