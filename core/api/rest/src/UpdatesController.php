@@ -13,14 +13,14 @@ final class UpdatesController
     {
         self::requireWrite($request);
         if (trim((string) $request->getBody()) !== '' && Json::body($request) !== []) throw new ApiError(422, 'validation_error', 'Aucun paramètre attendu.');
-        $operation = self::call(fn () => \updateOperation::start([], (int) $request->getAttribute('user')->getId(), self::key($request), 'check'));
+        $operation = self::call(fn () => \update::startOperation([], (int) $request->getAttribute('user')->getId(), self::key($request), 'check'));
         return self::respond($response, $operation, in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
 
     public function latest(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        return self::respond($response, ['operation' => \updateOperation::latest()]);
+        return self::respond($response, ['operation' => \update::latestOperation()]);
     }
 
     public function start(Request $request, Response $response): Response
@@ -35,7 +35,7 @@ final class UpdatesController
             throw ApiError::field(422, 'validation_error', 'ids', 'Sélection invalide (1 à 200 identifiants distincts).');
         }
         foreach ($ids as $id) if (!is_int($id) || $id < 1) throw ApiError::field(422, 'validation_error', 'ids', 'Identifiant invalide.');
-        $operation = self::call(fn () => \updateOperation::start($ids, (int) $request->getAttribute('user')->getId(), self::key($request), 'update', $force));
+        $operation = self::call(fn () => \update::startOperation($ids, (int) $request->getAttribute('user')->getId(), self::key($request), 'update', $force));
         return self::respond($response, $operation, in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
 
@@ -59,7 +59,7 @@ final class UpdatesController
         catch (ApiError $e) { throw $e; }
         catch (\Throwable $e) {
             $status = in_array($e->getCode(), [403, 404, 409, 422, 503], true) ? (int) $e->getCode() : 503;
-            throw new ApiError($status, 'update_operation_failed', \pluginInstallation::errorMessage($e));
+            throw new ApiError($status, 'update_operation_failed', \update::operationErrorMessage($e));
         }
     }
 

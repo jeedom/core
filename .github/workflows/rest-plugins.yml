@@ -6,7 +6,7 @@ on:
     paths:
       - 'core/api/rest/**'
       - 'core/class/plugin*.class.php'
-      - 'core/class/updateOperation.class.php'
+      - 'core/class/update.class.php'
       - 'core/php/jeeRestUpdate.php'
       - 'core/repo/market.repo.php'
       - 'core/repo/url.repo.php'
@@ -18,7 +18,7 @@ on:
     paths:
       - 'core/api/rest/**'
       - 'core/class/plugin*.class.php'
-      - 'core/class/updateOperation.class.php'
+      - 'core/class/update.class.php'
       - 'core/php/jeeRestUpdate.php'
       - 'core/repo/market.repo.php'
       - 'core/repo/url.repo.php'
@@ -50,11 +50,11 @@ jobs:
         run: composer install --no-interaction --prefer-dist --no-progress --no-scripts
       - name: Check PHP syntax
         run: |
-          for file in core/api/rest/src/PluginsController.php core/api/rest/src/UpdatesController.php core/api/rest/src/App.php core/class/pluginInstallation.class.php core/class/pluginRepository.class.php core/class/updateOperation.class.php core/php/jeeRestUpdate.php core/class/plugin.class.php core/repo/market.repo.php core/repo/url.repo.php tests/rest/plugins.php tests/rest/updates.php; do
+          for file in core/api/rest/src/PluginsController.php core/api/rest/src/UpdatesController.php core/api/rest/src/App.php core/class/plugin.class.php core/class/pluginRepository.class.php core/class/update.class.php core/php/jeeRestUpdate.php core/repo/market.repo.php core/repo/url.repo.php tests/rest/plugins.php tests/rest/updates.php; do
             php -l "$file" || exit 1
           done
       - name: Check plugin API types
-        run: vendor/bin/phpstan analyse --configuration=tests/rest/phpstan.neon --no-progress --error-format=github core/api/rest/src/PluginsController.php core/api/rest/src/UpdatesController.php core/class/pluginInstallation.class.php core/class/pluginRepository.class.php core/class/updateOperation.class.php
+        run: vendor/bin/phpstan analyse --configuration=tests/rest/phpstan.neon --no-progress --error-format=github core/api/rest/src/PluginsController.php core/api/rest/src/UpdatesController.php core/class/plugin.class.php core/class/pluginRepository.class.php core/class/update.class.php
       - name: Exercise plugin REST routes and installation jobs
         run: |
           php tests/rest/plugins.php

@@ -36,7 +36,7 @@ final class PluginsController
             'core' => ['name' => 'Core Jeedom', 'version' => \jeedom::version(),
                 'source' => is_object($core) ? $core->getSource() : \config::byKey('core::repo::provider'),
                 'branch' => (string) \config::byKey('core::branch', 'core', 'master'), 'update' => self::updateSummary($core)],
-            'lastCheck' => \config::byKey('update::lastCheck', 'core', '') ?: null, 'operation' => \updateOperation::latest()]);
+            'lastCheck' => \config::byKey('update::lastCheck', 'core', '') ?: null, 'operation' => \update::latestOperation()]);
     }
 
     private static function items(bool $management, ?bool $enabled = null): array
@@ -104,7 +104,7 @@ final class PluginsController
         self::requireWrite($request);
         $body = self::body($request, ['pluginId', 'source', 'configuration']);
         if (!is_string($body['pluginId'] ?? null) || !is_string($body['source'] ?? null) || !is_array($body['configuration'] ?? null)) self::invalid('pluginId/source/configuration');
-        $operation = self::installationCall(fn () => \pluginInstallation::startFromRepository($body['pluginId'], $body['source'], $body['configuration'],
+        $operation = self::installationCall(fn () => \plugin::startRepositoryInstallation($body['pluginId'], $body['source'], $body['configuration'],
             (int) $request->getAttribute('user')->getId(), $request->getHeaderLine('Idempotency-Key')));
         return self::respond($response, self::operation($operation), in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
@@ -231,7 +231,7 @@ final class PluginsController
         $query = $request->getQueryParams();
         $id = filter_var($query['marketId'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 2147483647]]);
         if ($id === false || !is_string($query['version'] ?? null)) self::invalid('marketId/version');
-        return self::respond($response, self::installationCall(static fn () => \pluginInstallation::preview($id, $query['version'])));
+        return self::respond($response, self::installationCall(static fn () => \plugin::prepareMarketInstallation($id, $query['version'])));
     }
 
     public function install(Request $request, Response $response): Response
@@ -241,14 +241,14 @@ final class PluginsController
         if (!is_int($body['marketId'] ?? null) || !is_string($body['version'] ?? null)) self::invalid('marketId/version');
         $key = $request->getHeaderLine('Idempotency-Key');
         if (!preg_match('/\A[A-Za-z0-9_-]{16,128}\z/', $key)) self::invalid('Idempotency-Key');
-        $operation = self::installationCall(fn () => \pluginInstallation::start($body['marketId'], $body['version'], (int) $request->getAttribute('user')->getId(), $key));
+        $operation = self::installationCall(fn () => \plugin::startMarketInstallation($body['marketId'], $body['version'], (int) $request->getAttribute('user')->getId(), $key));
         return self::respond($response, self::operation($operation), in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
 
     public function installation(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        $operation = \pluginInstallation::status($args['operationId']);
+        $operation = \plugin::installationStatus($args['operationId']);
         if ($operation === null) throw new ApiError(404, 'installation_not_found', 'Installation inconnue.');
         return self::respond($response, self::operation($operation));
     }
@@ -256,8 +256,8 @@ final class PluginsController
     public function latestInstallation(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        $last = self::installationCall(static fn () => \pluginInstallation::latest($args['id']));
-        $operation = $last === null ? null : \pluginInstallation::status($last['id']);
+        $last = self::installationCall(static fn () => \plugin::latestInstallation($args['id']));
+        $operation = $last === null ? null : \plugin::installationStatus($last['id']);
         return self::respond($response, ['operation' => $operation === null ? null : self::operation($operation)]);
     }
 
@@ -319,7 +319,7 @@ final class PluginsController
         return ['id' => (int) $update->getId(), 'status' => (string) $update->getStatus(),
             'localVersion' => $update->getLocalVersion() ?: null, 'remoteVersion' => $update->getRemoteVersion() ?: null,
             'updatable' => $enabled && $update->getStatus() === 'update',
-            'reinstallable' => \updateOperation::canReinstall($update)];
+            'reinstallable' => \update::canReinstall($update)];
     }
 
     private static function dependencyInfo(\plugin $plugin): array
@@ -392,8 +392,8 @@ final class PluginsController
 
     private static function mutate(\plugin $plugin, callable $action): void
     {
-        self::installationCall(static fn () => \pluginInstallation::withLock($plugin->getId(), static function () use ($plugin, $action) {
-            \pluginInstallation::assertIdle($plugin->getId());
+        self::installationCall(static fn () => \plugin::withInstallationLock($plugin->getId(), static function () use ($plugin, $action) {
+            \plugin::assertInstallationIdle($plugin->getId());
             return $action();
         }));
     }
@@ -404,7 +404,7 @@ final class PluginsController
         catch (ApiError $e) { throw $e; }
         catch (\Throwable $e) {
             $status = in_array($e->getCode(), [401, 403, 404, 409, 422, 502, 503], true) ? (int) $e->getCode() : 409;
-            throw new ApiError($status, 'plugin_operation_failed', \pluginInstallation::errorMessage($e));
+            throw new ApiError($status, 'plugin_operation_failed', \update::operationErrorMessage($e));
         }
     }
 

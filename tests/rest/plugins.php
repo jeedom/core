@@ -2,6 +2,7 @@
 /** Standalone REST integration suite: real Slim routes/Auth/JSON, isolated native services. */
 if (PHP_SAPI !== 'cli') throw new RuntimeException('Run directly with php tests/rest/plugins.php.');
 require dirname(__DIR__, 2) . '/vendor/autoload.php';
+require __DIR__ . '/operations-fixtures.php';
 error_reporting(E_ALL & ~E_DEPRECATED); // Existing session.sid_length setting is deprecated on PHP 8.4.
 
 use Jeedom\Api\Rest\App;
@@ -46,7 +47,7 @@ class log { public static function add(...$args) {} public static function audit
 class network { public static function getUserLocation() { return 'internal'; } }
 class eqLogic {}
 class fixture extends eqLogic {}
-class plugin {
+defineRestOperationsFixture('plugin', <<<'PHP'
     public static int $dependencyInstalls = 0;
     public static array $daemon = ['state' => 'nok', 'launchable' => 'ok', 'launchable_message' => '', 'auto' => 1, 'log' => 'fixture', 'last_launch' => '2026-11-08'];
     public static function getPluginPath($id) { return jeedom::getTmpFolder('plugins') . '/' . $id; }
@@ -83,8 +84,8 @@ class plugin {
     public function deamon_stop() { self::$daemon['state'] = 'nok'; }
     public function deamon_changeAutoMode($auto) { self::$daemon['auto'] = $auto; }
     public function getCommunityPost() { return ['url' => 'https://community.jeedom.com/new-topic?body=fixture', 'plugin' => $this->getName()]; }
-}
-class update {
+PHP);
+defineRestOperationsFixture('update', <<<'PHP'
     public static function listRepo() {
         $fields = [
             'github' => ['user' => ['name' => 'Utilisateur', 'type' => 'input'], 'repository' => ['name' => 'Dépôt', 'type' => 'input'], 'token' => ['name' => 'Token', 'type' => 'input'], 'version' => ['name' => 'Branche', 'type' => 'input', 'default' => 'master']],
@@ -118,7 +119,7 @@ class update {
         config::save('active', 1, $this->values['logicalId']);
         $this->values['localVersion'] = '2026-11-08';
     }
-}
+PHP);
 class repo_market {
     public static int $reads = 0;
     public static bool $purchase = true;
@@ -147,10 +148,17 @@ class queue {
     public static array $dispatches = [];
     public static bool $failDispatch = false;
     private int $id = 0;
+    private string $class;
+    private string $function;
     public string $state = 'stop';
     public bool $running = false;
     public array $arguments = [];
     public function __call($method, $args) {}
+    public function setClass($class) { $this->class = $class; }
+    public function getClass() { return $this->class; }
+    public function setFunction($function) { $this->function = $function; }
+    public function getFunction() { return $this->function; }
+    public static function all() { return self::$items; }
     public function setArguments($args) { $this->arguments = $args; }
     public function save() { $this->id = count(self::$items) + 1; self::$items[$this->id] = $this; }
     public function start() { $this->state = 'starting'; }
@@ -170,8 +178,6 @@ class utils {
     public static function encrypt($value) { return base64_encode(openssl_encrypt($value, 'aes-256-cbc', str_repeat('k', 32), OPENSSL_RAW_DATA, str_repeat('i', 16))); }
     public static function decrypt($value) { return openssl_decrypt(base64_decode($value), 'aes-256-cbc', str_repeat('k', 32), OPENSSL_RAW_DATA, str_repeat('i', 16)); }
 }
-require dirname(__DIR__, 2) . '/core/class/updateOperation.class.php';
-require dirname(__DIR__, 2) . '/core/class/pluginInstallation.class.php';
 require dirname(__DIR__, 2) . '/core/class/pluginRepository.class.php';
 manifest('fixture');
 $app = App::create();
@@ -193,9 +199,10 @@ function call($method, $path, $status = 200, $body = null, $token = 'admin', $he
     return $raw !== '' ? json_decode($raw, true, 512, JSON_THROW_ON_ERROR) : null;
 }
 function runJob($operation) {
-    $queue = queue::byId(pluginInstallation::latest($operation['pluginId'])['queueId']);
+    $queue = queue::byId(plugin::latestInstallation($operation['pluginId'])['queueId']);
     $queue->state = 'run'; $queue->running = true;
-    pluginInstallation::execute($operation['id']);
+    $worker = [$queue->getClass(), $queue->getFunction()];
+    $worker(...$queue->arguments);
     $queue->running = false; unset(queue::$items[$queue->getId()]);
 }
 $key = ['Idempotency-Key' => 'request-key-00000001'];
@@ -248,6 +255,7 @@ check($operation['version'] === 'beta' && array_intersect_key($operation, array_
 check(update::$installs === 0, 'POST did not queue the installation');
 check(call('POST', '/plugins/installations', 202, ['marketId' => 123, 'version' => 'beta'], headers: $key)['id'] === $operation['id'] && count(queue::$items) === 1, 'Duplicate request created another task');
 check(queue::$dispatches === ['rest-plugin-installations'], 'The first confirmation must dispatch the queue once');
+call('POST', '/updates/check', 409, headers: $key);
 call('POST', '/plugins/installations', 409, ['marketId' => 123, 'version' => 'stable'], headers: $key);
 call('POST', '/plugins/installations', 409, ['marketId' => 123, 'version' => 'beta'], headers: ['Idempotency-Key' => 'request-key-00000002']);
 call('GET', '/plugins/installations/' . $operation['id']);
@@ -335,7 +343,7 @@ queue::$failDispatch = true;
 $op = call('POST', '/plugins/repository-installations', 202, $direct, token: null, cookies: $cookies, headers: $directKey + ['X-CSRF-Token' => $csrf]);
 queue::$failDispatch = false;
 check(count(queue::$dispatches) === $dispatchCount + 1 && end(queue::$dispatches) === 'rest-plugin-installations' && $op['state'] === 'queued', 'An immediate launch failure must leave the direct installation queued');
-check($op['source'] === 'github' && !str_contains(json_encode($op), 'github_secret') && !str_contains(json_encode(pluginInstallation::latest('directplugin')), 'github_secret'), 'Direct installation exposed plaintext parameters');
+check($op['source'] === 'github' && !str_contains(json_encode($op), 'github_secret') && !str_contains(json_encode(plugin::latestInstallation('directplugin')), 'github_secret'), 'Direct installation exposed plaintext parameters');
 check(call('POST', '/plugins/repository-installations', 202, $direct, headers: $directKey)['id'] === $op['id'], 'Direct replay created another job');
 call('POST', '/plugins/repository-installations', 409, $direct, headers: ['Idempotency-Key' => 'direct-request-key-0002']);
 $different = $direct; $different['configuration']['version'] = 'beta';
@@ -344,7 +352,7 @@ runJob($op);
 check(call('GET', '/plugins/installations/' . $op['id'])['state'] === 'succeeded', 'Direct installation failed');
 $installed = update::byTypeAndLogicalId('plugin', 'directplugin');
 check($installed->getSource() === 'github' && $installed->getConfiguration('version') === 'main' && config::byKey('active', 'directplugin') === 0, 'Native source/branch/activation not preserved');
-check(!isset(pluginInstallation::latest('directplugin')['parameters']), 'Completed job retained its encrypted input');
+check(!isset(plugin::latestInstallation('directplugin')['parameters']), 'Completed job retained its encrypted input');
 call('POST', '/plugins/repository-installations', 200, $direct, headers: $directKey);
 config::save('active', 1, 'directplugin');
 $op = call('POST', '/plugins/repository-installations', 202, $different, headers: ['Idempotency-Key' => 'direct-request-key-0003']);

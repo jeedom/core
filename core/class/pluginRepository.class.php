@@ -23,7 +23,7 @@ class pluginRepository {
 	}
 
 	public static function validate(string $id, string $source, array $configuration, bool $checkArchive = true): array {
-		pluginInstallation::validatePluginId($id);
+		plugin::validatePluginId($id);
 		if ($source === 'market') throw new InvalidArgumentException('Utilisez la route d’installation Market.', 422);
 		$repo = null;
 		foreach (self::all() as $item) if ($item['id'] === $source) $repo = $item;
@@ -120,7 +120,7 @@ class pluginRepository {
 			}
 			$id = is_array($manifest) ? ($manifest['id'] ?? null) : null;
 			if (!is_string($id)) throw new InvalidArgumentException('Manifeste du plugin absent ou invalide.', 422);
-			pluginInstallation::validatePluginId($id);
+			plugin::validatePluginId($id);
 			return $id;
 		} finally { $zip->close(); }
 	}
