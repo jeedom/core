@@ -37,27 +37,26 @@ if (!jeeFrontEnd.log) {
 
 //searching
 document.getElementById('in_searchLogFilter')?.addEventListener('keyup', function(event) {
-  let search = event.target.value
-  if (search == '') {
+  const raw = event.target.value
+  if (raw == '') {
     jeeP.logListButtons.seen()
     return
   }
-  const not = search.startsWith(":not(")
-  if (not) {
-    search = search.replace(':not(', '')
-  }
-  search = jeedomUtils.normTextLower(search)
+
+  // Multi-term: comma-separated terms, each term can be prefixed with :not()
+  // e.g. "error,warning" → show entries matching either
+  //      "error,:not(daemon)" → show entries matching "error" but not "daemon"
+  const terms = raw.split(',').map(function(t) { return t.trim() }).filter(function(t) { return t.length > 0 })
+
   jeeP.logListButtons.unseen()
   jeeP.logListButtons.forEach(_bt => {
-    let match = false
     const text = jeedomUtils.normTextLower(_bt.textContent)
-    if (text.includes(search)) {
-      match = true
-    }
-    if (not) match = !match
-    if (match) {
-      _bt.seen()
-    }
+    const match = terms.some(function(term) {
+      const not = term.startsWith(':not(')
+      const search = jeedomUtils.normTextLower(not ? term.slice(5, -1) : term)
+      return not ? !text.includes(search) : text.includes(search)
+    })
+    if (match) _bt.seen()
   })
 })
 
