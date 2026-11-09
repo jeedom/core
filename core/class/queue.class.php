@@ -121,18 +121,22 @@ class queue {
         }
         $queueIds = self::allQueueId();
         foreach ($queueIds as $queueId) {
-            log::add('queue','debug',__('Recherche des actions à faire pour '.$queueId['queueId'],__FILE__));
-            $queue = self::firstByQueueId($queueId['queueId']);
-            if(!$queue->canRun()){
-                continue;
-            }
             try {
-                log::add('queue','debug',__('Lancement de '.$queue->getHumanName(),__FILE__));
-                $queue->run();
+                self::runNext($queueId['queueId']);
             } catch (\Throwable $th) {
-                log::add('queue','debug',__('Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage(),__FILE__));
+                log::add('queue', 'debug', __('Erreur sur le lancement de la file', __FILE__) . ' ' . $queueId['queueId'] . ' => ' . $th->getMessage());
             }
         }
+    }
+
+    public static function runNext(string $_queueId): void {
+        log::add('queue', 'debug', __('Recherche des actions à faire pour', __FILE__) . ' ' . $_queueId);
+        $queue = self::firstByQueueId($_queueId);
+        if (!is_object($queue) || !$queue->canRun()) {
+            return;
+        }
+        log::add('queue', 'debug', __('Lancement de', __FILE__) . ' ' . $queue->getHumanName());
+        $queue->run(true);
     }
 
     /*     * *********************Méthodes d'instance************************* */

@@ -52,6 +52,22 @@ if (!is_object($queue)) {
     die();
 }
 try {
+    $queueId = $queue->getQueueId();
+    if ($queueId !== null) {
+        // A grouped task can be launched both by a request and by the cron.
+        // Keep the group locked until the worker exits, including queue removal.
+        $groupLock = fopen(jeedom::getTmpFolder('queue') . '/' . hash('sha256', $queueId) . '.lock', 'c');
+        if ($groupLock === false) {
+            throw new RuntimeException('Impossible de verrouiller la file ' . $queueId);
+        }
+        if (!flock($groupLock, LOCK_EX | LOCK_NB)) {
+            die();
+        }
+        $queue = queue::byId($queue->getId());
+        if (!is_object($queue)) {
+            die();
+        }
+    }
     $queue->setState('run');
     $queue->setPID(getmypid());
     $queue->setLastRun($datetime);

@@ -118,12 +118,12 @@ class updateOperation {
 	}
 
 	/** Serialize admission with plugin installation/mutation; workers keep the exclusive lock. */
-	public static function withPluginMutation(callable $action) {
+	public static function withPluginMutation(callable $action, bool $wait = false) {
 		if (self::$executing) return $action();
 		return self::locked('mutation', static function () use ($action) {
 			self::assertIdle();
 			return $action();
-		}, LOCK_SH | LOCK_NB);
+		}, $wait ? LOCK_SH : LOCK_SH | LOCK_NB);
 	}
 
 	public static function canReinstall(update $update): bool {
