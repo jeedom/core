@@ -72,6 +72,8 @@ tags:
     description: Tâches planifiées du moteur cron, administrateurs uniquement.
   - name: Journaux
     description: Lecture et gestion des fichiers log, administrateurs uniquement.
+  - name: Messages
+    description: Centre de notifications du core (messages des plugins et du système).
   - name: Plugins
     description: Plugins installés.
   - name: Utilisateurs
@@ -425,6 +427,110 @@ paths:
         type: integer
         minimum: 1
 
+  /messages:
+    get:
+      tags:
+      - Messages
+      operationId: listMessages
+      summary: Lister les messages
+      description: |
+        Reprend l'action `all` de `core/ajax/message.ajax.php`, du plus récent
+        au plus ancien. Sans `plugin`, le core renvoie au plus les 500 derniers
+        messages (`message::all()`) ; avec `plugin`, tous ceux du plugin
+        (`message::byPlugin()`). `message` et `action` sont rendus comme dans
+        l'ancienne interface (texte déjà échappé à l'enregistrement).
+      parameters:
+      - name: plugin
+        in: query
+        description: Ne garder que les messages de ce plugin (ou émetteur, ex. `core`).
+        schema:
+          type: string
+          maxLength: 127
+      - name: q
+        in: query
+        schema:
+          type: string
+          maxLength: 200
+      - $ref: '#/components/parameters/ListLimit'
+      - $ref: '#/components/parameters/ListOffset'
+      responses:
+        '200':
+          description: Liste des messages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      tags:
+      - Messages
+      operationId: clearMessages
+      summary: Vider les messages (administrateur)
+      description: |
+        Reprend l'action `clearMessage` : supprime tous les messages, ou
+        seulement ceux de `plugin`. Déclenche l'événement
+        `message::refreshMessageNumber`.
+      parameters:
+      - name: plugin
+        in: query
+        schema:
+          type: string
+          maxLength: 127
+      responses:
+        '204':
+          description: Messages supprimés.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /messages/count:
+    get:
+      tags:
+      - Messages
+      operationId: countMessages
+      summary: Nombre de messages
+      description: Reprend l'action `nbMessage` (`message::nbMessage()`), nombre total de messages ; le core n'a pas d'état lu ou non lu.
+      responses:
+        '200':
+          description: Nombre de messages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageCount'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /messages/{id}:
+    delete:
+      tags:
+      - Messages
+      operationId: deleteMessage
+      summary: Supprimer un message (administrateur)
+      description: Reprend l'action `removeMessage`. Déclenche l'événement `message::refreshMessageNumber`.
+      responses:
+        '204':
+          description: Message supprimé.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: Message inconnu (message_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
   /plugins:
     get:
       tags: [Plugins]
@@ -3582,6 +3688,57 @@ components:
           items:
             $ref: '#/components/schemas/Cron'
         total:
+          type: integer
+          minimum: 0
+
+    Message:
+      type: object
+      required:
+      - id
+      - date
+      - plugin
+      - logicalId
+      - message
+      - action
+      - occurrences
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          description: Date du dernier envoi, `AAAA-MM-JJ HH:MM:SS` (heure de la box).
+        plugin:
+          type: string
+          description: Émetteur du message (identifiant de plugin ou `core`).
+        logicalId:
+          type: string
+        message:
+          type: string
+        action:
+          type: string
+        occurrences:
+          type: integer
+          minimum: 1
+          description: Nombre d'envois identiques regroupés (1 si le message n'a été envoyé qu'une fois).
+    MessageList:
+      type: object
+      required:
+      - items
+      - total
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        total:
+          type: integer
+          minimum: 0
+    MessageCount:
+      type: object
+      required:
+      - count
+      properties:
+        count:
           type: integer
           minimum: 0
 
