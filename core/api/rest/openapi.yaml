@@ -99,6 +99,8 @@ tags:
     description: Valeurs agrégées par objet (température moyenne, lumières allumées…).
   - name: Scénarios
     description: Scénarios d'automatisation, leur contenu, leur lancement et leur journal.
+  - name: Variables
+    description: Variables du moteur de scénarios (dépôt de données de type scenario).
   - name: Crons
     description: Tâches planifiées du moteur cron, administrateurs uniquement.
   - name: Journaux
@@ -267,6 +269,149 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /variables:
+    get:
+      tags:
+      - Variables
+      operationId: listVariables
+      summary: Lister les variables des scénarios
+      description: Variables de type `scenario`, triées par nom, comme `dataStore.ajax.php` (action `all`). Tout utilisateur authentifié. Sans pagination, retourne toutes les variables.
+      parameters:
+      - name: q
+        in: query
+        description: Mots à chercher dans le nom et la valeur.
+        schema:
+          type: string
+          maxLength: 200
+      - $ref: '#/components/parameters/ListLimit'
+      - $ref: '#/components/parameters/ListOffset'
+      responses:
+        '200':
+          description: Liste des variables.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariableList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    post:
+      tags:
+      - Variables
+      operationId: createVariable
+      summary: Créer une variable globale
+      description: Crée une variable globale (`scenarioId` nul), comme l'écran Variables. Tout utilisateur authentifié.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VariableCreate'
+      responses:
+        '201':
+          description: Variable créée.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Une variable globale porte déjà ce nom (variable_key_taken).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /variables/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+    get:
+      tags:
+      - Variables
+      operationId: getVariable
+      summary: Lire une variable
+      responses:
+        '200':
+          description: La variable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/VariableNotFound'
+    patch:
+      tags:
+      - Variables
+      operationId: updateVariable
+      summary: Modifier la valeur d'une variable
+      description: Seule la valeur change ; le nom est fixe, comme `dataStore.ajax.php` (action `save` avec id).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VariableUpdate'
+      responses:
+        '200':
+          description: Variable modifiée.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/VariableNotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      tags:
+      - Variables
+      operationId: deleteVariable
+      summary: Supprimer une variable
+      description: Ne modifie pas les scénarios qui l'utilisent (voir `/variables/{id}/usages`).
+      responses:
+        '204':
+          description: Variable supprimée.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/VariableNotFound'
+  /variables/{id}/usages:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+    get:
+      tags:
+      - Variables
+      operationId: getVariableUsages
+      summary: Utilisations d'une variable
+      description: Scénarios, équipements, commandes et interactions qui citent la variable (`getUsedBy`). Les autres listes sont toujours vides.
+      responses:
+        '200':
+          description: Utilisations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EqLogicUsages'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/VariableNotFound'
   /crons:
     get:
       tags:
@@ -3650,6 +3795,43 @@ components:
           minimum: 0
           maximum: 2147483647
           description: Pause du démon en secondes. 0 conserve le réglage global.
+    Variable:
+      type: object
+      required: [id, key, value, scenarioId]
+      properties:
+        id: { type: integer, example: 12 }
+        key: { type: string, example: presence }
+        value:
+          type: string
+          description: Valeur enregistrée, telle quelle (un tableau stocké est rendu en JSON).
+          example: '1'
+        scenarioId:
+          type: [integer, 'null']
+          description: Scénario propriétaire ; nul pour une variable globale.
+    VariableCreate:
+      type: object
+      additionalProperties: false
+      required: [key, value]
+      properties:
+        key: { type: string, minLength: 1, maxLength: 127 }
+        value: { type: string }
+    VariableUpdate:
+      type: object
+      additionalProperties: false
+      required: [value]
+      properties:
+        value: { type: string }
+    VariableList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variable'
+        total:
+          type: integer
+          minimum: 0
     CronList:
       type: object
       required:
@@ -6222,6 +6404,11 @@ components:
         hidenumber: { type: boolean, description: 'Masquer le nombre.' }
         hidenulnumber: { type: boolean, description: 'Masquer le nombre s''il est nul.' }
   responses:
+    VariableNotFound:
+      description: Variable inconnue (variable_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
     Unauthorized:
       description: |
         Non connecté : `unauthorized` (jeton absent, invalide ou révoqué)

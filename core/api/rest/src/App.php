@@ -80,6 +80,14 @@ final class App
             $api->delete('/scenarios/{id}/log', $scenarios->emptyLog(...));
             $api->get('/scenarios/{id}/usages', $scenarios->usages(...));
 
+            $variables = new VariablesController();
+            $api->get('/variables', $variables->list(...));
+            $api->post('/variables', $variables->create(...));
+            $api->get('/variables/{id}', $variables->get(...));
+            $api->patch('/variables/{id}', $variables->update(...));
+            $api->delete('/variables/{id}', $variables->delete(...));
+            $api->get('/variables/{id}/usages', $variables->usages(...));
+
             $crons = new CronsController();
             $api->get('/crons', $crons->list(...));
             $api->post('/crons', $crons->create(...));
