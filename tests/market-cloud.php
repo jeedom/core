@@ -92,10 +92,12 @@ class com_http {
         return $body;
     }
 }
-function dav() {
+function dav(array $sizes = array()) {
     $body = '<d:multistatus xmlns:d="DAV:">';
     foreach (array('old.gpg' => '2025-01-01', 'new.gpg' => '2026-01-01', '../escape.gpg' => '2026-02-01', 'sub/deep.gpg' => '2026-02-01', 'plain.txt' => '2026-02-01') as $name => $date) {
-        $body .= '<d:response><d:href>https://untrusted.invalid/webdav/alice/My%20box/' . $name . '</d:href><d:propstat><d:prop><d:resourcetype/><d:getcontentlength>3000000000</d:getcontentlength><d:getlastmodified>' . $date . '</d:getlastmodified></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response>';
+        $size = array_key_exists($name, $sizes) ? $sizes[$name] : 3000000000;
+        $length = $size === null ? '' : '<d:getcontentlength>' . $size . '</d:getcontentlength>';
+        $body .= '<d:response><d:href>https://untrusted.invalid/webdav/alice/My%20box/' . $name . '</d:href><d:propstat><d:prop><d:resourcetype/>' . $length . '<d:getlastmodified>' . $date . '</d:getlastmodified></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response>';
     }
     $body .= '<d:response><d:href>/webdav/bob/Other/foreign.gpg</d:href><d:propstat><d:prop><d:resourcetype/></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response></d:multistatus>';
     return $body;
@@ -152,6 +154,12 @@ try {
     foreach (com_http::$calls as $request) if (strpos($request->url, 'backup.example.test') !== false) {
         check(!$request->ssl && in_array('Authorization: Bearer ' . $token, $request->headers, true), 'Backup does not verify TLS/use Bearer');
     }
+    resetState();
+    com_http::$replies = array(array(207, dav()), array(207, dav(array('old.gpg' => null))));
+    $backups = repo_market::backup_list_details();
+    check(array_column($backups, 'name') === array('new.gpg', 'old.gpg'), 'Detailed listing changed order or isolation');
+    check(array_column($backups, 'size') === array(3000000000, null), 'Cloud file sizes were lost or missing sizes became zero');
+    check(count(com_http::$calls) === 2, 'Cloud file sizes triggered additional WebDAV requests');
     com_http::$calls = array();
     com_http::$replies = array(array(401, ''));
     failWith(401, function () { repo_market::backup_list(); });

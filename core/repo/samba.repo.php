@@ -212,10 +212,14 @@ class repo_samba {
 	}
 
 	public static function backup_list() {
+		return array_column(self::backup_list_details(), 'name');
+	}
+
+	public static function backup_list_details() {
 		$return = array();
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
 			if (strpos($file['filename'], '.tar.gz') !== false) {
-				$return[] = $file['filename'];
+				$return[] = array('name' => $file['filename'], 'size' => (int) $file['size']);
 			}
 		}
 		return $return;

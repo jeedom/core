@@ -260,7 +260,7 @@ paths:
           description: Sauvegardes distantes.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/BackupReferenceList' }
+              schema: { $ref: '#/components/schemas/RemoteBackupList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/BackupNotFound' }
@@ -3906,6 +3906,25 @@ components:
               id: { type: string }
               name: { type: string }
         total: { type: integer, minimum: 0 }
+    RemoteBackupList:
+      type: object
+      additionalProperties: false
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [id, name, size]
+            properties:
+              id: { type: string }
+              name: { type: string }
+              size:
+                type: [integer, 'null']
+                minimum: 0
+                description: Taille en octets du fichier distant (chiffré pour Jeedom Cloud), ou null si inconnue.
+        total: { type: integer, minimum: 0 }
     BackupAccepted:
       type: object
       additionalProperties: false
@@ -3914,7 +3933,7 @@ components:
         log:
           type: string
           enum: [backup, restore]
-          description: Nom du journal à lire via GET /logs/{name}.
+          description: Nom du journal à lire via GET /logs/{name}. Les lignes `[PROGRESS][n]` indiquent le pourcentage par étape.
     LogList:
       type: object
       required:

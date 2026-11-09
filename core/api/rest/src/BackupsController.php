@@ -100,9 +100,10 @@ final class BackupsController
         Auth::requireAdmin($request);
         $repo = self::repository($args['repositoryId']);
         $items = [];
-        foreach (self::transfer(static fn () => $repo::backup_list()) as $name) {
+        foreach (self::transfer(static fn () => $repo::backup_list_details()) as $archive) {
+            $name = $archive['name'];
             if (self::validRemoteName($repo, $name)) {
-                $items[] = ['id' => self::id($name), 'name' => $name];
+                $items[] = ['id' => self::id($name), 'name' => $name, 'size' => $archive['size']];
             }
         }
         return self::items($response, $items);

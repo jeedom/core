@@ -238,6 +238,10 @@ class repo_market {
 		return marketClient::backup_list();
 	}
 
+	public static function backup_list_details() {
+		return marketClient::backup_list_details();
+	}
+
 	public static function backup_restore($_backup) {
 		return marketClient::backup_restore($_backup);
 	}
@@ -1084,7 +1088,8 @@ class marketClient {
 				if (strpos((string) $propstat->status, ' 200 ') === false) continue;
 				$prop = $propstat->prop;
 				if (isset($prop->resourcetype->collection)) continue;
-				$files[$name] = array('name' => $name, 'size' => (int) $prop->getcontentlength,
+				$size = filter_var((string) $prop->getcontentlength, FILTER_VALIDATE_INT, array('options' => array('min_range' => 0)));
+				$files[$name] = array('name' => $name, 'size' => $size === false ? null : $size,
 					'timestamp' => strtotime((string) $prop->getlastmodified));
 			}
 		}
@@ -1136,16 +1141,20 @@ class marketClient {
 			if (!$files || $deleted >= 100) throw new Exception(__('Pas assez de place pour la sauvegarde Cloud.', __FILE__));
 			$file = array_shift($files);
 			self::cloudRequest('DELETE', self::backupUrl($file['name']), null, 10);
-			$total -= $file['size'];
+			$total -= $file['size'] ?? 0;
 			++$deleted;
 		}
 	}
 
 	public static function backup_list() {
+		return array_column(self::backup_list_details(), 'name');
+	}
+
+	public static function backup_list_details() {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') return array();
 		$files = self::backupFiles();
 		usort($files, function ($a, $b) { return $b['timestamp'] <=> $a['timestamp']; });
-		return array_column($files, 'name');
+		return $files;
 	}
 
 	public static function backup_restore($_backup) {

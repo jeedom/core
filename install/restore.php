@@ -22,6 +22,7 @@
 require_once dirname(__DIR__) . '/core/php/console.php';
 
 echo "[START RESTORE]\n";
+consoleProgress(__FILE__, 1);
 $starttime = strtotime('now');
 
 try {
@@ -33,7 +34,7 @@ try {
 		jeedom::event('begin_restore', true);
 		echo "OK\n";
 	} catch (Exception $e) {
-		echo '***ERROR*** ' . $e->getMessage();
+		echo '***ERROR*** ' . $e->getMessage() . "\n";
 	}
 
 	global $CONFIG;
@@ -76,6 +77,7 @@ try {
 		throw new Exception('Backup not found.' . $backup);
 	}
 
+	consoleProgress(__FILE__, 15);
 	try {
 		echo "Checking rights...";
 		jeedom::cleanFileSystemRight();
@@ -102,6 +104,7 @@ try {
 		$e->getMessage();
 	}
 
+	consoleProgress(__FILE__, 30);
 	echo "Unpacking backup...";
 	$excludes = array(
 		'tmp',
@@ -123,6 +126,7 @@ try {
 	echo "OK\n";
 
 
+	consoleProgress(__FILE__, 45);
 	if (exec('which composer | wc -l') == 0) {
 		echo "\nNeed to install composer...";
 		echo shell_exec(system::getCmdSudo() . ' ' . __DIR__ . '/../resources/install_composer.sh');
@@ -140,7 +144,7 @@ try {
 	} else {
 		echo "ERROR : no composer available !\n";
 	}
-	echo "[PROGRESS][58]\n";
+	consoleProgress(__FILE__, 58);
 
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('Cannot find database backup file : DB_backup.sql');
@@ -157,6 +161,7 @@ try {
 		echo "OK\n";
 	}
 
+	consoleProgress(__FILE__, 65);
 	echo "Restoring database from backup...";
 
 	if (isset($CONFIG['db']['unix_socket'])) {
@@ -185,6 +190,7 @@ try {
 		echo "OK\n";
 	}
 
+	consoleProgress(__FILE__, 80);
 	echo "Restoring cache...";
 	try {
 		cache::restore();
@@ -214,6 +220,7 @@ try {
 	$cache = cache::byKey('jeedom::isCapable::sudo');
 	$cache->remove();
 
+	consoleProgress(__FILE__, 90);
 	try {
 		echo "Check jeedom consistency...";
 		require_once __DIR__ . '/consistency.php';
@@ -222,6 +229,7 @@ try {
 		echo "***ERROR*** " . $ex->getMessage() . "\n";
 	}
 
+	consoleProgress(__FILE__, 95);
 	try {
 		jeedom::start();
 	} catch (Exception $e) {
@@ -237,6 +245,7 @@ try {
 	}
 	echo "Restore duration : " . (strtotime('now') - $starttime) . "s\n";
 	echo "***************Jeedom Restore End***************\n";
+	consoleProgress(__FILE__, 100);
 	echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {
 	echo 'Error during restore : ' . $e->getMessage();

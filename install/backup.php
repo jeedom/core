@@ -22,6 +22,7 @@
 require_once dirname(__DIR__) . '/core/php/console.php';
 
 echo "[START BACKUP]\n";
+consoleProgress(__FILE__, 1);
 $starttime = strtotime('now');
 
 try {
@@ -65,6 +66,7 @@ try {
 	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
 	$backup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
+	consoleProgress(__FILE__, 10);
 	global $NO_PLUGIN_BACKUP;
 	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP === false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
@@ -102,6 +104,7 @@ try {
 		echo "OK" . "\n";
 	}
 
+	consoleProgress(__FILE__, 25);
 	echo 'Backing up database...';
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		unlink($jeedom_dir . "/DB_backup.sql");
@@ -127,9 +130,10 @@ try {
 		cache::persist();
 		echo "OK" . "\n";
 	} catch (Exception $e) {
-		echo $e->getMessage();
+		echo $e->getMessage() . "\n";
 	}
 
+	consoleProgress(__FILE__, 45);
 	echo "Creating archive...\n";
 
 	$excludes = array(
@@ -191,10 +195,12 @@ try {
 		throw new Exception('Backup failed. Can\'t find: ' . $backup_fullname);
 	}
 
+	consoleProgress(__FILE__, 75);
 	echo 'Cleaning old backup...';
 	shell_exec('find "' . $backup_dir . '" -name "*.gz" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
 
+	consoleProgress(__FILE__, 85);
 	global $NO_CLOUD_BACKUP;
 	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP === false)) {
 		foreach (update::listRepo() as $key => $value) {
@@ -255,6 +261,7 @@ try {
 
 	echo "Backup name: {$backup_fullname}\n";
 
+	consoleProgress(__FILE__, 95);
 	try {
 		echo 'Checking files rights...';
 		jeedom::cleanFileSystemRight();
@@ -272,6 +279,7 @@ try {
 	}
 	echo "Backup operation duration: " . (strtotime('now') - $starttime) . "s\n";
 	echo "***************Jeedom backup end***************\n";
+	consoleProgress(__FILE__, 100);
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
 	echo 'Error during backup: ' . br2nl($e->getMessage());

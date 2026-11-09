@@ -33,3 +33,10 @@ if (isset($argv)) {
     }
   }
 }
+
+function consoleProgress(string $script, int $percent): void {
+  // Un script inclus, par exemple avant une mise à jour, partage le journal de son appelant.
+  if (isset($_SERVER['SCRIPT_FILENAME']) && realpath($_SERVER['SCRIPT_FILENAME']) === $script) {
+    echo "[PROGRESS][$percent]\n";
+  }
+}
