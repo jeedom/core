@@ -1088,7 +1088,10 @@ class eqLogic {
 	}
 
 	public function getLinkToConfiguration() {
-		if (isset($_SESSION['user']) && is_object($_SESSION['user']) && !isConnect('admin')) {
+		$actor = $GLOBALS['_USER_GLOBAL'] ?? null;
+		$restricted = $actor instanceof user ? $actor->getProfils() !== 'admin'
+			: isset($_SESSION['user']) && is_object($_SESSION['user']) && !isConnect('admin');
+		if ($restricted) {
 			return '#';
 		}
 		return 'index.php?v=d&p=' . $this->getEqType_name() . '&m=' . $this->getEqType_name() . '&id=' . $this->getId();

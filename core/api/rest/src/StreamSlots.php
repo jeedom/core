@@ -16,27 +16,45 @@ final class StreamSlots
     public static function acquire(\user $user, int $duration): ?string
     {
         $key = self::key($user);
-        $now = time();
-        $slots = array_filter((array) \cache::byKey($key)->getValue([]), static fn ($expires) => (int) $expires > $now);
-        if (count($slots) >= EventsController::MAX_STREAMS_PER_USER) {
-            return null;
-        }
-        $id = bin2hex(random_bytes(8));
-        $slots[$id] = $now + $duration + self::MARGIN;
-        \cache::set($key, $slots, $duration + self::MARGIN);
-        return $id;
+        return self::withLock($key, static function () use ($key, $duration): ?string {
+            $now = time();
+            $slots = array_filter((array) \cache::byKey($key)->getValue([]), static fn ($expires) => (int) $expires > $now);
+            if (count($slots) >= EventsController::MAX_STREAMS_PER_USER) {
+                return null;
+            }
+            $id = bin2hex(random_bytes(8));
+            $slots[$id] = $now + $duration + self::MARGIN;
+            \cache::set($key, $slots, max($slots) - $now);
+            return $id;
+        });
     }
 
     public static function release(\user $user, string $id): void
     {
         $key = self::key($user);
-        $slots = (array) \cache::byKey($key)->getValue([]);
-        unset($slots[$id]);
-        if ($slots === []) {
-            \cache::delete($key);
-            return;
+        self::withLock($key, static function () use ($key, $id): void {
+            $slots = (array) \cache::byKey($key)->getValue([]);
+            unset($slots[$id]);
+            if ($slots === []) {
+                \cache::delete($key);
+                return;
+            }
+            \cache::set($key, $slots, max(1, max($slots) - time()));
+        });
+    }
+
+    private static function withLock(string $key, callable $action): mixed
+    {
+        $file = \jeedom::getTmpFolder('rest-events') . '/' . hash('sha256', $key) . '.lock';
+        $lock = @fopen($file, 'c');
+        if ($lock === false) {
+            return null;
         }
-        \cache::set($key, $slots, max(1, max($slots) - time()));
+        try {
+            return flock($lock, LOCK_EX) ? $action() : null;
+        } finally {
+            fclose($lock);
+        }
     }
 
     private static function key(\user $user): string

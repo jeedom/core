@@ -2179,6 +2179,128 @@
       }
     },
     {
+      "name": "session",
+      "fields": [
+        {
+          "name": "id",
+          "type": "char(64)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "user_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "token_hash",
+          "type": "char(64)",
+          "null": "NO",
+          "key": "UNI",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "csrf_token",
+          "type": "char(64)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "credential_hash",
+          "type": "char(64)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "ip",
+          "type": "varchar(45)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "remembered",
+          "type": "tinyint(1)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "last_activity_at",
+          "type": "datetime",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "expires_at",
+          "type": "datetime",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": {
+        "session_token": {
+          "Key_name": "session_token",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "token_hash",
+              "Sub_part": null
+            }
+          }
+        },
+        "session_user_activity": {
+          "Key_name": "session_user_activity",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "user_id",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "last_activity_at",
+              "Sub_part": null
+            }
+          }
+        },
+        "session_expiry": {
+          "Key_name": "session_expiry",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "expires_at",
+              "Sub_part": null
+            }
+          }
+        }
+      },
+      "engine": "InnoDB"
+    },
+    {
       "name": "user",
       "fields": [
         {

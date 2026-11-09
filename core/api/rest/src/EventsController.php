@@ -28,6 +28,11 @@ final class EventsController
         $query = $request->getQueryParams();
         $user = $request->getAttribute('user');
 
+        // Un onglet peut avoir gardé l'ancienne session après une reconnexion dans un autre onglet.
+        if ($request->hasHeader('X-CSRF-Token') && $request->getAttribute('csrfValid') === false) {
+            throw new ApiError(401, 'session_expired', 'Session expirée, reconnectez-vous.');
+        }
+
         $types = self::list($query, 'types');
         foreach ($types as $type) {
             if (!in_array($type, self::TYPES, true)) {
@@ -48,7 +53,7 @@ final class EventsController
         if (isset($query['maxDuration'])) {
             $value = (string) $query['maxDuration'];
             if (!ctype_digit($value) || (int) $value < 5 || (int) $value > EventStream::MAX_DURATION) {
-                throw ApiError::field(422, 'validation_error', 'maxDuration', 'Un entier entre 5 et 55 est attendu.');
+                throw ApiError::field(422, 'validation_error', 'maxDuration', sprintf('Un entier entre 5 et %d est attendu.', EventStream::MAX_DURATION));
             }
             $maxDuration = (int) $value;
         }
@@ -69,7 +74,9 @@ final class EventsController
                 ->withHeader('Retry-After', '10');
         }
         $filter = new EventFilter($user, $types, $filters);
-        $stream = new EventStream($filter, $cursor === '' ? null : (float) $cursor, $maxDuration, $slot, $user);
+        $cookie = $request->getAttribute('webSessionId') !== null ? SessionController::cookie($request) : null;
+        $authorized = $cookie === null ? null : static fn (): bool => Auth::browserSession($cookie) !== null;
+        $stream = new EventStream($filter, $cursor === '' ? null : (float) $cursor, $maxDuration, $slot, $user, $authorized);
         return $response
             ->withBody($stream)
             ->withHeader('Content-Type', 'text/event-stream; charset=utf-8')
