@@ -523,7 +523,9 @@ document.getElementById('in_searchConfig').addEventListener('keyup', function(ev
       if (tabId == undefined) return
       //Create new tablink ?
       if (!tabsArr.includes(tabId)) {
-        tabName = document.querySelector('a[data-target="#' + tabId + '"]').innerHTML
+        const _tabEl = document.querySelector('a[data-target="#' + tabId + '"]')
+        if (!_tabEl) return
+        tabName = _tabEl.innerHTML
         if (tabName != null) {
           var newTabLink = document.createElement('div')
           newTabLink.innerHTML = '<a role="searchTabLink" data-target="#' + tabId + '">' + tabName + '</a>'
