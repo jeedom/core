@@ -23,8 +23,34 @@ final class SystemController
     public function health(Request $request, Response $response): Response
     {
         self::requireAdmin($request);
-        $items = \jeedom::health();
-        return self::respond($response, ['items' => $items, 'total' => count($items)]);
+        $scope = $request->getQueryParams()['scope'] ?? null;
+        if ($scope !== null && $scope !== 'core') {
+            throw ApiError::field(422, 'validation_error', 'scope', 'Le seul périmètre explicite est core.');
+        }
+        $items = \jeedom::health($scope === 'core');
+        $extensions = get_loaded_extensions();
+        natcasesort($extensions);
+        return self::respond($response, [
+            'items' => $items,
+            'total' => count($items),
+            'phpExtensions' => array_values($extensions),
+            'checkedAt' => gmdate(DATE_ATOM),
+        ]);
+    }
+
+    public function benchmark(Request $request, Response $response): Response
+    {
+        self::requireAdmin($request);
+        try {
+            $durations = \jeedom::benchmark();
+        } catch (\RuntimeException $e) {
+            throw match ($e->getCode()) {
+                409 => new ApiError(409, 'benchmark_running', 'Un benchmark est déjà en cours.'),
+                503 => new ApiError(503, 'benchmark_unavailable', 'Le benchmark est indisponible.'),
+                default => $e,
+            };
+        }
+        return self::respond($response, ['durations' => $durations]);
     }
 
     public function reboot(Request $request, Response $response): Response

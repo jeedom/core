@@ -145,6 +145,11 @@ paths:
       tags: [Système]
       operationId: getSystemHealth
       summary: Lire les diagnostics système
+      parameters:
+        - name: scope
+          in: query
+          description: Le périmètre core exclut le compteur global de mises à jour. Sans périmètre, tous les contrôles historiques sont retournés.
+          schema: { type: string, enum: [core] }
       responses:
         '200':
           description: Résultats des contrôles de santé.
@@ -153,6 +158,32 @@ paths:
               schema: { $ref: '#/components/schemas/SystemHealth' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /system/health/benchmark:
+    post:
+      tags: [Système]
+      operationId: runSystemBenchmark
+      summary: Exécuter le benchmark Jeedom
+      description: Administrateur. Le benchmark sollicite le cache, la base de données et les sous-processus. Un seul benchmark peut s’exécuter à la fois.
+      responses:
+        '200':
+          description: Durées des mesures en secondes.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemBenchmark' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409':
+          description: Un benchmark est déjà en cours (`benchmark_running`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '503':
+          description: Le verrou du benchmark est indisponible (`benchmark_unavailable`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /system/reboot:
     post:
@@ -4266,7 +4297,7 @@ components:
         started: { type: boolean }
     SystemHealth:
       type: object
-      required: [items, total]
+      required: [items, total, phpExtensions, checkedAt]
       properties:
         items:
           type: array
@@ -4281,6 +4312,21 @@ components:
               result: { type: [string, number] }
               comment: { type: string }
         total: { type: integer, minimum: 0 }
+        phpExtensions:
+          type: array
+          items: { type: string }
+        checkedAt: { type: string, format: date-time }
+    SystemBenchmark:
+      type: object
+      required: [durations]
+      properties:
+        durations:
+          type: object
+          description: Mesures natives du benchmark et durée totale sous la clé total, en secondes.
+          required: [total]
+          properties:
+            total: { type: number, minimum: 0 }
+          additionalProperties: { type: number, minimum: 0 }
     SystemMaintenanceAccepted:
       type: object
       required: [log]

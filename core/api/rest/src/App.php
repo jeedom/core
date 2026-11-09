@@ -103,6 +103,7 @@ final class App
             $system = new SystemController();
             $api->get('/system', $system->get(...));
             $api->get('/system/health', $system->health(...));
+            $api->post('/system/health/benchmark', $system->benchmark(...));
             $api->post('/system/reboot', $system->reboot(...));
             $api->post('/system/shutdown', $system->shutdown(...));
             $api->post('/system/time/sync', $system->syncTime(...));

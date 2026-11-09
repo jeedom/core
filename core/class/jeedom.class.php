@@ -171,7 +171,7 @@ class jeedom {
 		return $return;
 	}
 
-	public static function health() {
+	public static function health(bool $_coreOnly = false) {
 		$return = array();
 		// Hardware
 		$return[] = array(
@@ -183,25 +183,22 @@ class jeedom {
 		);
 
 		// Updates
-		$nbNeedUpdate = update::nbNeedUpdate();
-		$updateState = true;
+		$nbNeedUpdate = $_coreOnly ? 0 : update::nbNeedUpdate();
 		$coreNeedUpdate = false;
-		if ($nbNeedUpdate > 0) {
+		if ($_coreOnly || $nbNeedUpdate > 0) {
 			$coreUpdate = update::byTypeAndLogicalId('core', 'jeedom');
-			$coreNeedUpdate = is_object($coreUpdate) && $coreUpdate->getStatus() == 'update';
-			if ($coreNeedUpdate) {
-				$updateState = false;
-			} else {
-				$updateState = 2;
-			}
+			$coreNeedUpdate = is_object($coreUpdate) && $coreUpdate->getStatus() == 'update'
+				&& (!$_coreOnly || $coreUpdate->getConfiguration('doNotUpdate', 0) == 0);
 		}
-		$return[] = array(
-			'name' => __('Mises à jour', __FILE__),
-			'state' => $updateState,
-			'result' => ($updateState === true) ? 'OK' : $nbNeedUpdate,
-			'comment' => ($updateState === true) ? __('Aucune mise à jour en attente', __FILE__) : __('Nombre de mises à jour en attente', __FILE__),
-			'key' => 'uptodate'
-		);
+		if (!$_coreOnly) {
+			$return[] = array(
+				'name' => __('Mises à jour', __FILE__),
+				'state' => $nbNeedUpdate === 0 ? true : ($coreNeedUpdate ? false : 2),
+				'result' => $nbNeedUpdate === 0 ? 'OK' : $nbNeedUpdate,
+				'comment' => $nbNeedUpdate === 0 ? __('Aucune mise à jour en attente', __FILE__) : __('Nombre de mises à jour en attente', __FILE__),
+				'key' => 'uptodate'
+			);
+		}
 
 		// Start date
 		$product_name = config::byKey('product_name');
@@ -2012,6 +2009,29 @@ class jeedom {
 	/*     * ******************Benchmark*************************** */
 
 	public static function benchmark() {
+		$lock = @fopen(self::getTmpFolder() . '/health-benchmark.lock', 'c');
+		if ($lock === false) {
+			throw new RuntimeException('Verrou du benchmark indisponible.', 503);
+		}
+		try {
+			if (!flock($lock, LOCK_EX | LOCK_NB)) {
+				throw new RuntimeException('Un benchmark est déjà en cours.', 409);
+			}
+			try {
+				return self::runBenchmark();
+			} finally {
+				try {
+					config::remove('jeedom_benchmark');
+				} finally {
+					cache::delete('jeedom_benchmark');
+				}
+			}
+		} finally {
+			fclose($lock);
+		}
+	}
+
+	private static function runBenchmark(): array {
 		$return = array();
 
 		$param = array('cache_write' => 5000, 'cache_read' => 5000, 'database_write_delete' => 1000, 'database_update' => 1000, 'database_replace' => 1000, 'database_read' => 50000, 'subprocess' => 200);
