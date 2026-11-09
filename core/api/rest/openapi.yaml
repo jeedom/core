@@ -65,6 +65,26 @@ info:
     La table étant en mémoire, un redémarrage de MySQL ferme toutes les
     sessions : chacun doit se reconnecter (choix de sécurité assumé).
 
+    ## Configuration (`/config`)
+    Réglages globaux du core (table `config`, `plugin = core`), un chemin par
+    onglet de l'administration (`/config/general`, `/config/interface`…).
+    Les noms de clés sont ceux du core. La configuration des plugins passe
+    par `/plugins/{id}`.
+    - Lecture : tout utilisateur connecté, sauf les clés de
+      `config::shouldBeEncrypted()`, réservées aux administrateurs, comme
+      `core/ajax/config.ajax.php` ; pour un non-administrateur, elles sont
+      absentes de la réponse.
+    - Les clés sensibles ne sortent jamais en clair (schéma `ConfigSecret`).
+    - Écriture : `PATCH` par onglet, administrateurs uniquement.
+    - Cible future (pas encore appliquée) : une liste blanche des clés
+      lisibles par un non-administrateur (thème, widgets, langue, fuseau…,
+      voir `docs/inventaire-config.md` de jeevolution) ; le reste deviendra
+      réservé aux administrateurs.
+    - Non exposées : les clés jamais lues par le core (`info::address`,
+      `info::postalCode`, `info::city`, `info::stateCode`, `info::livingSpace`,
+      `info::nbOccupant`, `disableMobileUi`, `internalPort`, `externalPort`,
+      `update::composerUpdate`, `proxyLogins`).
+
 servers:
   - url: /api/v1
 
@@ -95,6 +115,8 @@ tags:
     description: Commandes des équipements, infos (états) et actions.
   - name: Temps réel
     description: Flux d'événements en direct (SSE).
+  - name: Configuration
+    description: Réglages globaux du core, par onglet de l'administration.
 
 paths:
   /logs:
@@ -3255,6 +3277,461 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/ScenarioNotFound' }
 
+  /config:
+    get:
+      tags: [Configuration]
+      operationId: getConfig
+      summary: Lire toute la configuration du core
+      description: |
+        Tous les onglets de l'administration en une réponse, avec les mêmes
+        règles de lecture que chaque `GET /config/{onglet}`.
+      responses:
+        '200':
+          description: Configuration par onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Config' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /config/general:
+    get:
+      tags: [Configuration]
+      operationId: getConfigGeneral
+      summary: Lire la configuration « Général »
+      description: |
+        Onglet « Général » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigGeneral' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigGeneral
+      summary: Modifier la configuration « Général » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigGeneralUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigGeneral' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/interface:
+    get:
+      tags: [Configuration]
+      operationId: getConfigInterface
+      summary: Lire la configuration « Interface »
+      description: |
+        Onglet « Interface » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigInterface' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigInterface
+      summary: Modifier la configuration « Interface » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigInterfaceUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigInterface' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/network:
+    get:
+      tags: [Configuration]
+      operationId: getConfigNetwork
+      summary: Lire la configuration « Réseaux »
+      description: |
+        Onglet « Réseaux » de l'administration.
+        Clés sensibles : `proxyPassword` (voir `ConfigSecret`).
+        `proxyLogin` est la clé lue par le core (`jsonrpcClient`, `market.repo`) ;
+        l'administration actuelle enregistre `proxyLogins`, jamais lue (incohérence signalée, non corrigée dans le core).
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigNetwork' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigNetwork
+      summary: Modifier la configuration « Réseaux » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigNetworkUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigNetwork' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/logs:
+    get:
+      tags: [Configuration]
+      operationId: getConfigLogs
+      summary: Lire la configuration « Logs »
+      description: |
+        Onglet « Logs » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigLogs' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigLogs
+      summary: Modifier la configuration « Logs » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigLogsUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigLogs' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/eqLogics:
+    get:
+      tags: [Configuration]
+      operationId: getConfigEqLogics
+      summary: Lire la configuration « Équipements »
+      description: |
+        Onglet « Équipements » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigEqLogics' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigEqLogics
+      summary: Modifier la configuration « Équipements » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigEqLogicsUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigEqLogics' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/reports:
+    get:
+      tags: [Configuration]
+      operationId: getConfigReports
+      summary: Lire la configuration « Rapports »
+      description: |
+        Onglet « Rapports » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigReports' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigReports
+      summary: Modifier la configuration « Rapports » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigReportsUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigReports' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/links:
+    get:
+      tags: [Configuration]
+      operationId: getConfigLinks
+      summary: Lire la configuration « Liens »
+      description: |
+        Onglet « Liens » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigLinks' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigLinks
+      summary: Modifier la configuration « Liens » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigLinksUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigLinks' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/interactions:
+    get:
+      tags: [Configuration]
+      operationId: getConfigInteractions
+      summary: Lire la configuration « Interactions »
+      description: |
+        Onglet « Interactions » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigInteractions' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigInteractions
+      summary: Modifier la configuration « Interactions » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigInteractionsUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigInteractions' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/security:
+    get:
+      tags: [Configuration]
+      operationId: getConfigSecurity
+      summary: Lire la configuration « Sécurité »
+      description: |
+        Onglet « Sécurité » de l'administration.
+        Clés sensibles : `ldap:host`, `ldap:username`, `ldap:password` (voir `ConfigSecret`).
+        `ldap:enable` est la clé testée par `user::connect()` ; `ldap::enable` est
+        lue en parallèle par `user.ajax.php` et JSON-RPC (incohérence signalée, non corrigée dans le core).
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigSecurity' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigSecurity
+      summary: Modifier la configuration « Sécurité » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigSecurityUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigSecurity' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/updates:
+    get:
+      tags: [Configuration]
+      operationId: getConfigUpdates
+      summary: Lire la configuration « Mises à jour »
+      description: |
+        Onglet « Mises à jour » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigUpdates' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigUpdates
+      summary: Modifier la configuration « Mises à jour » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigUpdatesUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigUpdates' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/cache:
+    get:
+      tags: [Configuration]
+      operationId: getConfigCache
+      summary: Lire la configuration « Cache »
+      description: |
+        Onglet « Cache » de l'administration.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigCache' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigCache
+      summary: Modifier la configuration « Cache » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigCacheUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigCache' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /config/api:
+    get:
+      tags: [Configuration]
+      operationId: getConfigApi
+      summary: Lire la configuration « API »
+      description: |
+        Onglet « API » de l'administration.
+        `api::forbidden::method` et `api::allow::method` ne visent que JSON-RPC, pas cette API.
+      responses:
+        '200':
+          description: Réglages de l'onglet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigApi' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [Configuration]
+      operationId: updateConfigApi
+      summary: Modifier la configuration « API » (administrateur)
+      description: |
+        Seules les clés envoyées sont enregistrées (`config::save`). Une clé
+        inconnue ou d'un mauvais type refuse toute la requête (422), rien
+        n'est enregistré. Renvoie l'onglet relu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConfigApiUpdate' }
+      responses:
+        '200':
+          description: Onglet après enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConfigApi' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -5059,6 +5536,1178 @@ components:
           enum: [cursor_too_old]
           description: Des événements ont pu être perdus ; recharger l'état par les routes REST.
 
+    Config:
+      type: object
+      additionalProperties: false
+      required: [general, interface, network, logs, eqLogics, reports, links, interactions, security, updates, cache, api]
+      properties:
+        general: { $ref: '#/components/schemas/ConfigGeneral' }
+        interface: { $ref: '#/components/schemas/ConfigInterface' }
+        network: { $ref: '#/components/schemas/ConfigNetwork' }
+        logs: { $ref: '#/components/schemas/ConfigLogs' }
+        eqLogics: { $ref: '#/components/schemas/ConfigEqLogics' }
+        reports: { $ref: '#/components/schemas/ConfigReports' }
+        links: { $ref: '#/components/schemas/ConfigLinks' }
+        interactions: { $ref: '#/components/schemas/ConfigInteractions' }
+        security: { $ref: '#/components/schemas/ConfigSecurity' }
+        updates: { $ref: '#/components/schemas/ConfigUpdates' }
+        cache: { $ref: '#/components/schemas/ConfigCache' }
+        api: { $ref: '#/components/schemas/ConfigApi' }
+    ConfigSecret:
+      type: object
+      readOnly: true
+      description: |
+        Valeur sensible (clé de `config::$encryptKey`), jamais renvoyée en clair,
+        même à un administrateur : seul `isSet` indique si elle est renseignée.
+        On l'écrit en envoyant la nouvelle valeur en texte dans le PATCH.
+      required: [isSet]
+      additionalProperties: false
+      properties:
+        isSet: { type: boolean }
+    ConfigGeneral:
+      type: object
+      description: Onglet « Général ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'name':
+          type: string
+          description: 'Utilisé notamment par le market'
+        'display_name_login':
+          type: boolean
+          description: 'Afficher sur la page de connexion'
+        'language':
+          type: string
+          description: 'Sélection de la langue d''affichage'
+          default: 'fr_FR'
+        'tts::engine':
+          type: string
+          description: 'Sélection du moteur text-to-speech'
+        'timezone':
+          type: string
+          description: 'Sélection du fuseau horaire'
+          default: 'Europe/Brussels'
+        'ntp::optionalServer':
+          type: string
+          description: 'Permet d''ajouter un serveur de temps pour la synchronisation'
+        'ignoreHourCheck':
+          type: boolean
+          description: 'Cochez la case pour ne pas prendre en compte l''heure du syst'
+        'core::jqueryless':
+          type: boolean
+          description: 'Ne charge pas jQuery/Boostrap et leurs librairies (Attention'
+          default: false
+        'info::latitude':
+          type: number
+          description: 'Latitude'
+        'info::longitude':
+          type: number
+          description: 'Longitude'
+        'info::altitude':
+          type: number
+          description: 'Altitude du bâtiment en mètres'
+    ConfigGeneralUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'name':
+          type: string
+          description: 'Utilisé notamment par le market'
+        'display_name_login':
+          type: boolean
+          description: 'Afficher sur la page de connexion'
+        'language':
+          type: string
+          description: 'Sélection de la langue d''affichage'
+          default: 'fr_FR'
+        'tts::engine':
+          type: string
+          description: 'Sélection du moteur text-to-speech'
+        'timezone':
+          type: string
+          description: 'Sélection du fuseau horaire'
+          default: 'Europe/Brussels'
+        'ntp::optionalServer':
+          type: string
+          description: 'Permet d''ajouter un serveur de temps pour la synchronisation'
+        'ignoreHourCheck':
+          type: boolean
+          description: 'Cochez la case pour ne pas prendre en compte l''heure du syst'
+        'core::jqueryless':
+          type: boolean
+          description: 'Ne charge pas jQuery/Boostrap et leurs librairies (Attention'
+          default: false
+        'info::latitude':
+          type: number
+          description: 'Latitude'
+        'info::longitude':
+          type: number
+          description: 'Longitude'
+        'info::altitude':
+          type: number
+          description: 'Altitude du bâtiment en mètres'
+    ConfigInterface:
+      type: object
+      description: Onglet « Interface ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'jeedom_theme_main':
+          type: string
+          description: 'Principal'
+        'jeedom_theme_alternate':
+          type: string
+          description: 'Alternatif'
+          default: 'core2019_Dark'
+        'mobile_theme_color':
+          type: string
+          description: 'Principal'
+          default: 'core2019_Light'
+        'mobile_theme_color_night':
+          type: string
+          description: 'Alternatif'
+          default: 'core2019_Dark'
+        'theme_changeAccordingTime':
+          type: boolean
+          description: 'Selon l''heure'
+          default: true
+        'theme_start_day_hour':
+          type: string
+          description: 'Principal de'
+          default: '08:00'
+        'theme_end_day_hour':
+          type: string
+          description: 'à'
+          default: '20:00'
+        'mobile_theme_useAmbientLight':
+          type: boolean
+          description: 'Selon la luminosité'
+        'dahsboard::column::size':
+          type: string
+          description: 'Nombre de colonnes selon la taille de l''écran (1 colonne = 1'
+          default: 'col-sm-12'
+        'theme_displayAsTable':
+          type: boolean
+          description: 'Affichage tableau'
+          default: true
+        'interface::advance::coloredIcons':
+          type: boolean
+          description: 'Icônes colorées'
+          default: true
+        'scenario::disableAutocomplete':
+          type: boolean
+          description: 'Désactiver l''auto-complétion des scénarios'
+        'interface::toast::position':
+          type: string
+          description: 'Position'
+          default: 'toast-bottom-right'
+        'interface::toast::duration':
+          type: number
+          description: 'Durée'
+          default: 5
+        'interface::advance::enable':
+          type: boolean
+          description: 'Activer'
+        'css::background-opacity':
+          type: number
+          description: 'Transparence (Opacité) des tuiles et de certains éléments d'''
+          default: 1
+        'css::border-radius':
+          type: number
+          description: 'Arrondi des éléments d''interface (0 = pas d''arrondi)'
+          default: 0
+        'widget::shadow':
+          type: boolean
+          description: 'Désactiver les ombres'
+        'enableCustomCss':
+          type: boolean
+          description: 'Activer'
+        'widget::step::height':
+          type: number
+          description: 'Hauteur'
+          default: 30
+        'widget::step::width':
+          type: number
+          description: 'Largeur'
+          default: 40
+        'widget::margin':
+          type: number
+          description: 'Espace entre les tuiles en pixels'
+          default: 1
+        'interface::advance::vertCentering':
+          type: boolean
+          description: 'Centrage vertical'
+        'interface::advance::coloredcats':
+          type: boolean
+          description: 'Catégories colorées'
+          default: true
+        'interface::mobile::onecolumn':
+          type: boolean
+          description: 'Pleine largeur sur mobile'
+        'autoreorder::weight_human_action':
+          type: number
+          description: 'Poids des actions humaines dans la réorganisation automatiqu'
+          default: 2
+        'autoreorder::weight_automation_action':
+          type: number
+          description: 'Poids des actions automatiques dans la réorganisation automa'
+          default: 1
+        'autoreorder::weight_history':
+          type: number
+          description: 'Poids des actions de consultation de l''historique dans la ré'
+          default: 1
+        'showBackgroundImg':
+          type: boolean
+          description: 'Cocher la case pour afficher les images de fond'
+        'interface::background::opacitylight':
+          type: number
+          description: 'Light'
+          default: 0.6
+        'interface::background::opacitydark':
+          type: number
+          description: 'Dark'
+          default: 0.6
+        'css::objectBackgroundBlur':
+          type: number
+          description: 'Valeur de flou pour les images de fond sur les pages Dashboa'
+          default: 0
+    ConfigInterfaceUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'jeedom_theme_main':
+          type: string
+          description: 'Principal'
+        'jeedom_theme_alternate':
+          type: string
+          description: 'Alternatif'
+          default: 'core2019_Dark'
+        'mobile_theme_color':
+          type: string
+          description: 'Principal'
+          default: 'core2019_Light'
+        'mobile_theme_color_night':
+          type: string
+          description: 'Alternatif'
+          default: 'core2019_Dark'
+        'theme_changeAccordingTime':
+          type: boolean
+          description: 'Selon l''heure'
+          default: true
+        'theme_start_day_hour':
+          type: string
+          description: 'Principal de'
+          default: '08:00'
+        'theme_end_day_hour':
+          type: string
+          description: 'à'
+          default: '20:00'
+        'mobile_theme_useAmbientLight':
+          type: boolean
+          description: 'Selon la luminosité'
+        'dahsboard::column::size':
+          type: string
+          description: 'Nombre de colonnes selon la taille de l''écran (1 colonne = 1'
+          default: 'col-sm-12'
+        'theme_displayAsTable':
+          type: boolean
+          description: 'Affichage tableau'
+          default: true
+        'interface::advance::coloredIcons':
+          type: boolean
+          description: 'Icônes colorées'
+          default: true
+        'scenario::disableAutocomplete':
+          type: boolean
+          description: 'Désactiver l''auto-complétion des scénarios'
+        'interface::toast::position':
+          type: string
+          description: 'Position'
+          default: 'toast-bottom-right'
+        'interface::toast::duration':
+          type: number
+          description: 'Durée'
+          default: 5
+        'interface::advance::enable':
+          type: boolean
+          description: 'Activer'
+        'css::background-opacity':
+          type: number
+          description: 'Transparence (Opacité) des tuiles et de certains éléments d'''
+          default: 1
+        'css::border-radius':
+          type: number
+          description: 'Arrondi des éléments d''interface (0 = pas d''arrondi)'
+          default: 0
+        'widget::shadow':
+          type: boolean
+          description: 'Désactiver les ombres'
+        'enableCustomCss':
+          type: boolean
+          description: 'Activer'
+        'widget::step::height':
+          type: number
+          description: 'Hauteur'
+          default: 30
+        'widget::step::width':
+          type: number
+          description: 'Largeur'
+          default: 40
+        'widget::margin':
+          type: number
+          description: 'Espace entre les tuiles en pixels'
+          default: 1
+        'interface::advance::vertCentering':
+          type: boolean
+          description: 'Centrage vertical'
+        'interface::advance::coloredcats':
+          type: boolean
+          description: 'Catégories colorées'
+          default: true
+        'interface::mobile::onecolumn':
+          type: boolean
+          description: 'Pleine largeur sur mobile'
+        'autoreorder::weight_human_action':
+          type: number
+          description: 'Poids des actions humaines dans la réorganisation automatiqu'
+          default: 2
+        'autoreorder::weight_automation_action':
+          type: number
+          description: 'Poids des actions automatiques dans la réorganisation automa'
+          default: 1
+        'autoreorder::weight_history':
+          type: number
+          description: 'Poids des actions de consultation de l''historique dans la ré'
+          default: 1
+        'showBackgroundImg':
+          type: boolean
+          description: 'Cocher la case pour afficher les images de fond'
+        'interface::background::opacitylight':
+          type: number
+          description: 'Light'
+          default: 0.6
+        'interface::background::opacitydark':
+          type: number
+          description: 'Dark'
+          default: 0.6
+        'css::objectBackgroundBlur':
+          type: number
+          description: 'Valeur de flou pour les images de fond sur les pages Dashboa'
+          default: 0
+    ConfigNetwork:
+      type: object
+      description: Onglet « Réseaux ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'network::disableInternalAuto':
+          type: boolean
+          description: 'Désactiver'
+        'internalProtocol':
+          type: string
+          description: 'Uniquement utilisée pour la communication interne avec'
+        'internalAddr':
+          type: string
+          description: 'HTTP'
+        'internalComplement':
+          type: string
+          description: 'HTTP'
+        'network::disableMangement':
+          type: boolean
+          description: 'Désactiver'
+          default: false
+        'externalProtocol':
+          type: string
+          description: 'Adresse'
+          default: 'http://'
+        'externalAddr':
+          type: string
+          description: 'HTTPS'
+        'externalComplement':
+          type: string
+          description: 'HTTPS'
+        'dns::mode':
+          type: string
+          description: 'Mode'
+        'network::localip':
+          type: string
+          description: 'Uniquement pour les installations sous Docker (format: 192.1'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'proxyAddress':
+          type: string
+          description: 'Adresse du proxy'
+        'proxyPort':
+          type: number
+          description: 'Port du proxy'
+        'proxyLogin':
+          type: string
+          description: 'Nom d''utilisateur'
+        'proxyPassword': { $ref: '#/components/schemas/ConfigSecret' }
+    ConfigNetworkUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'network::disableInternalAuto':
+          type: boolean
+          description: 'Désactiver'
+        'internalProtocol':
+          type: string
+          description: 'Uniquement utilisée pour la communication interne avec'
+        'internalAddr':
+          type: string
+          description: 'HTTP'
+        'internalComplement':
+          type: string
+          description: 'HTTP'
+        'network::disableMangement':
+          type: boolean
+          description: 'Désactiver'
+          default: false
+        'externalProtocol':
+          type: string
+          description: 'Adresse'
+          default: 'http://'
+        'externalAddr':
+          type: string
+          description: 'HTTPS'
+        'externalComplement':
+          type: string
+          description: 'HTTPS'
+        'dns::mode':
+          type: string
+          description: 'Mode'
+        'network::localip':
+          type: string
+          description: 'Uniquement pour les installations sous Docker (format: 192.1'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'proxyAddress':
+          type: string
+          description: 'Adresse du proxy'
+        'proxyPort':
+          type: number
+          description: 'Port du proxy'
+        'proxyLogin':
+          type: string
+          description: 'Nom d''utilisateur'
+        'proxyPassword':
+          type: string
+          writeOnly: true
+          description: 'Mot de passe. Chaîne vide pour effacer.'
+    ConfigLogs:
+      type: object
+      description: Onglet « Logs ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'timeline::maxevent':
+          type: number
+          description: 'Nombre maximum d''évènements sur chaque Timeline'
+          default: 500
+        'addMessageForErrorLog':
+          type: boolean
+          description: 'Ajouter un message à chaque erreur dans les logs'
+        'maxLineLog':
+          type: number
+          description: 'Nombre maximal de lignes dans un fichier de log'
+        'maxSizeLog':
+          type: number
+          description: 'Taille maximale pour fichier de log (en Mo)'
+          default: 5
+        'log::level':
+          type: number
+          description: 'Niveau de log par défaut'
+          default: 400
+    ConfigLogsUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'timeline::maxevent':
+          type: number
+          description: 'Nombre maximum d''évènements sur chaque Timeline'
+          default: 500
+        'addMessageForErrorLog':
+          type: boolean
+          description: 'Ajouter un message à chaque erreur dans les logs'
+        'maxLineLog':
+          type: number
+          description: 'Nombre maximal de lignes dans un fichier de log'
+        'maxSizeLog':
+          type: number
+          description: 'Taille maximale pour fichier de log (en Mo)'
+          default: 5
+        'log::level':
+          type: number
+          description: 'Niveau de log par défaut'
+          default: 400
+    ConfigEqLogics:
+      type: object
+      description: Onglet « Équipements ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'numberOfTryBeforeEqLogicDisable':
+          type: number
+          description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas'
+          default: 3
+        'battery::warning':
+          type: number
+          description: 'Si le niveau de charge passe en dessous de (%)'
+        'battery::danger':
+          type: number
+          description: 'Si le niveau de charge passe en dessous de (%)'
+          default: 5
+        'displayStatsWidget':
+          type: boolean
+          description: 'Afficher les statistiques sur les widgets'
+          default: false
+        'historyCalculPeriod':
+          type: number
+          description: 'Période de calcul pour min, max, moyenne'
+          default: 24
+        'historyCalculTendance':
+          type: number
+          description: 'Période de calcul pour la tendance'
+        'historyArchiveTime':
+          type: number
+          description: 'Délai avant archivage'
+          default: 2
+        'historyArchivePackage':
+          type: number
+          description: 'Archiver par paquet de'
+          default: 1
+        'historyCalculTendanceThresholddMin':
+          type: number
+          description: 'Seuil de calcul de tendance bas'
+          default: -0.1
+        'historyCalculTendanceThresholddMax':
+          type: number
+          description: 'Seuil de calcul de tendance haut'
+          default: 0.1
+        'history::smooth':
+          type: string
+          description: 'Limite le nombre de valeurs historisées par les commandes en'
+          default: '-2'
+        'history::defautShowPeriod':
+          type: string
+          description: 'Période d''affichage des graphiques par défaut'
+          default: '-1 month'
+        'historyPurge':
+          type: string
+          description: 'Purger l''historique si plus vieux que'
+        'history::allowFuture':
+          type: boolean
+          description: 'Autorise l''affichage d''historique avec des dates dans le fut'
+        'cmdPushUrl':
+          type: string
+          description: 'Mettez ici l''URL à appeler lors d''une mise à jour de la vale'
+        'expression::autoQuote':
+          type: boolean
+          description: 'Gérer automatiquement les guillemets des chaines de caractèr'
+        'cmd::allowCheckState':
+          type: boolean
+          description: 'Ne pas exécuter la commande si l’équipement est déjà dans le'
+    ConfigEqLogicsUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'numberOfTryBeforeEqLogicDisable':
+          type: number
+          description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas'
+          default: 3
+        'battery::warning':
+          type: number
+          description: 'Si le niveau de charge passe en dessous de (%)'
+        'battery::danger':
+          type: number
+          description: 'Si le niveau de charge passe en dessous de (%)'
+          default: 5
+        'displayStatsWidget':
+          type: boolean
+          description: 'Afficher les statistiques sur les widgets'
+          default: false
+        'historyCalculPeriod':
+          type: number
+          description: 'Période de calcul pour min, max, moyenne'
+          default: 24
+        'historyCalculTendance':
+          type: number
+          description: 'Période de calcul pour la tendance'
+        'historyArchiveTime':
+          type: number
+          description: 'Délai avant archivage'
+          default: 2
+        'historyArchivePackage':
+          type: number
+          description: 'Archiver par paquet de'
+          default: 1
+        'historyCalculTendanceThresholddMin':
+          type: number
+          description: 'Seuil de calcul de tendance bas'
+          default: -0.1
+        'historyCalculTendanceThresholddMax':
+          type: number
+          description: 'Seuil de calcul de tendance haut'
+          default: 0.1
+        'history::smooth':
+          type: string
+          description: 'Limite le nombre de valeurs historisées par les commandes en'
+          default: '-2'
+        'history::defautShowPeriod':
+          type: string
+          description: 'Période d''affichage des graphiques par défaut'
+          default: '-1 month'
+        'historyPurge':
+          type: string
+          description: 'Purger l''historique si plus vieux que'
+        'history::allowFuture':
+          type: boolean
+          description: 'Autorise l''affichage d''historique avec des dates dans le fut'
+        'cmdPushUrl':
+          type: string
+          description: 'Mettez ici l''URL à appeler lors d''une mise à jour de la vale'
+        'expression::autoQuote':
+          type: boolean
+          description: 'Gérer automatiquement les guillemets des chaines de caractèr'
+        'cmd::allowCheckState':
+          type: boolean
+          description: 'Ne pas exécuter la commande si l’équipement est déjà dans le'
+    ConfigReports:
+      type: object
+      description: Onglet « Rapports ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'report::delay':
+          type: number
+          description: 'Délai d''attente après génération de la page'
+        'report::maxdays':
+          type: number
+          description: 'Nettoyer les rapports plus anciens de'
+          default: 30
+    ConfigReportsUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'report::delay':
+          type: number
+          description: 'Délai d''attente après génération de la page'
+        'report::maxdays':
+          type: number
+          description: 'Nettoyer les rapports plus anciens de'
+          default: 30
+    ConfigLinks:
+      type: object
+      description: Onglet « Liens ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'graphlink::scenario::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::jeeObject::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+        'graphlink::eqLogic::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::cmd::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::dataStore::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::prerender':
+          type: number
+          description: 'Permet d’agir sur la disposition du graphique (défaut 3)'
+          default: 10
+        'graphlink::render':
+          type: number
+          description: 'Permet d’agir sur la disposition du graphique selon les rela'
+          default: 3000
+    ConfigLinksUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'graphlink::scenario::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::jeeObject::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+        'graphlink::eqLogic::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::cmd::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::dataStore::drill':
+          type: number
+          description: 'Nombre maximum de niveaux d’éléments affichés dans les graph'
+          default: 3
+        'graphlink::prerender':
+          type: number
+          description: 'Permet d’agir sur la disposition du graphique (défaut 3)'
+          default: 10
+        'graphlink::render':
+          type: number
+          description: 'Permet d’agir sur la disposition du graphique selon les rela'
+          default: 3000
+    ConfigInteractions:
+      type: object
+      description: Onglet « Interactions ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'interact::confidence1':
+          type: number
+          description: '1 mot'
+        'interact::confidence2':
+          type: number
+          description: '2 mots'
+          default: 3
+        'interact::confidence3':
+          type: number
+          description: '3 mots'
+          default: 5
+        'interact::confidence':
+          type: number
+          description: '3 mots'
+          default: 15
+        'interact::weigh1':
+          type: number
+          description: '1 mot'
+        'interact::weigh2':
+          type: number
+          description: '2 mots'
+        'interact::weigh3':
+          type: number
+          description: '3 mots'
+        'interact::weigh4':
+          type: number
+          description: '4 mots'
+        'interact::noResponseIfEmpty':
+          type: boolean
+          description: 'Par défaut Jeedom répond “je n’ai pas compris” si aucune int'
+        'interact::regexpExcludGlobal':
+          type: string
+          description: 'Regex générale d''exclusion pour les interactions'
+        'interact::autoreply::enable':
+          type: boolean
+          description: 'Activer les interactions automatiques'
+          default: true
+        'interact::contextual::enable':
+          type: boolean
+          description: 'Activer les réponses contextuelles'
+          default: true
+        'interact::contextual::startpriority':
+          type: string
+          description: 'Réponse contextuelle prioritaire si la phrase commence par'
+          default: 'et'
+        'interact::contextual::splitword':
+          type: string
+          description: 'Découper une interaction en deux si elle contient'
+          default: 'et'
+        'interact::warnme::enable':
+          type: boolean
+          description: 'Activer les interactions "préviens moi"'
+          default: true
+        'interact::warnme::start':
+          type: string
+          description: 'Réponse de type "préviens moi" si la phrase commence par'
+          default: 'previens moi si'
+        'interact::warnme::defaultreturncmd':
+          type: string
+          description: 'Commande de retour par défaut'
+        'interact::autoreply::object::synonym':
+          type: string
+          description: 'Synonymes pour les objets'
+        'interact::autoreply::eqLogic::synonym':
+          type: string
+          description: 'Synonymes pour les équipements'
+          default: 'lumiere'
+        'interact::autoreply::cmd::synonym':
+          type: string
+          description: 'Synonymes pour les commandes'
+          default: 'on'
+        'interact::autoreply::summary::synonym':
+          type: string
+          description: 'Synonymes pour les résumés'
+        'interact::autoreply::cmd::slider::max':
+          type: string
+          description: 'Synonyme commande slider maximum'
+          default: 'ferme'
+        'interact::autoreply::cmd::slider::min':
+          type: string
+          description: 'Synonyme commande slider minimum'
+          default: 'ouvre'
+    ConfigInteractionsUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'interact::confidence1':
+          type: number
+          description: '1 mot'
+        'interact::confidence2':
+          type: number
+          description: '2 mots'
+          default: 3
+        'interact::confidence3':
+          type: number
+          description: '3 mots'
+          default: 5
+        'interact::confidence':
+          type: number
+          description: '3 mots'
+          default: 15
+        'interact::weigh1':
+          type: number
+          description: '1 mot'
+        'interact::weigh2':
+          type: number
+          description: '2 mots'
+        'interact::weigh3':
+          type: number
+          description: '3 mots'
+        'interact::weigh4':
+          type: number
+          description: '4 mots'
+        'interact::noResponseIfEmpty':
+          type: boolean
+          description: 'Par défaut Jeedom répond “je n’ai pas compris” si aucune int'
+        'interact::regexpExcludGlobal':
+          type: string
+          description: 'Regex générale d''exclusion pour les interactions'
+        'interact::autoreply::enable':
+          type: boolean
+          description: 'Activer les interactions automatiques'
+          default: true
+        'interact::contextual::enable':
+          type: boolean
+          description: 'Activer les réponses contextuelles'
+          default: true
+        'interact::contextual::startpriority':
+          type: string
+          description: 'Réponse contextuelle prioritaire si la phrase commence par'
+          default: 'et'
+        'interact::contextual::splitword':
+          type: string
+          description: 'Découper une interaction en deux si elle contient'
+          default: 'et'
+        'interact::warnme::enable':
+          type: boolean
+          description: 'Activer les interactions "préviens moi"'
+          default: true
+        'interact::warnme::start':
+          type: string
+          description: 'Réponse de type "préviens moi" si la phrase commence par'
+          default: 'previens moi si'
+        'interact::warnme::defaultreturncmd':
+          type: string
+          description: 'Commande de retour par défaut'
+        'interact::autoreply::object::synonym':
+          type: string
+          description: 'Synonymes pour les objets'
+        'interact::autoreply::eqLogic::synonym':
+          type: string
+          description: 'Synonymes pour les équipements'
+          default: 'lumiere'
+        'interact::autoreply::cmd::synonym':
+          type: string
+          description: 'Synonymes pour les commandes'
+          default: 'on'
+        'interact::autoreply::summary::synonym':
+          type: string
+          description: 'Synonymes pour les résumés'
+        'interact::autoreply::cmd::slider::max':
+          type: string
+          description: 'Synonyme commande slider maximum'
+          default: 'ferme'
+        'interact::autoreply::cmd::slider::min':
+          type: string
+          description: 'Synonyme commande slider minimum'
+          default: 'ouvre'
+    ConfigSecurity:
+      type: object
+      description: Onglet « Sécurité ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'session_lifetime':
+          type: number
+          description: 'Durée de vie de votre connexion, en heure (si vous n''avez pa'
+          default: 24
+        'security::registerDeviceLifetime':
+          type: number
+          description: 'Durée d''inactivité avant expiration du périphérique enregist'
+        'security::maxFailedLogin':
+          type: number
+          description: 'Passé ce nombre, l''IP sera bannie.'
+          default: 6
+        'security::timeLoginFailed':
+          type: number
+          description: 'Temps en secondes.  0 : temps infini'
+          default: 300
+        'security::bantime':
+          type: number
+          description: 'Durée en secondes.  -1 : bannissement infini'
+          default: 600
+        'security::whiteips':
+          type: string
+          description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.*'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'ldap:enable':
+          type: boolean
+          description: 'Activer l''authentification LDAP'
+        'ldap:samba4':
+          type: boolean
+          description: 'Samba4'
+        'ldap:tls':
+          type: boolean
+          description: 'tls'
+        'ldap:host': { $ref: '#/components/schemas/ConfigSecret' }
+        'ldap:port':
+          type: string
+          description: 'Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)'
+        'ldap:domain':
+          type: string
+          description: 'FQDN de la base'
+        'ldap:basedn':
+          type: string
+          description: 'Base DN correspondant à l''emplacement des utilisateurs (e.g'
+        'ldap:username': { $ref: '#/components/schemas/ConfigSecret' }
+        'ldap:password': { $ref: '#/components/schemas/ConfigSecret' }
+        'ldap::usersearch':
+          type: string
+          description: 'Champ à utiliser comme identifiant utilisateur (e.g uid)'
+        'ldap:filter:admin':
+          type: string
+          description: 'Filtre permettant d''identifier les administrateurs dans la b'
+        'ldap:filter:user':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs dans la base'
+        'ldap:filter:restrict':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs limités dans'
+        'sso:allowRemoteUser':
+          type: boolean
+          description: 'Activer l''authentification SSO'
+        'sso:remoteUserHeader':
+          type: string
+          description: 'Champ à utiliser pour déterminer l''entête HTTP contenant l''i'
+        'dontProtectTooFastLaunchDependancy':
+          type: boolean
+          description: 'Autoriser l''installation des dépendances d''un même plugin à'
+        'dontProtectTooFastLaunchDeamony':
+          type: boolean
+          description: 'Autoriser le lancement du démon d''un même plugin à moins de'
+    ConfigSecurityUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'session_lifetime':
+          type: number
+          description: 'Durée de vie de votre connexion, en heure (si vous n''avez pa'
+          default: 24
+        'security::registerDeviceLifetime':
+          type: number
+          description: 'Durée d''inactivité avant expiration du périphérique enregist'
+        'security::maxFailedLogin':
+          type: number
+          description: 'Passé ce nombre, l''IP sera bannie.'
+          default: 6
+        'security::timeLoginFailed':
+          type: number
+          description: 'Temps en secondes.  0 : temps infini'
+          default: 300
+        'security::bantime':
+          type: number
+          description: 'Durée en secondes.  -1 : bannissement infini'
+          default: 600
+        'security::whiteips':
+          type: string
+          description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.*'
+          default: '127.0.0.1;192.168.*.*;10.'
+        'ldap:enable':
+          type: boolean
+          description: 'Activer l''authentification LDAP'
+        'ldap:samba4':
+          type: boolean
+          description: 'Samba4'
+        'ldap:tls':
+          type: boolean
+          description: 'tls'
+        'ldap:host':
+          type: string
+          writeOnly: true
+          description: 'URL utilisée pour contacter la base, en précisant le type de. Chaîne vide pour effacer.'
+        'ldap:port':
+          type: string
+          description: 'Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)'
+        'ldap:domain':
+          type: string
+          description: 'FQDN de la base'
+        'ldap:basedn':
+          type: string
+          description: 'Base DN correspondant à l''emplacement des utilisateurs (e.g'
+        'ldap:username':
+          type: string
+          writeOnly: true
+          description: 'Utilisateur ayant accès à la base (si possible, utiliser un. Chaîne vide pour effacer.'
+        'ldap:password':
+          type: string
+          writeOnly: true
+          description: 'Mot de passe de l''utilisateur. Chaîne vide pour effacer.'
+        'ldap::usersearch':
+          type: string
+          description: 'Champ à utiliser comme identifiant utilisateur (e.g uid)'
+        'ldap:filter:admin':
+          type: string
+          description: 'Filtre permettant d''identifier les administrateurs dans la b'
+        'ldap:filter:user':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs dans la base'
+        'ldap:filter:restrict':
+          type: string
+          description: 'Filtre permettant d''identifier les utilisateurs limités dans'
+        'sso:allowRemoteUser':
+          type: boolean
+          description: 'Activer l''authentification SSO'
+        'sso:remoteUserHeader':
+          type: string
+          description: 'Champ à utiliser pour déterminer l''entête HTTP contenant l''i'
+        'dontProtectTooFastLaunchDependancy':
+          type: boolean
+          description: 'Autoriser l''installation des dépendances d''un même plugin à'
+        'dontProtectTooFastLaunchDeamony':
+          type: boolean
+          description: 'Autoriser le lancement du démon d''un même plugin à moins de'
+    ConfigUpdates:
+      type: object
+      description: Onglet « Mises à jour ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'core::repo::provider':
+          type: string
+          description: 'Source de mise à jour du core'
+          default: 'default'
+        'core::branch':
+          type: string
+          description: 'Version installée du core, pour la vérification de mise à jo'
+          default: 'master'
+        'update::autocheck':
+          type: boolean
+          description: 'Vérification automatique des mises à jour'
+          default: true
+    ConfigUpdatesUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'core::repo::provider':
+          type: string
+          description: 'Source de mise à jour du core'
+          default: 'default'
+        'core::branch':
+          type: string
+          description: 'Version installée du core, pour la vérification de mise à jo'
+          default: 'master'
+        'update::autocheck':
+          type: boolean
+          description: 'Vérification automatique des mises à jour'
+          default: true
+    ConfigCache:
+      type: object
+      description: Onglet « Cache ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'cache::engine':
+          type: string
+          description: 'Moteur de cache'
+          default: 'FileCache'
+        'cache::redisaddr':
+          type: string
+          description: 'Adresse Redis'
+          default: '127.0.0.1'
+        'cache::redisport':
+          type: number
+          description: 'Port redis'
+          default: 6379
+        'event::waitPollingTime':
+          type: number
+          description: 'Fréquence de vérification des événements en attente.'
+    ConfigCacheUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'cache::engine':
+          type: string
+          description: 'Moteur de cache'
+          default: 'FileCache'
+        'cache::redisaddr':
+          type: string
+          description: 'Adresse Redis'
+          default: '127.0.0.1'
+        'cache::redisport':
+          type: number
+          description: 'Port redis'
+          default: 6379
+        'event::waitPollingTime':
+          type: number
+          description: 'Fréquence de vérification des événements en attente.'
+    ConfigApi:
+      type: object
+      description: Onglet « API ». Une clé sensible est absente pour un non-administrateur.
+      additionalProperties: false
+      properties:
+        'api::core::mode':
+          type: string
+          description: 'Accès API'
+        'api::apitts::mode':
+          type: string
+          description: 'Accès API'
+        'api::apipro::mode':
+          type: string
+          description: 'Accès API'
+        'api::apimarket::mode':
+          type: string
+          description: 'Accès API'
+        'api::forbidden::method':
+          type: string
+          description: 'Interdire les méthodes api (regexp)'
+        'api::allow::method':
+          type: string
+          description: 'N''autoriser que les méthodes api (regexp)'
+    ConfigApiUpdate:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      properties:
+        'api::core::mode':
+          type: string
+          description: 'Accès API'
+        'api::apitts::mode':
+          type: string
+          description: 'Accès API'
+        'api::apipro::mode':
+          type: string
+          description: 'Accès API'
+        'api::apimarket::mode':
+          type: string
+          description: 'Accès API'
+        'api::forbidden::method':
+          type: string
+          description: 'Interdire les méthodes api (regexp)'
+        'api::allow::method':
+          type: string
+          description: 'N''autoriser que les méthodes api (regexp)'
   responses:
     Unauthorized:
       description: |
