@@ -18,11 +18,13 @@ final class EventStream implements StreamInterface
     public const MAX_DURATION = 55;
     private const POLL_INTERVAL_US = 1_000_000;
     private const PING_INTERVAL = 15;
+    private const SESSION_CHECK_INTERVAL = 5;
     private const RETRY_MS = 1000;
 
     private string $buffer;
     private float $deadline;
     private float $lastSent;
+    private float $nextSessionCheck;
     private bool $finished = false;
 
     public function __construct(
@@ -31,10 +33,12 @@ final class EventStream implements StreamInterface
         int $maxDuration,
         private ?string $slot,
         private readonly ?\user $slotUser = null,
+        private readonly ?\Closure $authorized = null,
     ) {
         $now = microtime(true);
         $this->deadline = $now + $maxDuration;
         $this->lastSent = $now;
+        $this->nextSessionCheck = $now + self::SESSION_CHECK_INTERVAL;
         $this->buffer = 'retry: ' . self::RETRY_MS . "\n\n";
         if ($this->cursor === null || $this->cursor > $now) {
             // Sans curseur, le flux commence à l'instant de la connexion.
@@ -74,9 +78,17 @@ final class EventStream implements StreamInterface
     /** Un tour d'attente : nouveaux événements, ping, ou fin du flux. */
     private function fill(): void
     {
-        if (microtime(true) >= $this->deadline || connection_aborted()) {
+        $now = microtime(true);
+        if ($now >= $this->deadline || connection_aborted()) {
             $this->finished = true;
             return;
+        }
+        if ($this->authorized !== null && $now >= $this->nextSessionCheck) {
+            if (!($this->authorized)()) {
+                $this->finished = true;
+                return;
+            }
+            $this->nextSessionCheck = $now + self::SESSION_CHECK_INTERVAL;
         }
         $this->pollEvents();
         $now = microtime(true);

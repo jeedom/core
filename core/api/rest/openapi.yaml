@@ -47,23 +47,10 @@ info:
     `session_expired`, pour que l'UI revienne à l'écran de connexion.
 
     ### Sessions de l'API
-    L'API n'utilise pas la session PHP du core (`$_SESSION`) ; l'ancienne
-    interface garde la sienne, inchangée. Chaque session de la nouvelle UI
-    est une ligne de la table `session` (moteur en mémoire) :
-
-    | Colonne | Rôle |
-    |---|---|
-    | `id` | Identifiant de la session, exposé par `/me/sessions` |
-    | `user_id` | Utilisateur |
-    | `token_hash` | Empreinte du jeton porté par le cookie (index unique) ; le jeton lui-même n'est jamais stocké |
-    | `csrf_token` | Jeton CSRF aléatoire, indépendant du jeton de session |
-    | `ip` | Adresse de connexion |
-    | `created_at` | Ouverture |
-    | `last_seen_at` | Dernière requête |
-    | `expires_at` | Expiration |
-
-    La table étant en mémoire, un redémarrage de MySQL ferme toutes les
-    sessions : chacun doit se reconnecter (choix de sécurité assumé).
+    Les sessions de Core UI sont stockées dans la table InnoDB `session`.
+    Le cookie HttpOnly porte un jeton opaque dont seule l'empreinte est stockée.
+    La durée est de 24 h par défaut, ou de 90 jours avec « Rester connecté ».
+    L'ancienne interface utilise ses propres sessions PHP.
 
 servers:
   - url: /api/v1
@@ -1180,14 +1167,9 @@ paths:
       operationId: closeSession
       summary: Fermer la session (déconnexion)
       description: |
-        Remplace `logout()` : supprime la ligne de la table `session`. Avec `forgetDevice=true`, oublie aussi cet
-        appareil (cookie `registerDevice`). Demande l'en-tête `X-CSRF-Token`.
+        Révoque la session courante et efface son cookie. Demande l'en-tête `X-CSRF-Token`.
       security:
         - sessionCookie: []
-      parameters:
-        - name: forgetDevice
-          in: query
-          schema: { type: boolean, default: false }
       responses:
         '204': { description: 'Session fermée, cookie effacé.' }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1293,9 +1275,8 @@ paths:
       operationId: listMyDevices
       summary: Lister ses appareils enregistrés
       description: |
-        Appareils retenus par « Rester connecté » (`options.registerDevice`).
-        La clé est l'empreinte du cookie, jamais le cookie lui-même ; le
-        `session_id` n'est pas renvoyé.
+        Sessions longues ouvertes avec « Rester connecté ». La clé identifie
+        la session dans la liste, indépendamment du jeton du cookie.
       responses:
         '200':
           description: Les appareils.
@@ -1307,7 +1288,7 @@ paths:
       tags: [Session]
       operationId: forgetMyDevices
       summary: Oublier tous ses appareils
-      description: Remplace `user::removeRegisterDevice` sans `key` pour son propre compte.
+      description: Révoque toutes les sessions longues de son compte.
       responses:
         '204': { description: Appareils oubliés. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1319,7 +1300,7 @@ paths:
       tags: [Session]
       operationId: forgetMyDevice
       summary: Oublier un appareil
-      description: Remplace `user::removeRegisterDevice` avec `key`.
+      description: Révoque la session longue associée.
       responses:
         '204': { description: Appareil oublié. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1335,9 +1316,8 @@ paths:
       operationId: listMySessions
       summary: Lister ses sessions ouvertes
       description: |
-        Sessions PHP ouvertes avec son compte, nouvelle UI et ancienne
-        interface confondues (elles partagent le même stockage). L'identifiant
-        de session PHP n'est jamais renvoyé : `id` en est une empreinte HMAC.
+        Sessions actives de Core UI pour ce compte. L'identifiant public est
+        indépendant du jeton d'authentification.
       responses:
         '200':
           description: Les sessions.
@@ -1345,7 +1325,6 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/SessionInfoList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '503': { $ref: '#/components/responses/TooManySessions' }
 
   /me/sessions/{sessionId}:
     parameters:
@@ -1355,15 +1334,13 @@ paths:
       operationId: closeMySession
       summary: Fermer une de ses sessions
       description: |
-        Remplace `user::deleteSession`, limité à ses propres sessions (une
-        session d'un autre compte renvoie 404). Oublie aussi l'appareil lié.
+        Révoque une session de son compte. Une session d'un autre compte renvoie 404.
         Pour fermer la session courante, utiliser `DELETE /session` (sinon 409).
       responses:
         '204': { description: Session fermée. }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '409': { $ref: '#/components/responses/CurrentSession' }
-        '503': { $ref: '#/components/responses/TooManySessions' }
         '404':
           description: 'Session inconnue (`code: session_not_found`).'
           content:
@@ -1544,7 +1521,7 @@ paths:
       tags: [Utilisateurs]
       operationId: forgetUserDevices
       summary: Oublier tous les appareils d'un utilisateur (administrateur)
-      description: Remplace `user::removeRegisterDevice` avec `user_id` et sans `key`.
+      description: Révoque toutes les sessions longues de ce compte.
       responses:
         '204': { description: Appareils oubliés. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1559,7 +1536,7 @@ paths:
       tags: [Utilisateurs]
       operationId: forgetUserDevice
       summary: Oublier un appareil d'un utilisateur (administrateur)
-      description: Remplace `user::removeRegisterDevice` avec `user_id` et `key`.
+      description: Révoque la session longue associée.
       responses:
         '204': { description: Appareil oublié. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1587,14 +1564,11 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
-        '503': { $ref: '#/components/responses/TooManySessions' }
     delete:
       tags: [Utilisateurs]
       operationId: closeUserSessions
       summary: Fermer toutes les sessions d'un utilisateur (administrateur)
-      description: |
-        Ferme toutes ses sessions PHP (nouvelle UI et ancienne interface),
-        comme à la désactivation.
+      description: Révoque toutes les sessions de Core UI de ce compte.
       responses:
         '204': { description: Sessions fermées. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1609,7 +1583,7 @@ paths:
       tags: [Utilisateurs]
       operationId: closeUserSession
       summary: Fermer une session d'un utilisateur (administrateur)
-      description: Remplace `user::deleteSession` pour un autre compte. Oublie aussi l'appareil lié.
+      description: Révoque une session de Core UI de ce compte.
       responses:
         '204': { description: Session fermée. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -1620,7 +1594,6 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
         '409': { $ref: '#/components/responses/CurrentSession' }
-        '503': { $ref: '#/components/responses/TooManySessions' }
 
   /users/{id}/rights:
     parameters:
@@ -3277,10 +3250,10 @@ components:
     sessionCookie:
       type: apiKey
       in: cookie
-      name: PHPSESSID
+      name: JeedomSession
       description: |
         Session de la nouvelle UI, ouverte par `POST /session` (cookie
-        `__Host-PHPSESSID` en HTTPS). Les requêtes d'écriture exigent
+        `__Host-JeedomSession` en HTTPS). Les requêtes d'écriture exigent
         l'en-tête `X-CSRF-Token`.
 
   parameters:
@@ -3372,13 +3345,13 @@ components:
       name: key
       in: path
       required: true
-      description: Empreinte de l'appareil, lue dans la liste des appareils.
-      schema: { type: string, pattern: '^[0-9a-f]{128}$' }
+      description: Identifiant de la session longue, lu dans la liste des appareils.
+      schema: { type: string, pattern: '^[0-9a-f]{64}$' }
     SessionId:
       name: sessionId
       in: path
       required: true
-      description: Identifiant public de la session (empreinte HMAC-SHA256 de l'id PHP), lu dans la liste des sessions.
+      description: Identifiant public de la session, lu dans la liste des sessions.
       schema: { type: string, pattern: '^[0-9a-f]{64}$' }
 
   schemas:
@@ -4414,7 +4387,7 @@ components:
       type: object
       required: [key, datetime, ip]
       properties:
-        key: { type: string, description: Empreinte (sha512) du cookie `registerDevice`. }
+        key: { type: string, description: Identifiant public de la session longue. }
         datetime: { type: string, format: date-time, description: Dernière utilisation. }
         ip: { type: string, example: 192.168.1.20 }
         current: { type: boolean, description: Appareil de la requête en cours. }
@@ -4430,7 +4403,7 @@ components:
       type: object
       required: [id, ip, datetime, current]
       properties:
-        id: { type: string, pattern: '^[0-9a-f]{64}$', description: Empreinte HMAC-SHA256 de l'id de session PHP (jamais l'id lui-même). }
+        id: { type: string, pattern: '^[0-9a-f]{64}$', description: Identifiant public de la session. }
         ip: { type: string }
         datetime: { type: string, format: date-time, description: Dernière activité. }
         current: { type: boolean, description: Session de la requête en cours. }
@@ -4455,7 +4428,7 @@ components:
         rememberDevice:
           type: boolean
           default: false
-          description: Rester connecté sur cet appareil (cookie `registerDevice` du core).
+          description: Ouvre une session longue de 90 jours.
 
     Session:
       type: object
@@ -5092,11 +5065,6 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     CurrentSession:
       description: 'Session de la requête en cours (`code: current_session`) : la fermer par `DELETE /session`.'
-      content:
-        application/json:
-          schema: { $ref: '#/components/schemas/Error' }
-    TooManySessions:
-      description: 'Plus de 100 sessions stockées, liste impossible (`code: too_many_sessions`).'
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }

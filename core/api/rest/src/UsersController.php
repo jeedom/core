@@ -154,41 +154,42 @@ final class UsersController
     public function devices(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        return Json::respond($response, self::deviceList(self::find($args['id'])));
+        return Json::respond($response, self::sessionList($request, self::find($args['id']), true));
     }
 
     public function forgetDevices(Request $request, Response $response, array $args): Response
     {
         self::requireAdminWrite($request);
-        self::forget(self::find($args['id']), null);
-        return $response->withStatus(204);
+        return self::forget($request, $response, self::find($args['id']), null);
     }
 
     public function forgetDevice(Request $request, Response $response, array $args): Response
     {
         self::requireAdminWrite($request);
-        self::forget(self::find($args['id']), $args['key']);
-        return $response->withStatus(204);
+        return self::forget($request, $response, self::find($args['id']), $args['key']);
     }
 
-    /** Ferme les sessions PHP du compte (ancienne interface et nouvelle UI). */
     public function closeSessions(Request $request, Response $response, array $args): Response
     {
-        self::requireAdminWrite($request);
-        self::find($args['id'])->closeSessions();
+        $actor = self::requireAdminWrite($request);
+        $user = self::find($args['id']);
+        \session::revokeAll((int) $user->getId());
+        if ($request->getAttribute('webSessionId') !== null && (int) $actor->getId() === (int) $user->getId()) {
+            $response = SessionController::clearCookie($request, $response);
+        }
         return $response->withStatus(204);
     }
 
     public function sessions(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        return Json::respond($response, self::sessionList(self::find($args['id'])));
+        return Json::respond($response, self::sessionList($request, self::find($args['id'])));
     }
 
     public function closeSession(Request $request, Response $response, array $args): Response
     {
         self::requireAdminWrite($request);
-        self::closeOne(self::find($args['id']), $args['sessionId']);
+        self::closeOne($request, self::find($args['id']), $args['sessionId']);
         return $response->withStatus(204);
     }
 
@@ -249,7 +250,8 @@ final class UsersController
 
     public function me(Request $request, Response $response): Response
     {
-        return Json::respond($response, self::meArray($request->getAttribute('user'), $request->getAttribute('csrfToken')));
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'),
+            self::meArray($request->getAttribute('user'), $request->getAttribute('csrfToken')));
     }
 
     public function updateMe(Request $request, Response $response): Response
@@ -275,13 +277,24 @@ final class UsersController
         } elseif (array_key_exists('currentPassword', $body)) {
             throw ApiError::field(422, 'validation_error', 'currentPassword', 'Utile seulement avec password.');
         }
-        if ($password !== null) {
-            $user->setPassword($password);
+        $change = static function (\user $account) use ($password, $preferences): void {
+            if ($password !== null) {
+                $account->setPassword($password);
+            }
+            foreach ($preferences as $key => $value) {
+                $account->setOptions($key, $value);
+            }
+            self::save($account);
+        };
+        if ($password === null) {
+            $change($user);
+        } else {
+            try {
+                $user = \session::changeCredentials($user, $request->getAttribute('webSessionId'), $change);
+            } catch (\DomainException $error) {
+                throw new ApiError(401, 'session_expired', $error->getMessage());
+            }
         }
-        foreach ($preferences as $key => $value) {
-            $user->setOptions($key, $value);
-        }
-        self::save($user);
         return Json::respond($response, self::meArray($user, $request->getAttribute('csrfToken')));
     }
 
@@ -304,31 +317,29 @@ final class UsersController
 
     public function myDevices(Request $request, Response $response): Response
     {
-        return Json::respond($response, self::deviceList(self::reload($request->getAttribute('user'))));
+        return Json::respond($response, self::sessionList($request, $request->getAttribute('user'), true));
     }
 
     public function forgetMyDevices(Request $request, Response $response): Response
     {
-        self::forget(self::reload($request->getAttribute('user')), null);
-        return $response->withStatus(204);
+        return self::forget($request, $response, $request->getAttribute('user'), null);
     }
 
     public function forgetMyDevice(Request $request, Response $response, array $args): Response
     {
-        self::forget(self::reload($request->getAttribute('user')), $args['key']);
-        return $response->withStatus(204);
+        return self::forget($request, $response, $request->getAttribute('user'), $args['key']);
     }
 
     public function mySessions(Request $request, Response $response): Response
     {
-        return Json::respond($response, self::sessionList($request->getAttribute('user')));
+        return Json::respond($response, self::sessionList($request, $request->getAttribute('user')));
     }
 
     public function closeMySession(Request $request, Response $response, array $args): Response
     {
         $user = self::reload($request->getAttribute('user'));
         self::refuseDemo($user);
-        self::closeOne($user, $args['sessionId']);
+        self::closeOne($request, $user, $args['sessionId']);
         return $response->withStatus(204);
     }
 
@@ -402,110 +413,43 @@ final class UsersController
         ];
     }
 
-    private static function deviceList(\user $user): array
+    private static function sessionList(Request $request, \user $user, bool $remembered = false): array
     {
-        $cookie = explode('-', (string) ($_COOKIE['registerDevice'] ?? ''), 2);
-        $currentKey = count($cookie) === 2 ? \sha512($cookie[1]) : null;
+        $current = $request->getAttribute('webSessionId');
         $items = [];
-        $devices = $user->getOptions('registerDevice', []);
-        foreach (is_array($devices) ? $devices : [] as $key => $device) {
-            if (!is_array($device)) {
-                continue;
-            }
-            $time = strtotime((string) ($device['datetime'] ?? ''));
+        foreach (\session::connections($user, $remembered) as $session) {
             $items[] = [
-                'key' => (string) $key,
-                'datetime' => date('c', $time !== false ? $time : 0),
-                'ip' => (string) ($device['ip'] ?? ''),
-                'current' => $currentKey !== null && hash_equals((string) $key, $currentKey),
+                ($remembered ? 'key' : 'id') => $session['id'],
+                'ip' => $session['ip'],
+                'datetime' => str_replace(' ', 'T', $session['last_activity_at']) . 'Z',
+                'current' => $session['id'] === $current,
             ];
         }
         return ['items' => $items, 'total' => count($items)];
     }
 
-    /**
-     * Identifiant public d'une session : HMAC de l'id PHP avec une clé propre au core.
-     * L'id PHP réel n'est jamais exposé, l'empreinte ne permet pas de reprendre la session.
-     */
-    private static function publicSessionId(string $phpId): string
+    private static function closeOne(Request $request, \user $user, string $id): void
     {
-        $secret = (string) \config::byKey('apiSessionKey');
-        if ($secret === '') {
-            $secret = \config::genKey();
-            \config::save('apiSessionKey', $secret);
-        }
-        return hash_hmac('sha256', $phpId, $secret);
-    }
-
-    /** Sessions PHP du compte, indexées par leur id public. */
-    private static function sessionsOf(\user $user): array
-    {
-        try {
-            $sessions = \listSession();
-        } catch (\Exception $e) {
-            throw new ApiError(503, 'too_many_sessions', $e->getMessage());
-        }
-        $result = [];
-        foreach ($sessions as $phpId => $session) {
-            if ((int) ($session['user_id'] ?? 0) === (int) $user->getId()) {
-                $result[self::publicSessionId((string) $phpId)] = ['phpId' => (string) $phpId] + $session;
-            }
-        }
-        return $result;
-    }
-
-    private static function sessionList(\user $user): array
-    {
-        $current = session_id();
-        $items = [];
-        foreach (self::sessionsOf($user) as $id => $session) {
-            $time = strtotime((string) ($session['datetime'] ?? ''));
-            $items[] = [
-                'id' => $id,
-                'ip' => (string) ($session['ip'] ?? ''),
-                'datetime' => date('c', $time !== false ? $time : 0),
-                'current' => $current !== '' && $current !== false && hash_equals($session['phpId'], $current),
-            ];
-        }
-        return ['items' => $items, 'total' => count($items)];
-    }
-
-    /** Comme l'action ajax `deleteSession` : supprime la session et l'appareil qui lui est lié. */
-    private static function closeOne(\user $user, string $id): void
-    {
-        $sessions = preg_match('/^[0-9a-f]{64}$/', $id) ? self::sessionsOf($user) : [];
-        if (!isset($sessions[$id])) {
-            throw new ApiError(404, 'session_not_found', 'Session inconnue.');
-        }
-        $phpId = $sessions[$id]['phpId'];
-        $current = session_id();
-        if (is_string($current) && $current !== '' && hash_equals($phpId, $current)) {
+        if ($id === $request->getAttribute('webSessionId') && (int) $user->getId() === (int) $request->getAttribute('user')->getId()) {
             throw new ApiError(409, 'current_session', 'Pour fermer la session courante, utiliser DELETE /session.');
         }
-        $user = self::reload($user);
-        $devices = $user->getOptions('registerDevice', []);
-        $devices = is_array($devices) ? $devices : [];
-        $kept = array_filter($devices, static fn ($device) => !is_array($device) || ($device['session_id'] ?? null) !== $phpId);
-        if (count($kept) !== count($devices)) {
-            $user->setOptions('registerDevice', $kept);
-            self::save($user);
+        if (!\session::revoke($user, $id)) {
+            throw new ApiError(404, 'session_not_found', 'Session inconnue.');
         }
-        \deleteSession($phpId);
     }
 
-    private static function forget(\user $user, ?string $key): void
+    private static function forget(Request $request, Response $response, \user $user, ?string $key): Response
     {
-        $devices = $user->getOptions('registerDevice', []);
-        $devices = is_array($devices) ? $devices : [];
         if ($key === null) {
-            $devices = [];
-        } elseif (!preg_match('/^[0-9a-f]{128}$/', $key) || !array_key_exists($key, $devices)) {
+            \session::revokeAll((int) $user->getId(), true);
+        } elseif (!\session::revoke($user, $key, true)) {
             throw new ApiError(404, 'device_not_found', 'Appareil inconnu.');
-        } else {
-            unset($devices[$key]);
         }
-        $user->setOptions('registerDevice', $devices);
-        self::save($user);
+        if ($request->getAttribute('webSessionRemembered') && (int) $user->getId() === (int) $request->getAttribute('user')->getId()
+            && ($key === null || $key === $request->getAttribute('webSessionId'))) {
+            $response = SessionController::clearCookie($request, $response);
+        }
+        return $response->withStatus(204);
     }
 
     private static function find(string $id): \user

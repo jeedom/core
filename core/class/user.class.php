@@ -35,6 +35,7 @@ class user {
 	private $_changed = false;
 
 	private $_changes_trace = array();
+	private bool $_revokeWebSessions = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -44,13 +45,13 @@ class user {
 	 * @param int|string $_id user ID
 	 * @return user|null user object if exists, null otherwise
 	 */
-	public static function byId($_id) {
+	public static function byId($_id, bool $_forUpdate = false) {
 		$values = array(
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM user
-		WHERE id=:id';
+		WHERE id=:id' . ($_forUpdate ? ' FOR UPDATE' : '');
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -115,8 +116,10 @@ class user {
 			if ($profile != 'none') {
 				$user = self::byLogin($_login);
 				if (is_object($user)) {
-					$user->setPassword($_pswd)
-						->setOptions('lastConnection', date('Y-m-d H:i:s'))
+					if (!password_verify($_pswd, $user->getPassword())) {
+						$user->setPassword($_pswd);
+					}
+					$user->setOptions('lastConnection', date('Y-m-d H:i:s'))
 						->setProfils($profile);
 					$user->save();
 					return $user;
@@ -524,6 +527,10 @@ class user {
 	}
 
 	public function postSave(): void {
+		if ($this->_revokeWebSessions) {
+			session::revokeAll((int) $this->getId());
+			$this->_revokeWebSessions = false;
+		}
 		foreach ($this->_changes_trace as $change) {
 			log::audit($change, [
 				'login' => $this->getLogin(),
@@ -564,6 +571,7 @@ class user {
 	}
 
 	public function postRemove(): void {
+		session::revokeAll((int) $this->getId());
 		log::audit('User removed', [
 			'login' => $this->getLogin(),
 			'profils' => $this->getProfils(),
@@ -701,6 +709,10 @@ class user {
 	}
 
 	public function setOptions($_key, $_value) {
+		if ($this->getId() && in_array($_key, ['twoFactorAuthentification', 'twoFactorAuthentificationSecret'], true)
+			&& (string) $this->getOptions($_key) !== (string) $_value) {
+			$this->_revokeWebSessions = true;
+		}
 		if ($_key == 'registerDevice' && is_array($_value) &&  count($_value) > 20) {
 			uasort($_value, function ($a, $b) {
 				return strtotime($b['datetime']) - strtotime($a['datetime']);
@@ -730,6 +742,9 @@ class user {
 	}
 
 	public function setEnable($_enable): self {
+		if ($this->getId() && $this->enable == 1 && $_enable != 1) {
+			$this->_revokeWebSessions = true;
+		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
 		$this->traceChange($this->enable, $_enable, $_enable == 1 ? "User enabled" : "User disabled");
 		$this->enable = $_enable;

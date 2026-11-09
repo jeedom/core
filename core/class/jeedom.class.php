@@ -1335,6 +1335,7 @@ class jeedom {
 			listener::clean();
 			user::regenerateHashes();
 			user::cleanExpiredRegisterDevices();
+			session::clean();
 			jeeObject::cronDaily();
 			timeline::clean(false);
 		} catch (\Throwable $e) {

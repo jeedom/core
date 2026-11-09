@@ -74,7 +74,9 @@ final class EventsController
                 ->withHeader('Retry-After', '10');
         }
         $filter = new EventFilter($user, $types, $filters);
-        $stream = new EventStream($filter, $cursor === '' ? null : (float) $cursor, $maxDuration, $slot, $user);
+        $cookie = $request->getAttribute('webSessionId') !== null ? SessionController::cookie($request) : null;
+        $authorized = $cookie === null ? null : static fn (): bool => Auth::browserSession($cookie) !== null;
+        $stream = new EventStream($filter, $cursor === '' ? null : (float) $cursor, $maxDuration, $slot, $user, $authorized);
         return $response
             ->withBody($stream)
             ->withHeader('Content-Type', 'text/event-stream; charset=utf-8')

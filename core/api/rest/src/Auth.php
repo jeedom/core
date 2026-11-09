@@ -27,23 +27,33 @@ final class Auth implements MiddlewareInterface
             }
             return $this->handle($request->withAttribute('user', $user)->withAttribute('csrfToken', null), $handler);
         }
-        if (!Session::present($request)) {
+        $cookie = SessionController::cookie($request);
+        if ($cookie === null) {
             throw new ApiError(401, 'unauthorized', 'Jeton absent.');
         }
-        // Session de la nouvelle UI : lue puis refermée tout de suite pour ne pas bloquer les autres requêtes.
-        Session::open($request);
-        $user = Session::user();
-        $token = $user !== null ? Session::csrfToken() : null;
-        $csrfOk = $user !== null && Session::checkCsrf($request);
-        Session::close();
-        if ($user === null) {
+        $browser = self::browserSession($cookie);
+        if ($browser === null) {
             throw new ApiError(401, 'session_expired', 'Session expirée, reconnectez-vous.');
         }
+        $session = $browser['session'];
+        $token = $session['csrf_token'];
+        $csrfOk = hash_equals($token, $request->getHeaderLine('X-CSRF-Token'));
         if (!in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true) && !$csrfOk) {
             throw new ApiError(403, 'csrf_invalid', 'Jeton CSRF absent ou invalide (en-tête X-CSRF-Token).');
         }
-        return $this->handle($request->withAttribute('user', $user)
+        \session::touch($session);
+        return $this->handle($request->withAttribute('user', $browser['user'])->withAttribute('webSessionId', $session['id'])
+            ->withAttribute('webSessionRemembered', (bool) $session['remembered'])
             ->withAttribute('csrfToken', $token)->withAttribute('csrfValid', $csrfOk), $handler);
+    }
+
+    public static function browserSession(string $cookie): ?array
+    {
+        $browser = \session::resolve($cookie);
+        if ($browser !== null && (int) $browser['user']->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
+            return null;
+        }
+        return $browser;
     }
 
     private function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

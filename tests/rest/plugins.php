@@ -3,15 +3,12 @@
 if (PHP_SAPI !== 'cli') throw new RuntimeException('Run directly with php tests/rest/plugins.php.');
 require dirname(__DIR__, 2) . '/vendor/autoload.php';
 require __DIR__ . '/operations-fixtures.php';
-error_reporting(E_ALL & ~E_DEPRECATED); // Existing session.sid_length setting is deprecated on PHP 8.4.
 
 use Jeedom\Api\Rest\App;
-use Jeedom\Api\Rest\Session;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
 $testRoot = sys_get_temp_dir() . '/jeedom-plugin-rest-' . bin2hex(random_bytes(8));
 mkdir($testRoot);
-ini_set('session.save_path', $testRoot);
 register_shutdown_function(static function () use ($testRoot): void {
     $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($testRoot, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
     foreach ($iterator as $file) $file->isDir() ? rmdir($file->getPathname()) : unlink($file->getPathname());
@@ -32,6 +29,15 @@ class user {
     public function getEnable() { return self::$enabled ? 1 : 0; }
     public function isValidAndEnabled() { return self::$enabled; }
     public function getOptions($key, $default = '') { return $default; }
+}
+class session {
+    public static function resolve(string $token): ?array {
+        return $token === 'browser-token' ? ['user' => user::byId(1), 'session' => [
+            'id' => 'browser-id', 'csrf_token' => 'browser-csrf', 'remembered' => 0,
+        ]] : null;
+    }
+    public static function touch(array $row): void {}
+    public static function revoke(user $user, string $id): bool { return false; }
 }
 class jeedom {
     public static function version() { return trim(file_get_contents(dirname(__DIR__, 2) . '/core/config/version')); }
@@ -291,10 +297,13 @@ $operation = call('POST', '/plugins/installations', 202, ['marketId' => 123, 've
 queue::$items = [];
 check(call('GET', '/plugins/installations/' . $operation['id'] . '/status')['state'] === 'failed', 'Lost task reported as successful');
 call('GET', '/plugins/installations/invalid/status', 404);
-Session::open((new ServerRequestFactory())->createServerRequest('GET', 'http://localhost/'));
-Session::login(user::byId(1)); $csrf = Session::csrfToken(); $cookies = [Session::name() => session_id()]; Session::close();
+$csrf = 'browser-csrf';
+$cookies = ['JeedomSession' => 'browser-token'];
+call('PATCH', '/plugins/fixture', 401, ['isEnable' => false], token: null, cookies: ['PHPSESSID' => 'browser-token']);
 call('PATCH', '/plugins/fixture', 403, ['isEnable' => false], token: null, cookies: $cookies);
 call('PATCH', '/plugins/fixture', body: ['isEnable' => false], token: null, cookies: $cookies, headers: ['X-CSRF-Token' => $csrf]);
+call('DELETE', '/me/sessions/unknown', 404, token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);
+call('DELETE', '/me/sessions/browser-id', 409, token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);
 call('DELETE', '/plugins/fixture', 403, token: 'member');
 call('DELETE', '/plugins/fixture', 204);
 check(!is_file(plugin::getPathById('fixture')), 'Native plugin removal not used');
