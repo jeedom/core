@@ -282,6 +282,12 @@ paths:
       tags: [Système]
       operationId: executeSystemSql
       summary: Exécuter une requête SQL
+      description: |
+        Une instruction par connexion. La console accepte les lectures, écritures et
+        opérations de schéma qui peuvent être bornées par MariaDB. Les appels de
+        procédures, les blocs et les réglages de session sont refusés.
+        Le délai MariaDB est de 5 secondes. Un résultat de plus de 1 000 lignes
+        ou de plus de 2 Mio est refusé en entier.
       requestBody:
         required: true
         content:
@@ -291,7 +297,7 @@ paths:
               additionalProperties: false
               required: [sql]
               properties:
-                sql: { type: string, minLength: 1, description: 'Une instruction SQL par requête, avec les droits du compte de base de données Jeedom.' }
+                sql: { type: string, minLength: 1, maxLength: 65536, description: 'Instruction SQL limitée à 64 Kio, avec les droits du compte de base de données Jeedom.' }
       responses:
         '200':
           description: Résultat de la requête.
@@ -301,7 +307,9 @@ paths:
         '400': { $ref: '#/components/responses/SystemInvalidJson' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+        '413': { $ref: '#/components/responses/SystemSqlSizeLimit' }
         '422': { $ref: '#/components/responses/SystemSqlError' }
+        '504': { $ref: '#/components/responses/SystemSqlTimeout' }
 
   /system/ssh:
     post:
@@ -7284,6 +7292,16 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     SystemInvalidJson:
       description: Corps JSON absent ou invalide.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemSqlSizeLimit:
+      description: Limite dépassée de 64 Kio par instruction, ou de 1 000 lignes ou 2 Mio par résultat.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemSqlTimeout:
+      description: Délai maximal d’exécution ou d’attente d’un verrou dépassé.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }

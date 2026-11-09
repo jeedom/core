@@ -8,6 +8,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 final class SystemController
 {
+    private const MAX_SQL_BYTES = 65536;
+
     public function get(Request $request, Response $response): Response
     {
         self::requireAdmin($request);
@@ -98,11 +100,18 @@ final class SystemController
     public function queryDatabase(Request $request, Response $response): Response
     {
         self::requireAdmin($request);
-        $sql = self::textField($request, 'sql');
+        $sql = self::textField($request, 'sql', self::MAX_SQL_BYTES);
         try {
             $result = \DB::executeConsoleQuery($sql);
         } catch (\InvalidArgumentException $e) {
             throw ApiError::field(422, 'sql_error', 'sql', mb_scrub($e->getMessage(), 'UTF-8'));
+        } catch (\LengthException $e) {
+            throw new ApiError(413, 'sql_result_too_large', $e->getMessage());
+        } catch (\RuntimeException $e) {
+            if ($e->getCode() !== \DB::CONSOLE_TIMEOUT_ERROR) {
+                throw $e;
+            }
+            throw new ApiError(504, 'sql_timeout', $e->getMessage());
         }
         return self::respond($response, $result);
     }
@@ -128,12 +137,15 @@ final class SystemController
         }
     }
 
-    private static function textField(Request $request, string $field): string
+    private static function textField(Request $request, string $field, ?int $maxBytes = null): string
     {
-        $body = Json::body($request);
+        $body = Json::body($request, $maxBytes === null ? null : 6 * $maxBytes + 1024);
         $value = $body[$field] ?? null;
         if (array_keys($body) !== [$field] || !is_string($value) || trim($value) === '' || str_contains($value, "\0")) {
             throw ApiError::field(422, 'validation_error', $field, 'Un champ texte non vide est attendu.');
+        }
+        if ($maxBytes !== null && strlen($value) > $maxBytes) {
+            throw ApiError::field(413, 'request_too_large', $field, 'Le texte dépasse la taille maximale autorisée.');
         }
         return $value;
     }

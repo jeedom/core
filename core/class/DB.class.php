@@ -34,6 +34,16 @@ class DB {
     /** @var int Return all rows from database */
 	public const FETCH_TYPE_ALL = 1;
 
+	public const CONSOLE_TIMEOUT_ERROR = 1969;
+	private const CONSOLE_SECONDS = 5;
+	private const CONSOLE_ROWS = 1000;
+	private const CONSOLE_BYTES = 2097152;
+	private const CONSOLE_STATEMENTS = [
+		'ALTER', 'ANALYZE', 'CHECK', 'CREATE', 'DELETE', 'DESC', 'DESCRIBE', 'DO', 'DROP',
+		'EXPLAIN', 'INSERT', 'OPTIMIZE', 'RENAME', 'REPAIR', 'REPLACE', 'SELECT', 'SHOW',
+		'TRUNCATE', 'UPDATE', 'VALUES', 'WITH',
+	];
+
 	/*     * **************  Attributs  ***************** */
 
     /** @var \PDO|null Database connection instance */
@@ -75,13 +85,28 @@ class DB {
 	}
 
 	public static function executeConsoleQuery(string $sql): array {
-		// Les variables, transactions et autres réglages SQL restent dans cette connexion.
-		$connection = static::createConnection([
+		// Les blocs, procédures et SET STATEMENT peuvent contourner la limite MariaDB.
+		preg_match('/\A(?:\s++|(?:--(?=\s)|\#)[^\r\n]*+|\/\*(?![!]|M!)[\s\S]*?\*\/)*+([a-z]+)\b/i', $sql, $match);
+		if (!in_array(strtoupper($match[1] ?? ''), self::CONSOLE_STATEMENTS, true)) {
+			throw new InvalidArgumentException('Instruction SQL non prise en charge par la console.');
+		}
+
+		// Connexion isolée et lecture ligne par ligne pour borner la réponse avant de l’accumuler.
+		$options = [
 			PDO::ATTR_PERSISTENT => false,
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_TIMEOUT => self::CONSOLE_SECONDS,
 			PDO::MYSQL_ATTR_MULTI_STATEMENTS => false,
-		]);
+			PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => false,
+		];
+		$connection = static::createConnection($options);
+		$seconds = self::CONSOLE_SECONDS;
+		$connection->exec("SET SESSION max_statement_time = $seconds, lock_wait_timeout = $seconds, innodb_lock_wait_timeout = $seconds");
+		$threadId = (int) $connection->query('SELECT CONNECTION_ID()')->fetchColumn();
+
 		$start = hrtime(true);
+		$deadline = $start + $seconds * 1000000000;
+		$flags = JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PRESERVE_ZERO_FRACTION;
 		try {
 			$statement = $connection->query($sql);
 			$columnCount = $statement->columnCount();
@@ -89,14 +114,56 @@ class DB {
 			for ($index = 0; $index < $columnCount; $index++) {
 				$columns[] = $statement->getColumnMeta($index)['name'];
 			}
+			// Réserver la place de l’enveloppe JSON et compter les octets après échappement.
+			$bytes = 128 + strlen(json_encode($columns, $flags));
+			if ($bytes > self::CONSOLE_BYTES) {
+				throw new LengthException('Le résultat SQL dépasse 2 Mio.');
+			}
+			$rows = [];
+			while ($columnCount > 0 && ($row = $statement->fetch(PDO::FETCH_NUM)) !== false) {
+				if (hrtime(true) >= $deadline) {
+					throw new RuntimeException('Le délai maximal de 5 secondes est dépassé.', self::CONSOLE_TIMEOUT_ERROR);
+				}
+				if (count($rows) >= self::CONSOLE_ROWS) {
+					throw new LengthException('Le résultat SQL dépasse 1 000 lignes.');
+				}
+				$rawBytes = 0;
+				foreach ($row as $value) {
+					if (is_string($value)) {
+						$rawBytes += strlen($value);
+					}
+				}
+				if ($bytes + $rawBytes > self::CONSOLE_BYTES) {
+					throw new LengthException('Le résultat SQL dépasse 2 Mio.');
+				}
+				$bytes += 1 + strlen(json_encode($row, $flags));
+				if ($bytes > self::CONSOLE_BYTES) {
+					throw new LengthException('Le résultat SQL dépasse 2 Mio.');
+				}
+				$rows[] = $row;
+			}
+			if ($columnCount > 0 && hrtime(true) >= $deadline) {
+				throw new RuntimeException('Le délai maximal de 5 secondes est dépassé.', self::CONSOLE_TIMEOUT_ERROR);
+			}
 			return [
 				'columns' => $columns,
-				'rows' => $columnCount > 0 ? $statement->fetchAll(PDO::FETCH_NUM) : [],
+				'rows' => $rows,
 				'affectedRows' => $columnCount > 0 ? null : $statement->rowCount(),
 				'durationMs' => (hrtime(true) - $start) / 1000000,
 			];
 		} catch (PDOException $e) {
+			if (in_array((int) ($e->errorInfo[1] ?? 0), [1205, self::CONSOLE_TIMEOUT_ERROR], true)) {
+				throw new RuntimeException('Le délai maximal de 5 secondes est dépassé.', self::CONSOLE_TIMEOUT_ERROR, $e);
+			}
 			throw new InvalidArgumentException($e->errorInfo[2] ?? 'La requête SQL a échoué.', 0, $e);
+		} catch (LengthException | RuntimeException $e) {
+			// Fermer la session avant que le pilote ne vide un résultat non lu.
+			try {
+				static::createConnection($options)->exec('KILL CONNECTION ' . $threadId);
+			} catch (PDOException) {
+				// Garder l’erreur de limite si MariaDB a déjà arrêté la connexion.
+			}
+			throw $e;
 		}
 	}
 
