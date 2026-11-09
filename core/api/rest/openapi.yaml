@@ -6260,14 +6260,12 @@ components:
         'language':
           type: string
           description: 'Sélection de la langue d''affichage (onglet general).'
-          default: 'fr_FR'
         'tts::engine':
           type: string
           description: 'Sélection du moteur text-to-speech (onglet general).'
         'timezone':
           type: string
           description: 'Sélection du fuseau horaire (onglet general).'
-          default: 'Europe/Brussels'
         'ntp::optionalServer':
           type: string
           description: 'Permet d''ajouter un serveur de temps pour la synchronisation (onglet general).'
@@ -6277,7 +6275,6 @@ components:
         'core::jqueryless':
           type: boolean
           description: 'Ne charge pas jQuery/Boostrap et leurs librairies (Attention (onglet general).'
-          default: false
         'info::latitude':
           type: [number, 'null']
           description: 'Latitude (onglet general).'
@@ -6293,60 +6290,48 @@ components:
         'jeedom_theme_alternate':
           type: string
           description: 'Alternatif (onglet interface).'
-          default: 'core2019_Dark'
         'mobile_theme_color':
           type: string
           description: 'Principal (onglet interface).'
-          default: 'core2019_Light'
         'mobile_theme_color_night':
           type: string
           description: 'Alternatif (onglet interface).'
-          default: 'core2019_Dark'
         'theme_changeAccordingTime':
           type: boolean
           description: 'Selon l''heure (onglet interface).'
-          default: true
         'theme_start_day_hour':
           type: string
           description: 'Principal de (onglet interface).'
-          default: '08:00'
         'theme_end_day_hour':
           type: string
           description: 'à (onglet interface).'
-          default: '20:00'
         'mobile_theme_useAmbientLight':
           type: boolean
           description: 'Selon la luminosité (onglet interface).'
         'theme_displayAsTable':
           type: boolean
           description: 'Affichage tableau (onglet interface).'
-          default: true
         'interface::advance::coloredIcons':
           type: boolean
           description: 'Icônes colorées (onglet interface).'
-          default: true
         'scenario::disableAutocomplete':
           type: boolean
           description: 'Désactiver l''auto-complétion des scénarios (onglet interface).'
         'interface::toast::position':
           type: string
           description: 'Position (onglet interface).'
-          default: 'toast-bottom-right'
         'interface::toast::duration':
           type: [number, 'null']
           description: 'Durée (onglet interface).'
-          default: 5
         'interface::advance::enable':
           type: boolean
           description: 'Activer (onglet interface).'
         'css::background-opacity':
           type: [number, 'null']
           description: 'Transparence (Opacité) des tuiles et de certains éléments d'' (onglet interface).'
-          default: 1
         'css::border-radius':
           type: [number, 'null']
           description: 'Arrondi des éléments d''interface (0 = pas d''arrondi) (onglet interface).'
-          default: 0
         'widget::shadow':
           type: boolean
           description: 'Désactiver les ombres (onglet interface).'
@@ -6356,52 +6341,42 @@ components:
         'widget::step::height':
           type: [number, 'null']
           description: 'Hauteur (onglet interface).'
-          default: 30
         'widget::step::width':
           type: [number, 'null']
           description: 'Largeur (onglet interface).'
-          default: 40
         'widget::margin':
           type: [number, 'null']
           description: 'Espace entre les tuiles en pixels (onglet interface).'
-          default: 1
         'interface::advance::vertCentering':
           type: boolean
           description: 'Centrage vertical (onglet interface).'
         'interface::advance::coloredcats':
           type: boolean
           description: 'Catégories colorées (onglet interface).'
-          default: true
         'interface::mobile::onecolumn':
           type: boolean
           description: 'Pleine largeur sur mobile (onglet interface).'
         'autoreorder::weight_human_action':
           type: [number, 'null']
           description: 'Poids des actions humaines dans la réorganisation automatiqu (onglet interface).'
-          default: 2
         'autoreorder::weight_automation_action':
           type: [number, 'null']
           description: 'Poids des actions automatiques dans la réorganisation automa (onglet interface).'
-          default: 1
         'autoreorder::weight_history':
           type: [number, 'null']
           description: 'Poids des actions de consultation de l''historique dans la ré (onglet interface).'
-          default: 1
         'showBackgroundImg':
           type: boolean
           description: 'Cocher la case pour afficher les images de fond (onglet interface).'
         'interface::background::opacitylight':
           type: [number, 'null']
           description: 'Light (onglet interface).'
-          default: 0.6
         'interface::background::opacitydark':
           type: [number, 'null']
           description: 'Dark (onglet interface).'
-          default: 0.6
         'css::objectBackgroundBlur':
           type: [number, 'null']
           description: 'Valeur de flou pour les images de fond sur les pages Dashboa (onglet interface).'
-          default: 0
         'network::disableInternalAuto':
           type: boolean
           description: 'Désactiver (onglet network).'
@@ -6417,11 +6392,9 @@ components:
         'network::disableMangement':
           type: boolean
           description: 'Désactiver (onglet network).'
-          default: false
         'externalProtocol':
           type: string
           description: 'Adresse (onglet network).'
-          default: 'http://'
         'externalAddr':
           type: string
           description: 'HTTPS (onglet network).'
@@ -6434,7 +6407,6 @@ components:
         'network::localip':
           type: string
           description: 'Uniquement pour les installations sous Docker (format: 192.1 (onglet network).'
-          default: '127.0.0.1;192.168.*.*;10.'
         'proxyAddress':
           type: string
           description: 'Adresse du proxy (onglet network).'
@@ -6451,7 +6423,6 @@ components:
         'timeline::maxevent':
           type: [number, 'null']
           description: 'Nombre maximum d''évènements sur chaque Timeline (onglet logs).'
-          default: 500
         'addMessageForErrorLog':
           type: boolean
           description: 'Ajouter un message à chaque erreur dans les logs (onglet logs).'
@@ -6461,11 +6432,9 @@ components:
         'maxSizeLog':
           type: [number, 'null']
           description: 'Taille maximale pour fichier de log (en Mo) (onglet logs).'
-          default: 5
         'log::level':
           type: [number, 'null']
           description: 'Niveau de log par défaut (onglet logs).'
-          default: 400
         'alert::addMessageOnTimeout':
           type: boolean
           description: 'Ajouter un message sur une alerte « Timeout » (onglet logs).'
@@ -6499,41 +6468,33 @@ components:
         'numberOfTryBeforeEqLogicDisable':
           type: [number, 'null']
           description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas (onglet eqLogics).'
-          default: 3
         'battery::warning':
           type: [number, 'null']
           description: 'Si le niveau de charge passe en dessous de (%) (onglet eqLogics).'
         'battery::danger':
           type: [number, 'null']
           description: 'Si le niveau de charge passe en dessous de (%) (onglet eqLogics).'
-          default: 5
         'displayStatsWidget':
           type: boolean
           description: 'Afficher les statistiques sur les widgets (onglet eqLogics).'
-          default: false
         'historyCalculPeriod':
           type: [number, 'null']
           description: 'Période de calcul pour min, max, moyenne (onglet eqLogics).'
-          default: 24
         'historyCalculTendance':
           type: [number, 'null']
           description: 'Période de calcul pour la tendance (onglet eqLogics).'
         'historyArchiveTime':
           type: [number, 'null']
           description: 'Délai avant archivage (onglet eqLogics).'
-          default: 2
         'historyArchivePackage':
           type: [number, 'null']
           description: 'Archiver par paquet de (onglet eqLogics).'
-          default: 1
         'history::smooth':
           type: string
           description: 'Limite le nombre de valeurs historisées par les commandes en (onglet eqLogics).'
-          default: '-2'
         'history::defaultShowPeriod':
           type: string
           description: 'Période d''affichage des graphiques par défaut (onglet eqLogics).'
-          default: '-1 month'
         'historyPurge':
           type: string
           description: 'Purger l''historique si plus vieux que (onglet eqLogics).'
@@ -6555,49 +6516,39 @@ components:
         'report::maxdays':
           type: [number, 'null']
           description: 'Nettoyer les rapports plus anciens de (onglet reports).'
-          default: 30
         'graphlink::scenario::drill':
           type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
-          default: 3
         'graphlink::jeeObject::drill':
           type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
         'graphlink::eqLogic::drill':
           type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
-          default: 3
         'graphlink::cmd::drill':
           type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
-          default: 3
         'graphlink::dataStore::drill':
           type: [number, 'null']
           description: 'Nombre maximum de niveaux d’éléments affichés dans les graph (onglet links).'
-          default: 3
         'graphlink::prerender':
           type: [number, 'null']
           description: 'Permet d’agir sur la disposition du graphique (défaut 3) (onglet links).'
-          default: 10
         'graphlink::render':
           type: [number, 'null']
           description: 'Permet d’agir sur la disposition du graphique selon les rela (onglet links).'
-          default: 3000
         'interact::confidence1':
           type: [number, 'null']
           description: '1 mot (onglet interactions).'
         'interact::confidence2':
           type: [number, 'null']
           description: '2 mots (onglet interactions).'
-          default: 3
         'interact::confidence3':
           type: [number, 'null']
           description: '3 mots (onglet interactions).'
-          default: 5
         'interact::confidence':
           type: [number, 'null']
           description: '3 mots (onglet interactions).'
-          default: 15
         'interact::weigh1':
           type: [number, 'null']
           description: '1 mot (onglet interactions).'
@@ -6619,27 +6570,21 @@ components:
         'interact::autoreply::enable':
           type: boolean
           description: 'Activer les interactions automatiques (onglet interactions).'
-          default: true
         'interact::contextual::enable':
           type: boolean
           description: 'Activer les réponses contextuelles (onglet interactions).'
-          default: true
         'interact::contextual::startpriority':
           type: string
           description: 'Réponse contextuelle prioritaire si la phrase commence par (onglet interactions).'
-          default: 'et'
         'interact::contextual::splitword':
           type: string
           description: 'Découper une interaction en deux si elle contient (onglet interactions).'
-          default: 'et'
         'interact::warnme::enable':
           type: boolean
           description: 'Activer les interactions "préviens moi" (onglet interactions).'
-          default: true
         'interact::warnme::start':
           type: string
           description: 'Réponse de type "préviens moi" si la phrase commence par (onglet interactions).'
-          default: 'previens moi si'
         'interact::warnme::defaultreturncmd':
           type: string
           description: 'Commande de retour par défaut (onglet interactions).'
@@ -6649,45 +6594,36 @@ components:
         'interact::autoreply::eqLogic::synonym':
           type: string
           description: 'Synonymes pour les équipements (onglet interactions).'
-          default: 'lumiere'
         'interact::autoreply::cmd::synonym':
           type: string
           description: 'Synonymes pour les commandes (onglet interactions).'
-          default: 'on'
         'interact::autoreply::summary::synonym':
           type: string
           description: 'Synonymes pour les résumés (onglet interactions).'
         'interact::autoreply::cmd::slider::max':
           type: string
           description: 'Synonyme commande slider maximum (onglet interactions).'
-          default: 'ferme'
         'interact::autoreply::cmd::slider::min':
           type: string
           description: 'Synonyme commande slider minimum (onglet interactions).'
-          default: 'ouvre'
         'session_lifetime':
           type: [number, 'null']
           description: 'Durée de vie de votre connexion, en heure (si vous n''avez pa (onglet security).'
-          default: 24
         'security::registerDeviceLifetime':
           type: [number, 'null']
           description: 'Durée d''inactivité avant expiration du périphérique enregist (onglet security).'
         'security::maxFailedLogin':
           type: [number, 'null']
           description: 'Passé ce nombre, l''IP sera bannie. (onglet security).'
-          default: 6
         'security::timeLoginFailed':
           type: [number, 'null']
           description: 'Temps en secondes.  0 : temps infini (onglet security).'
-          default: 300
         'security::bantime':
           type: [number, 'null']
           description: 'Durée en secondes.  -1 : bannissement infini (onglet security).'
-          default: 600
         'security::whiteips':
           type: string
           description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.* (onglet security).'
-          default: '127.0.0.1;192.168.*.*;10.'
         'ldap:enable':
           type: boolean
           description: 'Activer l''authentification LDAP (onglet security).'
@@ -6745,27 +6681,21 @@ components:
         'core::repo::provider':
           type: string
           description: 'Source de mise à jour du core (onglet updates).'
-          default: 'default'
         'core::branch':
           type: string
           description: 'Version installée du core, pour la vérification de mise à jo (onglet updates).'
-          default: 'master'
         'update::autocheck':
           type: boolean
           description: 'Vérification automatique des mises à jour (onglet updates).'
-          default: true
         'cache::engine':
           type: string
           description: 'Moteur de cache (onglet cache).'
-          default: 'FileCache'
         'cache::redisaddr':
           type: string
           description: 'Adresse Redis (onglet cache).'
-          default: '127.0.0.1'
         'cache::redisport':
           type: [number, 'null']
           description: 'Port redis (onglet cache).'
-          default: 6379
         'event::waitPollingTime':
           type: [number, 'null']
           description: 'Fréquence de vérification des événements en attente. (onglet cache).'
