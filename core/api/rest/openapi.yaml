@@ -2761,11 +2761,20 @@ paths:
         polling.
 
         **Limites.** Pour économiser les processus Apache : la nouvelle UI
-        ouvre une seule connexion par navigateur, partagée entre ses onglets,
-        et la ferme quand l'onglet est caché (reprise au retour par le
-        curseur). Le serveur accepte au plus 3 connexions simultanées par
-        utilisateur ; au-delà, 429 `too_many_streams`.
+        partage un flux par session entre ses onglets. Un onglet visible
+        porte la connexion et passe le relais en se masquant ou en se
+        fermant. Si aucun onglet abonné n'est visible, le flux est fermé.
+        La reprise utilise le dernier curseur partagé. Le serveur accepte
+        au plus 3 connexions simultanées par utilisateur ; au-delà,
+        429 `too_many_streams`.
       parameters:
+        - name: X-CSRF-Token
+          in: header
+          description: |
+            Jeton de la session connue de Core UI. S'il est envoyé pour une
+            session par cookie et que le navigateur a changé de session
+            dans un autre onglet, la route renvoie 401 `session_expired`.
+          schema: { type: string }
         - name: Last-Event-ID
           in: header
           description: Dernier curseur reçu, envoyé par le client à la reconnexion.
