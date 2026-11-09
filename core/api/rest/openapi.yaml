@@ -1448,9 +1448,7 @@ paths:
           administrateur : 422 `user_self_lockout` ;
         - le dernier administrateur actif ne peut être ni désactivé ni
           rétrogradé : 422 `last_admin` ;
-        - désactiver un compte (`enable: false`) ferme toutes ses sessions :
-          celles de la nouvelle UI (table `session`) et celles de l'ancienne
-          interface (sessions PHP).
+        - désactiver un compte (`enable: false`) révoque ses sessions Core UI.
 
         Les droits par élément ne passent pas ici mais par
         `/users/{id}/rights`.

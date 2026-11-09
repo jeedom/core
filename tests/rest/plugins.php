@@ -21,14 +21,19 @@ class config {
 }
 class user {
     public static bool $enabled = true;
+    private ?int $enable = null;
     public function __construct(private int $id) {}
     public static function byHash($key) { return match ($key) { 'admin' => new self(1), 'member' => new self(2), default => null }; }
     public static function byId($id) { return in_array($id, [1, 2], true) ? new self($id) : null; }
+    public static function byProfils($profile, $enabled) { return [new self(1)]; }
     public function getId() { return $this->id; }
+    public function getLogin() { return 'fixture-' . $this->id; }
     public function getProfils() { return $this->id === 1 ? 'admin' : 'user'; }
-    public function getEnable() { return self::$enabled ? 1 : 0; }
-    public function isValidAndEnabled() { return self::$enabled; }
+    public function getEnable() { return $this->enable ?? (self::$enabled ? 1 : 0); }
+    public function isValidAndEnabled() { return $this->getEnable() === 1; }
+    public function setEnable(int $enable): void { $this->enable = $enable; }
     public function getOptions($key, $default = '') { return $default; }
+    public function save(): void {}
 }
 class session {
     public static function resolve(string $token): ?array {
@@ -304,6 +309,8 @@ call('PATCH', '/plugins/fixture', 403, ['isEnable' => false], token: null, cooki
 call('PATCH', '/plugins/fixture', body: ['isEnable' => false], token: null, cookies: $cookies, headers: ['X-CSRF-Token' => $csrf]);
 call('DELETE', '/me/sessions/unknown', 404, token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);
 call('DELETE', '/me/sessions/browser-id', 409, token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);
+$disabled = call('PATCH', '/users/2', body: ['enable' => false], token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);
+check($disabled['enable'] === false, 'REST must disable accounts without using legacy PHP sessions');
 call('DELETE', '/plugins/fixture', 403, token: 'member');
 call('DELETE', '/plugins/fixture', 204);
 check(!is_file(plugin::getPathById('fixture')), 'Native plugin removal not used');

@@ -129,9 +129,6 @@ final class UsersController
             $user->setOptions($key, $value);
         }
         self::save($user);
-        if ($disable) {
-            $user->closeSessions();
-        }
         return Json::respond($response, self::toArray($user));
     }
 
