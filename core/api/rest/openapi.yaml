@@ -2756,7 +2756,7 @@ paths:
 
         **Durée.** Le serveur ferme la connexion au bout de `maxDuration`
         secondes (55 s par défaut) en ayant envoyé `retry: 1000` ;
-        le client se reconnecte sans perte grâce au curseur. Un processus
+        le client se reconnecte avec le dernier curseur reçu. Un processus
         PHP reste occupé pendant la connexion, comme aujourd'hui avec le long
         polling.
 

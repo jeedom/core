@@ -74,14 +74,14 @@ final class EventStream implements StreamInterface
     /** Un tour d'attente : nouveaux événements, ping, ou fin du flux. */
     private function fill(): void
     {
+        if (microtime(true) >= $this->deadline || connection_aborted()) {
+            $this->finished = true;
+            return;
+        }
         $this->pollEvents();
         $now = microtime(true);
         if ($this->buffer !== '') {
             $this->lastSent = $now;
-            return;
-        }
-        if ($now >= $this->deadline || connection_aborted()) {
-            $this->finished = true;
             return;
         }
         if ($now - $this->lastSent >= self::PING_INTERVAL) {
