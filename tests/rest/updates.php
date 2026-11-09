@@ -60,7 +60,10 @@ class log {
     public static function clear($name) { file_put_contents(self::getPathToLog($name), ''); }
     public static function add($name, $level, $text) { file_put_contents(self::getPathToLog($name), $text . "\n", FILE_APPEND); }
 }
+require dirname(__DIR__, 2) . '/core/class/pluginInstallation.trait.php';
 class plugin {
+    use PluginInstallationOperations;
+
     public static function getPathById($id) { return jeedom::getTmpFolder('plugins') . '/' . $id . '.json'; }
     public static function listPlugin(...$args) { return array_map(static fn ($id) => new self($id), ['hue', 'weather', 'manual']); }
     public function getId() { return $this->id; }
@@ -73,7 +76,10 @@ class plugin {
     public function getPathImgIcon() { return 'https://outside.example/image.png'; }
     public function getChangelog() { return 'javascript:alert(1)'; }
 }
+require dirname(__DIR__, 2) . '/core/class/updateOperation.trait.php';
 class update {
+    use UpdateOperations;
+
     public static array $items = [];
     public static array $executed = [];
     public static array $checked = [];
@@ -106,8 +112,6 @@ class queue {
 class repo_market { public static function downloadObject($update) {} }
 $demo = false;
 function unautorizedInDemo($actor = null) { global $demo; if (!$actor instanceof user || $demo) throw new RuntimeException('Mode démo'); }
-require dirname(__DIR__, 2) . '/core/class/pluginInstallation.class.php';
-require dirname(__DIR__, 2) . '/core/class/updateOperation.class.php';
 update::$items = [new update(1, 'core', 'jeedom'), new update(2, 'plugin', 'hue'), new update(3, 'plugin', 'weather'),
     new update(4, 'plugin', 'held', 'hold'), new update(5, 'plugin', 'blocked', 'update', true), new update(6, 'os', 'debian')];
 foreach (['hue', 'weather', 'held', 'blocked', 'manual'] as $id) file_put_contents(plugin::getPathById($id), '{}');
@@ -132,7 +136,7 @@ $catalog = call('GET', '/plugins/management');
 check($catalog['total'] === 3 && $catalog['core']['update']['id'] === 1, 'Installed inventory or Core missing');
 $manual = array_values(array_filter($catalog['items'], fn ($item) => $item['id'] === 'manual'))[0];
 check($manual['management']['update'] === null, 'Manual plugin without update must remain visible');
-$job = call('POST', '/updates/check', 202); updateOperation::execute($job['id']);
+$job = call('POST', '/updates/check', 202); update::executeOperation($job['id']);
 check(update::$checked === [['core', false], ['plugin', true]], 'Check must include only Core and plugins and record completion once');
 check(call('GET', '/plugins/management')['lastCheck'] === '2026-11-09 08:30:00', 'Last check date not visible in inventory');
 resetOperation(); system::$commands = [];
@@ -149,8 +153,8 @@ check($job['id'] === $repeat['id'] && count(system::$commands) === 1, 'Retry lau
 call('POST', '/updates/operations', 409, ['ids' => [2]]);
 call('POST', '/updates/operations', 409, ['ids' => [2]], key: 'request-key-00000002');
 call('POST', '/updates/check', 409);
-try { updateOperation::withPluginMutation(static fn () => null); check(false, 'Plugin mutation accepted during a queued update'); } catch (RuntimeException $e) { check($e->getCode() === 409, 'Wrong mutation conflict'); }
-updateOperation::execute($job['id']);
+try { update::withPluginMutation(static fn () => null); check(false, 'Plugin mutation accepted during a queued update'); } catch (RuntimeException $e) { check($e->getCode() === 409, 'Wrong mutation conflict'); }
+update::executeOperation($job['id']);
 $finished = call('GET', '/updates/operation')['operation'];
 check($finished['state'] === 'succeeded' && count(array_filter($finished['items'], fn ($item) => $item['state'] === 'succeeded')) === 3, 'Batch did not finish');
 check(update::$executed === ['core', 2, 3], 'Core did not execute before the selected plugins');
@@ -160,20 +164,20 @@ check(str_ends_with($command, ' 2>&1 &'), 'Core installer must run without a wai
 call('POST', '/updates/operations', 200, ['ids' => [1, 2, 3]]);
 resetOperation(); update::$failure = 2;
 $job = call('POST', '/updates/operations', 202, ['ids' => [2, 3]]);
-updateOperation::execute($job['id']);
+update::executeOperation($job['id']);
 $failed = call('GET', '/updates/operation')['operation'];
 check($failed['state'] === 'failed' && array_column($failed['items'], 'state') === ['failed', 'skipped'], 'Failure did not stop remaining updates');
 check(!str_contains($failed['error'], 'secret'), 'Error exposed credentials');
 resetOperation(); update::$failure = null; system::$coreFails = true;
-$job = call('POST', '/updates/operations', 202, ['ids' => [1, 2]]); updateOperation::execute($job['id']);
+$job = call('POST', '/updates/operations', 202, ['ids' => [1, 2]]); update::executeOperation($job['id']);
 $failedCore = call('GET', '/updates/operation')['operation'];
 check($failedCore['state'] === 'failed' && array_column($failedCore['items'], 'state') === ['failed', 'skipped'], 'Plugins must not start after Core failure');
 resetOperation(); system::$coreFails = false; system::$relaunch = true;
-$job = call('POST', '/updates/operations', 202, ['ids' => [1, 2]]); updateOperation::execute($job['id']);
+$job = call('POST', '/updates/operations', 202, ['ids' => [1, 2]]); update::executeOperation($job['id']);
 check(call('GET', '/updates/operation')['operation']['state'] === 'succeeded' && !system::$pendingRelaunch, 'Native Core relaunch was not followed to completion');
 system::$relaunch = false;
 resetOperation(); user::$enabled = false;
-$job = call('POST', '/updates/operations', 202, ['ids' => [2]]); updateOperation::execute($job['id']);
+$job = call('POST', '/updates/operations', 202, ['ids' => [2]]); update::executeOperation($job['id']);
 check(call('GET', '/updates/operation')['operation']['state'] === 'failed', 'Revoked worker actor was accepted'); user::$enabled = true;
 resetOperation();
 $job = call('POST', '/updates/operations', 202, ['ids' => [2]]);
@@ -200,6 +204,6 @@ $job = call('POST', '/updates/operations', 202, ['ids' => [2, 1], 'force' => tru
 call('POST', '/updates/operations', 409, ['ids' => [1, 2]]);
 check(call('POST', '/updates/operations', 202, ['ids' => [1, 2], 'force' => true])['id'] === $job['id'], 'Forced update replay created a new job');
 update::$executed = [];
-updateOperation::execute($job['id']);
+update::executeOperation($job['id']);
 check(call('GET', '/updates/operation')['operation']['state'] === 'succeeded' && update::$executed === ['core', 2], 'Reinstall did not use the native Core and plugin update paths');
 echo "OK $checks REST update checks on PHP " . PHP_VERSION . "\n";

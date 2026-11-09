@@ -19,7 +19,11 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
+require_once __DIR__ . '/updateOperation.trait.php';
+
 class update {
+	use UpdateOperations;
+
 	/*     * *************************Attributs****************************** */
 
 	private $id;
