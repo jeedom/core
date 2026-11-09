@@ -29,9 +29,7 @@ final class EventsController
         $user = $request->getAttribute('user');
 
         // Un onglet peut avoir gardé l'ancienne session après une reconnexion dans un autre onglet.
-        $csrf = $request->getHeaderLine('X-CSRF-Token');
-        $expectedCsrf = $request->getAttribute('csrfToken');
-        if ($csrf !== '' && $expectedCsrf !== null && !hash_equals($expectedCsrf, $csrf)) {
+        if ($request->hasHeader('X-CSRF-Token') && $request->getAttribute('csrfValid') === false) {
             throw new ApiError(401, 'session_expired', 'Session expirée, reconnectez-vous.');
         }
 
