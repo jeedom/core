@@ -438,7 +438,9 @@ paths:
         au plus ancien. Sans `plugin`, le core renvoie au plus les 500 derniers
         messages (`message::all()`) ; avec `plugin`, tous ceux du plugin
         (`message::byPlugin()`). `message` et `action` sont rendus comme dans
-        l'ancienne interface (texte déjà échappé à l'enregistrement).
+        l'ancienne interface (`message::toArray()`) : entités décodées, balises
+        retirées sauf `<i>` et `<a>`. Le client les assainit avant de les
+        afficher en HTML.
       parameters:
       - name: plugin
         in: query
