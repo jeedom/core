@@ -53,7 +53,7 @@ final class EventsController
         if (isset($query['maxDuration'])) {
             $value = (string) $query['maxDuration'];
             if (!ctype_digit($value) || (int) $value < 5 || (int) $value > EventStream::MAX_DURATION) {
-                throw ApiError::field(422, 'validation_error', 'maxDuration', 'Un entier entre 5 et 55 est attendu.');
+                throw ApiError::field(422, 'validation_error', 'maxDuration', sprintf('Un entier entre 5 et %d est attendu.', EventStream::MAX_DURATION));
             }
             $maxDuration = (int) $value;
         }

@@ -15,7 +15,7 @@ use Psr\Http\Message\StreamInterface;
  */
 final class EventStream implements StreamInterface
 {
-    public const MAX_DURATION = 55;
+    public const MAX_DURATION = 300;
     private const POLL_INTERVAL_US = 1_000_000;
     private const PING_INTERVAL = 15;
     private const SESSION_CHECK_INTERVAL = 5;
