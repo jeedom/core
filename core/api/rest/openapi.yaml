@@ -766,6 +766,30 @@ paths:
                 $ref: '#/components/schemas/Error'
       description: Applique log::remove(). removed=false signifie que le fichier existe encore, notamment lorsqu’il
         est protégé par le core.
+  /logs/{name}/download:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Za-z0-9][A-Za-z0-9_.-]{0,254}$
+    get:
+      tags: [Journaux]
+      operationId: downloadLog
+      summary: Télécharger le journal brut (administrateur)
+      responses:
+        '200':
+          description: Fichier complet, transmis sans conversion ni pagination.
+          headers:
+            Content-Disposition:
+              schema: { type: string }
+          content:
+            application/octet-stream:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
   /logs/{name}/contents:
     parameters:
     - name: name
@@ -5060,6 +5084,8 @@ components:
                 type:
                 - string
                 - 'null'
+              market:
+                type: [string, 'null']
             required:
             - documentation
             - changelog

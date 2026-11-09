@@ -132,6 +132,7 @@ final class App
             $api->get('/logs', $logs->list(...));
             $api->delete('/logs', $logs->deleteAll(...));
             $api->get('/logs/{name}', $logs->get(...));
+            $api->get('/logs/{name}/download', $logs->download(...));
             $api->delete('/logs/{name}', $logs->delete(...));
             $api->delete('/logs/{name}/contents', $logs->clear(...));
 

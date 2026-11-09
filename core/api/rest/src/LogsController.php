@@ -84,6 +84,27 @@ final class LogsController
         return $response->withStatus(204);
     }
 
+    public function download(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $path = self::find($args['name']);
+        $resolved = realpath($path);
+        if ($resolved === false || dirname($resolved) !== realpath(dirname($path))) {
+            throw new ApiError(404, 'log_not_found', 'Journal inconnu.');
+        }
+        $stream = @fopen($resolved, 'rb');
+        if ($stream === false) {
+            throw new ApiError(403, 'log_not_readable', 'Le journal ne peut pas être lu.');
+        }
+        $name = $args['name'];
+        $filename = str_ends_with(strtolower($name), '.log') ? $name : $name . '.log';
+        return $response->withBody(new \Slim\Psr7\Stream($stream))
+            ->withHeader('Content-Type', 'application/octet-stream')
+            ->withHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->withHeader('X-Content-Type-Options', 'nosniff')
+            ->withHeader('Cache-Control', 'private, no-store');
+    }
+
     public function delete(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
