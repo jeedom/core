@@ -156,6 +156,7 @@ check($finished['state'] === 'succeeded' && count(array_filter($finished['items'
 check(update::$executed === ['core', 2, 3], 'Core did not execute before the selected plugins');
 $command = end(system::$commands);
 check(str_contains($command, 'core=1 plugins=0') && str_contains($command, 'backup::before=1'), 'Unsafe Core installer options');
+check(str_ends_with($command, ' 2>&1 &'), 'Core installer must run without a waiting shell');
 call('POST', '/updates/operations', 200, ['ids' => [1, 2, 3]]);
 resetOperation(); update::$failure = 2;
 $job = call('POST', '/updates/operations', 202, ['ids' => [2, 3]]);
