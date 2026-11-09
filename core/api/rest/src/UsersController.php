@@ -171,11 +171,24 @@ final class UsersController
         return $response->withStatus(204);
     }
 
-    /** Ferme les sessions PHP du compte (ancienne interface et, pour l'instant, nouvelle UI). */
+    /** Ferme les sessions PHP du compte (ancienne interface et nouvelle UI). */
     public function closeSessions(Request $request, Response $response, array $args): Response
     {
         self::requireAdminWrite($request);
         self::find($args['id'])->closeSessions();
+        return $response->withStatus(204);
+    }
+
+    public function sessions(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        return Json::respond($response, self::sessionList(self::find($args['id'])));
+    }
+
+    public function closeSession(Request $request, Response $response, array $args): Response
+    {
+        self::requireAdminWrite($request);
+        self::closeOne(self::find($args['id']), $args['sessionId']);
         return $response->withStatus(204);
     }
 
@@ -306,6 +319,19 @@ final class UsersController
         return $response->withStatus(204);
     }
 
+    public function mySessions(Request $request, Response $response): Response
+    {
+        return Json::respond($response, self::sessionList($request->getAttribute('user')));
+    }
+
+    public function closeMySession(Request $request, Response $response, array $args): Response
+    {
+        $user = self::reload($request->getAttribute('user'));
+        self::refuseDemo($user);
+        self::closeOne($user, $args['sessionId']);
+        return $response->withStatus(204);
+    }
+
     /** Schéma `Me` de la spec. */
     public static function meArray(\user $user, ?string $csrfToken): array
     {
@@ -395,6 +421,76 @@ final class UsersController
             ];
         }
         return ['items' => $items, 'total' => count($items)];
+    }
+
+    /**
+     * Identifiant public d'une session : HMAC de l'id PHP avec une clé propre au core.
+     * L'id PHP réel n'est jamais exposé, l'empreinte ne permet pas de reprendre la session.
+     */
+    private static function publicSessionId(string $phpId): string
+    {
+        $secret = (string) \config::byKey('apiSessionKey');
+        if ($secret === '') {
+            $secret = \config::genKey();
+            \config::save('apiSessionKey', $secret);
+        }
+        return hash_hmac('sha256', $phpId, $secret);
+    }
+
+    /** Sessions PHP du compte, indexées par leur id public. */
+    private static function sessionsOf(\user $user): array
+    {
+        try {
+            $sessions = \listSession();
+        } catch (\Exception $e) {
+            throw new ApiError(503, 'too_many_sessions', $e->getMessage());
+        }
+        $result = [];
+        foreach ($sessions as $phpId => $session) {
+            if ((int) ($session['user_id'] ?? 0) === (int) $user->getId()) {
+                $result[self::publicSessionId((string) $phpId)] = ['phpId' => (string) $phpId] + $session;
+            }
+        }
+        return $result;
+    }
+
+    private static function sessionList(\user $user): array
+    {
+        $current = session_id();
+        $items = [];
+        foreach (self::sessionsOf($user) as $id => $session) {
+            $time = strtotime((string) ($session['datetime'] ?? ''));
+            $items[] = [
+                'id' => $id,
+                'ip' => (string) ($session['ip'] ?? ''),
+                'datetime' => date('c', $time !== false ? $time : 0),
+                'current' => $current !== '' && $current !== false && hash_equals($session['phpId'], $current),
+            ];
+        }
+        return ['items' => $items, 'total' => count($items)];
+    }
+
+    /** Comme l'action ajax `deleteSession` : supprime la session et l'appareil qui lui est lié. */
+    private static function closeOne(\user $user, string $id): void
+    {
+        $sessions = preg_match('/^[0-9a-f]{64}$/', $id) ? self::sessionsOf($user) : [];
+        if (!isset($sessions[$id])) {
+            throw new ApiError(404, 'session_not_found', 'Session inconnue.');
+        }
+        $phpId = $sessions[$id]['phpId'];
+        $current = session_id();
+        if (is_string($current) && $current !== '' && hash_equals($phpId, $current)) {
+            throw new ApiError(409, 'current_session', 'Pour fermer la session courante, utiliser DELETE /session.');
+        }
+        $user = self::reload($user);
+        $devices = $user->getOptions('registerDevice', []);
+        $devices = is_array($devices) ? $devices : [];
+        $kept = array_filter($devices, static fn ($device) => !is_array($device) || ($device['session_id'] ?? null) !== $phpId);
+        if (count($kept) !== count($devices)) {
+            $user->setOptions('registerDevice', $kept);
+            self::save($user);
+        }
+        \deleteSession($phpId);
     }
 
     private static function forget(\user $user, ?string $key): void
