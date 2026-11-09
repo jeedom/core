@@ -2755,7 +2755,7 @@ paths:
         routes REST.
 
         **Durée.** Le serveur ferme la connexion au bout de `maxDuration`
-        secondes (55 s par défaut) en ayant envoyé `retry: 1000` ;
+        secondes (300 s par défaut) en ayant envoyé `retry: 1000` ;
         le client se reconnecte avec le dernier curseur reçu. Un processus
         PHP reste occupé pendant la connexion, comme aujourd'hui avec le long
         polling.
@@ -2821,7 +2821,7 @@ paths:
         - name: maxDuration
           in: query
           description: Durée maximale de la connexion, en secondes.
-          schema: { type: integer, minimum: 5, maximum: 55, default: 55 }
+          schema: { type: integer, minimum: 5, maximum: 300, default: 300 }
       responses:
         '200':
           description: |
