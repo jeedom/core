@@ -464,7 +464,7 @@ class jeedom {
 		);
 
 		// Node.js version
-		$nodeVersion = trim(shell_exec("node --version | tr -d 'v'"));
+		$nodeVersion = trim((string) shell_exec("node --version | tr -d 'v'"));
 		$installScript = file_get_contents(__DIR__ . '/../../resources/install_nodejs.sh');
 		preg_match("/minVer='([^']+)'/", $installScript, $nodeMinVer);
 		preg_match("/installVer='([^']+)'/", $installScript, $nodeInstallVer);
@@ -592,7 +592,7 @@ class jeedom {
 		);
 
 		// Swappiness
-		$swappiness = trim(shell_exec('sudo cat /proc/sys/vm/swappiness'));
+		$swappiness = trim((string) shell_exec('sudo cat /proc/sys/vm/swappiness'));
 		$swappinessState = true;
 		if ($systemMemInfo['SwapTotal'] > 0 && $systemMemInfo['MemTotal'] < (1024 * 1024) && $swappiness > 20) {
 			$swappinessState = 2;
@@ -631,8 +631,8 @@ class jeedom {
 		);
 
 		// Database size
-		$dbSize = DB::Prepare('SELECT SUM(data_length + index_length) as size FROM information_schema.tables WHERE table_schema = \'jeedom\' GROUP BY table_schema;', array(), DB::FETCH_TYPE_ROW);
-		$dbSize = cmd::autoValueArray($dbSize['size'], 2, 'io');
+		$dbSize = DB::Prepare('SELECT SUM(data_length + index_length) as size FROM information_schema.tables WHERE table_schema = DATABASE()', array(), DB::FETCH_TYPE_ROW);
+		$dbSize = cmd::autoValueArray($dbSize['size'] ?? 0, 2, 'io');
 		$return[] = array(
 			'name' => __('Taille base de données', __FILE__),
 			'state' => true,

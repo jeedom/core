@@ -34,6 +34,27 @@ class system {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function executeConsoleCommand(string $command): array {
+		$process = proc_open(['/bin/sh', '-c', $command], [
+			0 => ['file', '/dev/null', 'r'],
+			1 => ['pipe', 'w'],
+			2 => ['redirect', 1],
+		], $pipes, dirname(__DIR__, 2));
+		if ($process === false) {
+			throw new RuntimeException('Impossible de démarrer le shell.');
+		}
+		try {
+			$output = stream_get_contents($pipes[1]);
+		} finally {
+			fclose($pipes[1]);
+			$exitCode = proc_close($process);
+		}
+		if ($output === false) {
+			throw new RuntimeException('Impossible de lire la sortie du shell.');
+		}
+		return ['output' => $output, 'exitCode' => $exitCode];
+	}
+
 	public static function loadCommand() {
 		if (file_exists(__DIR__ . '/../../config/system_cmd.json')) {
 			$content = file_get_contents(__DIR__ . '/../../config/system_cmd.json');

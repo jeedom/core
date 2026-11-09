@@ -100,6 +100,21 @@ final class App
             $api->get('/config', $config->get(...));
             $api->patch('/config', $config->update(...));
 
+            $system = new SystemController();
+            $api->get('/system', $system->get(...));
+            $api->get('/system/health', $system->health(...));
+            $api->post('/system/reboot', $system->reboot(...));
+            $api->post('/system/shutdown', $system->shutdown(...));
+            $api->post('/system/time/sync', $system->syncTime(...));
+            $api->delete('/system/time/reference', $system->resetTimeReference(...));
+            $api->post('/system/consistency', $system->consistency(...));
+            $api->post('/system/permissions/repair', $system->repairPermissions(...));
+            $api->post('/system/database/cleanup', $system->cleanDatabase(...));
+            $api->get('/system/database/schema', $system->databaseSchema(...));
+            $api->post('/system/database/schema/repair', $system->repairDatabaseSchema(...));
+            $api->post('/system/database/queries', $system->queryDatabase(...));
+            $api->post('/system/ssh', $system->ssh(...));
+
             $messages = new MessagesController();
             $api->get('/messages', $messages->list(...));
             $api->delete('/messages', $messages->clear(...));

@@ -54,8 +54,12 @@ class DB {
      * @throws \PDOException When connection fails
      */
 	private static function initConnection() {
+		static::$connection = static::createConnection();
+	}
+
+	private static function createConnection(array $options = []): PDO {
 		global $CONFIG;
-		$_options = [
+		$options += [
 			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci',
 			PDO::ATTR_PERSISTENT => true,
 			// silent mode, default for php7: https://www.php.net/manual/fr/pdo.error-handling.php
@@ -63,11 +67,36 @@ class DB {
 			PDO::ATTR_ERRMODE => (DEBUG ? PDO::ERRMODE_EXCEPTION : PDO::ERRMODE_SILENT),
 		];
 		if (isset($CONFIG['db']['unix_socket'])) {
-			static::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'],
-			 $CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
+			$dsn = 'mysql:unix_socket=' . $CONFIG['db']['unix_socket'];
 		} else {
-			static::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], 
-			$CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
+			$dsn = 'mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'];
+		}
+		return new PDO($dsn . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], $options);
+	}
+
+	public static function executeConsoleQuery(string $sql): array {
+		// Les variables, transactions et autres réglages SQL restent dans cette connexion.
+		$connection = static::createConnection([
+			PDO::ATTR_PERSISTENT => false,
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::MYSQL_ATTR_MULTI_STATEMENTS => false,
+		]);
+		$start = hrtime(true);
+		try {
+			$statement = $connection->query($sql);
+			$columnCount = $statement->columnCount();
+			$columns = [];
+			for ($index = 0; $index < $columnCount; $index++) {
+				$columns[] = $statement->getColumnMeta($index)['name'];
+			}
+			return [
+				'columns' => $columns,
+				'rows' => $columnCount > 0 ? $statement->fetchAll(PDO::FETCH_NUM) : [],
+				'affectedRows' => $columnCount > 0 ? null : $statement->rowCount(),
+				'durationMs' => (hrtime(true) - $start) / 1000000,
+			];
+		} catch (PDOException $e) {
+			throw new InvalidArgumentException($e->errorInfo[2] ?? 'La requête SQL a échoué.', 0, $e);
 		}
 	}
 

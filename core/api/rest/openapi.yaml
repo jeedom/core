@@ -122,8 +122,213 @@ tags:
     description: Flux d'événements en direct (SSE).
   - name: Configuration
     description: Réglages globaux du core, lus et modifiés par liste de clés.
+  - name: Système
+    description: Diagnostics et opérations système réservés aux administrateurs.
 
 paths:
+  /system:
+    get:
+      tags: [Système]
+      operationId: getSystem
+      summary: Lire les informations système
+      responses:
+        '200':
+          description: Informations système.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemInfo' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/health:
+    get:
+      tags: [Système]
+      operationId: getSystemHealth
+      summary: Lire les diagnostics système
+      responses:
+        '200':
+          description: Résultats des contrôles de santé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemHealth' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/reboot:
+    post:
+      tags: [Système]
+      operationId: rebootSystem
+      summary: Redémarrer le système
+      responses:
+        '204':
+          description: Redémarrage demandé.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/SystemSudoUnavailable' }
+
+  /system/shutdown:
+    post:
+      tags: [Système]
+      operationId: shutdownSystem
+      summary: Arrêter le système
+      responses:
+        '204':
+          description: Arrêt demandé.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/SystemSudoUnavailable' }
+
+  /system/time/sync:
+    post:
+      tags: [Système]
+      operationId: syncSystemTime
+      summary: Synchroniser l’horloge système
+      responses:
+        '204':
+          description: Synchronisation demandée si NTP est activé.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/time/reference:
+    delete:
+      tags: [Système]
+      operationId: resetSystemTimeReference
+      summary: Effacer la dernière heure de référence
+      responses:
+        '204':
+          description: Référence supprimée.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/consistency:
+    post:
+      tags: [Système]
+      operationId: checkSystemConsistency
+      summary: Lancer la vérification de cohérence
+      responses:
+        '202':
+          description: Vérification lancée en arrière-plan.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemMaintenanceAccepted' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/permissions/repair:
+    post:
+      tags: [Système]
+      operationId: repairSystemPermissions
+      summary: Réparer les permissions des fichiers Jeedom
+      responses:
+        '204':
+          description: Réparation exécutée.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/SystemSudoUnavailable' }
+
+  /system/database/cleanup:
+    post:
+      tags: [Système]
+      operationId: cleanSystemDatabase
+      summary: Lancer le nettoyage de la base
+      responses:
+        '202':
+          description: Nettoyage lancé en arrière-plan.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemMaintenanceAccepted' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/database/schema:
+    get:
+      tags: [Système]
+      operationId: checkSystemDatabaseSchema
+      summary: Vérifier le schéma de la base
+      responses:
+        '200':
+          description: Comparaison avec le schéma du core.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemDatabaseSchema' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/database/schema/repair:
+    post:
+      tags: [Système]
+      operationId: repairSystemDatabaseSchema
+      summary: Réparer le schéma de la base
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [table]
+              properties:
+                table: { type: string, minLength: 1, description: Nom d’une table du schéma ou `all`. }
+      responses:
+        '204':
+          description: Réparation exécutée.
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /system/database/queries:
+    post:
+      tags: [Système]
+      operationId: executeSystemSql
+      summary: Exécuter une requête SQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [sql]
+              properties:
+                sql: { type: string, minLength: 1, description: 'Une instruction SQL par requête, avec les droits du compte de base de données Jeedom.' }
+      responses:
+        '200':
+          description: Résultat de la requête.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemSqlResult' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/SystemSqlError' }
+
+  /system/ssh:
+    post:
+      tags: [Système]
+      operationId: executeSystemShellCommand
+      summary: Exécuter une commande shell locale
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [command]
+              properties:
+                command: { type: string, minLength: 1, description: Commande non interactive exécutée par le compte système de PHP depuis le répertoire Jeedom. }
+      responses:
+        '200':
+          description: Sortie et code de retour de la commande.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemShellResult' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /backups:
     get:
       tags: [Sauvegardes]
@@ -3925,6 +4130,69 @@ components:
                 minimum: 0
                 description: Taille en octets du fichier distant (chiffré pour Jeedom Cloud), ou null si inconnue.
         total: { type: integer, minimum: 0 }
+    SystemInfo:
+      type: object
+      required: [version, hardware, started]
+      properties:
+        version: { type: string }
+        hardware: { type: string }
+        started: { type: boolean }
+    SystemHealth:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [key, name, state, result, comment]
+            properties:
+              key: { type: string }
+              name: { type: string }
+              state:
+                enum: [true, false, 2]
+              result: { type: [string, number] }
+              comment: { type: string }
+        total: { type: integer, minimum: 0 }
+    SystemMaintenanceAccepted:
+      type: object
+      required: [log]
+      properties:
+        log:
+          type: string
+          enum: [consistency, cleaningdb]
+    SystemDatabaseSchema:
+      type: object
+      required: [tables]
+      properties:
+        tables:
+          type: object
+          additionalProperties:
+            type: object
+            required: [status, sql]
+            properties:
+              status: { type: string, enum: [ok, nok] }
+              sql: { type: string }
+    SystemSqlResult:
+      type: object
+      required: [columns, rows, affectedRows, durationMs]
+      properties:
+        columns:
+          type: array
+          items: { type: string }
+        rows:
+          type: array
+          items:
+            type: array
+            items: { type: [string, number, boolean, 'null'] }
+        affectedRows: { type: [integer, 'null'], minimum: 0 }
+        durationMs: { type: number, minimum: 0 }
+    SystemShellResult:
+      type: object
+      required: [output, exitCode]
+      properties:
+        output: { type: string, description: Sorties standard et d’erreur combinées. }
+        exitCode: { type: integer }
     BackupAccepted:
       type: object
       additionalProperties: false
@@ -6814,6 +7082,21 @@ components:
         hidenumber: { type: boolean, description: 'Masquer le nombre.' }
         hidenulnumber: { type: boolean, description: 'Masquer le nombre s''il est nul.' }
   responses:
+    SystemInvalidJson:
+      description: Corps JSON absent ou invalide.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemSqlError:
+      description: Corps invalide ou requête refusée par la base de données.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemSudoUnavailable:
+      description: Les droits sudo requis sont indisponibles.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
     VariableNotFound:
       description: Variable inconnue (variable_not_found).
       content:
