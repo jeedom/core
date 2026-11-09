@@ -1917,9 +1917,22 @@ $productName = config::byKey('product_name');
 											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">';
 											$div .= $parameter['name'];
 											$div .= '</label>';
-											$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
+											$div .= '<div class="' . ($parameter['type'] === 'market_connection' ? 'col-lg-6 col-md-8 col-xs-12' : 'col-lg-3 col-md-4 col-xs-5') . '">';
 											$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 											switch ($parameter['type']) {
+												case 'market_connection':
+													$marketConnection = repo_market::connectionStatus();
+													$connected = $marketConnection['connected'];
+													$div .= '<div id="div_marketConnection" data-connected="' . ($connected ? '1' : '0') . '">';
+													$div .= '<div class="marketConnectionStatus" role="status" aria-live="polite">';
+													$div .= '<span data-market-state class="label ' . ($connected ? 'label-success' : 'label-default') . '">' . ($connected ? '{{Connecté}}' : '{{Déconnecté}}') . '</span>';
+													$div .= '<span data-market-login>' . htmlspecialchars($marketConnection['login'], ENT_QUOTES, 'UTF-8') . '</span></div>';
+													$div .= '<div class="marketConnectionControls">';
+													$div .= '<button type="button" class="btn btn-success' . ($connected ? ' hidden' : '') . '" data-market-action="connect"><i class="fas fa-link"></i> {{Se connecter au Market}}</button>';
+													$div .= '<button type="button" class="btn btn-default' . ($connected ? '' : ' hidden') . '" data-market-action="reconnect"><i class="fas fa-sync"></i> {{Reconnecter}}</button>';
+													$div .= '<button type="button" class="btn btn-danger' . ($connected ? '' : ' hidden') . '" data-market-action="disconnect"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</button>';
+													$div .= '</div></div>';
+													break;
 												case 'checkbox':
 													$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '">';
 													break;
@@ -1953,9 +1966,9 @@ $productName = config::byKey('product_name');
 										}
 										if (isset($value['scope']['test']) && $value['scope']['test']) {
 											$div .= '<div class="form-group">';
-											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Tester/Synchroniser}}</label>';
+											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">' . ($key === 'market' ? '{{Synchroniser}}' : '{{Tester/Synchroniser}}') . '</label>';
 											$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
-											$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
+											$div .= '<a class="btn btn-default testRepoConnection' . ($key === 'market' && !repo_market::connectionStatus()['connected'] ? ' disabled' : '') . '" data-repo="' . $key . '"><i class="fas fa-' . ($key === 'market' ? 'sync' : 'check') . '"></i> ' . ($key === 'market' ? '{{Synchroniser}}' : '{{Tester}}') . '</a>';
 											$div .= '</div>';
 											$div .= '</div>';
 										}

@@ -82,6 +82,37 @@ jeedom.repo.test = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+jeedom.repo.connectMarket = function(_params) {
+  const params = _params || {};
+  try {
+    jeedom.private.checkParamsRequired(params, ['login', 'password']);
+  } catch (e) {
+    (params.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  jeedom.repo.marketRequest('connectMarket', _params, {
+    login: params.login,
+    password: params.password,
+    twoFactorCode: params.twoFactorCode || ''
+  });
+}
+
+jeedom.repo.marketStatus = function(_params) {
+  jeedom.repo.marketRequest('marketStatus', _params);
+}
+
+jeedom.repo.disconnectMarket = function(_params) {
+  jeedom.repo.marketRequest('disconnectMarket', _params);
+}
+
+jeedom.repo.marketRequest = function(_action, _params, _data = {}) {
+  const params = domUtils.extend({}, jeedom.private.default_params, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/repo.ajax.php';
+  paramsAJAX.data = domUtils.extend({ action: _action }, _data);
+  domUtils.ajax(paramsAJAX);
+}
+
 jeedom.repo.backupList = function(_params) {
   const paramsRequired = ['repo'];
   const paramsSpecifics = {

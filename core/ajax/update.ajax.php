@@ -97,6 +97,9 @@ try {
 			if ($update->getType() != 'core') {
 				log::add('update', 'alert', $e->getMessage());
 				log::add('update', 'alert', __("[END UPDATE ERROR]", __FILE__));
+				if ($update->getSource() === 'market') {
+					throw $e;
+				}
 			}
 		}
 		ajax::success();
