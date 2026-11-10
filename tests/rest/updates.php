@@ -63,6 +63,7 @@ class log {
 }
 defineRestOperationsFixture('plugin', <<<'PHP'
     public static function getPathById($id) { return jeedom::getTmpFolder('plugins') . '/' . $id . '.json'; }
+    public static function getPluginPath($id) { return jeedom::getTmpFolder('plugins') . '/' . $id; }
     public static function listPlugin(...$args) { return array_map(static fn ($id) => new self($id), ['hue', 'weather', 'manual']); }
     public function getId() { return $this->id; }
     public function getCategory() { return 'communication'; }
