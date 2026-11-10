@@ -110,6 +110,12 @@ final class App
             $api->get('/config', $config->get(...));
             $api->patch('/config', $config->update(...));
 
+            $jeego = new JeegoController();
+            $api->get('/jeego', $jeego->status(...));
+            $api->get('/jeego/settings/{section}', $jeego->settings(...));
+            $api->post('/jeego/actions/{action}', $jeego->action(...));
+            $api->get('/jeego/tasks/{id}', $jeego->task(...));
+
             $system = new SystemController();
             $api->get('/system', $system->get(...));
             $api->get('/system/health', $system->health(...));

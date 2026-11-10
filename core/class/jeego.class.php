@@ -24,6 +24,21 @@ class jeego {
 	}
 
 	public static function request(string $path, ?array $body = null, int $timeout = 8): array {
+		list($code, $response) = self::exchange($path, $body, $timeout);
+		$result = is_string($response) ? json_decode($response, true) : null;
+		if ($code < 200 || $code >= 300 || !is_array($result)) {
+			throw new Exception(__('API locale Jeego indisponible ou requête refusée', __FILE__) . ' (HTTP ' . $code . ')', $code);
+		}
+		return $result;
+	}
+
+	/** @return array{0: int, 1: mixed} */
+	public static function requestResponse(string $path, ?array $body = null, int $timeout = 8): array {
+		list($code, $response) = self::exchange($path, $body, $timeout);
+		return array($code, is_string($response) ? json_decode($response) : null);
+	}
+
+	private static function exchange(string $path, ?array $body, int $timeout): array {
 		if ($timeout < 1 || $path === '' || $path[0] !== '/') {
 			throw new InvalidArgumentException(__('Requête API Jeego invalide', __FILE__));
 		}
@@ -40,12 +55,7 @@ class jeego {
 			$http->setPost(json_encode((object) $body, JSON_THROW_ON_ERROR));
 		}
 		$response = $http->exec($timeout, 1);
-		$code = (int) $http->getHttpCode();
-		$result = is_string($response) ? json_decode($response, true) : null;
-		if ($code < 200 || $code >= 300 || !is_array($result)) {
-			throw new Exception(__('API locale Jeego indisponible ou requête refusée', __FILE__) . ' (HTTP ' . $code . ')', $code);
-		}
-		return $result;
+		return array((int) $http->getHttpCode(), $response);
 	}
 
 	private static function identifier(string $value): string {

@@ -128,6 +128,167 @@ tags:
     description: Diagnostics et opérations système réservés aux administrateurs.
 
 paths:
+  /jeego:
+    get:
+      tags: [Système]
+      operationId: getJeegoStatus
+      summary: Détecter le mode Jeego
+      responses:
+        '200':
+          description: Indique si Jeedom est configuré pour utiliser Jeego.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [enabled]
+                properties:
+                  enabled: { type: boolean }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /jeego/settings/{section}:
+    get:
+      tags: [Système]
+      operationId: getJeegoSettings
+      summary: Lire les réglages de la machine Jeego
+      description: |
+        Réservé aux administrateurs. Le résultat conserve les champs publics du
+        relevé Jeego sélectionné. `network-pending` renvoie `{"pending": null}`
+        au repos et la transaction publique en cours pendant un changement.
+      parameters:
+        - name: section
+          in: path
+          required: true
+          schema: { type: string, enum: [hostname, time, network, network-pending, cellular] }
+        - name: zones
+          in: query
+          description: Inclure la liste des fuseaux avec la section time.
+          schema: { type: string, enum: ['0', '1'] }
+      responses:
+        '200':
+          description: Réglages et état courant de la section.
+          content:
+            application/json:
+              schema: { type: object, additionalProperties: true }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/actions/{action}:
+    post:
+      tags: [Système]
+      operationId: runJeegoAction
+      summary: Exécuter une action de configuration Jeego
+      description: |
+        Réservé aux administrateurs. Le corps dépend de l’action.
+        `hostname` accepte `hostname`. `time` accepte `timezone` et `servers`.
+        `network-apply` accepte `interface` et les réglages IPv4/DNS ou les
+        paramètres de l’action Wi-Fi/hotspot. `network-confirm` et
+        `network-cancel` acceptent `id`. Core ajoute l’adresse locale du serveur
+        pour la confirmation. `wifi-scan` accepte `interface`.
+        `cellular-configure` accepte `modem`, `primary`, `apn`, `pin`,
+        `username` et `password`. Les autres actions attendent `{}`.
+      parameters:
+        - name: action
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [hostname, time, time-setup, time-sync, network-apply, network-confirm, network-cancel, network-setup, network-setup-cancel, wifi-scan, hotspot-install, cellular-configure, cellular-install, cellular-power, cellular-disable]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                hostname: { type: string }
+                timezone: { type: string }
+                servers: { type: array, items: { type: string } }
+                interface: { type: string }
+                mode: { type: string, enum: [dhcp, static] }
+                address: { type: string }
+                mask: { type: string }
+                gateway: { type: string }
+                dns: { type: array, items: { type: string } }
+                action: { type: string, enum: [connect, disconnect, wifi-disable, hotspot, hotspot-stop] }
+                ssid: { type: string }
+                password: { type: string }
+                security: { type: string, enum: [open, wpa-psk, sae] }
+                id: { type: string }
+                modem: { type: string }
+                primary: { type: string }
+                apn: { type: string }
+                pin: { type: string }
+                username: { type: string }
+      responses:
+        '200':
+          description: Accès réseau confirmé.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { type: string, const: confirmed }
+        '202':
+          description: Tâche démarrée ou rétablissement de la configuration précédente demandé.
+          headers:
+            Location:
+              description: Route REST Core de suivi lorsqu’une tâche a été démarrée.
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/JeegoTask'
+                  - type: object
+                    required: [status]
+                    properties:
+                      status: { type: string, const: rollback }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413':
+          description: Corps JSON supérieur à 32 Kio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/tasks/{id}:
+    get:
+      tags: [Système]
+      operationId: getJeegoTask
+      summary: Suivre une tâche de configuration Jeego
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, pattern: '^[a-f0-9]{32}$' }
+      responses:
+        '200':
+          description: État et progression de la tâche.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoTask' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
   /system:
     get:
       tags: [Système]
@@ -4714,6 +4875,19 @@ components:
       schema: { type: string, pattern: '^[0-9a-f]{64}$' }
 
   schemas:
+    JeegoTask:
+      type: object
+      required: [schema_version, id, kind, status, started_at, step, logs]
+      properties:
+        schema_version: { type: integer }
+        id: { type: string, pattern: '^[a-f0-9]{32}$' }
+        kind: { type: string }
+        status: { type: string, enum: [running, succeeded, failed, interrupted] }
+        started_at: { type: string, format: date-time }
+        finished_at: { type: string, format: date-time }
+        step: { type: string }
+        logs: { type: array, items: { type: string } }
+        error: { type: string }
     Backup:
       type: object
       additionalProperties: false
