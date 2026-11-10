@@ -1513,7 +1513,7 @@ paths:
       tags:
       - Plugins
       operationId: updatePlugin
-      summary: Activer, désactiver et régler les options générales du plugin.
+      summary: Activer, désactiver et régler les options du plugin, dont le blocage des mises à jour.
       responses:
         '200':
           description: Résultat de l’opération.
@@ -5041,6 +5041,7 @@ components:
         updatedAt: { type: [string, 'null'] }
         hasOwnDaemon: { type: boolean }
         daemonState: { type: [string, 'null'] }
+        updatesBlocked: { type: boolean, description: Les mises à jour et réinstallations sont bloquées par la configuration du plugin. }
         update:
           oneOf:
             - $ref: '#/components/schemas/ComponentUpdate'
@@ -5255,6 +5256,9 @@ components:
       properties:
         isEnable:
           type: boolean
+        updatesBlocked:
+          type: boolean
+          description: Bloquer ou débloquer les mises à jour et réinstallations du plugin.
         functionality:
           type: object
           additionalProperties:

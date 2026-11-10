@@ -113,8 +113,8 @@ final class PluginsController
     {
         Auth::requireAdmin($request);
         $plugin = self::find($args['id']);
-        $body = self::body($request, ['isEnable', 'functionality', 'logLevel', 'heartbeatDelay', 'heartbeatRestartDaemon']);
-        foreach (['isEnable', 'heartbeatRestartDaemon'] as $field) {
+        $body = self::body($request, ['isEnable', 'functionality', 'logLevel', 'heartbeatDelay', 'heartbeatRestartDaemon', 'updatesBlocked']);
+        foreach (['isEnable', 'heartbeatRestartDaemon', 'updatesBlocked'] as $field) {
             if (array_key_exists($field, $body) && !is_bool($body[$field])) self::invalid($field);
         }
         if (array_key_exists('heartbeatDelay', $body) && (!is_int($body['heartbeatDelay']) || $body['heartbeatDelay'] < 0 || $body['heartbeatDelay'] > 2147483647)) self::invalid('heartbeatDelay');
@@ -129,6 +129,7 @@ final class PluginsController
         }
         self::mutate($plugin, static function () use ($plugin, $body): void {
             $id = $plugin->getId();
+            if (isset($body['updatesBlocked'])) self::setUpdatesBlocked($id, $body['updatesBlocked']);
             if (array_key_exists('isEnable', $body) && (bool) $plugin->isActive() !== $body['isEnable']) $plugin->setIsEnable((int) $body['isEnable']);
             foreach ($body['functionality'] ?? [] as $key => $value) \config::save('functionality::' . $key . '::enable', (int) $value, $id);
             if (array_key_exists('heartbeatDelay', $body)) \config::save('heartbeat::delay::' . $id, $body['heartbeatDelay']);
@@ -140,6 +141,25 @@ final class PluginsController
             }
         });
         return self::respond($response, self::details($plugin));
+    }
+
+    private static function setUpdatesBlocked(string $id, bool $blocked): void
+    {
+        if (!is_file(\plugin::getPathById($id))) throw new ApiError(404, 'plugin_not_found', 'Plugin inconnu.');
+        $update = \update::byTypeAndLogicalId('plugin', $id);
+        if (!is_object($update)) {
+            if (!$blocked) return;
+            $update = new \update();
+            $update->setType('plugin');
+            $update->setLogicalId($id);
+            $update->setLocalVersion(date('Y-m-d H:i:s'));
+        } elseif (($update->getConfiguration('doNotUpdate', 0) == 1) === $blocked) {
+            return;
+        }
+        $update->setConfiguration('doNotUpdate', (int) $blocked);
+        $update->save();
+        \event::add('update::refreshUpdateNumber');
+        if ($update->getStatus() === 'update') \update::refreshUpdateMessage();
     }
 
     public function delete(Request $request, Response $response, array $args): Response
@@ -310,6 +330,7 @@ final class PluginsController
         return ['source' => is_object($update) ? (string) $update->getSource() : null,
             'branch' => is_object($update) ? ($update->getConfiguration('version') ?: null) : null,
             'updatedAt' => is_object($update) ? ($update->getUpdateDate() ?: null) : null,
+            'updatesBlocked' => is_object($update) && $update->getConfiguration('doNotUpdate', 0) == 1,
             'hasOwnDaemon' => $hasDaemon, 'daemonState' => $state, 'update' => self::updateSummary($update)];
     }
 
