@@ -142,9 +142,8 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 
 	<?php
 	$marketAddress = config::byKey('market::address');
-	$marketEnable = (config::byKey('market::enable') == 1 && $marketAddress != '');
 	$isJeedomMarket = (parse_url($marketAddress, PHP_URL_HOST) == 'market.jeedom.com');
-	if ($marketEnable) {
+	if ($marketAddress !== '') {
 	?>
 		<div class="connectionView hidden" id="market" <?= ($isJeedomMarket) ? ' data-logo="https://market.jeedom.com/core/img/logo-MARKET.svg"' : '' ?>>
 			<form onsubmit="return false;">
