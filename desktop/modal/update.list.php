@@ -18,9 +18,13 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$repo = update::repoById(init('repo', 'market'));
-if ($repo['enable'] == 0) {
-  throw new Exception(__('Le dépôt est inactif :', __FILE__) . ' ' . init('repo'));
+$id = init('repo', 'market');
+$repo = update::repoById($id);
+if (empty($repo['scope']['plugin'])) {
+  throw new Exception(__('Source de plugins indisponible.', __FILE__));
 }
-include_file('core', init('repo', 'market') . '.list', 'repo');
+if ($id === 'market' && !repo_market::isConnected()) {
+  throw new Exception(__('Connectez ce Jeedom au Market.', __FILE__));
+}
+include_file('core', $id . '.list', 'repo');
 ?>
