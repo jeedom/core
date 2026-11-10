@@ -18,7 +18,7 @@ $plugins_list = plugin::listPlugin(false, true);
       <?php
       $div = '';
       foreach ((update::listRepo()) as $key => $value) {
-        if (!$value['enable']) {
+        if ($key === 'market' && !repo_market::isConnected()) {
           continue;
         }
         if (isset($value['scope']['pullInstall']) && $value['scope']['pullInstall']) {
