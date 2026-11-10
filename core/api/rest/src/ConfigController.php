@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Configuration globale du core, par onglet de l'administration.
- * Lecture : tout utilisateur connecté, sans les clés chiffrées pour un non-admin.
+ * Lecture : tout utilisateur connecté, avec les secrets et réglages de destination réservés aux admins.
  * Écriture : administrateurs. Les clés chiffrées ne sortent jamais en clair.
  */
 final class ConfigController
@@ -186,6 +186,14 @@ final class ConfigController
             'market::cloudUpload' => 'boolean',
             'samba::cloudUpload' => 'boolean',
             'samba::keepDays' => 'number',
+            'samba::backup::ip' => 'string',
+            'samba::backup::share' => 'string',
+            'samba::backup::folder' => 'string',
+            'samba::backup::username' => 'string',
+            'samba::backup::password' => 'secret',
+            'market::cloud::backup::name' => 'string',
+            'market::cloud::backup::password' => 'secret',
+            'market::cloud::backup::password_confirmation' => 'secret',
         ],
         'cache' => [
             'cache::engine' => 'string',
@@ -244,12 +252,33 @@ final class ConfigController
         foreach ($body as $key => $value) {
             $values[self::storedKey((string) $key)] = self::validate((string) $key, $value);
         }
-        foreach ($values as $key => $value) {
-            try {
+        $sambaChanged = array_key_exists('samba::cloudUpload', $values);
+        $cloudPasswordChanged = array_key_exists('market::cloud::backup::password', $values)
+            || array_key_exists('market::cloud::backup::password_confirmation', $values);
+        if ($cloudPasswordChanged && ($values['market::cloud::backup::password'] ?? null) !== ($values['market::cloud::backup::password_confirmation'] ?? null)) {
+            throw ApiError::field(422, 'validation_error', 'market::cloud::backup::password_confirmation', 'Les mots de passe de chiffrement diffèrent.');
+        }
+        if ($sambaChanged) {
+            // Les anciennes installations et le moteur de sauvegarde utilisent ces deux clés.
+            $values['samba::enable'] = $values['samba::cloudUpload'];
+        }
+        $atomic = array_intersect_key($values, self::SECTIONS['backups']) !== [];
+        if ($atomic) {
+            \DB::beginTransaction();
+        }
+        try {
+            foreach ($values as $key => $value) {
                 \config::save($key, $value);
-            } catch (\Exception $e) {
-                throw new ApiError(422, 'validation_error', $e->getMessage());
             }
+            if ($atomic) {
+                \DB::commit();
+            }
+        } catch (\Exception $e) {
+            if ($atomic) {
+                \DB::rollBack();
+                throw new ApiError(422, 'validation_error', 'Impossible d’enregistrer les paramètres de sauvegarde.');
+            }
+            throw new ApiError(422, 'validation_error', $e->getMessage());
         }
         return Json::respond($response, (object) self::read(array_map('strval', array_keys($body)), true));
     }
@@ -276,14 +305,22 @@ final class ConfigController
     private static function read(array $keys, bool $admin): array
     {
         $types = self::exposedKeys();
-        $stored = \config::byKeys(array_map(self::storedKey(...), $keys));
+        $storedKeys = array_map(self::storedKey(...), $keys);
+        if (in_array('samba::cloudUpload', $keys, true)) {
+            $storedKeys[] = 'samba::enable';
+        }
+        $stored = \config::byKeys($storedKeys);
         $result = [];
         foreach ($keys as $key) {
             $storedKey = self::storedKey($key);
-            if (!$admin && \config::shouldBeEncrypted($storedKey)) {
+            if (!$admin && (\config::shouldBeEncrypted($storedKey) || str_starts_with($key, 'samba::backup::')
+                || str_starts_with($key, 'market::cloud::backup::'))) {
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
+            if ($key === 'samba::cloudUpload') {
+                $value = $value && (string) ($stored['samba::enable'] ?? '') === '1';
+            }
             // Sans rétention Samba configurée, la modale doit pouvoir afficher un champ vide.
             $result[$key] = $key === 'samba::keepDays' && $value === null ? '' : $value;
         }
@@ -317,6 +354,12 @@ final class ConfigController
             $expected = ['boolean' => 'un booléen', 'number' => 'un nombre ou null'][$type] ?? 'un texte';
             throw ApiError::field(422, 'validation_error', $key, "Valeur invalide : $expected est attendu.");
         }
+        if (str_starts_with($key, 'samba::backup::') && !\repo_samba::validBackupSetting(substr($key, strlen('samba::backup::')), $value)) {
+            throw ApiError::field(422, 'validation_error', $key, 'Paramètre Samba invalide.');
+        }
+        if ($key === 'market::cloud::backup::name' && $value !== '' && !\repo_market::isBackupFolderName($value)) {
+            throw ApiError::field(422, 'validation_error', $key, 'Nom du dossier Cloud invalide.');
+        }
         // Le script de sauvegarde utilise le chemin dans des arguments shell entre guillemets doubles.
         if ($key === 'backup::path' && (trim($value) === '' || preg_match('/["\\\\$\x60\x00-\x1f\x7f]/', $value))) {
             throw ApiError::field(422, 'validation_error', $key, 'Chemin de sauvegarde invalide.');
@@ -339,6 +382,9 @@ final class ConfigController
         foreach (\update::listRepo() as $id => $repo) {
             // Comme l'administration : le DNS n'est proposé que pour les dépôts qui le gèrent.
             if ($suffix === 'allowDNS' && empty($repo['scope']['proxy'])) {
+                continue;
+            }
+            if ($suffix === 'enable' && $id === 'samba') {
                 continue;
             }
             $keys[] = $id . '::' . $suffix;
