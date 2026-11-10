@@ -110,6 +110,11 @@ final class App
             $api->get('/config', $config->get(...));
             $api->patch('/config', $config->update(...));
 
+            $networkAccess = new NetworkAccessController();
+            $api->get('/network/access', $networkAccess->get(...));
+            $api->patch('/network/access', $networkAccess->update(...));
+            $api->post('/network/dns/restart', $networkAccess->restartDns(...));
+
             $market = new MarketController();
             $api->get('/market/connection', $market->status(...));
             $api->post('/market/connection', $market->connect(...));

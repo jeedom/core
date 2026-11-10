@@ -109,14 +109,18 @@ class network {
 			return config::byKey('jeedom::url');
 		}
 		if ($_mode == 'external') {
+			$managedDns = config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0;
+			if (!$managedDns && config::byKey('externalAddr') == '') {
+				return $_default;
+			}
 			if ($_protocol == 'ip') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
+				if ($managedDns) {
 					return getIpFromString(config::byKey('jeedom::url'));
 				}
 				return getIpFromString(config::byKey('externalAddr'));
 			}
 			if ($_protocol == 'ip:port') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
+				if ($managedDns) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['host'])) {
 						if (isset($url['port'])) {
@@ -129,7 +133,7 @@ class network {
 				return config::byKey('externalAddr') . ':' . self::getPort($_mode);
 			}
 			if ($_protocol == 'proto:dns:port' || $_protocol == 'proto:ip:port') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
+				if ($managedDns) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					$return = '';
 					if (isset($url['scheme'])) {
@@ -146,7 +150,7 @@ class network {
 				return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . self::getPort($_mode);
 			}
 			if ($_protocol == 'proto:dns' || $_protocol == 'proto:ip') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
+				if ($managedDns) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					$return = '';
 					if (isset($url['scheme'])) {
@@ -163,7 +167,7 @@ class network {
 				return config::byKey('externalProtocol') . config::byKey('externalAddr');
 			}
 			if ($_protocol == 'dns:port') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
+				if ($managedDns) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['host'])) {
 						if (isset($url['port'])) {
@@ -176,7 +180,7 @@ class network {
 				return config::byKey('externalAddr') . ':' . self::getPort($_mode);
 			}
 			if ($_protocol == 'proto') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
+				if ($managedDns) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['scheme'])) {
 						return $url['scheme'] . '://';
@@ -185,8 +189,9 @@ class network {
 				return config::byKey('externalProtocol');
 			}
 
-			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
-				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
+			if (config::byKey('dns::token') != '' && $managedDns) {
+				$path = config::byKey('network::dnsComplement') ?: config::byKey('externalComplement');
+				return trim(config::byKey('jeedom::url') . '/' . trim($path, '/'), '/');
 			}
 			if (config::byKey('externalProtocol') == 'http://' && self::getPort($_mode, 'http') == 80) {
 				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . '/' . trim(config::byKey('externalComplement'), '/'), '/');
@@ -444,32 +449,34 @@ class network {
 	}
 
 	public static function dns_start($manual = true) {
-		return self::dns_synchronize(function () use ($manual) {
-			if (config::byKey('market::allowDNS') != 1 || config::byKey('dns::token') == '') {
-				self::dns_openvpn_stop();
+		return self::dns_synchronize(fn () => self::dns_start_locked($manual));
+	}
+
+	private static function dns_start_locked($manual) {
+		if (config::byKey('market::allowDNS', 'core', 0, true) != 1 || config::byKey('dns::token') == '') {
+			self::dns_openvpn_stop();
+			frp::stop();
+			return;
+		}
+		$mode = config::byKey('dns::mode', 'core', 'openvpn');
+		if ($mode == 'frp') {
+			if (count(frp::servers()) == 0) {
 				frp::stop();
-				return;
-			}
-			$mode = config::byKey('dns::mode', 'core', 'openvpn');
-			if ($mode == 'frp') {
-				if (count(frp::servers()) == 0) {
-					frp::stop();
-					self::dns_openvpn_stop();
-					throw new Exception(__('Aucun relais FRP fourni par le Market', __FILE__));
-				}
-				$error = frp::availability();
-				if ($error != '') {
-					throw new Exception($error);
-				}
 				self::dns_openvpn_stop();
-				frp::start($manual);
-			} elseif ($mode == 'openvpn') {
-				frp::stop();
-				self::dns_openvpn_start();
-			} else {
-				throw new Exception(__('Mode DNS inconnu', __FILE__));
+				throw new Exception(__('Aucun relais FRP fourni par le Market', __FILE__));
 			}
-		});
+			$error = frp::availability();
+			if ($error != '') {
+				throw new Exception($error);
+			}
+			self::dns_openvpn_stop();
+			frp::start($manual);
+		} elseif ($mode == 'openvpn') {
+			frp::stop();
+			self::dns_openvpn_start();
+		} else {
+			throw new Exception(__('Mode DNS inconnu', __FILE__));
+		}
 	}
 
 	public static function dns_run() {
@@ -483,9 +490,21 @@ class network {
 	}
 
 	public static function dns_stop() {
+		return self::dns_synchronize(fn () => self::dns_stop_locked());
+	}
+
+	private static function dns_stop_locked() {
+		frp::stop();
+		self::dns_openvpn_stop();
+	}
+
+	public static function dns_restart() {
 		return self::dns_synchronize(function () {
-			frp::stop();
-			self::dns_openvpn_stop();
+			if (config::byKey('market::allowDNS', 'core', 0, true) != 1 || config::byKey('dns::token') == '') {
+				throw new Exception(__('Le DNS Jeedom n’est pas activé', __FILE__));
+			}
+			self::dns_stop_locked();
+			self::dns_start_locked(true);
 		});
 	}
 

@@ -123,11 +123,65 @@ tags:
   - name: Temps réel
     description: Flux d'événements en direct (SSE).
   - name: Configuration
-    description: Réglages globaux du core, lus et modifiés par liste de clés.
+    description: Réglages globaux du core et adresses d'accès à Jeedom.
   - name: Système
     description: Diagnostics et opérations système réservés aux administrateurs.
 
 paths:
+  /network/access:
+    get:
+      tags: [Configuration]
+      operationId: getNetworkAccess
+      summary: Lire les adresses de Jeedom et l'état du DNS Jeedom (administrateur).
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkAccess'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    patch:
+      tags: [Configuration]
+      operationId: updateNetworkAccess
+      summary: Configurer les adresses d'accès à Jeedom (administrateur).
+      description: >
+        Modifie uniquement les sections envoyées. Le mode externe DNS Jeedom démarre
+        le tunnel à l'enregistrement, et quitter ce mode l'arrête. Une URL est
+        requise en mode personnalisé et peut contenir un port et un chemin.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NetworkAccessUpdate' }
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkAccess'
+        '400':
+          description: Corps JSON invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '413':
+          description: Corps JSON de plus de 16 Kio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/NetworkDnsFailure' }
+
+  /network/dns/restart:
+    post:
+      tags: [Configuration]
+      operationId: restartNetworkDns
+      summary: Relancer le tunnel DNS Jeedom déjà activé (administrateur).
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkAccess'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '502': { $ref: '#/components/responses/NetworkDnsFailure' }
+
   /jeego:
     get:
       tags: [Système]
@@ -6984,6 +7038,60 @@ components:
           enum: [cursor_too_old]
           description: Des événements ont pu être perdus ; recharger l'état par les routes REST.
 
+    NetworkAccess:
+      type: object
+      additionalProperties: false
+      required: [internal, external, dns]
+      properties:
+        internal:
+          type: object
+          additionalProperties: false
+          required: [mode, url]
+          properties:
+            mode: { type: string, enum: [auto, custom] }
+            url: { type: [string, 'null'] }
+        external:
+          type: object
+          additionalProperties: false
+          required: [mode, url]
+          properties:
+            mode: { type: string, enum: [none, custom, dns] }
+            url: { type: [string, 'null'] }
+        dns:
+          type: object
+          additionalProperties: false
+          required: [available, state]
+          properties:
+            available: { type: boolean }
+            state: { type: string, enum: [disabled, unavailable, stopped, connecting, connected, error] }
+    NetworkAccessUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        internal:
+          oneOf:
+            - type: object
+              additionalProperties: false
+              required: [mode]
+              properties:
+                mode: { type: string, enum: [auto] }
+            - $ref: '#/components/schemas/NetworkCustomAccess'
+        external:
+          oneOf:
+            - type: object
+              additionalProperties: false
+              required: [mode]
+              properties:
+                mode: { type: string, enum: [none, dns] }
+            - $ref: '#/components/schemas/NetworkCustomAccess'
+    NetworkCustomAccess:
+      type: object
+      additionalProperties: false
+      required: [mode, url]
+      properties:
+        mode: { type: string, enum: [custom] }
+        url: { type: string, maxLength: 2048, description: Adresse complète en HTTP ou HTTPS. }
     MarketConnection:
       type: object
       additionalProperties: false
@@ -8030,6 +8138,16 @@ components:
         hidenumber: { type: boolean, description: 'Masquer le nombre.' }
         hidenulnumber: { type: boolean, description: 'Masquer le nombre s''il est nul.' }
   responses:
+    NetworkAccess:
+      description: Adresses et état du tunnel DNS Jeedom.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/NetworkAccess' }
+    NetworkDnsFailure:
+      description: Le Core n'a pas pu mettre à jour ou relancer le tunnel DNS Jeedom.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
     SystemFileBadRequest:
       description: Corps JSON invalide ou en-tête If-Match invalide.
       content:

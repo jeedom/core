@@ -256,6 +256,10 @@ class repo_market {
 		return marketClient::cron5();
 	}
 
+	public static function synchronize() {
+		return marketClient::synchronize();
+	}
+
 	/*     * ***********************INFO*************************** */
 
 	public static function getInfo($_logicalId, $_version = 'stable') {
