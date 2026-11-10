@@ -7611,6 +7611,26 @@ components:
           type: boolean
           description: 'Vérification automatique des mises à jour (onglet updates).'
           default: true
+        'backup::path':
+          type: string
+          description: 'Emplacement des sauvegardes locales, absolu ou relatif au répertoire de Jeedom.'
+        'backup::keepDays':
+          type: [number, 'null']
+          description: 'Rétention des sauvegardes locales en jours.'
+        'backup::maxSize':
+          type: [number, 'null']
+          description: 'Taille totale maximale des sauvegardes locales en Mo.'
+        'market::cloudUpload':
+          type: boolean
+          description: 'Envoi automatique des sauvegardes vers Jeedom Cloud.'
+        'samba::cloudUpload':
+          type: boolean
+          description: 'Envoi automatique des sauvegardes vers Samba.'
+        'samba::keepDays':
+          anyOf:
+            - type: number
+            - const: ''
+          description: 'Rétention des sauvegardes Samba en jours, ou chaîne vide si elle est indéfinie.'
         'cache::engine':
           type: string
           description: 'Moteur de cache (onglet cache).'
@@ -8081,6 +8101,24 @@ components:
         'update::autocheck':
           type: boolean
           description: 'Vérification automatique des mises à jour (onglet updates).'
+        'backup::path':
+          type: string
+          description: 'Emplacement des sauvegardes locales, absolu ou relatif au répertoire de Jeedom.'
+        'backup::keepDays':
+          type: [number, 'null']
+          description: 'Rétention des sauvegardes locales en jours.'
+        'backup::maxSize':
+          type: [number, 'null']
+          description: 'Taille totale maximale des sauvegardes locales en Mo.'
+        'market::cloudUpload':
+          type: boolean
+          description: 'Envoi automatique des sauvegardes vers Jeedom Cloud.'
+        'samba::cloudUpload':
+          type: boolean
+          description: 'Envoi automatique des sauvegardes vers Samba.'
+        'samba::keepDays':
+          type: [number, 'null']
+          description: 'Rétention des sauvegardes Samba en jours.'
         'cache::engine':
           type: string
           description: 'Moteur de cache (onglet cache).'
