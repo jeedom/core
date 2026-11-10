@@ -89,7 +89,7 @@ final class BackupsController
     {
         Auth::requireAdmin($request);
         $items = [];
-        foreach (self::enabledRepositories() as $id => $repo) {
+        foreach (self::backupRepositories() as $id => $repo) {
             $items[] = ['id' => $id, 'name' => $repo['name']];
         }
         return self::items($response, $items);
@@ -109,15 +109,10 @@ final class BackupsController
     {
         Auth::requireAdmin($request);
         $body = Json::body($request, 16 * 1024, true);
-        foreach ($body as $key => $value) {
-            if (!is_string($value) || !\repo_samba::validBackupSetting((string) $key, $value)) {
-                throw ApiError::field(422, 'validation_error', (string) $key, 'Paramètre Samba invalide.');
-            }
-        }
         try {
             \repo_samba::test($body);
         } catch (\InvalidArgumentException $e) {
-            throw new ApiError(422, 'validation_error', 'Renseignez une adresse IP, un partage et un utilisateur Samba valides.');
+            throw new ApiError(422, 'validation_error', $e->getMessage());
         } catch (\Exception $e) {
             throw new ApiError(502, 'backup_repository_failed', 'Impossible d’accéder au partage Samba.');
         }
@@ -217,16 +212,14 @@ final class BackupsController
         return $path;
     }
 
-    private static function enabledRepositories(): array
+    private static function backupRepositories(): array
     {
-        $supported = array_intersect_key(\update::listRepo(), ['market' => true, 'samba' => true]);
-        return array_filter($supported, static fn ($repo, $id) => !empty($repo['scope']['backup'])
-            && ($id === 'samba' ? \repo_samba::backupEnabled() : $repo['enable'] == 1), ARRAY_FILTER_USE_BOTH);
+        return array_intersect_key(\update::listBackupRepos(), ['market' => true, 'samba' => true]);
     }
 
     private static function repository(string $id): string
     {
-        $repo = self::enabledRepositories()[$id] ?? null;
+        $repo = self::backupRepositories()[$id] ?? null;
         if ($repo === null) {
             throw new ApiError(404, 'backup_repository_not_found', 'Dépôt de sauvegardes inconnu ou désactivé.');
         }
