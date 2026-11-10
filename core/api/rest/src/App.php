@@ -106,7 +106,6 @@ final class App
             $api->post('/system/health/benchmark', $system->benchmark(...));
             $api->post('/system/reboot', $system->reboot(...));
             $api->post('/system/shutdown', $system->shutdown(...));
-            $api->post('/system/time/sync', $system->syncTime(...));
             $api->delete('/system/time/reference', $system->resetTimeReference(...));
             $api->post('/system/consistency', $system->consistency(...));
             $api->post('/system/permissions/repair', $system->repairPermissions(...));

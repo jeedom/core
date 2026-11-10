@@ -13,26 +13,26 @@ final class FilesController
 
     public function roots(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         return Json::respond(self::noStore($response), self::run('roots'));
     }
 
     public function entries(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         return Json::respond(self::noStore($response), self::run('entries', self::location($request, true)));
     }
 
     public function read(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         $file = self::run('read', self::location($request));
         return Json::respond(self::noStore($response)->withHeader('ETag', $file['etag']), ['content' => $file['content']]);
     }
 
     public function write(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         $location = self::location($request);
         $etag = trim($request->getHeaderLine('If-Match'), " \t");
         if ($etag === '') {
@@ -56,14 +56,6 @@ final class FilesController
             @opcache_invalidate(dirname(__DIR__, 4) . '/' . $location['path'], true);
         }
         return self::noStore($response)->withHeader('ETag', $file['etag'])->withStatus(204);
-    }
-
-    private static function requireAdmin(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        if ((int) $request->getAttribute('user')->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
-            throw new ApiError(403, 'forbidden', 'Ce compte est limité au réseau local.');
-        }
     }
 
     private static function location(Request $request, bool $directory = false): array

@@ -69,13 +69,6 @@ final class SystemController
         return $response->withStatus(204);
     }
 
-    public function syncTime(Request $request, Response $response): Response
-    {
-        self::requireAdmin($request);
-        \jeedom::forceSyncHour();
-        return $response->withStatus(204);
-    }
-
     public function resetTimeReference(Request $request, Response $response): Response
     {
         self::requireAdmin($request);

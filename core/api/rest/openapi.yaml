@@ -209,17 +209,6 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '409': { $ref: '#/components/responses/SystemSudoUnavailable' }
 
-  /system/time/sync:
-    post:
-      tags: [Système]
-      operationId: syncSystemTime
-      summary: Synchroniser l’horloge système
-      responses:
-        '204':
-          description: Synchronisation demandée si NTP est activé.
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
-
   /system/time/reference:
     delete:
       tags: [Système]
