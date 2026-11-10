@@ -294,6 +294,51 @@ class update {
 		return ls(__DIR__ . '/../../install/update', '*');
 	}
 
+	/** @return list<string> The official Core branches offered by both interfaces. */
+	public static function listCoreBranches(): array {
+		$key = 'core::branch::default::list';
+		$cached = cache::byKey($key)->getValue([]);
+		if (is_array($cached['branches'] ?? null)) {
+			return $cached['branches'];
+		}
+		$branches = [];
+		for ($page = 1; ; $page++) {
+			$request = new com_http('https://api.github.com/repos/jeedom/core/branches?per_page=100&page=' . $page);
+			$request->setUserAgent('Jeedom')->setNoSslCheck(false)->setCURLOPT([CURLOPT_FAILONERROR => true]);
+			$items = json_decode($request->exec(10, 1), true, 512, JSON_THROW_ON_ERROR);
+			if (!is_array($items) || !array_is_list($items)) {
+				throw new RuntimeException('Liste des branches GitHub invalide.');
+			}
+			foreach ($items as $item) {
+				$name = $item['name'] ?? null;
+				if (is_string($name) && self::isCoreBranchName($name) && $name !== 'V4-stable') {
+					$branches[] = $name;
+				}
+			}
+			if (count($items) < 100) {
+				break;
+			}
+		}
+		$branches = array_unique([...$branches, 'master']);
+		sort($branches, SORT_NATURAL | SORT_FLAG_CASE);
+		cache::set($key, ['branches' => $branches], 86400);
+		return $branches;
+	}
+
+	public static function isCoreBranchName(string $branch): bool {
+		return $branch !== '' && strlen($branch) <= 255 && $branch !== '@'
+			&& !str_starts_with($branch, '-') && !str_starts_with($branch, '/')
+			&& !preg_match('/[\x00-\x20\x7f~^:?*\[\\\\]/', $branch)
+			&& !preg_match('~\.\.|@\{|(?:^|/)\.|\.lock(?:/|$)|//|/\z|\.\z~', $branch);
+	}
+
+	public static function officialCoreRef(): string {
+		$branch = (string) config::byKey('core::branch', 'core', 'master');
+		$isTag = str_starts_with($branch, 'tag::');
+		$name = $isTag ? substr($branch, 5) : $branch;
+		return ($isTag ? 'refs/tags/' : 'refs/heads/') . implode('/', array_map('rawurlencode', explode('/', $name)));
+	}
+
 	/* Opérations de mise à jour */
 
 	private const OPERATION_KEY = 'rest::updateOperation';
@@ -747,8 +792,9 @@ class update {
 
 	public static function getLastAvailableVersion() {
 		try {
-			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'master') . '/core/config/version';
+			$url = 'https://raw.githubusercontent.com/jeedom/core/' . self::officialCoreRef() . '/core/config/version';
 			$request_http = new com_http($url);
+			$request_http->setNoSslCheck(false)->setCURLOPT([CURLOPT_FAILONERROR => true]);
 			return trim($request_http->exec(30));
 		} catch (\Throwable $e) {
 			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));

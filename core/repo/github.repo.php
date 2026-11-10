@@ -193,20 +193,40 @@ class repo_github {
 	}
 
 	public static function downloadCore($_path) {
-		$url = 'https://api.github.com/repos/' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/zipball/' . config::byKey('github::core::branch', 'core', 'stable');
-		echo __('Téléchargement de', __FILE__) . ' ' . $url . '...';
-		if (config::byKey('github::token') == '') {
-			echo shell_exec('curl -s -L ' . $url . ' > ' . $_path);
-		} else {
-			echo shell_exec('curl -s -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $_path);
+		$request = self::coreRequest('/zipball/' . rawurlencode(config::byKey('github::core::branch', 'core', 'stable')));
+		$archive = fopen($_path, 'wb');
+		if ($archive === false) {
+			throw new RuntimeException(__('Impossible d’ouvrir l’archive du Core.', __FILE__));
 		}
-		return;
+		try {
+			$request->setCURLOPT([CURLOPT_FAILONERROR => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_FILE => $archive]);
+			$request->exec(300, 1);
+		} finally {
+			fclose($archive);
+		}
 	}
 
 	public static function versionCore() {
-		$url = 'https://raw.githubusercontent.com/' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/' . config::byKey('github::core::branch', 'core', 'stable') . '/core/config/version';
-		$request_http = new com_http($url);
-		return trim($request_http->exec(30));
+		$request = self::coreRequest('/contents/core/config/version?ref='
+			. rawurlencode(config::byKey('github::core::branch', 'core', 'stable')), 'application/vnd.github.raw+json');
+		$request->setCURLOPT([CURLOPT_FAILONERROR => true]);
+		try {
+			return trim($request->exec(10, 1));
+		} catch (\Exception $e) {
+			return null;
+		}
+	}
+
+	private static function coreRequest(string $path, string $accept = 'application/vnd.github+json'): com_http {
+		$owner = rawurlencode(config::byKey('github::core::user', 'core', 'jeedom'));
+		$repository = rawurlencode(config::byKey('github::core::repository', 'core', 'core'));
+		$headers = ['Accept: ' . $accept];
+		$token = config::byKey('github::token');
+		if ($token !== '') {
+			$headers[] = 'Authorization: Bearer ' . $token;
+		}
+		$request = new com_http('https://api.github.com/repos/' . $owner . '/' . $repository . $path);
+		return $request->setUserAgent('Jeedom')->setNoSslCheck(false)->setHeader($headers);
 	}
 
 	/*     * *********************Methode d'instance************************* */

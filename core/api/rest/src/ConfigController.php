@@ -178,6 +178,12 @@ final class ConfigController
             'core::repo::provider' => 'string',
             'core::branch' => 'string',
             'update::autocheck' => 'boolean',
+            'github::core::user' => 'string',
+            'github::core::repository' => 'string',
+            'github::core::branch' => 'string',
+            'github::token' => 'secret',
+            'url::core::url' => 'string',
+            'url::core::version' => 'string',
         ],
         'backups' => [
             'backup::path' => 'string',
@@ -254,7 +260,12 @@ final class ConfigController
         if ($cloudPasswordChanged && ($values['market::cloud::backup::password'] ?? null) !== ($values['market::cloud::backup::password_confirmation'] ?? null)) {
             throw ApiError::field(422, 'validation_error', 'market::cloud::backup::password_confirmation', 'Les mots de passe de chiffrement diffèrent.');
         }
-        $atomic = array_intersect_key($values, self::SECTIONS['backups']) !== [];
+        if ((array_key_exists('core::repo::provider', $values) || array_key_exists('url::core::url', $values))
+            && ($values['core::repo::provider'] ?? \config::byKey('core::repo::provider')) === 'url'
+            && !self::isCoreUpdateUrl((string) ($values['url::core::url'] ?? \config::byKey('url::core::url')))) {
+            throw ApiError::field(422, 'validation_error', 'url::core::url', 'Renseignez l’URL de l’archive du Core.');
+        }
+        $atomic = array_intersect_key($values, self::SECTIONS['backups'] + self::SECTIONS['updates']) !== [];
         if ($atomic) {
             \DB::beginTransaction();
         }
@@ -268,7 +279,7 @@ final class ConfigController
         } catch (\Exception $e) {
             if ($atomic) {
                 \DB::rollBack();
-                throw new ApiError(422, 'validation_error', 'Impossible d’enregistrer les paramètres de sauvegarde.');
+                throw new ApiError(422, 'validation_error', 'Impossible d’enregistrer la configuration.');
             }
             throw new ApiError(422, 'validation_error', $e->getMessage());
         }
@@ -302,7 +313,8 @@ final class ConfigController
         foreach ($keys as $key) {
             $storedKey = self::storedKey($key);
             if (!$admin && (\config::shouldBeEncrypted($storedKey) || str_starts_with($key, 'samba::backup::')
-                || str_starts_with($key, 'market::cloud::backup::'))) {
+                || str_starts_with($key, 'market::cloud::backup::') || str_starts_with($key, 'github::core::')
+                || str_starts_with($key, 'url::core::'))) {
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
@@ -339,6 +351,19 @@ final class ConfigController
             $expected = ['boolean' => 'un booléen', 'number' => 'un nombre ou null'][$type] ?? 'un texte';
             throw ApiError::field(422, 'validation_error', $key, "Valeur invalide : $expected est attendu.");
         }
+        $invalidUpdateSetting = match ($key) {
+            'core::repo::provider' => $value !== 'default' && empty(\update::listRepo()[$value]['scope']['core'])
+                ? 'Source de mise à jour du Core inconnue.' : null,
+            'core::branch', 'github::core::branch' => !\update::isCoreBranchName($value) ? 'Nom de branche Git invalide.' : null,
+            'github::core::user', 'github::core::repository' => !preg_match('/\A(?!\.{1,2}\z)[A-Za-z0-9_.-]{1,100}\z/', $value)
+                ? 'Nom de propriétaire ou de dépôt GitHub invalide.' : null,
+            'github::token' => strlen($value) > 1024 || preg_match('/[\x00-\x20\x7f]/', $value) ? 'Jeton GitHub invalide.' : null,
+            'url::core::url', 'url::core::version' => $value !== '' && !self::isCoreUpdateUrl($value) ? 'Une URL HTTP ou HTTPS est attendue.' : null,
+            default => null,
+        };
+        if ($invalidUpdateSetting !== null) {
+            throw ApiError::field(422, 'validation_error', $key, $invalidUpdateSetting);
+        }
         if (str_starts_with($key, 'samba::backup::') && !\repo_samba::validBackupSetting(substr($key, strlen('samba::backup::')), $value)) {
             throw ApiError::field(422, 'validation_error', $key, 'Paramètre Samba invalide.');
         }
@@ -354,6 +379,12 @@ final class ConfigController
             'number' => $value ?? '',
             default => $value,
         };
+    }
+
+    private static function isCoreUpdateUrl(string $value): bool
+    {
+        return strlen($value) <= 4096 && filter_var($value, FILTER_VALIDATE_URL) !== false
+            && in_array(strtolower((string) parse_url($value, PHP_URL_SCHEME)), ['http', 'https'], true);
     }
 
     /** @return array<string, array<string, mixed>> */

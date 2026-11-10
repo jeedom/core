@@ -50,10 +50,15 @@ final class PluginsController
         Auth::requireAdmin($request);
         $items = self::items(true);
         $core = \update::byTypeAndLogicalId('core', 'jeedom');
+        $source = (string) \config::byKey('core::repo::provider', 'core', 'default');
+        $branch = match ($source) {
+            'default' => (string) \config::byKey('core::branch', 'core', 'master'),
+            'github' => (string) \config::byKey('github::core::branch', 'core', 'stable'),
+            default => '',
+        };
         return self::respond($response, ['items' => $items, 'total' => count($items),
             'core' => ['name' => 'Core Jeedom', 'version' => \jeedom::version(),
-                'source' => is_object($core) ? $core->getSource() : \config::byKey('core::repo::provider'),
-                'branch' => (string) \config::byKey('core::branch', 'core', 'master'), 'update' => self::updateSummary($core)],
+                'source' => $source, 'branch' => $branch, 'update' => self::updateSummary($core)],
             'lastCheck' => \config::byKey('update::lastCheck', 'core', '') ?: null, 'operation' => \update::latestOperation()]);
     }
 

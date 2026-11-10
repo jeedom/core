@@ -87,28 +87,26 @@ class repo_url {
 	}
 
 	public static function downloadCore($_path) {
-		exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url') . ' -O ' . $_path);
-		return;
+		exec('wget --no-check-certificate --progress=dot --dot=mega -O ' . escapeshellarg($_path)
+			. ' -- ' . escapeshellarg(config::byKey('url::core::url')), $output, $status);
+		if ($status !== 0) {
+			throw new RuntimeException(__('Impossible de télécharger l’archive du Core.', __FILE__));
+		}
 	}
 
 	public static function versionCore() {
-		if (config::byKey('url::core::version') == '') {
+		$url = config::byKey('url::core::version');
+		if ($url === '') {
 			return null;
 		}
+		$request = new com_http($url);
+		$request->setCURLOPT([CURLOPT_FAILONERROR => true, CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS, CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS]);
 		try {
-			if (file_exists(jeedom::getTmpFolder('url') . '/version')) {
-				com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
-			}
-			exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::version') . ' -O /tmp/jeedom_version');
-			if (!file_exists(jeedom::getTmpFolder('url') . '/version')) {
-				return null;
-			}
-			$version = trim(file_get_contents(jeedom::getTmpFolder('url') . '/version'));
-			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('url') . '/version');
-			return $version;
-		} catch (\Throwable $e) {
+			return trim($request->exec(10, 1));
+		} catch (\Exception $e) {
+			return null;
 		}
-		return null;
 	}
 
 	/*     * *********************Methode d'instance************************* */

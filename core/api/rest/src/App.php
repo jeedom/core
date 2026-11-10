@@ -210,6 +210,7 @@ final class App
             $api->get('/plugins/{id}/installations/latest', $plugins->latestInstallation(...));
 
             $updates = new UpdatesController();
+            $api->get('/updates/core/branches', $updates->coreBranches(...));
             $api->post('/updates/check', $updates->check(...));
             $api->get('/updates/operations/latest', $updates->latest(...));
             $api->post('/updates/operations', $updates->start(...));

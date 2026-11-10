@@ -1669,6 +1669,29 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
 
+  /updates/core/branches:
+    get:
+      tags: [Configuration]
+      operationId: listCoreBranches
+      summary: Lister les branches du dépôt officiel du Core
+      description: Réservé aux administrateurs. Liste les branches découvertes sur GitHub et mises en cache par le Core.
+      responses:
+        '200':
+          description: Noms des branches officielles, dont master (Stable).
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [branches]
+                additionalProperties: false
+                properties:
+                  branches:
+                    type: array
+                    items: { type: string }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+
   /updates/check:
     post:
       operationId: checkComponentUpdates
@@ -7691,12 +7714,18 @@ components:
           default: 'default'
         'core::branch':
           type: string
-          description: 'Version installée du core, pour la vérification de mise à jo (onglet updates).'
+          description: 'Branche du Core avec la source officielle. Les tags déjà enregistrés peuvent encore être lus.'
           default: 'master'
         'update::autocheck':
           type: boolean
           description: 'Vérification automatique des mises à jour (onglet updates).'
           default: true
+        'github::core::user': { type: string, default: jeedom }
+        'github::core::repository': { type: string, default: core }
+        'github::core::branch': { type: string, default: stable }
+        'github::token': { $ref: '#/components/schemas/ConfigSecret' }
+        'url::core::url': { type: string, description: URL de l’archive ZIP du Core. }
+        'url::core::version': { type: string, description: URL du fichier contenant la version distante du Core. }
         'backup::path':
           type: string
           description: 'Emplacement des sauvegardes locales, absolu ou relatif au répertoire de Jeedom.'
@@ -8204,10 +8233,16 @@ components:
           description: 'Source de mise à jour du core (onglet updates).'
         'core::branch':
           type: string
-          description: 'Version installée du core, pour la vérification de mise à jo (onglet updates).'
+          description: 'Branche du Core avec la source officielle.'
         'update::autocheck':
           type: boolean
           description: 'Vérification automatique des mises à jour (onglet updates).'
+        'github::core::user': { type: string }
+        'github::core::repository': { type: string }
+        'github::core::branch': { type: string }
+        'github::token': { type: string, writeOnly: true, description: Jeton GitHub facultatif. Chaîne vide pour effacer. }
+        'url::core::url': { type: string, description: URL de l’archive ZIP du Core. }
+        'url::core::version': { type: string, description: URL du fichier contenant la version distante du Core. }
         'backup::path':
           type: string
           description: 'Emplacement des sauvegardes locales, absolu ou relatif au répertoire de Jeedom.'

@@ -9,6 +9,17 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 /** HTTP validation only; the native service owns updates and background execution. */
 final class UpdatesController
 {
+    public function coreBranches(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        try {
+            $branches = \update::listCoreBranches();
+        } catch (\Exception $e) {
+            throw new ApiError(502, 'core_branches_unavailable', 'Impossible de récupérer les branches du Core Jeedom.');
+        }
+        return self::respond($response, ['branches' => $branches]);
+    }
+
     public function check(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);

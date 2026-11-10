@@ -111,11 +111,10 @@ try {
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
 				if (config::byKey('core::repo::provider') == 'default') {
-					if (strpos(config::byKey('core::branch'), 'tag::') === 0) {
-						$url = 'https://github.com/jeedom/core/archive/refs/tags/' . str_replace('tag::', '', config::byKey('core::branch')) . '.zip';
-					} else {
-						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
-					}
+					// Pre-update can run this script with the previous Core classes.
+					$branch = (string) config::byKey('core::branch', 'core', 'master');
+					$ref = strpos($branch, 'tag::') === 0 ? 'refs/tags/' . substr($branch, 5) : 'refs/heads/' . $branch;
+					$url = 'https://github.com/jeedom/core/archive/' . implode('/', array_map('rawurlencode', explode('/', $ref))) . '.zip';
 					echo "Download url : " . $url . "\n";
 					echo "Download in progress...";
 					if (!is_writable($tmp_dir)) {
@@ -127,7 +126,7 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
+					exec('wget --progress=dot --dot=mega -O ' . escapeshellarg($tmp) . ' -- ' . escapeshellarg($url));
 				} else {
 					$class = 'repo_' . config::byKey('core::repo::provider');
 					if (!class_exists($class)) {

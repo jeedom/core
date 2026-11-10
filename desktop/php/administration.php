@@ -1801,50 +1801,27 @@ $productName = config::byKey('product_name');
 													<option value="master">{{Stable}}</option>
 												</optgroup>
 												<?php
-												if (config::byKey('core::repo::provider') == 'default') {
-													$lists = cache::byKey('core::branch::default::list')->getValue(array());
-													if (!isset($lists['branchs']) || !is_array($lists['branchs'])) {
-														$request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
-														$request_http->setHeader(array('User-agent: jeedom'));
-														try {
-															$lists['branchs'] = json_decode($request_http->exec(10, 1), true);
-														} catch (\Exception $e) {
-														}
-														cache::set('core::branch::default::list', $lists, 86400);
-													}
-													if (!isset($lists['tags']) || !is_array($lists['tags'])) {
-														$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
-														$request_http->setHeader(array('User-agent: jeedom'));
-														try {
-															$lists['tags'] = json_decode($request_http->exec(10, 1), true);
-														} catch (\Exception $e) {
-														}
-														cache::set('core::branch::default::list', $lists, 86400);
-													}
-													if (isset($lists['branchs']) && is_array($lists['branchs'])) {
-														echo '<optgroup label="{{Branches (Pas de support)}}">';
-														foreach ($lists['branchs'] as $branch) {
-															if (!is_array($branch) || !isset($branch['name'])) {
-																continue;
-															}
-															if (in_array($branch['name'], array('V4-stable', 'master'))) {
-																continue;
-															}
-															echo '<option value="' . $branch['name'] . '">' . $branch['name'] . '</option>';
-														}
-														echo '</optgroup>';
-													}
-													if (isset($lists['tags']) && is_array($lists['tags'])) {
-														echo '<optgroup label="{{Tags (Pas de support)}}">';
-														foreach ($lists['tags'] as $tag) {
-															if (!is_array($tag) || !isset($tag['name'])) {
-																continue;
-															}
-															echo '<option value="tag::' . $tag['name'] . '">' . $tag['name'] . '</option>';
-														}
-														echo '</optgroup>';
+												$currentBranch = (string) config::byKey('core::branch', 'core', 'master');
+												$branches = [];
+												if (config::byKey('core::repo::provider') === 'default') {
+													try {
+														$branches = update::listCoreBranches();
+													} catch (Exception $e) {
 													}
 												}
+												if (str_starts_with($currentBranch, 'tag::')) {
+													echo '<option hidden value="' . htmlspecialchars($currentBranch, ENT_QUOTES, 'UTF-8') . '">{{Sélectionner une branche}}</option>';
+												} elseif (update::isCoreBranchName($currentBranch) && !in_array($currentBranch, $branches, true)) {
+													$branches[] = $currentBranch;
+												}
+												echo '<optgroup label="{{Branches (Pas de support)}}">';
+												foreach ($branches as $branch) {
+													if ($branch !== 'master') {
+														$name = htmlspecialchars($branch, ENT_QUOTES, 'UTF-8');
+														echo '<option value="' . $name . '">' . $name . '</option>';
+													}
+												}
+												echo '</optgroup>';
 												?>
 											</select>
 											<span class="input-group-btn">
