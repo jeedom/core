@@ -179,6 +179,14 @@ final class ConfigController
             'core::branch' => 'string',
             'update::autocheck' => 'boolean',
         ],
+        'backups' => [
+            'backup::path' => 'string',
+            'backup::keepDays' => 'number',
+            'backup::maxSize' => 'number',
+            'market::cloudUpload' => 'boolean',
+            'samba::cloudUpload' => 'boolean',
+            'samba::keepDays' => 'number',
+        ],
         'cache' => [
             'cache::engine' => 'string',
             'cache::redisaddr' => 'string',
@@ -275,7 +283,9 @@ final class ConfigController
             if (!$admin && \config::shouldBeEncrypted($storedKey)) {
                 continue;
             }
-            $result[$key] = self::toApi($types[$key], $stored[$storedKey] ?? '');
+            $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
+            // Sans rétention Samba configurée, la modale doit pouvoir afficher un champ vide.
+            $result[$key] = $key === 'samba::keepDays' && $value === null ? '' : $value;
         }
         return $result;
     }
@@ -306,6 +316,10 @@ final class ConfigController
         if (!$ok) {
             $expected = ['boolean' => 'un booléen', 'number' => 'un nombre ou null'][$type] ?? 'un texte';
             throw ApiError::field(422, 'validation_error', $key, "Valeur invalide : $expected est attendu.");
+        }
+        // Le script de sauvegarde utilise le chemin dans des arguments shell entre guillemets doubles.
+        if ($key === 'backup::path' && (trim($value) === '' || preg_match('/["\\\\$\x60\x00-\x1f\x7f]/', $value))) {
+            throw ApiError::field(422, 'validation_error', $key, 'Chemin de sauvegarde invalide.');
         }
         return match ($type) {
             'boolean' => $value ? '1' : '0',
