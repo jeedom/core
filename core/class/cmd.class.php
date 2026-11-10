@@ -1463,7 +1463,12 @@ class cmd {
 		cache::delete('cmdCacheAttr' . $this->getId());
 		cache::delete('cmd' . $this->getId());
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'cmd'));
-		return DB::remove($this);
+		$id = (int) $this->getId();
+		$removed = DB::remove($this);
+		if ($removed && $id > 0) {
+			display::removeByTarget('cmd', $id);
+		}
+		return $removed;
 	}
 
 	/**

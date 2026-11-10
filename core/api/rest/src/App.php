@@ -49,6 +49,11 @@ final class App
             $api->put('/eqLogics/{id}/image', self::notImplemented(...));
             $api->delete('/eqLogics/{id}/image', self::notImplemented(...));
 
+            $display = new DisplayController();
+            $api->get('/display', $display->list(...));
+            $api->put('/display/eqLogics/{id}', $display->replace(...));
+            $api->delete('/display/eqLogics/{id}', $display->reset(...));
+
             $cmds = new CmdsController();
             $api->get('/cmds', $cmds->list(...));
             $api->post('/cmds', $cmds->create(...));

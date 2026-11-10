@@ -490,6 +490,122 @@
       }
     },
     {
+      "name": "display",
+      "fields": [
+        {
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "name": "target_type",
+          "type": "varchar(16)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "target_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "context",
+          "type": "varchar(16)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "context_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "template",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "template_parameters",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "sort_order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "visible",
+          "type": "tinyint(1)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": {
+        "context_target": {
+          "Key_name": "context_target",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "context",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "context_id",
+              "Sub_part": null
+            },
+            "3": {
+              "column": "target_type",
+              "Sub_part": null
+            },
+            "4": {
+              "column": "target_id",
+              "Sub_part": null
+            }
+          }
+        },
+        "target": {
+          "Key_name": "target",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "target_type",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "target_id",
+              "Sub_part": null
+            }
+          }
+        }
+      },
+      "engine": "InnoDB"
+    },
+    {
       "name": "eqLogic",
       "fields": [
         {

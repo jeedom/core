@@ -204,7 +204,7 @@ final class EqLogicsController
         return $ids;
     }
 
-    private static function find(string $id, \user $user, string $right): \eqLogic
+    public static function find(string $id, \user $user, string $right): \eqLogic
     {
         $eqLogic = ctype_digit($id) ? \eqLogic::byId((int) $id) : null;
         if (!is_object($eqLogic)) {

@@ -86,10 +86,11 @@ class plan {
 			'link_id' => $_link_id,
 			'planHeader_id' => $_planHeader_id,
 		);
-		$sql = 'DELETE FROM plan
-		WHERE link_type=:link_type
-		AND link_id=:link_id
-		AND planHeader_id=:planHeader_id';
+		$sql = "DELETE p, d FROM plan p
+		LEFT JOIN `display` d ON d.context = 'design' AND d.context_id = p.id
+		WHERE p.link_type=:link_type
+		AND p.link_id=:link_id
+		AND p.planHeader_id=:planHeader_id";
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -158,7 +159,11 @@ class plan {
 				@rmdir(__DIR__ . '/../../data/plan/plan_' . $this->getId());
 			}
 		}
-		DB::remove($this);
+		$id = (int) $this->getId();
+		$removed = DB::remove($this);
+		if ($removed && $id > 0) {
+			display::removeByPlanId($id);
+		}
 	}
 
 	public function copy() {

@@ -24,7 +24,7 @@ final class Json
     }
 
     /** @return array<string, mixed> */
-    public static function body(ServerRequestInterface $request, ?int $maxBytes = null): array
+    public static function body(ServerRequestInterface $request, ?int $maxBytes = null, bool $preserveObjects = false): array
     {
         $stream = $request->getBody();
         if ($maxBytes === null) {
@@ -46,11 +46,14 @@ final class Json
             }
         }
         try {
-            $data = json_decode($raw === '' ? 'null' : $raw, true, 64, JSON_THROW_ON_ERROR);
+            $data = json_decode($raw === '' ? 'null' : $raw, !$preserveObjects, 64, JSON_THROW_ON_ERROR);
         } catch (\JsonException) {
             throw new ApiError(400, 'invalid_json', 'Le corps de la requête n\'est pas du JSON valide.');
         }
-        if (!is_array($data) || array_is_list($data) && $data !== []) {
+        if ($preserveObjects && $data instanceof \stdClass) {
+            return (array) $data;
+        }
+        if ($preserveObjects || !is_array($data) || array_is_list($data) && $data !== []) {
             throw new ApiError(400, 'invalid_json', 'Le corps de la requête doit être un objet JSON.');
         }
         return $data;

@@ -84,6 +84,15 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function byIds(array $_ids): array {
+		if ($_ids === []) {
+			return [];
+		}
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM eqLogic WHERE id IN (' . implode(',', array_fill(0, count($_ids), '?')) . ')';
+		return self::cast(DB::Prepare($sql, array_values($_ids), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	private static function cast($_inputs) {
 		if (is_object($_inputs) && class_exists($_inputs->getEqType_name())) {
 			$return = cast($_inputs, $_inputs->getEqType_name());
@@ -987,7 +996,12 @@ class eqLogic {
 		cache::delete('eqLogicCacheAttr' . $this->getId());
 		cache::delete('eqLogicStatusAttr' . $this->getId());
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'eqLogic'));
-		return DB::remove($this);
+		$id = (int) $this->getId();
+		$removed = DB::remove($this);
+		if ($removed && $id > 0) {
+			display::removeByTarget('eqLogic', $id);
+		}
+		return $removed;
 	}
 
 	public function save($_direct = false) {

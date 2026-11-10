@@ -118,6 +118,8 @@ tags:
     description: Utilisateur connecté.
   - name: Commandes
     description: Commandes des équipements, infos (états) et actions.
+  - name: Affichage
+    description: Réglages de présentation du Dashboard de Core UI.
   - name: Temps réel
     description: Flux d'événements en direct (SSE).
   - name: Configuration
@@ -3179,6 +3181,83 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/EqLogicNotFound' }
 
+  /display:
+    get:
+      tags: [Affichage]
+      operationId: listDisplay
+      summary: Lister les réglages d’affichage du Dashboard
+      description: |
+        Lecture groupée des personnalisations explicites. L’absence de ligne laisse
+        Core UI résoudre le rendu automatique et les réglages historiques.
+        Les réglages suivent les droits de lecture de l’équipement et de la commande.
+      parameters:
+        - $ref: '#/components/parameters/DisplayContext'
+        - $ref: '#/components/parameters/DisplayContextId'
+      responses:
+        '200':
+          description: Réglages accessibles à l’utilisateur.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, total]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Display' }
+                  total: { type: integer, minimum: 0 }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /display/eqLogics/{id}:
+    parameters:
+      - $ref: '#/components/parameters/EqLogicId'
+      - $ref: '#/components/parameters/DisplayContext'
+      - $ref: '#/components/parameters/DisplayContextId'
+    put:
+      tags: [Affichage]
+      operationId: replaceEqLogicDisplay
+      summary: Enregistrer l’affichage d’une tuile du Dashboard
+      description: |
+        Réservé aux administrateurs. Remplace ensemble les personnalisations de la
+        tuile et de ses commandes. Pour conserver les réglages des commandes en
+        changeant le rendu de la tuile, les inclure dans le corps.
+        La visibilité générale d’une commande reste prioritaire. Dans un ordre
+        personnalisé, les commandes sans position suivent les commandes ordonnées
+        et conservent entre elles leur ordre habituel.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EqLogicDisplayWrite' }
+      responses:
+        '204': { description: Réglages enregistrés. }
+        '400':
+          description: Corps JSON invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '413':
+          description: Le corps de la requête dépasse 1 Mio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Affichage]
+      operationId: resetEqLogicDisplay
+      summary: Réinitialiser l’affichage d’une tuile du Dashboard
+      description: Réservé aux administrateurs. Retire les réglages de la tuile et de ses commandes.
+      responses:
+        '204': { description: Affichage automatique rétabli. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /cmds:
     get:
       tags: [Commandes]
@@ -4185,6 +4264,17 @@ components:
       in: query
       description: Nombre d'éléments à sauter, à combiner avec `limit`.
       schema: { type: integer, minimum: 0, default: 0 }
+
+    DisplayContext:
+      name: context
+      in: query
+      description: Contexte d’affichage. Cette API prend en charge le Dashboard.
+      schema: { type: string, const: dashboard, default: dashboard }
+    DisplayContextId:
+      name: context_id
+      in: query
+      description: Identifiant de contexte réservé au Dashboard.
+      schema: { type: integer, const: 0, default: 0 }
 
     EqLogicId:
       name: id
@@ -5871,6 +5961,54 @@ components:
         - type: [number, string, 'null']
         - type: object
           additionalProperties: true
+
+    DisplayTemplate:
+      type: [string, 'null']
+      minLength: 1
+      maxLength: 127
+      description: Clé stable du rendu, ou null pour le rendu automatique.
+    DisplayParameters:
+      type: object
+      additionalProperties: true
+      description: Paramètres du rendu.
+    Display:
+      type: object
+      required: [id, target_type, target_id, context, context_id, template, template_parameters, sort_order, visible]
+      properties:
+        id: { type: integer, minimum: 1 }
+        target_type: { type: string, enum: [eqLogic, cmd] }
+        target_id: { type: integer, minimum: 1 }
+        context: { type: string, const: dashboard }
+        context_id: { type: integer, const: 0 }
+        template: { $ref: '#/components/schemas/DisplayTemplate' }
+        template_parameters: { $ref: '#/components/schemas/DisplayParameters' }
+        sort_order: { type: [integer, 'null'], minimum: 0, maximum: 2147483647 }
+        visible: { type: [boolean, 'null'] }
+    EqLogicDisplayWrite:
+      type: object
+      additionalProperties: false
+      required: [equipment, commands]
+      properties:
+        equipment:
+          type: [object, 'null']
+          additionalProperties: false
+          properties:
+            template: { $ref: '#/components/schemas/DisplayTemplate' }
+            template_parameters: { $ref: '#/components/schemas/DisplayParameters' }
+        commands:
+          type: array
+          maxItems: 1000
+          description: Personnalisations des commandes de la tuile. Chaque identifiant ne peut être fourni qu’une fois.
+          items:
+            type: object
+            additionalProperties: false
+            required: [id]
+            properties:
+              id: { type: integer, minimum: 1, maximum: 2147483647 }
+              template: { $ref: '#/components/schemas/DisplayTemplate' }
+              template_parameters: { $ref: '#/components/schemas/DisplayParameters' }
+              sort_order: { type: [integer, 'null'], minimum: 0, maximum: 2147483647 }
+              visible: { type: [boolean, 'null'] }
 
     EqLogic:
       type: object
