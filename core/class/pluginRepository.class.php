@@ -6,7 +6,7 @@ class pluginRepository {
 	public static function all(): array {
 		$items = array();
 		foreach (update::listRepo() as $id => $repo) {
-			if (!in_array($id, array('market', 'github', 'url', 'file', 'samba'), true) || empty($repo['enable']) || empty($repo['scope']['plugin'])) continue;
+			if (!in_array($id, array('market', 'github', 'url', 'file'), true) || empty($repo['enable']) || empty($repo['scope']['plugin'])) continue;
 			if ($id === 'market') {
 				$items[] = array('id' => $id, 'name' => (string) $repo['name'], 'fields' => array());
 				continue;
@@ -47,8 +47,6 @@ class pluginRepository {
 				|| parse_url($url, PHP_URL_USER) !== null || parse_url($url, PHP_URL_PASS) !== null || preg_match('/[\x00-\x20\x7f]/', $url)) {
 				throw new InvalidArgumentException('URL HTTP(S) du fichier ZIP invalide.', 422);
 			}
-		} elseif ($source === 'samba') {
-			if (!preg_match('/\A[A-Za-z0-9_][A-Za-z0-9_\/.-]*\.zip\z/i', $result['path']) || str_contains($result['path'], '..')) throw new InvalidArgumentException('Chemin ZIP Samba invalide.', 422);
 		} else {
 			if (!preg_match('/\A[a-f0-9]{32}\z/', $result['path'])) throw new InvalidArgumentException('Archive téléversée invalide.', 422);
 			if ($checkArchive) self::archivePath($result['path'], $id);
