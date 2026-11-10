@@ -124,6 +124,7 @@ final class App
             $api->get('/system/files/roots', $files->roots(...));
             $api->get('/system/files/entries', $files->entries(...));
             $api->post('/system/files/entries', $files->create(...));
+            $api->delete('/system/files/entries', $files->delete(...));
             $api->get('/system/files/content', $files->read(...));
             $api->put('/system/files/content', $files->write(...));
             $api->post('/system/files/upload', $files->upload(...));

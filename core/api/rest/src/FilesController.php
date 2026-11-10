@@ -37,6 +37,13 @@ final class FilesController
         return Json::respond(self::noStore($response), self::run('create', $location + ['type' => $type]), 201);
     }
 
+    public function delete(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        self::run('delete', self::location($request));
+        return self::noStore($response)->withStatus(204);
+    }
+
     public function upload(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);

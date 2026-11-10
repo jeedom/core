@@ -432,6 +432,29 @@ paths:
         '422': { $ref: '#/components/responses/SystemFileInvalid' }
         '503': { $ref: '#/components/responses/SystemFileUnavailable' }
 
+    delete:
+      tags: [Système]
+      operationId: deleteSystemFileEntry
+      summary: Supprimer un fichier ou un dossier vide de Jeedom
+      description: Réservé aux administrateurs. Le répertoire parent doit autoriser la suppression. Les liens et les dossiers non vides sont refusés.
+      parameters:
+        - $ref: '#/components/parameters/SystemFileRoot'
+        - $ref: '#/components/parameters/SystemFilePath'
+        - $ref: '#/components/parameters/csrfToken'
+      responses:
+        '204':
+          description: Fichier ou dossier supprimé.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '409':
+          description: Le dossier n’est pas vide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/SystemFileInvalid' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+
   /system/files/upload:
     post:
       tags: [Système]

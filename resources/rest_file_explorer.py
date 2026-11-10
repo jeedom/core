@@ -201,7 +201,7 @@ def write_file(parent, parts, name, etag, content):
 
 
 @contextmanager
-def current_creation_parent(parent, parts):
+def current_parent_directory(parent, parts):
     with open_directory(parts) as current_parent:
         if not same_directory(parent, current_parent):
             raise FileError(404, "file_not_found", "Répertoire introuvable.")
@@ -216,7 +216,7 @@ def create_file(parent, parts, name, data):
             stream.write(data)
             stream.flush()
             os.fsync(stream.fileno())
-        with current_creation_parent(parent, parts) as current_parent:
+        with current_parent_directory(parent, parts) as current_parent:
             # Publish the complete file atomically and fail if any entry already exists.
             os.link(temporary, name, src_dir_fd=parent, dst_dir_fd=current_parent, follow_symlinks=False)
     finally:
@@ -224,6 +224,23 @@ def create_file(parent, parts, name, data):
             os.unlink(temporary, dir_fd=parent)
         except FileNotFoundError:
             pass
+
+
+def delete_entry(parent, parts, name):
+    fcntl.flock(parent, fcntl.LOCK_EX)
+    with current_parent_directory(parent, parts) as current_parent:
+        info = os.stat(name, dir_fd=current_parent, follow_symlinks=False)
+        if stat.S_ISDIR(info.st_mode):
+            try:
+                os.rmdir(name, dir_fd=current_parent)
+            except OSError as error:
+                if error.errno in {errno.ENOTEMPTY, errno.EEXIST}:
+                    raise FileError(409, "directory_not_empty", "Le dossier n’est pas vide.") from None
+                raise
+        elif stat.S_ISREG(info.st_mode) and info.st_nlink == 1:
+            os.unlink(name, dir_fd=current_parent)
+        else:
+            raise FileError(404, "file_not_found", "Fichier ou répertoire introuvable.")
 
 
 def execute(operation, payload):
@@ -248,13 +265,16 @@ def execute(operation, payload):
             return {"content": text_content(data), "etag": version(data)}
         if operation == "write":
             return write_file(fd, parent_parts, name, payload["etag"], payload["content"])
+        if operation == "delete":
+            delete_entry(fd, parent_parts, name)
+            return {}
         if operation == "download":
             data, _, _ = read_file(fd, name, max_bytes=MAX_TRANSFER_BYTES)
             with os.fdopen(3, "wb") as transfer:
                 transfer.write(data)
             return {}
         if operation == "create" and payload["type"] == "directory":
-            with current_creation_parent(fd, parent_parts) as current_parent:
+            with current_parent_directory(fd, parent_parts) as current_parent:
                 os.mkdir(name, dir_fd=current_parent)
                 writable = os.access(name, os.W_OK | os.X_OK, dir_fd=current_parent, follow_symlinks=False)
             return file_entry(name, path, "directory", writable)
