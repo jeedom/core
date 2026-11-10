@@ -1437,10 +1437,7 @@ class marketClient {
 				$data['twoFactorCode'] = trim($twoFactorCode);
 			}
 			$tokens = self::send('POST', '/box-sessions', $data);
-			// Keep the existing password hash for legacy plugin JSON-RPC compatibility.
-			config::save('market::username', trim($login));
-			config::save('market::password', sha1($password));
-			self::store($tokens);
+			self::store($tokens, $data['login'], sha1($password));
 			return true;
 		});
 	}
@@ -1496,13 +1493,18 @@ class marketClient {
 		return self::store($tokens);
 	}
 
-	private static function store($tokens) {
+	private static function store($tokens, $login = null, $passwordHash = null) {
 		if (!is_array($tokens) || !isset($tokens['boxId'], $tokens['accessToken'], $tokens['refreshToken'], $tokens['expiresIn'])
 			|| !is_int($tokens['boxId']) || $tokens['boxId'] < 1 || !is_int($tokens['expiresIn']) || $tokens['expiresIn'] < 0
 			|| !is_string($tokens['accessToken']) || !is_string($tokens['refreshToken'])
 			|| !preg_match('/\Abox_a_' . $tokens['boxId'] . '_[a-f0-9]{64}\z/', $tokens['accessToken'])
 			|| !preg_match('/\Abox_r_' . $tokens['boxId'] . '_[a-f0-9]{64}\z/', $tokens['refreshToken'])) {
 			throw new Exception(__('Réponse de connexion Market invalide.', __FILE__));
+		}
+		if ($login !== null) {
+			// Update the account only after validating the new session. Keep the hash for legacy plugins.
+			config::save('market::username', $login);
+			config::save('market::password', $passwordHash);
 		}
 		$session = array('boxId' => $tokens['boxId'], 'accessToken' => $tokens['accessToken'], 'refreshToken' => $tokens['refreshToken'],
 			'expiresAt' => time() + $tokens['expiresIn'], 'context' => self::context());

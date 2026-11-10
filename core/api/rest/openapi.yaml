@@ -4722,6 +4722,60 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /market/connection:
+    get:
+      tags: [Configuration]
+      operationId: getMarketConnection
+      summary: Lire l’état de la connexion de Jeedom au Market
+      description: Réservé aux administrateurs. Lit la session Market connue de Jeedom.
+      responses:
+        '200':
+          description: État de la connexion et identifiant du compte Market.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketConnection' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Configuration]
+      operationId: connectMarket
+      summary: Connecter Jeedom au Market
+      description: Réservé aux administrateurs. Utilise le client Market du Core pour ouvrir une session de box et la synchroniser.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MarketCredentials' }
+      responses:
+        '200':
+          description: Connexion enregistrée, avec un avertissement éventuel de synchronisation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketConnection' }
+        '400':
+          description: Corps JSON invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '413':
+          description: Corps de la requête supérieur à 16 Kio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422':
+          description: Données invalides ou connexion refusée par le Market.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '429':
+          description: Trop de tentatives auprès du Market.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -6929,6 +6983,24 @@ components:
           type: string
           enum: [cursor_too_old]
           description: Des événements ont pu être perdus ; recharger l'état par les routes REST.
+
+    MarketConnection:
+      type: object
+      additionalProperties: false
+      required: [connected, login]
+      properties:
+        connected: { type: boolean }
+        login: { type: string }
+        warning: { type: string }
+
+    MarketCredentials:
+      type: object
+      additionalProperties: false
+      required: [login, password]
+      properties:
+        login: { type: string, minLength: 1 }
+        password: { type: string, minLength: 1, format: password, writeOnly: true }
+        twoFactorCode: { type: string, minLength: 6, maxLength: 6, pattern: '^[0-9]{6}$', writeOnly: true }
 
     ConfigValues:
       type: object

@@ -110,6 +110,10 @@ final class App
             $api->get('/config', $config->get(...));
             $api->patch('/config', $config->update(...));
 
+            $market = new MarketController();
+            $api->get('/market/connection', $market->status(...));
+            $api->post('/market/connection', $market->connect(...));
+
             $jeego = new JeegoController();
             $api->get('/jeego', $jeego->status(...));
             $api->get('/jeego/settings/{section}', $jeego->settings(...));
