@@ -15,7 +15,7 @@ register_shutdown_function(static function () use ($testRoot): void {
     rmdir($testRoot);
 });
 class config {
-    public static array $values = ['core' => ['market::enable' => 1, 'name' => 'Maison', 'enableQueue' => 1]];
+    public static array $values = ['core' => ['name' => 'Maison', 'enableQueue' => 1]];
     public static function byKey($key, $plugin = 'core', $default = '', $refresh = false) { return self::$values[$plugin][$key] ?? $default; }
     public static function save($key, $value, $plugin = 'core') { self::$values[$plugin][$key] = $value; }
 }
@@ -104,9 +104,9 @@ defineRestOperationsFixture('update', <<<'PHP'
             'file' => ['path' => ['name' => 'Archive', 'type' => 'file']],
         ];
         $repos = [];
-        foreach ($fields as $id => $parameters) $repos[$id] = ['name' => $id, 'scope' => ['plugin' => true], 'enable' => config::byKey($id . '::enable', 'core', 1), 'configuration' => ['parameters_for_add' => $parameters]];
-        $repos['samba'] = ['name' => 'Samba', 'scope' => ['plugin' => false, 'backup' => true], 'enable' => 1];
-        $repos['market'] = ['name' => 'Market', 'scope' => ['plugin' => true], 'enable' => config::byKey('market::enable')];
+        foreach ($fields as $id => $parameters) $repos[$id] = ['name' => $id, 'scope' => ['plugin' => true], 'configuration' => ['parameters_for_add' => $parameters]];
+        $repos['samba'] = ['name' => 'Samba', 'scope' => ['plugin' => false, 'backup' => true]];
+        $repos['market'] = ['name' => 'Market', 'scope' => ['plugin' => true]];
         return $repos;
     }
     public static array $items = [];
@@ -133,6 +133,8 @@ defineRestOperationsFixture('update', <<<'PHP'
 PHP);
 class repo_market {
     public static int $reads = 0;
+    public static bool $connected = true;
+    public static function isConnected(): bool { return self::$connected; }
     public static bool $purchase = true;
     public static array $allowed = ['stable', 'beta'];
     public static int $published = 1;
@@ -337,14 +339,12 @@ check($managed['hasOwnDaemon'] && $managed['daemonState'] === null, 'Inactive da
 $repos = call('GET', '/plugins/repositories')['items'];
 check(count($repos) === 4 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');
 check(array_column($repos, 'id') === ['github', 'url', 'file', 'market'], 'Plugin sources should include Market and exclude backup-only Samba');
-config::save('market::enable', 0);
-config::save('github::enable', 0);
-check(count(call('GET', '/plugins/repositories')['items']) === 2, 'Disabled source exposed');
-config::save('market::enable', 1);
+repo_market::$connected = false;
+check(array_column(call('GET', '/plugins/repositories')['items'], 'id') === ['github', 'url', 'file'], 'Only Market must depend on the account connection');
+call('GET', '/plugins/installations/preview?marketId=123&version=stable', 409);
+repo_market::$connected = true;
 $direct = ['pluginId' => 'directplugin', 'source' => 'github', 'configuration' => ['user' => 'jeedom', 'repository' => 'plugin-test', 'token' => 'github_secret', 'version' => 'main']];
 $directKey = ['Idempotency-Key' => 'direct-request-key-0001'];
-call('POST', '/plugins/installations/repository', 422, $direct, headers: $directKey);
-config::save('github::enable', 1);
 call('POST', '/plugins/installations/repository', 403, $direct, token: 'member', headers: $directKey);
 call('POST', '/plugins/installations/repository', 403, $direct, token: null, cookies: $cookies, headers: $directKey);
 call('POST', '/plugins/installations/repository', 422, $direct);
@@ -370,8 +370,9 @@ $op = call('POST', '/plugins/installations/repository', 202, $different, headers
 update::$fail = true; runJob($op); update::$fail = false;
 check(call('GET', '/plugins/installations/' . $op['id'] . '/status')['state'] === 'failed' && update::byTypeAndLogicalId('plugin', 'directplugin')->getConfiguration('version') === 'main' && config::byKey('active', 'directplugin') === 1, 'Failed direct installation lost previous settings');
 $op = call('POST', '/plugins/installations/repository', 202, $direct, headers: ['Idempotency-Key' => 'direct-request-key-0004']);
-config::save('github::enable', 0); runJob($op); config::save('github::enable', 1);
-check(call('GET', '/plugins/installations/' . $op['id'] . '/status')['state'] === 'failed', 'Worker did not recheck source enablement');
+config::save('github::enable', 0);
+runJob($op);
+check(call('GET', '/plugins/installations/' . $op['id'] . '/status')['state'] === 'succeeded', 'Legacy source flag blocked a GitHub job');
 foreach (['file:///etc/passwd', 'ftp://example.org/a.zip', 'https://user:secret@example.org/a.zip', "https://example.org/a\n.zip"] as $url) call('POST', '/plugins/installations/repository', 422, ['pluginId' => 'urlplugin', 'source' => 'url', 'configuration' => ['url' => $url]], headers: $directKey);
 $op = call('POST', '/plugins/installations/repository', 202, ['pluginId' => 'urlplugin', 'source' => 'url', 'configuration' => ['url' => 'https://example.org/a.zip?a=1&b=2']], headers: $directKey);
 runJob($op); check(update::byTypeAndLogicalId('plugin', 'urlplugin')->getSource() === 'url', 'URL installation not delegated');
