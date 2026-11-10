@@ -1277,7 +1277,7 @@ class jeedom {
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
-				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
+				if (class_exists($class) && method_exists($class, 'cron5')) {
 					$class::cron5();
 				}
 			}
@@ -1294,7 +1294,7 @@ class jeedom {
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
-				if (class_exists($class) && method_exists($class, 'cron10') && config::byKey($name . '::enable') == 1) {
+				if (class_exists($class) && method_exists($class, 'cron10')) {
 					$class::cron10();
 				}
 			}
@@ -1397,7 +1397,7 @@ class jeedom {
 			}
 
 			try {
-				if (config::byKey('market::enable') == 1) {
+				if (repo_market::isConnected()) {
 					log::add('starting', 'debug', __('Test de connexion au market', __FILE__));
 					repo_market::test();
 				}
@@ -1429,7 +1429,7 @@ class jeedom {
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
-				if (class_exists($class) && method_exists($class, 'cronDaily') && config::byKey($name . '::enable') == 1) {
+				if (class_exists($class) && method_exists($class, 'cronDaily')) {
 					$class::cronDaily();
 				}
 			}
@@ -1465,7 +1465,7 @@ class jeedom {
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
-				if (class_exists($class) && method_exists($class, 'cronHourly') && config::byKey($name . '::enable') == 1) {
+				if (class_exists($class) && method_exists($class, 'cronHourly')) {
 					$class::cronHourly();
 				}
 			}
