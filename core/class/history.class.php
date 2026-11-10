@@ -115,6 +115,27 @@ class history {
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 
+	/**
+	 * Point at this exact date or, with $_oldValue, first point of this value in the next hour, day, week or month
+	 * (point shown on a grouped curve). Moved from core/ajax/cmd.ajax.php changeHistoryPoint.
+	 */
+	public static function byCmdIdDatetimeOrNext($_cmd_id, $_datetime, $_oldValue = null) {
+		$history = history::byCmdIdDatetime($_cmd_id, $_datetime);
+		if (!is_object($history)) {
+			$history = history::byCmdIdDatetime($_cmd_id, $_datetime, date('Y-m-d H:i:s', strtotime($_datetime . ' +1 hour')), $_oldValue);
+		}
+		if (!is_object($history)) {
+			$history = history::byCmdIdDatetime($_cmd_id, $_datetime, date('Y-m-d H:i:s', strtotime($_datetime . ' +1 day')), $_oldValue);
+		}
+		if (!is_object($history)) {
+			$history = history::byCmdIdDatetime($_cmd_id, $_datetime, date('Y-m-d H:i:s', strtotime($_datetime . ' +1 week')), $_oldValue);
+		}
+		if (!is_object($history)) {
+			$history = history::byCmdIdDatetime($_cmd_id, $_datetime, date('Y-m-d H:i:s', strtotime($_datetime . ' +1 month')), $_oldValue);
+		}
+		return $history;
+	}
+
 	public static function byCmdIdDatetime($_cmd_id, $_startTime, $_endTime = null, $_oldValue = null) {
 		if ($_endTime == null) {
 			$_endTime = $_startTime;
