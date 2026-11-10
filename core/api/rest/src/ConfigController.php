@@ -216,9 +216,6 @@ final class ConfigController
         'dontProtectTooFastLaunchDaemon' => 'dontProtectTooFastLaunchDeamony',
     ];
 
-    /** Clés dynamiques par dépôt : onglet => suffixe. */
-    private const REPOSITORY_KEYS = ['network' => 'allowDNS', 'updates' => 'enable'];
-
     private const SUMMARY_FIELDS = [
         'key' => 'string', 'name' => 'string', 'calcul' => 'string', 'icon' => 'string',
         'iconnul' => 'string', 'unit' => 'string', 'count' => 'string', 'allowDisplayZero' => 'boolean',
@@ -252,15 +249,10 @@ final class ConfigController
         foreach ($body as $key => $value) {
             $values[self::storedKey((string) $key)] = self::validate((string) $key, $value);
         }
-        $sambaChanged = array_key_exists('samba::cloudUpload', $values);
         $cloudPasswordChanged = array_key_exists('market::cloud::backup::password', $values)
             || array_key_exists('market::cloud::backup::password_confirmation', $values);
         if ($cloudPasswordChanged && ($values['market::cloud::backup::password'] ?? null) !== ($values['market::cloud::backup::password_confirmation'] ?? null)) {
             throw ApiError::field(422, 'validation_error', 'market::cloud::backup::password_confirmation', 'Les mots de passe de chiffrement diffèrent.');
-        }
-        if ($sambaChanged) {
-            // Les anciennes installations et le moteur de sauvegarde utilisent ces deux clés.
-            $values['samba::enable'] = $values['samba::cloudUpload'];
         }
         $atomic = array_intersect_key($values, self::SECTIONS['backups']) !== [];
         if ($atomic) {
@@ -289,9 +281,9 @@ final class ConfigController
         static $keys = null;
         if ($keys === null) {
             $keys = ['object:summary' => 'summary'] + array_merge(...array_values(self::SECTIONS));
-            foreach (self::REPOSITORY_KEYS as $section => $suffix) {
-                foreach (self::repositoryKeys($section) as $key) {
-                    $keys[$key] = 'boolean';
+            foreach (\update::listRepo() as $id => $repo) {
+                if (!empty($repo['scope']['proxy'])) {
+                    $keys[$id . '::allowDNS'] = 'boolean';
                 }
             }
         }
@@ -305,11 +297,7 @@ final class ConfigController
     private static function read(array $keys, bool $admin): array
     {
         $types = self::exposedKeys();
-        $storedKeys = array_map(self::storedKey(...), $keys);
-        if (in_array('samba::cloudUpload', $keys, true)) {
-            $storedKeys[] = 'samba::enable';
-        }
-        $stored = \config::byKeys($storedKeys);
+        $stored = \config::byKeys(array_map(self::storedKey(...), $keys));
         $result = [];
         foreach ($keys as $key) {
             $storedKey = self::storedKey($key);
@@ -318,9 +306,6 @@ final class ConfigController
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
-            if ($key === 'samba::cloudUpload') {
-                $value = $value && (string) ($stored['samba::enable'] ?? '') === '1';
-            }
             // Sans rétention Samba configurée, la modale doit pouvoir afficher un champ vide.
             $result[$key] = $key === 'samba::keepDays' && $value === null ? '' : $value;
         }
@@ -369,27 +354,6 @@ final class ConfigController
             'number' => $value ?? '',
             default => $value,
         };
-    }
-
-    /** @return list<string> clés `{dépôt}::{suffixe}` de l'onglet */
-    private static function repositoryKeys(string $section): array
-    {
-        $suffix = self::REPOSITORY_KEYS[$section] ?? null;
-        if ($suffix === null) {
-            return [];
-        }
-        $keys = [];
-        foreach (\update::listRepo() as $id => $repo) {
-            // Comme l'administration : le DNS n'est proposé que pour les dépôts qui le gèrent.
-            if ($suffix === 'allowDNS' && empty($repo['scope']['proxy'])) {
-                continue;
-            }
-            if ($suffix === 'enable' && $id === 'samba') {
-                continue;
-            }
-            $keys[] = $id . '::' . $suffix;
-        }
-        return $keys;
     }
 
     /** @return array<string, array<string, mixed>> */
