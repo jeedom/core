@@ -66,6 +66,11 @@ final class App
             $api->get('/cmds/{id}/value', $cmds->value(...));
             $api->get('/cmds/{id}/history', $cmds->history(...));
             $api->get('/cmds/{id}/statistics', $cmds->statistics(...));
+            $api->put('/cmds/{id}/history/point', $cmds->updateHistoryPoint(...));
+            $api->post('/cmds/{id}/history/empty', $cmds->emptyHistory(...));
+            $api->post('/cmds/{id}/history/copy', $cmds->copyHistory(...));
+            $api->delete('/history/future', $cmds->removeFutureHistory(...));
+            $api->get('/history/calculation', $cmds->calculatedHistory(...));
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
             $scenarios = new ScenariosController();
