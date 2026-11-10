@@ -5,10 +5,12 @@ namespace Jeedom\Api\Rest;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Psr7\Stream;
 
 final class FilesController
 {
     private const MAX_FILE_BYTES = 1048576;
+    private const MAX_TRANSFER_BYTES = 10 * 1048576;
     private const MAX_RESULT_BYTES = 8388608;
 
     public function roots(Request $request, Response $response): Response
@@ -21,6 +23,76 @@ final class FilesController
     {
         Auth::requireAdmin($request);
         return Json::respond(self::noStore($response), self::run('entries', self::location($request, true)));
+    }
+
+    public function create(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $location = self::location($request);
+        $body = Json::body($request, 1024);
+        $type = $body['type'] ?? null;
+        if (array_keys($body) !== ['type'] || !in_array($type, ['file', 'directory'], true)) {
+            throw ApiError::field(422, 'validation_error', 'type', 'Un fichier ou un répertoire est attendu.');
+        }
+        return Json::respond(self::noStore($response), self::run('create', $location + ['type' => $type]), 201);
+    }
+
+    public function upload(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $location = self::location($request);
+        $type = strtolower(trim(explode(';', $request->getHeaderLine('Content-Type'), 2)[0]));
+        if ($type !== 'application/octet-stream') {
+            throw new ApiError(415, 'unsupported_file', 'Un corps application/octet-stream est attendu.');
+        }
+
+        $body = $request->getBody();
+        if ($body->isSeekable()) {
+            $body->rewind();
+        }
+        $transfer = self::transferFile();
+        try {
+            $remaining = self::MAX_TRANSFER_BYTES;
+            while (!$body->eof()) {
+                $chunk = $body->read(min(65536, $remaining + 1));
+                if ($chunk === '') {
+                    break;
+                }
+                $remaining -= strlen($chunk);
+                if ($remaining < 0) {
+                    throw new ApiError(413, 'file_too_large', 'Le fichier dépasse la taille maximale de 10 Mio.');
+                }
+                if (fwrite($transfer, $chunk) !== strlen($chunk)) {
+                    throw self::unavailable();
+                }
+            }
+            rewind($transfer);
+            $file = self::run('upload', $location, $transfer);
+        } finally {
+            fclose($transfer);
+        }
+        return Json::respond(self::noStore($response), $file, 201);
+    }
+
+    public function download(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $location = self::location($request);
+        $transfer = self::transferFile();
+        try {
+            self::run('download', $location, $transfer);
+            rewind($transfer);
+            $body = new Stream($transfer);
+        } catch (\Throwable $error) {
+            fclose($transfer);
+            throw $error;
+        }
+        $name = basename($location['path']);
+        $fallback = preg_replace('/[^A-Za-z0-9_.-]/', '_', $name);
+        return self::noStore($response)->withBody($body)
+            ->withHeader('Content-Type', 'application/octet-stream')
+            ->withHeader('Content-Disposition', "attachment; filename=\"$fallback\"; filename*=UTF-8''" . rawurlencode($name))
+            ->withHeader('X-Content-Type-Options', 'nosniff');
     }
 
     public function read(Request $request, Response $response): Response
@@ -77,21 +149,40 @@ final class FilesController
         return $response->withHeader('Cache-Control', 'private, no-store');
     }
 
-    private static function run(string $operation, array $input = []): array
+    private static function unavailable(): ApiError
     {
-        $unavailable = new ApiError(503, 'file_explorer_unavailable', 'Explorateur de fichiers indisponible.');
+        return new ApiError(503, 'file_explorer_unavailable', 'Explorateur de fichiers indisponible.');
+    }
+
+    /** @return resource */
+    private static function transferFile()
+    {
+        $transfer = tmpfile();
+        if ($transfer === false) {
+            throw self::unavailable();
+        }
+        return $transfer;
+    }
+
+    /** @param resource|null $transfer */
+    private static function run(string $operation, array $input = [], $transfer = null): array
+    {
         if (!function_exists('proc_open') || !is_executable('/usr/bin/python3')) {
-            throw $unavailable;
+            throw self::unavailable();
         }
         $script = __DIR__ . '/../../../../resources/rest_file_explorer.py';
         $payload = json_encode((object) $input, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        $process = proc_open(['/usr/bin/python3', '-I', $script, $operation], [
+        $descriptors = [
             0 => ['pipe', 'r'],
             1 => ['pipe', 'w'],
             2 => ['file', '/dev/null', 'w'],
-        ], $pipes);
+        ];
+        if ($transfer !== null) {
+            $descriptors[3] = $transfer;
+        }
+        $process = proc_open(['/usr/bin/python3', '-I', $script, $operation], $descriptors, $pipes);
         if ($process === false) {
-            throw $unavailable;
+            throw self::unavailable();
         }
         try {
             $written = fwrite($pipes[0], $payload);
@@ -105,12 +196,12 @@ final class FilesController
             $exitCode = proc_close($process);
         }
         if ($written !== strlen($payload) || $output === false || strlen($output) > self::MAX_RESULT_BYTES || $exitCode !== 0) {
-            throw $unavailable;
+            throw self::unavailable();
         }
         try {
             $result = json_decode($output, true, 32, JSON_THROW_ON_ERROR);
         } catch (\JsonException) {
-            throw $unavailable;
+            throw self::unavailable();
         }
         if (isset($result['error'])) {
             $error = $result['error'];

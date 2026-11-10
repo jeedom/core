@@ -16,6 +16,7 @@ from pathlib import Path
 CORE = Path(__file__).resolve().parents[1]
 ROOT_ID = "jeedom"
 MAX_FILE_BYTES = 1048576
+MAX_TRANSFER_BYTES = 10 * 1048576
 MAX_DIRECTORY_ENTRIES = 1000
 DIR_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
 TEXT_CONTROLS = re.compile(rb"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
@@ -64,6 +65,10 @@ def roots():
     return {"items": items, "total": len(items)}
 
 
+def file_entry(name, path, kind, writable):
+    return {"name": name, "path": path, "type": kind, "writable": writable}
+
+
 def entries(fd, parts):
     items = []
     writable_dir = os.access(".", os.W_OK | os.X_OK, dir_fd=fd)
@@ -83,11 +88,13 @@ def entries(fd, parts):
             except FileNotFoundError:
                 continue
             if stat.S_ISDIR(info.st_mode) and os.access(name, os.R_OK | os.X_OK, dir_fd=fd, follow_symlinks=False):
-                items.append({"name": name, "path": relative, "type": "directory", "writable": False})
-            elif stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_size <= MAX_FILE_BYTES:
+                writable = os.access(name, os.W_OK | os.X_OK, dir_fd=fd, follow_symlinks=False)
+                items.append(file_entry(name, relative, "directory", writable))
+            elif stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_size <= MAX_TRANSFER_BYTES:
                 if os.access(name, os.R_OK, dir_fd=fd, follow_symlinks=False):
-                    writable = writable_dir and os.access(name, os.W_OK, dir_fd=fd, follow_symlinks=False)
-                    items.append({"name": name, "path": relative, "type": "file", "writable": writable})
+                    writable = (info.st_size <= MAX_FILE_BYTES and writable_dir
+                                and os.access(name, os.W_OK, dir_fd=fd, follow_symlinks=False))
+                    items.append(file_entry(name, relative, "file", writable))
     items.sort(key=lambda item: (item["type"] != "directory", item["name"].casefold(), item["name"]))
     return {"items": items, "total": len(items)}
 
@@ -111,18 +118,18 @@ def file_state(info):
     return (info.st_dev, info.st_ino, info.st_ctime_ns, info.st_mtime_ns, info.st_size)
 
 
-def read_file(parent, name, preserve_acl=False):
+def read_file(parent, name, preserve_acl=False, max_bytes=MAX_FILE_BYTES):
     # O_PATH permits checking the type before opening the underlying file for I/O.
     fd = os.open(name, os.O_PATH | os.O_NOFOLLOW, dir_fd=parent)
     try:
         info = os.fstat(fd)
         if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
             raise FileError(404, "file_not_found", "Fichier introuvable.")
-        if info.st_size > MAX_FILE_BYTES:
-            raise FileError(413, "file_too_large", "Le fichier dépasse la taille maximale de 1 Mio.")
+        if info.st_size > max_bytes:
+            raise FileError(413, "file_too_large", f"Le fichier dépasse la taille maximale de {max_bytes // 1048576} Mio.")
         acl = None
         with open(f"/proc/self/fd/{fd}", "rb") as stream:
-            data = stream.read(MAX_FILE_BYTES + 1)
+            data = stream.read(max_bytes + 1)
             if preserve_acl:
                 try:
                     acl = os.getxattr(stream.fileno(), ACCESS_ACL)
@@ -134,6 +141,12 @@ def read_file(parent, name, preserve_acl=False):
         return data, info, acl
     finally:
         os.close(fd)
+
+
+def same_directory(first, second):
+    original = os.fstat(first)
+    current = os.fstat(second)
+    return (original.st_dev, original.st_ino) == (current.st_dev, current.st_ino)
 
 
 def write_file(parent, parts, name, etag, content):
@@ -170,9 +183,7 @@ def write_file(parent, parts, name, etag, content):
             os.fsync(stream.fileno())
         try:
             with open_directory(parts) as current_parent:
-                old_dir = os.fstat(parent)
-                current_dir = os.fstat(current_parent)
-                if (old_dir.st_dev, old_dir.st_ino) != (current_dir.st_dev, current_dir.st_ino):
+                if not same_directory(parent, current_parent):
                     raise FileError(412, "file_version_conflict", "Le répertoire a changé depuis la lecture.")
                 if file_state(os.stat(name, dir_fd=current_parent, follow_symlinks=False)) != file_state(original):
                     raise FileError(412, "file_version_conflict", "Le fichier a changé depuis sa lecture.")
@@ -187,6 +198,32 @@ def write_file(parent, parts, name, etag, content):
         except FileNotFoundError:
             pass
     return {"etag": version(data)}
+
+
+@contextmanager
+def current_creation_parent(parent, parts):
+    with open_directory(parts) as current_parent:
+        if not same_directory(parent, current_parent):
+            raise FileError(404, "file_not_found", "Répertoire introuvable.")
+        yield current_parent
+
+
+def create_file(parent, parts, name, data):
+    temporary = TEMPORARY_PREFIX + secrets.token_hex(16)
+    fd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o666, dir_fd=parent)
+    try:
+        with os.fdopen(fd, "wb") as stream:
+            stream.write(data)
+            stream.flush()
+            os.fsync(stream.fileno())
+        with current_creation_parent(parent, parts) as current_parent:
+            # Publish the complete file atomically and fail if any entry already exists.
+            os.link(temporary, name, src_dir_fd=parent, dst_dir_fd=current_parent, follow_symlinks=False)
+    finally:
+        try:
+            os.unlink(temporary, dir_fd=parent)
+        except FileNotFoundError:
+            pass
 
 
 def execute(operation, payload):
@@ -209,7 +246,30 @@ def execute(operation, payload):
         if operation == "read":
             data, _, _ = read_file(fd, name)
             return {"content": text_content(data), "etag": version(data)}
-        return write_file(fd, parent_parts, name, payload["etag"], payload["content"])
+        if operation == "write":
+            return write_file(fd, parent_parts, name, payload["etag"], payload["content"])
+        if operation == "download":
+            data, _, _ = read_file(fd, name, max_bytes=MAX_TRANSFER_BYTES)
+            with os.fdopen(3, "wb") as transfer:
+                transfer.write(data)
+            return {}
+        if operation == "create" and payload["type"] == "directory":
+            with current_creation_parent(fd, parent_parts) as current_parent:
+                os.mkdir(name, dir_fd=current_parent)
+                writable = os.access(name, os.W_OK | os.X_OK, dir_fd=current_parent, follow_symlinks=False)
+            return file_entry(name, path, "directory", writable)
+        if operation in {"create", "upload"}:
+            data = b""
+            if operation == "upload":
+                with os.fdopen(3, "rb") as transfer:
+                    data = transfer.read(MAX_TRANSFER_BYTES + 1)
+                if len(data) > MAX_TRANSFER_BYTES:
+                    raise FileError(413, "file_too_large", "Le fichier dépasse la taille maximale de 10 Mio.")
+            create_file(fd, parent_parts, name, data)
+            writable = (len(data) <= MAX_FILE_BYTES
+                        and os.access(name, os.W_OK, dir_fd=fd, follow_symlinks=False))
+            return file_entry(name, path, "file", writable)
+        raise ValueError("Unknown file operation")
 
 
 def main():
@@ -222,6 +282,8 @@ def main():
             result = {"error": {"status": 404, "code": "file_not_found", "message": "Fichier ou répertoire introuvable."}}
         elif error.errno in {errno.EACCES, errno.EPERM, errno.EROFS}:
             result = {"error": {"status": 403, "code": "forbidden", "message": "Accès au fichier ou au répertoire refusé."}}
+        elif error.errno == errno.EEXIST:
+            result = {"error": {"status": 409, "code": "file_already_exists", "message": "Un fichier ou un répertoire porte déjà ce nom."}}
         else:
             raise
     json.dump(result, sys.stdout)

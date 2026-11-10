@@ -388,13 +388,98 @@ paths:
           schema: { type: string, maxLength: 1024, default: '' }
       responses:
         '200':
-          description: Répertoires et fichiers accessibles, y compris les entrées cachées. Les liens et fichiers temporaires de l’éditeur sont exclus.
+          description: Répertoires et fichiers accessibles de 10 Mio au plus, y compris les entrées cachées. Les liens et fichiers temporaires de l’éditeur sont exclus.
           content:
             application/json:
               schema: { $ref: '#/components/schemas/SystemFileEntries' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '413': { $ref: '#/components/responses/SystemFileLimit' }
+        '422': { $ref: '#/components/responses/SystemFileInvalid' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+    post:
+      tags: [Système]
+      operationId: createSystemFileEntry
+      summary: Créer un fichier vide ou un dossier de Jeedom
+      description: Réservé aux administrateurs. Le répertoire parent doit exister et être accessible en écriture.
+      parameters:
+        - $ref: '#/components/parameters/SystemFileRoot'
+        - $ref: '#/components/parameters/SystemFilePath'
+        - $ref: '#/components/parameters/csrfToken'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [type]
+              properties:
+                type: { type: string, enum: [file, directory] }
+      responses:
+        '201': { $ref: '#/components/responses/SystemFileCreated' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '409': { $ref: '#/components/responses/SystemFileExists' }
+        '413':
+          description: Corps JSON trop volumineux.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/SystemFileInvalid' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+
+  /system/files/upload:
+    post:
+      tags: [Système]
+      operationId: uploadSystemFile
+      summary: Importer un fichier dans Jeedom
+      description: Réservé aux administrateurs. Crée un fichier de 10 Mio au plus dans un répertoire existant.
+      parameters:
+        - $ref: '#/components/parameters/SystemFileRoot'
+        - $ref: '#/components/parameters/SystemFilePath'
+        - $ref: '#/components/parameters/csrfToken'
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema: { type: string, format: binary }
+      responses:
+        '201': { $ref: '#/components/responses/SystemFileCreated' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '409': { $ref: '#/components/responses/SystemFileExists' }
+        '413': { $ref: '#/components/responses/SystemFileLimit' }
+        '415': { $ref: '#/components/responses/SystemFileUnsupported' }
+        '422': { $ref: '#/components/responses/SystemFileInvalid' }
+        '503': { $ref: '#/components/responses/SystemFileUnavailable' }
+
+  /system/files/download:
+    get:
+      tags: [Système]
+      operationId: downloadSystemFile
+      summary: Télécharger un fichier de Jeedom
+      description: Réservé aux administrateurs. Renvoie le contenu brut d’un fichier de 10 Mio au plus.
+      parameters:
+        - $ref: '#/components/parameters/SystemFileRoot'
+        - $ref: '#/components/parameters/SystemFilePath'
+      responses:
+        '200':
+          description: Fichier à télécharger.
+          headers:
+            Content-Disposition:
+              schema: { type: string }
+          content:
+            application/octet-stream:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/SystemFileNotFound' }
+        '409': { $ref: '#/components/responses/SystemFileChanged' }
         '413': { $ref: '#/components/responses/SystemFileLimit' }
         '422': { $ref: '#/components/responses/SystemFileInvalid' }
         '503': { $ref: '#/components/responses/SystemFileUnavailable' }
@@ -4214,6 +4299,12 @@ components:
       required: true
       description: Identifiant renvoyé par la liste des racines.
       schema: { type: string, pattern: '^[a-z-]{1,32}$' }
+    SystemFilePath:
+      name: path
+      in: query
+      required: true
+      description: Chemin relatif UTF-8 complet de l’entrée dans la racine.
+      schema: { type: string, minLength: 1, maxLength: 1024 }
     BackupId:
       name: id
       in: path
@@ -4487,14 +4578,16 @@ components:
         items:
           type: array
           items:
-            type: object
-            required: [name, path, type, writable]
-            properties:
-              name: { type: string }
-              path: { type: string, description: Chemin relatif à la racine. }
-              type: { type: string, enum: [directory, file] }
-              writable: { type: boolean, description: Le fichier est éligible à l’enregistrement. }
+            $ref: '#/components/schemas/SystemFileEntry'
         total: { type: integer, minimum: 0, maximum: 1000 }
+    SystemFileEntry:
+      type: object
+      required: [name, path, type, writable]
+      properties:
+        name: { type: string }
+        path: { type: string, description: Chemin relatif à la racine. }
+        type: { type: string, enum: [directory, file] }
+        writable: { type: boolean, description: Le dossier accepte de nouvelles entrées ou le fichier est éligible à l’enregistrement. }
     SystemFileContent:
       type: object
       additionalProperties: false
@@ -7384,13 +7477,23 @@ components:
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
+    SystemFileCreated:
+      description: Fichier ou dossier créé.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/SystemFileEntry' }
+    SystemFileExists:
+      description: Une entrée existe déjà à ce chemin.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
     SystemFileInvalid:
       description: Chemin relatif, identifiant de racine ou corps invalide.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
     SystemFileLimit:
-      description: Limite dépassée de 1 Mio par fichier ou de 1 000 entrées par répertoire.
+      description: Limite dépassée de 1 Mio pour l’édition, de 10 Mio pour un transfert ou de 1 000 entrées par répertoire.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
@@ -7410,7 +7513,7 @@ components:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
     SystemFileUnsupported:
-      description: Type de fichier ou encodage du contenu non pris en charge.
+      description: Type de fichier, encodage du contenu ou type de corps HTTP non pris en charge.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }

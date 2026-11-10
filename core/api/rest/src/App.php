@@ -123,8 +123,11 @@ final class App
             $files = new FilesController();
             $api->get('/system/files/roots', $files->roots(...));
             $api->get('/system/files/entries', $files->entries(...));
+            $api->post('/system/files/entries', $files->create(...));
             $api->get('/system/files/content', $files->read(...));
             $api->put('/system/files/content', $files->write(...));
+            $api->post('/system/files/upload', $files->upload(...));
+            $api->get('/system/files/download', $files->download(...));
 
             $messages = new MessagesController();
             $api->get('/messages', $messages->list(...));
