@@ -1604,13 +1604,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDetails'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
       parameters:
       - name: full
         in: query
@@ -1629,13 +1626,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDetails'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
       requestBody:
         required: true
         content:
@@ -1650,13 +1647,13 @@ paths:
       responses:
         '204':
           description: Plugin supprimé.
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
   /plugins/{id}/configuration:
     parameters:
     - $ref: '#/components/parameters/PluginId'
@@ -1810,13 +1807,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDependencies'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
     patch:
       tags:
       - Plugins
@@ -1829,13 +1825,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDependencies'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
       requestBody:
         required: true
         content:
@@ -1863,13 +1859,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDependencies'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
       requestBody:
         required: true
         content:
@@ -1893,13 +1889,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDaemon'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
     patch:
       tags:
       - Plugins
@@ -1912,13 +1907,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDaemon'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
       requestBody:
         required: true
         content:
@@ -1946,13 +1941,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDaemon'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
       requestBody:
         required: true
         content:
@@ -1978,13 +1973,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginDaemon'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
       requestBody:
         required: true
         content:
@@ -2015,13 +2010,12 @@ paths:
                 required:
                 - url
                 - plugin
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
   /plugins/{id}/installations/latest:
     parameters:
     - $ref: '#/components/parameters/PluginId'
@@ -2044,13 +2038,11 @@ paths:
                     - type: 'null'
                 required:
                 - operation
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
   /plugins/installations/preview:
     get:
       tags:
@@ -2064,13 +2056,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginInstallationPreview'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
       parameters:
       - name: marketId
         in: query
@@ -2103,13 +2095,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginInstallation'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
         '200':
           description: Dernière opération terminée retrouvée par sa clé de requête.
           content:
@@ -2161,13 +2153,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginInstallation'
-        default:
-          description: 'Erreur explicite : droits, validation, plugin absent, conflit, Market indisponible ou mode
-            démo.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/PluginNotFound' }
       parameters:
       - name: operationId
         in: path
@@ -7910,6 +7898,21 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     Forbidden:
       description: Droits insuffisants (écriture réservée aux administrateurs, ou élément que l'utilisateur n'a pas le droit de lire).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    PluginNotFound:
+      description: Plugin ou installation inconnus.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    BadGateway:
+      description: Service externe (Market, dépôt) indisponible ou en erreur.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ServiceUnavailable:
+      description: Opération impossible à planifier ou verrou indisponible.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
