@@ -532,8 +532,8 @@ class update {
 
 	public function getInfo() {
 		if ($this->getType() != 'core') {
-			$class = self::repositoryClass($this->getSource(), 'objectInfo');
-			if ($class !== null) {
+			$class = 'repo_' . $this->getSource();
+			if (method_exists($class, 'objectInfo')) {
 				return $class::objectInfo($this);
 			}
 		}
