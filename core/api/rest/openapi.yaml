@@ -397,7 +397,7 @@ paths:
           schema: { type: string, maxLength: 1024, default: '' }
       responses:
         '200':
-          description: Répertoires et fichiers accessibles, hors emplacements sensibles, entrées cachées et liens.
+          description: Répertoires et fichiers accessibles, y compris les entrées cachées. Les liens et fichiers temporaires de l’éditeur sont exclus.
           content:
             application/json:
               schema: { $ref: '#/components/schemas/SystemFileEntries' }
@@ -420,9 +420,7 @@ paths:
       tags: [Système]
       operationId: readSystemFile
       summary: Lire un fichier de Jeedom
-      description: |
-        Le contenu est un texte UTF-8 limité à 1 Mio. Les extensions prises en charge
-        en lecture sont css, json, md, php, txt, yaml, yml, htm, html, js, mjs et svg.
+      description: Le contenu est un texte UTF-8 limité à 1 Mio, quelle que soit l’extension.
       responses:
         '200':
           description: Contenu et version du fichier.
@@ -444,10 +442,8 @@ paths:
       operationId: writeSystemFile
       summary: Enregistrer un fichier de Jeedom
       description: |
-        Remplace atomiquement un fichier texte existant dans le répertoire d’installation
-        ou ses sous-répertoires accessibles. L’écriture est autorisée pour les fichiers PHP
-        (y compris les classes du Core et des plugins) et les extensions simples css, json,
-        md, txt, yaml et yml.
+        Remplace atomiquement un fichier texte UTF-8 existant dans le répertoire d’installation
+        ou ses sous-répertoires, selon les droits du serveur web et quelle que soit l’extension.
       parameters:
         - $ref: '#/components/parameters/csrfToken'
         - name: If-Match

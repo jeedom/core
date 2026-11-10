@@ -15,21 +15,11 @@ from pathlib import Path
 
 CORE = Path(__file__).resolve().parents[1]
 ROOT_ID = "jeedom"
-PRIVATE_DIRECTORIES = {
-    ("backup",), ("log",), ("config",), ("core", "config"), ("data", "php"), ("data", "editorTemp"),
-}
-PRIVATE_PLUGIN_DIRECTORIES = {"backup", "data", "log"}
-PRIVATE_FILENAMES = {
-    "auth.json", "common.config.php", "credentials.json", "credentials.php",
-    "secrets.json", "secrets.php", "secrets.yaml", "secrets.yml",
-}
 MAX_FILE_BYTES = 1048576
 MAX_DIRECTORY_ENTRIES = 1000
 DIR_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
 TEXT_CONTROLS = re.compile(rb"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
-WRITE_EXTENSIONS = {"css", "json", "md", "php", "txt", "yaml", "yml"}
-READ_EXTENSIONS = WRITE_EXTENSIONS | {"htm", "html", "js", "mjs", "svg"}
-SERVER_EXTENSION = re.compile(r"php[0-9]*|pht|phtml|phar|cgi|fcgi|shtm|shtml|pl|py|sh|inc")
+TEMPORARY_PREFIX = ".rest-"
 NOT_FOUND = {errno.ENOENT, errno.ENOTDIR, errno.ELOOP}
 ACCESS_ACL = "system.posix_acl_access"
 NO_ACCESS_ACL = {errno.ENODATA, errno.ENOTSUP}
@@ -41,33 +31,13 @@ class FileError(Exception):
 
 
 def valid_part(part):
-    if not part or part.startswith(".") or any(char in part for char in "/\\:"):
+    if part in {"", ".", ".."} or part.startswith(TEMPORARY_PREFIX) or any(char in part for char in "/\\:"):
         return False
     try:
         name = part.encode("utf-8")
     except UnicodeEncodeError:
         return False
     return len(name) <= 255 and not any(byte < 32 or byte == 127 for byte in name)
-
-
-def private_path(parts):
-    return (
-        any(parts[:len(directory)] == directory for directory in PRIVATE_DIRECTORIES)
-        or (len(parts) >= 3 and parts[0] == "plugins" and parts[2] in PRIVATE_PLUGIN_DIRECTORIES)
-        or any(part.casefold() in PRIVATE_FILENAMES for part in parts)
-    )
-
-
-def file_policy(name):
-    stem, dot, extension = name.lower().rpartition(".")
-    if not dot or extension not in READ_EXTENSIONS:
-        return False, False
-    if extension == "php":
-        return True, True
-    if any(SERVER_EXTENSION.fullmatch(part) for part in stem.split(".")[1:]):
-        return False, False
-    # Apache can assign handlers through any suffix. Other writable formats use a simple extension.
-    return True, "." not in stem and extension in WRITE_EXTENSIONS
 
 
 @contextmanager
@@ -103,7 +73,7 @@ def entries(fd, parts):
                 raise FileError(413, "directory_too_large", "Le répertoire dépasse 1 000 entrées.")
             name = entry.name
             child_parts = parts + (name,)
-            if not valid_part(name) or private_path(child_parts):
+            if not valid_part(name):
                 continue
             relative = "/".join(child_parts)
             if len(relative.encode("utf-8")) > 1024:
@@ -115,9 +85,8 @@ def entries(fd, parts):
             if stat.S_ISDIR(info.st_mode) and os.access(name, os.R_OK | os.X_OK, dir_fd=fd, follow_symlinks=False):
                 items.append({"name": name, "path": relative, "type": "directory", "writable": False})
             elif stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_size <= MAX_FILE_BYTES:
-                readable, writable = file_policy(name)
-                if readable and os.access(name, os.R_OK, dir_fd=fd, follow_symlinks=False):
-                    writable = writable and writable_dir and os.access(name, os.W_OK, dir_fd=fd, follow_symlinks=False)
+                if os.access(name, os.R_OK, dir_fd=fd, follow_symlinks=False):
+                    writable = writable_dir and os.access(name, os.W_OK, dir_fd=fd, follow_symlinks=False)
                     items.append({"name": name, "path": relative, "type": "file", "writable": writable})
     items.sort(key=lambda item: (item["type"] != "directory", item["name"].casefold(), item["name"]))
     return {"items": items, "total": len(items)}
@@ -179,7 +148,7 @@ def write_file(parent, parts, name, etag, content):
     if not os.access(name, os.W_OK, dir_fd=parent, follow_symlinks=False):
         raise PermissionError(errno.EACCES, "File is not writable")
 
-    temporary = ".rest-" + secrets.token_hex(16)
+    temporary = TEMPORARY_PREFIX + secrets.token_hex(16)
     temp_fd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600, dir_fd=parent)
     try:
         with os.fdopen(temp_fd, "wb") as stream:
@@ -230,24 +199,16 @@ def execute(operation, payload):
     parts = tuple(path.split("/")) if path else ()
     if len(parts) > 32 or (not parts and operation != "entries") or not all(map(valid_part, parts)):
         raise FileError(422, "invalid_file_path", "Un chemin relatif dans la racine est attendu.")
-    if private_path(parts):
-        raise FileError(404, "file_not_found", "Fichier ou répertoire introuvable.")
-
     if operation == "entries":
         with open_directory(parts) as fd:
             return entries(fd, parts)
 
     name = parts[-1]
-    readable, writable = file_policy(name)
-    if not readable:
-        raise FileError(415, "unsupported_file", "Ce type de fichier est indisponible dans l’explorateur.")
     parent_parts = parts[:-1]
     with open_directory(parent_parts) as fd:
         if operation == "read":
             data, _, _ = read_file(fd, name)
             return {"content": text_content(data), "etag": version(data)}
-        if not writable:
-            raise FileError(403, "file_read_only", "Ce fichier est en lecture seule.")
         return write_file(fd, parent_parts, name, payload["etag"], payload["content"])
 
 
