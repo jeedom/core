@@ -74,6 +74,27 @@ final class PluginsController
         return self::respond($response, ['items' => \pluginRepository::all()]);
     }
 
+    public function getConfiguration(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $plugin = self::find($args['id']);
+        return self::respond($response, PluginSettings::read($plugin->getId(), PluginSettings::fields($plugin->getId())));
+    }
+
+    public function updateConfiguration(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $plugin = self::find($args['id']);
+        $changes = Json::body($request, 16384);
+        $values = self::mutate($plugin, static function () use ($plugin, $changes): object {
+            $id = $plugin->getId();
+            $fields = PluginSettings::fields($id);
+            PluginSettings::update($id, $fields, $changes);
+            return PluginSettings::read($id, $fields);
+        });
+        return self::respond($response, $values);
+    }
+
     public function icon(Request $request, Response $response, array $args): Response
     {
         $plugin = self::find($args['id']);
@@ -405,9 +426,9 @@ final class PluginsController
         throw ApiError::field(422, 'validation_error', $field, 'Valeur invalide.');
     }
 
-    private static function mutate(\plugin $plugin, callable $action): void
+    private static function mutate(\plugin $plugin, callable $action): mixed
     {
-        self::installationCall(static fn () => \plugin::withInstallationLock($plugin->getId(), static function () use ($plugin, $action) {
+        return self::installationCall(static fn () => \plugin::withInstallationLock($plugin->getId(), static function () use ($plugin, $action) {
             \plugin::assertInstallationIdle($plugin->getId());
             return $action();
         }));

@@ -1634,6 +1634,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /plugins/{id}/configuration:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags: [Plugins]
+      operationId: getPluginConfiguration
+      summary: Lire les réglages déclarés par un plugin (administrateur).
+      description: Les clés sont limitées à plugin_info/ui-settings.json. Une valeur absente ou invalide est renvoyée à null.
+      responses:
+        '200':
+          description: Réglages du plugin.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginSettingValues' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500':
+          description: Déclaration des réglages invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+    patch:
+      tags: [Plugins]
+      operationId: updatePluginConfiguration
+      summary: Modifier les réglages déclarés par un plugin (administrateur).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              minProperties: 1
+              additionalProperties: { type: [boolean, number, string] }
+      responses:
+        '200':
+          description: Réglages du plugin après l’enregistrement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginSettingValues' }
+        '400':
+          description: Corps JSON invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413':
+          description: Corps de la requête trop volumineux.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '500':
+          description: Déclaration des réglages invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '503':
+          description: Verrouillage du plugin temporairement indisponible.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
   /plugins/{id}/icon:
     parameters:
     - $ref: '#/components/parameters/PluginId'
@@ -5207,6 +5272,9 @@ components:
               state: { type: string, enum: [queued, running, succeeded, failed, skipped] }
               error: { type: [string, 'null'] }
 
+    PluginSettingValues:
+      type: object
+      additionalProperties: { type: [boolean, number, string, 'null'] }
     PluginDetails:
       allOf:
       - $ref: '#/components/schemas/Plugin'
