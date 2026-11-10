@@ -118,6 +118,8 @@ final class App
             $market = new MarketController();
             $api->get('/market/connection', $market->status(...));
             $api->post('/market/connection', $market->connect(...));
+            $api->delete('/market/connection', $market->disconnect(...));
+            $api->post('/market/connection/synchronize', $market->synchronize(...));
 
             $jeego = new JeegoController();
             $api->get('/jeego', $jeego->status(...));

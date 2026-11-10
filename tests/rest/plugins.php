@@ -134,7 +134,15 @@ PHP);
 class repo_market {
     public static int $reads = 0;
     public static bool $connected = true;
+    public static int $synchronizations = 0;
+    public static bool $revoked = true;
     public static function isConnected(): bool { return self::$connected; }
+    public static function connectionStatus(): array { return ['connected' => self::$connected, 'login' => 'fixture']; }
+    public static function synchronize(): void { self::$synchronizations++; }
+    public static function disconnect(): array {
+        self::$connected = false;
+        return self::connectionStatus() + ['revoked' => self::$revoked];
+    }
     public static bool $purchase = true;
     public static array $allowed = ['stable', 'beta'];
     public static int $published = 1;
@@ -218,6 +226,17 @@ function runJob($operation) {
 }
 $key = ['Idempotency-Key' => 'request-key-00000001'];
 check(jeedom::version() === '5.0.0', 'Wrong Core version');
+call('POST', '/market/connection/synchronize', 403, token: 'member');
+call('DELETE', '/market/connection', 403, token: 'member');
+check(repo_market::$synchronizations === 0 && repo_market::$connected, 'A non-admin changed the Market connection');
+check(call('POST', '/market/connection/synchronize')['connected'] === true && repo_market::$synchronizations === 1, 'Market synchronization not delegated');
+repo_market::$revoked = false;
+$marketConnection = call('DELETE', '/market/connection');
+check($marketConnection['connected'] === false && isset($marketConnection['warning']), 'Local disconnection must report an unconfirmed remote revocation');
+check(call('POST', '/market/connection/synchronize', 409)['error']['code'] === 'market_not_connected' && repo_market::$synchronizations === 1, 'Disconnected account was synchronized');
+repo_market::$revoked = true;
+check(call('DELETE', '/market/connection') === ['connected' => false, 'login' => 'fixture'], 'Disconnection must support retries');
+repo_market::$connected = true;
 call('GET', '/plugins', 401, token: null);
 call('GET', '/plugins', 200, token: 'member');
 call('GET', '/plugins?enabled=nonsense', 422);

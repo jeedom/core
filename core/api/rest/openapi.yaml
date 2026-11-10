@@ -4880,6 +4880,41 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
         '502': { $ref: '#/components/responses/BadGateway' }
+    delete:
+      tags: [Configuration]
+      operationId: disconnectMarket
+      summary: Déconnecter ce Jeedom du Market
+      description: Réservé aux administrateurs. Révoque la session Market si possible et supprime la session locale.
+      responses:
+        '200':
+          description: Compte déconnecté de ce Jeedom, avec un avertissement si la révocation distante n’a pas été confirmée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketConnection' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /market/connection/synchronize:
+    post:
+      tags: [Configuration]
+      operationId: synchronizeMarket
+      summary: Synchroniser ce Jeedom avec le Market
+      description: Réservé aux administrateurs. Synchronise la box avec sa session Market courante.
+      responses:
+        '200':
+          description: Synchronisation effectuée et état de la connexion Market.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketConnection' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '429':
+          description: Le Market a limité les tentatives de synchronisation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '502': { $ref: '#/components/responses/BadGateway' }
 
 components:
   securitySchemes:

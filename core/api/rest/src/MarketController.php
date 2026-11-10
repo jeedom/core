@@ -45,14 +45,46 @@ final class MarketController
                 default => new ApiError(502, 'market_unavailable', 'Impossible de joindre le Market ou de terminer la connexion.'),
             };
         }
-        return self::respond($response, $status);
+        return self::respond($response, $status, isset($status['warning'])
+            ? 'Compte connecté. La synchronisation avec le Market a échoué.' : null);
     }
 
-    private static function respond(Response $response, array $status): Response
+    public function synchronize(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        self::requireConnection();
+        try {
+            \repo_market::synchronize();
+        } catch (\Exception $exception) {
+            self::requireConnection();
+            if ($exception->getCode() === 429) {
+                throw new ApiError(429, 'market_rate_limited', 'Le Market a limité les tentatives. Réessayez dans quelques instants.');
+            }
+            throw new ApiError(502, 'market_unavailable', 'Impossible de synchroniser ce Jeedom avec le Market.');
+        }
+        return self::respond($response, \repo_market::connectionStatus());
+    }
+
+    public function disconnect(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $status = \repo_market::disconnect();
+        return self::respond($response, $status, $status['revoked']
+            ? null : 'Compte déconnecté de ce Jeedom. La révocation de la session sur le Market n’a pas pu être confirmée.');
+    }
+
+    private static function requireConnection(): void
+    {
+        if (!\repo_market::isConnected()) {
+            throw new ApiError(409, 'market_not_connected', 'Reconnectez ce Jeedom au Market avant de le synchroniser.');
+        }
+    }
+
+    private static function respond(Response $response, array $status, ?string $warning = null): Response
     {
         $data = ['connected' => $status['connected'], 'login' => $status['login']];
-        if (isset($status['warning'])) {
-            $data['warning'] = 'Compte connecté. La synchronisation avec le Market a échoué.';
+        if ($warning !== null) {
+            $data['warning'] = $warning;
         }
         return Json::respond($response->withHeader('Cache-Control', 'private, no-store'), $data);
     }
