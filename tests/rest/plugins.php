@@ -102,10 +102,10 @@ defineRestOperationsFixture('update', <<<'PHP'
             'github' => ['user' => ['name' => 'Utilisateur', 'type' => 'input'], 'repository' => ['name' => 'Dépôt', 'type' => 'input'], 'token' => ['name' => 'Token', 'type' => 'input'], 'version' => ['name' => 'Branche', 'type' => 'input', 'default' => 'master']],
             'url' => ['url' => ['name' => 'URL', 'type' => 'input']],
             'file' => ['path' => ['name' => 'Archive', 'type' => 'file']],
-            'samba' => ['path' => ['name' => 'Chemin', 'type' => 'input']],
         ];
         $repos = [];
         foreach ($fields as $id => $parameters) $repos[$id] = ['name' => $id, 'scope' => ['plugin' => true], 'enable' => config::byKey($id . '::enable', 'core', 1), 'configuration' => ['parameters_for_add' => $parameters]];
+        $repos['samba'] = ['name' => 'Samba', 'scope' => ['plugin' => false, 'backup' => true], 'enable' => 1];
         $repos['market'] = ['name' => 'Market', 'scope' => ['plugin' => true], 'enable' => config::byKey('market::enable')];
         return $repos;
     }
@@ -335,11 +335,11 @@ check($managementPage['core']['version'] === jeedom::version() && $managementPag
 check($managementPage['items'][0]['id'] === 'fixture' && array_key_exists('update', $managementPage['items'][0]['management']), 'Installed inventory missing update information');
 check($managed['hasOwnDaemon'] && $managed['daemonState'] === null, 'Inactive daemon must not be reported as broken');
 $repos = call('GET', '/plugins/repositories')['items'];
-check(count($repos) === 5 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');
-check(array_column($repos, 'id') === ['github', 'url', 'file', 'samba', 'market'], 'Active Market source missing');
+check(count($repos) === 4 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');
+check(array_column($repos, 'id') === ['github', 'url', 'file', 'market'], 'Plugin sources should include Market and exclude backup-only Samba');
 config::save('market::enable', 0);
 config::save('github::enable', 0);
-check(count(call('GET', '/plugins/repositories')['items']) === 3, 'Disabled source exposed');
+check(count(call('GET', '/plugins/repositories')['items']) === 2, 'Disabled source exposed');
 config::save('market::enable', 1);
 $direct = ['pluginId' => 'directplugin', 'source' => 'github', 'configuration' => ['user' => 'jeedom', 'repository' => 'plugin-test', 'token' => 'github_secret', 'version' => 'main']];
 $directKey = ['Idempotency-Key' => 'direct-request-key-0001'];
@@ -375,7 +375,7 @@ check(call('GET', '/plugins/installations/' . $op['id'] . '/status')['state'] ==
 foreach (['file:///etc/passwd', 'ftp://example.org/a.zip', 'https://user:secret@example.org/a.zip', "https://example.org/a\n.zip"] as $url) call('POST', '/plugins/installations/repository', 422, ['pluginId' => 'urlplugin', 'source' => 'url', 'configuration' => ['url' => $url]], headers: $directKey);
 $op = call('POST', '/plugins/installations/repository', 202, ['pluginId' => 'urlplugin', 'source' => 'url', 'configuration' => ['url' => 'https://example.org/a.zip?a=1&b=2']], headers: $directKey);
 runJob($op); check(update::byTypeAndLogicalId('plugin', 'urlplugin')->getSource() === 'url', 'URL installation not delegated');
-call('POST', '/plugins/installations/repository', 422, ['pluginId' => 'sambaplugin', 'source' => 'samba', 'configuration' => ['path' => '../secret.zip']], headers: $directKey);
+call('POST', '/plugins/installations/repository', 422, ['pluginId' => 'sambaplugin', 'source' => 'samba', 'configuration' => ['path' => 'plugins/archive.zip']], headers: $directKey);
 call('POST', '/plugins/installations/repository', 422, ['pluginId' => 'fileplugin', 'source' => 'file', 'configuration' => ['path' => '/etc/passwd']], headers: $directKey);
 function archiveFile($id, $extra = []) {
     $path = jeedom::getTmpFolder('incoming') . '/' . bin2hex(random_bytes(8)) . '.zip';
