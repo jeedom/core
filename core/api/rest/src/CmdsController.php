@@ -227,10 +227,123 @@ final class CmdsController
         if ($grouping !== null && !preg_match('/^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$/', (string) $grouping)) {
             throw ApiError::field(422, 'validation_error', 'grouping', 'Format attendu : fonction::période (ex. avg::hour).');
         }
+        $derive = self::bool($request->getQueryParams()['derive'] ?? null, 'derive') ?? (bool) (int) $cmd->getDisplay('graphDerive');
+        if ($derive) {
+            $grouping = null;
+        }
         $items = [];
+        $previous = null;
         foreach ((array) \history::all($cmd->getId(), $start, $end, $grouping) as $point) {
             $value = $point->getValue();
-            $items[] = ['datetime' => (string) $point->getDatetime(), 'value' => is_numeric($value) ? $value + 0 : self::nullableString($value)];
+            $value = is_numeric($value) ? $value + 0 : self::nullableString($value);
+            if ($derive) {
+                // Comme l'option derive de l'ajax getHistory : écart avec le point précédent.
+                $current = is_numeric($value) ? (float) $value : null;
+                $value = $current !== null && $previous !== null ? $current - $previous : null;
+                $previous = $current;
+            }
+            $items[] = ['datetime' => (string) $point->getDatetime(), 'value' => $value];
+        }
+        return Json::respond($response, ['items' => $items]);
+    }
+
+    public function updateHistoryPoint(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $cmd = self::findWritable($args['id'], $request->getAttribute('user'));
+        $body = Json::body($request);
+        if ($unknown = array_diff(array_keys($body), ['datetime', 'value', 'oldValue'])) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu.');
+        }
+        if (!array_key_exists('datetime', $body) || !array_key_exists('value', $body)) {
+            throw ApiError::field(422, 'validation_error', array_key_exists('datetime', $body) ? 'value' : 'datetime', 'Ce champ est obligatoire.');
+        }
+        $datetime = self::date($body['datetime'], 'datetime')?->format(self::DATE);
+        if ($datetime === null) {
+            throw ApiError::field(422, 'validation_error', 'datetime', 'Ce champ est obligatoire.');
+        }
+        foreach (['value', 'oldValue'] as $field) {
+            if (isset($body[$field]) && !is_int($body[$field]) && !is_float($body[$field]) && !is_string($body[$field])) {
+                throw ApiError::field(422, 'validation_error', $field, 'Un nombre ou une chaîne est attendu.');
+            }
+        }
+        $history = \history::byCmdIdDatetimeOrNext($cmd->getId(), $datetime, isset($body['oldValue']) ? (string) $body['oldValue'] : null);
+        if (!is_object($history)) {
+            throw new ApiError(404, 'history_point_not_found', 'Aucun point à cette date.');
+        }
+        if ($body['value'] === null) {
+            $history->remove();
+        } else {
+            $history->setValue((string) $body['value']);
+            $history->save(null, true);
+        }
+        return $response->withStatus(204);
+    }
+
+    public function emptyHistory(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $cmd = self::findWritable($args['id'], $request->getAttribute('user'));
+        $body = (string) $request->getBody() === '' ? [] : Json::body($request);
+        if ($unknown = array_diff(array_keys($body), ['before'])) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu.');
+        }
+        $before = self::date($body['before'] ?? null, 'before');
+        $cmd->emptyHistory($before === null ? '' : $before->format(self::DATE));
+        return $response->withStatus(204);
+    }
+
+    public function copyHistory(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $user = $request->getAttribute('user');
+        $source = self::findWritable($args['id'], $user);
+        $body = Json::body($request);
+        if ($unknown = array_diff(array_keys($body), ['targetId'])) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu.');
+        }
+        if (!is_int($body['targetId'] ?? null) || $body['targetId'] < 1) {
+            throw ApiError::field(422, 'validation_error', 'targetId', 'Un entier positif est attendu.');
+        }
+        $target = \cmd::byId($body['targetId']);
+        $eqLogic = is_object($target) ? $target->getEqLogic() : null;
+        if (!is_object($eqLogic) || !$eqLogic->hasRight('w', $user)) {
+            throw ApiError::field(422, 'validation_error', 'targetId', 'Commande cible inconnue.');
+        }
+        try {
+            \history::copyHistoryToCmd($source->getId(), $target->getId());
+        } catch (\Exception $e) {
+            throw new ApiError(422, 'validation_error', $e->getMessage());
+        }
+        return $response->withStatus(204);
+    }
+
+    public function removeFutureHistory(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        \history::removeHistoryInFutur();
+        return $response->withStatus(204);
+    }
+
+    public function calculatedHistory(Request $request, Response $response): Response
+    {
+        // Une formule peut lire n'importe quelle commande, même illisible pour l'utilisateur.
+        Auth::requireAdmin($request);
+        $query = $request->getQueryParams();
+        $formula = $query['formula'] ?? '';
+        if (!is_string($formula) || trim($formula) === '') {
+            throw ApiError::field(422, 'validation_error', 'formula', 'Ce champ est obligatoire.');
+        }
+        [$start, $end] = self::period($request);
+        $grouping = $query['grouping'] ?? null;
+        if ($grouping !== null && !preg_match('/^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$/', (string) $grouping)) {
+            throw ApiError::field(422, 'validation_error', 'grouping', 'Format attendu : fonction::période (ex. avg::hour).');
+        }
+        $items = [];
+        $points = \history::getHistoryFromCalcul(\jeedom::fromHumanReadable($formula), $start, $end, false, $grouping);
+        foreach (is_array($points) ? $points : [] as $timestamp => $value) {
+            // Les clés sont des dates du core lues comme UTC (history::getHistoryFromCalcul).
+            $items[] = ['datetime' => gmdate(self::DATE, (int) $timestamp), 'value' => $value === null ? null : (float) $value];
         }
         return Json::respond($response, ['items' => $items]);
     }
@@ -327,6 +440,18 @@ final class CmdsController
             throw ApiError::field(422, 'validation_error', 'start', 'Le début doit précéder la fin.');
         }
         return [$start->format(self::DATE), $end->format(self::DATE)];
+    }
+
+    private static function bool(mixed $value, string $field): ?bool
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+        $bool = filter_var($value, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
+        if ($bool === null) {
+            throw ApiError::field(422, 'validation_error', $field, 'true ou false est attendu.');
+        }
+        return $bool;
     }
 
     private static function date(mixed $value, string $field): ?\DateTimeImmutable
