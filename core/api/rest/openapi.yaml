@@ -3703,7 +3703,7 @@ paths:
       description: |
         Remplace l'ajax `getHistory` (identifiant numérique seulement) et le
         JSON-RPC `cmd::getHistory`. Les courbes calculées à partir d'une
-        formule ne sont pas reprises ici. Demande le droit de lecture.
+        formule se lisent avec `/history/calculation`. Demande le droit de lecture.
       parameters:
         - $ref: '#/components/parameters/HistoryStart'
         - $ref: '#/components/parameters/HistoryEnd'
@@ -3716,6 +3716,13 @@ paths:
             type: string
             pattern: '^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$'
             example: avg::hour
+        - name: derive
+          in: query
+          description: |
+            Renvoyer la dérivée (écart avec le point précédent) au lieu des
+            valeurs, comme l'option `derive` de l'ajax. Ignore `grouping`.
+            Sans ce paramètre, réglage d'affichage `graphDerive` de la commande.
+          schema: { type: boolean }
       responses:
         '200':
           description: Points d'historique, du plus ancien au plus récent.
@@ -3749,6 +3756,152 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/CmdNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/{id}/history/point:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    put:
+      tags: [Commandes]
+      operationId: updateCmdHistoryPoint
+      summary: Corriger ou supprimer une valeur de l'historique
+      description: |
+        Remplace l'ajax `changeHistoryPoint`. Cherche le point à la date
+        exacte (historique puis archive). Sinon, avec `oldValue`, cherche le
+        premier point de cette valeur dans l'heure, le jour, la semaine puis le
+        mois qui suivent (cas d'une courbe regroupée). `value: null` supprime
+        le point. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/HistoryPointUpdate' }
+            example: { datetime: '2026-11-05T10:00:00+01:00', value: 21.5 }
+      responses:
+        '204': { description: Point corrigé ou supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: 'Commande inconnue (`code: cmd_not_found`) ou aucun point à cette date (`code: history_point_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/{id}/history/empty:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    post:
+      tags: [Commandes]
+      operationId: emptyCmdHistory
+      summary: Vider l'historique d'une commande
+      description: |
+        Remplace l'ajax `emptyHistory`. Supprime les valeurs de l'historique
+        et de l'archive. Avec `before`, seulement celles datées de `before` ou
+        avant ; sans corps, tout l'historique. Réservé aux administrateurs.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                before:
+                  type: string
+                  format: date-time
+                  description: Supprimer les valeurs jusqu'à cette date incluse (RFC 3339).
+            example: { before: '2026-01-01T00:00:00+01:00' }
+      responses:
+        '204': { description: Historique vidé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/{id}/history/copy:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    post:
+      tags: [Commandes]
+      operationId: copyCmdHistory
+      summary: Copier l'historique vers une autre commande
+      description: |
+        Remplace l'ajax `copyHistoryToCmd` (`history::copyHistoryToCmd`).
+        La commande `{id}` est la source : info et historisée. La cible doit
+        être une info du même sous-type ; elle devient historisée et son
+        historique est remplacé par celui de la source. Réservé aux
+        administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [targetId]
+              additionalProperties: false
+              properties:
+                targetId: { type: integer, minimum: 1, description: Commande cible. }
+            example: { targetId: 42 }
+      responses:
+        '204': { description: Historique copié. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+        '422':
+          description: |
+            Corps invalide, cible inconnue, source non historisée, source ou
+            cible qui n'est pas une info, sous-types différents.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /history/future:
+    delete:
+      tags: [Commandes]
+      operationId: removeFutureHistory
+      summary: Supprimer les valeurs datées dans le futur
+      description: |
+        Remplace l'ajax `removeHistoryInFutur` (`history::removeHistoryInFutur`) :
+        supprime, pour toutes les commandes, les valeurs de l'historique et de
+        l'archive postérieures à maintenant. Réservé aux administrateurs.
+      responses:
+        '204': { description: Valeurs supprimées. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /history/calculation:
+    get:
+      tags: [Commandes]
+      operationId: getCalculatedHistory
+      summary: Courbe calculée par une formule
+      description: |
+        Remplace l'ajax `getHistory` quand `id` est une formule
+        (`history::getHistoryFromCalcul`), ex. `#12# + #15#` ou
+        `#[Salon][Clim][Puissance]# * 2`. Une formule peut lire n'importe
+        quelle commande : refusée aux profils restreints (`restrict`), comme
+        côté ajax.
+      parameters:
+        - name: formula
+          in: query
+          required: true
+          description: Formule, commandes en `#id#` ou en nom lisible.
+          schema: { type: string, minLength: 1, example: '#12# + #15#' }
+        - $ref: '#/components/parameters/HistoryStart'
+        - $ref: '#/components/parameters/HistoryEnd'
+        - name: grouping
+          in: query
+          description: Regroupement appliqué à chaque commande avant le calcul, comme pour `/cmds/{id}/history`.
+          schema:
+            type: string
+            pattern: '^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$'
+      responses:
+        '200':
+          description: Points calculés, du plus ancien au plus récent.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CmdHistory' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
   /cmds/{id}/usages:
@@ -6009,6 +6162,19 @@ components:
             properties:
               datetime: { type: string, example: '2026-11-05 10:00:00' }
               value: { type: [number, string, 'null'], example: 21.5 }
+
+    HistoryPointUpdate:
+      type: object
+      required: [datetime, value]
+      additionalProperties: false
+      properties:
+        datetime: { type: string, format: date-time, description: Date du point (RFC 3339). }
+        value:
+          type: [number, string, 'null']
+          description: Nouvelle valeur ; `null` supprime le point.
+        oldValue:
+          type: [number, string]
+          description: Valeur affichée sur une courbe regroupée, pour retrouver le point d'origine.
 
     CmdStatistics:
       type: object
