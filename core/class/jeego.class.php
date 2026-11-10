@@ -9,35 +9,45 @@ class jeego {
 
 	public static function getHardwareName(): string {
 		$hardware = config::byKey(self::HARDWARE_CONFIG, 'core', array());
-		$name = $hardware['name'] ?? 'diy';
-		if (($hardware['refreshAt'] ?? 0) > time()) {
-			return $name;
+		if (is_string($hardware) && $hardware !== '') {
+			return $hardware;
 		}
 
+		$previous = $hardware['name'] ?? null;
+		$fallback = is_string($previous) && $previous !== '' ? $previous : 'diy';
 		$lock = self::openHardwareLock();
 		if ($lock === false) {
-			return $name;
+			return $fallback;
 		}
 		try {
 			if (!flock($lock, LOCK_EX | LOCK_NB)) {
-				return $name;
+				return $fallback;
 			}
 			$hardware = config::byKey(self::HARDWARE_CONFIG, 'core', array(), true);
-			$name = $hardware['name'] ?? 'diy';
-			if (($hardware['refreshAt'] ?? 0) > time()) {
-				return $name;
+			if (is_string($hardware) && $hardware !== '') {
+				return $hardware;
 			}
 
-			$detected = null;
+			if (is_array($hardware) && $hardware !== array()) {
+				$previous = $hardware['name'] ?? null;
+				if (is_string($previous) && $previous !== '' && $previous !== 'diy') {
+					config::save(self::HARDWARE_CONFIG, $previous);
+					return $previous;
+				}
+				// The previous format also stored DIY when the API was unavailable.
+				config::remove(self::HARDWARE_CONFIG);
+			}
+
 			try {
 				$info = self::request('/info', null, 2);
 				$detected = self::normalizeHardware($info['host'] ?? array());
 			} catch (Exception $e) {
-				// Keep the last result while the local API is unavailable.
+				return 'diy';
 			}
-			$name = $detected ?? $name;
-			config::save(self::HARDWARE_CONFIG, array('name' => $name, 'refreshAt' => time() + ($detected === null ? 60 : 86400)));
-			return $name;
+			if ($detected !== null) {
+				config::save(self::HARDWARE_CONFIG, $detected);
+			}
+			return $detected ?? 'diy';
 		} finally {
 			fclose($lock);
 		}
