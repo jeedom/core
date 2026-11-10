@@ -3828,8 +3828,9 @@ paths:
       description: |
         Remplace l'ajax `copyHistoryToCmd` (`history::copyHistoryToCmd`).
         La commande `{id}` est la source : info et historisée. La cible doit
-        être une info du même sous-type ; elle devient historisée et son
-        historique est remplacé par celui de la source. Réservé aux
+        être une info du même sous-type ; elle devient historisée. Les valeurs
+        de la source sont ajoutées à la cible, et remplacent celles de la
+        cible aux mêmes dates. Réservé aux
         administrateurs.
       requestBody:
         required: true
