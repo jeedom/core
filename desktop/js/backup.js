@@ -23,9 +23,7 @@ if (!jeeFrontEnd.backup) {
     },
     postInit: function() {
       this.updateListBackup()
-      for (var i in jeephp2js.repoList) {
-        this.updateRepoListBackup(jeephp2js.repoList[i])
-      }
+      this.updateRepoLists()
 
       jeedom.config.load({
         configuration: document.getElementById('backup').getJeeValues('.configKey')[0],
@@ -129,9 +127,7 @@ if (!jeeFrontEnd.backup) {
             document.querySelector('#bt_' + _log + 'Jeedom .fa-sync')?.unseen()
             document.querySelectorAll('.bt_' + _log + 'Jeedom .fa-sync').unseen()
             jeeFrontEnd.backup.updateListBackup()
-            for (var i in jeephp2js.repoList) {
-              jeeFrontEnd.backup.updateRepoListBackup(jeephp2js.repoList[i])
-            }
+            jeeFrontEnd.backup.updateRepoLists()
           }
         }
       })
@@ -153,26 +149,30 @@ if (!jeeFrontEnd.backup) {
         }
       })
     },
-    updateRepoListBackup: function(_repo) {
+    updateRepoLists: function() {
+      document.querySelectorAll('#backup .repoArchives:not([hidden])').forEach(archives => {
+        this.updateRepoListBackup(archives)
+      })
+    },
+    updateRepoListBackup: function(archives) {
+      const select = archives.querySelector('.sel_restoreCloudBackup')
+      const restore = archives.querySelector('.bt_restoreRepoBackup')
+      restore.disabled = true
       jeedom.repo.backupList({
-        repo: _repo,
+        repo: archives.dataset.repo,
         global: false,
         error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
+          if (!archives.hidden) jeedomUtils.showAlert({ message: error.message, level: 'danger' })
         },
         success: function(data) {
-          var options = ''
-          if (data.length > 0) {
-            for (var i in data) {
-              options += '<option value="' + data[i] + '">' + data[i] + '</option>'
-            }
-          } else {
-            document.querySelector('.bt_restoreRepoBackup[data-repo="' + _repo + '"]').addClass('disabled')
-          }
-          document.querySelector('.sel_restoreCloudBackup[data-repo="' + _repo + '"]').innerHTML = options
+          if (archives.hidden) return
+          const options = Object.values(data).map(name => {
+            const option = document.createElement('option')
+            option.value = option.textContent = name
+            return option
+          })
+          select.replaceChildren(...options)
+          restore.disabled = options.length === 0
         }
       })
     },
@@ -197,7 +197,10 @@ if (!jeeFrontEnd.backup) {
               })
             },
             success: function(data) {
-              document.getElementById('backup').setJeeValues(data, '.configKey')
+              const backup = document.getElementById('backup')
+              backup.setJeeValues(data, '.configKey')
+              backup.querySelector('.repoArchives[data-repo="samba"]').hidden = !backup.querySelector('#backupUpload_samba').checked
+              jeeFrontEnd.backup.updateRepoLists()
               jeeFrontEnd.modifyWithoutSave = false
               jeedomUtils.showAlert({
                 message: '{{Sauvegarde réussie}}',
@@ -331,12 +334,33 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
+  if (_target = event.target.closest('.bt_testSamba')) {
+    const settings = Object.fromEntries(Array.from(_target.closest('.repo').querySelectorAll('[data-samba-key]'), input => [input.dataset.sambaKey, input.value]))
+    _target.disabled = true
+    jeedom.repo.test({
+      repo: 'samba',
+      settings: settings,
+      error: function(error) {
+        _target.disabled = false
+        jeedomUtils.showAlert({ message: error.message, level: 'danger' })
+      },
+      success: function() {
+        _target.disabled = false
+        jeedomUtils.showAlert({ message: '{{Test réussi}}', level: 'success' })
+      }
+    })
+    return
+  }
+
   if (_target = event.target.closest('.bt_restoreRepoBackup')) {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud}} :<br><b>' + _target.closest('.repo').querySelector('.sel_restoreCloudBackup').value + '</b> ?', function(result) {
+    const backup = _target.closest('.repo').querySelector('.sel_restoreCloudBackup').value
+    const label = document.createElement('b')
+    label.textContent = backup
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir rapatrier la sauvegarde}} ?<br>' + label.outerHTML, function(result) {
       if (result) {
         _target.querySelector('.fa-sync').seen()
         jeedom.backup.restoreCloud({
-          backup: _target.closest('.repo').querySelector('.sel_restoreCloudBackup').value,
+          backup: backup,
           repo: _target.getAttribute('data-repo'),
           error: function(error) {
             jeedomUtils.showAlert({
