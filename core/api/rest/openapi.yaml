@@ -1722,6 +1722,34 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
+  /plugins/{id}/configuration/form:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags: [Plugins]
+      operationId: getPluginConfigurationForm
+      summary: Lire les champs du formulaire déclaratif et leurs valeurs (administrateur).
+      responses:
+        '200':
+          description: Champs déclarés par le plugin et valeurs actuelles.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [fields, values]
+                properties:
+                  fields:
+                    type: object
+                    additionalProperties: { $ref: '#/components/schemas/PluginSettingField' }
+                  values: { $ref: '#/components/schemas/PluginSettingValues' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500':
+          description: Déclaration des réglages invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
   /plugins/{id}/icon:
     parameters:
     - $ref: '#/components/parameters/PluginId'
@@ -5449,6 +5477,16 @@ components:
               state: { type: string, enum: [queued, running, succeeded, failed, skipped] }
               error: { type: [string, 'null'] }
 
+    PluginSettingField:
+      type: object
+      required: [type]
+      properties:
+        type: { type: string, enum: [boolean, number, string] }
+        label: { type: string }
+        description: { type: string }
+        enum: { type: array, items: { type: string }, minItems: 1 }
+        min: { type: number }
+        max: { type: number }
     PluginSettingValues:
       type: object
       additionalProperties: { type: [boolean, number, string, 'null'] }
@@ -5469,6 +5507,9 @@ components:
             type: string
           compatible:
             type: boolean
+          hasUiSettings:
+            type: boolean
+            description: Le plugin fournit une déclaration de réglages pour Core UI.
           configurationPath:
             type:
             - string

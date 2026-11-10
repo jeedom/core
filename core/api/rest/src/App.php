@@ -178,6 +178,7 @@ final class App
             $api->delete('/plugins/{id}', $plugins->delete(...));
             $api->get('/plugins/{id}/configuration', $plugins->getConfiguration(...));
             $api->patch('/plugins/{id}/configuration', $plugins->updateConfiguration(...));
+            $api->get('/plugins/{id}/configuration/form', $plugins->getConfigurationForm(...));
             $api->get('/plugins/{id}/dependencies', $plugins->dependencies(...));
             $api->patch('/plugins/{id}/dependencies', $plugins->updateDependencies(...));
             $api->post('/plugins/{id}/dependencies/install', $plugins->installDependencies(...));

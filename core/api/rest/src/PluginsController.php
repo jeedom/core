@@ -95,6 +95,14 @@ final class PluginsController
         return self::respond($response, $values);
     }
 
+    public function getConfigurationForm(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $id = self::find($args['id'])->getId();
+        $fields = PluginSettings::fields($id);
+        return self::respond($response, ['fields' => (object) $fields, 'values' => PluginSettings::read($id, $fields)]);
+    }
+
     public function icon(Request $request, Response $response, array $args): Response
     {
         $plugin = self::find($args['id']);
@@ -324,6 +332,7 @@ final class PluginsController
             'compatible' => version_compare(\jeedom::version(), (string) $plugin->getRequire(), '>=')
                 && (\system::getDistrib() !== 'debian' || !$plugin->getRequireOsVersion() || version_compare(\system::getOsVersion(), (string) $plugin->getRequireOsVersion(), '>=')),
             'configurationPath' => $plugin->getPathToConfigurationById() ?: null,
+            'hasUiSettings' => PluginSettings::exists($id),
             'hasDependency' => (bool) $plugin->getHasDependency() || is_file(\plugin::getPluginPath($id) . '/plugin_info/packages.json'),
             'hasOwnDaemon' => (bool) $plugin->getHasOwnDeamon(), 'usedSpace' => is_numeric($plugin->getUsedSpace()) ? (int) $plugin->getUsedSpace() : null,
             'installation' => trim(html_entity_decode(strip_tags((string) $plugin->getInstallation()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),

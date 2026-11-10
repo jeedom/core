@@ -8,12 +8,22 @@ final class PluginSettings
 {
     private const MAX_BYTES = 16384;
 
-    /** @return array<string, array{type: string, enum?: list<string>}> */
-    public static function fields(string $id): array
+    private static function path(string $id): ?string
     {
         $root = realpath(\plugin::getPluginPath($id));
         $path = $root === false ? false : realpath($root . '/plugin_info/ui-settings.json');
-        if ($path === false || !str_starts_with($path, $root . '/') || !is_file($path)) {
+        return $path !== false && str_starts_with($path, $root . '/') && is_file($path) ? $path : null;
+    }
+
+    public static function exists(string $id): bool
+    {
+        return self::path($id) !== null;
+    }
+
+    public static function fields(string $id): array
+    {
+        $path = self::path($id);
+        if ($path === null) {
             throw new ApiError(404, 'plugin_settings_not_found', 'Ce plugin ne déclare pas de configuration pour cette interface.');
         }
         $raw = @file_get_contents($path, false, null, 0, self::MAX_BYTES + 1);
@@ -23,7 +33,7 @@ final class PluginSettings
             // byKeys construit sa clause IN avec ces seules clés, jamais avec les clés de la requête.
             if (!preg_match('/\A[A-Za-z][A-Za-z0-9_:-]{0,126}\z/', (string) $key)
                 || \config::shouldBeEncrypted((string) $key, $id)
-                || !is_array($field) || array_diff(array_keys($field), ['type', 'enum'])
+                || !is_array($field) || array_diff(array_keys($field), ['type', 'enum', 'label', 'description', 'min', 'max'])
                 || !in_array($field['type'] ?? null, ['boolean', 'number', 'string'], true)) {
                 self::invalidSchema();
             }
@@ -32,6 +42,15 @@ final class PluginSettings
                     || $field['enum'] === [] || array_filter($field['enum'], static fn ($item) => !is_string($item)))) {
                 self::invalidSchema();
             }
+            foreach (['label', 'description'] as $text) {
+                if (array_key_exists($text, $field) && !is_string($field[$text])) self::invalidSchema();
+            }
+            foreach (['min', 'max'] as $bound) {
+                if (array_key_exists($bound, $field) && ($field['type'] !== 'number' || !self::isNumber($field[$bound]))) {
+                    self::invalidSchema();
+                }
+            }
+            if (isset($field['min'], $field['max']) && $field['min'] > $field['max']) self::invalidSchema();
         }
         return $fields;
     }
@@ -80,9 +99,14 @@ final class PluginSettings
     {
         return match ($field['type']) {
             'boolean' => is_bool($value),
-            'number' => (is_int($value) || is_float($value)) && is_finite($value),
+            'number' => self::isNumber($value) && $value >= ($field['min'] ?? -INF) && $value <= ($field['max'] ?? INF),
             'string' => is_string($value) && (!isset($field['enum']) || in_array($value, $field['enum'], true)),
         };
+    }
+
+    private static function isNumber(mixed $value): bool
+    {
+        return (is_int($value) || is_float($value)) && is_finite($value);
     }
 
     private static function invalidSchema(): never
