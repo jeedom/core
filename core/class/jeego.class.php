@@ -58,7 +58,10 @@ class jeego {
 	}
 
 	private static function openHardwareLock() {
-		return @fopen(jeedom::getTmpFolder() . '/jeego-hardware.lock', 'c');
+		$path = jeedom::getTmpFolder() . '/jeego-hardware.lock';
+		// Restore and consistency can create the lock as root before the web worker uses it.
+		$lock = @fopen($path, 'r');
+		return $lock !== false ? $lock : @fopen($path, 'c');
 	}
 
 	private static function normalizeHardware($host): ?string {
