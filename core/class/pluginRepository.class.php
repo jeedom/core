@@ -6,9 +6,11 @@ class pluginRepository {
 	public static function all(): array {
 		$items = array();
 		foreach (update::listRepo() as $id => $repo) {
-			if (!in_array($id, array('market', 'github', 'url', 'file'), true) || empty($repo['enable']) || empty($repo['scope']['plugin'])) continue;
+			if (!in_array($id, array('market', 'github', 'url', 'file'), true) || empty($repo['scope']['plugin'])) continue;
 			if ($id === 'market') {
-				$items[] = array('id' => $id, 'name' => (string) $repo['name'], 'fields' => array());
+				if (repo_market::isConnected()) {
+					$items[] = array('id' => $id, 'name' => (string) $repo['name'], 'fields' => array());
+				}
 				continue;
 			}
 			$fields = array();
@@ -27,7 +29,7 @@ class pluginRepository {
 		if ($source === 'market') throw new InvalidArgumentException('Utilisez la route d’installation Market.', 422);
 		$repo = null;
 		foreach (self::all() as $item) if ($item['id'] === $source) $repo = $item;
-		if ($repo === null) throw new InvalidArgumentException('Source d’installation absente ou désactivée.', 422);
+		if ($repo === null) throw new InvalidArgumentException('Source d’installation inconnue.', 422);
 		$allowed = array_column($repo['fields'], 'id');
 		if (array_diff(array_keys($configuration), $allowed)) throw new InvalidArgumentException('Paramètre de dépôt inconnu.', 422);
 		$result = array();

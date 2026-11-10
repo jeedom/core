@@ -45,7 +45,7 @@ class update {
 		$updates = self::all($_filter);
 		$updates_sources = array();
 		if (is_array($updates)) {
-			foreach (self::all($_filter) as $update) {
+			foreach ($updates as $update) {
 				if ($update->getType() == 'core') {
 					if ($findCore) {
 						$update->remove();
@@ -59,7 +59,8 @@ class update {
 					$update->save();
 					$update->checkUpdate();
 				} else {
-					if ($update->getStatus() != 'hold') {
+					if ($update->getStatus() != 'hold' && $update->getConfiguration('doNotUpdate', 0) != 1
+						&& ($update->getType() !== 'plugin' || is_file(plugin::getPathById($update->getLogicalId())))) {
 						if (!isset($updates_sources[$update->getSource()])) {
 							$updates_sources[$update->getSource()] = array();
 						}
@@ -78,8 +79,8 @@ class update {
 			$update->checkUpdate();
 		}
 		foreach ($updates_sources as $source => $updates) {
-			$class = 'repo_' . $source;
-			if (class_exists($class) && method_exists($class, 'checkUpdate') && config::byKey($source . '::enable') == 1) {
+			$class = self::repositoryClass($source, 'checkUpdate');
+			if ($class !== null) {
 				$class::checkUpdate($updates);
 			}
 		}
@@ -101,7 +102,6 @@ class update {
 				'configuration' => (method_exists($class, 'getConfigurationOption')) ? $class::getConfigurationOption() : array(),
 				'scope' => $class::$_scope,
 			);
-			$return[str_replace('.repo.php', '', $file)]['enable'] = config::byKey(str_replace('.repo.php', '', $file) . '::enable');
 		}
 		return $return;
 	}
@@ -113,8 +113,14 @@ class update {
 			'configuration' => (method_exists($class, 'getConfigurationOption')) ? $class::getConfigurationOption() : array(),
 			'scope' => $class::$_scope,
 		);
-		$return['enable'] = config::byKey($_id . '::enable');
 		return $return;
+	}
+
+	/** Repositories whose backup archives are available to list or retrieve. */
+	public static function listBackupRepos(): array {
+		return array_filter(self::listRepo(), static fn ($repo, $id) => !empty($repo['scope']['backup'])
+			&& self::repositoryClass($id, 'backup_list') !== null
+			&& ($id !== 'samba' || repo_samba::backupEnabled()), ARRAY_FILTER_USE_BOTH);
 	}
 
 	public static function updateAll($_filter = '') {
@@ -412,6 +418,14 @@ class update {
 		}, $wait ? LOCK_SH : LOCK_SH | LOCK_NB);
 	}
 
+	private static function repositoryClass(?string $source, string $method): ?string {
+		$class = 'repo_' . $source;
+		if (!method_exists($class, $method) || ($source === 'market' && !repo_market::isConnected())) {
+			return null;
+		}
+		return $class;
+	}
+
 	public static function canReinstall(update $update): bool {
 		if ($update->getStatus() === 'hold') return false;
 		if ($update->getType() === 'core') {
@@ -419,7 +433,7 @@ class update {
 		}
 		if ($update->getType() !== 'plugin' || $update->getConfiguration('doNotUpdate', 0) == 1) return false;
 		$source = $update->getSource();
-		return config::byKey($source . '::enable') == 1 && method_exists('repo_' . $source, 'downloadObject');
+		return self::repositoryClass($source, 'downloadObject') !== null;
 	}
 
 	public static function operationErrorMessage(Throwable $error): string {
@@ -428,14 +442,11 @@ class update {
 	}
 
 	private static function validateUpdate($update, bool $force): void {
-		if (!is_object($update) || !in_array($update->getType(), array('core', 'plugin'), true)
-			|| ($force ? !self::canReinstall($update) : $update->getStatus() !== 'update')) {
+		if (!is_object($update) || !self::canReinstall($update) || (!$force && $update->getStatus() !== 'update')) {
 			throw new RuntimeException('Un composant sélectionné ne peut pas être mis à jour.', 409);
 		}
-		if ($update->getType() === 'core') {
-			if ($update->getLogicalId() !== 'jeedom' || config::byKey('update::allowCore', 'core', 1) != 1) throw new RuntimeException('La mise à jour du Core est désactivée.', 409);
-		} elseif ($update->getConfiguration('doNotUpdate', 0) == 1 || !is_file(plugin::getPathById($update->getLogicalId()))) {
-			throw new RuntimeException('Plugin absent ou mises à jour désactivées.', 409);
+		if ($update->getType() === 'plugin' && !is_file(plugin::getPathById($update->getLogicalId()))) {
+			throw new RuntimeException('Plugin absent.', 409);
 		}
 	}
 
@@ -521,8 +532,8 @@ class update {
 
 	public function getInfo() {
 		if ($this->getType() != 'core') {
-			$class = 'repo_' . $this->getSource();
-			if (class_exists($class) && method_exists($class, 'objectInfo') && config::byKey($this->getSource() . '::enable') == 1) {
+			$class = self::repositoryClass($this->getSource(), 'objectInfo');
+			if ($class !== null) {
 				return $class::objectInfo($this);
 			}
 		}
@@ -538,8 +549,8 @@ class update {
 			jeedom::update();
 		} else {
 			log::add(__CLASS__, 'alert', __('Début de la mise à jour de :', __FILE__) . ' ' . $this->getLogicalId() . "\n");
-			$class = 'repo_' . $this->getSource();
-			if (class_exists($class) && method_exists($class, 'downloadObject') && config::byKey($this->getSource() . '::enable') == 1) {
+			$class = self::repositoryClass($this->getSource(), 'downloadObject');
+			if ($class !== null) {
 				$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
@@ -646,8 +657,8 @@ class update {
 					break;
 			}
 			try {
-				$class = 'repo_' . $this->getSource();
-				if (class_exists($class) && method_exists($class, 'deleteObjet') && config::byKey($this->getSource() . '::enable') == 1) {
+				$class = self::repositoryClass($this->getSource(), 'deleteObjet');
+				if ($class !== null) {
 					$class::deleteObjet($this);
 				}
 			} catch (\Throwable $e) {
@@ -757,8 +768,8 @@ class update {
 			if (config::byKey('core::repo::provider') == 'default') {
 				$this->setRemoteVersion(self::getLastAvailableVersion());
 			} else {
-				$class = 'repo_' . config::byKey('core::repo::provider');
-				if (!method_exists($class, 'versionCore') || config::byKey(config::byKey('core::repo::provider') . '::enable') != 1) {
+				$class = self::repositoryClass(config::byKey('core::repo::provider'), 'versionCore');
+				if ($class === null) {
 					$version = $this->getLocalVersion();
 				} else {
 					$version = $class::versionCore();
@@ -776,8 +787,8 @@ class update {
 			$this->save();
 		} else {
 			try {
-				$class = 'repo_' . $this->getSource();
-				if (class_exists($class) && method_exists($class, 'checkUpdate') && config::byKey($this->getSource() . '::enable') == 1) {
+				$class = self::repositoryClass($this->getSource(), 'checkUpdate');
+				if ($class !== null) {
 					$class::checkUpdate($this);
 				}
 			} catch (\Throwable $ex) {

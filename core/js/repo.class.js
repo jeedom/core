@@ -78,6 +78,7 @@ jeedom.repo.test = function(_params) {
   paramsAJAX.data = {
     action: 'test',
     repo: _params.repo,
+    ...(_params.settings ? { settings: JSON.stringify(_params.settings) } : {}),
   };
   domUtils.ajax(paramsAJAX);
 }

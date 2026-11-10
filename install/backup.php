@@ -203,13 +203,7 @@ try {
 	consoleProgress(__FILE__, 85);
 	global $NO_CLOUD_BACKUP;
 	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP === false)) {
-		foreach (update::listRepo() as $key => $value) {
-			if ($value['scope']['backup'] === false) {
-				continue;
-			}
-			if (config::byKey($key . '::enable', 'core', 0) == 0) {
-				continue;
-			}
+		foreach (update::listBackupRepos() as $key => $value) {
 			if (config::byKey($key . '::cloudUpload', 'core', 0) == 0) {
 				continue;
 			}

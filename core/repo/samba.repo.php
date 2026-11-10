@@ -40,23 +40,23 @@ class repo_samba {
 		return array(
 			'configuration' => array(
 				'backup::ip' => array(
-					'name' => __('[Backup] IP', __FILE__),
+					'name' => __('Adresse IP du serveur', __FILE__),
 					'type' => 'input'
 				),
 				'backup::username' => array(
-					'name' => __('[Backup] Utilisateur', __FILE__),
+					'name' => __('Utilisateur', __FILE__),
 					'type' => 'input'
 				),
 				'backup::password' => array(
-					'name' => __('[Backup] Mot de passe', __FILE__),
+					'name' => __('Mot de passe', __FILE__),
 					'type' => 'password'
 				),
 				'backup::share' => array(
-					'name' => __('[Backup] Partage', __FILE__),
+					'name' => __('Partage', __FILE__),
 					'type' => 'input'
 				),
 				'backup::folder' => array(
-					'name' => __('[Backup] Chemin', __FILE__),
+					'name' => __('Dossier dans le partage', __FILE__),
 					'type' => 'input'
 				),
 			),
@@ -67,8 +67,7 @@ class repo_samba {
 	private const BACKUP_CONNECTION_KEYS = ['ip', 'share', 'folder', 'username', 'password'];
 
 	public static function backupEnabled(): bool {
-		$flags = config::byKeys(['samba::enable', 'samba::cloudUpload']);
-		return (string) $flags['samba::enable'] === '1' && (string) $flags['samba::cloudUpload'] === '1';
+		return (string) config::byKey('samba::cloudUpload') === '1';
 	}
 
 	public static function validBackupSetting(string $_key, string $_value): bool {
@@ -148,6 +147,11 @@ class repo_samba {
 	}
 
 	public static function test(array $_overrides = []): bool {
+		foreach ($_overrides as $key => $value) {
+			if (!is_string($value) || !self::validBackupSetting((string) $key, $value)) {
+				throw new InvalidArgumentException('Paramètre Samba invalide.', 422);
+			}
+		}
 		self::executeBackupCommand('ls', self::backupSettings($_overrides), null, 10);
 		return true;
 	}

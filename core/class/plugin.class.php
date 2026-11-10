@@ -631,8 +631,8 @@ class plugin {
 		if ($marketId < 1 || $marketId > 2147483647 || !in_array($version, array('stable', 'beta'), true)) {
 			throw new InvalidArgumentException('Identifiant Market ou branche invalide.', 422);
 		}
-		if (config::byKey('market::enable') != 1) {
-			throw new RuntimeException('Le dépôt Market est désactivé.', 409);
+		if (!repo_market::isConnected()) {
+			throw new RuntimeException('Connectez ce Jeedom au Market.', 409);
 		}
 		try {
 			$market = repo_market::byId($marketId);

@@ -5,9 +5,6 @@ if (!isConnect('admin')) {
 
 $repos = update::listRepo();
 $keys = array('api', 'apipro', 'apitts', 'dns::token', 'market::allowDNS', 'ldap::enable', 'apimarket');
-foreach ($repos as $key => $value) {
-	$keys[] = $key . '::enable';
-}
 global $JEEDOM_INTERNAL_CONFIG;
 $configs = config::byKeys($keys);
 user::isBan();
@@ -742,7 +739,7 @@ $productName = config::byKey('product_name');
 							if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
 								continue;
 							}
-							if ($configs[$key . '::enable'] == 0) {
+							if ($key === 'market' && !repo_market::isConnected()) {
 								continue;
 							}
 							$div = '<div class="form-group">';
@@ -1787,9 +1784,6 @@ $productName = config::byKey('product_name');
 												if (!isset($value['scope']['core']) || $value['scope']['core'] === false) {
 													continue;
 												}
-												if ($configs[$key . '::enable'] == 0) {
-													continue;
-												}
 												echo '<option value="' . $key . '">' . $value['name'] . '</option>';
 											}
 											?>
@@ -1881,9 +1875,12 @@ $productName = config::byKey('product_name');
 						<form class="form-horizontal">
 							<fieldset>
 								<legend>{{Configuration des dépôts}}</legend>
+								<?php
+								$configuredRepos = array_filter($repos, static fn ($repo, $id) => $id !== 'samba' && !empty($repo['scope']['hasConfiguration']), ARRAY_FILTER_USE_BOTH);
+								?>
 								<ul class="nav nav-tabs" role="tablist">
 									<?php
-									foreach ($repos as $key => $value) {
+									foreach ($configuredRepos as $key => $value) {
 										$name = (isset($value['configuration']['translate_name'])) ? $value['configuration']['translate_name'] : $value['name'];
 										$active = ($key == 'market') ? 'active' : '';
 										echo '<li role="presentation" class="' . $active . '"><a data-target="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $name . '</a></li>';
@@ -1892,7 +1889,7 @@ $productName = config::byKey('product_name');
 								</ul>
 								<div class="tab-content">
 									<?php
-									foreach ($repos as $key => $value) {
+									foreach ($configuredRepos as $key => $value) {
 										$div = '';
 
 										$name = (isset($value['configuration']['translate_name'])) ? $value['configuration']['translate_name'] : $value['name'];
@@ -1900,18 +1897,6 @@ $productName = config::byKey('product_name');
 
 										$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
 										$div .= '<br/>';
-										$div .= '<div class="form-group">';
-										$div .= '<label class="col-lg-3 col-xs-6 control-label">{{Activer}} ' . $name . '</label>';
-										$div .= '<div class="col-sm-1">';
-										$div .= '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
-										$div .= '</div>';
-										$div .= '</div>';
-										if ($value['scope']['hasConfiguration'] === false) {
-											$div .= '</div>';
-											echo $div;
-											continue;
-										}
-										$div .= '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
 										foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
 											$div .= '<div class="form-group">';
 											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">';
@@ -1972,7 +1957,6 @@ $productName = config::byKey('product_name');
 											$div .= '</div>';
 											$div .= '</div>';
 										}
-										$div .= '</div>';
 										$div .= '</div>';
 										echo $div;
 									}

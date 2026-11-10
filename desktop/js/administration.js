@@ -1390,17 +1390,6 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
   }
 })
 
-document.getElementById('updatetab').addEventListener('change', function(event) {
-  var _target = null
-  if (_target = event.target.closest('.enableRepository')) {
-    if (_target.checked) {
-      document.querySelectorAll('.repositoryConfiguration' + _target.getAttribute('data-repo')).seen()
-    } else {
-      document.querySelectorAll('.repositoryConfiguration' + _target.getAttribute('data-repo')).unseen()
-    }
-    return
-  }
-})
 
 
 /**************************CACHE***********************************/

@@ -394,6 +394,10 @@ class repo_market {
 		return marketClient::connect($login, $password, $twoFactorCode);
 	}
 
+	public static function isConnected(): bool {
+		return marketClient::connected();
+	}
+
 	public static function connectionStatus() {
 		return marketClient::status();
 	}
@@ -1209,7 +1213,7 @@ class marketClient {
 
 	public static function cron5() {
 		try {
-			if (config::byKey('service::monitoring::enable') && config::byKey('cloud::monitoring::disable', 'core', 0) == 0) {
+			if (self::connected() && config::byKey('service::monitoring::enable') && config::byKey('market::cloud::monitoring::disable', 'core', 0) == 0) {
 				sleep(rand(1, 120));
 				$data = array(
 					'health' => jeedom::health(),

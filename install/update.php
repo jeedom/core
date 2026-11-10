@@ -136,9 +136,6 @@ try {
 					if (!method_exists($class, 'downloadCore')) {
 						throw new Exception('Unable to find method : ' . $class . '::downloadCore');
 					}
-					if (config::byKey(config::byKey('core::repo::provider') . '::enable') != 1) {
-						throw new Exception('Repo is disable : ' . $class);
-					}
 					$class::downloadCore($tmp);
 				}
 				echo "[PROGRESS][25]\n";

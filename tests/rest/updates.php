@@ -105,7 +105,11 @@ class queue {
     public static array $items = [];
     public static function all() { return self::$items; }
 }
-class repo_market { public static function downloadObject($update) {} }
+class repo_market {
+    public static bool $connected = true;
+    public static function isConnected(): bool { return self::$connected; }
+    public static function downloadObject($update) {}
+}
 update::$items = [new update(1, 'core', 'jeedom'), new update(2, 'plugin', 'hue'), new update(3, 'plugin', 'weather'),
     new update(4, 'plugin', 'held', 'hold'), new update(5, 'plugin', 'blocked', 'update', true), new update(6, 'os', 'debian')];
 foreach (['hue', 'weather', 'held', 'blocked', 'manual'] as $id) file_put_contents(plugin::getPathById($id), '{}');
@@ -190,8 +194,9 @@ update::$items[0] = new update(1, 'core', 'jeedom', 'ok');
 update::$items[1] = new update(2, 'plugin', 'hue', 'ok');
 call('POST', '/updates/operations', 422, ['ids' => [2], 'force' => 'true']);
 call('POST', '/updates/operations', 409, ['ids' => [2]]);
-call('POST', '/updates/operations', 409, ['ids' => [2], 'force' => true]); // Disabled repository.
-config::save('market::enable', 1);
+repo_market::$connected = false;
+call('POST', '/updates/operations', 409, ['ids' => [2], 'force' => true]);
+repo_market::$connected = true;
 foreach ([4, 5, 6] as $id) call('POST', '/updates/operations', 409, ['ids' => [$id], 'force' => true]);
 $job = call('POST', '/updates/operations', 202, ['ids' => [2, 1], 'force' => true]);
 call('POST', '/updates/operations', 409, ['ids' => [1, 2]]);

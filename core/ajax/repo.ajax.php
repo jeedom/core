@@ -48,8 +48,11 @@ try {
 
 	if (init('action') == 'restoreCloud') {
 		unautorizedInDemo();
-		$class = 'repo_' . init('repo');
-		$class::backup_restore(init('backup'));
+		$repo = update::listBackupRepos()[init('repo')] ?? null;
+		if ($repo === null) {
+			throw new Exception(__('Destination de sauvegarde indisponible.', __FILE__));
+		}
+		$repo['class']::backup_restore(init('backup'));
 		ajax::success();
 	}
 
@@ -99,8 +102,22 @@ try {
 	}
 
 	if (init('action') == 'test') {
-		$class = 'repo_' . init('repo');
-		$class::test();
+		if (init('repo') === 'samba') {
+			try {
+				$settings = json_decode(init('settings', '{}'), true, 8, JSON_THROW_ON_ERROR);
+				if (!is_array($settings)) {
+					throw new InvalidArgumentException();
+				}
+				repo_samba::test($settings);
+			} catch (JsonException | InvalidArgumentException $e) {
+				throw new Exception(__('Vérifiez les réglages du partage Samba.', __FILE__));
+			} catch (Exception $e) {
+				throw new Exception(__('Impossible d’accéder au partage Samba.', __FILE__));
+			}
+		} else {
+			$class = 'repo_' . init('repo');
+			$class::test();
+		}
 		ajax::success();
 	}
 
@@ -170,8 +187,11 @@ try {
 	}
 
 	if (init('action') == 'backupList') {
-		$class = 'repo_' . init('repo');
-		ajax::success($class::backup_list());
+		$repo = update::listBackupRepos()[init('repo')] ?? null;
+		if ($repo === null) {
+			throw new Exception(__('Destination de sauvegarde indisponible.', __FILE__));
+		}
+		ajax::success($repo['class']::backup_list());
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

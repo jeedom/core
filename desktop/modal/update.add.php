@@ -18,7 +18,8 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$repos = update::listRepo();
+$repos = array_filter(update::listRepo(), static fn ($repo, $id) => !empty($repo['scope']['plugin'])
+  && isset($repo['configuration']['parameters_for_add']) && ($id !== 'market' || repo_market::isConnected()), ARRAY_FILTER_USE_BOTH);
 ?>
 
 <div id="md_updateAdd" data-modalType="md_updateAdd">
@@ -36,18 +37,6 @@ $repos = update::listRepo();
             <option value="nothing">{{Aucun}}</option>
             <?php
             foreach ($repos as $key => $value) {
-              if ($value['configuration'] === false) {
-                continue;
-              }
-              if ($value['scope']['plugin'] === false) {
-                continue;
-              }
-              if (!isset($value['configuration']['parameters_for_add'])) {
-                continue;
-              }
-              if (config::byKey($key . '::enable') == 0) {
-                continue;
-              }
               $name = (isset($value['configuration']['translate_name'])) ? $value['configuration']['translate_name'] : $value['name'];
               echo '<option value="' . $key . '">' . $name . '</option>';
             }
@@ -59,15 +48,6 @@ $repos = update::listRepo();
       <legend><i class="fas fa-wrench"></i> {{Configuration}}</legend>
       <?php
       foreach ($repos as $key => $value) {
-        if ($value['configuration'] === false) {
-          continue;
-        }
-        if ($value['scope']['plugin'] === false) {
-          continue;
-        }
-        if (!isset($value['configuration']['parameters_for_add'])) {
-          continue;
-        }
         $div = '<div class="repoSource repo_' . $key . '" style="display:none;">';
         $div .= '<div class="form-group">';
         $div .= '<label class="col-sm-3 control-label">';

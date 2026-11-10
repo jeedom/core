@@ -416,11 +416,11 @@ final class PluginsController
     private static function updateSummary($update): ?array
     {
         if (!is_object($update)) return null;
-        $enabled = $update->getType() === 'core' ? \config::byKey('update::allowCore', 'core', 1) == 1 : $update->getConfiguration('doNotUpdate', 0) != 1;
+        $reinstallable = \update::canReinstall($update);
         return ['id' => (int) $update->getId(), 'status' => (string) $update->getStatus(),
             'localVersion' => $update->getLocalVersion() ?: null, 'remoteVersion' => $update->getRemoteVersion() ?: null,
-            'updatable' => $enabled && $update->getStatus() === 'update',
-            'reinstallable' => \update::canReinstall($update)];
+            'updatable' => $reinstallable && $update->getStatus() === 'update',
+            'reinstallable' => $reinstallable];
     }
 
     private static function dependencyInfo(\plugin $plugin): array
