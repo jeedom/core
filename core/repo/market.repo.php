@@ -230,6 +230,10 @@ class repo_market {
 		return marketClient::backup_send($_path);
 	}
 
+	public static function isBackupFolderName(string $_name): bool {
+		return marketClient::isBackupSegment($_name);
+	}
+
 	public static function backup_clean($_path) {
 		return marketClient::backup_clean($_path);
 	}
@@ -1043,9 +1047,13 @@ class marketClient {
 		}
 	}
 
+	public static function isBackupSegment($value): bool {
+		return !(!is_string($value) || trim($value) === '' || $value === '.' || $value === '..'
+			|| strlen($value) > 255 || preg_match('~[/\\\\\x00-\x1f\x7f]~', $value));
+	}
+
 	private static function backupSegment($value) {
-		if (!is_string($value) || trim($value) === '' || $value === '.' || $value === '..'
-			|| strlen($value) > 255 || preg_match('~[/\\\\\x00-\x1f\x7f]~', $value)) {
+		if (!self::isBackupSegment($value)) {
 			throw new Exception(__('Nom de dossier ou de sauvegarde Cloud invalide.', __FILE__));
 		}
 		return $value;
