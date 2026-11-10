@@ -174,6 +174,7 @@ final class App
             $api->get('/plugins/installations/{operationId}/status', $plugins->installation(...));
             $api->get('/plugins/{id}', $plugins->get(...));
             $api->get('/plugins/{id}/icon', $plugins->icon(...));
+            $api->get('/plugins/{id}/ui/{path:.+}', $plugins->uiAsset(...));
             $api->patch('/plugins/{id}', $plugins->update(...));
             $api->delete('/plugins/{id}', $plugins->delete(...));
             $api->get('/plugins/{id}/configuration', $plugins->getConfiguration(...));

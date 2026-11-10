@@ -1765,6 +1765,36 @@ paths:
               schema: { type: string, format: binary }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '404': { $ref: '#/components/responses/NotFound' }
+  /plugins/{id}/ui/{path}:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    - name: path
+      in: path
+      required: true
+      description: Chemin relatif au dossier ui du plugin, y compris les sous-répertoires.
+      schema: { type: string, minLength: 1, maxLength: 1024 }
+    get:
+      tags: [Plugins]
+      operationId: getPluginUiAsset
+      summary: Lire une ressource de l’interface d’un plugin actif.
+      responses:
+        '200':
+          description: Ressource du dossier ui servie avec son type MIME.
+          content:
+            text/javascript:
+              schema: { type: string }
+            text/css:
+              schema: { type: string }
+            application/json:
+              schema: {}
+            application/wasm:
+              schema: { type: string, format: binary }
+            image/*:
+              schema: { type: string, format: binary }
+            font/*:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
   /plugins/{id}/dependencies:
     parameters:
     - $ref: '#/components/parameters/PluginId'
@@ -5361,10 +5391,10 @@ components:
         uiModule:
           type: [string, 'null']
           description: |
-            URL relative du module de la nouvelle UI fourni par le plugin,
-            (`plugins/<id>/ui/ui.js`, à part des pages desktop et mobile), `null`
+            URL REST relative du module de la nouvelle UI fourni par le plugin,
+            (`api/v1/plugins/<id>/ui/ui.js`, à part des pages desktop et mobile), `null`
             s'il n'en a pas. Toujours `null` pour un plugin désactivé.
-          example: plugins/zwavejs/ui/ui.js
+          example: api/v1/plugins/zwavejs/ui/ui.js
         version: { type: [string, 'null'], description: Version installée. }
         management: { $ref: '#/components/schemas/PluginManagement' }
 

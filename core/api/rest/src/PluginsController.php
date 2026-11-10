@@ -12,6 +12,24 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  */
 final class PluginsController
 {
+    private const UI_ASSET_TYPES = [
+        'js' => 'text/javascript',
+        'mjs' => 'text/javascript',
+        'css' => 'text/css',
+        'json' => 'application/json',
+        'wasm' => 'application/wasm',
+        'svg' => 'image/svg+xml',
+        'png' => 'image/png',
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'webp' => 'image/webp',
+        'avif' => 'image/avif',
+        'gif' => 'image/gif',
+        'ico' => 'image/x-icon',
+        'woff' => 'font/woff',
+        'woff2' => 'font/woff2',
+    ];
+
     public function list(Request $request, Response $response): Response
     {
         $query = $request->getQueryParams();
@@ -114,8 +132,39 @@ final class PluginsController
             || !str_ends_with($path, '.png') || !is_file($path) || ($stream = @fopen($path, 'rb')) === false) {
             throw new ApiError(404, 'plugin_icon_not_found', 'Image du plugin introuvable.');
         }
+        return self::assetResponse($response, $stream, 'image/png');
+    }
+
+    public function uiAsset(Request $request, Response $response, array $args): Response
+    {
+        $plugin = self::find($args['id']);
+        $relative = $args['path'];
+        $type = self::UI_ASSET_TYPES[strtolower(pathinfo($relative, PATHINFO_EXTENSION))] ?? null;
+        $path = $type !== null && $plugin->isActive() ? self::uiAssetPath($plugin->getId(), $relative) : null;
+        if ($path === null || ($stream = @fopen($path, 'rb')) === false) {
+            throw new ApiError(404, 'plugin_ui_asset_not_found', 'Fichier de l’interface du plugin introuvable.');
+        }
+        return self::assetResponse($response, $stream, $type);
+    }
+
+    private static function uiAssetPath(string $id, string $relative): ?string
+    {
+        if (strlen($relative) > 1024 || str_contains($relative, '\\')
+            || preg_match('~(?:^|/)(?:[.]|/|$)|[\x00-\x1F\x7F]~', $relative)) {
+            return null;
+        }
+        $root = realpath(\plugin::getPluginPath($id));
+        if ($root === false) return null;
+        $path = $root . '/ui/' . $relative;
+        // N'autorise aucun lien symbolique à l'intérieur du plugin, y compris le dossier ui lui-même.
+        return realpath($path) === $path && is_file($path) ? $path : null;
+    }
+
+    /** @param resource $stream */
+    private static function assetResponse(Response $response, $stream, string $type): Response
+    {
         return $response->withBody(new \Slim\Psr7\Stream($stream))
-            ->withHeader('Content-Type', 'image/png')
+            ->withHeader('Content-Type', $type)
             ->withHeader('X-Content-Type-Options', 'nosniff')
             ->withHeader('Cache-Control', 'private, no-cache');
     }
@@ -463,7 +512,6 @@ final class PluginsController
         $id = (string) $plugin->getId();
         $icon = (string) $plugin->getPathImgIcon();
         // Module de la nouvelle UI, à part des pages desktop et mobile (décision du 05/11).
-        $module = 'plugins/' . $id . '/ui/ui.js';
         $version = is_object($update) ? (string) $update->getLocalVersion() : '';
         return [
             'id' => $id,
@@ -472,7 +520,7 @@ final class PluginsController
             'isEnable' => $active,
             'hasEqLogic' => class_exists($id) && is_subclass_of($id, \eqLogic::class),
             'icon' => $icon !== '' && $icon !== 'core/img/no-image-plugin.png' ? $icon : null,
-            'uiModule' => $active && is_file(__DIR__ . '/../../../../' . $module) ? $module : null,
+            'uiModule' => $active && self::uiAssetPath($id, 'ui.js') !== null ? 'api/v1/plugins/' . rawurlencode($id) . '/ui/ui.js' : null,
             'version' => $version !== '' ? $version : null,
         ];
     }
