@@ -3878,8 +3878,8 @@ paths:
         Remplace l'ajax `getHistory` quand `id` est une formule
         (`history::getHistoryFromCalcul`), ex. `#12# + #15#` ou
         `#[Salon][Clim][Puissance]# * 2`. Une formule peut lire n'importe
-        quelle commande : refusée aux profils restreints (`restrict`), comme
-        côté ajax.
+        quelle commande, y compris une que l'utilisateur ne peut pas lire :
+        réservé aux administrateurs.
       parameters:
         - name: formula
           in: query
