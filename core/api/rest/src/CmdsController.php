@@ -267,7 +267,10 @@ final class CmdsController
                 throw ApiError::field(422, 'validation_error', $field, 'Un nombre ou une chaîne est attendu.');
             }
         }
-        $history = \history::byCmdIdDatetimeOrNext($cmd->getId(), $datetime, isset($body['oldValue']) ? (string) $body['oldValue'] : null);
+        // Sans oldValue, les plages suivantes ne filtrent pas la valeur : seule la date exacte est cherchée.
+        $history = isset($body['oldValue'])
+            ? \history::byCmdIdDatetimeOrNext($cmd->getId(), $datetime, (string) $body['oldValue'])
+            : \history::byCmdIdDatetime($cmd->getId(), $datetime);
         if (!is_object($history)) {
             throw new ApiError(404, 'history_point_not_found', 'Aucun point à cette date.');
         }
