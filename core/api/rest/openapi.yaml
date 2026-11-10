@@ -902,7 +902,7 @@ paths:
     get:
       tags: [Sauvegardes]
       operationId: listBackupRepositories
-      summary: Lister les dépôts de sauvegarde activés
+      summary: Lister les destinations de sauvegarde accessibles
       responses:
         '200':
           description: Dépôts disponibles.
@@ -1707,7 +1707,7 @@ paths:
         et au redémarrage de la queue par le Core. Une opération concurrente ou une installation de plugin
         donne 409. Une même clé avec une autre sélection ou un autre utilisateur donne 409.
         force permet de réinstaller la version de la source configurée sans mise à jour disponible.
-        Les exclusions et les sources désactivées restent appliquées.
+        Les exclusions par plugin et les prérequis de chaque source restent appliqués.
       parameters:
         - in: header
           name: Idempotency-Key
@@ -1770,7 +1770,7 @@ paths:
     get:
       tags: [Plugins]
       operationId: listPluginRepositories
-      summary: Sources actives d’installation directe et leurs champs (administrateur)
+      summary: Sources d’installation disponibles et leurs champs (administrateur)
       responses:
         '200':
           description: Dépôts autorisés pour les plugins, sans paramètres privés de la box.
@@ -7676,7 +7676,7 @@ components:
           description: 'Envoi automatique des sauvegardes vers Jeedom Cloud.'
         'samba::cloudUpload':
           type: boolean
-          description: 'Active la destination Samba et l’envoi automatique des sauvegardes.'
+          description: 'Envoi automatique des sauvegardes vers Samba. Active aussi le listing et le rapatriement.'
         'samba::keepDays':
           anyOf:
             - type: number
@@ -7728,9 +7728,6 @@ components:
           type: string
           description: 'N''autoriser que les méthodes api (regexp) (onglet api).'
       patternProperties:
-        '^[A-Za-z0-9_]+::enable$':
-          type: boolean
-          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Les dépôts de sauvegarde seuls sont exclus. Dépôt inconnu refusé (422)."
         '^[A-Za-z0-9_]+::allowDNS$':
           type: boolean
           description: "Accès par le DNS Jeedom, pour les dépôts qui le proposent (aujourd'hui `market::allowDNS`)."
@@ -8190,7 +8187,7 @@ components:
           description: 'Envoi automatique des sauvegardes vers Jeedom Cloud.'
         'samba::cloudUpload':
           type: boolean
-          description: 'Active la destination Samba et l’envoi automatique des sauvegardes.'
+          description: 'Envoi automatique des sauvegardes vers Samba. Active aussi le listing et le rapatriement.'
         'samba::keepDays':
           type: [number, 'null']
           description: 'Rétention des sauvegardes Samba en jours.'
@@ -8237,9 +8234,6 @@ components:
           type: string
           description: 'N''autoriser que les méthodes api (regexp) (onglet api).'
       patternProperties:
-        '^[A-Za-z0-9_]+::enable$':
-          type: boolean
-          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Les dépôts de sauvegarde seuls sont exclus. Dépôt inconnu refusé (422)."
         '^[A-Za-z0-9_]+::allowDNS$':
           type: boolean
           description: "Accès par le DNS Jeedom, pour les dépôts qui le proposent (aujourd'hui `market::allowDNS`)."
@@ -8376,7 +8370,7 @@ components:
         application/json:
           schema: { $ref: '#/components/schemas/BackupAccepted' }
     BackupNotFound:
-      description: Sauvegarde introuvable ou dépôt de sauvegarde inconnu ou désactivé.
+      description: Sauvegarde introuvable ou destination de sauvegarde indisponible.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
