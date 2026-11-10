@@ -95,6 +95,35 @@ final class BackupsController
         return self::items($response, $items);
     }
 
+    public function cloudStatus(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $status = \repo_market::connectionStatus();
+        return Json::respond($response->withHeader('Cache-Control', 'private, no-store'), [
+            'connected' => $status['connected'],
+            'subscriptionActive' => (string) \config::byKey('service::backup::enable') === '1',
+        ]);
+    }
+
+    public function testSamba(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $body = Json::body($request, 16 * 1024, true);
+        foreach ($body as $key => $value) {
+            if (!is_string($value) || !\repo_samba::validBackupSetting((string) $key, $value)) {
+                throw ApiError::field(422, 'validation_error', (string) $key, 'Paramètre Samba invalide.');
+            }
+        }
+        try {
+            \repo_samba::test($body);
+        } catch (\InvalidArgumentException $e) {
+            throw new ApiError(422, 'validation_error', 'Renseignez une adresse IP, un partage et un utilisateur Samba valides.');
+        } catch (\Exception $e) {
+            throw new ApiError(502, 'backup_repository_failed', 'Impossible d’accéder au partage Samba.');
+        }
+        return $response->withStatus(204);
+    }
+
     public function remoteArchives(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
@@ -191,7 +220,8 @@ final class BackupsController
     private static function enabledRepositories(): array
     {
         $supported = array_intersect_key(\update::listRepo(), ['market' => true, 'samba' => true]);
-        return array_filter($supported, static fn ($repo) => !empty($repo['scope']['backup']) && $repo['enable'] == 1);
+        return array_filter($supported, static fn ($repo, $id) => !empty($repo['scope']['backup'])
+            && ($id === 'samba' ? \repo_samba::backupEnabled() : $repo['enable'] == 1), ARRAY_FILTER_USE_BOTH);
     }
 
     private static function repository(string $id): string
