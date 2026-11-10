@@ -911,6 +911,57 @@ paths:
               schema: { $ref: '#/components/schemas/BackupReferenceList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+  /backups/repositories/market/status:
+    get:
+      tags: [Sauvegardes]
+      operationId: getCloudBackupStatus
+      summary: Lire l’état du compte Market et de l’abonnement aux sauvegardes
+      responses:
+        '200':
+          description: État connu par ce Jeedom.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [connected, subscriptionActive]
+                properties:
+                  connected: { type: boolean }
+                  subscriptionActive: { type: boolean }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /backups/repositories/samba/test:
+    post:
+      tags: [Sauvegardes]
+      operationId: testSambaBackupConnection
+      summary: Tester la connexion au partage Samba
+      description: Les valeurs envoyées remplacent temporairement les valeurs enregistrées pour ce test.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                ip: { type: string }
+                share: { type: string }
+                folder: { type: string }
+                username: { type: string }
+                password: { type: string }
+      responses:
+        '204':
+          description: Partage accessible.
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '413':
+          description: Corps de la requête trop volumineux.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BackupRepositoryFailed' }
   /backups/repositories/{repositoryId}/archives:
     parameters:
       - $ref: '#/components/parameters/BackupRepositoryId'
@@ -1784,7 +1835,7 @@ paths:
               required: [pluginId, source, configuration]
               properties:
                 pluginId: { type: string }
-                source: { type: string, enum: [github, url, file, samba] }
+                source: { type: string, enum: [github, url, file] }
                 configuration:
                   type: object
                   additionalProperties: { type: string }
@@ -4738,7 +4789,7 @@ paths:
       description: |
         Renvoie les clés demandées dans `keys` ; sans `keys`, toutes les clés
         exposées. Une clé hors de la liste exposée refuse la requête (422).
-        Une clé chiffrée est absente de la réponse pour un non-administrateur.
+        Les clés chiffrées et les réglages de destination Cloud et Samba sont absents pour un non-administrateur.
       parameters:
         - name: keys
           in: query
@@ -5672,7 +5723,7 @@ components:
       type: object
       required: [id, name, fields]
       properties:
-        id: { type: string, enum: [market, github, url, file, samba] }
+        id: { type: string, enum: [market, github, url, file] }
         name: { type: string }
         fields:
           type: array
@@ -7114,8 +7165,8 @@ components:
       type: object
       description: |
         Valeurs de configuration du core, indexées par nom de clé. Seules les
-        clés demandées sont présentes ; une clé chiffrée est absente pour un
-        non-administrateur. Le nom de l'onglet de l'administration est indiqué
+        clés demandées sont présentes. Les clés chiffrées et les réglages de
+        destination Cloud et Samba sont absents pour un non-administrateur. Le nom de l'onglet de l'administration est indiqué
         dans chaque description.
       additionalProperties: false
       properties:
@@ -7625,12 +7676,36 @@ components:
           description: 'Envoi automatique des sauvegardes vers Jeedom Cloud.'
         'samba::cloudUpload':
           type: boolean
-          description: 'Envoi automatique des sauvegardes vers Samba.'
+          description: 'Active la destination Samba et l’envoi automatique des sauvegardes.'
         'samba::keepDays':
           anyOf:
             - type: number
             - const: ''
           description: 'Rétention des sauvegardes Samba en jours, ou chaîne vide si elle est indéfinie.'
+        'samba::backup::ip':
+          type: string
+          description: 'Adresse IP du serveur Samba.'
+        'samba::backup::share':
+          type: string
+          description: 'Partage Samba au format //serveur/partage.'
+        'samba::backup::folder':
+          type: string
+          description: 'Dossier dans le partage Samba.'
+        'samba::backup::username':
+          type: string
+          description: 'Utilisateur Samba.'
+        'samba::backup::password':
+          $ref: '#/components/schemas/ConfigSecret'
+          description: 'Mot de passe du partage Samba.'
+        'market::cloud::backup::name':
+          type: string
+          description: 'Nom du dossier distant Jeedom Cloud.'
+        'market::cloud::backup::password':
+          $ref: '#/components/schemas/ConfigSecret'
+          description: 'Mot de passe de chiffrement des sauvegardes Cloud.'
+        'market::cloud::backup::password_confirmation':
+          $ref: '#/components/schemas/ConfigSecret'
+          description: 'Confirmation à fournir avec le mot de passe de chiffrement Cloud.'
         'cache::engine':
           type: string
           description: 'Moteur de cache (onglet cache).'
@@ -7655,7 +7730,7 @@ components:
       patternProperties:
         '^[A-Za-z0-9_]+::enable$':
           type: boolean
-          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Dépôt inconnu refusé (422)."
+          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Les dépôts de sauvegarde seuls sont exclus. Dépôt inconnu refusé (422)."
         '^[A-Za-z0-9_]+::allowDNS$':
           type: boolean
           description: "Accès par le DNS Jeedom, pour les dépôts qui le proposent (aujourd'hui `market::allowDNS`)."
@@ -8115,10 +8190,34 @@ components:
           description: 'Envoi automatique des sauvegardes vers Jeedom Cloud.'
         'samba::cloudUpload':
           type: boolean
-          description: 'Envoi automatique des sauvegardes vers Samba.'
+          description: 'Active la destination Samba et l’envoi automatique des sauvegardes.'
         'samba::keepDays':
           type: [number, 'null']
           description: 'Rétention des sauvegardes Samba en jours.'
+        'samba::backup::ip':
+          type: string
+          description: 'Adresse IP du serveur Samba.'
+        'samba::backup::share':
+          type: string
+          description: 'Partage Samba au format //serveur/partage.'
+        'samba::backup::folder':
+          type: string
+          description: 'Dossier dans le partage Samba.'
+        'samba::backup::username':
+          type: string
+          description: 'Utilisateur Samba.'
+        'samba::backup::password':
+          type: string
+          description: 'Mot de passe du partage Samba.'
+        'market::cloud::backup::name':
+          type: string
+          description: 'Nom du dossier distant Jeedom Cloud.'
+        'market::cloud::backup::password':
+          type: string
+          description: 'Mot de passe de chiffrement des sauvegardes Cloud.'
+        'market::cloud::backup::password_confirmation':
+          type: string
+          description: 'Confirmation à fournir avec le mot de passe de chiffrement Cloud.'
         'cache::engine':
           type: string
           description: 'Moteur de cache (onglet cache).'
@@ -8140,7 +8239,7 @@ components:
       patternProperties:
         '^[A-Za-z0-9_]+::enable$':
           type: boolean
-          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Dépôt inconnu refusé (422)."
+          description: "Activation d'un dépôt de mises à jour, une clé par dépôt de `update::listRepo()` (`market::enable`, `github::enable`…). Les dépôts de sauvegarde seuls sont exclus. Dépôt inconnu refusé (422)."
         '^[A-Za-z0-9_]+::allowDNS$':
           type: boolean
           description: "Accès par le DNS Jeedom, pour les dépôts qui le proposent (aujourd'hui `market::allowDNS`)."

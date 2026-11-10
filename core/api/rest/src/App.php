@@ -169,6 +169,8 @@ final class App
             $api->post('/backups', $backups->create(...));
             $api->post('/backups/archives', $backups->upload(...));
             $api->get('/backups/repositories', $backups->repositories(...));
+            $api->get('/backups/repositories/market/status', $backups->cloudStatus(...));
+            $api->post('/backups/repositories/samba/test', $backups->testSamba(...));
             $api->get('/backups/repositories/{repositoryId}/archives', $backups->remoteArchives(...));
             $api->post('/backups/repositories/{repositoryId}/archives/{id}/import', $backups->import(...));
             $api->get('/backups/{id}/archive', $backups->download(...));

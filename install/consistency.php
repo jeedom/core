@@ -61,6 +61,10 @@ try {
 			echo "***ERROR*** " . $ex->getMessage() . "\n";
 		}
 	}
+	// Samba ne fournit plus de mises à jour du Core.
+	if (config::byKey('core::repo::provider') === 'samba') {
+		config::save('core::repo::provider', 'default');
+	}
 	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
 		echo "Fix default summary...";
 		config::save(

@@ -26,10 +26,10 @@ class repo_samba {
 	public static $_name = 'Samba';
 
 	public static $_scope = array(
-		'plugin' => true,
+		'plugin' => false,
 		'backup' => true,
 		'hasConfiguration' => true,
-		'core' => true,
+		'core' => false,
 		'hasRetentionDay' => true,
 		'test' => true
 	);
@@ -38,13 +38,6 @@ class repo_samba {
 
 	public static function getConfigurationOption() {
 		return array(
-			'parameters_for_add' => array(
-				'path' => array(
-					'name' => __('Chemin du fichier ZIP', __FILE__),
-					'type' => 'input',
-					'tooltip' => __("Renseigner le chemin du plugin compressé", __FILE__) . ' (*.zip)'
-				),
-			),
 			'configuration' => array(
 				'backup::ip' => array(
 					'name' => __('[Backup] IP', __FILE__),
@@ -71,86 +64,62 @@ class repo_samba {
 	}
 
 
-	public static function checkUpdate(&$_update) {
-		if (is_array($_update)) {
-			if (count($_update) < 1) {
-				return;
+	private const BACKUP_CONNECTION_KEYS = ['ip', 'share', 'folder', 'username', 'password'];
+
+	public static function backupEnabled(): bool {
+		$flags = config::byKeys(['samba::enable', 'samba::cloudUpload']);
+		return (string) $flags['samba::enable'] === '1' && (string) $flags['samba::cloudUpload'] === '1';
+	}
+
+	public static function validBackupSetting(string $_key, string $_value): bool {
+		if (!in_array($_key, self::BACKUP_CONNECTION_KEYS, true) || strlen($_value) > 1024 || preg_match('/[\x00-\x1f\x7f]/', $_value)) {
+			return false;
+		}
+		return $_value === '' || match ($_key) {
+			'ip' => filter_var($_value, FILTER_VALIDATE_IP) !== false,
+			'share' => preg_match('~\A//[^/]+/[^/]+/?\z~', str_replace('\\', '/', $_value)) === 1,
+			default => true,
+		};
+	}
+
+	private static function backupSettings(array $_overrides = []): array {
+		$keys = array_map(static fn ($key) => 'samba::backup::' . $key, self::BACKUP_CONNECTION_KEYS);
+		$stored = config::byKeys([...$keys, 'samba::keepDays']);
+		$settings = [];
+		foreach (self::BACKUP_CONNECTION_KEYS as $key) {
+			$value = $_overrides[$key] ?? (string) $stored['samba::backup::' . $key];
+			if (!self::validBackupSetting($key, $value)) {
+				throw new InvalidArgumentException('Paramètre Samba invalide.', 422);
 			}
-			foreach ($_update as $update) {
-				self::checkUpdate($update);
+			$settings[$key] = $value;
+		}
+		if ($settings['ip'] === '' || $settings['share'] === '' || trim($settings['username']) === '') {
+			throw new InvalidArgumentException('Configuration Samba incomplète.', 422);
+		}
+		$settings['keepDays'] = (string) $stored['samba::keepDays'];
+		return $settings;
+	}
+
+	private static function executeBackupCommand(string $_command, array $settings, ?string $_directory = null, int $_timeout = 120): string {
+		$authfile = tempnam(jeedom::getTmpFolder('samba'), '.smbauth_');
+		if ($authfile === false) {
+			throw new RuntimeException('Impossible de préparer l’authentification Samba.');
+		}
+		try {
+			$content = 'username = ' . $settings['username'] . "\npassword = " . $settings['password'] . "\n";
+			if (!chmod($authfile, 0600) || file_put_contents($authfile, $content) !== strlen($content)) {
+				throw new RuntimeException('Impossible de préparer l’authentification Samba.');
 			}
-			return;
+			$cmd = $_directory === null ? '' : 'cd ' . escapeshellarg($_directory) . ' && ';
+			$cmd .= system::getCmdSudo() . 'smbclient -t ' . $_timeout . ' ' . escapeshellarg(str_replace('\\', '/', $settings['share']))
+				. ' -A ' . escapeshellarg($authfile) . ' -I ' . escapeshellarg($settings['ip']);
+			if ($settings['folder'] !== '') {
+				$cmd .= ' -D ' . escapeshellarg($settings['folder']);
+			}
+			return com_shell::execute($cmd . ' -c ' . escapeshellarg($_command));
+		} finally {
+			unlink($authfile);
 		}
-		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
-		if (count($file) != 1) {
-			return;
-		}
-		if (!isset($file[0]['datetime'])) {
-			return;
-		}
-		$_update->setRemoteVersion($file[0]['datetime']);
-		if ($file[0]['datetime'] != $_update->getLocalVersion()) {
-			$_update->setStatus('update');
-		} else {
-			$_update->setStatus('ok');
-		}
-		$_update->save();
-	}
-
-	public static function deleteObjet($_update) {
-	}
-
-	public static function downloadObject($_update) {
-		$tmp_dir = jeedom::getTmpFolder('samba');
-		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
-		if (file_exists($tmp)) {
-			unlink($tmp);
-		}
-		if (!is_writable($tmp_dir)) {
-			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
-		}
-		if (!is_writable($tmp_dir)) {
-			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
-		}
-		$cmd = 'cd ' . $tmp_dir . ';';
-		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::plugin::folder') . ';get ' . $_update->getConfiguration('path'), 'plugin');
-		com_shell::execute($cmd);
-		$pathinfo = pathinfo($_update->getConfiguration('path'));
-		com_shell::execute('mv ' . $tmp_dir . '/' . $pathinfo['basename'] . ' ' . $tmp);
-		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
-		if (count($file) != 1 || !isset($file[0]['datetime'])) {
-			return array('path' => $tmp, 'localVersion' => date('Y-m-d H:i:s'));
-		}
-		return array('path' => $tmp, 'localVersion' => $file[0]['datetime']);
-	}
-
-	public static function objectInfo($_update) {
-		return array(
-			'doc' => '',
-			'changelog' => '',
-		);
-	}
-
-	private static function makeSambaCommand(string $_cmd, string $_type = 'backup'): string {
-		$authfile = self::createAuthFile($_type);
-		$authfile = escapeshellarg($authfile);
-		return '(' . system::getCmdSudo() . 'smbclient -t 120 ' . escapeshellarg(config::byKey('samba::' . $_type . '::share'))
-			. ' -A ' . $authfile . ' -I ' . escapeshellarg(config::byKey('samba::' . $_type . '::ip')) . ' -c ' . escapeshellarg($_cmd)
-			. '; ec=$?; ' . system::getCmdSudo() . 'rm -f ' . $authfile . '; exit $ec)';
-	}
-
-	/**
-	 * Write username/password to a private temp file so they never appear in the process command line
-	 * @param string $_type
-	 * @return string path to the authentication file
-	 */
-	private static function createAuthFile(string $_type): string {
-		$authfile = jeedom::getTmpFolder('samba') . '/.smbauth_' . bin2hex(random_bytes(16));
-		$content = 'username = ' . config::byKey('samba::' . $_type . '::username') . "\n"
-			. 'password = ' . config::byKey('samba::' . $_type . '::password') . "\n";
-		file_put_contents($authfile, $content);
-		chmod($authfile, 0600);
-		return $authfile;
 	}
 
 	public static function sortByDatetime($a, $b) {
@@ -160,9 +129,8 @@ class repo_samba {
 		return (strtotime($a['datetime']) < strtotime($b['datetime'])) ? -1 : 1;
 	}
 
-	public static function ls($_dir = '', $_type = 'backup') {
-		$cmd = repo_samba::makeSambaCommand('cd ' . $_dir . ';ls', $_type);
-		$result = explode("\n", com_shell::execute($cmd));
+	private static function ls(array $settings) {
+		$result = explode("\n", self::executeBackupCommand('ls', $settings));
 		$return = array();
 		foreach ($result as $entry) {
 			if (!preg_match('/^\s*(.*?)\s{2,}\S+\s+(\d+)\s+\S+\s+(\S+\s+\d+\s+\S+\s+\d{4})\s*$/', $entry, $line)
@@ -179,36 +147,34 @@ class repo_samba {
 		return array_reverse($return);
 	}
 
-	public static function test() {
-		$cmd = repo_samba::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';ls', 'backup');
-		try {
-			$result = explode("\n", com_shell::execute($cmd));
-			return True;
-		} catch (Exception $e) {
-			throw new Exception($e->getMessage());
-		}
+	public static function test(array $_overrides = []): bool {
+		self::executeBackupCommand('ls', self::backupSettings($_overrides), null, 10);
+		return true;
 	}
 
-	public static function cleanBackupFolder() {
-		$timelimit = strtotime('-' . config::byKey('samba::keepDays') . ' days');
-		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			if ($file['filename'] == '..' || $file['filename'] == '.') {
-				continue;
-			}
-			if ($timelimit > strtotime($file['datetime'])) {
+	private static function cleanBackupFolder(string $_keep, array $settings) {
+		$days = $settings['keepDays'];
+		if (!ctype_digit($days) || ($timelimit = strtotime('-' . $days . ' days')) === false) {
+			return;
+		}
+		foreach (self::ls($settings) as $file) {
+			$name = $file['filename'];
+			$date = strtotime($file['datetime']);
+			if ($name !== $_keep && self::isBackupRestoreName($name) && $date !== false && $date < $timelimit) {
 				echo 'Delete backup too old : ' . json_encode($file);
-				$cmd = self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';del ' . $file['filename']);
-				com_shell::execute($cmd);
+				self::executeBackupCommand('del "' . $name . '"', $settings);
 			}
 		}
 	}
 
 	public static function backup_send($_path) {
-		$pathinfo = pathinfo($_path);
-		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
-		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';put ' . $pathinfo['basename']);
-		com_shell::execute($cmd);
-		self::cleanBackupFolder();
+		$name = basename($_path);
+		if (!self::isBackupRestoreName($name)) {
+			throw new InvalidArgumentException('Nom de sauvegarde Samba invalide.', 422);
+		}
+		$settings = self::backupSettings();
+		self::executeBackupCommand('put "' . $name . '"', $settings, dirname($_path));
+		self::cleanBackupFolder($name, $settings);
 	}
 
 	public static function backup_list() {
@@ -217,8 +183,8 @@ class repo_samba {
 
 	public static function backup_list_details() {
 		$return = array();
-		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			if (strpos($file['filename'], '.tar.gz') !== false) {
+		foreach (self::ls(self::backupSettings()) as $file) {
+			if (self::isBackupRestoreName($file['filename'])) {
 				$return[] = array('name' => $file['filename'], 'size' => (int) $file['size']);
 			}
 		}
@@ -242,9 +208,7 @@ class repo_samba {
 			throw new RuntimeException('Impossible de préparer le rapatriement de la sauvegarde Samba.');
 		}
 		try {
-			$cmd = 'cd ' . escapeshellarg($temporary) . ' && ';
-			$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';get "' . $_backup . '"');
-			com_shell::execute($cmd);
+			self::executeBackupCommand('get "' . $_backup . '"', self::backupSettings(), $temporary);
 			$download = $temporary . '/' . $_backup;
 			if (!is_file($download) || is_link($download)) {
 				throw new RuntimeException('Sauvegarde Samba introuvable.', 404);
@@ -259,34 +223,6 @@ class repo_samba {
 		} finally {
 			rrmdir($temporary);
 		}
-	}
-
-	public static function downloadCore($_path) {
-		$pathinfo = pathinfo($_path);
-		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
-		$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path') . '/jeedom.zip', 'plugin');
-		com_shell::execute($cmd);
-		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $_path);
-		return;
-	}
-
-	public static function versionCore() {
-		try {
-			if (file_exists(jeedom::getTmpFolder('samba') . '/version')) {
-				com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
-			}
-			$cmd = 'cd /tmp;';
-			$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path') . '/jeedom_version', 'plugin');
-			com_shell::execute($cmd);
-			if (!file_exists(jeedom::getTmpFolder('samba') . '/version')) {
-				return null;
-			}
-			$version = trim(file_get_contents(jeedom::getTmpFolder('samba') . '/version'));
-			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('samba') . '/version');
-			return $version;
-		} catch (\Throwable $e) {
-		}
-		return null;
 	}
 
 	/*     * *********************Methode d'instance************************* */
