@@ -86,13 +86,13 @@ class network {
 				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . self::getPort($_mode);
 			}
 			if ($_protocol == 'proto:127.0.0.1:port:comp') {
-				if (jeedom::getHardwareName() == 'docker') {
+				if (jeedom::isDocker()) {
 					return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . self::getPort($_mode) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 				}
 				return trim(config::byKey('internalProtocol') . '127.0.0.1:' . self::getPort($_mode) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
-				if (jeedom::getHardwareName() == 'docker') {
+				if (jeedom::isDocker()) {
 					return trim('http://' . config::byKey('internalAddr') . ':' . self::getPort($_mode, 'http') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 				}
 				return trim('http://127.0.0.1:' . self::getPort($_mode, 'http') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
@@ -525,7 +525,7 @@ class network {
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}
-		if (!jeedom::isCapable('sudo') || jeedom::getHardwareName() == 'docker') {
+		if (!jeedom::isCapable('sudo') || jeedom::isDocker()) {
 			return;
 		}
 		exec(system::getCmdSudo() . 'ping -n -c 1 -t 255 8.8.8.8 2>&1 > /dev/null', $output, $return_val);

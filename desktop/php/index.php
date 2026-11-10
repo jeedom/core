@@ -514,7 +514,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 													<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 													<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
 													<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
-													<?php if (recovery::isInstalled() || in_array(strtolower(jeedom::getHardwareName()), ['smart', 'atlas'])) {
+													<?php if (recovery::isInstalled() || (!jeego::isDetected() && in_array(strtolower(jeedom::getHardwareName()), ['smart', 'atlas']))) {
 														echo '<li><a href="index.php?v=d&p=recovery"><i class="fas fa-hdd"></i> {{Restauration système}}</a></li>';
 													} ?>
 													<li class="divider"></li>

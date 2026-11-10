@@ -346,7 +346,7 @@ class jeedom {
 
 		// Apache private tmp
 		$apacheTmpState = true;
-		if (jeedom::getHardwareName() != 'docker') {
+		if (!self::isDocker()) {
 			$apacheTmpState = trim(shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l')) == 0;
 		}
 		$return[] = array(
@@ -682,7 +682,7 @@ class jeedom {
 	}
 
 	public static function apiModeResult(string $_mode = 'enable') {
-		if ($_mode == 'localhost' && jeedom::getHardwareName() == 'docker') {
+		if ($_mode == 'localhost' && self::isDocker()) {
 			$_mode = 'whiteip';
 		}
 		switch ($_mode) {
@@ -1946,7 +1946,14 @@ class jeedom {
 		return $return;
 	}
 
+	public static function isDocker(): bool {
+		return jeego::isDetected() || self::getHardwareName() == 'docker';
+	}
+
 	public static function getHardwareName() {
+		if (jeego::isDetected()) {
+			return jeego::getHardwareName();
+		}
 		if (config::byKey('hardware_name') != '') {
 			return config::byKey('hardware_name');
 		}
@@ -1996,7 +2003,7 @@ class jeedom {
 			cache::set('jeedom::isCapable::sudo', $result, 3600 * 24);
 			return $result;
 		}
-		$hardware = self::getHardwareName();
+		$hardware = jeego::isDetected() ? 'docker' : self::getHardwareName();
 		if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
 			return false;
 		}

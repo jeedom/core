@@ -214,6 +214,9 @@ class config {
 	 * @return string|mixed Configuration value
 	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
+		if ($_key === 'hardware_name' && $_plugin === 'core' && jeego::isDetected()) {
+			return jeego::getHardwareName();
+		}
 		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key, self::$nocache)) {
 			return self::$cache[$_plugin . '::' . $_key];
 		}
@@ -274,6 +277,10 @@ class config {
 		}
 		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 		foreach ($_keys as $key) {
+			if ($key === 'hardware_name' && $_plugin === 'core' && jeego::isDetected()) {
+				$return[$key] = jeego::getHardwareName();
+				continue;
+			}
 			if (isset($return[$key])) {
 				$return[$key] = is_json($return[$key], $return[$key]);
 			} elseif (isset($defaultConfiguration[$_plugin][$key])) {
@@ -468,6 +475,12 @@ class config {
 	}
 
 	/*     * *********************Action sur config************************* */
+
+	public static function postConfig_hardware_name($_value): void {
+		if ($_value === '' && jeego::isDetected()) {
+			jeego::resetHardwareName();
+		}
+	}
 
 	/**
 	 * Handles DNS configuration changes

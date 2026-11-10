@@ -1,8 +1,109 @@
 <?php
 
 class jeego {
+	private const HARDWARE_CONFIG = 'jeego::hardware';
+
 	public static function isDetected(): bool {
 		return (string) getenv('JEEGO_API_URL') !== '' || (string) getenv('JEEGO_API_KEY') !== '';
+	}
+
+	public static function getHardwareName(): string {
+		$hardware = config::byKey(self::HARDWARE_CONFIG, 'core', array());
+		$name = $hardware['name'] ?? 'diy';
+		if (($hardware['refreshAt'] ?? 0) > time()) {
+			return $name;
+		}
+
+		$lock = self::openHardwareLock();
+		if ($lock === false) {
+			return $name;
+		}
+		try {
+			if (!flock($lock, LOCK_EX | LOCK_NB)) {
+				return $name;
+			}
+			$hardware = config::byKey(self::HARDWARE_CONFIG, 'core', array(), true);
+			$name = $hardware['name'] ?? 'diy';
+			if (($hardware['refreshAt'] ?? 0) > time()) {
+				return $name;
+			}
+
+			$detected = null;
+			try {
+				$info = self::request('/info', null, 2);
+				$detected = self::normalizeHardware($info['host'] ?? array());
+			} catch (Exception $e) {
+				// Keep the last result while the local API is unavailable.
+			}
+			$name = $detected ?? $name;
+			config::save(self::HARDWARE_CONFIG, array('name' => $name, 'refreshAt' => time() + ($detected === null ? 60 : 86400)));
+			return $name;
+		} finally {
+			fclose($lock);
+		}
+	}
+
+	public static function resetHardwareName(): void {
+		$lock = self::openHardwareLock();
+		if ($lock === false) {
+			config::remove(self::HARDWARE_CONFIG);
+			return;
+		}
+		try {
+			flock($lock, LOCK_EX);
+			config::remove(self::HARDWARE_CONFIG);
+		} finally {
+			fclose($lock);
+		}
+	}
+
+	private static function openHardwareLock() {
+		return @fopen(jeedom::getTmpFolder() . '/jeego-hardware.lock', 'c');
+	}
+
+	private static function normalizeHardware($host): ?string {
+		if (!is_array($host)) {
+			return null;
+		}
+		$type = $host['machine_type'] ?? null;
+		if (!is_string($type)) {
+			return null;
+		}
+		if ($type !== 'Raspberry Pi') {
+			$types = array('Luna' => 'Luna', 'Atlas' => 'Atlas', 'Smart' => 'smart', 'Odroid' => 'odroid', 'DIY' => 'diy');
+			return $types[$type] ?? null;
+		}
+
+		$model = $host['model'] ?? '';
+		if (!is_string($model)) {
+			return 'rpi';
+		}
+		// Keep the identifiers used by existing Core and plugin compatibility checks.
+		$models = array(
+			'Raspberry Pi Model A' => 'RPI 1 A',
+			'Raspberry Pi Model A+' => 'RPI 1 A+',
+			'Raspberry Pi Model B' => 'RPI 1 B',
+			'Raspberry Pi Model B+' => 'RPI 1 B+',
+			'Raspberry Pi 2 Model B' => 'RPI 2 B',
+			'Raspberry Pi 3 Model A+' => 'RPI 3 A+',
+			'Raspberry Pi 3 Model B' => 'RPI 3 B',
+			'Raspberry Pi 3 Model B+' => 'RPI 3 B+',
+			'Raspberry Pi 4 Model B' => 'RPI 4 B',
+			'Raspberry Pi 5 Model B' => 'RPI 5',
+			'Raspberry Pi Zero' => 'RPI Zero',
+			'Raspberry Pi Zero W' => 'RPI Zero W',
+			'Raspberry Pi Zero 2 W' => 'RPI Zero 2 W',
+			'Raspberry Pi Compute Module' => 'RPI 1 Compute',
+			'Raspberry Pi Compute Module 3' => 'RPI 3 Compute',
+			'Raspberry Pi Compute Module 3 Plus' => 'RPI 3 Compute+',
+			'Raspberry Pi Compute Module 4' => 'RPI 4 Compute',
+			'Raspberry Pi Compute Module 4S' => 'RPI 4S Compute',
+			'Raspberry Pi Compute Module 5' => 'RPI 5 Compute',
+			'Raspberry Pi 400' => 'RPI 400',
+			'Raspberry Pi 500' => 'RPI 500',
+			'Raspberry Pi 500+' => 'RPI 500+',
+		);
+		return $models[preg_replace('/ Rev [0-9.]+$/D', '', $model)] ?? 'rpi';
 	}
 
 	public static function checkConfiguration(): void {
