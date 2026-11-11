@@ -443,9 +443,11 @@ class update {
 						self::executeCheck($options['target'] ?? null);
 					} elseif ($operation['kind'] === 'maintenance') {
 						self::validateMaintenance($options);
-						$params = $options['action'] === 'force'
-							? ['force=1', 'mode=force', 'backup::before=0']
-							: ['backup::before=1', 'update::reapply=' . $options['version']];
+						$params = match ($options['action']) {
+							'force' => ['force=1', 'mode=force', 'backup::before=0'],
+							'preUpdate' => ['backup::before=1', 'preUpdate=1'],
+							'reapply' => ['backup::before=1', 'update::reapply=' . $options['version']],
+						};
 						self::runCoreInstaller($params);
 					}
 					foreach ($operation['items'] as $index => $item) {

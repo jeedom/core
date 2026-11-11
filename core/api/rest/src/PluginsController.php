@@ -413,8 +413,11 @@ final class PluginsController
             try { $state = (string) ($plugin->deamon_info()['state'] ?? 'unknown'); }
             catch (\Throwable) { $state = 'unknown'; }
         }
+        $branch = $update !== null ? ($update->getConfiguration('version') ?: null) : null;
+        $changelog = $branch === 'beta' ? self::webUrl($plugin->getChangelog_beta()) : null;
         return ['source' => is_object($update) ? (string) $update->getSource() : null,
-            'branch' => is_object($update) ? ($update->getConfiguration('version') ?: null) : null,
+            'branch' => $branch,
+            'changelogUrl' => $changelog ?? self::webUrl($plugin->getChangelog()),
             'updatedAt' => is_object($update) ? ($update->getUpdateDate() ?: null) : null,
             'updatesBlocked' => is_object($update) && $update->getConfiguration('doNotUpdate', 0) == 1,
             'hasOwnDaemon' => $hasDaemon, 'daemonState' => $state, 'update' => self::updateSummary($update)];

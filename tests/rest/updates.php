@@ -73,7 +73,8 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public static function byId($id) { return new self($id); }
     public function getName() { return strtoupper($this->id); }
     public function getPathImgIcon() { return 'https://outside.example/image.png'; }
-    public function getChangelog() { return 'javascript:alert(1)'; }
+    public function getChangelog() { return $this->id === 'manual' ? 'javascript:alert(1)' : 'https://example.org/' . $this->id . '/changes'; }
+    public function getChangelog_beta() { return $this->id === 'hue' ? 'https://example.org/hue/beta-changes' : ''; }
 PHP);
 defineRestOperationsFixture('update', <<<'PHP'
     public static array $items = [];
@@ -134,6 +135,10 @@ foreach (['/plugins/management', '/updates/operations/latest'] as $path) { call(
 foreach (['/updates/check', '/updates/operations'] as $path) call('POST', $path, 403, ['ids' => [2]], 'member');
 $catalog = call('GET', '/plugins/management');
 check($catalog['total'] === 3 && $catalog['core']['update']['id'] === 1, 'Installed inventory or Core missing');
+$managed = array_column($catalog['items'], 'management', 'id');
+check($managed['hue']['changelogUrl'] === 'https://example.org/hue/beta-changes', 'Beta changelog not preferred');
+check($managed['weather']['changelogUrl'] === 'https://example.org/weather/changes', 'Stable changelog not used as fallback');
+check($managed['manual']['changelogUrl'] === null, 'Invalid changelog URL exposed');
 $manual = array_values(array_filter($catalog['items'], fn ($item) => $item['id'] === 'manual'))[0];
 check($manual['management']['update'] === null, 'Manual plugin without update must remain visible');
 $job = call('POST', '/updates/check', 202); update::executeOperation($job['id']);
@@ -243,4 +248,15 @@ update::executeOperation($job['id']);
 $command = end(system::$commands);
 check(str_contains($command, 'force=1') && str_contains($command, 'backup::before=0'), 'Forced Core maintenance used the wrong native flags');
 check(call('GET', '/updates/operations/latest')['operation']['state'] === 'succeeded', 'Forced Core maintenance did not finish');
+
+resetOperation();
+system::$relaunch = true;
+call('POST', $maintenancePath, 422, ['action' => 'preUpdate', 'version' => '4.6.3']);
+$job = call('POST', $maintenancePath, 202, ['action' => 'preUpdate']);
+update::executeOperation($job['id']);
+$command = end(system::$commands);
+check(str_contains($command, 'preUpdate=1') && str_contains($command, 'backup::before=1'), 'Updater renewal did not pass the expected native flags');
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'succeeded' && !system::$pendingRelaunch,
+    'Updater renewal did not wait for the relaunched installer');
+system::$relaunch = false;
 echo "OK $checks REST update checks on PHP " . PHP_VERSION . "\n";

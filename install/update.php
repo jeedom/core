@@ -191,7 +191,10 @@ try {
 
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
-					rmove($cibDir . '/install/update.php', __DIR__ . '/update.php', false, array(), array('log' => true, 'ignoreFileSizeUnder' => 1));
+					$updater = $cibDir . '/install/update.php';
+					if (!is_file($updater) || !filesize($updater) || !rmove($updater, __DIR__ . '/update.php', false)) {
+						throw new RuntimeException('Unable to replace the update script.');
+					}
 					echo "OK\n";
 					echo "Remove temporary files...";
 					rrmdir($tmp_dir);
@@ -200,7 +203,6 @@ try {
 					sleep(10);
 					$_GET['preUpdate'] = 0;
 					jeedom::update($_GET);
-					echo "[PROGRESS][100]\n";
 					die();
 				}
 				try {

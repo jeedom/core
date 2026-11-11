@@ -86,8 +86,8 @@ final class UpdatesController
         $body = Json::body($request);
         $action = $body['action'] ?? null;
         $version = $body['version'] ?? null;
-        if ($action === 'force' && count($body) === 1) {
-            $options = ['action' => 'force'];
+        if (in_array($action, ['force', 'preUpdate'], true) && count($body) === 1) {
+            $options = ['action' => $action];
         } elseif ($action === 'reapply' && count($body) === 2 && is_string($version)
             && preg_match('/\A\d{1,8}\.\d{1,8}\.\d{1,8}\z/', $version)) {
             $options = ['action' => 'reapply', 'version' => $version];

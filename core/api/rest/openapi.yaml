@@ -1762,8 +1762,8 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
     post:
       operationId: startCoreMaintenance
-      summary: Planifier une mise à jour forcée ou la réapplication d’une migration du Core.
-      description: Administrateur, CSRF en session et Idempotency-Key requis. Le mode forcé poursuit certaines étapes après erreur et saute la sauvegarde. La migration utilise un script déjà présent sur la box et réalise une sauvegarde locale.
+      summary: Planifier une maintenance du Core.
+      description: Administrateur, CSRF en session et Idempotency-Key requis. Le mode forcé poursuit certaines étapes après erreur et saute la sauvegarde. Le pré-update remplace le programme de mise à jour, puis relance la mise à jour du Core. La réapplication d’une migration utilise un script local. Les deux dernières actions activent la sauvegarde locale.
       parameters:
         - in: header
           name: Idempotency-Key
@@ -1779,7 +1779,7 @@ paths:
                   additionalProperties: false
                   required: [action]
                   properties:
-                    action: { type: string, enum: [force] }
+                    action: { type: string, enum: [force, preUpdate] }
                 - type: object
                   additionalProperties: false
                   required: [action, version]
@@ -5899,6 +5899,7 @@ components:
       properties:
         source: { type: [string, 'null'] }
         branch: { type: [string, 'null'] }
+        changelogUrl: { type: [string, 'null'], format: uri, description: Journal des changements de la branche du plugin. }
         updatedAt: { type: [string, 'null'] }
         hasOwnDaemon: { type: boolean }
         daemonState: { type: [string, 'null'] }

@@ -85,6 +85,7 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getInstallation() { return '<p>Installation</p>'; }
     public function getDocumentation() { return 'https://doc.example.org/'; }
     public function getChangelog() { return 'javascript:alert(1)'; }
+    public function getChangelog_beta() { return ''; }
     public function getIssue() { return 'https://user:secret@example.org/'; }
     public function getFunctionality() { return ['cron' => ['exists' => 1, 'controlable' => 1], 'health' => ['exists' => 1, 'controlable' => 0]]; }
     public function getLogList() { return ['fixture', '../secret', '/etc/passwd']; }
