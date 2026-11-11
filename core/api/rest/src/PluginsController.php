@@ -129,6 +129,12 @@ final class PluginsController
         return self::respond($response, ['fields' => (object) $fields, 'values' => PluginSettings::read($id, $fields)]);
     }
 
+    public function getConfigurationSchema(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        return self::respond($response, PluginSettings::entitySchema(self::find($args['id'])->getId()));
+    }
+
     public function icon(Request $request, Response $response, array $args): Response
     {
         $plugin = self::find($args['id']);

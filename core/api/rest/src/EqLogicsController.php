@@ -287,6 +287,11 @@ final class EqLogicsController
                 throw ApiError::field(422, 'validation_error', $field, 'Un objet JSON est attendu.');
             }
         }
+        $creating = !$eqLogic->getId();
+        if ($creating || isset($body['configuration'])) {
+            $settings = PluginSettings::validateEquipment($eqLogic->getEqType_name(), $body['configuration'] ?? [], $creating);
+            if ($settings !== []) $body['configuration'] = $settings;
+        }
         if (array_key_exists('category', $body)) {
             foreach ($body['category'] as $key => $value) {
                 if (!is_bool($value)) {

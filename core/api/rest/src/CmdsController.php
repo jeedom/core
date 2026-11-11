@@ -105,6 +105,7 @@ final class CmdsController
         $class = $eqLogic->getEqType_name() . 'Cmd';
         $cmd = class_exists($class) && is_subclass_of($class, \cmd::class) ? new $class() : new \cmd();
         $cmd->setEqLogic_id($eqLogic->getId());
+        $cmd->setEqLogic($eqLogic);
         $cmd->setEqType($eqLogic->getEqType_name());
         $cmd->setType($body['type']);
         unset($body['eqLogic_id'], $body['type']);
@@ -541,6 +542,13 @@ final class CmdsController
         }
         if (isset($body['configuration']) && array_key_exists('actionCodeAccess', $body['configuration'])) {
             throw ApiError::field(422, 'validation_error', 'configuration.actionCodeAccess', 'Utilisez le champ accessCode pour modifier le code d\'accès.');
+        }
+        if (!empty($body['configuration'])) {
+            PluginSettings::validateCommand($cmd->getEqLogic()->getEqType_name(), $body['configuration'], [
+                'type' => $cmd->getType(),
+                'subType' => $body['subType'] ?? $cmd->getSubType(),
+                'logicalId' => array_key_exists('logicalId', $body) ? $body['logicalId'] : $cmd->getLogicalId(),
+            ]);
         }
         $changeAccessCode = array_key_exists('accessCode', $body);
         $accessCode = $body['accessCode'] ?? null;

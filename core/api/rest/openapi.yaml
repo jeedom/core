@@ -2222,6 +2222,27 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
+  /plugins/{id}/configuration/schema:
+    parameters:
+    - $ref: '#/components/parameters/PluginId'
+    get:
+      tags: [Plugins]
+      operationId: getPluginConfigurationSchema
+      summary: Lire les champs déclaratifs des équipements et commandes du plugin (administrateur).
+      responses:
+        '200':
+          description: Champs par clé de configuration. Un objet vide indique une section sans champ.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginEntitySettingsSchema' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500':
+          description: Déclaration des réglages invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
   /plugins/{id}/icon:
     parameters:
     - $ref: '#/components/parameters/PluginId'
@@ -6127,6 +6148,35 @@ components:
         enum: { type: array, items: { type: string }, minItems: 1 }
         min: { type: number }
         max: { type: number }
+    PluginEquipmentSettingField:
+      allOf:
+      - $ref: '#/components/schemas/PluginSettingField'
+      - type: object
+        properties:
+          create: { type: boolean }
+          required: { type: boolean }
+          default: { type: [boolean, number, string] }
+    PluginCommandSettingField:
+      allOf:
+      - $ref: '#/components/schemas/PluginSettingField'
+      - type: object
+        properties:
+          when:
+            type: object
+            properties:
+              type: { type: string, enum: [info, action] }
+              subType: { type: string }
+              logicalId: { type: string }
+    PluginEntitySettingsSchema:
+      type: object
+      required: [eqLogic, cmd]
+      properties:
+        eqLogic:
+          type: object
+          additionalProperties: { $ref: '#/components/schemas/PluginEquipmentSettingField' }
+        cmd:
+          type: object
+          additionalProperties: { $ref: '#/components/schemas/PluginCommandSettingField' }
     PluginSettingValues:
       type: object
       additionalProperties: { type: [boolean, number, string, 'null'] }
@@ -6149,7 +6199,7 @@ components:
             type: boolean
           hasUiSettings:
             type: boolean
-            description: Le plugin fournit une déclaration de réglages pour Core UI.
+            description: Le plugin fournit une déclaration de réglages généraux pour Core UI.
           configurationPath:
             type:
             - string
