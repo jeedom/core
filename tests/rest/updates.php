@@ -73,6 +73,8 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public static function byId($id) { return new self($id); }
     public function getName() { return strtoupper($this->id); }
     public function getPathImgIcon() { return 'https://outside.example/image.png'; }
+    public function getDocumentation() { return $this->id === 'manual' ? '' : 'https://example.org/' . $this->id . '/docs'; }
+    public function getDocumentation_beta() { return $this->id === 'hue' ? 'https://example.org/hue/beta-docs' : 'javascript:alert(1)'; }
     public function getChangelog() { return $this->id === 'manual' ? 'javascript:alert(1)' : 'https://example.org/' . $this->id . '/changes'; }
     public function getChangelog_beta() { return $this->id === 'hue' ? 'https://example.org/hue/beta-changes' : ''; }
 PHP);
@@ -136,6 +138,9 @@ foreach (['/updates/check', '/updates/operations'] as $path) call('POST', $path,
 $catalog = call('GET', '/plugins/management');
 check($catalog['total'] === 3 && $catalog['core']['update']['id'] === 1, 'Installed inventory or Core missing');
 $managed = array_column($catalog['items'], 'management', 'id');
+check($managed['hue']['documentationUrl'] === 'https://example.org/hue/beta-docs', 'Beta documentation not preferred');
+check($managed['weather']['documentationUrl'] === 'https://example.org/weather/docs', 'Invalid beta documentation did not fall back to stable');
+check($managed['manual']['documentationUrl'] === null, 'Missing documentation must be null');
 check($managed['hue']['changelogUrl'] === 'https://example.org/hue/beta-changes', 'Beta changelog not preferred');
 check($managed['weather']['changelogUrl'] === 'https://example.org/weather/changes', 'Stable changelog not used as fallback');
 check($managed['manual']['changelogUrl'] === null, 'Invalid changelog URL exposed');
