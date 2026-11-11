@@ -55,6 +55,28 @@ final class CmdsController
         return Json::respond($response, $page);
     }
 
+    public function genericTypes(Request $request, Response $response): Response
+    {
+        $items = [];
+        foreach (\config::getGenericTypes()['byType'] as $id => $definition) {
+            $type = strtolower((string) $definition['type']);
+            if (!isset(self::SUB_TYPES[$type])) {
+                continue;
+            }
+            $item = [
+                'id' => (string) $id,
+                'name' => (string) $definition['name'],
+                'family' => (string) $definition['family'],
+                'type' => $type,
+            ];
+            if (isset($definition['subtype'])) {
+                $item['subTypes'] = array_values(array_intersect(self::SUB_TYPES[$type], (array) $definition['subtype']));
+            }
+            $items[] = $item;
+        }
+        return Json::respond($response, ['items' => $items]);
+    }
+
     public function get(Request $request, Response $response, array $args): Response
     {
         return Json::respond($response, self::toArray(self::findReadable($args['id'], $request->getAttribute('user'))));

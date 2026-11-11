@@ -4080,6 +4080,26 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /cmds/generic-types:
+    get:
+      tags: [Commandes]
+      operationId: listCmdGenericTypes
+      summary: Lister les types génériques des commandes
+      description: Catalogue du Core et des plugins actifs, avec les libellés fournis par Jeedom.
+      responses:
+        '200':
+          description: Catalogue complet des types génériques.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/CmdGenericType' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
   /cmds/{id}:
     parameters:
       - $ref: '#/components/parameters/CmdId'
@@ -6689,6 +6709,19 @@ components:
       type: string
       description: 'info : numeric, binary, string. action : other, slider, message, color, select.'
       enum: [numeric, binary, string, other, slider, message, color, select]
+
+    CmdGenericType:
+      type: object
+      required: [id, name, family, type]
+      properties:
+        id: { type: string, example: LIGHT_STATE }
+        name: { type: string, example: Lumière État }
+        family: { type: string, example: Lumière }
+        type: { $ref: '#/components/schemas/CmdType' }
+        subTypes:
+          type: array
+          description: Sous-types compatibles. Quand le champ est absent, tous les sous-types du type de commande sont acceptés.
+          items: { $ref: '#/components/schemas/CmdSubType' }
 
     Cmd:
       type: object

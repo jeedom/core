@@ -59,6 +59,7 @@ final class App
             $api->post('/cmds', $cmds->create(...));
             $api->patch('/cmds', $cmds->updateMany(...));
             $api->put('/cmds/order', $cmds->reorder(...));
+            $api->get('/cmds/generic-types', $cmds->genericTypes(...));
             $api->get('/cmds/{id}', $cmds->get(...));
             $api->patch('/cmds/{id}', $cmds->update(...));
             $api->delete('/cmds/{id}', $cmds->delete(...));
