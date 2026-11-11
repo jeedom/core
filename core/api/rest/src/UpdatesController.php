@@ -23,9 +23,24 @@ final class UpdatesController
     public function check(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        if (trim((string) $request->getBody()) !== '' && Json::body($request) !== []) throw new ApiError(422, 'validation_error', 'Aucun paramètre attendu.');
-        $operation = self::call(fn () => \update::startOperation([], (int) $request->getAttribute('user')->getId(), self::key($request), 'check'));
-        return self::respond($response, $operation, in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
+        $body = trim((string) $request->getBody()) === '' ? [] : Json::body($request);
+        if (array_diff(array_keys($body), ['target'])) {
+            throw new ApiError(422, 'validation_error', 'Paramètre de vérification inconnu.');
+        }
+        $options = [];
+        if (array_key_exists('target', $body)) {
+            $target = $body['target'];
+            $pluginId = is_array($target) ? ($target['pluginId'] ?? null) : null;
+            if ($target === ['type' => 'core']) {
+                $options['target'] = $target;
+            } elseif (is_array($target) && count($target) === 2 && ($target['type'] ?? null) === 'plugin'
+                && is_string($pluginId) && preg_match('/\A[A-Za-z0-9_][A-Za-z0-9_-]{0,126}\z/', $pluginId)) {
+                $options['target'] = ['type' => 'plugin', 'pluginId' => $pluginId];
+            } else {
+                throw ApiError::field(422, 'validation_error', 'target', 'Sélectionnez le Core ou un plugin installé.');
+            }
+        }
+        return self::schedule($request, $response, [], 'check', false, $options);
     }
 
     public function latest(Request $request, Response $response): Response
@@ -41,12 +56,51 @@ final class UpdatesController
         $ids = $body['ids'] ?? null;
         $force = $body['force'] ?? false;
         if (array_key_exists('force', $body) && !is_bool($body['force'])) throw ApiError::field(422, 'validation_error', 'force', 'Un booléen est attendu.');
-        if (array_diff(array_keys($body), ['ids', 'force']) || !is_array($ids) || !array_is_list($ids)
+        if (array_diff(array_keys($body), ['ids', 'force', 'backupBefore']) || !is_array($ids) || !array_is_list($ids)
             || count($ids) < 1 || count($ids) > 200 || count(array_unique($ids, SORT_REGULAR)) !== count($ids)) {
             throw ApiError::field(422, 'validation_error', 'ids', 'Sélection invalide (1 à 200 identifiants distincts).');
         }
         foreach ($ids as $id) if (!is_int($id) || $id < 1) throw ApiError::field(422, 'validation_error', 'ids', 'Identifiant invalide.');
-        $operation = self::call(fn () => \update::startOperation($ids, (int) $request->getAttribute('user')->getId(), self::key($request), 'update', $force));
+        $options = [];
+        if (array_key_exists('backupBefore', $body)) {
+            if (!is_bool($body['backupBefore'])) {
+                throw ApiError::field(422, 'validation_error', 'backupBefore', 'Un booléen est attendu.');
+            }
+            $options['backupBefore'] = $body['backupBefore'];
+        }
+        return self::schedule($request, $response, $ids, 'update', $force, $options);
+    }
+
+    public function coreMaintenance(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        return self::respond($response, [
+            'enabled' => \config::byKey('update::allowCore', 'core', 1) == 1,
+            'migrations' => \update::coreMigrations(),
+        ]);
+    }
+
+    public function startCoreMaintenance(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $body = Json::body($request);
+        $action = $body['action'] ?? null;
+        $version = $body['version'] ?? null;
+        if ($action === 'force' && count($body) === 1) {
+            $options = ['action' => 'force'];
+        } elseif ($action === 'reapply' && count($body) === 2 && is_string($version)
+            && preg_match('/\A\d{1,8}\.\d{1,8}\.\d{1,8}\z/', $version)) {
+            $options = ['action' => 'reapply', 'version' => $version];
+        } else {
+            throw new ApiError(422, 'validation_error', 'Action de maintenance ou version de migration invalide.');
+        }
+        return self::schedule($request, $response, [], 'maintenance', false, $options);
+    }
+
+    private static function schedule(Request $request, Response $response, array $ids, string $kind, bool $force, array $options): Response
+    {
+        $operation = self::call(fn () => \update::startOperation($ids, (int) $request->getAttribute('user')->getId(),
+            self::key($request), $kind, $force, $options));
         return self::respond($response, $operation, in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
 

@@ -344,18 +344,41 @@ class update {
 	private const OPERATION_KEY = 'rest::updateOperation';
 	private static bool $_executingOperation = false;
 
-	public static function startOperation(array $ids, int $userId, string $requestKey, string $kind = 'update', bool $force = false): array {
-		return self::withOperationLock('mutation', static function () use ($ids, $userId, $requestKey, $kind, $force) {
+	/** @return list<string> Installed Core migration versions that can be reapplied. */
+	public static function coreMigrations(): array {
+		$versions = [];
+		$installed = jeedom::version();
+		foreach (self::listCoreUpdate() as $file) {
+			if (preg_match('/\A(\d+\.\d+\.\d+)\.php\z/', $file, $match)
+				&& version_compare($match[1], $installed, '<=')) {
+				$versions[] = $match[1];
+			}
+		}
+		usort($versions, static fn ($first, $second) => version_compare($second, $first));
+		return $versions;
+	}
+
+	public static function startOperation(array $ids, int $userId, string $requestKey, string $kind = 'update', bool $force = false, array $options = []): array {
+		return self::withOperationLock('mutation', static function () use ($ids, $userId, $requestKey, $kind, $force, $options) {
 			$last = self::readOperation();
 			if ($last !== null && $last['requestKey'] === $requestKey) {
 				$original = array_column($last['items'], 'id');
 				$selected = $ids;
 				sort($original); sort($selected);
-				if ($original !== $selected || $last['userId'] !== $userId || $last['kind'] !== $kind || ($last['force'] ?? false) !== $force) throw new RuntimeException('Clé déjà utilisée pour une autre sélection.', 409);
+				if ($original !== $selected || $last['userId'] !== $userId || $last['kind'] !== $kind
+					|| ($last['force'] ?? false) !== $force || ($last['options'] ?? []) !== $options) {
+					throw new RuntimeException('Clé déjà utilisée pour une autre demande.', 409);
+				}
 				return self::latestOperation();
 			}
 			self::assertOperationIdle();
 			self::assertNoInstallations();
+			if (isset($options['target']['pluginId'])) {
+				self::checkablePlugin($options['target']['pluginId']);
+			}
+			if ($kind === 'maintenance') {
+				self::validateMaintenance($options);
+			}
 			$items = array();
 			foreach ($ids as $id) {
 				$update = self::byId($id);
@@ -364,9 +387,12 @@ class update {
 					'name' => $update->getType() === 'core' ? 'Core Jeedom' : plugin::byId($update->getLogicalId())->getName(), 'state' => 'queued', 'error' => null);
 			}
 			usort($items, static fn ($a, $b) => ($a['type'] === 'core' ? 0 : 1) <=> ($b['type'] === 'core' ? 0 : 1));
+			if (isset($options['backupBefore']) && ($items[0]['type'] ?? null) !== 'core') {
+				throw new RuntimeException('Le choix de sauvegarde est réservé aux mises à jour du Core.', 422);
+			}
 			$operation = array('id' => bin2hex(random_bytes(16)), 'kind' => $kind, 'state' => 'queued', 'items' => $items,
 				'createdAt' => date('c'), 'startedAt' => null, 'finishedAt' => null, 'error' => null, 'progress' => null,
-				'logName' => 'update', 'userId' => $userId, 'requestKey' => $requestKey, 'force' => $force);
+				'logName' => 'update', 'userId' => $userId, 'requestKey' => $requestKey, 'force' => $force, 'options' => $options);
 			self::storeOperation($operation);
 			try {
 				system::php(escapeshellarg(__DIR__ . '/../php/jeeRestUpdate.php') . ' ' . escapeshellarg($operation['id']) . ' > /dev/null 2>&1 &');
@@ -412,9 +438,15 @@ class update {
 					$actor = user::byId($operation['userId']);
 					if (!is_object($actor) || !$actor->isValidAndEnabled() || $actor->getProfils() !== 'admin') throw new RuntimeException('Administrateur désactivé ou droits retirés.');
 					log::clear('update');
+					$options = $operation['options'] ?? [];
 					if ($operation['kind'] === 'check') {
-						self::checkAllUpdate('core', true, false);
-						self::checkAllUpdate('plugin', false);
+						self::executeCheck($options['target'] ?? null);
+					} elseif ($operation['kind'] === 'maintenance') {
+						self::validateMaintenance($options);
+						$params = $options['action'] === 'force'
+							? ['force=1', 'mode=force', 'backup::before=0']
+							: ['backup::before=1', 'update::reapply=' . $options['version']];
+						self::runCoreInstaller($params);
 					}
 					foreach ($operation['items'] as $index => $item) {
 						$operation['items'][$index]['state'] = 'running';
@@ -423,14 +455,7 @@ class update {
 						if (!is_object($update) || $update->getType() !== $item['type'] || $update->getLogicalId() !== $item['logicalId']) throw new RuntimeException('Le composant sélectionné a changé.');
 						self::validateUpdate($update, $operation['force'] ?? false);
 						if ($item['type'] === 'core') {
-							if (config::byKey('update::allowCore', 'core', 1) != 1) throw new RuntimeException('La mise à jour du Core est désactivée.');
-							// A waiting shell would also match the native installer's process guard.
-							system::php(escapeshellarg(__DIR__ . '/../../install/update.php') . ' core=1 plugins=0 ' . escapeshellarg('backup::before=1')
-								. ' >> ' . escapeshellarg(log::getPathToLog('update')) . ' 2>&1 &');
-							self::waitForCore();
-							// The child replaced the version file; plugins must see the new Core version.
-							clearstatcache();
-							jeedom::version(true);
+							self::runCoreInstaller(['backup::before=' . (int) ($options['backupBefore'] ?? true)]);
 						} else {
 							plugin::withInstallationLock($item['logicalId'], static function () use ($update, $item) {
 								plugin::assertInstallationIdle($item['logicalId']);
@@ -452,6 +477,56 @@ class update {
 				} finally { self::$_executingOperation = false; }
 			}, LOCK_EX);
 		});
+	}
+
+	private static function checkablePlugin(string $pluginId): ?self {
+		if (!is_file(plugin::getPathById($pluginId))) {
+			throw new RuntimeException('Plugin absent.', 404);
+		}
+		$update = self::byTypeAndLogicalId('plugin', $pluginId);
+		if (is_object($update) && ($update->getStatus() === 'hold' || $update->getConfiguration('doNotUpdate', 0) == 1)) {
+			throw new RuntimeException('Les mises à jour de ce plugin sont désactivées.', 409);
+		}
+		return $update ?: null;
+	}
+
+	private static function executeCheck(?array $target): void {
+		if ($target === null) {
+			self::checkAllUpdate('core', true, false);
+			self::checkAllUpdate('plugin', false);
+		} elseif ($target['type'] === 'core') {
+			self::checkAllUpdate('core', false, false);
+		} else {
+			$pluginId = $target['pluginId'];
+			$update = self::checkablePlugin($pluginId);
+			if ($update === null) {
+				$update = new self();
+				$update->setLogicalId($pluginId);
+				$update->setType('plugin');
+				$update->setLocalVersion(date('Y-m-d H:i:s'));
+				$update->save();
+			}
+			$update->checkUpdate();
+		}
+	}
+
+	private static function validateMaintenance(array $options): void {
+		if (config::byKey('update::allowCore', 'core', 1) != 1) {
+			throw new RuntimeException('La mise à jour du Core est désactivée.', 409);
+		}
+		if ($options['action'] === 'reapply' && !in_array($options['version'], self::coreMigrations(), true)) {
+			throw new RuntimeException('Script de migration du Core indisponible.', 422);
+		}
+	}
+
+	private static function runCoreInstaller(array $params): void {
+		// A waiting shell would also match the native installer's process guard.
+		$arguments = implode(' ', array_map('escapeshellarg', $params));
+		system::php(escapeshellarg(__DIR__ . '/../../install/update.php') . ' core=1 plugins=0 ' . $arguments
+			. ' >> ' . escapeshellarg(log::getPathToLog('update')) . ' 2>&1 &');
+		self::waitForCore();
+		clearstatcache();
+		jeedom::version(true);
 	}
 
 	/** Serialize admission with plugin installation/mutation; workers keep the exclusive lock. */
@@ -546,11 +621,12 @@ class update {
 	}
 
 	private static function publicOperation(array $operation): array {
-		unset($operation['userId'], $operation['requestKey'], $operation['force']);
-		foreach ($operation['items'] as $item) {
-			if ($item['type'] === 'core' && $item['state'] === 'running' && preg_match_all('/\[PROGRESS\]\[(\d+)\]/', self::operationLogTail(), $matches)) {
-				$operation['progress'] = min(100, (int) end($matches[1]));
-			}
+		unset($operation['userId'], $operation['requestKey'], $operation['force'], $operation['options']);
+		$runningCore = $operation['kind'] === 'maintenance'
+			|| ($operation['items'][0]['type'] ?? null) === 'core' && $operation['items'][0]['state'] === 'running';
+		if ($runningCore && $operation['state'] === 'running'
+			&& preg_match_all('/\[PROGRESS\]\[(\d+)\]/', self::operationLogTail(), $matches)) {
+			$operation['progress'] = min(100, (int) end($matches[1]));
 		}
 		return $operation;
 	}

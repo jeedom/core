@@ -46,6 +46,7 @@ class session {
 }
 class jeedom {
     public static function version() { return trim(file_get_contents(dirname(__DIR__, 2) . '/core/config/version')); }
+    public static function getDocUrl(...$args) { return 'https://doc.jeedom.com/changelog'; }
     public static function getHardwareName() { return 'docker'; }
     public static function getTmpFolder($name) { global $testRoot; $path = $testRoot . '/' . $name; if (!is_dir($path)) mkdir($path); return $path; }
 }

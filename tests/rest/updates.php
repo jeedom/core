@@ -84,6 +84,7 @@ defineRestOperationsFixture('update', <<<'PHP'
     public static function all() { return self::$items; }
     public static function byTypeAndLogicalId($type, $id) { foreach (self::$items as $item) if ($item->getType() === $type && $item->getLogicalId() === $id) return $item; return null; }
     public static function byId($id) { foreach (self::$items as $item) if ($item->getId() === $id) return $item; return null; }
+    public static function listCoreUpdate() { return scandir(__DIR__ . '/../../install/update'); }
     public static function checkAllUpdate($filter, $findNew = true, $saveLastCheck = true) {
         self::$checked[] = [$filter, $saveLastCheck];
         if ($saveLastCheck) config::save('update::lastCheck', '2026-11-09 08:30:00');
@@ -99,6 +100,7 @@ defineRestOperationsFixture('update', <<<'PHP'
     public function getRemoteVersion() { return '2'; }
     public function getUpdateDate() { return null; }
     public function getStatus() { return $this->status; }
+    public function checkUpdate() { self::$checked[] = $this->logicalId; }
     public function doUpdate() { self::$executed[] = $this->id; if (self::$failure === $this->id) throw new RuntimeException('https://user:secret@example.org/?token=secret'); }
 PHP);
 class queue {
@@ -204,4 +206,41 @@ check(call('POST', '/updates/operations', 202, ['ids' => [1, 2], 'force' => true
 update::$executed = [];
 update::executeOperation($job['id']);
 check(call('GET', '/updates/operations/latest')['operation']['state'] === 'succeeded' && update::$executed === ['core', 2], 'Reinstall did not use the native Core and plugin update paths');
+
+resetOperation();
+update::$checked = [];
+$target = ['target' => ['type' => 'plugin', 'pluginId' => 'hue']];
+$job = call('POST', '/updates/check', 202, $target);
+call('POST', '/updates/check', 409, ['target' => ['type' => 'core']]);
+update::executeOperation($job['id']);
+check(update::$checked === ['hue'], 'Targeted check ran for other components');
+check(call('GET', '/plugins/management')['lastCheck'] === '2026-11-09 08:30:00', 'Targeted check changed the global date');
+check($catalog['core']['changelogUrl'] === 'https://doc.jeedom.com/changelog', 'Core changelog not exposed');
+
+resetOperation();
+call('POST', '/updates/operations', 422, ['ids' => [2], 'force' => true, 'backupBefore' => false]);
+$job = call('POST', '/updates/operations', 202, ['ids' => [1], 'force' => true, 'backupBefore' => false]);
+call('POST', '/updates/operations', 409, ['ids' => [1], 'force' => true, 'backupBefore' => true]);
+update::executeOperation($job['id']);
+check(str_contains(end(system::$commands), 'backup::before=0'), 'Core update ignored the backup choice');
+check(!str_contains(end(system::$commands), 'force=1'), 'Reinstall used the native forced mode');
+
+resetOperation();
+$maintenancePath = '/updates/core/maintenance';
+$maintenance = call('GET', $maintenancePath);
+check($maintenance['enabled'] && in_array('4.6.3', $maintenance['migrations'], true), 'Installed migration missing');
+call('POST', $maintenancePath, 422, ['action' => 'reapply', 'version' => '0.0.1']);
+$job = call('POST', $maintenancePath, 202, ['action' => 'reapply', 'version' => '4.6.3']);
+check($job['kind'] === 'maintenance' && !isset($job['options']), 'Invalid public maintenance operation');
+call('POST', $maintenancePath, 409, ['action' => 'force']);
+update::executeOperation($job['id']);
+$command = end(system::$commands);
+check(str_contains($command, 'update::reapply=4.6.3') && str_contains($command, 'backup::before=1'), 'Migration did not use the native Core path with backup');
+
+resetOperation();
+$job = call('POST', $maintenancePath, 202, ['action' => 'force']);
+update::executeOperation($job['id']);
+$command = end(system::$commands);
+check(str_contains($command, 'force=1') && str_contains($command, 'backup::before=0'), 'Forced Core maintenance used the wrong native flags');
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'succeeded', 'Forced Core maintenance did not finish');
 echo "OK $checks REST update checks on PHP " . PHP_VERSION . "\n";

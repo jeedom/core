@@ -50,6 +50,7 @@ final class PluginsController
         Auth::requireAdmin($request);
         $items = self::items(true);
         $core = \update::byTypeAndLogicalId('core', 'jeedom');
+        $coreUpdate = self::updateSummary($core);
         $source = (string) \config::byKey('core::repo::provider', 'core', 'default');
         $branch = match ($source) {
             'default' => (string) \config::byKey('core::branch', 'core', 'master'),
@@ -58,7 +59,8 @@ final class PluginsController
         };
         return self::respond($response, ['items' => $items, 'total' => count($items),
             'core' => ['name' => 'Core Jeedom', 'version' => \jeedom::version(),
-                'source' => $source, 'branch' => $branch, 'update' => self::updateSummary($core)],
+                'source' => $source, 'branch' => $branch, 'update' => $coreUpdate,
+                'changelogUrl' => self::webUrl(\jeedom::getDocUrl('core', 'changelog', $coreUpdate['remoteVersion'] ?? null))],
             'lastCheck' => \config::byKey('update::lastCheck', 'core', '') ?: null, 'operation' => \update::latestOperation()]);
     }
 

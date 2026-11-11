@@ -211,6 +211,8 @@ final class App
 
             $updates = new UpdatesController();
             $api->get('/updates/core/branches', $updates->coreBranches(...));
+            $api->get('/updates/core/maintenance', $updates->coreMaintenance(...));
+            $api->post('/updates/core/maintenance', $updates->startCoreMaintenance(...));
             $api->post('/updates/check', $updates->check(...));
             $api->get('/updates/operations/latest', $updates->latest(...));
             $api->post('/updates/operations', $updates->start(...));

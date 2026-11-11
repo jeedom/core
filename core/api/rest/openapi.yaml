@@ -1696,12 +1696,32 @@ paths:
     post:
       operationId: checkComponentUpdates
       summary: Planifier la vérification des mises à jour du Core et des plugins.
-      description: Administrateur, CSRF en session et Idempotency-Key requis. Aucun paramètre. Aucun contrôle des paquets OS.
+      description: Administrateur, CSRF en session et Idempotency-Key requis. Avec une cible, vérifie uniquement ce composant et conserve la date de vérification globale.
       parameters:
         - in: header
           name: Idempotency-Key
           required: true
           schema: { type: string, pattern: '^[A-Za-z0-9_-]{16,128}$' }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                target:
+                  oneOf:
+                    - type: object
+                      additionalProperties: false
+                      required: [type]
+                      properties:
+                        type: { type: string, enum: [core] }
+                    - type: object
+                      additionalProperties: false
+                      required: [type, pluginId]
+                      properties:
+                        type: { type: string, enum: [plugin] }
+                        pluginId: { type: string, pattern: '^[A-Za-z0-9_][A-Za-z0-9_-]{0,126}$' }
       responses:
         '202':
           description: Vérification planifiée ou en cours.
@@ -1713,10 +1733,76 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /updates/core/maintenance:
+    get:
+      operationId: getCoreMaintenance
+      summary: Lister les scripts de migration du Core présents sur la box.
+      responses:
+        '200':
+          description: Disponibilité de la maintenance du Core et versions des migrations locales.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [enabled, migrations]
+                properties:
+                  enabled: { type: boolean }
+                  migrations:
+                    type: array
+                    items: { type: string }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      operationId: startCoreMaintenance
+      summary: Planifier une mise à jour forcée ou la réapplication d’une migration du Core.
+      description: Administrateur, CSRF en session et Idempotency-Key requis. Le mode forcé poursuit certaines étapes après erreur et saute la sauvegarde. La migration utilise un script déjà présent sur la box et réalise une sauvegarde locale.
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: { type: string, pattern: '^[A-Za-z0-9_-]{16,128}$' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  additionalProperties: false
+                  required: [action]
+                  properties:
+                    action: { type: string, enum: [force] }
+                - type: object
+                  additionalProperties: false
+                  required: [action, version]
+                  properties:
+                    action: { type: string, enum: [reapply] }
+                    version: { type: string, pattern: '^[0-9]{1,8}\.[0-9]{1,8}\.[0-9]{1,8}$' }
+      responses:
+        '202':
+          description: Maintenance planifiée ou en cours.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '200':
+          description: Reprise idempotente d’une maintenance terminée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '409': { $ref: '#/components/responses/Conflict' }
         '422': { $ref: '#/components/responses/ValidationError' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
 
   /updates/operations:
     post:
@@ -1725,7 +1811,7 @@ paths:
       description: |
         Administrateur, CSRF en session et Idempotency-Key requis. Sélection explicite d’identifiants
         de la table update, limités aux plugins installés et au Core. Le worker revérifie les droits,
-        les exclusions et les identités. Le Core passe avant les plugins, avec sauvegarde native.
+        les exclusions et les identités. Le Core passe avant les plugins, avec sauvegarde locale par défaut.
         Un échec arrête la sélection restante. L’exécution indépendante survit à la fermeture du navigateur
         et au redémarrage de la queue par le Core. Une opération concurrente ou une installation de plugin
         donne 409. Une même clé avec une autre sélection ou un autre utilisateur donne 409.
@@ -1752,6 +1838,7 @@ paths:
                   uniqueItems: true
                   items: { type: integer, minimum: 1 }
                 force: { type: boolean, default: false }
+                backupBefore: { type: boolean, default: true, description: Sauvegarde locale avant la mise à jour du Core. Réservé à une sélection contenant le Core. }
       responses:
         '202':
           description: Mise à jour planifiée ou en cours.
@@ -1763,15 +1850,17 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/UpdateOperation' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '409': { $ref: '#/components/responses/Conflict' }
         '422': { $ref: '#/components/responses/ValidationError' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
 
   /updates/operations/latest:
     get:
       operationId: getLatestComponentUpdate
-      summary: Retrouver la dernière vérification ou mise à jour de la box.
+      summary: Retrouver la dernière vérification, mise à jour ou maintenance de la box.
       description: Administrateur uniquement. Ne démarre et ne rejoue aucune opération. Une tâche interrompue est signalée en échec.
       responses:
         '200':
@@ -5838,6 +5927,7 @@ components:
         version: { type: string }
         source: { type: string }
         branch: { type: string }
+        changelogUrl: { type: [string, 'null'], format: uri }
         update:
           oneOf:
             - $ref: '#/components/schemas/ComponentUpdate'
@@ -5861,7 +5951,7 @@ components:
       required: [id, kind, state, items, createdAt, startedAt, finishedAt, error, progress, logName]
       properties:
         id: { type: string }
-        kind: { type: string, enum: [check, update] }
+        kind: { type: string, enum: [check, update, maintenance] }
         state: { type: string, enum: [queued, running, succeeded, failed] }
         createdAt: { type: string }
         startedAt: { type: [string, 'null'] }

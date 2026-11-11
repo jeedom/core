@@ -45,6 +45,17 @@ try {
 	echo "****Update from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Parameters : " . json_encode($_GET) . "\n";
 	$curentVersion = config::byKey('version');
+	$reapply = (string) init('update::reapply');
+	$reapplyScript = null;
+	if (init('core', 1) == 1 && $reapply !== '') {
+		if (!preg_match('/\A[A-Za-z0-9][A-Za-z0-9_.-]*\z/', $reapply)) {
+			throw new RuntimeException('Invalid Core migration.');
+		}
+		$reapplyScript = __DIR__ . '/update/' . $reapply . '.php';
+		if (!is_file($reapplyScript)) {
+			throw new RuntimeException('Core migration not found.');
+		}
+	}
 
 	/*         * ************************MISE A JOUR********************************** */
 
@@ -106,7 +117,7 @@ try {
 			echo "/!\ Force update /!\ \n";
 		}
 		echo "[PROGRESS][15]\n";
-		if (init('update::reapply') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
+		if ($reapplyScript === null && config::byKey('update::allowCore', 'core', 1) != 0) {
 			$tmp_dir = jeedom::getTmpFolder('install');
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
@@ -278,25 +289,18 @@ try {
 				}
 			}
 		} else {
+			$update = $reapplyScript !== null;
 			jeedom::stop();
 		}
 		echo "[PROGRESS][60]\n";
-		if (init('update::reapply') != '') {
-			$updateScript = __DIR__ . '/update/' . init('update::reapply') . '.php';
-			if (file_exists($updateScript)) {
-				try {
-					echo "Update system into : " . init('update::reapply') . "\n";
-					echo exec(system::getCmdSudo() . ' php ' . $updateScript);
-					echo "OK\n";
-				} catch (Exception $e) {
-					if (init('force') != 1) {
-						throw $e;
-					} else {
-						echo '***ERROR***' . $e->getMessage();
-					}
-				}
+		if ($reapplyScript !== null) {
+			$update_begin = true;
+			echo "Update system into : " . $reapply . "\n";
+			passthru(system::getCmdSudo() . ' php ' . escapeshellarg($reapplyScript), $status);
+			if ($status !== 0 && init('force') != 1) {
+				throw new RuntimeException('Core migration failed (exit code ' . $status . ').');
 			}
-			$curentVersion = init('update::reapply');
+			echo $status === 0 ? "OK\n" : "***ERROR*** Core migration failed (exit code " . $status . ").\n";
 		} else {
 			echo "Upgrading from: {$curentVersion} to " . jeedom::version(true) . "\n";
 			while (version_compare(jeedom::version(), $curentVersion, '>')) {
