@@ -22,6 +22,30 @@ Les routes passent par le middleware existant : utilisateur connecté par Bearer
 
 La fiche renvoie les métadonnées, la compatibilité Core/OS, le module Core UI disponible, les fonctionnalités contrôlables, les journaux et l’état de la mise à jour. Les paramètres privés du dépôt et la configuration arbitraire du plugin ne sont pas exposés. Les fonctionnalités absentes ou non contrôlables ne peuvent pas être modifiées. Les réglages propres à chaque plugin restent à déclarer dans son interface et ses contrats ; le chemin historique `configurationPath` est une métadonnée, pas une nouvelle route d’exécution PHP.
 
+## Déclarer des routes propres à un plugin
+
+Dans le dossier d'un plugin, `core/api/rest/routes.php` retourne une fonction de déclaration. Le Core charge ce fichier pour une requête à l'API du plugin si celui-ci est installé et actif. Les chemins déclarés sont relatifs à `/api/v1/plugins/{id}/api`.
+
+```php
+<?php
+use Jeedom\Api\Rest\Auth;
+use Jeedom\Api\Rest\Json;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Routing\RouteCollectorProxy;
+
+return static function (RouteCollectorProxy $routes): void {
+    $routes->get('/status', static function (Request $request, Response $response): Response {
+        Auth::requireAdmin($request);
+        return Json::respond($response, ['status' => 'ok']);
+    });
+};
+```
+
+La route de cet exemple répond à `GET /api/v1/plugins/exemple/api/status` pour le plugin `exemple`. On peut utiliser les méthodes habituelles de Slim (`get`, `post`, `patch`, etc.) et les paramètres de chemin comme `/equipements/{id}`. Le fichier est évalué pour chaque requête vers ce préfixe. Il doit uniquement déclarer les routes, et les effets métier doivent rester dans les contrôleurs.
+
+L'utilisateur authentifié est disponible via `$request->getAttribute('user')`. Une écriture par session passe par le contrôle CSRF du Core. Le plugin applique les droits adaptés à chaque opération, par exemple `Auth::requireAdmin()` et les droits sur l'équipement demandé. Les contrôleurs peuvent utiliser `Json::body()`, `Json::respond()` et `ApiError` pour le même format que le Core. Les routes de plugins sont isolées par identifiant de plugin et les routes standard du Core gardent leurs propres chemins.
+
 ## Installation depuis le Market
 
 Le lien Market ouvre Core UI sous `/ui/#/plugins/install?marketId=1234&version=beta`. Le navigateur transmet uniquement l’identifiant numérique et la branche, jamais un secret ou une archive.

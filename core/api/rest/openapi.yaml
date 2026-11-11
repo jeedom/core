@@ -53,6 +53,13 @@ info:
     La durée est de 24 h par défaut, ou de 90 jours avec « Rester connecté ».
     L'ancienne interface utilise ses propres sessions PHP.
 
+    ## Routes déclarées par les plugins
+    Un plugin installé et actif peut déclarer ses propres routes sous
+    `/plugins/{id}/api` via `core/api/rest/routes.php` dans son dossier. Elles
+    utilisent l'authentification, le CSRF en session et les erreurs de l'API.
+    Le plugin documente ses opérations et contrôle les droits sur ses ressources.
+    Voir `docs/fr_FR/rest_plugins.md` pour le contrat de déclaration.
+
     ## Configuration (`/config`)
     Réglages globaux du core (table `config`, `plugin = core`), lus et
     modifiés par liste de clés : `GET /config?keys=…` et `PATCH /config`.

@@ -198,6 +198,7 @@ final class App
             $api->get('/plugins/{id}', $plugins->get(...));
             $api->get('/plugins/{id}/icon', $plugins->icon(...));
             $api->get('/plugins/{id}/ui/{path:.+}', $plugins->uiAsset(...));
+            $api->any('/plugins/{id}/api[/{path:.+}]', $plugins->dispatchApi(...));
             $api->patch('/plugins/{id}', $plugins->update(...));
             $api->delete('/plugins/{id}', $plugins->delete(...));
             $api->get('/plugins/{id}/configuration', $plugins->getConfiguration(...));

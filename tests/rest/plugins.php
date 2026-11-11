@@ -324,6 +324,52 @@ $cookies = ['JeedomSession' => 'browser-token'];
 call('PATCH', '/plugins/fixture', 401, ['isEnable' => false], token: null, cookies: ['PHPSESSID' => 'browser-token']);
 call('PATCH', '/plugins/fixture', 403, ['isEnable' => false], token: null, cookies: $cookies);
 call('PATCH', '/plugins/fixture', body: ['isEnable' => false], token: null, cookies: $cookies, headers: ['X-CSRF-Token' => $csrf]);
+// Plugin routes share the API middleware and are loaded only for the requested, active plugin.
+$pluginApi = '/plugins/fixture/api';
+$routeFile = plugin::getPluginPath('fixture') . '/core/api/rest/routes.php';
+mkdir(dirname($routeFile), 0775, true);
+call('GET', $pluginApi . '/status/12', 404);
+$routes = <<<'PHP'
+<?php
+use Jeedom\Api\Rest\Auth;
+use Jeedom\Api\Rest\Json;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Routing\RouteCollectorProxy;
+
+return static function (RouteCollectorProxy $routes): void {
+    $routes->get('/status/{id:[0-9]+}', static function (Request $request, Response $response, array $args): Response {
+        return Json::respond($response, ['user' => $request->getAttribute('user')->getId(), 'id' => (int) $args['id']]);
+    });
+    $routes->post('/settings', static function (Request $request, Response $response): Response {
+        Auth::requireAdmin($request);
+        return Json::respond($response, Json::body($request), 201);
+    });
+};
+PHP;
+file_put_contents($routeFile, $routes);
+call('GET', $pluginApi . '/status/12', 404);
+config::save('active', 1, 'fixture');
+call('GET', $pluginApi . '/status/12', 401, token: null);
+check(call('GET', $pluginApi . '/status/12', token: 'member') === ['user' => 2, 'id' => 12], 'Plugin route lost the authenticated user or its path parameter');
+check(call('GET', $pluginApi . '/status/15', token: null, cookies: $cookies) === ['user' => 1, 'id' => 15], 'Plugin route did not accept a browser session');
+call('GET', $pluginApi . '/unknown', 404);
+call('GET', '/plugins/unknown/api/status/12', 404);
+call('GET', '/plugins/fixture/status/12', 404);
+call('GET', '/plugins/fixture');
+call('POST', $pluginApi . '/status/12', 405);
+call('POST', $pluginApi . '/settings', 403, ['value' => 1], token: 'member');
+check(call('POST', $pluginApi . '/settings', 403, ['value' => 1], token: null, cookies: $cookies)['error']['code'] === 'csrf_invalid', 'Plugin route bypassed CSRF');
+check(call('POST', $pluginApi . '/settings', 201, ['value' => 1], token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies) === ['value' => 1], 'Plugin route lost the JSON body');
+file_put_contents($routeFile, '<?php return [];');
+call('GET', $pluginApi . '/status/12', 500);
+unlink($routeFile);
+$outsideRoute = $testRoot . '/outside-route.php';
+file_put_contents($outsideRoute, $routes);
+symlink($outsideRoute, $routeFile);
+call('GET', $pluginApi . '/status/12', 404);
+unlink($routeFile);
+config::save('active', 0, 'fixture');
 call('DELETE', '/me/sessions/unknown', 404, token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);
 call('DELETE', '/me/sessions/browser-id', 409, token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);
 $disabled = call('PATCH', '/users/2', body: ['enable' => false], token: null, headers: ['X-CSRF-Token' => $csrf], cookies: $cookies);

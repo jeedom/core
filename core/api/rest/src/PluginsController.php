@@ -5,6 +5,7 @@ namespace Jeedom\Api\Rest;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Factory\AppFactory;
 
 /**
  * Plugin menu metadata stays readable by connected users. Management and Market
@@ -152,6 +153,28 @@ final class PluginsController
             throw new ApiError(404, 'plugin_ui_asset_not_found', 'Fichier de l’interface du plugin introuvable.');
         }
         return self::assetResponse($response, $stream, $type);
+    }
+
+    public function dispatchApi(Request $request, Response $response, array $args): Response
+    {
+        $id = $args['id'];
+        $plugin = self::find($id);
+        $root = $plugin->isActive() ? realpath(\plugin::getPluginPath($id)) : false;
+        $file = $root === false ? null : $root . '/core/api/rest/routes.php';
+        if ($file === null || realpath($file) !== $file || !is_file($file)) {
+            throw new ApiError(404, 'route_not_found', 'Route inconnue.');
+        }
+
+        $register = require $file;
+        if (!$register instanceof \Closure) {
+            throw new \UnexpectedValueException('Le fichier de routes REST du plugin ' . $id . ' doit retourner une fonction.');
+        }
+
+        // The subrouter only contains this plugin's routes and inherits the authenticated request.
+        $app = AppFactory::create();
+        $app->group('/api/v1/plugins/' . $id . '/api', $register);
+        $app->addRoutingMiddleware();
+        return $app->handle($request);
     }
 
     private static function uiAssetPath(string $id, string $relative): ?string
