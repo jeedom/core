@@ -127,7 +127,7 @@ final class NetworkAccessController
 
     private static function dnsAvailable(): bool
     {
-        return \config::byKey('dns::token') !== '' && \config::byKey('network::disableMangement') != 1
+        return \config::byKey('dns::token') !== '' && !\network::isExternalManagementDisabled()
             && (\config::byKey('dns::mode') !== 'frp' || \frp::servers() !== []);
     }
 

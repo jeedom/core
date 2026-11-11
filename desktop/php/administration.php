@@ -708,6 +708,7 @@ $productName = config::byKey('product_name');
 						</div>
 
 						<legend>{{Accès externe}}</legend>
+						<?php if (!jeego::isDetected()) { ?>
 						<div class="form-group">
 							<label class="col-lg-2 col-xs-4 control-label">{{Gestion automatique}}
 							</label>
@@ -717,6 +718,7 @@ $productName = config::byKey('product_name');
 								</label>
 							</div>
 						</div>
+						<?php } ?>
 						<div class="form-group">
 							<label class="col-lg-2 col-xs-4 control-label">{{Adresse}}</label>
 							<div class="col-xs-8">

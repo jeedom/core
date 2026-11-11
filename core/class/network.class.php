@@ -56,6 +56,10 @@ class network {
 		return '';
 	}
 
+	public static function isExternalManagementDisabled(): bool {
+		return !jeego::isDetected() && config::byKey('network::disableMangement') == 1;
+	}
+
 	public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {
 		if ($_mode == 'auto') {
 			$_mode = self::getUserLocation();
@@ -109,7 +113,12 @@ class network {
 			return config::byKey('jeedom::url');
 		}
 		if ($_mode == 'external') {
-			$managedDns = config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0;
+			$dnsSelected = config::byKey('market::allowDNS') == 1;
+			$managedDns = $dnsSelected && config::byKey('jeedom::url') != '' && !self::isExternalManagementDisabled();
+			// On Jeego the selected DNS mode owns the external address, including while it is being provisioned.
+			if ($dnsSelected && jeego::isDetected() && (!$managedDns || config::byKey('dns::token') == '')) {
+				return $_default;
+			}
 			if (!$managedDns && config::byKey('externalAddr') == '') {
 				return $_default;
 			}
@@ -266,7 +275,7 @@ class network {
 	}
 
 	public static function test($_mode = 'external', $_timeout = 15) {
-		if (config::byKey('network::disableMangement') == 1 && $_mode == 'external') {
+		if ($_mode == 'external' && self::isExternalManagementDisabled()) {
 			return true;
 		}
 		if ($_mode == 'internal' && netMatch('127.0.*.*', self::getNetworkAccess($_mode, 'ip', '', false))) {
@@ -541,10 +550,7 @@ class network {
 				}
 			}
 		}
-		if (config::byKey('network::disableMangement') == 1) {
-			return;
-		}
-		if (!jeedom::isCapable('sudo') || jeedom::isDocker()) {
+		if (self::isExternalManagementDisabled() || jeedom::isDocker() || !jeedom::isCapable('sudo')) {
 			return;
 		}
 		exec(system::getCmdSudo() . 'ping -n -c 1 -t 255 8.8.8.8 2>&1 > /dev/null', $output, $return_val);

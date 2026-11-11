@@ -457,7 +457,7 @@ class repo_market {
 			'jeedom_name' => config::byKey('name'),
 			'plugin_install_list' => plugin::listPlugin(false, false, false, true),
 		);
-		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+		if (config::byKey('market::allowDNS') != 1 || network::isExternalManagementDisabled()) {
 			$params['url'] = network::getNetworkAccess('external');
 		}
 		$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
@@ -1283,7 +1283,7 @@ class marketClient {
 		if ($name !== '' && mb_strlen($name) <= 127 && preg_match('/[\p{Cc}<>"\x{10000}-\x{10FFFF}]/u', $name) === 0) {
 			$data['name'] = $name;
 		}
-		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+		if (config::byKey('market::allowDNS') != 1 || network::isExternalManagementDisabled()) {
 			$data['url'] = self::boxUrl(network::getNetworkAccess('external'));
 		}
 		$result = self::request('PUT', '/boxes/{boxId}/telemetry', $data);
