@@ -6011,6 +6011,7 @@ components:
       properties:
         source: { type: [string, 'null'] }
         branch: { type: [string, 'null'] }
+        documentationUrl: { type: [string, 'null'], format: uri, description: Documentation de la branche du plugin. }
         changelogUrl: { type: [string, 'null'], format: uri, description: Journal des changements de la branche du plugin. }
         updatedAt: { type: [string, 'null'] }
         hasOwnDaemon: { type: boolean }

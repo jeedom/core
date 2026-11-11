@@ -84,6 +84,7 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getUsedSpace() { return $this->full ? 1234 : null; }
     public function getInstallation() { return '<p>Installation</p>'; }
     public function getDocumentation() { return 'https://doc.example.org/'; }
+    public function getDocumentation_beta() { return ''; }
     public function getChangelog() { return 'javascript:alert(1)'; }
     public function getChangelog_beta() { return ''; }
     public function getIssue() { return 'https://user:secret@example.org/'; }
@@ -357,6 +358,7 @@ $managementPage = call('GET', '/plugins/management');
 check($managementPage['core']['version'] === jeedom::version() && $managementPage['operation'] === null, 'Core or resumable operation missing');
 check($managementPage['items'][0]['id'] === 'fixture' && array_key_exists('update', $managementPage['items'][0]['management']), 'Installed inventory missing update information');
 check($managed['hasOwnDaemon'] && $managed['daemonState'] === null, 'Inactive daemon must not be reported as broken');
+check($managed['documentationUrl'] === 'https://doc.example.org/', 'Plugin documentation missing');
 $repos = call('GET', '/plugins/repositories')['items'];
 check(count($repos) === 4 && $repos[0]['fields'][2]['type'] === 'password' && !$repos[0]['fields'][2]['required'], 'Repository schema or secret field incorrect');
 check(array_column($repos, 'id') === ['github', 'url', 'file', 'market'], 'Plugin sources should include Market and exclude backup-only Samba');
