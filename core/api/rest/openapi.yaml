@@ -201,6 +201,96 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
 
+  /jeego/update:
+    get:
+      tags: [Système]
+      operationId: getJeegoUpdate
+      summary: Lire l’état de la mise à jour de Jeego
+      description: Réservé aux administrateurs. Renvoie l’état connu sans vérifier le dépôt.
+      responses:
+        '200':
+          description: Version de Jeego, dernier contrôle et opération éventuelle.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoUpdateStatus' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+    post:
+      tags: [Système]
+      operationId: startJeegoUpdate
+      summary: Installer la mise à jour de Jeego
+      description: Réservé aux administrateurs. La version doit correspondre à la dernière mise à jour vérifiée sur le canal configuré.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [version]
+              properties:
+                version: { type: string, minLength: 1 }
+      responses:
+        '202':
+          description: Installation acceptée. L’état est disponible après le redémarrage de Jeego.
+          headers:
+            Location:
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoUpdateWorker' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413':
+          description: Corps JSON supérieur à 32 Kio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/update/check:
+    post:
+      tags: [Système]
+      operationId: checkJeegoUpdate
+      summary: Vérifier les mises à jour de Jeego
+      description: Réservé aux administrateurs. La vérification asynchrone utilise le canal configuré dans Jeego.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: false }
+      responses:
+        '202':
+          description: Vérification en cours.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [state]
+                properties:
+                  state: { const: checking }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413':
+          description: Corps JSON supérieur à 32 Kio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
   /jeego/settings/{section}:
     get:
       tags: [Système]
@@ -5181,6 +5271,28 @@ components:
       schema: { type: string, pattern: '^[0-9a-f]{64}$' }
 
   schemas:
+    JeegoUpdateStatus:
+      type: object
+      required: [version, latest, enabled, state, reason, error, worker]
+      properties:
+        version: { type: string }
+        latest: { type: string, description: Dernière version vérifiée. Vide avant un contrôle. }
+        enabled: { type: boolean }
+        state: { type: string, enum: [idle, checking, current, available, error] }
+        reason: { type: string }
+        error: { type: string }
+        worker:
+          oneOf:
+            - $ref: '#/components/schemas/JeegoUpdateWorker'
+            - type: 'null'
+    JeegoUpdateWorker:
+      type: object
+      required: [id, version, status]
+      properties:
+        id: { type: string }
+        version: { type: string }
+        status: { type: string, enum: [starting, running, succeeded, failed] }
+        error: { type: string }
     JeegoTask:
       type: object
       required: [schema_version, id, kind, status, started_at, step, logs]

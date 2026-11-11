@@ -126,6 +126,9 @@ final class App
             $api->get('/jeego/settings/{section}', $jeego->settings(...));
             $api->post('/jeego/actions/{action}', $jeego->action(...));
             $api->get('/jeego/tasks/{id}', $jeego->task(...));
+            $api->get('/jeego/update', $jeego->updateStatus(...));
+            $api->post('/jeego/update/check', $jeego->checkUpdate(...));
+            $api->post('/jeego/update', $jeego->startUpdate(...));
 
             $system = new SystemController();
             $api->get('/system', $system->get(...));
