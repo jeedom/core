@@ -19,7 +19,7 @@ final class CmdsController
         'info' => ['numeric', 'binary', 'string'],
         'action' => ['other', 'slider', 'message', 'color', 'select'],
     ];
-    private const FIELDS = ['eqLogic_id', 'name', 'type', 'subType', 'logicalId', 'generic_type', 'order', 'isVisible', 'isHistorized', 'unite', 'value', 'configuration', 'display', 'template', 'alert'];
+    private const FIELDS = ['eqLogic_id', 'name', 'type', 'subType', 'logicalId', 'generic_type', 'order', 'isVisible', 'isHistorized', 'unite', 'value', 'accessCode', 'configuration', 'display', 'template', 'alert'];
     private const BULK_CHANGES = ['isVisible', 'isHistorized', 'generic_type'];
     private const EXEC_OPTIONS = ['slider', 'color', 'select', 'title', 'message'];
     private const MAX_BULK = 1000;
@@ -539,11 +539,26 @@ final class CmdsController
                 throw ApiError::field(422, 'validation_error', $field, 'Un objet JSON est attendu.');
             }
         }
-        // Le code d'accès est stocké haché ; il ne se règle pas par l'API (question ouverte).
         if (isset($body['configuration']) && array_key_exists('actionCodeAccess', $body['configuration'])) {
-            throw ApiError::field(422, 'validation_error', 'configuration.actionCodeAccess', 'Le code d\'accès ne se modifie pas par l\'API.');
+            throw ApiError::field(422, 'validation_error', 'configuration.actionCodeAccess', 'Utilisez le champ accessCode pour modifier le code d\'accès.');
         }
+        $changeAccessCode = array_key_exists('accessCode', $body);
+        $accessCode = $body['accessCode'] ?? null;
+        if ($changeAccessCode) {
+            if ($cmd->getType() !== 'action') {
+                throw ApiError::field(422, 'validation_error', 'accessCode', 'Le code d\'accès est réservé aux commandes action.');
+            }
+            if ($accessCode !== null && (!is_string($accessCode) || trim($accessCode) === '')) {
+                throw ApiError::field(422, 'validation_error', 'accessCode', 'Saisissez un code non vide ou null pour le supprimer.');
+            }
+            unset($body['accessCode']);
+        }
+
         \utils::a2o($cmd, \jeedom::fromHumanReadable($body));
+        if ($changeAccessCode) {
+            // Toujours hacher le texte fourni, même s'il a la forme d'un hash déjà calculé.
+            $cmd->setConfiguration('actionCodeAccess', $accessCode === null ? null : \sha512($accessCode));
+        }
         try {
             $cmd->save();
         } catch (\Exception $e) {
@@ -582,6 +597,7 @@ final class CmdsController
             'isHistorized' => (bool) (int) ($raw['isHistorized'] ?? 0),
             'unite' => self::nullableString($raw['unite'] ?? null),
             'value' => self::nullableString($raw['value'] ?? null),
+            'hasAccessCode' => $cmd->getType() === 'action' && trim((string) $cmd->getConfiguration('actionCodeAccess')) !== '',
             'configuration' => (object) $configuration,
             'display' => (object) (is_array($raw['display'] ?? null) ? $raw['display'] : []),
             'template' => (object) (is_array($raw['template'] ?? null) ? $raw['template'] : []),
