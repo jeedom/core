@@ -11,13 +11,13 @@ use Psr\Http\Message\StreamInterface;
  * table `event` toutes les secondes, jusqu'à la durée maximale du flux.
  *
  * Format : `id` = curseur (`datetime` de l'événement), `event` = type, `data` = JSON
- * `{type, data}`. Un commentaire `: ping` part toutes les 15 s sans événement.
+ * `{type, data}`. Un commentaire `: ping` part toutes les 10 s sans événement.
  */
 final class EventStream implements StreamInterface
 {
     public const MAX_DURATION = 300;
     private const POLL_INTERVAL_US = 1_000_000;
-    private const PING_INTERVAL = 15;
+    private const PING_INTERVAL = 10;
     private const SESSION_CHECK_INTERVAL = 5;
     private const RETRY_MS = 1000;
 
