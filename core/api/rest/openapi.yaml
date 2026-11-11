@@ -6749,13 +6749,16 @@ components:
         value:
           type: [string, 'null']
           description: Pour une action, la commande info liée (`#[Objet][Équipement][Commande]#`).
+        hasAccessCode:
+          type: boolean
+          readOnly: true
+          description: Indique si un code d'accès est configuré pour cette action.
         configuration:
           type: object
           description: |
             Réglages de la commande (`minValue`, `maxValue`,
-            `calculValueOffset`, `actionConfirm`, `actionCodeAccess`…) et clés
-            propres au plugin. Le code d'accès (`actionCodeAccess`) n'est
-            jamais renvoyé et ne se modifie pas par l'API (422).
+            `calculValueOffset`, `actionConfirm`…) et clés propres au plugin.
+            Le code et son hash ne sont jamais renvoyés.
           additionalProperties: true
         display: { type: object, additionalProperties: true }
         template:
@@ -6783,6 +6786,10 @@ components:
         isHistorized: { type: boolean, default: false }
         unite: { type: [string, 'null'], maxLength: 45 }
         value: { type: [string, 'null'] }
+        accessCode:
+          type: [string, 'null']
+          writeOnly: true
+          description: Pour une action, code d'accès en texte non vide ou null pour le supprimer.
         configuration: { type: object, additionalProperties: true }
         display: { type: object, additionalProperties: true }
         template: { type: object, additionalProperties: true }
@@ -6804,6 +6811,10 @@ components:
         isHistorized: { type: boolean }
         unite: { type: [string, 'null'], maxLength: 45 }
         value: { type: [string, 'null'] }
+        accessCode:
+          type: [string, 'null']
+          writeOnly: true
+          description: Pour une action, nouveau code d'accès en texte non vide ou null pour le supprimer. Omettre pour le conserver.
         configuration: { type: object, additionalProperties: true }
         display: { type: object, additionalProperties: true }
         template: { type: object, additionalProperties: true }
