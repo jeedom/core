@@ -43,6 +43,33 @@ final class JeegoController
         return self::respond($response, ['enabled' => \jeego::isDetected()]);
     }
 
+    public function updateStatus(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        return self::respond($response, self::call('/update/status', 200));
+    }
+
+    public function checkUpdate(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        if (Json::body($request, self::MAX_BODY_BYTES, true) !== []) {
+            throw new ApiError(422, 'validation_error', 'La vérification des mises à jour Jeego attend un objet vide.');
+        }
+        return self::respond($response, self::call('/update/check', 202, []), 202);
+    }
+
+    public function startUpdate(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        $body = Json::body($request, self::MAX_BODY_BYTES, true);
+        $version = $body['version'] ?? null;
+        if (count($body) !== 1 || !is_string($version) || $version === '') {
+            throw ApiError::field(422, 'validation_error', 'version', 'Indiquez uniquement la version Jeego à installer.');
+        }
+        $data = self::call('/update', 202, ['version' => $version]);
+        return self::respond($response->withHeader('Location', '/api/v1/jeego/update'), $data, 202);
+    }
+
     public function settings(Request $request, Response $response, array $args): Response
     {
         self::requireJeego($request);
@@ -149,7 +176,7 @@ final class JeegoController
             if ($status === 409 && in_array($code, ['busy', 'operation_conflict', 'operation_unavailable', 'observation_only'], true)) {
                 throw new ApiError(409, $code, $message);
             }
-            if ($status === 503 && $code === 'settings_unavailable') {
+            if ($status === 503 && in_array($code, ['settings_unavailable', 'update_unavailable'], true)) {
                 throw new ApiError(503, $code, $message);
             }
             if ($status === 404 && $code === 'task_not_found') {
