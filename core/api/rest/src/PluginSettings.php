@@ -10,6 +10,7 @@ final class PluginSettings
 
     private static function path(string $id): ?string
     {
+        if (!preg_match('/\A[A-Za-z0-9_][A-Za-z0-9_-]{0,126}\z/', $id)) return null;
         $root = realpath(\plugin::getPluginPath($id));
         $path = $root === false ? false : realpath($root . '/plugin_info/ui-settings.json');
         return $path !== false && str_starts_with($path, $root . '/') && is_file($path) ? $path : null;
@@ -17,24 +18,106 @@ final class PluginSettings
 
     public static function exists(string $id): bool
     {
-        return self::path($id) !== null;
+        try {
+            return self::section($id, 'plugin') !== [];
+        } catch (ApiError $e) {
+            // Garde l'accès à la fenêtre pour qu'elle puisse afficher l'erreur du fichier.
+            return true;
+        }
     }
 
     public static function fields(string $id): array
     {
-        $path = self::path($id);
-        if ($path === null) {
+        $fields = self::section($id, 'plugin');
+        if ($fields === []) {
             throw new ApiError(404, 'plugin_settings_not_found', 'Ce plugin ne déclare pas de configuration pour cette interface.');
         }
+        return $fields;
+    }
+
+    public static function entitySchema(string $id): array
+    {
+        $declaration = self::declaration($id);
+        return [
+            'eqLogic' => (object) self::validateFields($id, 'eqLogic', $declaration['eqLogic'] ?? []),
+            'cmd' => (object) self::validateFields($id, 'cmd', $declaration['cmd'] ?? []),
+        ];
+    }
+
+    public static function validateEquipment(string $id, array $changes, bool $creating): array
+    {
+        foreach (self::section($id, 'eqLogic') as $key => $field) {
+            if ($creating && ($field['create'] ?? false) && !array_key_exists($key, $changes)) {
+                if (($field['required'] ?? false) && (!($field['create'] ?? false) || $field['type'] === 'boolean')) self::invalidSchema();
+            if (array_key_exists('default', $field)) $changes[$key] = $field['default'];
+                elseif ($field['required'] ?? false) {
+                    throw ApiError::field(422, 'validation_error', 'configuration.' . $key, 'Ce champ est obligatoire.');
+                }
+            }
+            if (array_key_exists($key, $changes) && !self::validEntityValue($changes[$key], $field)) {
+                self::invalidValue($key);
+            }
+        }
+        return $changes;
+    }
+
+    public static function validateCommand(string $id, array $changes, array $command): void
+    {
+        foreach (self::section($id, 'cmd') as $key => $field) {
+            if (array_key_exists($key, $changes)
+                && (array_diff_assoc((array) ($field['when'] ?? []), $command) !== [] || !self::validEntityValue($changes[$key], $field))) {
+                self::invalidValue($key);
+            }
+        }
+    }
+
+    private static function section(string $id, string $section): array
+    {
+        return self::validateFields($id, $section, self::declaration($id)[$section] ?? []);
+    }
+
+    private static function declaration(string $id): array
+    {
+        $path = self::path($id);
+        if ($path === null) return [];
         $raw = @file_get_contents($path, false, null, 0, self::MAX_BYTES + 1);
-        $fields = $raw !== false && strlen($raw) <= self::MAX_BYTES ? json_decode($raw, true, 8) : null;
-        if (!is_array($fields) || $fields === [] || count($fields) > 64) self::invalidSchema();
+        $schema = $raw !== false && strlen($raw) <= self::MAX_BYTES ? json_decode($raw, false, 8) : null;
+        if (!$schema instanceof \stdClass) self::invalidSchema();
+        $sections = (array) $schema;
+        // Une clé de réglage historique peut elle-même s'appeler « version ».
+        if (!array_key_exists('version', $sections) || $sections['version'] instanceof \stdClass) {
+            if ($sections === []) self::invalidSchema();
+            return ['plugin' => $sections];
+        }
+        if ($sections['version'] !== 1 || array_diff(array_keys($sections), ['version', 'plugin', 'eqLogic', 'cmd'])) {
+            self::invalidSchema();
+        }
+        unset($sections['version']);
+        foreach ($sections as &$fields) {
+            if (!$fields instanceof \stdClass) self::invalidSchema();
+            $fields = (array) $fields;
+        }
+        return $sections;
+    }
+
+    private static function validateFields(string $id, string $section, array $fields): array
+    {
+        if (count($fields) > 64) self::invalidSchema();
+        $properties = ['type', 'enum', 'label', 'description', 'min', 'max'];
+        $properties = array_merge($properties, match ($section) {
+            'eqLogic' => ['create', 'required', 'default'],
+            'cmd' => ['when'],
+            default => [],
+        });
         foreach ($fields as $key => $field) {
-            // byKeys construit sa clause IN avec ces seules clés, jamais avec les clés de la requête.
             if (!preg_match('/\A[A-Za-z][A-Za-z0-9_:-]{0,126}\z/', (string) $key)
-                || \config::shouldBeEncrypted((string) $key, $id)
-                || !is_array($field) || array_diff(array_keys($field), ['type', 'enum', 'label', 'description', 'min', 'max'])
-                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string'], true)) {
+                || ($section === 'plugin' && \config::shouldBeEncrypted((string) $key, $id))
+                || ($section === 'cmd' && $key === 'actionCodeAccess')
+                || !$field instanceof \stdClass) {
+                self::invalidSchema();
+            }
+            $field = (array) $field;
+            if (array_diff(array_keys($field), $properties) || !in_array($field['type'] ?? null, ['boolean', 'number', 'string'], true)) {
                 self::invalidSchema();
             }
             if (array_key_exists('enum', $field)
@@ -51,6 +134,23 @@ final class PluginSettings
                 }
             }
             if (isset($field['min'], $field['max']) && $field['min'] > $field['max']) self::invalidSchema();
+            foreach (['create', 'required'] as $flag) {
+                if (array_key_exists($flag, $field) && !is_bool($field[$flag])) self::invalidSchema();
+            }
+            if (($field['required'] ?? false) && (!($field['create'] ?? false) || $field['type'] === 'boolean')) self::invalidSchema();
+            if (array_key_exists('default', $field) && (!($field['create'] ?? false) || !self::valid($field['default'], $field))) {
+                self::invalidSchema();
+            }
+            if (array_key_exists('when', $field)) {
+                if (!$field['when'] instanceof \stdClass) self::invalidSchema();
+                $when = (array) $field['when'];
+                if (array_diff(array_keys($when), ['type', 'subType', 'logicalId'])
+                    || array_filter($when, static fn ($value) => !is_string($value) || $value === '')
+                    || (isset($when['type']) && !in_array($when['type'], ['info', 'action'], true))) {
+                    self::invalidSchema();
+                }
+            }
+            $fields[$key] = $field;
         }
         return $fields;
     }
@@ -100,8 +200,15 @@ final class PluginSettings
         return match ($field['type']) {
             'boolean' => is_bool($value),
             'number' => self::isNumber($value) && $value >= ($field['min'] ?? -INF) && $value <= ($field['max'] ?? INF),
-            'string' => is_string($value) && (!isset($field['enum']) || in_array($value, $field['enum'], true)),
+            'string' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
+                && (!isset($field['enum']) || in_array($value, $field['enum'], true)),
         };
+    }
+
+    private static function validEntityValue(mixed $value, array $field): bool
+    {
+        // null supprime une clé facultative dans les configurations d'équipement et de commande.
+        return $value === null ? !($field['required'] ?? false) : self::valid($value, $field);
     }
 
     private static function isNumber(mixed $value): bool
@@ -112,5 +219,10 @@ final class PluginSettings
     private static function invalidSchema(): never
     {
         throw new ApiError(500, 'invalid_plugin_settings', 'La déclaration des réglages du plugin est invalide.');
+    }
+
+    private static function invalidValue(string $key): never
+    {
+        throw ApiError::field(422, 'validation_error', 'configuration.' . $key, 'Réglage indisponible ou valeur invalide.');
     }
 }
