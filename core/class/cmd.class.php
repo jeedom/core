@@ -2644,22 +2644,7 @@ class cmd {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting');
 			}
-			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						try {
-							$cmd->execCmd(array(
-								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
-								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-							));
-						} catch (Exception $e) {
-							log::add('jeedomAlert', 'error', __('Erreur lors de l\'envoi de l\'alerte : ', __FILE__) . ' ' . $cmd->getHumanName() . '  => ' . log::exception($e));
-						}
-					}
-				}
-			}
+			jeedom::executeAlertActions($_level, $message);
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normale de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);

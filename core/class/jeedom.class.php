@@ -150,6 +150,51 @@ class jeedom {
 		}
 	}
 
+	private static function alertActions(string $level): array {
+		$configured = config::byKey('alert::' . $level . 'Cmd', 'core', '');
+		if (is_array($configured)) {
+			return $configured;
+		}
+		$commands = array_filter(array_map('trim', explode('&&', (string) $configured)),
+			static fn($cmd) => preg_match('/\A(?:[0-9]+|#[0-9]+#|#\[.+\]#)\z/', $cmd));
+		return array_map(static fn($cmd) => array('cmd' => $cmd), $commands);
+	}
+
+	public static function executeAlertActions(string $level, string $message): void {
+		$actions = self::alertActions($level);
+		if ($actions === array()) {
+			return;
+		}
+		$name = config::byKey('name', 'core', 'JEEDOM');
+		$defaults = array('title' => '[' . $name . '] : ' . $message, 'message' => $name . ' : ' . $message);
+		foreach ($actions as $action) {
+			$expression = $action['cmd'] ?? '';
+			if (!is_string($expression) || trim($expression) === '') {
+				continue;
+			}
+			$expression = trim($expression);
+			$options = $action['options'] ?? array();
+			try {
+				if (preg_match('/\A[a-zA-Z_][a-zA-Z_0-9]*\z/', $expression)) {
+					scenarioExpression::createAndExec('action', $expression, $options);
+					continue;
+				}
+				$reference = str_starts_with($expression, '#[') ? cmd::humanReadableToCmd($expression) : $expression;
+				$cmd = cmd::byId(str_replace('#', '', $reference));
+				if (is_object($cmd)) {
+					foreach ($defaults as $key => $value) {
+						if (!isset($options[$key]) || $options[$key] === '') {
+							$options[$key] = $value;
+						}
+					}
+					$cmd->execCmd($options);
+				}
+			} catch (Throwable $e) {
+				log::add('jeedomAlert', 'error', __('Erreur lors de l’envoi de l’alerte :', __FILE__) . ' ' . $expression . ' => ' . log::exception($e));
+			}
+		}
+	}
+
 	public static function deadCmd() {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
@@ -160,11 +205,10 @@ class jeedom {
 			}
 		}
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
-			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
-			foreach ($matches[1] as $cmd_id) {
-				if (!cmd::byId($cmd_id)) {
-					$return[] = array('detail' => __('Administration', __FILE__), 'help' => __('Commande sur', __FILE__) . ' ' . $value['name'], 'who' => '#' . $cmd_id . '#');
+			foreach (self::alertActions($level) as $action) {
+				$reference = $action['cmd'] ?? '';
+				if (is_string($reference) && preg_match('/\A#?([0-9]+)#?\z/', $reference, $matches) && !cmd::byId($matches[1])) {
+					$return[] = array('detail' => __('Administration', __FILE__), 'help' => __('Commande sur', __FILE__) . ' ' . $value['name'], 'who' => '#' . $matches[1] . '#');
 				}
 			}
 		}

@@ -84,15 +84,15 @@ final class ConfigController
             'maxSizeLog' => 'number',
             'log::level' => 'number',
             'alert::addMessageOnTimeout' => 'boolean',
-            'alert::timeoutCmd' => 'string',
+            'alert::timeoutCmd' => 'alertActions',
             'alert::addMessageOnBatterywarning' => 'boolean',
-            'alert::batterywarningCmd' => 'string',
+            'alert::batterywarningCmd' => 'alertActions',
             'alert::addMessageOnBatterydanger' => 'boolean',
-            'alert::batterydangerCmd' => 'string',
+            'alert::batterydangerCmd' => 'alertActions',
             'alert::addMessageOnWarning' => 'boolean',
-            'alert::warningCmd' => 'string',
+            'alert::warningCmd' => 'alertActions',
             'alert::addMessageOnDanger' => 'boolean',
-            'alert::dangerCmd' => 'string',
+            'alert::dangerCmd' => 'alertActions',
         ],
         'eqLogics' => [
             'numberOfTryBeforeEqLogicDisable' => 'number',
@@ -317,7 +317,11 @@ final class ConfigController
                 || str_starts_with($key, 'url::core::'))) {
                 continue;
             }
-            $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
+            $raw = $stored[$storedKey] ?? '';
+            if (!$admin && $types[$key] === 'alertActions' && is_array($raw)) {
+                continue;
+            }
+            $value = self::toApi($types[$key], $raw);
             // Sans rétention Samba configurée, la modale doit pouvoir afficher un champ vide.
             $result[$key] = $key === 'samba::keepDays' && $value === null ? '' : $value;
         }
@@ -332,6 +336,7 @@ final class ConfigController
             'number' => is_numeric($value) ? $value + 0 : null,
             'summary' => (object) self::summariesToApi(is_array($value) ? $value : []),
             'menu' => self::menuToApi($value),
+            'alertActions' => $value,
             default => is_scalar($value) ? (string) $value : json_encode($value, JSON_UNESCAPED_UNICODE),
         };
     }
@@ -344,6 +349,9 @@ final class ConfigController
         }
         if ($type === 'menu') {
             return $value === null ? '' : self::validateMenu($value, true);
+        }
+        if ($type === 'alertActions') {
+            return is_string($value) && !\is_json($value) ? $value : self::validateAlertActions($key, $value);
         }
         $ok = match ($type) {
             null => throw ApiError::field(422, 'validation_error', $key, 'Clé inconnue ou non exposée.'),
@@ -383,6 +391,24 @@ final class ConfigController
             'number' => $value ?? '',
             default => $value,
         };
+    }
+
+    private static function validateAlertActions(string $key, mixed $value): array
+    {
+        if (!is_array($value) || !array_is_list($value)) {
+            throw ApiError::field(422, 'validation_error', $key, 'Une liste d’actions est attendue.');
+        }
+        $actions = [];
+        foreach ($value as $action) {
+            $cmd = $action['cmd'] ?? null;
+            $options = is_array($action) && array_key_exists('options', $action) ? $action['options'] : [];
+            if (!is_string($cmd) || !preg_match('/\A(?:[0-9]+|#[0-9]+#|#\[.+\]#|[a-zA-Z_][a-zA-Z_0-9]*)\z/', $cmd)
+                || !is_array($options) || array_filter(array_keys($options), 'is_int') || array_filter($options, static fn ($option) => !is_scalar($option))) {
+                throw ApiError::field(422, 'validation_error', $key, 'Action ou options invalides.');
+            }
+            $actions[] = ['cmd' => $cmd] + ($options === [] ? [] : ['options' => $options]);
+        }
+        return $actions;
     }
 
     private static function isCoreUpdateUrl(string $value): bool

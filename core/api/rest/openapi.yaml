@@ -8240,6 +8240,23 @@ components:
         password: { type: string, minLength: 1, format: password, writeOnly: true }
         twoFactorCode: { type: string, minLength: 6, maxLength: 6, pattern: '^[0-9]{6}$', writeOnly: true }
 
+    AlertActions:
+      description: Liste des actions exécutées sur une alerte. Les commandes historiques séparées par && restent acceptées.
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: object
+            required: [cmd]
+            properties:
+              cmd:
+                type: string
+                description: Référence de commande ou mot-clé d’action Jeedom.
+              options:
+                type: object
+                additionalProperties:
+                  type: [string, number, boolean]
+
     ConfigValues:
       type: object
       description: |
@@ -8467,32 +8484,32 @@ components:
           type: boolean
           description: 'Ajouter un message sur une alerte « Timeout » (onglet logs).'
         'alert::timeoutCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Timeout » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Timeout » (onglet logs).'
         'alert::addMessageOnBatterywarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Warning » (onglet logs).'
         'alert::batterywarningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
         'alert::addMessageOnBatterydanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Danger » (onglet logs).'
         'alert::batterydangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
         'alert::addMessageOnWarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Warning » (onglet logs).'
         'alert::warningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Warning » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Warning » (onglet logs).'
         'alert::addMessageOnDanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Danger » (onglet logs).'
         'alert::dangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Danger » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Danger » (onglet logs).'
         'numberOfTryBeforeEqLogicDisable':
           type: [number, 'null']
           description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas (onglet eqLogics).'
@@ -9012,32 +9029,32 @@ components:
           type: boolean
           description: 'Ajouter un message sur une alerte « Timeout » (onglet logs).'
         'alert::timeoutCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Timeout » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Timeout » (onglet logs).'
         'alert::addMessageOnBatterywarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Warning » (onglet logs).'
         'alert::batterywarningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
         'alert::addMessageOnBatterydanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Danger » (onglet logs).'
         'alert::batterydangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
         'alert::addMessageOnWarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Warning » (onglet logs).'
         'alert::warningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Warning » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Warning » (onglet logs).'
         'alert::addMessageOnDanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Danger » (onglet logs).'
         'alert::dangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Danger » (onglet logs).'
+          $ref: '#/components/schemas/AlertActions'
+          description: 'Actions à exécuter sur une alerte « Danger » (onglet logs).'
         'numberOfTryBeforeEqLogicDisable':
           type: [number, 'null']
           description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas (onglet eqLogics).'

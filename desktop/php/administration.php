@@ -938,12 +938,16 @@ $productName = config::byKey('product_name');
 									$div .= '<div class="form-group">';
 									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
 									$div .= '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
-									$div .= '<div class="input-group">';
-									$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd">';
-									$div .= '<span class="input-group-btn">';
-									$div .= '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" tooltip="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
-									$div .= '</span>';
-									$div .= '</div>';
+									if (is_array(config::byKey('alert::' . $level . 'Cmd'))) {
+										$div .= '<p class="form-control-static">{{Actions configurées dans la nouvelle interface Jeedom.}}</p>';
+									} else {
+										$div .= '<div class="input-group">';
+										$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd">';
+										$div .= '<span class="input-group-btn">';
+										$div .= '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" tooltip="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
+										$div .= '</span>';
+										$div .= '</div>';
+									}
 									$div .= '</div>';
 									$div .= '</div>';
 									$div .= '<hr/>';
