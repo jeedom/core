@@ -6140,9 +6140,9 @@ components:
         id: { type: integer }
         type:
           type: string
-          description: 'Partie du bloc : `if`, `then`, `else`, `action`, `code`, `for`, `do`, `in`, `at`, `comment`.'
+          description: 'Partie du bloc : `if`, `then`, `else`, `action`, `code`, `for`, `while`, `do`, `in`, `at`, `comment`.'
           example: then
-        subtype: { type: string, enum: [condition, action] }
+        subtype: { type: string, enum: [condition, action, comment] }
         name: { type: [string, 'null'] }
         options: { type: object, additionalProperties: true }
         expressions:
@@ -6156,7 +6156,7 @@ components:
         id: { type: integer }
         type:
           type: string
-          enum: [condition, action, code, element]
+          enum: [condition, action, code, comment, element]
           description: '`code` : PHP exécuté par le serveur. `element` : bloc imbriqué, dans `element`.'
         subtype: { type: [string, 'null'] }
         expression:
