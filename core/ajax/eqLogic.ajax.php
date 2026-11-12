@@ -47,22 +47,7 @@ try {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
 		$upfilepath = $_FILES['file']['tmp_name'];
-		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $eqLogic->getId() . '-*');
-
-		if (count($files)  > 0) {
-			foreach ($files as $file) {
-				unlink(__DIR__ . '/../../data/eqLogic/' . $file);
-			}
-		}
-		$eqLogic->setConfiguration('image::type', str_replace('.', '', $extension));
-		$eqLogic->setConfiguration('image::sha512', sha512(file_get_contents($upfilepath)));
-		$filename = 'eqLogic' . $eqLogic->getId() . '-' . $eqLogic->getConfiguration('image::sha512') . '.' . $eqLogic->getConfiguration('image::type');
-		$filepath = __DIR__ . '/../../data/eqLogic/' . $filename;
-		file_put_contents($filepath, file_get_contents($upfilepath));
-		if (!file_exists($filepath)) {
-			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
-		}
-		$eqLogic->save(true);
+		$eqLogic->saveImage($upfilepath, $extension);
 		ajax::success(array('filepath' => $eqLogic->getImage()));
 	}
 

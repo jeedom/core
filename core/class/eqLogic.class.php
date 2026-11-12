@@ -987,6 +987,25 @@ class eqLogic {
 		return false;
 	}
 
+	public function saveImage($_path, $_extension) {
+		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $this->getId() . '-*');
+
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/eqLogic/' . $file);
+			}
+		}
+		$this->setConfiguration('image::type', str_replace('.', '', $_extension));
+		$this->setConfiguration('image::sha512', sha512(file_get_contents($_path)));
+		$filename = 'eqLogic' . $this->getId() . '-' . $this->getConfiguration('image::sha512') . '.' . $this->getConfiguration('image::type');
+		$filepath = __DIR__ . '/../../data/eqLogic/' . $filename;
+		file_put_contents($filepath, file_get_contents($_path));
+		if (!file_exists($filepath)) {
+			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
+		}
+		$this->save(true);
+	}
+
 	public function remove() {
 		foreach (($this->getCmd()) as $cmd) {
 			$cmd->remove();
