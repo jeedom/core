@@ -568,7 +568,7 @@ final class EqLogicsController
             'isEnable' => (bool) (int) ($raw['isEnable'] ?? 0),
             'isVisible' => (bool) (int) ($raw['isVisible'] ?? 0),
             'order' => (int) ($raw['order'] ?? 0),
-            'timeout' => is_numeric($raw['timeout'] ?? null) ? (int) $raw['timeout'] : null,
+            'timeout' => is_numeric($raw['timeout'] ?? null) && (int) $raw['timeout'] > 0 ? (int) $raw['timeout'] : null,
             'generic_type' => self::nullableString($raw['generic_type'] ?? null),
             'tags' => array_values(array_filter(array_map('trim', explode(',', (string) ($raw['tags'] ?? ''))), static fn ($tag) => $tag !== '')),
             'comment' => self::nullableString($raw['comment'] ?? null),
