@@ -111,6 +111,8 @@ tags:
     description: Variables du moteur de scénarios (dépôt de données de type scenario).
   - name: Notes
     description: Notes libres de l'écran Notes, administrateurs uniquement.
+  - name: Designs
+    description: Plans à fond libre (designs) où l'on pose équipements, commandes, scénarios, textes et liens. Le plan 3D n'est pas repris.
   - name: Crons
     description: Tâches planifiées du moteur cron, administrateurs uniquement.
   - name: Journaux
@@ -1549,6 +1551,259 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NoteNotFound'
+  /designs:
+    get:
+      tags: [Designs]
+      operationId: listDesigns
+      summary: Lister les designs
+      description: Designs triés par ordre puis par nom, limités à ceux que l'utilisateur du jeton peut lire (`planHeader::hasRight('r', $user)`).
+      responses:
+        '200':
+          description: Designs lisibles.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DesignList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Designs]
+      operationId: createDesign
+      summary: Créer un design
+      description: Administrateurs uniquement, comme `plan.ajax.php` (action `savePlanHeader` sans id).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DesignCreate' }
+      responses:
+        '201':
+          description: Design créé, sans élément.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Design' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /designs/{id}:
+    parameters:
+      - $ref: '#/components/parameters/DesignId'
+    get:
+      tags: [Designs]
+      operationId: getDesign
+      summary: Lire un design et ses éléments
+      description: |
+        Droit de lecture sur le design requis. L'ancien code d'accès (`configuration.accessCode`)
+        n'est plus demandé.
+      responses:
+        '200':
+          description: Le design et tous ses éléments.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Design' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+    patch:
+      tags: [Designs]
+      operationId: updateDesign
+      summary: Modifier un design
+      description: Administrateurs ayant le droit d'écriture sur le design. Les champs absents ne changent pas, ni les clés de `configuration` non exposées ici.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DesignUpdate' }
+      responses:
+        '200':
+          description: Design modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Design' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Designs]
+      operationId: deleteDesign
+      summary: Supprimer un design
+      description: Administrateurs ayant le droit d'écriture. Supprime aussi ses éléments, leurs réglages d'affichage et l'image de fond.
+      responses:
+        '204': { description: Design supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+  /designs/{id}/copy:
+    parameters:
+      - $ref: '#/components/parameters/DesignId'
+    post:
+      tags: [Designs]
+      operationId: copyDesign
+      summary: Dupliquer un design
+      description: Administrateurs ayant le droit d'écriture sur le design source. Copie les éléments, leurs réglages d'affichage et l'image de fond, comme `planHeader::copy()`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [name]
+              properties:
+                name: { type: string, minLength: 1, maxLength: 127 }
+      responses:
+        '201':
+          description: Copie créée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Design' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /designs/{id}/background:
+    parameters:
+      - $ref: '#/components/parameters/DesignId'
+    get:
+      tags: [Designs]
+      operationId: getDesignBackground
+      summary: Lire l'image de fond
+      description: Droit de lecture sur le design requis.
+      responses:
+        '200':
+          description: L'image.
+          content:
+            image/png: { schema: { type: string, format: binary } }
+            image/jpeg: { schema: { type: string, format: binary } }
+            image/gif: { schema: { type: string, format: binary } }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+    put:
+      tags: [Designs]
+      operationId: replaceDesignBackground
+      summary: Remplacer l'image de fond
+      description: |
+        Administrateurs ayant le droit d'écriture. PNG, JPEG ou GIF de 5 Mo au plus,
+        comme `plan.ajax.php` (action `uploadImage`). Le type est vérifié sur le contenu.
+      parameters:
+        - $ref: '#/components/parameters/csrfToken'
+      requestBody:
+        required: true
+        content:
+          image/png: { schema: { type: string, format: binary } }
+          image/jpeg: { schema: { type: string, format: binary } }
+          image/gif: { schema: { type: string, format: binary } }
+      responses:
+        '200':
+          description: Image enregistrée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Design' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+        '413': { $ref: '#/components/responses/ValidationError' }
+        '415': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Designs]
+      operationId: deleteDesignBackground
+      summary: Retirer l'image de fond
+      description: Administrateurs ayant le droit d'écriture, comme `plan.ajax.php` (action `removeImageHeader`).
+      responses:
+        '204': { description: Image retirée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+  /designs/{id}/items:
+    parameters:
+      - $ref: '#/components/parameters/DesignId'
+    post:
+      tags: [Designs]
+      operationId: createDesignItem
+      summary: Poser un élément
+      description: Administrateurs ayant le droit d'écriture sur le design.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DesignItemCreate' }
+      responses:
+        '201':
+          description: Élément créé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DesignItem' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    patch:
+      tags: [Designs]
+      operationId: moveDesignItems
+      summary: Déplacer plusieurs éléments
+      description: |
+        Enregistre en une fois les positions après une édition. Tout ou rien :
+        si un identifiant n'appartient pas au design, rien n'est modifié.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [items]
+              properties:
+                items:
+                  type: array
+                  minItems: 1
+                  maxItems: 1000
+                  items:
+                    type: object
+                    additionalProperties: false
+                    required: [id, position]
+                    properties:
+                      id: { type: integer, minimum: 1 }
+                      position: { $ref: '#/components/schemas/DesignPosition' }
+      responses:
+        '204': { description: Positions enregistrées. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /designs/{id}/items/{itemId}:
+    parameters:
+      - $ref: '#/components/parameters/DesignId'
+      - $ref: '#/components/parameters/DesignItemId'
+    patch:
+      tags: [Designs]
+      operationId: updateDesignItem
+      summary: Modifier un élément
+      description: Administrateurs ayant le droit d'écriture. La cible (`type`, `target_id`) ne change pas ; supprimer puis recréer l'élément.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DesignItemUpdate' }
+      responses:
+        '200':
+          description: Élément modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DesignItem' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Designs]
+      operationId: deleteDesignItem
+      summary: Retirer un élément
+      description: Administrateurs ayant le droit d'écriture. Supprime aussi ses réglages d'affichage (`display::removeByPlanId`).
+      responses:
+        '204': { description: Élément retiré. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/DesignNotFound' }
   /crons:
     get:
       tags:
@@ -5440,6 +5695,16 @@ components:
       description: Nombre d'éléments à sauter, à combiner avec `limit`.
       schema: { type: integer, minimum: 0, default: 0 }
 
+    DesignId:
+      name: id
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+    DesignItemId:
+      name: itemId
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
     DisplayContext:
       name: context
       in: query
@@ -6016,6 +6281,117 @@ components:
         total:
           type: integer
           minimum: 0
+    DesignSummary:
+      type: object
+      required: [id, name, icon, order]
+      properties:
+        id: { type: integer, example: 2 }
+        name: { type: string, example: Rez-de-chaussée }
+        icon:
+          type: string
+          description: HTML de l'icône (`configuration.icon`), vide si aucune.
+        order: { type: integer }
+    DesignList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/DesignSummary' }
+        total: { type: integer, minimum: 0 }
+    Design:
+      allOf:
+        - $ref: '#/components/schemas/DesignSummary'
+        - type: object
+          required: [width, height, backgroundColor, backgroundTransparent, hasBackground, items]
+          properties:
+            width: { type: integer, minimum: 1, description: Largeur du canevas en pixels (`configuration.desktopSizeX`). }
+            height: { type: integer, minimum: 1, description: Hauteur du canevas en pixels (`configuration.desktopSizeY`). }
+            backgroundColor: { type: string, example: '#ffffff' }
+            backgroundTransparent: { type: boolean }
+            hasBackground: { type: boolean, description: "Une image de fond est disponible sur `/designs/{id}/background`." }
+            items:
+              type: array
+              items: { $ref: '#/components/schemas/DesignItem' }
+    DesignCreate:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        icon: { type: string }
+        order: { type: integer }
+        width: { type: integer, minimum: 1, default: 500 }
+        height: { type: integer, minimum: 1, default: 500 }
+        backgroundColor: { type: string, pattern: '^#[0-9a-fA-F]{6}$', default: '#ffffff' }
+        backgroundTransparent: { type: boolean, default: true }
+    DesignUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        icon: { type: string }
+        order: { type: integer }
+        width: { type: integer, minimum: 1 }
+        height: { type: integer, minimum: 1 }
+        backgroundColor: { type: string, pattern: '^#[0-9a-fA-F]{6}$' }
+        backgroundTransparent: { type: boolean }
+    DesignPosition:
+      type: object
+      additionalProperties: false
+      required: [top, left]
+      description: Coin haut gauche en pixels, relatif au canevas.
+      properties:
+        top: { type: integer, minimum: 0 }
+        left: { type: integer, minimum: 0 }
+    DesignItemType:
+      type: string
+      enum: [eqLogic, cmd, scenario, summary, plan, text]
+      description: |
+        `link_type` de la table `plan`. `summary` cible un objet, `plan` un autre design.
+        Les autres types existants (`view`, `graph`, `image`, `zone`) sont renvoyés en
+        lecture avec `supported: false` et ne peuvent pas être créés.
+    DesignItemDisplay:
+      type: object
+      additionalProperties: false
+      description: |
+        Ligne de la table `display` (`context = design`, `context_id` = id de l'élément).
+        La hauteur dépend du widget ; la largeur est `template_parameters.width`.
+      properties:
+        template: { $ref: '#/components/schemas/DisplayTemplate' }
+        template_parameters: { $ref: '#/components/schemas/DisplayParameters' }
+    DesignItem:
+      type: object
+      required: [id, type, target_id, position, supported]
+      properties:
+        id: { type: integer }
+        type:
+          type: string
+          description: Un des `DesignItemType`, ou un ancien type non pris en charge.
+        target_id: { type: [integer, 'null'], description: Cible de l'élément (`link_id`) ; null pour un texte. }
+        position: { $ref: '#/components/schemas/DesignPosition' }
+        text: { type: string, description: "Contenu d'un élément `text` (texte brut, à échapper à l'affichage)." }
+        display: { $ref: '#/components/schemas/DesignItemDisplay' }
+        supported: { type: boolean, description: Faux pour les anciens types que la nouvelle interface n'affiche pas. }
+    DesignItemCreate:
+      type: object
+      additionalProperties: false
+      required: [type, position]
+      properties:
+        type: { $ref: '#/components/schemas/DesignItemType' }
+        target_id: { type: integer, minimum: 1, description: Requis sauf pour `text`. }
+        position: { $ref: '#/components/schemas/DesignPosition' }
+        text: { type: string, maxLength: 1000, description: Requis pour `text`. }
+        display: { $ref: '#/components/schemas/DesignItemDisplay' }
+    DesignItemUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        position: { $ref: '#/components/schemas/DesignPosition' }
+        text: { type: string, maxLength: 1000 }
+        display: { $ref: '#/components/schemas/DesignItemDisplay' }
     CronList:
       type: object
       required:
@@ -9123,6 +9499,11 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     NoteNotFound:
       description: Note inconnue (note_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    DesignNotFound:
+      description: Design ou élément inconnu (design_not_found).
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
