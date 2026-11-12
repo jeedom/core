@@ -109,6 +109,8 @@ tags:
     description: Scénarios d'automatisation, leur contenu, leur lancement et leur journal.
   - name: Variables
     description: Variables du moteur de scénarios (dépôt de données de type scenario).
+  - name: Notes
+    description: Notes libres de l'écran Notes, administrateurs uniquement.
   - name: Crons
     description: Tâches planifiées du moteur cron, administrateurs uniquement.
   - name: Journaux
@@ -1424,6 +1426,129 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/VariableNotFound'
+  /notes:
+    get:
+      tags:
+      - Notes
+      operationId: listNotes
+      summary: Lister les notes
+      description: Notes triées par nom, comme `note.ajax.php` (action `all`). Administrateurs uniquement. Sans pagination, retourne toutes les notes.
+      parameters:
+      - name: q
+        in: query
+        description: Mots à chercher dans le nom et le texte.
+        schema:
+          type: string
+          maxLength: 200
+      - $ref: '#/components/parameters/ListLimit'
+      - $ref: '#/components/parameters/ListOffset'
+      responses:
+        '200':
+          description: Liste des notes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    post:
+      tags:
+      - Notes
+      operationId: createNote
+      summary: Créer une note
+      description: Comme `note.ajax.php` (action `save` sans id). Administrateurs uniquement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteCreate'
+      responses:
+        '201':
+          description: Note créée.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /notes/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+    get:
+      tags:
+      - Notes
+      operationId: getNote
+      summary: Lire une note
+      description: Administrateurs uniquement.
+      responses:
+        '200':
+          description: La note.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NoteNotFound'
+    patch:
+      tags:
+      - Notes
+      operationId: updateNote
+      summary: Modifier une note
+      description: Modifie le nom, le texte ou les deux, comme `note.ajax.php` (action `save` avec id). Administrateurs uniquement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteUpdate'
+      responses:
+        '200':
+          description: Note modifiée.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NoteNotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      tags:
+      - Notes
+      operationId: deleteNote
+      summary: Supprimer une note
+      description: Administrateurs uniquement.
+      responses:
+        '204':
+          description: Note supprimée.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NoteNotFound'
   /crons:
     get:
       tags:
@@ -5786,6 +5911,45 @@ components:
         total:
           type: integer
           minimum: 0
+    Note:
+      type: object
+      required: [id, name, text]
+      properties:
+        id: { type: integer, example: 3 }
+        name: { type: string, example: Codes alarme }
+        text:
+          type: string
+          description: Texte libre, rendu tel quel (texte brut, à échapper à l'affichage).
+          example: Changer la pile du détecteur en mars.
+    NoteCreate:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 127
+          description: Espaces de début et de fin retirés ; ne peut pas être vide.
+        text: { type: string, default: '' }
+    NoteUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        text: { type: string }
+    NoteList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Note'
+        total:
+          type: integer
+          minimum: 0
     CronList:
       type: object
       required:
@@ -8778,6 +8942,11 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     VariableNotFound:
       description: Variable inconnue (variable_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NoteNotFound:
+      description: Note inconnue (note_not_found).
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
