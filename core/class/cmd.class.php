@@ -1203,6 +1203,32 @@ class cmd {
 	}
 
 	/**
+	 * Dead command references grouped by source (core, cmd, object, scenario, interaction, user, plugins)
+	 *
+	 * @return array<string, array{cmd: array, name: string}>
+	 */
+	public static function getDeadCmd() {
+		$return = array(
+			'core' => array('cmd' => jeedom::deadCmd(), 'name' => __('Jeedom', __FILE__)),
+			'cmd' => array('cmd' => cmd::deadCmd(), 'name' => __('Commande', __FILE__)),
+			'jeeObject' => array('cmd' => jeeObject::deadCmd(), 'name' => __('Objet', __FILE__)),
+			'scenario' => array('cmd' => scenario::consystencyCheck(true), 'name' => __('Scénario', __FILE__)),
+			'interactDef' => array('cmd' => interactDef::deadCmd(), 'name' => __('Interaction', __FILE__)),
+			'user' => array('cmd' => user::deadCmd(), 'name' => __('Utilisateur', __FILE__)),
+		);
+		foreach (plugin::listPlugin(true) as $plugin) {
+			$plugin_id = $plugin->getId();
+			$return[$plugin_id] =  array('cmd' => array(), 'name' => __('Plugin', __FILE__) . ' ' . $plugin->getName());
+			if (method_exists($plugin_id, 'deadCmd')) {
+				$return[$plugin_id]['cmd'] = $plugin_id::deadCmd();
+			} else {
+				$return[$plugin_id]['cmd'] = eqLogic::deadCmdGeneric($plugin_id);
+			}
+		}
+		return $return;
+	}
+
+	/**
 	 * Find commands without valid references
 	 *
 	 * @return array<string, string>[] List of dead commands
