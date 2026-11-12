@@ -3975,14 +3975,18 @@ paths:
     post:
       tags: [Équipements]
       operationId: previewEqLogicReplace
-      summary: Préparer le remplacement d'un équipement
+      summary: Préparer la reprise d'un ancien équipement
       description: |
-        Ne modifie rien. Propose la correspondance entre les commandes de
-        l'équipement (source, dans le chemin) et celles de la cible : par
-        type générique, puis par nom et type, puis par identifiant logique.
+        Ne modifie rien. L'équipement du chemin est la **cible** (le nouvel
+        équipement). Deux cas :
+        - `sourceId` donné (ancien équipement encore présent) : propose la
+          correspondance entre ses commandes et celles de la cible, par type
+          générique, puis par nom et type, puis par identifiant logique ;
+        - sans `sourceId` (ancien équipement supprimé) : liste dans
+          `deadCmds` les commandes inexistantes encore référencées (comme
+          l'ajax `getDeadCmd`), à associer à la main.
         Si `cmds` est fourni, il remplace la proposition. Renvoie aussi les
-        éléments qui seront modifiés (scénarios, vues, designs, etc.).
-        Réservé aux administrateurs.
+        éléments qui seront modifiés. Réservé aux administrateurs.
       requestBody:
         required: true
         content:
@@ -4005,13 +4009,16 @@ paths:
     post:
       tags: [Équipements]
       operationId: replaceEqLogic
-      summary: Remplacer un équipement par un autre
+      summary: Reporter un ancien équipement sur celui-ci
       description: |
-        Remplace l'ajax `massReplace` (mode « Remplacer », un équipement à la
-        fois). Les références à l'équipement et aux commandes listées dans
-        `cmds` sont reportées sur la cible partout où elles sont utilisées.
-        Les commandes absentes de `cmds` sont ignorées. Irréversible : un
-        backup est conseillé. Réservé aux administrateurs.
+        L'équipement du chemin est la **cible**. Les références aux commandes
+        sources listées dans `cmds` (y compris celles d'un équipement supprimé)
+        sont reportées sur les commandes cibles partout où elles sont utilisées
+        (scénarios, vues, designs, interactions, configurations, etc.).
+        Avec `sourceId`, appelle `jeedom::massReplace` (mode « Remplacer ») et
+        les options s'appliquent ; sans `sourceId`, appelle
+        `jeedom::replaceTag` pour chaque paire et les options sont refusées.
+        Irréversible : un backup est conseillé. Réservé aux administrateurs.
       requestBody:
         required: true
         content:
@@ -7441,51 +7448,73 @@ components:
 
     EqLogicReplaceRequest:
       type: object
-      required: [targetId]
       properties:
-        targetId:
+        sourceId:
           type: integer
-          description: Équipement cible, différent de la source.
-          example: 42
+          description: |
+            Ancien équipement s'il existe encore, différent de la cible.
+            Absent si l'ancien équipement a été supprimé.
+          example: 12
         cmds:
           type: object
           description: |
             Correspondance commande source → commande cible (identifiants).
-            Chaque cible appartient à l'équipement cible et a le même type
-            (info ou action) que sa source. Obligatoire pour le remplacement ;
-            facultatif pour l'aperçu (sinon proposé automatiquement).
+            Chaque cible appartient à l'équipement du chemin. Avec `sourceId`,
+            chaque source appartient à cet équipement et a le même type (info
+            ou action) que sa cible ; sans `sourceId`, chaque source est une
+            commande qui n'existe plus. Obligatoire pour le remplacement,
+            facultatif pour l'aperçu.
           additionalProperties: { type: integer }
           example: { '120': 310, '121': 311 }
         copyConfiguration:
           type: boolean
           default: false
-          description: Reprendre la configuration de l'équipement et des commandes source.
+          description: Reprendre la configuration de l'équipement et des commandes source (avec `sourceId` seulement).
         copyHistory:
           type: boolean
           default: false
-          description: Copier l'historique des commandes info de même sous-type.
+          description: Copier l'historique des commandes info de même sous-type (avec `sourceId` seulement).
         retireSource:
           type: boolean
           default: false
-          description: Désactiver et cacher l'équipement source.
+          description: Désactiver et cacher l'ancien équipement (avec `sourceId` seulement).
     EqLogicReplaceCmdMatch:
       type: object
       required: [sourceId, sourceName, type, targetId, matchedBy]
       properties:
         sourceId: { type: integer }
-        sourceName: { type: string }
-        type: { type: string, enum: [info, action] }
-        targetId: { type: [integer, 'null'], description: Absent si aucune commande ne correspond. }
+        sourceName: { type: [string, 'null'], description: null pour une commande supprimée. }
+        type: { type: [string, 'null'], enum: [info, action, null], description: null pour une commande supprimée. }
+        targetId: { type: [integer, 'null'], description: null si aucune commande ne correspond. }
         matchedBy:
           type: [string, 'null']
           enum: [request, genericType, name, logicalId, null]
+    EqLogicReplaceDeadCmd:
+      type: object
+      required: [id, usedIn]
+      properties:
+        id: { type: integer, description: Identifiant de la commande supprimée. }
+        usedIn:
+          type: array
+          items:
+            type: object
+            required: [category, detail, help]
+            properties:
+              category: { type: string, description: 'Jeedom, Commande, Objet, Scénario, Interaction, Utilisateur ou Plugin X.' }
+              detail: { type: string, description: Élément qui utilise la commande. }
+              help: { type: string, description: Endroit précis dans cet élément. }
     EqLogicReplacePreview:
       type: object
-      required: [cmds, targetCmds, impacts]
+      required: [cmds, deadCmds, targetCmds, impacts]
       properties:
         cmds:
           type: array
+          description: Correspondance proposée (ou demandée) ; vide sans `sourceId` ni `cmds`.
           items: { $ref: '#/components/schemas/EqLogicReplaceCmdMatch' }
+        deadCmds:
+          type: array
+          description: Commandes supprimées encore référencées ; vide quand `sourceId` est donné.
+          items: { $ref: '#/components/schemas/EqLogicReplaceDeadCmd' }
         targetCmds:
           type: array
           description: Commandes de la cible, pour modifier la correspondance.
@@ -7499,14 +7528,14 @@ components:
               genericType: { type: [string, 'null'] }
         impacts:
           type: array
-          description: Éléments qui seront modifiés, par type.
+          description: Éléments qui seront modifiés, par type (équipement source existant seulement).
           items:
             type: object
             required: [type, count, items]
             properties:
               type:
                 type: string
-                enum: [scenario, view, plan, plan3d, eqLogic, cmd, object, interact, listener, user, history]
+                enum: [scenario, view, plan, plan3d, eqLogic, cmd, interact, history]
               count: { type: integer }
               items:
                 type: array
@@ -7520,7 +7549,7 @@ components:
       type: object
       required: [eqLogics, cmds]
       properties:
-        eqLogics: { type: integer, description: Équipements remplacés. }
+        eqLogics: { type: integer, description: Équipements remplacés (0 sans `sourceId`). }
         cmds: { type: integer, description: Commandes remplacées. }
     EqLogicCategory:
       type: object
