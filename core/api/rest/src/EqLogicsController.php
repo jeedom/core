@@ -175,6 +175,28 @@ final class EqLogicsController
     }
 
     /** Exécute l'action pour chaque identifiant ; un échec n'arrête pas les autres. */
+    public function uploadImage(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $user = $request->getAttribute('user');
+        $eqLogic = self::find($args['id'], $user, 'w');
+        ObjectsController::withUploadedImage($request, static fn (string $path, string $extension) => $eqLogic->saveImage($path, $extension));
+        return Json::respond($response, self::toArray(self::reload($eqLogic), $user, false));
+    }
+
+    public function deleteImage(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $eqLogic = self::find($args['id'], $request->getAttribute('user'), 'w');
+        $eqLogic->removeImage();
+        // removeImage ne vide pas la configuration `image::*` : on l'efface ici, comme la spec le prévoit.
+        $eqLogic = self::reload($eqLogic);
+        $eqLogic->setConfiguration('image::type', '');
+        $eqLogic->setConfiguration('image::sha512', '');
+        $eqLogic->save(true);
+        return $response->withStatus(204);
+    }
+
     private static function each(array $ids, callable $action): array
     {
         $done = [];

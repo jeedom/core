@@ -46,8 +46,8 @@ final class App
             $api->delete('/eqLogics/{id}', $eqLogics->delete(...));
             $api->post('/eqLogics/{id}/copy', $eqLogics->copy(...));
             $api->get('/eqLogics/{id}/usages', $eqLogics->usages(...));
-            $api->put('/eqLogics/{id}/image', self::notImplemented(...));
-            $api->delete('/eqLogics/{id}/image', self::notImplemented(...));
+            $api->put('/eqLogics/{id}/image', $eqLogics->uploadImage(...));
+            $api->delete('/eqLogics/{id}/image', $eqLogics->deleteImage(...));
 
             $display = new DisplayController();
             $api->get('/display', $display->list(...));
@@ -267,11 +267,6 @@ final class App
             return Json::error($app->getResponseFactory()->createResponse(), $error);
         });
         return $app;
-    }
-
-    private static function notImplemented(): never
-    {
-        throw new ApiError(501, 'not_implemented', 'Route prévue par la spec, pas encore implémentée dans la passerelle.');
     }
 }
 
