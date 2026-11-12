@@ -135,6 +135,16 @@ final class ObjectsController
         return Json::respond($response, ['items' => $items, 'total' => count($items)]);
     }
 
+    public function createSummaryVirtual(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        if (!isset(((array) \config::byKey('object:summary'))[$args['key']])) {
+            throw new ApiError(404, 'summary_not_found', 'Clé de résumé inconnue.');
+        }
+        \jeeObject::createSummaryToVirtual($args['key']);
+        return $response->withStatus(204);
+    }
+
     /**
      * Même parcours que jeeObject::buildTree, sans son filtre de droits : celui-ci lit la
      * session PHP, absente pour un appel par jeton. Les droits sont vérifiés par l'appelant

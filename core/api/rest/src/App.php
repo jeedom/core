@@ -24,7 +24,7 @@ final class App
             $api->post('/objects', $objects->create(...));
             $api->put('/objects/order', $objects->reorder(...));
             $api->get('/objects/summary', $objects->globalSummary(...));
-            $api->post('/objects/summary/{key}/virtual', self::notImplemented(...));
+            $api->post('/objects/summary/{key}/virtual', $objects->createSummaryVirtual(...));
             $api->get('/objects/{id}', $objects->get(...));
             $api->patch('/objects/{id}', $objects->update(...));
             $api->delete('/objects/{id}', $objects->delete(...));
