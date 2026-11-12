@@ -276,17 +276,7 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Vue inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
-		$object->setImage('data', '');
-		$object->setImage('sha512', '');
-		$object->save();
-		@rrmdir(__DIR__ . '/../../core/img/object');
-
-		$files = ls(__DIR__ . '/../../data/object/', 'object' . $object->getId() . '-*');
-		if (count($files)  > 0) {
-			foreach ($files as $file) {
-				unlink(__DIR__ . '/../../data/object/' . $file);
-			}
-		}
+		$object->removeImage();
 		ajax::success();
 	}
 

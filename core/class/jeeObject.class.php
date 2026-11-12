@@ -1001,6 +1001,20 @@ class jeeObject {
 		}
 	}
 
+	public function removeImage() {
+		$this->setImage('data', '');
+		$this->setImage('sha512', '');
+		$this->save();
+		@rrmdir(__DIR__ . '/../../core/img/object');
+
+		$files = ls(__DIR__ . '/../../data/object/', 'object' . $this->getId() . '-*');
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/object/' . $file);
+			}
+		}
+	}
+
 	public function remove() {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'object'));
 		return DB::remove($this);
