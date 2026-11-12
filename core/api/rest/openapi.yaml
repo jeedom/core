@@ -4501,7 +4501,7 @@ paths:
         **Format.** Un événement de la table `event` porte `id` (curseur,
         le `datetime` de la ligne), `event` (type, ex. `cmd::update`) et
         `data` (JSON, schéma `Event`). Un bloc `id` sans événement fournit le
-        curseur dès l'ouverture. Après 15 s sans événement, un commentaire
+        curseur dès l'ouverture. Après 10 s sans événement, un commentaire
         `: ping` maintient la connexion ouverte et un champ `id` indique
         jusqu'où le serveur a lu la table.
 
