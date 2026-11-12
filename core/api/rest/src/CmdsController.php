@@ -21,7 +21,7 @@ final class CmdsController
     ];
     private const FIELDS = ['eqLogic_id', 'name', 'type', 'subType', 'logicalId', 'generic_type', 'order', 'isVisible', 'isHistorized', 'unite', 'value', 'accessCode', 'configuration', 'display', 'template', 'alert'];
     private const BULK_CHANGES = ['isVisible', 'isHistorized', 'generic_type'];
-    private const EXEC_OPTIONS = ['slider', 'color', 'select', 'title', 'message'];
+    private const EXEC_OPTIONS = ['slider', 'color', 'select', 'title', 'message', 'stopCmd'];
     private const MAX_BULK = 1000;
     private const DATE = 'Y-m-d H:i:s';
 
@@ -210,6 +210,11 @@ final class CmdsController
         }
         if ($unknown = array_diff(array_keys($options), self::EXEC_OPTIONS)) {
             throw ApiError::field(422, 'validation_error', 'options.' . reset($unknown), 'Option inconnue.');
+        }
+        if (array_key_exists('stopCmd', $options) && (!is_bool($options['stopCmd'])
+            || $cmd->getEqType_name() !== 'camera' || $cmd->getSubType() !== 'other'
+            || trim((string) $cmd->getConfiguration('stopCmdUrl')) === '')) {
+            throw ApiError::field(422, 'validation_error', 'options.stopCmd', 'Cette commande ne prend pas en charge l’arrêt du mouvement.');
         }
         if (!$cmd->checkAccessCode((string) ($body['codeAccess'] ?? ''))) {
             throw new ApiError(403, 'access_code_required', 'Cette action nécessite un code d\'accès.');

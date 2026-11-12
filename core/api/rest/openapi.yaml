@@ -6884,13 +6884,14 @@ components:
       properties:
         options:
           type: object
-          description: Options selon le sous-type.
+          description: Options selon la commande.
           properties:
             slider: { type: number, description: Sous-type `slider`. }
             color: { type: string, description: 'Sous-type `color` (ex. `#ff0000`).' }
             select: { type: string, description: Sous-type `select`. }
             title: { type: string, description: Sous-type `message`. }
             message: { type: string, description: Sous-type `message`. }
+            stopCmd: { type: boolean, description: 'Arrêt du mouvement pour une commande caméra qui déclare stopCmdUrl.' }
         codeAccess:
           type: string
           description: Code d'accès, si la commande en demande un.
