@@ -32,8 +32,8 @@ final class App
             $api->post('/objects/{id}/eqLogics/order-by-usage', $objects->orderEqLogicsByUsage(...));
             $api->get('/objects/{id}/summary', $objects->summary(...));
             $api->get('/objects/{id}/summary/{key}/eqLogics', $objects->summaryEqLogics(...));
-            $api->put('/objects/{id}/image', self::notImplemented(...));
-            $api->delete('/objects/{id}/image', self::notImplemented(...));
+            $api->put('/objects/{id}/image', $objects->uploadImage(...));
+            $api->delete('/objects/{id}/image', $objects->deleteImage(...));
 
             $eqLogics = new EqLogicsController();
             $api->get('/eqLogics', $eqLogics->list(...));

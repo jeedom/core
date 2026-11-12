@@ -5,6 +5,7 @@ namespace Jeedom\Api\Rest;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\UploadedFileInterface;
 
 /**
  * Ressource /objects (spec/openapi.yaml). Chaque route appelle les méthodes existantes
@@ -12,6 +13,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  */
 final class ObjectsController
 {
+    private const MAX_IMAGE_SIZE = 5000000;
+    private const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp'];
+
     public function list(Request $request, Response $response): Response
     {
         $query = $request->getQueryParams();
@@ -143,6 +147,51 @@ final class ObjectsController
         }
         \jeeObject::createSummaryToVirtual($args['key']);
         return $response->withStatus(204);
+    }
+
+    public function uploadImage(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $object = self::find($args['id']);
+        self::withUploadedImage($request, static fn (string $path, string $extension) => $object->saveImage($path, $extension));
+        return Json::respond($response, self::toArray(\jeeObject::byId($object->getId())));
+    }
+
+    public function deleteImage(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        self::find($args['id'])->removeImage();
+        return $response->withStatus(204);
+    }
+
+    /**
+     * Valide le fichier `file` d'un envoi multipart (mêmes règles que l'ajax `uploadImage`),
+     * le copie dans un fichier temporaire et le passe à $store avec son extension.
+     */
+    public static function withUploadedImage(Request $request, callable $store): void
+    {
+        $files = $request->getUploadedFiles();
+        $file = $files['file'] ?? null;
+        if (!$file instanceof UploadedFileInterface) {
+            throw ApiError::field(422, 'validation_error', 'file', 'Un fichier image est attendu.');
+        }
+        if (in_array($file->getError(), [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true) || $file->getSize() > self::MAX_IMAGE_SIZE) {
+            throw new ApiError(413, 'image_too_large', 'Le fichier est trop gros (maximum 5 Mo).');
+        }
+        $extension = strtolower((string) strrchr((string) $file->getClientFilename(), '.'));
+        if ($file->getError() !== UPLOAD_ERR_OK || !in_array($extension, self::IMAGE_EXTENSIONS, true)) {
+            throw ApiError::field(422, 'validation_error', 'file', 'Extension non valide (autorisé : .jpg .jpeg .png .gif .svg .webp).');
+        }
+        $temporary = \jeedom::getTmpFolder('rest-images') . '/' . bin2hex(random_bytes(16));
+        try {
+            $file->moveTo($temporary);
+            if (filesize($temporary) > self::MAX_IMAGE_SIZE) {
+                throw new ApiError(413, 'image_too_large', 'Le fichier est trop gros (maximum 5 Mo).');
+            }
+            $store($temporary, $extension);
+        } finally {
+            @unlink($temporary);
+        }
     }
 
     /**
