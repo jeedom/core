@@ -1006,6 +1006,18 @@ class eqLogic {
 		$this->save(true);
 	}
 
+	public function removeImage() {
+		$this->getConfiguration('image::data', '');
+		$this->getConfiguration('image::sha512', '');
+		$this->save(true);
+		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $this->getId() . '-*');
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/eqLogic/' . $file);
+			}
+		}
+	}
+
 	public function remove() {
 		foreach (($this->getCmd()) as $cmd) {
 			$cmd->remove();

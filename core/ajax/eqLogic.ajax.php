@@ -60,15 +60,7 @@ try {
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('Vue inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
-		$eqLogic->getConfiguration('image::data', '');
-		$eqLogic->getConfiguration('image::sha512', '');
-		$eqLogic->save(true);
-		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $eqLogic->getId() . '-*');
-		if (count($files)  > 0) {
-			foreach ($files as $file) {
-				unlink(__DIR__ . '/../../data/eqLogic/' . $file);
-			}
-		}
+		$eqLogic->removeImage();
 		ajax::success(array('filepath' => $eqLogic->getImage()));
 	}
 
