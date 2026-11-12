@@ -7534,6 +7534,7 @@ components:
       additionalProperties: false
       properties:
         'object:summary': { $ref: '#/components/schemas/ConfigSummaries' }
+        'ui::menu': { $ref: '#/components/schemas/UiMenu' }
         'name':
           type: string
           description: 'Utilisé notamment par le market (onglet general).'
@@ -8106,6 +8107,7 @@ components:
       additionalProperties: false
       properties:
         'object:summary': { $ref: '#/components/schemas/ConfigSummaries' }
+        'ui::menu': { $ref: '#/components/schemas/UiMenu' }
         'name':
           type: string
           description: 'Utilisé notamment par le market (onglet general).'
@@ -8623,6 +8625,46 @@ components:
       additionalProperties: false
       properties:
         isSet: { type: boolean }
+    UiMenu:
+      type: [array, 'null']
+      maxItems: 200
+      description: |
+        Menu latéral de la nouvelle interface, commun à toute la box (onglet interface).
+        `null` : menu par défaut. Une section contient des entrées sans sous-section.
+        Lecture pour tout utilisateur connecté, écriture par un administrateur.
+      items: { $ref: '#/components/schemas/UiMenuItem' }
+    UiMenuItem:
+      type: object
+      additionalProperties: false
+      required: [id, type, visible]
+      properties:
+        id:
+          type: string
+          pattern: '^[A-Za-z0-9_:.-]{1,100}$'
+          description: 'Identifiant unique dans le menu : page de l''interface (`dashboard`), page de plugin (`plugin:virtual`) ou entrée ajoutée.'
+        type:
+          type: string
+          enum: [page, link, section]
+          description: '`page` : page connue de l''interface ou d''un plugin ; `link` : lien ; `section` : regroupe des entrées.'
+        visible: { type: boolean }
+        name:
+          type: [string, 'null']
+          maxLength: 100
+          description: 'Nom affiché ; `null` garde le nom d''origine. Obligatoire pour `link` et `section`.'
+        icon:
+          type: [string, 'null']
+          maxLength: 100
+          pattern: '^[A-Za-z0-9_: -]*$'
+          description: 'Classes de l''icône (ex. `mdi:home-outline`) ; `null` garde l''icône d''origine.'
+        url:
+          type: string
+          maxLength: 2048
+          description: 'Pour `link` uniquement : URL `http`/`https` ou chemin interne commençant par un seul `/` (ex. `/dashboard/3`).'
+        children:
+          type: array
+          maxItems: 100
+          description: 'Pour `section` uniquement.'
+          items: { $ref: '#/components/schemas/UiMenuItem' }
     ConfigSummaries:
       type: object
       description: Définitions des résumés (`object:summary`), indexées par clé.
