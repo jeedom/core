@@ -7019,6 +7019,11 @@ components:
         eqType: { type: string, description: Plugin de l'équipement., example: virtual }
         logicalId: { type: [string, 'null'] }
         name: { type: string, maxLength: 127, example: Etat }
+        humanReference:
+          type: string
+          readOnly: true
+          description: Référence lisible de la commande utilisable dans une expression.
+          example: '#[Salon][Lampe][On]#'
         type: { $ref: '#/components/schemas/CmdType' }
         subType: { $ref: '#/components/schemas/CmdSubType' }
         generic_type: { type: [string, 'null'], example: LIGHT_STATE }

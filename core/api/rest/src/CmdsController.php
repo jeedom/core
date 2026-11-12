@@ -597,6 +597,7 @@ final class CmdsController
             'eqType' => (string) ($raw['eqType'] ?? ''),
             'logicalId' => self::nullableString($raw['logicalId'] ?? null),
             'name' => (string) $raw['name'],
+            'humanReference' => '#' . $cmd->getHumanName() . '#',
             'type' => (string) $raw['type'],
             'subType' => (string) $raw['subType'],
             'generic_type' => self::nullableString($raw['generic_type'] ?? null),
