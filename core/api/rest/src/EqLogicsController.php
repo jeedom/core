@@ -171,7 +171,51 @@ final class EqLogicsController
     public function usages(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        return Json::respond($response, Usages::format((array) self::find($args['id'], $request->getAttribute('user'), 'r')->getUsedBy()));
+        $eqLogic = self::find($args['id'], $request->getAttribute('user'), 'r');
+        return Json::respond($response, Usages::format(self::usedBy($eqLogic)));
+    }
+
+    /**
+     * Ce qui utilise l'équipement ou l'une de ses commandes (comme l'ajax getUseBeforeRemove),
+     * sans l'équipement lui-même ni ses propres commandes, chaque élément une seule fois.
+     *
+     * @return array<string, array<mixed>>
+     */
+    private static function usedBy(\eqLogic $eqLogic): array
+    {
+        $own = ['eqLogic' => [(int) $eqLogic->getId() => true], 'cmd' => []];
+        $cmds = $eqLogic->getCmd();
+        foreach ($cmds as $cmd) {
+            $own['cmd'][(int) $cmd->getId()] = true;
+        }
+        $result = [];
+        $seen = [];
+        $add = static function (array $used) use (&$result, &$seen, $own): void {
+            foreach ($used as $type => $items) {
+                $result[$type] ??= [];
+                if ($type === 'plugin') {
+                    foreach ((array) $items as $plugin => $refs) {
+                        $result['plugin'][$plugin] = [...($result['plugin'][$plugin] ?? []), ...(array) $refs];
+                    }
+                    continue;
+                }
+                foreach ((array) $items as $item) {
+                    $id = is_object($item) && method_exists($item, 'getId') ? (int) $item->getId() : null;
+                    if ($id !== null && (isset($own[$type][$id]) || isset($seen[$type][$id]))) {
+                        continue;
+                    }
+                    if ($id !== null) {
+                        $seen[$type][$id] = true;
+                    }
+                    $result[$type][] = $item;
+                }
+            }
+        };
+        $add((array) $eqLogic->getUsedBy());
+        foreach ($cmds as $cmd) {
+            $add((array) $cmd->getUsedBy());
+        }
+        return $result;
     }
 
     public function replacePreview(Request $request, Response $response, array $args): Response
