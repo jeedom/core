@@ -24,7 +24,7 @@ final class App
             $api->post('/objects', $objects->create(...));
             $api->put('/objects/order', $objects->reorder(...));
             $api->get('/objects/summary', $objects->globalSummary(...));
-            $api->post('/objects/summary/{key}/virtual', self::notImplemented(...));
+            $api->post('/objects/summary/{key}/virtual', $objects->createSummaryVirtual(...));
             $api->get('/objects/{id}', $objects->get(...));
             $api->patch('/objects/{id}', $objects->update(...));
             $api->delete('/objects/{id}', $objects->delete(...));
@@ -32,8 +32,8 @@ final class App
             $api->post('/objects/{id}/eqLogics/order-by-usage', $objects->orderEqLogicsByUsage(...));
             $api->get('/objects/{id}/summary', $objects->summary(...));
             $api->get('/objects/{id}/summary/{key}/eqLogics', $objects->summaryEqLogics(...));
-            $api->put('/objects/{id}/image', self::notImplemented(...));
-            $api->delete('/objects/{id}/image', self::notImplemented(...));
+            $api->put('/objects/{id}/image', $objects->uploadImage(...));
+            $api->delete('/objects/{id}/image', $objects->deleteImage(...));
 
             $eqLogics = new EqLogicsController();
             $api->get('/eqLogics', $eqLogics->list(...));
@@ -46,8 +46,8 @@ final class App
             $api->delete('/eqLogics/{id}', $eqLogics->delete(...));
             $api->post('/eqLogics/{id}/copy', $eqLogics->copy(...));
             $api->get('/eqLogics/{id}/usages', $eqLogics->usages(...));
-            $api->put('/eqLogics/{id}/image', self::notImplemented(...));
-            $api->delete('/eqLogics/{id}/image', self::notImplemented(...));
+            $api->put('/eqLogics/{id}/image', $eqLogics->uploadImage(...));
+            $api->delete('/eqLogics/{id}/image', $eqLogics->deleteImage(...));
 
             $display = new DisplayController();
             $api->get('/display', $display->list(...));
@@ -267,11 +267,6 @@ final class App
             return Json::error($app->getResponseFactory()->createResponse(), $error);
         });
         return $app;
-    }
-
-    private static function notImplemented(): never
-    {
-        throw new ApiError(501, 'not_implemented', 'Route prévue par la spec, pas encore implémentée dans la passerelle.');
     }
 }
 

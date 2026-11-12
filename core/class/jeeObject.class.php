@@ -1001,6 +1001,40 @@ class jeeObject {
 		}
 	}
 
+	public function removeImage() {
+		$this->setImage('data', '');
+		$this->setImage('sha512', '');
+		$this->save();
+		@rrmdir(__DIR__ . '/../../core/img/object');
+
+		$files = ls(__DIR__ . '/../../data/object/', 'object' . $this->getId() . '-*');
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/object/' . $file);
+			}
+		}
+	}
+
+	public function saveImage($_path, $_extension) {
+		$files = ls(__DIR__ . '/../../data/object/', 'object' . $this->getId() . '-*');
+
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/object/' . $file);
+			}
+		}
+		$this->setImage('type', str_replace('.', '', $_extension));
+		$this->setImage('sha512', sha512(file_get_contents($_path)));
+		$filename = 'object' . $this->getId() . '-' . $this->getImage('sha512') . '.' . $this->getImage('type');
+		$filepath = __DIR__ . '/../../data/object/' . $filename;
+		file_put_contents($filepath, file_get_contents($_path));
+		if (!file_exists($filepath)) {
+			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
+		}
+		$this->save();
+		return $filepath;
+	}
+
 	public function remove() {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'object'));
 		return DB::remove($this);
