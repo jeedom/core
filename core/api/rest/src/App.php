@@ -46,6 +46,8 @@ final class App
             $api->delete('/eqLogics/{id}', $eqLogics->delete(...));
             $api->post('/eqLogics/{id}/copy', $eqLogics->copy(...));
             $api->get('/eqLogics/{id}/usages', $eqLogics->usages(...));
+            $api->post('/eqLogics/{id}/replace/preview', $eqLogics->replacePreview(...));
+            $api->post('/eqLogics/{id}/replace', $eqLogics->replace(...));
             $api->put('/eqLogics/{id}/image', $eqLogics->uploadImage(...));
             $api->delete('/eqLogics/{id}/image', $eqLogics->deleteImage(...));
 
