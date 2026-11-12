@@ -99,6 +99,13 @@ final class App
             $api->delete('/variables/{id}', $variables->delete(...));
             $api->get('/variables/{id}/usages', $variables->usages(...));
 
+            $notes = new NotesController();
+            $api->get('/notes', $notes->list(...));
+            $api->post('/notes', $notes->create(...));
+            $api->get('/notes/{id}', $notes->get(...));
+            $api->patch('/notes/{id}', $notes->update(...));
+            $api->delete('/notes/{id}', $notes->delete(...));
+
             $crons = new CronsController();
             $api->get('/crons', $crons->list(...));
             $api->post('/crons', $crons->create(...));
