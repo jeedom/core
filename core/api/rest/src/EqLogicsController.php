@@ -174,6 +174,161 @@ final class EqLogicsController
         return Json::respond($response, Usages::format((array) self::find($args['id'], $request->getAttribute('user'), 'r')->getUsedBy()));
     }
 
+    public function replacePreview(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        [$source, $target, $body] = self::replaceInput($request, $args, false);
+        $targetCmds = $target->getCmd();
+        $requested = isset($body['cmds']) ? self::replaceCmds($body['cmds'], $source, $target) : null;
+        $matches = [];
+        $used = [];
+        foreach ($source->getCmd() as $cmd) {
+            $match = self::matchCmd($cmd, $targetCmds, $requested);
+            $matches[] = [
+                'sourceId' => (int) $cmd->getId(), 'sourceName' => (string) $cmd->getName(), 'type' => (string) $cmd->getType(),
+                'targetId' => $match[0], 'matchedBy' => $match[1],
+            ];
+            if ($match[0] !== null) {
+                $used[] = $cmd;
+            }
+        }
+        return Json::respond($response, [
+            'cmds' => $matches,
+            'targetCmds' => array_map(static fn (\cmd $cmd): array => [
+                'id' => (int) $cmd->getId(), 'name' => (string) $cmd->getName(), 'type' => (string) $cmd->getType(),
+                'genericType' => $cmd->getGeneric_type() ?: null,
+            ], $targetCmds),
+            'impacts' => self::replaceImpacts($source, $used, !empty($body['copyHistory'])),
+        ]);
+    }
+
+    public function replace(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        [$source, $target, $body] = self::replaceInput($request, $args, true);
+        $cmds = self::replaceCmds($body['cmds'], $source, $target);
+        $retire = !empty($body['retireSource']);
+        $result = \jeedom::massReplace([
+            'mode' => 'replace',
+            'copyEqProperties' => !empty($body['copyConfiguration']) ? 'true' : 'false',
+            'copyCmdProperties' => !empty($body['copyConfiguration']) ? 'true' : 'false',
+            'copyCmdHistory' => !empty($body['copyHistory']) ? 'true' : 'false',
+            'hideEqs' => $retire ? 'true' : 'false',
+            'disableEqs' => $retire ? 'true' : 'false',
+            'removeCmdHistory' => 'false',
+        ], [(int) $source->getId() => (int) $target->getId()], $cmds);
+        return Json::respond($response, ['eqLogics' => (int) $result['eqlogics'], 'cmds' => (int) $result['cmds']]);
+    }
+
+    /** @return array{\eqLogic, \eqLogic, array<string, mixed>} */
+    private static function replaceInput(Request $request, array $args, bool $cmdsRequired): array
+    {
+        $user = $request->getAttribute('user');
+        $source = self::find($args['id'], $user, 'w');
+        $body = Json::body($request);
+        $unknown = array_diff(array_keys($body), ['targetId', 'cmds', 'copyConfiguration', 'copyHistory', 'retireSource']);
+        if ($unknown !== []) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu.');
+        }
+        $targetId = $body['targetId'] ?? null;
+        if (!is_int($targetId) || $targetId <= 0 || $targetId === (int) $source->getId()) {
+            throw ApiError::field(422, 'validation_error', 'targetId', 'Un équipement différent de la source est attendu.');
+        }
+        $target = \eqLogic::byId($targetId);
+        if (!is_object($target)) {
+            throw ApiError::field(422, 'validation_error', 'targetId', 'Équipement inconnu.');
+        }
+        if (!$target->hasRight('w', $user)) {
+            throw new ApiError(403, 'forbidden', 'Droits insuffisants sur l\'équipement cible.');
+        }
+        foreach (['copyConfiguration', 'copyHistory', 'retireSource'] as $flag) {
+            if (array_key_exists($flag, $body) && !is_bool($body[$flag])) {
+                throw ApiError::field(422, 'validation_error', $flag, 'Un booléen est attendu.');
+            }
+        }
+        if ($cmdsRequired && !isset($body['cmds'])) {
+            throw ApiError::field(422, 'validation_error', 'cmds', 'La correspondance des commandes est obligatoire.');
+        }
+        return [$source, $target, $body];
+    }
+
+    /** Vérifie la correspondance demandée ; renvoie [id source => id cible]. */
+    private static function replaceCmds(mixed $cmds, \eqLogic $source, \eqLogic $target): array
+    {
+        if (!is_array($cmds) || ($cmds !== [] && array_is_list($cmds))) {
+            throw ApiError::field(422, 'validation_error', 'cmds', 'Un objet JSON (commande source → commande cible) est attendu.');
+        }
+        $return = [];
+        foreach ($cmds as $sourceId => $targetId) {
+            $sourceCmd = ctype_digit((string) $sourceId) ? \cmd::byId((int) $sourceId) : null;
+            $targetCmd = is_int($targetId) ? \cmd::byId($targetId) : null;
+            if (!is_object($sourceCmd) || (int) $sourceCmd->getEqLogic_id() !== (int) $source->getId()) {
+                throw ApiError::field(422, 'validation_error', 'cmds.' . $sourceId, 'Commande inconnue sur l\'équipement source.');
+            }
+            if (!is_object($targetCmd) || (int) $targetCmd->getEqLogic_id() !== (int) $target->getId()) {
+                throw ApiError::field(422, 'validation_error', 'cmds.' . $sourceId, 'Commande inconnue sur l\'équipement cible.');
+            }
+            if ($sourceCmd->getType() !== $targetCmd->getType()) {
+                throw ApiError::field(422, 'validation_error', 'cmds.' . $sourceId, 'Les deux commandes doivent être du même type (info ou action).');
+            }
+            $return[(int) $sourceId] = $targetId;
+        }
+        return $return;
+    }
+
+    /** @return array{?int, ?string} identifiant de la commande cible et règle qui l'a trouvée */
+    private static function matchCmd(\cmd $cmd, array $targetCmds, ?array $requested): array
+    {
+        if ($requested !== null) {
+            return isset($requested[(int) $cmd->getId()]) ? [$requested[(int) $cmd->getId()], 'request'] : [null, null];
+        }
+        $candidates = array_values(array_filter($targetCmds, static fn (\cmd $t): bool => $t->getType() === $cmd->getType()));
+        $rules = [
+            'genericType' => static fn (\cmd $t): bool => (string) $cmd->getGeneric_type() !== '' && $t->getGeneric_type() === $cmd->getGeneric_type(),
+            'name' => static fn (\cmd $t): bool => mb_strtolower(trim((string) $t->getName())) === mb_strtolower(trim((string) $cmd->getName())),
+            'logicalId' => static fn (\cmd $t): bool => (string) $cmd->getLogicalId() !== '' && $t->getLogicalId() === $cmd->getLogicalId(),
+        ];
+        foreach ($rules as $rule => $test) {
+            $found = array_values(array_filter($candidates, $test));
+            if (count($found) === 1) {
+                return [(int) $found[0]->getId(), $rule];
+            }
+        }
+        return [null, null];
+    }
+
+    /** Éléments qui font référence à l'équipement ou aux commandes remplacées. */
+    private static function replaceImpacts(\eqLogic $source, array $cmds, bool $withHistory): array
+    {
+        $types = ['scenario' => 'scenario', 'view' => 'view', 'plan' => 'plan', 'plan3d' => 'plan3d', 'eqLogic' => 'eqLogic', 'cmd' => 'cmd', 'interactDef' => 'interact'];
+        $found = [];
+        foreach ([$source, ...$cmds] as $item) {
+            foreach ((array) $item->getUsedBy() as $key => $items) {
+                if (!isset($types[$key])) {
+                    continue;
+                }
+                foreach ((array) $items as $used) {
+                    if (is_object($used) && method_exists($used, 'getId')) {
+                        $name = method_exists($used, 'getHumanName') ? $used->getHumanName() : (method_exists($used, 'getName') ? $used->getName() : '');
+                        $found[$types[$key]][(int) $used->getId()] = ['id' => (int) $used->getId(), 'name' => (string) $name];
+                    }
+                }
+            }
+        }
+        if ($withHistory) {
+            foreach ($cmds as $cmd) {
+                if ($cmd->getType() === 'info' && (int) $cmd->getIsHistorized() === 1) {
+                    $found['history'][(int) $cmd->getId()] = ['id' => (int) $cmd->getId(), 'name' => (string) $cmd->getName()];
+                }
+            }
+        }
+        $return = [];
+        foreach ($found as $type => $items) {
+            $return[] = ['type' => $type, 'count' => count($items), 'items' => array_values($items)];
+        }
+        return $return;
+    }
+
     /** Exécute l'action pour chaque identifiant ; un échec n'arrête pas les autres. */
     public function uploadImage(Request $request, Response $response, array $args): Response
     {
