@@ -3969,6 +3969,65 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/EqLogicNotFound' }
 
+  /eqLogics/{id}/replace/preview:
+    parameters:
+      - $ref: '#/components/parameters/EqLogicId'
+    post:
+      tags: [Équipements]
+      operationId: previewEqLogicReplace
+      summary: Préparer le remplacement d'un équipement
+      description: |
+        Ne modifie rien. Propose la correspondance entre les commandes de
+        l'équipement (source, dans le chemin) et celles de la cible : par
+        type générique, puis par nom et type, puis par identifiant logique.
+        Si `cmds` est fourni, il remplace la proposition. Renvoie aussi les
+        éléments qui seront modifiés (scénarios, vues, designs, etc.).
+        Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EqLogicReplaceRequest' }
+      responses:
+        '200':
+          description: Correspondance proposée et impacts.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogicReplacePreview' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /eqLogics/{id}/replace:
+    parameters:
+      - $ref: '#/components/parameters/EqLogicId'
+    post:
+      tags: [Équipements]
+      operationId: replaceEqLogic
+      summary: Remplacer un équipement par un autre
+      description: |
+        Remplace l'ajax `massReplace` (mode « Remplacer », un équipement à la
+        fois). Les références à l'équipement et aux commandes listées dans
+        `cmds` sont reportées sur la cible partout où elles sont utilisées.
+        Les commandes absentes de `cmds` sont ignorées. Irréversible : un
+        backup est conseillé. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EqLogicReplaceRequest' }
+      responses:
+        '200':
+          description: Remplacement effectué.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogicReplaceResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /eqLogics/{id}/image:
     parameters:
       - $ref: '#/components/parameters/EqLogicId'
@@ -7380,6 +7439,89 @@ components:
           items: { $ref: '#/components/schemas/EqLogic' }
         total: { type: integer, example: 24 }
 
+    EqLogicReplaceRequest:
+      type: object
+      required: [targetId]
+      properties:
+        targetId:
+          type: integer
+          description: Équipement cible, différent de la source.
+          example: 42
+        cmds:
+          type: object
+          description: |
+            Correspondance commande source → commande cible (identifiants).
+            Chaque cible appartient à l'équipement cible et a le même type
+            (info ou action) que sa source. Obligatoire pour le remplacement ;
+            facultatif pour l'aperçu (sinon proposé automatiquement).
+          additionalProperties: { type: integer }
+          example: { '120': 310, '121': 311 }
+        copyConfiguration:
+          type: boolean
+          default: false
+          description: Reprendre la configuration de l'équipement et des commandes source.
+        copyHistory:
+          type: boolean
+          default: false
+          description: Copier l'historique des commandes info de même sous-type.
+        retireSource:
+          type: boolean
+          default: false
+          description: Désactiver et cacher l'équipement source.
+    EqLogicReplaceCmdMatch:
+      type: object
+      required: [sourceId, sourceName, type, targetId, matchedBy]
+      properties:
+        sourceId: { type: integer }
+        sourceName: { type: string }
+        type: { type: string, enum: [info, action] }
+        targetId: { type: [integer, 'null'], description: Absent si aucune commande ne correspond. }
+        matchedBy:
+          type: [string, 'null']
+          enum: [request, genericType, name, logicalId, null]
+    EqLogicReplacePreview:
+      type: object
+      required: [cmds, targetCmds, impacts]
+      properties:
+        cmds:
+          type: array
+          items: { $ref: '#/components/schemas/EqLogicReplaceCmdMatch' }
+        targetCmds:
+          type: array
+          description: Commandes de la cible, pour modifier la correspondance.
+          items:
+            type: object
+            required: [id, name, type]
+            properties:
+              id: { type: integer }
+              name: { type: string }
+              type: { type: string, enum: [info, action] }
+              genericType: { type: [string, 'null'] }
+        impacts:
+          type: array
+          description: Éléments qui seront modifiés, par type.
+          items:
+            type: object
+            required: [type, count, items]
+            properties:
+              type:
+                type: string
+                enum: [scenario, view, plan, plan3d, eqLogic, cmd, object, interact, listener, user, history]
+              count: { type: integer }
+              items:
+                type: array
+                items:
+                  type: object
+                  required: [id, name]
+                  properties:
+                    id: { type: integer }
+                    name: { type: string }
+    EqLogicReplaceResult:
+      type: object
+      required: [eqLogics, cmds]
+      properties:
+        eqLogics: { type: integer, description: Équipements remplacés. }
+        cmds: { type: integer, description: Commandes remplacées. }
     EqLogicCategory:
       type: object
       description: Catégories cochées. Aucune cochée équivaut à « autre ».
