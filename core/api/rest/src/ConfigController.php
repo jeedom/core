@@ -468,7 +468,7 @@ final class ConfigController
 
     private static function isMenuUrl(string $url): bool
     {
-        if (strlen($url) > 2048 || preg_match('/[\x00-\x20\x7f\\]/', $url)) {
+        if (strlen($url) > 2048 || preg_match('/[\x00-\x20\x7f\\\\]/', $url)) {
             return false;
         }
         if (str_starts_with($url, '/')) {
