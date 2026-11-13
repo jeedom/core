@@ -139,6 +139,12 @@ class repo_market {
     public static bool $connected = true;
     public static int $synchronizations = 0;
     public static bool $revoked = true;
+    public static int $catalogError = 0;
+    public static function catalogPage(string $name, int $offset): array {
+        if (self::$catalogError) throw new RuntimeException('Remote error', self::$catalogError);
+        return ['items' => [['id' => 123, 'pluginId' => 'newplugin', 'name' => $name,
+            'summary' => 'Éclairage', 'cost' => 4.99, 'canInstall' => self::$connected]], 'nextOffset' => $offset + 12];
+    }
     public static function isConnected(): bool { return self::$connected; }
     public static function connectionStatus(): array { return ['connected' => self::$connected, 'login' => 'fixture']; }
     public static function synchronize(): void { self::$synchronizations++; }
@@ -229,6 +235,17 @@ function runJob($operation) {
 }
 $key = ['Idempotency-Key' => 'request-key-00000001'];
 check(jeedom::version() === '5.0.0', 'Wrong Core version');
+call('GET', '/market/catalog', 401, token: null);
+call('GET', '/market/catalog', 403, token: 'member');
+call('GET', '/market/catalog?q%5B%5D=Hue', 422);
+call('GET', '/market/catalog?offset=-1', 422);
+$catalog = call('GET', '/market/catalog?q=%20Hue%20&offset=12');
+check($catalog['items'][0]['name'] === 'Hue' && $catalog['items'][0]['canInstall'] && $catalog['nextOffset'] === 24, 'Market catalogue lost the query or entitlement');
+repo_market::$catalogError = 401;
+check(call('GET', '/market/catalog', 409)['error']['code'] === 'market_not_connected', 'An expired Market session must not log out Jeedom');
+repo_market::$catalogError = 429;
+call('GET', '/market/catalog', 429);
+repo_market::$catalogError = 0;
 call('POST', '/market/connection/synchronize', 403, token: 'member');
 call('DELETE', '/market/connection', 403, token: 'member');
 check(repo_market::$synchronizations === 0 && repo_market::$connected, 'A non-admin changed the Market connection');
