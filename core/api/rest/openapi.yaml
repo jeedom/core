@@ -133,6 +133,8 @@ tags:
     description: Réglages de présentation du Dashboard de Core UI.
   - name: Temps réel
     description: Flux d'événements en direct (SSE).
+  - name: Menus
+    description: Menus latéraux nommés de la nouvelle interface et leur attribution aux utilisateurs, administrateurs uniquement.
   - name: Configuration
     description: Réglages globaux du core et adresses d'accès à Jeedom.
   - name: Système
@@ -3152,6 +3154,30 @@ paths:
               schema: { $ref: '#/components/schemas/Error' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /me/menu:
+    get:
+      tags: [Session]
+      operationId: getMyMenu
+      summary: Menu latéral effectif de l'utilisateur connecté
+      description: |
+        Renvoie le menu attribué à l'utilisateur du jeton (option `menu`), ou
+        le menu par défaut de la box s'il n'en a pas ou si son menu n'existe
+        plus. Les entrées réservées aux administrateurs (pages
+        d'administration, y compris dans une section) sont retirées pour un
+        profil `user` ou `restrict`, même si le menu les contient ; une
+        section vidée par ce filtrage est retirée aussi. La barre latérale
+        n'a rien à calculer. `items: null` : aucun menu personnalisé
+        enregistré, l'interface affiche son menu d'origine (filtré par ses
+        propres règles).
+      responses:
+        '200':
+          description: Le menu effectif.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EffectiveMenu' }
+              example: { id: m1, name: Par défaut, items: [{ id: dashboard, type: page, visible: true, name: null, icon: null }] }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
   /me/token:
     get:
       tags: [Session]
@@ -5477,6 +5503,113 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/ScenarioNotFound' }
 
+  /menus:
+    get:
+      tags: [Menus]
+      operationId: listMenus
+      summary: Lister les menus latéraux (administrateur)
+      description: |
+        Tous les menus nommés de la box, menu par défaut compris. Au premier
+        accès, si aucun menu n'est encore enregistré, l'ancien menu commun
+        (`ui::menu` de `/config`) est repris automatiquement comme menu par
+        défaut nommé « Par défaut » ; sans ancien menu, ce menu par défaut a
+        `items: null` (menu d'origine de l'interface).
+      responses:
+        '200':
+          description: Les menus, menu par défaut en premier.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MenuList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Menus]
+      operationId: createMenu
+      summary: Créer un menu (administrateur)
+      description: |
+        Crée un menu nommé. Avec `copyFrom`, duplique les entrées d'un menu
+        existant (`items` ne doit alors pas être fourni). Sans `copyFrom` ni
+        `items`, le menu part du menu d'origine (`items: null`). Le nom est
+        unique (sans tenir compte de la casse) : sinon 409 `menu_conflict`.
+        50 menus au maximum (422 `validation_error`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MenuCreate' }
+            example: { name: Enfants, copyFrom: m1 }
+      responses:
+        '201':
+          description: Menu créé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Menu' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/MenuNotFound' }
+        '409': { $ref: '#/components/responses/MenuConflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /menus/{id}:
+    parameters:
+      - $ref: '#/components/parameters/MenuId'
+    get:
+      tags: [Menus]
+      operationId: getMenu
+      summary: Lire un menu (administrateur)
+      responses:
+        '200':
+          description: Le menu.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Menu' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/MenuNotFound' }
+    patch:
+      tags: [Menus]
+      operationId: updateMenu
+      summary: Modifier un menu (administrateur)
+      description: |
+        Renomme le menu, remplace ses entrées (`items`, `null` pour revenir
+        au menu d'origine) ou en fait le menu par défaut (`isDefault: true`).
+        `isDefault: false` est refusé (422) : on change de menu par défaut en
+        désignant le nouveau.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MenuUpdate' }
+            example: { name: Invités, isDefault: true }
+      responses:
+        '200':
+          description: Menu modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Menu' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/MenuNotFound' }
+        '409': { $ref: '#/components/responses/MenuConflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Menus]
+      operationId: deleteMenu
+      summary: Supprimer un menu (administrateur)
+      description: |
+        Le menu par défaut ne se supprime pas (422 `menu_default`). Les
+        utilisateurs à qui ce menu était attribué reviennent au menu par
+        défaut (leur option `menu` est remise à `null`).
+      responses:
+        '204': { description: Menu supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/MenuNotFound' }
+        '422':
+          description: '`menu_default` : le menu par défaut ne peut pas être supprimé.'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
   /config:
     get:
       tags: [Configuration]
@@ -5700,6 +5833,11 @@ components:
       in: path
       required: true
       schema: { type: integer, minimum: 1 }
+    MenuId:
+      name: id
+      in: path
+      required: true
+      schema: { $ref: '#/components/schemas/MenuIdentifier' }
     DesignItemId:
       name: itemId
       in: path
@@ -7205,6 +7343,11 @@ components:
           enum: [enable, whiteip, localhost, disable]
           description: Accès à l'API avec le jeton de cet utilisateur.
         doNotRotateHash: { type: integer, enum: [0, 1], description: Ne pas régénérer automatiquement le jeton tous les 3 mois. }
+        menu:
+          oneOf:
+            - $ref: '#/components/schemas/MenuIdentifier'
+            - type: 'null'
+          description: 'Menu latéral attribué (voir `/menus`) ; `null` ou absent : menu par défaut. Un menu inconnu renvoie 422.'
 
     NewPassword:
       type: string
@@ -9345,9 +9488,10 @@ components:
       type: [array, 'null']
       maxItems: 200
       description: |
-        Menu latéral de la nouvelle interface, commun à toute la box (onglet interface).
-        `null` : menu par défaut. Une section contient des entrées sans sous-section.
-        Lecture pour tout utilisateur connecté, écriture par un administrateur.
+        Liste d'entrées d'un menu latéral de la nouvelle interface.
+        `null` : menu d'origine de l'interface. Une section contient des entrées sans sous-section.
+        Dans `/config`, la clé `ui::menu` est dépréciée : elle lit et écrit les entrées du
+        menu par défaut (voir `/menus`) ; l'interface lit son menu avec `GET /me/menu`.
       items: { $ref: '#/components/schemas/UiMenuItem' }
     UiMenuItem:
       type: object
@@ -9381,6 +9525,56 @@ components:
           maxItems: 100
           description: 'Pour `section` uniquement.'
           items: { $ref: '#/components/schemas/UiMenuItem' }
+    MenuIdentifier:
+      type: string
+      pattern: '^[a-z0-9]{1,32}$'
+      description: Identifiant d'un menu nommé, attribué par le serveur.
+    Menu:
+      type: object
+      additionalProperties: false
+      required: [id, name, isDefault, items, users]
+      properties:
+        id: { $ref: '#/components/schemas/MenuIdentifier' }
+        name: { type: string, minLength: 1, maxLength: 50 }
+        isDefault: { type: boolean, description: Menu des utilisateurs sans attribution. Un seul à la fois. }
+        items: { $ref: '#/components/schemas/UiMenu' }
+        users:
+          type: array
+          readOnly: true
+          description: Identifiants des utilisateurs à qui ce menu est attribué explicitement.
+          items: { type: integer }
+    MenuList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Menu' }
+        total: { type: integer }
+    MenuCreate:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 50 }
+        items: { $ref: '#/components/schemas/UiMenu' }
+        copyFrom: { $ref: '#/components/schemas/MenuIdentifier' }
+    MenuUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        name: { type: string, minLength: 1, maxLength: 50 }
+        items: { $ref: '#/components/schemas/UiMenu' }
+        isDefault: { type: boolean, enum: [true] }
+    EffectiveMenu:
+      type: object
+      additionalProperties: false
+      required: [id, name, items]
+      properties:
+        id: { $ref: '#/components/schemas/MenuIdentifier' }
+        name: { type: string }
+        items: { $ref: '#/components/schemas/UiMenu' }
     ConfigSummaries:
       type: object
       description: Définitions des résumés (`object:summary`), indexées par clé.
@@ -9499,6 +9693,16 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     NoteNotFound:
       description: Note inconnue (note_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    MenuNotFound:
+      description: Menu inconnu (menu_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    MenuConflict:
+      description: Un menu porte déjà ce nom (menu_conflict).
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
