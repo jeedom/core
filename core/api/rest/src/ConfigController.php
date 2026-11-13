@@ -343,7 +343,7 @@ final class ConfigController
             return self::validateSummaries($value);
         }
         if ($type === 'menu') {
-            return $value === null ? '' : self::validateMenu($value, true);
+            return $value === null ? '' : self::validateMenu($value);
         }
         $ok = match ($type) {
             null => throw ApiError::field(422, 'validation_error', $key, 'Clé inconnue ou non exposée.'),
@@ -398,83 +398,20 @@ final class ConfigController
             return null;
         }
         try {
-            return self::validateMenu($value, true);
+            return self::validateMenu($value);
         } catch (ApiError) {
             return null;
         }
     }
 
-    /**
-     * Valide une liste d'entrées du menu latéral (`ui::menu`) et la renvoie normalisée.
-     *
-     * @return list<array<string, mixed>>
-     */
-    private static function validateMenu(mixed $items, bool $root, array &$ids = []): array
+    /** Valide une liste d'entrées du menu latéral (`ui::menu`) et la renvoie normalisée. */
+    private static function validateMenu(mixed $items): array
     {
-        $fail = static fn (string $message) => throw ApiError::field(422, 'validation_error', 'ui::menu', $message);
-        if (!is_array($items) || !array_is_list($items)) {
-            $fail('Une liste d’entrées est attendue.');
+        try {
+            return \uiMenu::validateItems($items, true);
+        } catch (\InvalidArgumentException $e) {
+            throw ApiError::field(422, 'validation_error', 'ui::menu', $e->getMessage());
         }
-        if (count($items) > ($root ? 200 : 100)) {
-            $fail('Trop d’entrées dans le menu.');
-        }
-        $result = [];
-        foreach ($items as $item) {
-            if (!is_array($item) || array_diff(array_keys($item), ['id', 'type', 'visible', 'name', 'icon', 'url', 'children']) !== []) {
-                $fail('Entrée invalide.');
-            }
-            $id = $item['id'] ?? null;
-            if (!is_string($id) || !preg_match('/\A[A-Za-z0-9_:.-]{1,100}\z/', $id) || isset($ids[$id])) {
-                $fail('Identifiant d’entrée invalide ou en double.');
-            }
-            $ids[$id] = true;
-            $type = $item['type'] ?? null;
-            if (!in_array($type, ['page', 'link', 'section'], true) || !is_bool($item['visible'] ?? null)) {
-                $fail("Type ou visibilité invalide pour l’entrée $id.");
-            }
-            $name = $item['name'] ?? null;
-            if ($name !== null && (!is_string($name) || mb_strlen($name) > 100)) {
-                $fail("Nom invalide pour l’entrée $id.");
-            }
-            if ($type !== 'page' && ($name === null || trim($name) === '')) {
-                $fail("Un nom est obligatoire pour l’entrée $id.");
-            }
-            $icon = $item['icon'] ?? null;
-            if ($icon !== null && (!is_string($icon) || !preg_match('/\A[A-Za-z0-9_: -]{0,100}\z/', $icon))) {
-                $fail("Icône invalide pour l’entrée $id.");
-            }
-            $entry = ['id' => $id, 'type' => $type, 'visible' => $item['visible'], 'name' => $name, 'icon' => $icon];
-            if ($type === 'link') {
-                $url = $item['url'] ?? null;
-                if (!is_string($url) || !self::isMenuUrl($url)) {
-                    $fail("Lien invalide pour l’entrée $id : URL http(s) ou chemin interne attendu.");
-                }
-                $entry['url'] = $url;
-            } elseif (array_key_exists('url', $item)) {
-                $fail("Seule une entrée de type lien a une URL ($id).");
-            }
-            if ($type === 'section') {
-                if (!$root) {
-                    $fail("Une section ne peut pas contenir de section ($id).");
-                }
-                $entry['children'] = self::validateMenu($item['children'] ?? [], false, $ids);
-            } elseif (array_key_exists('children', $item)) {
-                $fail("Seule une section a des sous-entrées ($id).");
-            }
-            $result[] = $entry;
-        }
-        return $result;
-    }
-
-    private static function isMenuUrl(string $url): bool
-    {
-        if (strlen($url) > 2048 || preg_match('/[\x00-\x20\x7f\\\\]/', $url)) {
-            return false;
-        }
-        if (str_starts_with($url, '/')) {
-            return !str_starts_with($url, '//');
-        }
-        return self::isCoreUpdateUrl($url);
     }
 
     /** @return array<string, array<string, mixed>> */
