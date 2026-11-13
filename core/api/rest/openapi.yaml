@@ -5681,7 +5681,7 @@ paths:
       description: |
         Renvoie les clés demandées dans `keys` ; sans `keys`, toutes les clés
         exposées. Une clé hors de la liste exposée refuse la requête (422).
-        Les clés chiffrées et les réglages de destination Cloud et Samba sont absents pour un non-administrateur.
+        Les clés chiffrées et les réglages de destination Cloud, Samba et de notifications sont absents pour un non-administrateur.
       parameters:
         - name: keys
           in: query
@@ -8516,6 +8516,24 @@ components:
         password: { type: string, minLength: 1, format: password, writeOnly: true }
         twoFactorCode: { type: string, minLength: 6, maxLength: 6, pattern: '^[0-9]{6}$', writeOnly: true }
 
+    NotificationSettings:
+      type: object
+      description: 'Destinations communes et types de notifications activés. Réservé aux administrateurs.'
+      additionalProperties: false
+      required: [destinations, types]
+      properties:
+        destinations:
+          type: array
+          items:
+            type: integer
+            minimum: 1
+          description: 'Identifiants des commandes action de sous-type message.'
+        types:
+          type: array
+          items:
+            type: string
+            enum: [timeout, batterywarning, batterydanger, warning, danger, system]
+          description: 'Types à envoyer à toutes les destinations.'
     ConfigValues:
       type: object
       description: |
@@ -8739,36 +8757,23 @@ components:
           type: [number, 'null']
           description: 'Niveau de log par défaut (onglet logs).'
           default: 400
+        'notifications::settings':
+          $ref: '#/components/schemas/NotificationSettings'
         'alert::addMessageOnTimeout':
           type: boolean
           description: 'Ajouter un message sur une alerte « Timeout » (onglet logs).'
-        'alert::timeoutCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Timeout » (onglet logs).'
         'alert::addMessageOnBatterywarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Warning » (onglet logs).'
-        'alert::batterywarningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
         'alert::addMessageOnBatterydanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Danger » (onglet logs).'
-        'alert::batterydangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
         'alert::addMessageOnWarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Warning » (onglet logs).'
-        'alert::warningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Warning » (onglet logs).'
         'alert::addMessageOnDanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Danger » (onglet logs).'
-        'alert::dangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Danger » (onglet logs).'
         'numberOfTryBeforeEqLogicDisable':
           type: [number, 'null']
           description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas (onglet eqLogics).'
@@ -9284,36 +9289,23 @@ components:
         'log::level':
           type: [number, 'null']
           description: 'Niveau de log par défaut (onglet logs).'
+        'notifications::settings':
+          $ref: '#/components/schemas/NotificationSettings'
         'alert::addMessageOnTimeout':
           type: boolean
           description: 'Ajouter un message sur une alerte « Timeout » (onglet logs).'
-        'alert::timeoutCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Timeout » (onglet logs).'
         'alert::addMessageOnBatterywarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Warning » (onglet logs).'
-        'alert::batterywarningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Warning » (onglet logs).'
         'alert::addMessageOnBatterydanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Batterie en Danger » (onglet logs).'
-        'alert::batterydangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Batterie en Danger » (onglet logs).'
         'alert::addMessageOnWarning':
           type: boolean
           description: 'Ajouter un message sur une alerte « Warning » (onglet logs).'
-        'alert::warningCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Warning » (onglet logs).'
         'alert::addMessageOnDanger':
           type: boolean
           description: 'Ajouter un message sur une alerte « Danger » (onglet logs).'
-        'alert::dangerCmd':
-          type: string
-          description: 'Commande à exécuter sur une alerte « Danger » (onglet logs).'
         'numberOfTryBeforeEqLogicDisable':
           type: [number, 'null']
           description: 'Nombre d''échecs avant désactivation de l''équipement (0: pas (onglet eqLogics).'

@@ -151,7 +151,6 @@ class jeedom {
 	}
 
 	public static function deadCmd() {
-		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
 		if ($cmd != '') {
@@ -159,13 +158,10 @@ class jeedom {
 				$return[] = array('detail' => __('Administration', __FILE__), 'help' => __('Commande retour interactions', __FILE__), 'who' => $cmd);
 			}
 		}
-		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
-			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
-			foreach ($matches[1] as $cmd_id) {
-				if (!cmd::byId($cmd_id)) {
-					$return[] = array('detail' => __('Administration', __FILE__), 'help' => __('Commande sur', __FILE__) . ' ' . $value['name'], 'who' => '#' . $cmd_id . '#');
-				}
+		foreach (config::notificationSettings()['destinations'] as $id) {
+			$command = cmd::byId($id);
+			if (!is_object($command) || $command->getType() !== 'action' || $command->getSubType() !== 'message') {
+				$return[] = array('detail' => __('Administration', __FILE__), 'help' => __('Destination de notification', __FILE__), 'who' => '#' . $id . '#');
 			}
 		}
 		return $return;

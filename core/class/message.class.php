@@ -39,8 +39,10 @@ class message {
 	 * @param string $_action
 	 * @param string $_logicalId
 	 * @param bool $_writeMessage
+	 * @param string|null $_channel
+	 * @param bool $_notifySystem Whether the message can trigger system notifications
 	 */
-	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null) {
+	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null, bool $_notifySystem = true) {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
 		$message = (new message())
 			->setPlugin(secureXSS($_type))
@@ -48,7 +50,37 @@ class message {
 			->setAction(secureXSS($_action))
 			->setDate(date('Y-m-d H:i:s'))
 			->setLogicalId(secureXSS($_logicalId));
-		$message->save($_writeMessage, $_channel);
+		$message->save($_writeMessage, $_channel, $_notifySystem);
+	}
+
+	public static function sendNotification(string $type, string $message): void {
+		static $sending = false;
+		// Une commande de notification peut elle-même ajouter un message ou une erreur au journal.
+		if ($sending) {
+			return;
+		}
+		$settings = config::notificationSettings();
+		if ($settings['destinations'] === [] || !in_array($type, $settings['types'], true)) {
+			return;
+		}
+		$name = config::byKey('name', 'core', 'JEEDOM');
+		$options = ['title' => '[' . $name . '] : ' . $message, 'message' => $name . ' : ' . $message];
+		$sending = true;
+		try {
+			foreach ($settings['destinations'] as $id) {
+				try {
+					$command = cmd::byId($id);
+					if (is_object($command) && $command->getType() === 'action' && $command->getSubType() === 'message') {
+						$command->execCmd($options);
+					}
+				} catch (Throwable $e) {
+					log::add('jeedomAlert', 'error', __('Erreur lors de l’envoi de la notification vers la commande', __FILE__)
+						. ' #' . $id . '# : ' . log::exception($e));
+				}
+			}
+		} finally {
+			$sending = false;
+		}
 	}
 
 	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
@@ -139,7 +171,7 @@ class message {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function save($_writeMessage = true, $_channel = null) {
+	public function save($_writeMessage = true, $_channel = null, bool $_notifySystem = true) {
 		if ($this->getMessage() == '') {
 			return;
 		}
@@ -195,6 +227,9 @@ class message {
 		}
 		if ($_writeMessage) {
 			DB::save($this);
+			if ($_notifySystem) {
+				self::sendNotification('system', htmlspecialchars_decode($this->getMessage(), ENT_QUOTES | ENT_HTML5));
+			}
 			$configKey = ($_channel == null) ? 'actionOnMessage' : 'actionOnMessage' . $_channel;
 			$actions = config::byKey($configKey);
 			if (!is_array($actions) || count($actions) == 0) {
