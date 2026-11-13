@@ -926,6 +926,40 @@ $productName = config::byKey('product_name');
 						<form class="form-horizontal">
 							<fieldset>
 								<br>
+								<legend><i class="fas fa-bell"></i> {{Notifications}}</legend>
+								<input type="hidden" class="configKey notificationConfig" data-l1key="notifications::settings">
+								<div class="form-group">
+									<label class="col-lg-4 col-md-4 col-sm-4 control-label">{{Où les recevoir ?}}</label>
+									<div class="col-lg-5 col-md-6 col-sm-8">
+										<ul id="ul_notificationDestinations" class="list-unstyled"></ul>
+										<p id="p_noNotificationDestination" class="text-muted">{{Aucune destination configurée.}}</p>
+										<button type="button" class="btn btn-sm btn-default" id="bt_addNotificationDestination">
+											<i class="fas fa-plus"></i> {{Ajouter une destination}}
+										</button>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-4 col-md-4 col-sm-4 control-label">{{Quand être prévenu ?}}</label>
+									<div class="col-lg-5 col-md-6 col-sm-8">
+										<p class="help-block">{{Les types cochés sont envoyés à toutes les destinations ci-dessus.}}</p>
+										<?php
+										$notificationLabels = [
+											'timeout' => __('Un équipement ne répond plus', __FILE__),
+											'batterywarning' => __('Batterie faible', __FILE__),
+											'batterydanger' => __('Batterie critique', __FILE__),
+											'warning' => __('Avertissement', __FILE__),
+											'danger' => __('Danger', __FILE__),
+											'system' => __('Messages système', __FILE__),
+										];
+										foreach (notification::TYPES as $type) {
+											echo '<div class="checkbox"><label><input type="checkbox" data-notification-type="' . $type . '"> ' . $notificationLabels[$type] . '</label></div>';
+										}
+										?>
+									</div>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend><i class="fas fa-envelope"></i> {{Centre de messages}}</legend>
 								<?php
 								$div = '';
 								foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
@@ -935,18 +969,6 @@ $productName = config::byKey('product_name');
 									$div .= '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
 									$div .= '</div>';
 									$div .= '</div>';
-									$div .= '<div class="form-group">';
-									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
-									$div .= '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
-									$div .= '<div class="input-group">';
-									$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd">';
-									$div .= '<span class="input-group-btn">';
-									$div .= '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" tooltip="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
-									$div .= '</span>';
-									$div .= '</div>';
-									$div .= '</div>';
-									$div .= '</div>';
-									$div .= '<hr/>';
 								}
 								echo $div;
 								?>

@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Configuration globale du core, par onglet de l'administration.
- * Lecture : tout utilisateur connecté, avec les secrets et réglages de destination réservés aux admins.
+ * Lecture : tout utilisateur connecté, avec les secrets, destinations et notifications réservés aux admins.
  * Écriture : administrateurs. Les clés chiffrées ne sortent jamais en clair.
  */
 final class ConfigController
@@ -84,15 +84,13 @@ final class ConfigController
             'maxSizeLog' => 'number',
             'log::level' => 'number',
             'alert::addMessageOnTimeout' => 'boolean',
-            'alert::timeoutCmd' => 'string',
             'alert::addMessageOnBatterywarning' => 'boolean',
-            'alert::batterywarningCmd' => 'string',
             'alert::addMessageOnBatterydanger' => 'boolean',
-            'alert::batterydangerCmd' => 'string',
             'alert::addMessageOnWarning' => 'boolean',
-            'alert::warningCmd' => 'string',
             'alert::addMessageOnDanger' => 'boolean',
-            'alert::dangerCmd' => 'string',
+        ],
+        'notifications' => [
+            \notification::CONFIG_KEY => 'notifications',
         ],
         'eqLogics' => [
             'numberOfTryBeforeEqLogicDisable' => 'number',
@@ -314,7 +312,7 @@ final class ConfigController
             $storedKey = self::storedKey($key);
             if (!$admin && (\config::shouldBeEncrypted($storedKey) || str_starts_with($key, 'samba::backup::')
                 || str_starts_with($key, 'market::cloud::backup::') || str_starts_with($key, 'github::core::')
-                || str_starts_with($key, 'url::core::'))) {
+                || str_starts_with($key, 'url::core::') || $key === \notification::CONFIG_KEY)) {
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
@@ -332,6 +330,7 @@ final class ConfigController
             'number' => is_numeric($value) ? $value + 0 : null,
             'summary' => (object) self::summariesToApi(is_array($value) ? $value : []),
             'menu' => self::menuToApi($value),
+            'notifications' => is_array($value) ? $value : ['destinations' => [], 'types' => []],
             default => is_scalar($value) ? (string) $value : json_encode($value, JSON_UNESCAPED_UNICODE),
         };
     }
@@ -344,6 +343,13 @@ final class ConfigController
         }
         if ($type === 'menu') {
             return $value === null ? '' : self::validateMenu($value);
+        }
+        if ($type === 'notifications') {
+            try {
+                return \notification::validateSettings($value);
+            } catch (\InvalidArgumentException $e) {
+                throw ApiError::field(422, 'validation_error', $key, $e->getMessage());
+            }
         }
         $ok = match ($type) {
             null => throw ApiError::field(422, 'validation_error', $key, 'Clé inconnue ou non exposée.'),

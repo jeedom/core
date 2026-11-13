@@ -409,6 +409,49 @@ if (!jeeFrontEnd.administration) {
       })
     },
     //Global:
+    loadNotifications: function(settings) {
+      const destinations = document.getElementById('ul_notificationDestinations')
+      destinations.replaceChildren()
+      for (const id of settings?.destinations ?? []) {
+        this.addNotificationDestination(id)
+      }
+      document.querySelectorAll('[data-notification-type]').forEach(input => {
+        input.checked = settings?.types?.includes(input.dataset.notificationType) ?? false
+      })
+      this.updateNotifications()
+      this.savedNotifications = document.querySelector('.notificationConfig').value
+    },
+    addNotificationDestination: function(id, name) {
+      const destinations = document.getElementById('ul_notificationDestinations')
+      if (destinations.querySelector('[data-notification-id="' + id + '"]')) return
+      const row = document.createElement('li')
+      row.dataset.notificationId = id
+      const label = document.createElement('span')
+      label.textContent = name || '#' + id + '#'
+      const remove = document.createElement('button')
+      remove.type = 'button'
+      remove.className = 'btn btn-xs btn-default'
+      remove.dataset.removeNotification = ''
+      remove.setAttribute('aria-label', '{{Retirer la destination}}')
+      remove.innerHTML = '<i class="fas fa-trash" aria-hidden="true"></i>'
+      row.append(label, ' ', remove)
+      destinations.append(row)
+      if (!name) {
+        jeedom.cmd.getHumanCmdName({
+          id: id,
+          noCache: true,
+          global: false,
+          error: () => {},
+          success: result => { label.textContent = result }
+        })
+      }
+    },
+    updateNotifications: function() {
+      const destinations = Array.from(document.querySelectorAll('#ul_notificationDestinations [data-notification-id]'), row => Number(row.dataset.notificationId))
+      const types = Array.from(document.querySelectorAll('[data-notification-type]:checked'), input => input.dataset.notificationType)
+      document.querySelector('.notificationConfig').value = JSON.stringify({ destinations, types })
+      document.getElementById('p_noNotificationDestination').hidden = destinations.length !== 0
+    },
     loadConfig: function() {
       jeedom.config.load({
         configuration: document.getElementById('config').getJeeValues('.configKey:not(.noSet)')[0],
@@ -420,6 +463,7 @@ if (!jeeFrontEnd.administration) {
         },
         success: function(data) {
           document.getElementById('config').setJeeValues(data, '.configKey')
+          jeeP.loadNotifications(data['notifications::settings'])
           jeeP.refreshMarketConnection()
           //document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.triggerEvent('change')
           //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
@@ -438,7 +482,11 @@ if (!jeeFrontEnd.administration) {
       jeedomUtils.hideAlert()
       jeeP.saveConvertColor()
       jeeP.saveObjectSummary()
-      var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
+      var config = document.querySelectorAll('#config').getJeeValues('.configKey:not(.notificationConfig)')[0]
+      const notifications = document.querySelector('.notificationConfig').value
+      if (notifications && notifications !== this.savedNotifications) {
+        config['notifications::settings'] = notifications
+      }
       document.querySelectorAll('.bt_addActionOnMessage').forEach(_bt => {
         let channel = _bt.getAttribute('data-channel')
         config['actionOnMessage' + channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage' + channel + ' .actionOnMessage').getJeeValues('.expressionAttr'))
@@ -483,6 +531,7 @@ if (!jeeFrontEnd.administration) {
                 window.location.reload(true)
               } else {
                 document.getElementById('config').setJeeValues(data, '.configKey')
+                jeeP.loadNotifications(data['notifications::settings'])
                 jeeP.refreshMarketConnection()
                 jeeP.loadActionOnMessage()
                 jeeFrontEnd.modifyWithoutSave = false
@@ -802,7 +851,7 @@ document.getElementById('networktab').addEventListener('click', function(event) 
   if (_target = event.target.closest('#bt_restartDns')) {
     jeedomUtils.hideAlert()
     jeedom.config.save({
-      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      configuration: document.getElementById('config').getJeeValues('.configKey:not(.notificationConfig)')[0],
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -830,7 +879,7 @@ document.getElementById('networktab').addEventListener('click', function(event) 
   if (_target = event.target.closest('#bt_haltDns')) {
     jeedomUtils.hideAlert()
     jeedom.config.save({
-      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      configuration: document.getElementById('config').getJeeValues('.configKey:not(.notificationConfig)')[0],
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -993,16 +1042,26 @@ document.getElementById('logtab').addEventListener('click', function(event) {
     return
   }
 
-  if (_target = event.target.closest('.bt_selectAlertCmd')) {
-    var type = _target.getAttribute('data-type')
+  if (_target = event.target.closest('#bt_addNotificationDestination')) {
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action',
         subType: 'message'
       }
     }, function(result) {
-      document.querySelector('.configKey[data-l1key="alert::' + type + 'Cmd"]').insertAtCursor(result.human)
+      const id = Number(result.cmd.id)
+      if (!Number.isSafeInteger(id) || id <= 0) return
+      jeeP.addNotificationDestination(id, result.human)
+      jeeP.updateNotifications()
+      jeeFrontEnd.modifyWithoutSave = true
     })
+    return
+  }
+
+  if (_target = event.target.closest('[data-remove-notification]')) {
+    _target.closest('[data-notification-id]').remove()
+    jeeP.updateNotifications()
+    jeeFrontEnd.modifyWithoutSave = true
     return
   }
 
@@ -1020,6 +1079,11 @@ document.getElementById('logtab').addEventListener('click', function(event) {
 })
 
 document.getElementById('logtab').addEventListener('change', function(event) {
+  if (event.target.matches('[data-notification-type]')) {
+    jeeP.updateNotifications()
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
   var _target = null
   if (_target = event.target.closest('.configKey[data-l1key="log::engine"]')) {
     if (_target.value == '') return
@@ -1208,7 +1272,7 @@ document.getElementById('securitytab').addEventListener('click', function(event)
   var _target = null
   if (_target = event.target.closest('#bt_testLdapConnection')) {
     jeedom.config.save({
-      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      configuration: document.getElementById('config').getJeeValues('.configKey:not(.notificationConfig)')[0],
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -1330,7 +1394,7 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
     var repo = _target.getAttribute('data-repo')
     if (_target.classList.contains('disabled')) return
     jeedom.config.save({
-      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      configuration: document.getElementById('config').getJeeValues('.configKey:not(.notificationConfig)')[0],
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,

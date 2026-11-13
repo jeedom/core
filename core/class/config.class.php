@@ -575,6 +575,10 @@ class config {
 		}
 	}
 
+	public static function preConfig_notifications_settings(string $value): string {
+		return json_encode(notification::validateSettings(json_decode($value, true)), JSON_UNESCAPED_UNICODE);
+	}
+
 	/**
 	 * Validates history archive package value
 	 *

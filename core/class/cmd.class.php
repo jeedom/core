@@ -2642,29 +2642,14 @@ class cmd {
 			log::add('event', 'info', $message);
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting');
+				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting', false);
 			}
-			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						try {
-							$cmd->execCmd(array(
-								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
-								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-							));
-						} catch (Exception $e) {
-							log::add('jeedomAlert', 'error', __('Erreur lors de l\'envoi de l\'alerte : ', __FILE__) . ' ' . $cmd->getHumanName() . '  => ' . log::exception($e));
-						}
-					}
-				}
-			}
+			notification::send($_level, $message);
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normale de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
 			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-			message::add($this->getEqLogic()->getEqType_name(), $message, $action, 'alertReturnBack_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alertingReturnBack');
+			message::add($this->getEqLogic()->getEqType_name(), $message, $action, 'alertReturnBack_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alertingReturnBack', false);
 		}
 
 		if ($prevAlert != $maxAlert) {

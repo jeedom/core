@@ -39,8 +39,10 @@ class message {
 	 * @param string $_action
 	 * @param string $_logicalId
 	 * @param bool $_writeMessage
+	 * @param string|null $_channel
+	 * @param bool $_notifySystem Whether the message can trigger system notifications
 	 */
-	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null) {
+	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null, bool $_notifySystem = true) {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
 		$message = (new message())
 			->setPlugin(secureXSS($_type))
@@ -48,7 +50,7 @@ class message {
 			->setAction(secureXSS($_action))
 			->setDate(date('Y-m-d H:i:s'))
 			->setLogicalId(secureXSS($_logicalId));
-		$message->save($_writeMessage, $_channel);
+		$message->save($_writeMessage, $_channel, $_notifySystem);
 	}
 
 	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
@@ -139,7 +141,7 @@ class message {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function save($_writeMessage = true, $_channel = null) {
+	public function save($_writeMessage = true, $_channel = null, bool $_notifySystem = true) {
 		if ($this->getMessage() == '') {
 			return;
 		}
@@ -195,6 +197,9 @@ class message {
 		}
 		if ($_writeMessage) {
 			DB::save($this);
+			if ($_notifySystem) {
+				notification::send('system', htmlspecialchars_decode($this->getMessage(), ENT_QUOTES | ENT_HTML5));
+			}
 			$configKey = ($_channel == null) ? 'actionOnMessage' : 'actionOnMessage' . $_channel;
 			$actions = config::byKey($configKey);
 			if (!is_array($actions) || count($actions) == 0) {

@@ -403,19 +403,10 @@ class eqLogic {
 						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
-							message::add('core', $message, $action, $logicalId);
+							message::add('core', $message, $action, $logicalId, true, null, false);
 						}
-						$cmds = explode(('&&'), config::byKey('alert::timeoutCmd'));
-						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '' && $prevStatus == 0) {
-							foreach ($cmds as $id) {
-								$cmd = cmd::byId(str_replace('#', '', $id));
-								if (is_object($cmd)) {
-									$cmd->execCmd(array(
-										'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
-										'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-									));
-								}
-							}
+						if ($prevStatus == 0) {
+							notification::send('timeout', $message);
 						}
 					}
 				} else {
@@ -1233,23 +1224,10 @@ class eqLogic {
 				}
 
 				if (config::byKey('alert::addMessageOnBatterydanger') == 1) {
-					message::add($this->getEqType_name(), $message, $action, $lowBatteryId);
+					message::add($this->getEqType_name(), $message, $action, $lowBatteryId, true, null, false);
 				}
 
-				$cmdConfig = trim(config::byKey('alert::batterydangerCmd'));
-				if ($cmdConfig != '') {
-					$cmds = explode('&&', $cmdConfig);
-					foreach ($cmds as $id) {
-						$id = trim(str_replace('#', '', $id));
-						$cmd = cmd::byId($id);
-						if (is_object($cmd)) {
-							$cmd->execCmd(array(
-								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
-								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-							));
-						}
-					}
-				}
+				notification::send('batterydanger', $message);
 			}
 		} else if ($batteryLevel < $warning_threshold) {
 			$prevStatus = $this->getStatus('batterywarning', 0);
@@ -1265,23 +1243,10 @@ class eqLogic {
 				}
 
 				if (config::byKey('alert::addMessageOnBatterywarning') == 1) {
-					message::add($this->getEqType_name(), $message, $action, $warningBatteryId);
+					message::add($this->getEqType_name(), $message, $action, $warningBatteryId, true, null, false);
 				}
 
-				$cmdConfig = trim(config::byKey('alert::batterywarningCmd'));
-				if ($cmdConfig != '') {
-					$cmds = explode('&&', $cmdConfig);
-					foreach ($cmds as $id) {
-						$id = trim(str_replace('#', '', $id));
-						$cmd = cmd::byId($id);
-						if (is_object($cmd)) {
-							$cmd->execCmd(array(
-								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
-								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-							));
-						}
-					}
-				}
+				notification::send('batterywarning', $message);
 			}
 		} else {
 			message::removeByPluginLogicalId($this->getEqType_name(), $warningBatteryId);
