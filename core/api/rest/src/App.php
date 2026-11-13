@@ -101,6 +101,20 @@ final class App
             $api->delete('/variables/{id}', $variables->delete(...));
             $api->get('/variables/{id}/usages', $variables->usages(...));
 
+            $designs = new DesignsController();
+            $api->get('/designs', $designs->list(...));
+            $api->post('/designs', $designs->create(...));
+            $api->get('/designs/{id}', $designs->get(...));
+            $api->patch('/designs/{id}', $designs->update(...));
+            $api->delete('/designs/{id}', $designs->delete(...));
+            $api->post('/designs/{id}/copy', $designs->copy(...));
+            $api->get('/designs/{id}/background', $designs->background(...));
+            $api->put('/designs/{id}/background', $designs->replaceBackground(...));
+            $api->delete('/designs/{id}/background', $designs->deleteBackground(...));
+            $api->post('/designs/{id}/items', $designs->createItem(...));
+            $api->patch('/designs/{id}/items', $designs->moveItems(...));
+            $api->patch('/designs/{id}/items/{itemId}', $designs->updateItem(...));
+            $api->delete('/designs/{id}/items/{itemId}', $designs->deleteItem(...));
             $notes = new NotesController();
             $api->get('/notes', $notes->list(...));
             $api->post('/notes', $notes->create(...));
