@@ -2004,8 +2004,8 @@ paths:
       operationId: listMessages
       summary: Lister les messages
       description: |
-        Reprend l'action `all` de `core/ajax/message.ajax.php`, du plus récent
-        au plus ancien. Sans `plugin`, le core renvoie au plus les 500 derniers
+        Reprend l'action `all` de `core/ajax/message.ajax.php` : les messages
+        non lus d'abord, puis du plus récent au plus ancien. Sans `plugin`, le core renvoie au plus les 500 derniers
         messages (`message::all()`) ; avec `plugin`, tous ceux du plugin
         (`message::byPlugin()`). `message` et `action` sont rendus comme dans
         l'ancienne interface (`message::toArray()`), puis assainis par l'API :
@@ -2019,6 +2019,16 @@ paths:
         schema:
           type: string
           maxLength: 127
+      - name: level
+        in: query
+        description: Ne garder que les messages de ce niveau.
+        schema:
+          $ref: '#/components/schemas/MessageLevel'
+      - name: read
+        in: query
+        description: Ne garder que les messages lus (`true`) ou non lus (`false`).
+        schema:
+          type: boolean
       - name: q
         in: query
         schema:
@@ -2067,7 +2077,10 @@ paths:
       - Messages
       operationId: countMessages
       summary: Nombre de messages
-      description: Reprend l'action `nbMessage` (`message::nbMessage()`), nombre total de messages ; le core n'a pas d'état lu ou non lu.
+      description: |
+        Reprend l'action `nbMessage` (`message::nbMessage()`) : `count` est le
+        nombre total de messages, `unread` le nombre de messages non lus.
+        L'état lu est commun à tous les comptes de la box.
       responses:
         '200':
           description: Nombre de messages.
@@ -2077,6 +2090,56 @@ paths:
                 $ref: '#/components/schemas/MessageCount'
         '401':
           $ref: '#/components/responses/Unauthorized'
+  /messages/read:
+    post:
+      tags:
+      - Messages
+      operationId: markMessagesRead
+      summary: Tout marquer comme lu
+      description: |
+        Marque comme lus tous les messages, ou seulement ceux de `plugin`.
+        L'état lu est commun à tous les comptes de la box. Déclenche
+        l'événement `message::refreshMessageNumber`.
+      parameters:
+      - name: plugin
+        in: query
+        schema:
+          type: string
+          maxLength: 127
+      responses:
+        '204':
+          description: Messages marqués comme lus.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /messages/{id}/read:
+    post:
+      tags:
+      - Messages
+      operationId: markMessageRead
+      summary: Marquer un message comme lu
+      description: |
+        Marque le message comme lu pour toute la box. Un message lu redevient
+        non lu quand il est envoyé de nouveau (`occurrences` augmente).
+        Déclenche l'événement `message::refreshMessageNumber`.
+      responses:
+        '204':
+          description: Message marqué comme lu.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Message inconnu (message_not_found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
   /messages/{id}:
     delete:
       tags:
@@ -6554,6 +6617,8 @@ components:
       - message
       - action
       - occurrences
+      - level
+      - read
       properties:
         id:
           type: integer
@@ -6575,6 +6640,22 @@ components:
           type: integer
           minimum: 1
           description: Nombre d'envois identiques regroupés (1 si le message n'a été envoyé qu'une fois).
+        level:
+          $ref: '#/components/schemas/MessageLevel'
+        read:
+          type: boolean
+          description: |
+            Message lu, commun à tous les comptes de la box. Passe à `true`
+            seulement par une action explicite (`POST /messages/{id}/read` ou
+            `POST /messages/read`) ; redevient `false` à un nouvel envoi.
+    MessageLevel:
+      type: string
+      enum:
+      - info
+      - warning
+      - error
+      default: info
+      description: Niveau fixé par l'émetteur à l'envoi (`message::add()`), `info` par défaut.
     MessageList:
       type: object
       required:
@@ -6592,10 +6673,15 @@ components:
       type: object
       required:
       - count
+      - unread
       properties:
         count:
           type: integer
           minimum: 0
+        unread:
+          type: integer
+          minimum: 0
+          description: Nombre de messages non lus.
 
     Scenario:
       type: object
