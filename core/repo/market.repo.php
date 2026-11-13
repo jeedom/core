@@ -589,6 +589,28 @@ class repo_market {
 		return self::catalogList('/catalog/items', $query, $limit);
 	}
 
+	/** A page of stable plugins, with account entitlement when the box is connected. */
+	public static function catalogPage(string $name, int $offset): array {
+		$query = array('type' => 'plugin', 'branch' => 'stable', 'limit' => 12, 'offset' => $offset,
+			'timeState' => $name === '' ? 'popular' : 'relevance');
+		if ($name !== '') {
+			$query['name'] = $name;
+		}
+		$page = marketClient::catalogPage($query);
+		$items = array_map(static function (array $item): array {
+			$summary = trim(preg_replace('/\s+/u', ' ', html_entity_decode(strip_tags(
+				(string) ($item['summary'] ?? $item['description'] ?? '')
+			), ENT_QUOTES | ENT_HTML5, 'UTF-8')) ?? '');
+			return array(
+				'id' => (int) $item['id'], 'pluginId' => (string) $item['logicalId'], 'name' => (string) $item['name'],
+				'summary' => mb_strimwidth($summary, 0, 240, '…', 'UTF-8'), 'cost' => (float) $item['cost'],
+				'canInstall' => !empty($item['purchase']) && !empty($item['versions']['stable']['published']),
+			);
+		}, $page['items']);
+		$next = $page['nextOffset'] ?? null;
+		return array('items' => $items, 'nextOffset' => is_int($next) && $next > $offset ? $next : null);
+	}
+
 	private static function catalogList($path, $query = array(), $maximum = null) {
 		$items = array();
 		$query['limit'] = $maximum === null ? 100 : min(100, $maximum);
@@ -997,6 +1019,11 @@ class repo_market {
 
 /** Market REST session, transport and cloud services. */
 class marketClient {
+
+	public static function catalogPage(array $query): array {
+		$path = '/catalog/items?' . http_build_query($query);
+		return self::connected() ? self::request('GET', $path) : self::send('GET', $path);
+	}
 
 	/** Use the current Market box Bearer for Cloud requests. */
 	public static function getCloudToken() {

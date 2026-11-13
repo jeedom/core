@@ -5719,6 +5719,35 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /market/catalog:
+    get:
+      tags: [Plugins]
+      operationId: listMarketPlugins
+      summary: Rechercher les plugins stables du Market
+      description: Réservé aux administrateurs. Utilise la session de la box lorsqu’elle est connectée au Market.
+      parameters:
+        - name: q
+          in: query
+          schema: { type: string, maxLength: 255 }
+        - name: offset
+          in: query
+          schema: { type: integer, minimum: 0 }
+      responses:
+        '200':
+          description: Page de plugins du Market et offset de la page suivante.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketCatalogPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '429':
+          description: Trop de requêtes au Market.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '502': { $ref: '#/components/responses/BadGateway' }
   /market/connection:
     get:
       tags: [Configuration]
@@ -8451,6 +8480,24 @@ components:
       properties:
         mode: { type: string, enum: [custom] }
         url: { type: string, maxLength: 2048, description: Adresse complète en HTTP ou HTTPS. }
+    MarketCatalogPage:
+      type: object
+      required: [items, nextOffset]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, pluginId, name, summary, cost, canInstall]
+            properties:
+              id: { type: integer }
+              pluginId: { type: string }
+              name: { type: string }
+              summary: { type: string }
+              cost: { type: number, description: Prix TTC en euros. }
+              canInstall: { type: boolean, description: La box peut demander l’installation du plugin en branche stable. }
+        nextOffset: { type: integer, nullable: true }
+
     MarketConnection:
       type: object
       additionalProperties: false

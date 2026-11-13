@@ -9,6 +9,30 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 /** Connexion de ce Jeedom au Market, via le client utilisé par le Core. */
 final class MarketController
 {
+    public function catalog(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $query = $request->getQueryParams();
+        $name = $query['q'] ?? '';
+        if (!is_string($name) || strlen(trim($name)) > 255) {
+            throw ApiError::field(422, 'validation_error', 'q', 'La recherche ne doit pas dépasser 255 octets.');
+        }
+        $offset = filter_var($query['offset'] ?? 0, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+        if ($offset === false) {
+            throw ApiError::field(422, 'validation_error', 'offset', 'Un entier positif ou nul est attendu.');
+        }
+        try {
+            $page = \repo_market::catalogPage(trim($name), $offset);
+        } catch (\Exception $exception) {
+            throw match ($exception->getCode()) {
+                401 => new ApiError(409, 'market_not_connected', 'Reconnectez ce Jeedom au Market.'),
+                429 => new ApiError(429, 'market_rate_limited', 'Le Market a limité les requêtes. Réessayez dans quelques instants.'),
+                default => new ApiError(502, 'market_unavailable', 'Impossible de charger le catalogue du Market.'),
+            };
+        }
+        return Json::respond($response->withHeader('Cache-Control', 'private, no-store'), $page);
+    }
+
     public function status(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);

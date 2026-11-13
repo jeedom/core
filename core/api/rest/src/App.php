@@ -140,6 +140,7 @@ final class App
             $api->post('/network/dns/restart', $networkAccess->restartDns(...));
 
             $market = new MarketController();
+            $api->get('/market/catalog', $market->catalog(...));
             $api->get('/market/connection', $market->status(...));
             $api->post('/market/connection', $market->connect(...));
             $api->delete('/market/connection', $market->disconnect(...));
