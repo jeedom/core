@@ -91,6 +91,47 @@ class display {
         DB::Prepare('DELETE FROM `display` WHERE target_type = :type AND target_id = :id', ['type' => $type, 'id' => $id]);
     }
 
+    /**
+     * Réglages des éléments de design, indexés par identifiant d'élément (plan).
+     * @param list<int> $planIds
+     * @return array<int, self>
+     */
+    public static function byPlanIds(array $planIds): array {
+        $ids = array_values(array_unique(array_map('intval', $planIds)));
+        if ($ids === []) {
+            return [];
+        }
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM `display`
+            WHERE context = \'design\' AND context_id IN (' . implode(',', $ids) . ')';
+        $rows = [];
+        foreach ((array) DB::Prepare($sql, [], DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__) as $row) {
+            $rows[(int) $row->context_id] = $row;
+        }
+        return $rows;
+    }
+
+    /** Remplace le réglage d'un élément de design ; null ou réglage vide le supprime. */
+    public static function replaceForPlan(int $planId, string $targetType, int $targetId, ?array $settings): void {
+        $row = self::byPlanIds([$planId])[$planId] ?? null;
+        if ($row === null) {
+            $row = new self();
+            $row->context = 'design';
+            $row->context_id = $planId;
+        }
+        $row->target_type = $targetType;
+        $row->target_id = $targetId;
+        $row->applySettings($settings);
+    }
+
+    public function getTemplate(): ?string {
+        return $this->template;
+    }
+
+    public function getTemplateParameters(): stdClass {
+        return $this->template_parameters === null
+            ? new stdClass() : json_decode($this->template_parameters, false, 64, JSON_THROW_ON_ERROR);
+    }
+
     public static function removeByPlanId(int $id): void {
         DB::Prepare('DELETE FROM `display` WHERE context = :context AND context_id = :id', ['context' => 'design', 'id' => $id]);
     }
