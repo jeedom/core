@@ -90,7 +90,7 @@ final class ConfigController
             'alert::addMessageOnDanger' => 'boolean',
         ],
         'notifications' => [
-            \notification::CONFIG_KEY => 'notifications',
+            'notifications::settings' => 'notifications',
         ],
         'eqLogics' => [
             'numberOfTryBeforeEqLogicDisable' => 'number',
@@ -312,7 +312,7 @@ final class ConfigController
             $storedKey = self::storedKey($key);
             if (!$admin && (\config::shouldBeEncrypted($storedKey) || str_starts_with($key, 'samba::backup::')
                 || str_starts_with($key, 'market::cloud::backup::') || str_starts_with($key, 'github::core::')
-                || str_starts_with($key, 'url::core::') || $key === \notification::CONFIG_KEY)) {
+                || str_starts_with($key, 'url::core::') || $key === 'notifications::settings')) {
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
@@ -346,7 +346,7 @@ final class ConfigController
         }
         if ($type === 'notifications') {
             try {
-                return \notification::validateSettings($value);
+                return \config::validateNotificationSettings($value);
             } catch (\InvalidArgumentException $e) {
                 throw ApiError::field(422, 'validation_error', $key, $e->getMessage());
             }

@@ -158,7 +158,7 @@ class jeedom {
 				$return[] = array('detail' => __('Administration', __FILE__), 'help' => __('Commande retour interactions', __FILE__), 'who' => $cmd);
 			}
 		}
-		foreach (notification::settings()['destinations'] as $id) {
+		foreach (config::notificationSettings()['destinations'] as $id) {
 			$command = cmd::byId($id);
 			if (!is_object($command) || $command->getType() !== 'action' || $command->getSubType() !== 'message') {
 				$return[] = array('detail' => __('Administration', __FILE__), 'help' => __('Destination de notification', __FILE__), 'who' => '#' . $id . '#');

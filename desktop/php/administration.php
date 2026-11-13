@@ -951,7 +951,7 @@ $productName = config::byKey('product_name');
 											'danger' => __('Danger', __FILE__),
 											'system' => __('Messages système', __FILE__),
 										];
-										foreach (notification::TYPES as $type) {
+										foreach (config::NOTIFICATION_TYPES as $type) {
 											echo '<div class="checkbox"><label><input type="checkbox" data-notification-type="' . $type . '"> ' . $notificationLabels[$type] . '</label></div>';
 										}
 										?>

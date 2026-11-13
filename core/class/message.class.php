@@ -30,6 +30,7 @@ class message {
 	private $action;
 	private $_changed = false;
 	private $occurrences;
+	private static bool $sendingNotification = false;
 
 	/*     * ***********************Methode static*************************** */
 	/**
@@ -51,6 +52,35 @@ class message {
 			->setDate(date('Y-m-d H:i:s'))
 			->setLogicalId(secureXSS($_logicalId));
 		$message->save($_writeMessage, $_channel, $_notifySystem);
+	}
+
+	public static function sendNotification(string $type, string $message): void {
+		// Une commande de notification peut elle-même ajouter un message ou une erreur au journal.
+		if (self::$sendingNotification) {
+			return;
+		}
+		$settings = config::notificationSettings();
+		if ($settings['destinations'] === [] || !in_array($type, $settings['types'], true)) {
+			return;
+		}
+		$name = config::byKey('name', 'core', 'JEEDOM');
+		$options = ['title' => '[' . $name . '] : ' . $message, 'message' => $name . ' : ' . $message];
+		self::$sendingNotification = true;
+		try {
+			foreach ($settings['destinations'] as $id) {
+				try {
+					$command = cmd::byId($id);
+					if (is_object($command) && $command->getType() === 'action' && $command->getSubType() === 'message') {
+						$command->execCmd($options);
+					}
+				} catch (Throwable $e) {
+					log::add('jeedomAlert', 'error', __('Erreur lors de l’envoi de la notification vers la commande', __FILE__)
+						. ' #' . $id . '# : ' . log::exception($e));
+				}
+			}
+		} finally {
+			self::$sendingNotification = false;
+		}
 	}
 
 	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
@@ -198,7 +228,7 @@ class message {
 		if ($_writeMessage) {
 			DB::save($this);
 			if ($_notifySystem) {
-				notification::send('system', htmlspecialchars_decode($this->getMessage(), ENT_QUOTES | ENT_HTML5));
+				self::sendNotification('system', htmlspecialchars_decode($this->getMessage(), ENT_QUOTES | ENT_HTML5));
 			}
 			$configKey = ($_channel == null) ? 'actionOnMessage' : 'actionOnMessage' . $_channel;
 			$actions = config::byKey($configKey);

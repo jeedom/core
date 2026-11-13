@@ -24,6 +24,8 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
  * @see jeedom
  */
 class config {
+	public const NOTIFICATION_TYPES = ['timeout', 'batterywarning', 'batterydanger', 'warning', 'danger', 'system'];
+
 	/*     * *************************Attributs****************************** */
 
 	/** @var array<string, array<string, array<string, mixed>>> Default configuration values */
@@ -575,8 +577,49 @@ class config {
 		}
 	}
 
+	/** @return array{destinations: list<int>, types: list<string>} */
+	public static function notificationSettings(): array {
+		$settings = self::byKey('notifications::settings');
+		return [
+			'destinations' => is_array($settings['destinations'] ?? null) ? $settings['destinations'] : [],
+			'types' => is_array($settings['types'] ?? null) ? $settings['types'] : [],
+		];
+	}
+
+	/** @return array{destinations: list<int>, types: list<string>} */
+	public static function validateNotificationSettings($settings): array {
+		$destinations = $settings['destinations'] ?? null;
+		$types = $settings['types'] ?? null;
+		if (!is_array($settings) || count($settings) !== 2 || !is_array($destinations) || !is_array($types)
+			|| array_values($destinations) !== $destinations || array_values($types) !== $types) {
+			throw new InvalidArgumentException(__('Configuration des notifications invalide.', __FILE__));
+		}
+		$current = $destinations !== [] ? self::notificationSettings()['destinations'] : [];
+		foreach ($destinations as $id) {
+			if (!is_int($id) || $id < 1) {
+				throw new InvalidArgumentException(__('Identifiant de destination invalide.', __FILE__));
+			}
+			if (in_array($id, $current, true)) {
+				continue;
+			}
+			$command = cmd::byId($id);
+			if (!is_object($command) || $command->getType() !== 'action' || $command->getSubType() !== 'message') {
+				throw new InvalidArgumentException(__('Choisissez une commande de type Message ou retirez la destination', __FILE__) . ' #' . $id . '#.');
+			}
+		}
+		foreach ($types as $type) {
+			if (!in_array($type, self::NOTIFICATION_TYPES, true)) {
+				throw new InvalidArgumentException(__('Type de notification inconnu.', __FILE__));
+			}
+		}
+		return ['destinations' => array_values(array_unique($destinations)), 'types' => array_values(array_unique($types))];
+	}
+
 	public static function preConfig_notifications_settings(string $value): string {
-		return json_encode(notification::validateSettings(json_decode($value, true)), JSON_UNESCAPED_UNICODE);
+		$settings = self::validateNotificationSettings(json_decode($value, true));
+		// La validation a pu relire la valeur que save() vient de retirer du cache.
+		unset(self::$cache['core::notifications::settings']);
+		return json_encode($settings, JSON_UNESCAPED_UNICODE);
 	}
 
 	/**

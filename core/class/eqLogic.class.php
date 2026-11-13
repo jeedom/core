@@ -406,7 +406,7 @@ class eqLogic {
 							message::add('core', $message, $action, $logicalId, true, null, false);
 						}
 						if ($prevStatus == 0) {
-							notification::send('timeout', $message);
+							message::sendNotification('timeout', $message);
 						}
 					}
 				} else {
@@ -1227,7 +1227,7 @@ class eqLogic {
 					message::add($this->getEqType_name(), $message, $action, $lowBatteryId, true, null, false);
 				}
 
-				notification::send('batterydanger', $message);
+				message::sendNotification('batterydanger', $message);
 			}
 		} else if ($batteryLevel < $warning_threshold) {
 			$prevStatus = $this->getStatus('batterywarning', 0);
@@ -1246,7 +1246,7 @@ class eqLogic {
 					message::add($this->getEqType_name(), $message, $action, $warningBatteryId, true, null, false);
 				}
 
-				notification::send('batterywarning', $message);
+				message::sendNotification('batterywarning', $message);
 			}
 		} else {
 			message::removeByPluginLogicalId($this->getEqType_name(), $warningBatteryId);

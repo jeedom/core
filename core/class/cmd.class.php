@@ -2644,7 +2644,7 @@ class cmd {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting', false);
 			}
-			notification::send($_level, $message);
+			message::sendNotification($_level, $message);
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normale de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
