@@ -30,7 +30,6 @@ class message {
 	private $action;
 	private $_changed = false;
 	private $occurrences;
-	private static bool $sendingNotification = false;
 
 	/*     * ***********************Methode static*************************** */
 	/**
@@ -55,8 +54,9 @@ class message {
 	}
 
 	public static function sendNotification(string $type, string $message): void {
+		static $sending = false;
 		// Une commande de notification peut elle-même ajouter un message ou une erreur au journal.
-		if (self::$sendingNotification) {
+		if ($sending) {
 			return;
 		}
 		$settings = config::notificationSettings();
@@ -65,7 +65,7 @@ class message {
 		}
 		$name = config::byKey('name', 'core', 'JEEDOM');
 		$options = ['title' => '[' . $name . '] : ' . $message, 'message' => $name . ' : ' . $message];
-		self::$sendingNotification = true;
+		$sending = true;
 		try {
 			foreach ($settings['destinations'] as $id) {
 				try {
@@ -79,7 +79,7 @@ class message {
 				}
 			}
 		} finally {
-			self::$sendingNotification = false;
+			$sending = false;
 		}
 	}
 
