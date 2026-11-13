@@ -262,6 +262,13 @@ final class App
             $api->post('/users/{id}/rights/copy', $users->copyRights(...));
 
             $api->get('/me', $users->me(...));
+            $api->get('/me/menu', $users->myMenu(...));
+            $menus = new MenusController();
+            $api->get('/menus', $menus->list(...));
+            $api->post('/menus', $menus->create(...));
+            $api->get('/menus/{id}', $menus->get(...));
+            $api->patch('/menus/{id}', $menus->update(...));
+            $api->delete('/menus/{id}', $menus->delete(...));
             $api->patch('/me', $users->updateMe(...));
             $api->get('/me/token', $users->myToken(...));
             $api->post('/me/token', $users->regenerateMyToken(...));

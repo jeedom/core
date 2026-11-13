@@ -255,6 +255,11 @@ final class UsersController
             self::meArray($request->getAttribute('user'), $request->getAttribute('csrfToken')));
     }
 
+    public function myMenu(Request $request, Response $response): Response
+    {
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), \uiMenu::effective($request->getAttribute('user')));
+    }
+
     public function updateMe(Request $request, Response $response): Response
     {
         $user = self::currentWritable($request);
@@ -382,6 +387,8 @@ final class UsersController
             'localOnly' => (int) $user->getOptions('localOnly', 0) === 1 ? 1 : 0,
             'doNotRotateHash' => (int) $user->getOptions('doNotRotateHash', 0) === 1 ? 1 : 0,
         ];
+        $menu = (string) $user->getOptions('menu', '');
+        $options['menu'] = $menu === '' ? null : $menu;
         $mode = $user->getOptions('api::mode', '');
         if (in_array($mode, self::API_MODES, true)) {
             $options['api::mode'] = $mode;
@@ -577,11 +584,15 @@ final class UsersController
             $ok = match ($key) {
                 'localOnly', 'doNotRotateHash' => $value === 0 || $value === 1,
                 'api::mode' => in_array($value, self::API_MODES, true),
+                'menu' => $value === null || (is_string($value) && \uiMenu::exists($value)),
                 default => throw ApiError::field(422, 'validation_error', 'options.' . $key, 'Option inconnue ou non modifiable.'),
             };
             if (!$ok) {
                 throw ApiError::field(422, 'validation_error', 'options.' . $key, 'Valeur invalide.');
             }
+        }
+        if (array_key_exists('menu', $options)) {
+            $options['menu'] ??= '';
         }
         return $options;
     }
