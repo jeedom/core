@@ -446,6 +446,83 @@ paths:
         '502': { $ref: '#/components/responses/BadGateway' }
         '503': { $ref: '#/components/responses/ServiceUnavailable' }
 
+  /jeego/logs/sources:
+    get:
+      tags: [Système]
+      operationId: listJeegoLogSources
+      summary: Lister les sources de journaux Jeego
+      description: Réservé aux administrateurs en mode Jeego. Le catalogue est fourni par Jeego.
+      responses:
+        '200':
+          description: Lister les sources de journaux Jeego.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoLogSources' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/logs/excerpt:
+    get:
+      tags: [Système]
+      operationId: getJeegoLogExcerpt
+      summary: Lire un extrait de journal Jeego
+      description: Réservé aux administrateurs en mode Jeego. Extrait borné et masqué au mieux.
+      parameters:
+        - name: source
+          in: query
+          required: true
+          schema: { type: string, pattern: '^[a-z0-9][a-z0-9_.:-]{0,191}$' }
+      responses:
+        '200':
+          description: Lire un extrait de journal Jeego.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoLogExcerpt' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '429':
+          description: Limite des lectures ou des exports simultanés atteinte.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/logs/archive:
+    get:
+      tags: [Système]
+      operationId: downloadJeegoLogArchive
+      summary: Télécharger l’archive de support Jeego
+      description: Réservé aux administrateurs en mode Jeego. Archive ZIP des journaux avec masquage des données sensibles reconnues.
+      responses:
+        '200':
+          description: Archive de support.
+          content:
+            application/zip:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '429':
+          description: Limite des lectures ou des exports simultanés atteinte.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+        '504':
+          description: Délai de création de l’archive dépassé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
   /jeego/management:
     get:
       tags: [Système]
@@ -6417,6 +6494,25 @@ components:
         enabled: { type: boolean }
         time: { type: string, pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$' }
         stable_hours: { type: integer, minimum: 0, maximum: 8760 }
+    JeegoLogSources:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, label]
+            properties:
+              id: { type: string }
+              label: { type: string }
+              group: { type: string }
+    JeegoLogExcerpt:
+      type: object
+      required: [logs, truncated]
+      properties:
+        logs: { type: string }
+        truncated: { type: boolean }
     JeegoServiceLogs:
       type: object
       required: [logs]
