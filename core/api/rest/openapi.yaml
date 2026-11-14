@@ -563,6 +563,31 @@ paths:
         '502': { $ref: '#/components/responses/BadGateway' }
         '503': { $ref: '#/components/responses/ServiceUnavailable' }
 
+  /jeego/management/docker/{id}/logs:
+    get:
+      tags: [Système]
+      operationId: getJeegoDockerLogs
+      summary: Lire les journaux récents d’un conteneur Docker détecté
+      description: Réservé aux administrateurs.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, pattern: '^[a-f0-9]{64}$' }
+      responses:
+        '200':
+          description: Informations Jeego.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoServiceLogs' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
   /system:
     get:
       tags: [Système]
@@ -6154,9 +6179,35 @@ components:
           type: array
           items: { $ref: '#/components/schemas/JeegoManagedService' }
         check_interval_hours: { type: integer, minimum: 1 }
+        docker: { $ref: '#/components/schemas/JeegoDockerInventory' }
         timezone: { type: string }
         web_port: { type: integer, minimum: 1, maximum: 65535 }
         policy_error: { type: string }
+    JeegoDockerInventory:
+      type: object
+      required: [containers, projects]
+      properties:
+        containers:
+          type: array
+          items:
+            type: object
+            required: [id, name, image, status]
+            properties:
+              id: { type: string }
+              name: { type: string }
+              image: { type: string }
+              status: { type: string }
+              project_id: { type: string }
+        projects:
+          type: array
+          items:
+            type: object
+            required: [id, name]
+            properties:
+              id: { type: string }
+              name: { type: string }
+        error: { type: string }
+        busy: { type: boolean }
     JeegoManagedImage:
       type: object
       required: [status, can_restart, can_change]

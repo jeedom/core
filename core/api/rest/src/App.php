@@ -151,6 +151,7 @@ final class App
             $api->get('/jeego/settings/{section}', $jeego->settings(...));
             $api->post('/jeego/actions/{action}', $jeego->action(...));
             $api->get('/jeego/tasks/{id}', $jeego->task(...));
+            $api->get('/jeego/management/docker/{id}/logs', $jeego->dockerLogs(...));
             $api->get('/jeego/management', $jeego->management(...));
             $api->post('/jeego/management/image/{action}', $jeego->imageAction(...));
             $api->post('/jeego/management/services/{service}/{action}', $jeego->serviceAction(...));

@@ -82,6 +82,16 @@ final class JeegoController
         return self::respond($response, self::call('/services/' . $service . '/logs', 200));
     }
 
+    public function dockerLogs(Request $request, Response $response, array $args): Response
+    {
+        self::requireJeego($request);
+        $id = $args['id'];
+        if (preg_match('/^[a-f0-9]{64}$/D', $id) !== 1) {
+            throw ApiError::field(422, 'validation_error', 'id', 'Identifiant Docker invalide.');
+        }
+        return self::respond($response, self::call('/management/docker/' . $id . '/logs', 200));
+    }
+
     private static function serviceId(string $id): string
     {
         if (preg_match('/^[a-z][a-z0-9-]{0,31}$/D', $id) !== 1) {
