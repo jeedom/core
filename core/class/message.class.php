@@ -20,6 +20,8 @@
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class message {
+	public const LEVELS = ['info', 'warning', 'error'];
+
 	/*     * *************************Attributs****************************** */
 
 	private $id;
@@ -30,6 +32,8 @@ class message {
 	private $action;
 	private $_changed = false;
 	private $occurrences;
+	private $level = 'info';
+	private $read = 0;
 
 	/*     * ***********************Methode static*************************** */
 	/**
@@ -41,14 +45,16 @@ class message {
 	 * @param bool $_writeMessage
 	 * @param string|null $_channel
 	 * @param bool $_notifySystem Whether the message can trigger system notifications
+	 * @param string $_level Message severity shown in the notification center
 	 */
-	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null, bool $_notifySystem = true) {
+	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null, bool $_notifySystem = true, string $_level = 'info') {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
 		$message = (new message())
 			->setPlugin(secureXSS($_type))
 			->setMessage(secureXSS($_message))
 			->setAction(secureXSS($_action))
 			->setDate(date('Y-m-d H:i:s'))
+			->setLevel($_level)
 			->setLogicalId(secureXSS($_logicalId));
 		$message->save($_writeMessage, $_channel, $_notifySystem);
 	}
@@ -111,6 +117,29 @@ class message {
 		return $count['count(*)'];
 	}
 
+	public static function counts(): array {
+		$counts = DB::Prepare('SELECT COUNT(*) AS total, COUNT(CASE WHEN `read` = 0 THEN 1 END) AS unread FROM message',
+			[], DB::FETCH_TYPE_ROW);
+		return ['count' => (int) $counts['total'], 'unread' => (int) $counts['unread']];
+	}
+
+	public static function markAllRead(string $_plugin = ''): void {
+		$sql = 'UPDATE message SET `read` = 1 WHERE `read` = 0';
+		$values = [];
+		if ($_plugin !== '') {
+			$sql .= ' AND plugin = :plugin';
+			$values['plugin'] = $_plugin;
+		}
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		event::add('message::refreshMessageNumber');
+	}
+
+	public function markRead(): void {
+		DB::Prepare('UPDATE message SET `read` = 1 WHERE id = :id', ['id' => $this->getId()], DB::FETCH_TYPE_ROW);
+		$this->read = 1;
+		event::add('message::refreshMessageNumber');
+	}
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -169,61 +198,61 @@ class message {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function notificationList(string $_plugin = '', ?string $_level = null, ?bool $_read = null): array {
+		$filters = [];
+		$values = [];
+		if ($_plugin !== '') {
+			$filters[] = 'plugin = :plugin';
+			$values['plugin'] = $_plugin;
+		}
+		if ($_level !== null) {
+			$filters[] = '`level` = :level';
+			$values['level'] = $_level;
+		}
+		if ($_read !== null) {
+			$filters[] = '`read` = :read';
+			$values['read'] = (int) $_read;
+		}
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM message';
+		if ($filters !== []) {
+			$sql .= ' WHERE ' . implode(' AND ', $filters);
+		}
+		$sql .= ' ORDER BY `read` ASC, date DESC, id DESC';
+		if ($_plugin === '') {
+			$sql .= ' LIMIT 500';
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	public function save($_writeMessage = true, $_channel = null, bool $_notifySystem = true) {
 		if ($this->getMessage() == '') {
 			return;
 		}
+		$values = ['plugin' => $this->getPlugin()];
 		if ($this->getLogicalId() == '' || $this->getLogicalId() == 'newUpdate') {
 			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());
-			$values = array(
-				'message' => $this->getMessage(),
-				'plugin' => $this->getPlugin(),
-			);
-			$sql = 'SELECT count(*)
-			FROM message
-			WHERE plugin=:plugin
-			AND message=:message';
-			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			if ($result['count(*)'] != 0) {
-				$values = array(
-					'message' => $this->getMessage(),
-					'plugin' => $this->getPlugin(),
-					'date' => $this->getDate(),
-				);
-				$sql = 'UPDATE message
-				SET date=:date,occurrences=ifnull(occurrences, 1)+1
-				WHERE plugin=:plugin
-				AND message=:message
-				LIMIT 1';
-				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-				return;
-			}
+			$match = 'message = :message';
+			$values['message'] = $this->getMessage();
 		} else {
-			$values = array(
-				'logicalId' => $this->getLogicalId(),
-				'plugin' => $this->getPlugin(),
-			);
-			$sql = 'SELECT count(*)
-			FROM message
-			WHERE plugin=:plugin
-			AND logicalId=:logicalId';
-			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			if ($result['count(*)'] != 0) {
-				$values = array(
-					'logicalId' => $this->getLogicalId(),
-					'plugin' => $this->getPlugin(),
-					'date' => $this->getDate(),
-				);
-				$sql = 'UPDATE message
-				SET date=:date,occurrences=ifnull(occurrences, 1)+1
-				WHERE plugin=:plugin
-				AND logicalId=:logicalId
-				LIMIT 1';
-				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-				return;
+			$match = 'logicalId = :logicalId';
+			$values['logicalId'] = $this->getLogicalId();
+		}
+		$existing = DB::Prepare('SELECT id, level, `read` FROM message WHERE plugin = :plugin AND ' . $match . ' ORDER BY id LIMIT 1',
+			$values, DB::FETCH_TYPE_ROW);
+		if (is_array($existing)) {
+			$values = ['id' => $existing['id'], 'date' => $this->getDate()];
+			$sql = 'UPDATE message SET date = :date, occurrences = IFNULL(occurrences, 1) + 1';
+			if ($_writeMessage) {
+				$sql .= ', level = :level, `read` = 0';
+				$values['level'] = $this->getLevel();
 			}
+			DB::Prepare($sql . ' WHERE id = :id', $values, DB::FETCH_TYPE_ROW);
+			if ($_writeMessage && ((bool) $existing['read'] || $existing['level'] !== $this->getLevel())) {
+				event::add('message::refreshMessageNumber');
+			}
+			return;
 		}
 		if ($_writeMessage) {
 			DB::save($this);
@@ -311,6 +340,25 @@ class message {
 
 	public function getOccurrences() {
 		return $this->occurrences;
+	}
+
+	public function getLevel(): string {
+		return $this->level;
+	}
+
+	public function setLevel(string $_level): self {
+		$_level = in_array($_level, self::LEVELS, true) ? $_level : 'info';
+		$this->_changed = utils::attrChanged($this->_changed, $this->level, $_level);
+		$this->level = $_level;
+		return $this;
+	}
+
+	public function isRead(): bool {
+		return $this->getRead() === 1;
+	}
+
+	public function getRead(): int {
+		return (int) $this->read;
 	}
 
 	public function setId($_id) {
