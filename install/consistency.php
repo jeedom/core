@@ -42,6 +42,14 @@ try {
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
 
+	// La mise à jour recopie les fichiers. Retirer aussi l’ancien point d’entrée de suivi.
+	foreach (['restore-status.php', 'restore-status.class.php'] as $name) {
+		$path = __DIR__ . '/../api/v1/' . $name;
+		if ((is_file($path) || is_link($path)) && !unlink($path)) {
+			echo 'Unable to remove obsolete REST file: ' . $name . "\n";
+		}
+	}
+
 	if (method_exists('system', 'checkAndInstall')) {
 		try {
 			echo "Check jeedom package...";
