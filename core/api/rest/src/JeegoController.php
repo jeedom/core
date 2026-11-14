@@ -91,10 +91,12 @@ final class JeegoController
             throw ApiError::field(422, 'validation_error', 'id', 'Identifiant Docker invalide.');
         }
         $action = $args['action'];
-        if (!in_array($action, ['update', 'restart'], true)) {
-            throw new ApiError(404, 'jeego_action_not_found', 'Action Docker inconnue.');
-        }
-        return self::startManagement($request, $response, '/management/docker/' . $id . '/' . $action, 'managed-docker:' . $action, ['revision', 'confirm']);
+        $fields = match ($action) {
+            'update', 'restart' => ['revision', 'confirm'],
+            'policy' => ['revision', 'enabled', 'time', 'stable_hours'],
+            default => throw new ApiError(404, 'jeego_action_not_found', 'Action Docker inconnue.'),
+        };
+        return self::startManagement($request, $response, '/management/docker/' . $id . '/' . $action, 'managed-docker:' . $action, $fields);
     }
 
     public function dockerLogs(Request $request, Response $response, array $args): Response
@@ -228,7 +230,7 @@ final class JeegoController
     private static function canReadTask(string $kind): bool
     {
         if (in_array($kind, array_column(self::ACTIONS, 2), true) || in_array($kind, array_column(self::IMAGE_ACTIONS, 0), true)
-            || in_array($kind, ['managed-docker:update', 'managed-docker:restart'], true)) {
+            || in_array($kind, ['managed-docker:update', 'managed-docker:restart', 'managed-docker:policy'], true)) {
             return true;
         }
         return preg_match('/^managed-service:[a-z][a-z0-9-]{0,31}:([a-z]+)$/D', $kind, $matches) === 1
