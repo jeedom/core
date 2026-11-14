@@ -427,7 +427,7 @@ paths:
     get:
       tags: [Système]
       operationId: getJeegoTask
-      summary: Suivre une tâche de configuration Jeego
+      summary: Suivre une tâche Jeego autorisée
       parameters:
         - name: id
           in: path
@@ -442,6 +442,123 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/management:
+    get:
+      tags: [Système]
+      operationId: getJeegoManagement
+      summary: Lire l’image Jeedom et le catalogue de services Jeego
+      description: Réservé aux administrateurs.
+      responses:
+        '200':
+          description: Informations Jeego.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoManagement' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/management/image/{action}:
+    post:
+      tags: [Système]
+      operationId: runJeegoImageAction
+      summary: Contrôler, redémarrer ou remplacer l’image Jeedom
+      description: Réservé aux administrateurs.
+      parameters:
+        - name: action
+          in: path
+          required: true
+          schema: { type: string, enum: [check, restart, update, revert] }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/JeegoImageAction' }
+      responses:
+        '202':
+          description: Tâche acceptée.
+          headers:
+            Location:
+              description: URL de suivi de la tâche Jeego.
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoTask' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/management/services/{service}/{action}:
+    post:
+      tags: [Système]
+      operationId: runJeegoServiceAction
+      summary: Gérer un service du catalogue Jeego
+      description: Réservé aux administrateurs.
+      parameters:
+        - name: service
+          in: path
+          required: true
+          schema: { type: string, pattern: '^[a-z][a-z0-9-]{0,31}$' }
+        - name: action
+          in: path
+          required: true
+          schema: { type: string, enum: [install, start, restart, stop, policy] }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/JeegoServiceAction' }
+      responses:
+        '202':
+          description: Tâche acceptée.
+          headers:
+            Location:
+              description: URL de suivi de la tâche Jeego.
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoTask' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/management/services/{service}/logs:
+    get:
+      tags: [Système]
+      operationId: getJeegoServiceLogs
+      summary: Lire les journaux récents d’un service Jeego
+      description: Réservé aux administrateurs.
+      parameters:
+        - name: service
+          in: path
+          required: true
+          schema: { type: string, pattern: '^[a-z][a-z0-9-]{0,31}$' }
+      responses:
+        '200':
+          description: Informations Jeego.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoServiceLogs' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
         '422': { $ref: '#/components/responses/ValidationError' }
         '502': { $ref: '#/components/responses/BadGateway' }
         '503': { $ref: '#/components/responses/ServiceUnavailable' }
@@ -6027,6 +6144,104 @@ components:
         version: { type: string }
         status: { type: string, enum: [starting, running, succeeded, failed] }
         error: { type: string }
+    JeegoManagement:
+      type: object
+      required: [writable, image, services, check_interval_hours, timezone]
+      properties:
+        writable: { type: boolean }
+        image: { $ref: '#/components/schemas/JeegoManagedImage' }
+        services:
+          type: array
+          items: { $ref: '#/components/schemas/JeegoManagedService' }
+        check_interval_hours: { type: integer, minimum: 1 }
+        timezone: { type: string }
+        web_port: { type: integer, minimum: 1, maximum: 65535 }
+        policy_error: { type: string }
+    JeegoManagedImage:
+      type: object
+      required: [status, can_restart, can_change]
+      properties:
+        instance_id: { type: string }
+        status: { type: string }
+        reference: { type: string }
+        active: { type: string }
+        version: { type: string, description: Version OCI de l’image active. Peut être absente. }
+        available: { type: string }
+        available_version: { type: string }
+        check_status: { type: string }
+        error: { type: string }
+        pending: { type: string }
+        can_restart: { type: boolean }
+        can_change: { type: boolean }
+        history:
+          type: array
+          items:
+            type: object
+            required: [reference, pinned_image]
+            properties:
+              reference: { type: string }
+              pinned_image: { type: string }
+    JeegoManagedService:
+      type: object
+      required: [id, name, actions, installed, pending]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        setup_hint: { type: string }
+        actions: { type: array, items: { type: string } }
+        status: { type: string }
+        installed: { type: boolean }
+        pending: { type: boolean }
+        policy: { $ref: '#/components/schemas/JeegoImagePolicy' }
+        error: { type: string }
+        parameters:
+          type: array
+          items:
+            type: object
+            required: [id, label, type, default]
+            properties:
+              id: { type: string }
+              label: { type: string }
+              type: { type: string, enum: [string, secret, integer, boolean, port] }
+              default: { type: string }
+              required: { type: boolean }
+              choices: { type: array, items: { type: string } }
+              min: { type: integer }
+              max: { type: integer }
+    JeegoImagePolicy:
+      type: object
+      additionalProperties: false
+      required: [enabled, time, stable_hours]
+      properties:
+        enabled: { type: boolean }
+        time: { type: string, pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$' }
+        stable_hours: { type: integer, minimum: 0, maximum: 8760 }
+    JeegoImageAction:
+      type: object
+      additionalProperties: false
+      description: Corps vide pour check et restart. Pour update et revert, confirm est requis.
+      properties:
+        confirm: { type: boolean }
+        strategy: { type: string, enum: [backup, direct, restore] }
+        instance_id: { type: string }
+        version: { type: string, description: Tag ou digest à installer avec update. }
+        image: { type: string, description: Référence exacte de l’historique pour revert. }
+    JeegoServiceAction:
+      type: object
+      additionalProperties: false
+      description: Confirm est requis pour stop. Enabled, time et stable_hours sont requis pour policy.
+      properties:
+        confirm: { type: boolean }
+        parameters: { type: object, additionalProperties: { type: string } }
+        enabled: { type: boolean }
+        time: { type: string, pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$' }
+        stable_hours: { type: integer, minimum: 0, maximum: 8760 }
+    JeegoServiceLogs:
+      type: object
+      required: [logs]
+      properties:
+        logs: { type: string }
     JeegoTask:
       type: object
       required: [schema_version, id, kind, status, started_at, step, logs]

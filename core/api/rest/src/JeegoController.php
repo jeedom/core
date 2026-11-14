@@ -37,6 +37,72 @@ final class JeegoController
         'cellular-disable' => ['/cellular/disable', [], 'cellular-disable'],
     ];
 
+    private const IMAGE_ACTIONS = [
+        'check' => ['image-check', []],
+        'restart' => ['jeedom-restart', []],
+        'update' => ['image-update', ['confirm', 'strategy', 'instance_id', 'version']],
+        'revert' => ['image-revert', ['confirm', 'strategy', 'instance_id', 'image']],
+    ];
+
+    private const SERVICE_ACTIONS = [
+        'install' => ['parameters'],
+        'start' => [],
+        'restart' => [],
+        'stop' => ['confirm'],
+        'policy' => ['enabled', 'time', 'stable_hours'],
+    ];
+
+    public function management(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        return self::respond($response, self::call('/management', 200));
+    }
+
+    public function imageAction(Request $request, Response $response, array $args): Response
+    {
+        self::requireJeego($request);
+        $action = $args['action'];
+        [$kind, $fields] = self::IMAGE_ACTIONS[$action] ?? throw new ApiError(404, 'jeego_action_not_found', 'Action sur l’image Jeedom inconnue.');
+        return self::startManagement($request, $response, '/management/image/' . $action, $kind, $fields);
+    }
+
+    public function serviceAction(Request $request, Response $response, array $args): Response
+    {
+        self::requireJeego($request);
+        $service = self::serviceId($args['service']);
+        $action = $args['action'];
+        $fields = self::SERVICE_ACTIONS[$action] ?? throw new ApiError(404, 'jeego_action_not_found', 'Action de service Jeego inconnue.');
+        return self::startManagement($request, $response, '/management/services/' . $service . '/' . $action, 'managed-service:' . $service . ':' . $action, $fields);
+    }
+
+    public function serviceLogs(Request $request, Response $response, array $args): Response
+    {
+        self::requireJeego($request);
+        $service = self::serviceId($args['service']);
+        return self::respond($response, self::call('/services/' . $service . '/logs', 200));
+    }
+
+    private static function serviceId(string $id): string
+    {
+        if (preg_match('/^[a-z][a-z0-9-]{0,31}$/D', $id) !== 1) {
+            throw ApiError::field(422, 'validation_error', 'service', 'Identifiant de service Jeego invalide.');
+        }
+        return $id;
+    }
+
+    private static function startManagement(Request $request, Response $response, string $path, string $kind, array $fields): Response
+    {
+        $body = Json::body($request, self::MAX_BODY_BYTES, true);
+        if (array_diff(array_keys($body), $fields) !== []) {
+            throw new ApiError(422, 'validation_error', 'Le corps contient des champs non autorisés pour cette action.');
+        }
+        $data = self::call($path, 202, $body);
+        if (!self::validTaskId($data->id ?? null) || ($data->kind ?? null) !== $kind) {
+            throw self::badResponse();
+        }
+        return self::respond($response->withHeader('Location', '/api/v1/jeego/tasks/' . $data->id), $data, 202);
+    }
+
     public function status(Request $request, Response $response): Response
     {
         self::requireAdmin($request);
@@ -128,10 +194,19 @@ final class JeegoController
             throw self::badResponse();
         }
         $kind = $data->kind ?? null;
-        if (!is_string($kind) || !in_array($kind, array_column(self::ACTIONS, 2), true)) {
+        if (!is_string($kind) || !self::canReadTask($kind)) {
             throw new ApiError(404, 'task_not_found', 'Tâche Jeego inconnue.');
         }
         return self::respond($response, $data);
+    }
+
+    private static function canReadTask(string $kind): bool
+    {
+        if (in_array($kind, array_column(self::ACTIONS, 2), true) || in_array($kind, array_column(self::IMAGE_ACTIONS, 0), true)) {
+            return true;
+        }
+        return preg_match('/^managed-service:[a-z][a-z0-9-]{0,31}:([a-z]+)$/D', $kind, $matches) === 1
+            && isset(self::SERVICE_ACTIONS[$matches[1]]);
     }
 
     private static function requireAdmin(Request $request): void
@@ -170,21 +245,21 @@ final class JeegoController
         $code = $error->code ?? null;
         $message = $error->message ?? null;
         if (is_string($message) && $message !== '') {
-            if ($status === 400 && $code === 'invalid_request') {
+            if ($status === 400 && in_array($code, ['invalid_request', 'unsupported_action'], true)) {
                 throw new ApiError(422, 'validation_error', $message);
             }
-            if ($status === 409 && in_array($code, ['busy', 'operation_conflict', 'operation_unavailable', 'observation_only'], true)) {
+            if ($status === 409 && in_array($code, ['busy', 'operation_conflict', 'operation_unavailable', 'observation_only', 'service_unavailable'], true)) {
                 throw new ApiError(409, $code, $message);
             }
-            if ($status === 503 && in_array($code, ['settings_unavailable', 'update_unavailable'], true)) {
+            if ($status === 503 && in_array($code, ['settings_unavailable', 'update_unavailable', 'observation_pending'], true)) {
                 throw new ApiError(503, $code, $message);
             }
-            if ($status === 404 && $code === 'task_not_found') {
+            if ($status === 404 && in_array($code, ['task_not_found', 'unknown_service', 'unknown_action'], true)) {
                 throw new ApiError(404, $code, $message);
             }
         }
         if ($status === 404 && $code === 'not_found') {
-            throw new ApiError(503, 'jeego_update_required', 'Cette version de Jeego ne fournit pas encore ce réglage.');
+            throw new ApiError(503, 'jeego_update_required', 'Cette version de Jeego ne fournit pas encore cette fonctionnalité.');
         }
         if (in_array($status, [0, 401, 403], true)) {
             throw new ApiError(503, 'jeego_unavailable', 'La connexion à l’API locale Jeego est indisponible.');
