@@ -184,6 +184,8 @@ final class App
             $api->get('/messages', $messages->list(...));
             $api->delete('/messages', $messages->clear(...));
             $api->get('/messages/count', $messages->count(...));
+            $api->post('/messages/read', $messages->markAllRead(...));
+            $api->post('/messages/{id}/read', $messages->markRead(...));
             $api->delete('/messages/{id}', $messages->delete(...));
 
             $logs = new LogsController();
