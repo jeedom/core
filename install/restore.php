@@ -114,15 +114,21 @@ try {
 		'.git',
 		'.log',
 		'core/config/common.config.php',
+		// Maintenir le suivi en service pendant l’extraction, y compris avec une archive antérieure.
+		'api/v1/restore-status.php',
+		'api/v1/restore-status.class.php',
 		'/vendor',
 		config::byKey('backup::path'),
 	);
 	$exclude = '';
 	foreach ($excludes as $folder) {
-		$exclude .= ' --exclude="' . $folder . '"';
+		$exclude .= ' --exclude=' . escapeshellarg($folder);
 	}
 	$rc = 0;
-	system('cd ' . $jeedom_dir . '; tar xfz ' . escapeshellarg($backup) . ' ' . $exclude);
+	system('cd ' . escapeshellarg($jeedom_dir) . ' && tar xfz ' . escapeshellarg($backup) . ' ' . $exclude, $rc);
+	if ($rc !== 0) {
+		throw new RuntimeException('Unable to unpack the backup (exit code ' . $rc . ').');
+	}
 	echo "OK\n";
 
 
@@ -164,17 +170,22 @@ try {
 	consoleProgress(__FILE__, 65);
 	echo "Restoring database from backup...";
 
+	$connection = [
+		'--user=' . escapeshellarg($CONFIG['db']['username']),
+		'--password=' . escapeshellarg($CONFIG['db']['password']),
+	];
 	if (isset($CONFIG['db']['unix_socket'])) {
-		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-	} else {
-		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
-			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-		} else {
-			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-		}
+		$connection[] = '--socket=' . escapeshellarg($CONFIG['db']['unix_socket']);
+	} elseif ($CONFIG['db']['host'] !== 'localhost' || $CONFIG['db']['port'] != 3306) {
+		$connection[] = '--host=' . escapeshellarg($CONFIG['db']['host']);
+		$connection[] = '--port=' . (int) $CONFIG['db']['port'];
 	}
-	shell_exec("sed -i '1{/999999.*sandbox/d}' " . $jeedom_dir . "/DB_backup.sql");
-	shell_exec("mysql " . $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
+	$connection[] = escapeshellarg($CONFIG['db']['dbname']);
+	shell_exec("sed -i '1{/999999.*sandbox/d}' " . escapeshellarg($jeedom_dir . '/DB_backup.sql'));
+	system('mysql ' . implode(' ', $connection) . ' < ' . escapeshellarg($jeedom_dir . '/DB_backup.sql'), $rc);
+	if ($rc !== 0) {
+		throw new RuntimeException('Unable to import the database (exit code ' . $rc . ').');
+	}
 	echo "OK\n";
 
 	echo "Enable back constraints...";
@@ -247,10 +258,16 @@ try {
 	echo "***************Jeedom Restore End***************\n";
 	consoleProgress(__FILE__, 100);
 	echo "[END RESTORE SUCCESS]\n";
-} catch (Exception $e) {
+} catch (Throwable $e) {
 	echo 'Error during restore : ' . $e->getMessage();
 	echo 'Details : ' . print_r($e->getTrace(), true);
 	echo "[END RESTORE ERROR]\n";
-	jeedom::start();
+	if (class_exists('jeedom', false)) {
+		try {
+			jeedom::start();
+		} catch (Throwable $restartError) {
+			echo 'Error restarting Jeedom: ' . $restartError->getMessage() . "\n";
+		}
+	}
 	throw $e;
 }

@@ -945,32 +945,58 @@ class jeedom {
 		}
 	}
 
-	private static function runBackupInBackground(string $_action, string $_backup = ''): void {
+	private static function runBackupInBackground(string $_action, string $_backup = '', bool $_trackRestore = false): ?array {
 		$lockPath = self::getTmpFolder() . '/backup-operation.lock';
 		$lock = @fopen($lockPath, 'c') ?: @fopen($lockPath, 'r');
 		if ($lock === false) {
 			throw new RuntimeException('Impossible d’ouvrir le verrou de sauvegarde.');
 		}
+		$tracking = null;
+		$result = null;
 		try {
 			if (!flock($lock, LOCK_EX | LOCK_NB)) {
 				throw new RuntimeException('Une sauvegarde ou une restauration est déjà en cours.', 409);
 			}
-			log::clear($_action);
+			$logPath = log::getPathToLog($_action);
 			$command = system::getCmdSudo() . 'php ' . escapeshellarg(__DIR__ . '/../../install/' . $_action . '.php');
 			if ($_backup !== '') {
 				$command .= ' ' . escapeshellarg('backup=' . $_backup);
 			}
-			// Le sous-shell conserve le verrou, sans le transmettre aux démons lancés par l'opération.
-			$process = proc_open(['/bin/sh', '-c', '(' . $command . ' 3>&-; exit $?) &'], [
+			// Le sous-shell conserve les verrous. La commande privilégiée ne reçoit aucun descripteur de suivi.
+			$descriptors = [
 				0 => ['file', '/dev/null', 'r'],
-				1 => ['file', log::getPathToLog($_action), 'a'],
+				1 => ['file', $logPath, 'a'],
 				2 => ['redirect', 1],
 				3 => $lock,
-			], $pipes);
+			];
+			$background = $command . ' 3>&-; exit $?';
+			if ($_trackRestore) {
+				require_once __DIR__ . '/../../api/v1/restore-status.class.php';
+				$tracking = \Jeedom\Api\Rest\RestoreStatus::create();
+				$result = \Jeedom\Api\Rest\RestoreStatus::open($tracking);
+				$descriptors[4] = $result;
+				// Un arrêt prématuré peut donner un code 0 sans avoir terminé la restauration.
+				$journal = escapeshellarg($logPath);
+				$background = 'printf "%s\n" ' . escapeshellarg('[RESTORE ' . $tracking['id'] . ']')
+					. '; ' . $command . ' 3>&- 4>&-; code=$?; '
+					. 'if [ "$code" -ne 0 ] || [ "$(tail -n 1 -- ' . $journal . ')" = "[END RESTORE SUCCESS]" ]; then '
+					. 'printf "%s" "$code" >&4; fi';
+			}
+			log::clear($_action);
+			$process = proc_open(['/bin/sh', '-c', '(' . $background . ') &'], $descriptors, $pipes);
 			if (!is_resource($process) || proc_close($process) !== 0) {
 				throw new RuntimeException('Impossible de lancer l’opération de sauvegarde.');
 			}
+			return $tracking;
+		} catch (Throwable $error) {
+			if ($tracking !== null) {
+				\Jeedom\Api\Rest\RestoreStatus::discard($tracking['id']);
+			}
+			throw $error;
 		} finally {
+			if (is_resource($result)) {
+				fclose($result);
+			}
 			fclose($lock);
 		}
 	}
@@ -1081,12 +1107,12 @@ class jeedom {
 		return unlink($_backup);
 	}
 
-	public static function restore(string $_backup = '', bool $_background = false) {
+	public static function restore(string $_backup = '', bool $_background = false, bool $_trackRestore = false) {
 		if ($_backup !== '' && self::isValidBackup($_backup) === false) {
 			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
 		if ($_background) {
-			self::runBackupInBackground('restore', $_backup);
+			return self::runBackupInBackground('restore', $_backup, $_trackRestore);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;

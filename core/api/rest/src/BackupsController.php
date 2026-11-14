@@ -81,8 +81,14 @@ final class BackupsController
     {
         Auth::requireAdmin($request);
         $path = self::find($args['id']);
-        self::start(static fn () => \jeedom::restore($path, true));
-        return self::accepted($response, 'restore');
+        // Le suivi navigateur est réservé aux appels authentifiés par une session Web (et son CSRF).
+        $tracking = self::start(static fn () => \jeedom::restore($path, true, $request->getAttribute('webSessionId') !== null));
+        if ($tracking === null) {
+            return self::accepted($response, 'restore');
+        }
+        $cookie = RestoreStatus::cookie($tracking, $request->getServerParams(), $request->getUri()->getScheme());
+        return Json::respond($response->withAddedHeader('Set-Cookie', $cookie)->withHeader('Cache-Control', 'no-store'),
+            ['log' => 'restore', 'operationId' => $tracking['id']], 202);
     }
 
     public function repositories(Request $request, Response $response): Response
@@ -172,10 +178,10 @@ final class BackupsController
         return Json::respond($response, ['log' => $log], 202);
     }
 
-    private static function start(callable $action): void
+    private static function start(callable $action): ?array
     {
         try {
-            $action();
+            return $action();
         } catch (\RuntimeException $e) {
             if ($e->getCode() === 409) {
                 throw new ApiError(409, 'backup_operation_in_progress', $e->getMessage());
