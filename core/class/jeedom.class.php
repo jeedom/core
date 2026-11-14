@@ -945,7 +945,7 @@ class jeedom {
 		}
 	}
 
-	private static function runBackupInBackground(string $_action, string $_backup = '', bool $_trackRestore = false): ?array {
+	private static function runBackupInBackground(string $_action, string $_backup = ''): ?array {
 		$lockPath = self::getTmpFolder() . '/backup-operation.lock';
 		$lock = @fopen($lockPath, 'c') ?: @fopen($lockPath, 'r');
 		if ($lock === false) {
@@ -970,9 +970,17 @@ class jeedom {
 				3 => $lock,
 			];
 			$background = $command . ' 3>&-; exit $?';
-			if ($_trackRestore) {
-				$tracking = \Jeedom\Api\Rest\RestoreStatus::create();
-				$result = \Jeedom\Api\Rest\RestoreStatus::open($tracking);
+			if ($_action === 'restore') {
+				try {
+					$tracking = \Jeedom\Api\Rest\RestoreStatus::create();
+					$result = \Jeedom\Api\Rest\RestoreStatus::open($tracking);
+				} catch (RuntimeException $error) {
+					// La restauration reste possible si le stockage de suivi est indisponible.
+					error_log($error->getMessage());
+					$tracking = null;
+				}
+			}
+			if ($tracking !== null) {
 				$descriptors[4] = $result;
 				$command .= ' restoreTracking=1';
 				// Un arrêt prématuré peut donner un code 0 sans avoir terminé la restauration.
@@ -1107,12 +1115,12 @@ class jeedom {
 		return unlink($_backup);
 	}
 
-	public static function restore(string $_backup = '', bool $_background = false, bool $_trackRestore = false) {
+	public static function restore(string $_backup = '', bool $_background = false) {
 		if ($_backup !== '' && self::isValidBackup($_backup) === false) {
 			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
 		if ($_background) {
-			return self::runBackupInBackground('restore', $_backup, $_trackRestore);
+			return self::runBackupInBackground('restore', $_backup);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;

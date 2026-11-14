@@ -46,7 +46,7 @@ final class RestoreStatus
         $directory = self::directory(true);
         self::clean($directory);
         $path = $directory . '/' . $tracking['id'];
-        if (!mkdir($path, 0700)) {
+        if (!@mkdir($path, 0700)) {
             throw new \RuntimeException('Impossible de créer le suivi de restauration.');
         }
         try {
@@ -54,10 +54,10 @@ final class RestoreStatus
                 'hash' => hash('sha256', $tracking['token']),
                 'expires' => $tracking['expires'],
             ], JSON_THROW_ON_ERROR);
-            if (file_put_contents($path . '/access', $metadata) !== strlen($metadata)) {
+            if (@file_put_contents($path . '/access', $metadata) !== strlen($metadata)) {
                 throw new \RuntimeException('Impossible d’enregistrer le suivi de restauration.');
             }
-            $result = fopen($path . '/result', 'x+');
+            $result = @fopen($path . '/result', 'x+');
             if ($result === false || !flock($result, LOCK_EX | LOCK_NB)) {
                 if (is_resource($result)) {
                     fclose($result);
@@ -133,15 +133,18 @@ final class RestoreStatus
 
     private static function directory(bool $create = false): ?string
     {
-        // Chaque installation a son propre répertoire temporaire, inaccessible par Apache.
-        $path = sys_get_temp_dir() . '/jeedom-restore-' . substr(hash('sha256', dirname(__DIR__, 4)), 0, 24);
-        if ($create && !is_dir($path)) {
-            @mkdir($path, 0700);
-        }
-        $stat = @lstat($path);
-        if ($stat !== false && ($stat['mode'] & 0177777) === 0040700
-            && function_exists('posix_geteuid') && $stat['uid'] === posix_geteuid()) {
-            return $path;
+        if (function_exists('posix_geteuid')) {
+            // Un lancement en CLI peut utiliser un autre compte que le serveur web.
+            $uid = posix_geteuid();
+            $installation = substr(hash('sha256', dirname(__DIR__, 4)), 0, 24);
+            $path = sys_get_temp_dir() . '/jeedom-restore-' . $installation . '-' . $uid;
+            if ($create && !is_dir($path)) {
+                @mkdir($path, 0700);
+            }
+            $stat = @lstat($path);
+            if ($stat !== false && ($stat['mode'] & 0177777) === 0040700 && $stat['uid'] === $uid) {
+                return $path;
+            }
         }
         if ($create) {
             throw new \RuntimeException('Répertoire de suivi de restauration indisponible.');
