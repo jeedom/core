@@ -19,6 +19,9 @@ final class App
         $app = AppFactory::create();
         $app->addRoutingMiddleware();
         $app->group('/api/v1', static function (RouteCollectorProxy $api): void {
+            $links = new LinksController();
+            $api->get('/links/{type}/{id}', $links->get(...));
+
             $objects = new ObjectsController();
             $api->get('/objects', $objects->list(...));
             $api->post('/objects', $objects->create(...));
