@@ -3871,6 +3871,31 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
 
+  /links/{type}/{id}:
+    get:
+      tags: [Liens]
+      operationId: getDirectLinks
+      summary: Lister les liens directs d’un élément
+      description: Rattachements et références de configuration au premier niveau. Réservé aux administrateurs.
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema: { $ref: '#/components/schemas/LinkEntityType' }
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        '200':
+          description: L’élément et ses liens directs.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DirectLinks' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
   /objects:
     get:
       tags: [Objets]
@@ -8554,6 +8579,43 @@ components:
         warning: { type: [integer, boolean] }
         danger: { type: [integer, boolean] }
 
+    LinkEntityType:
+      type: string
+      enum: [object, equipment, command, scenario, variable]
+    LinkEntity:
+      type: object
+      required: [type, id, name]
+      properties:
+        type: { $ref: '#/components/schemas/LinkEntityType' }
+        id: { type: integer }
+        name: { type: string }
+        visible: { type: boolean }
+        plugin: { type: string }
+        enabled: { type: boolean }
+        equipmentId: { type: integer }
+        commandType: { $ref: '#/components/schemas/CmdType' }
+        commandSubtype: { $ref: '#/components/schemas/CmdSubType' }
+        group: { type: string }
+        mode: { type: string }
+        triggers:
+          type: array
+          items: { type: string }
+        schedules:
+          type: array
+          items: { type: string }
+    DirectLinks:
+      type: object
+      required: [node, links]
+      properties:
+        node: { $ref: '#/components/schemas/LinkEntity' }
+        links:
+          type: array
+          items:
+            type: object
+            required: [relation, target]
+            properties:
+              relation: { type: string, enum: [parent, contains, uses, usedBy] }
+              target: { $ref: '#/components/schemas/LinkEntity' }
     EqLogicUsages:
       type: object
       required: [cmds, eqLogics, scenarios, plans, views, interactions, plugins]
