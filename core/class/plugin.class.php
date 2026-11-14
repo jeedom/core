@@ -323,6 +323,9 @@ class plugin {
 	public static function heartbeat() {
 		foreach (self::listPlugin(true) as $plugin) {
 			try {
+				if ($plugin->isGuidedActivationPending()) {
+					continue;
+				}
 				$heartbeat = config::byKey('heartbeat::delay::' . $plugin->getId(), 'core', 0);
 				if ($heartbeat == 0 || !is_numeric($heartbeat)) {
 					continue;
@@ -590,7 +593,7 @@ class plugin {
 
 	public static function checkDeamon() {
 		foreach (self::listPlugin(true) as $plugin) {
-			if (config::byKey('deamonAutoMode', $plugin->getId(), 1) != 1) {
+			if ($plugin->isGuidedActivationPending() || config::byKey('deamonAutoMode', $plugin->getId(), 1) != 1) {
 				continue;
 			}
 			$dependancy_info = $plugin->dependancy_info();
@@ -1046,7 +1049,6 @@ class plugin {
 			$return['log'] = '';
 		}
 		if (isset($return['progress_file'])) {
-			$return['progression'] = 0;
 			if (@file_exists($return['progress_file'])) {
 				$return['state'] = 'in_progress';
 				$progression = trim(file_get_contents($return['progress_file']));
@@ -1198,6 +1200,9 @@ class plugin {
 	}
 
 	public function deamon_start($_forceRestart = false, $_auto = false) {
+		if ($_auto && $this->isGuidedActivationPending()) {
+			return;
+		}
 		$plugin_id = $this->getId();
 		if ($_forceRestart) {
 			$this->deamon_stop();
@@ -1258,7 +1263,15 @@ class plugin {
 		}
 	}
 
-	public function setIsEnable($_state, $_force = false, $_foreground = false) {
+	public function isGuidedActivationPending(): bool {
+		return (int) config::byKey('guidedActivationPending', $this->getId(), 0, true) > time();
+	}
+
+	public function finishGuidedActivation(): void {
+		config::remove('guidedActivationPending', $this->getId());
+	}
+
+	public function setIsEnable($_state, $_force = false, $_foreground = false, bool $_guided = false) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
@@ -1270,6 +1283,10 @@ class plugin {
 			}
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
+		if ($_guided && $_state == 1 && $alreadyActive == 0) {
+			// An abandoned browser must not leave automatic management suspended indefinitely.
+			config::save('guidedActivationPending', time() + 86400, $this->getId());
+		}
 		if ($_state == 1) {
 			config::save('active', $_state, $this->getId());
 		}
@@ -1327,11 +1344,13 @@ class plugin {
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
-				$dependancy_info = $this->dependancy_info(true);
-				if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $this->getId(), 1) == 1) {
-					try {
-						$this->dependancy_install($_force, $_foreground);
-					} catch (Exception $e) {
+				if (!$this->isGuidedActivationPending()) {
+					$dependancy_info = $this->dependancy_info(true);
+					if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $this->getId(), 1) == 1) {
+						try {
+							$this->dependancy_install($_force, $_foreground);
+						} catch (Exception $e) {
+						}
 					}
 				}
 			} else {
@@ -1346,14 +1365,19 @@ class plugin {
 			}
 		} catch (\Throwable $e) {
 			config::save('active', $alreadyActive, $this->getId());
+			if ($_guided && $alreadyActive == 0) {
+				$this->finishGuidedActivation();
+			}
 			log::add('plugin', 'error', log::exception($e));
 			throw $e;
+		} finally {
+			if ($deamonAutoState) {
+				config::save('deamonAutoMode', 1, $this->getId());
+			}
 		}
 		if ($_state == 0) {
 			config::save('active', $_state, $this->getId());
-		}
-		if ($deamonAutoState) {
-			config::save('deamonAutoMode', 1, $this->getId());
+			$this->finishGuidedActivation();
 		}
 		if ($alreadyActive == 0 && $_state == 1) {
 			config::save('log::level::' . $this->getId(), '{"100":"0","200":"0","300":"0","400":"0","1000":"0","default":"1"}');

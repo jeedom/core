@@ -7067,6 +7067,9 @@ components:
             type: boolean
           hasOwnDaemon:
             type: boolean
+          guidedActivationPending:
+            type: boolean
+            description: La mise en service guidée de ce plugin est en cours.
           usedSpace:
             type:
             - integer
@@ -7184,6 +7187,9 @@ components:
       properties:
         isEnable:
           type: boolean
+        guidedActivation:
+          type: boolean
+          description: Avec isEnable à true, active le plugin en laissant l’assistant gérer les dépendances et le démon. À false, rend la main à la gestion automatique configurée.
         updatesBlocked:
           type: boolean
           description: Bloquer ou débloquer les mises à jour et réinstallations du plugin.
@@ -7211,6 +7217,10 @@ components:
     PluginDependencies:
       type: object
       properties:
+        maxInstallMinutes:
+          type: integer
+          minimum: 1
+          description: Délai maximal configuré par le plugin pour l’installation des dépendances.
         state:
           type: string
         auto:
