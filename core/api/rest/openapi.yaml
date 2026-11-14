@@ -1174,13 +1174,53 @@ paths:
       tags: [Sauvegardes]
       operationId: restoreBackup
       summary: Restaurer Jeedom à partir d'une sauvegarde locale
-      description: Lance la restauration en arrière-plan. Suivre le résultat dans le journal `restore`.
+      description: Lance la restauration en arrière-plan. Une session Web reçoit un identifiant et un cookie de suivi. Les autres clients peuvent suivre le journal `restore`.
       responses:
-        '202': { $ref: '#/components/responses/BackupAccepted' }
+        '202':
+          description: Restauration acceptée.
+          headers:
+            Set-Cookie:
+              description: Jeton temporaire de suivi envoyé pour une session Web.
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [log]
+                properties:
+                  log: { type: string, enum: [restore] }
+                  operationId: { type: string, pattern: '^[a-f0-9]{32}$' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/BackupNotFound' }
         '409': { $ref: '#/components/responses/BackupInProgress' }
+  /restore-status.php:
+    get:
+      tags: [Sauvegardes]
+      operationId: getRestoreStatus
+      summary: Suivre une restauration sans session Jeedom
+      description: Point d’entrée indépendant de la base. Le cookie temporaire donne accès uniquement à l’opération demandée.
+      security:
+        - restoreCookie: []
+      parameters:
+        - name: operation
+          in: query
+          required: true
+          schema: { type: string, pattern: '^[a-f0-9]{32}$' }
+      responses:
+        '200':
+          description: État de la restauration.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [state]
+                properties:
+                  state: { type: string, enum: [running, success, failed, unknown] }
+                  progress: { type: [integer, 'null'], minimum: 0, maximum: 99 }
+        '404':
+          description: Autorisation de suivi absente ou expirée, ou opération introuvable.
+
   /backups/repositories:
     get:
       tags: [Sauvegardes]
@@ -6044,6 +6084,11 @@ paths:
 
 components:
   securitySchemes:
+    restoreCookie:
+      type: apiKey
+      in: cookie
+      name: JeedomRestore
+      description: Jeton temporaire de suivi (`__Secure-JeedomRestore` en HTTPS).
     bearerAuth:
       type: http
       scheme: bearer
