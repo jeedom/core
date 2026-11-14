@@ -49,6 +49,7 @@ final class JeegoController
         'start' => [],
         'restart' => [],
         'stop' => ['confirm'],
+        'update' => ['confirm'],
         'policy' => ['enabled', 'time', 'stable_hours'],
     ];
 
@@ -80,6 +81,20 @@ final class JeegoController
         self::requireJeego($request);
         $service = self::serviceId($args['service']);
         return self::respond($response, self::call('/services/' . $service . '/logs', 200));
+    }
+
+    public function dockerAction(Request $request, Response $response, array $args): Response
+    {
+        self::requireJeego($request);
+        $id = $args['id'];
+        if (preg_match('/^(?:project-)?[a-f0-9]{64}$/D', $id) !== 1) {
+            throw ApiError::field(422, 'validation_error', 'id', 'Identifiant Docker invalide.');
+        }
+        $action = $args['action'];
+        if (!in_array($action, ['update', 'restart'], true)) {
+            throw new ApiError(404, 'jeego_action_not_found', 'Action Docker inconnue.');
+        }
+        return self::startManagement($request, $response, '/management/docker/' . $id . '/' . $action, 'managed-docker:' . $action, ['revision', 'confirm']);
     }
 
     public function dockerLogs(Request $request, Response $response, array $args): Response
@@ -212,7 +227,8 @@ final class JeegoController
 
     private static function canReadTask(string $kind): bool
     {
-        if (in_array($kind, array_column(self::ACTIONS, 2), true) || in_array($kind, array_column(self::IMAGE_ACTIONS, 0), true)) {
+        if (in_array($kind, array_column(self::ACTIONS, 2), true) || in_array($kind, array_column(self::IMAGE_ACTIONS, 0), true)
+            || in_array($kind, ['managed-docker:update', 'managed-docker:restart'], true)) {
             return true;
         }
         return preg_match('/^managed-service:[a-z][a-z0-9-]{0,31}:([a-z]+)$/D', $kind, $matches) === 1
