@@ -81,9 +81,9 @@ final class BackupsController
     {
         Auth::requireAdmin($request);
         $path = self::find($args['id']);
-        // Le suivi navigateur est réservé aux appels authentifiés par une session Web (et son CSRF).
-        $tracking = self::start(static fn () => \jeedom::restore($path, true, $request->getAttribute('webSessionId') !== null));
-        if ($tracking === null) {
+        $tracking = self::start(static fn () => \jeedom::restore($path, true));
+        // Seule une session Web reçoit le cookie de suivi.
+        if ($tracking === null || $request->getAttribute('webSessionId') === null) {
             return self::accepted($response, 'restore');
         }
         $cookie = RestoreStatus::cookie($tracking, $request->getServerParams(), $request->getUri()->getScheme());

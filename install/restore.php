@@ -114,12 +114,16 @@ try {
 		'.git',
 		'.log',
 		'core/config/common.config.php',
-		// Maintenir le suivi en service pendant l’extraction, y compris avec une archive antérieure.
+		// Éviter de réinstaller l’ancienne URL de suivi depuis une archive.
 		'api/v1/restore-status.php',
 		'api/v1/restore-status.class.php',
 		'/vendor',
 		config::byKey('backup::path'),
 	);
+	if (isset($_GET['restoreTracking'])) {
+		// Préserver les fichiers nécessaires au suivi si l’archive contient un ancien routeur.
+		$excludes = array_merge($excludes, \Jeedom\Api\Rest\Router::RESTORE_FILES);
+	}
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude=' . escapeshellarg($folder);
