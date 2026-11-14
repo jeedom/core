@@ -971,10 +971,10 @@ class jeedom {
 			];
 			$background = $command . ' 3>&-; exit $?';
 			if ($_trackRestore) {
-				require_once __DIR__ . '/../../api/v1/restore-status.class.php';
 				$tracking = \Jeedom\Api\Rest\RestoreStatus::create();
 				$result = \Jeedom\Api\Rest\RestoreStatus::open($tracking);
 				$descriptors[4] = $result;
+				$command .= ' restoreTracking=1';
 				// Un arrêt prématuré peut donner un code 0 sans avoir terminé la restauration.
 				$journal = escapeshellarg($logPath);
 				$background = 'printf "%s\n" ' . escapeshellarg('[RESTORE ' . $tracking['id'] . ']')

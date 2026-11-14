@@ -3,21 +3,15 @@ declare(strict_types=1);
 
 namespace Jeedom\Api\Rest;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App as SlimApp;
-use Slim\Exception\HttpMethodNotAllowedException;
-use Slim\Exception\HttpNotFoundException;
-use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 
-/** Assemble l'API v1. Le core doit être chargé (core.inc.php) avant l'appel. */
+/** Assemble l’API v1. Les routes usuelles nécessitent le bootstrap du Core. */
 final class App
 {
     public static function create(): SlimApp
     {
-        $app = AppFactory::create();
-        $app->addRoutingMiddleware();
+        $app = Router::create();
         $app->group('/api/v1', static function (RouteCollectorProxy $api): void {
             $links = new LinksController();
             $api->get('/links/{type}/{id}', $links->get(...));
@@ -291,25 +285,8 @@ final class App
             $api->delete('/me/sessions/{sessionId}', $users->closeMySession(...));
             $api->delete('/session', (new SessionController())->close(...));
         })->add(new Auth());
-        // Seule route sans authentification : l'ouverture de session.
+        // La connexion est accessible avant l’ouverture d’une session.
         $app->post('/api/v1/session', (new SessionController())->open(...));
-
-        // Toutes les erreurs sortent au format `Error` de la spec, y compris 404/405 de routage.
-        $errors = $app->addErrorMiddleware(false, false, false);
-        $errors->setDefaultErrorHandler(static function (Request $request, \Throwable $e) use ($app): Response {
-            $error = match (true) {
-                $e instanceof ApiError => $e,
-                $e instanceof HttpNotFoundException => new ApiError(404, 'route_not_found', 'Route inconnue.'),
-                $e instanceof HttpMethodNotAllowedException => new ApiError(405, 'method_not_allowed', 'Méthode non autorisée sur cette route.'),
-                default => new ApiError(500, 'internal_error', 'Erreur interne.'),
-            };
-            if ($error->status === 500) {
-                \log::add('api', 'error', $e->getMessage());
-            }
-            return Json::error($app->getResponseFactory()->createResponse(), $error);
-        });
         return $app;
     }
 }
-
-

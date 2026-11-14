@@ -16,8 +16,21 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Jeedom\Api\Rest\App;
+use Jeedom\Api\Rest\RestoreStatus;
+use Jeedom\Api\Rest\Router;
+use Slim\Psr7\Factory\ServerRequestFactory;
+
 // Point d'entrée de l'API REST v1 (/api/v1/…, voir api/v1/.htaccess).
 // Contrat : core/api/rest/openapi.yaml.
-require_once __DIR__ . '/../../php/core.inc.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
-Jeedom\Api\Rest\App::create()->run();
+$request = ServerRequestFactory::createFromGlobals();
+// Le suivi doit répondre même quand la base et les sessions sont en cours de remplacement.
+if ($request->getUri()->getPath() === RestoreStatus::PATH) {
+    Router::create()->run($request);
+    return;
+}
+
+require_once __DIR__ . '/../../php/core.inc.php';
+App::create()->run($request);

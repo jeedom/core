@@ -3,11 +3,30 @@ declare(strict_types=1);
 
 namespace Jeedom\Api\Rest;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
 /** Suivi de la restauration, indépendant du bootstrap du Core et de la base. */
 final class RestoreStatus
 {
-    public const PATH = '/api/v1/restore-status.php';
+    public const PATH = '/api/v1/backups/restore-status';
     private const LIFETIME = 86400;
+
+    public static function show(Request $request, Response $response): Response
+    {
+        $response = $response->withHeader('Cache-Control', 'no-store')
+            ->withHeader('Cross-Origin-Resource-Policy', 'same-origin')
+            ->withHeader('X-Content-Type-Options', 'nosniff');
+
+        $status = null;
+        if (!in_array($request->getHeaderLine('Sec-Fetch-Site'), ['same-site', 'cross-site'], true)) {
+            $name = self::cookieName($request->getServerParams(), $request->getUri()->getScheme());
+            $status = self::read($request->getQueryParams()['operation'] ?? null, $request->getCookieParams()[$name] ?? null);
+        }
+        return $status === null
+            ? Json::error($response, new ApiError(404, 'restore_status_not_found', 'Suivi de restauration introuvable.'))
+            : Json::respond($response, $status);
+    }
 
     /** @return array{id: string, token: string, expires: int} */
     public static function create(): array
@@ -60,7 +79,7 @@ final class RestoreStatus
         }
     }
 
-    public static function cookieName(array $server, string $scheme = ''): string
+    private static function cookieName(array $server, string $scheme = ''): string
     {
         $https = ($server['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https'
             || (!empty($server['HTTPS']) && $server['HTTPS'] !== 'off') || $scheme === 'https';
@@ -75,7 +94,7 @@ final class RestoreStatus
             . (str_starts_with($name, '__Secure-') ? '; Secure' : '');
     }
 
-    public static function read(mixed $id, mixed $token): ?array
+    private static function read(mixed $id, mixed $token): ?array
     {
         if (!is_string($id) || !preg_match('/\A[0-9a-f]{32}\z/', $id)
             || !is_string($token) || !preg_match('/\A[0-9a-f]{64}\z/', $token)) {
@@ -115,7 +134,7 @@ final class RestoreStatus
     private static function directory(bool $create = false): ?string
     {
         // Chaque installation a son propre répertoire temporaire, inaccessible par Apache.
-        $path = sys_get_temp_dir() . '/jeedom-restore-' . substr(hash('sha256', dirname(__DIR__, 2)), 0, 24);
+        $path = sys_get_temp_dir() . '/jeedom-restore-' . substr(hash('sha256', dirname(__DIR__, 4)), 0, 24);
         if ($create && !is_dir($path)) {
             @mkdir($path, 0700);
         }
@@ -150,7 +169,7 @@ final class RestoreStatus
 
     private static function progress(string $id): ?int
     {
-        $log = @fopen(dirname(__DIR__, 2) . '/log/restore', 'rb');
+        $log = @fopen(dirname(__DIR__, 4) . '/log/restore', 'rb');
         if ($log === false) {
             return null;
         }

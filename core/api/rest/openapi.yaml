@@ -1194,12 +1194,12 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/BackupNotFound' }
         '409': { $ref: '#/components/responses/BackupInProgress' }
-  /restore-status.php:
+  /backups/restore-status:
     get:
       tags: [Sauvegardes]
       operationId: getRestoreStatus
       summary: Suivre une restauration sans session Jeedom
-      description: Point d’entrée indépendant de la base. Le cookie temporaire donne accès uniquement à l’opération demandée.
+      description: Route disponible pendant l’indisponibilité de la base. Le cookie temporaire autorise uniquement le suivi de l’opération demandée.
       security:
         - restoreCookie: []
       parameters:
@@ -1220,6 +1220,9 @@ paths:
                   progress: { type: [integer, 'null'], minimum: 0, maximum: 99 }
         '404':
           description: Autorisation de suivi absente ou expirée, ou opération introuvable.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /backups/repositories:
     get:
