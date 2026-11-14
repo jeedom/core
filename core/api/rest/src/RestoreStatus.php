@@ -28,54 +28,34 @@ final class RestoreStatus
             : Json::respond($response, $status);
     }
 
-    /** @return array{id: string, token: string, expires: int} */
-    public static function create(): array
-    {
-        $id = bin2hex(random_bytes(16));
-        $token = bin2hex(random_bytes(32));
-        $expires = time() + self::LIFETIME;
-        return ['id' => $id, 'token' => $token, 'expires' => $expires];
-    }
-
-    /**
-     * Le lanceur conserve le verrou jusqu'à la sortie du processus de restauration.
-     * @return resource
-     */
-    public static function open(array $tracking)
+    /** @return array{id: string, token: string, expires: int, result: resource} */
+    public static function start(): array
     {
         $directory = self::directory(true);
         self::clean($directory);
-        $path = $directory . '/' . $tracking['id'];
-        if (!@mkdir($path, 0700)) {
+        $id = bin2hex(random_bytes(16));
+        $token = bin2hex(random_bytes(32));
+        $expires = time() + self::LIFETIME;
+        $header = json_encode(['hash' => hash('sha256', $token), 'expires' => $expires], JSON_THROW_ON_ERROR) . "\n";
+        $path = $directory . '/' . $id;
+        $result = @fopen($path, 'x+');
+        if ($result === false) {
             throw new \RuntimeException('Impossible de créer le suivi de restauration.');
         }
-        try {
-            $metadata = json_encode([
-                'hash' => hash('sha256', $tracking['token']),
-                'expires' => $tracking['expires'],
-            ], JSON_THROW_ON_ERROR);
-            if (@file_put_contents($path . '/access', $metadata) !== strlen($metadata)) {
-                throw new \RuntimeException('Impossible d’enregistrer le suivi de restauration.');
-            }
-            $result = @fopen($path . '/result', 'x+');
-            if ($result === false || !flock($result, LOCK_EX | LOCK_NB)) {
-                if (is_resource($result)) {
-                    fclose($result);
-                }
-                throw new \RuntimeException('Impossible de verrouiller le suivi de restauration.');
-            }
-            return $result;
-        } catch (\Throwable $error) {
-            self::remove($path);
-            throw $error;
+        if (!flock($result, LOCK_EX | LOCK_NB) || @fwrite($result, $header) !== strlen($header) || !@fflush($result)) {
+            fclose($result);
+            @unlink($path);
+            throw new \RuntimeException('Impossible d’enregistrer le suivi de restauration.');
         }
+        // Le lanceur hérite du verrou et écrit le résultat à la suite de cet en-tête.
+        return ['id' => $id, 'token' => $token, 'expires' => $expires, 'result' => $result];
     }
 
     public static function discard(string $id): void
     {
         $directory = self::directory();
         if ($directory !== null && preg_match('/\A[0-9a-f]{32}\z/', $id)) {
-            self::remove($directory . '/' . $id);
+            @unlink($directory . '/' . $id);
         }
     }
 
@@ -104,27 +84,25 @@ final class RestoreStatus
         if ($directory === null) {
             return null;
         }
-        $path = $directory . '/' . $id;
-        $access = @file_get_contents($path . '/access', false, null, 0, 256);
-        $metadata = $access === false ? null : json_decode($access, true);
-        if (!is_int($metadata['expires'] ?? null) || $metadata['expires'] <= time()
-            || !is_string($metadata['hash'] ?? null)
-            || !hash_equals($metadata['hash'], hash('sha256', $token))) {
+        $result = @fopen($directory . '/' . $id, 'r');
+        if ($result === false) {
             return null;
         }
-
-        $result = @fopen($path . '/result', 'r');
-        if ($result === false) {
-            return ['state' => 'unknown'];
-        }
         try {
+            $header = fgets($result, 256);
+            $metadata = $header === false ? null : json_decode($header, true);
+            if (!is_int($metadata['expires'] ?? null) || $metadata['expires'] <= time()
+                || !is_string($metadata['hash'] ?? null)
+                || !hash_equals($metadata['hash'], hash('sha256', $token))) {
+                return null;
+            }
             if (!flock($result, LOCK_SH | LOCK_NB)) {
                 return ['state' => 'running', 'progress' => self::progress($id)];
             }
             return ['state' => match (fread($result, 8)) {
-                '0' => 'success',
-                '' => 'unknown',
-                default => 'failed',
+                'success' => 'success',
+                'failed' => 'failed',
+                default => 'unknown',
             }];
         } finally {
             fclose($result);
@@ -155,19 +133,12 @@ final class RestoreStatus
     private static function clean(string $directory): void
     {
         $cutoff = time() - self::LIFETIME;
-        foreach (glob($directory . '/*', GLOB_ONLYDIR) ?: [] as $path) {
-            $modified = filemtime($path);
+        foreach (glob($directory . '/*') ?: [] as $path) {
+            $modified = @filemtime($path);
             if ($modified !== false && $modified <= $cutoff) {
-                self::remove($path);
+                @unlink($path);
             }
         }
-    }
-
-    private static function remove(string $path): void
-    {
-        @unlink($path . '/access');
-        @unlink($path . '/result');
-        @rmdir($path);
     }
 
     private static function progress(string $id): ?int

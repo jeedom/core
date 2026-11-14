@@ -952,7 +952,6 @@ class jeedom {
 			throw new RuntimeException('Impossible d’ouvrir le verrou de sauvegarde.');
 		}
 		$tracking = null;
-		$result = null;
 		try {
 			if (!flock($lock, LOCK_EX | LOCK_NB)) {
 				throw new RuntimeException('Une sauvegarde ou une restauration est déjà en cours.', 409);
@@ -972,8 +971,7 @@ class jeedom {
 			$background = $command . ' 3>&-; exit $?';
 			if ($_action === 'restore') {
 				try {
-					$tracking = \Jeedom\Api\Rest\RestoreStatus::create();
-					$result = \Jeedom\Api\Rest\RestoreStatus::open($tracking);
+					$tracking = \Jeedom\Api\Rest\RestoreStatus::start();
 				} catch (RuntimeException $error) {
 					// La restauration reste possible si le stockage de suivi est indisponible.
 					error_log($error->getMessage());
@@ -981,29 +979,31 @@ class jeedom {
 				}
 			}
 			if ($tracking !== null) {
-				$descriptors[4] = $result;
+				$descriptors[4] = $tracking['result'];
 				$command .= ' restoreTracking=1';
 				// Un arrêt prématuré peut donner un code 0 sans avoir terminé la restauration.
 				$journal = escapeshellarg($logPath);
 				$background = 'printf "%s\n" ' . escapeshellarg('[RESTORE ' . $tracking['id'] . ']')
-					. '; ' . $command . ' 3>&- 4>&-; code=$?; '
-					. 'if [ "$code" -ne 0 ] || [ "$(tail -n 1 -- ' . $journal . ')" = "[END RESTORE SUCCESS]" ]; then '
-					. 'printf "%s" "$code" >&4; fi';
+					. '; if ! ' . $command . ' 3>&- 4>&-; then printf failed >&4; '
+					. 'elif [ "$(tail -n 1 -- ' . $journal . ')" = "[END RESTORE SUCCESS]" ]; then printf success >&4; fi';
 			}
 			log::clear($_action);
 			$process = proc_open(['/bin/sh', '-c', '(' . $background . ') &'], $descriptors, $pipes);
 			if (!is_resource($process) || proc_close($process) !== 0) {
 				throw new RuntimeException('Impossible de lancer l’opération de sauvegarde.');
 			}
-			return $tracking;
+			if ($tracking !== null) {
+				return ['id' => $tracking['id'], 'token' => $tracking['token'], 'expires' => $tracking['expires']];
+			}
+			return null;
 		} catch (Throwable $error) {
 			if ($tracking !== null) {
 				\Jeedom\Api\Rest\RestoreStatus::discard($tracking['id']);
 			}
 			throw $error;
 		} finally {
-			if (is_resource($result)) {
-				fclose($result);
+			if ($tracking !== null) {
+				fclose($tracking['result']);
 			}
 			fclose($lock);
 		}
