@@ -286,6 +286,8 @@ final class App
             $api->patch('/menus/{id}', $menus->update(...));
             $api->delete('/menus/{id}', $menus->delete(...));
             $api->patch('/me', $users->updateMe(...));
+            $api->post('/me/two-factor/setup', $users->setupMyTwoFactor(...));
+            $api->patch('/me/two-factor', $users->updateMyTwoFactor(...));
             $api->get('/me/token', $users->myToken(...));
             $api->post('/me/token', $users->regenerateMyToken(...));
             $api->get('/me/devices', $users->myDevices(...));

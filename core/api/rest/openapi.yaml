@@ -3644,6 +3644,72 @@ paths:
               example: { id: m1, name: Par défaut, items: [{ id: dashboard, type: page, visible: true, name: null, icon: null }] }
         '401': { $ref: '#/components/responses/Unauthorized' }
 
+  /me/two-factor/setup:
+    post:
+      tags: [Session]
+      operationId: setupMyTwoFactor
+      summary: Préparer l’activation de la double authentification
+      description: Crée une clé TOTP temporaire valable dix minutes pour la session courante. Ne modifie pas le compte.
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - $ref: '#/components/parameters/csrfToken'
+      responses:
+        '200':
+          description: Clé temporaire et QR code, sans mise en cache du navigateur.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [secret, qrCode]
+                properties:
+                  secret: { type: string, description: Clé Base32 pour la saisie manuelle. }
+                  qrCode: { type: string, description: QR code sous forme d’URL data. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+
+  /me/two-factor:
+    patch:
+      tags: [Session]
+      operationId: updateMyTwoFactor
+      summary: Activer ou désactiver la double authentification
+      description: |
+        Vérifie le mot de passe et le code TOTP. Pour l’activation, le code valide la clé issue de `/me/two-factor/setup`.
+        Pour la désactivation, le code valide la clé active, qui est ensuite supprimée. Les autres sessions Core UI sont révoquées.
+      security: [{ sessionCookie: [] }]
+      parameters:
+        - $ref: '#/components/parameters/csrfToken'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [enabled, currentPassword, twoFactorCode]
+              properties:
+                enabled: { type: boolean }
+                currentPassword: { type: string, minLength: 1, format: password }
+                twoFactorCode: { type: string, pattern: '^[0-9]{6}$' }
+      responses:
+        '200':
+          description: Nouvel état de la double authentification.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [enabled]
+                properties:
+                  enabled: { type: boolean }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413':
+          description: Corps de la requête trop volumineux.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /me/token:
     get:
       tags: [Session]
@@ -8090,6 +8156,7 @@ components:
         login: { type: string, example: admin }
         isAdmin: { type: boolean, description: Profil administrateur., example: true }
         profils: { $ref: '#/components/schemas/UserProfile' }
+        twoFactorEnabled: { type: boolean, description: État de la double authentification pour les comptes modifiables en session navigateur. }
         preferences: { $ref: '#/components/schemas/MePreferences' }
         csrfToken:
           type: [string, 'null']
