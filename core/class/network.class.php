@@ -44,6 +44,9 @@ class network {
 	}
 
 	public static function getClientIp() {
+		if (isset($GLOBALS['_JEEDOM_REST_CLIENT_IP'])) {
+			return $GLOBALS['_JEEDOM_REST_CLIENT_IP'];
+		}
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			return $_SERVER['HTTP_X_FORWARDED_FOR'];
 		} elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {

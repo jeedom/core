@@ -295,19 +295,25 @@ final class App
             $api->patch('/me', $users->updateMe(...));
             $api->post('/me/two-factor/setup', $users->setupMyTwoFactor(...));
             $api->patch('/me/two-factor', $users->updateMyTwoFactor(...));
-            $api->get('/me/token', $users->myToken(...));
-            $api->post('/me/token', $users->regenerateMyToken(...));
+            $api->post('/me/sessions', $users->createApiSession(...));
             $api->get('/me/devices', $users->myDevices(...));
             $api->delete('/me/devices', $users->forgetMyDevices(...));
             $api->delete('/me/devices/{key}', $users->forgetMyDevice(...));
             $api->get('/me/sessions', $users->mySessions(...));
             $api->delete('/me/sessions/{sessionId}', $users->closeMySession(...));
-            $api->delete('/session', (new SessionController())->close(...));
+            $daemon = new DaemonController();
+            $api->post('/plugins/{id}/daemon/session', $daemon->provision(...));
+            $api->post('/plugins/{id}/daemon/commands/{commandId}', $daemon->updateCommand(...));
         })->add(new Auth());
         // La connexion est accessible avant l’ouverture d’une session.
         $sessions = new SessionController();
+        $app->get('/api/v1/session', $sessions->inspect(...));
         $app->post('/api/v1/session', $sessions->open(...));
+        $app->post('/api/v1/session/refresh', $sessions->refresh(...));
+        $app->delete('/api/v1/session', $sessions->close(...));
         $app->post('/api/v1/support/session', $sessions->openSupport(...));
+        $app->add(static fn ($request, $handler) =>
+            RequestSecurity::withClientIp($request, static fn () => $handler->handle($request)));
         return $app;
     }
 }

@@ -177,6 +177,7 @@ class plugin {
 	public static function forceDisablePlugin($_id) {
 		if (config::byKey('active', $_id, 0) == 1) {
 			config::save('active', 0, $_id);
+			daemonSession::revoke($_id);
 		}
 		$values = array(
 			'eqType_name' => $_id,
@@ -1197,6 +1198,10 @@ class plugin {
 		return $return;
 	}
 
+	public function hasRestDaemon(): bool {
+		return $this->getHasOwnDeamon() == 1 && is_callable([$this->getId(), 'deamon_startWithRestSession']);
+	}
+
 	public function deamon_start($_forceRestart = false, $_auto = false) {
 		$plugin_id = $this->getId();
 		if ($_forceRestart) {
@@ -1211,7 +1216,7 @@ class plugin {
 				if ($_auto && $deamon_info['auto'] == 0) {
 					return;
 				}
-				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
+				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && ($this->hasRestDaemon() || method_exists($plugin_id, 'deamon_start'))) {
 					$inprogress = cache::byKey('deamonStart' . $this->getId() . 'inprogress');
 					$info = $inprogress->getValue(array('datetime' => strtotime('now') - 60));
 					$info['datetime'] = (isset($info['datetime'])) ? $info['datetime'] : strtotime('now') - 60;
@@ -1231,6 +1236,10 @@ class plugin {
 					}
 					cache::set('deamonStart' . $this->getId() . 'inprogress', array('datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
+					if ($this->hasRestDaemon()) {
+						$plugin_id::deamon_startWithRestSession($_auto, daemonSession::credentialFile($plugin_id));
+						return;
+					}
 					$fct = new ReflectionMethod($plugin_id, 'deamon_start');
 					if ($fct->getNumberOfRequiredParameters() > 0) {
 						$plugin_id::deamon_start($_auto);
@@ -1351,6 +1360,7 @@ class plugin {
 		}
 		if ($_state == 0) {
 			config::save('active', $_state, $this->getId());
+			daemonSession::revoke($this->getId());
 		}
 		if ($deamonAutoState) {
 			config::save('deamonAutoMode', 1, $this->getId());

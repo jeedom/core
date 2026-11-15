@@ -774,6 +774,7 @@ class update {
 							} catch (\Throwable $e) {
 							}
 						}
+						daemonSession::revoke($this->getLogicalId());
 						config::remove('*', $this->getLogicalId());
 					} catch (\Throwable $e) {
 					}

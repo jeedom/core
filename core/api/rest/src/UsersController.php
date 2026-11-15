@@ -298,7 +298,7 @@ final class UsersController
             $change($user);
         } else {
             try {
-                $user = \session::changeCredentials($user, $request->getAttribute('webSessionId'), $change);
+                $user = \session::changeCredentials($user, $request->getAttribute('restSessionId'), $change);
             } catch (\DomainException $error) {
                 throw new ApiError(401, 'session_expired', $error->getMessage());
             }
@@ -384,21 +384,31 @@ final class UsersController
         return Json::respond($response->withHeader('Cache-Control', 'no-store'), ['enabled' => $enabled]);
     }
 
-    public function myToken(Request $request, Response $response): Response
+    public function createApiSession(Request $request, Response $response): Response
     {
-        $user = $request->getAttribute('user');
-        if (self::isSystem($user)) {
-            throw new ApiError(403, 'user_system', 'Les comptes système n\'ont pas de jeton consultable.');
-        }
-        return Json::respond($response, self::token($user));
-    }
-
-    public function regenerateMyToken(Request $request, Response $response): Response
-    {
+        RequestSecurity::requireHttps($request);
         $user = self::currentWritable($request);
-        $user->setHash('');
-        self::save($user);
-        return Json::respond($response, self::token($user), 201);
+        if ($user->getLogin() === 'demo') {
+            throw new ApiError(403, 'forbidden', 'Ce compte ne peut pas créer d’accès API.');
+        }
+        $body = Json::body($request, 8192);
+        self::rejectUnknown($body, ['clientName', 'scope', 'password', 'twoFactorCode']);
+        $name = SessionController::clientName($body['clientName'] ?? null);
+        $scope = $body['scope'] ?? null;
+        if (!in_array($scope, ['read', 'control'], true)) {
+            throw ApiError::field(422, 'validation_error', 'scope', 'Choisissez lecture ou contrôle.');
+        }
+        $password = $body['password'] ?? null;
+        if (!is_string($password) || $password === '') {
+            throw ApiError::field(422, 'validation_error', 'password', 'Le mot de passe est obligatoire.');
+        }
+        $user = SessionController::authenticate($user->getLogin(), $password, $body['twoFactorCode'] ?? null, 'api');
+        try {
+            $connection = \session::create($user, false, \getClientIp(), null, null, 'api', $name, $scope, true);
+        } catch (\DomainException $error) {
+            throw new ApiError(401, 'invalid_credentials', $error->getMessage());
+        }
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), ['id' => $connection['id']] + SessionController::refreshPayload($connection), 201);
     }
 
     public function myDevices(Request $request, Response $response): Response
@@ -455,7 +465,7 @@ final class UsersController
             'preferences' => (object) $preferences,
             'csrfToken' => $csrfToken,
         ];
-        if ($csrfToken !== null && !self::isSystem($user) && $user->getLogin() !== 'demo') {
+        if (!self::isSystem($user) && $user->getLogin() !== 'demo') {
             $me['twoFactorEnabled'] = self::twoFactorEnabled($user);
         }
         return $me;
@@ -482,7 +492,7 @@ final class UsersController
             'login' => (string) $user->getLogin(),
             'profils' => (string) $user->getProfils(),
             'enable' => (int) $user->getEnable() === 1,
-            'kind' => self::isSystem($user) ? 'system' : 'human',
+            'kind' => \daemonSession::reservedLogin($user->getLogin()) ? 'plugin' : (self::isSystem($user) ? 'system' : 'human'),
             'twoFactorEnabled' => (int) $user->getOptions('twoFactorAuthentification', 0) === 1,
             'lastConnection' => is_string($last) && $last !== '' && strtotime($last) !== false ? date('c', strtotime($last)) : null,
             'options' => $options,
@@ -495,18 +505,9 @@ final class UsersController
         return (object) (is_array($rights) ? $rights : []);
     }
 
-    private static function token(\user $user): array
-    {
-        $generated = $user->getOptions('hashGenerated', '');
-        return [
-            'token' => $user->getHash(),
-            'generatedAt' => is_string($generated) && $generated !== '' && strtotime($generated) !== false ? date('c', strtotime($generated)) : null,
-        ];
-    }
-
     private static function sessionList(Request $request, \user $user, bool $remembered = false): array
     {
-        $current = $request->getAttribute('webSessionId');
+        $current = $request->getAttribute('restSessionId');
         $items = [];
         foreach (\session::connections($user, $remembered) as $session) {
             $items[] = [
@@ -515,14 +516,18 @@ final class UsersController
                 'datetime' => str_replace(' ', 'T', $session['last_activity_at']) . 'Z',
                 'expiresAt' => str_replace(' ', 'T', $session['expires_at']) . 'Z',
                 'current' => $session['id'] === $current,
-            ];
+            ] + ($remembered ? [] : [
+                'name' => $session['client_name'],
+                'type' => $session['mode'],
+                'scope' => $session['scope'] === '' ? null : $session['scope'],
+            ]);
         }
         return ['items' => $items, 'total' => count($items)];
     }
 
     private static function closeOne(Request $request, \user $user, string $id): void
     {
-        if ($id === $request->getAttribute('webSessionId') && (int) $user->getId() === (int) $request->getAttribute('user')->getId()) {
+        if ($id === $request->getAttribute('restSessionId') && (int) $user->getId() === (int) $request->getAttribute('user')->getId()) {
             throw new ApiError(409, 'current_session', 'Pour fermer la session courante, utiliser DELETE /session.');
         }
         if (!\session::revoke($user, $id)) {
@@ -538,7 +543,7 @@ final class UsersController
             throw new ApiError(404, 'device_not_found', 'Appareil inconnu.');
         }
         if ($request->getAttribute('webSessionRemembered') && (int) $user->getId() === (int) $request->getAttribute('user')->getId()
-            && ($key === null || $key === $request->getAttribute('webSessionId'))) {
+            && ($key === null || $key === $request->getAttribute('restSessionId'))) {
             $response = SessionController::clearCookie($request, $response);
         }
         return $response->withStatus(204);
@@ -583,7 +588,7 @@ final class UsersController
 
     private static function twoFactorSession(Request $request, \user $user): string
     {
-        $sessionId = $request->getAttribute('webSessionId');
+        $sessionId = $request->getAttribute('restSessionId');
         if ($sessionId === null || $user->getLogin() === 'demo') {
             throw new ApiError(403, 'forbidden', 'La gestion de la double authentification nécessite une session utilisateur.');
         }
@@ -604,7 +609,7 @@ final class UsersController
 
     public static function isSystem(\user $user): bool
     {
-        return in_array($user->getLogin(), self::SYSTEM_LOGINS, true);
+        return in_array($user->getLogin(), self::SYSTEM_LOGINS, true) || \daemonSession::reservedLogin($user->getLogin());
     }
 
     /**
