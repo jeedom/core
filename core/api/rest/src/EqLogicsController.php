@@ -244,7 +244,7 @@ final class EqLogicsController
         }
         return Json::respond($response, [
             'cmds' => $matches,
-            'deadCmds' => $source === null ? self::deadCmds() : [],
+            'deadCmds' => $source === null ? DiagnosticController::deadCommands(false) : [],
             'targetCmds' => array_map(static fn (\cmd $cmd): array => [
                 'id' => (int) $cmd->getId(), 'name' => (string) $cmd->getName(), 'type' => (string) $cmd->getType(),
                 'genericType' => $cmd->getGeneric_type() ?: null,
@@ -345,33 +345,6 @@ final class EqLogicsController
                 }
             }
             $return[(int) $sourceId] = $targetId;
-        }
-        return $return;
-    }
-
-    /** Commandes supprimées encore référencées (cmd::getDeadCmd), regroupées par identifiant. */
-    private static function deadCmds(): array
-    {
-        $found = [];
-        foreach (\cmd::getDeadCmd() as $group) {
-            foreach ((array) ($group['cmd'] ?? []) as $dead) {
-                preg_match_all('/#(\d+)#/', (string) ($dead['who'] ?? ''), $matches);
-                foreach (array_unique($matches[1]) as $id) {
-                    if (is_object(\cmd::byId((int) $id))) {
-                        continue;
-                    }
-                    $found[(int) $id][] = [
-                        'category' => (string) ($group['name'] ?? ''),
-                        'detail' => strip_tags((string) ($dead['detail'] ?? '')),
-                        'help' => strip_tags((string) ($dead['help'] ?? '')),
-                    ];
-                }
-            }
-        }
-        ksort($found);
-        $return = [];
-        foreach ($found as $id => $usedIn) {
-            $return[] = ['id' => $id, 'usedIn' => $usedIn];
         }
         return $return;
     }

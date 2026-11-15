@@ -280,7 +280,7 @@ class jeeObject {
 					preg_match_all("/#([0-9]*)#/", $cmdInfo['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if (!cmd::byId($cmd_id)) {
-							$return[] = array('detail' => 'Résumé ' . $object->getName(), 'help' => config::byKey('object:summary')[$key]['name'], 'who' => $cmdInfo['cmd']);
+							$return[] = array('detail' => 'Résumé ' . $object->getName(), 'help' => (config::byKey('object:summary')[$key]['name'] ?? $key), 'who' => $cmdInfo['cmd'], 'objectId' => $object->getId());
 						}
 					}
 				}

@@ -75,6 +75,11 @@ final class App
             $api->get('/history/calculation', $cmds->calculatedHistory(...));
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
+            $diagnostic = new DiagnosticController();
+            $api->get('/diagnostic/references', $diagnostic->references(...));
+            $api->get('/diagnostic/rules', $diagnostic->rules(...));
+            $api->post('/diagnostic/expression', $diagnostic->expression(...));
+
             $scenarios = new ScenariosController();
             $api->get('/scenarios', $scenarios->list(...));
             $api->post('/scenarios', $scenarios->create(...));

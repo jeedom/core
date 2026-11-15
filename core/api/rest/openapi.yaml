@@ -139,8 +139,74 @@ tags:
     description: Réglages globaux du core et adresses d'accès à Jeedom.
   - name: Système
     description: Diagnostics et opérations système réservés aux administrateurs.
+  - name: Diagnostic
+    description: Références manquantes, règles et testeur d’expressions.
 
 paths:
+  /diagnostic/references:
+    get:
+      tags: [Diagnostic]
+      operationId: listDiagnosticReferences
+      summary: Lister les commandes introuvables encore référencées
+      description: Réservé aux administrateurs.
+      responses:
+        '200':
+          description: Références groupées par identifiant de commande manquante.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: '#/components/schemas/DiagnosticMissingCommand' } }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /diagnostic/rules:
+    get:
+      tags: [Diagnostic]
+      operationId: listDiagnosticRules
+      summary: Lister les règles configurées sur les équipements et commandes
+      description: Réservé aux administrateurs. Les codes de confirmation et les paramètres des actions sont exclus.
+      responses:
+        '200':
+          description: Règles configurées.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: '#/components/schemas/DiagnosticRule' } }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /diagnostic/expression:
+    post:
+      tags: [Diagnostic]
+      operationId: testDiagnosticExpression
+      summary: Évaluer une expression à partir des valeurs du Core
+      description: Réservé aux administrateurs. Les commandes info sont lues en cache. Le test accepte les comparaisons, calculs, tags Core et fonctions de lecture du constructeur graphique. Aucune commande action ni aucun scénario n’est lancé.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [expression]
+              properties:
+                expression: { type: string, minLength: 1, maxLength: 4096 }
+      responses:
+        '200':
+          description: Résultat avec les valeurs utilisées.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DiagnosticExpressionResult' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /network/access:
     get:
       tags: [Configuration]
@@ -6621,6 +6687,63 @@ components:
       schema: { type: string, pattern: '^[0-9a-f]{64}$' }
 
   schemas:
+    DiagnosticTarget:
+      type: object
+      required: [type, id, equipmentId]
+      properties:
+        type: { type: string, enum: [scenario, equipment, command, object] }
+        id: { type: integer }
+        equipmentId: { type: [integer, 'null'], description: Équipement parent pour une commande. }
+
+    DiagnosticMissingCommand:
+      type: object
+      required: [id, usedIn]
+      properties:
+        id: { type: integer }
+        usedIn:
+          type: array
+          items:
+            type: object
+            required: [category, detail, help, target]
+            properties:
+              category: { type: string }
+              detail: { type: string }
+              help: { type: string }
+              target:
+                oneOf:
+                  - $ref: '#/components/schemas/DiagnosticTarget'
+                  - type: 'null'
+
+    DiagnosticRule:
+      type: object
+      required: [kind, name, target, condition, minutes, actions, level, codeRequired]
+      properties:
+        kind: { type: string, enum: [alert, timeout, stateAction, beforeAction, afterAction, confirmation] }
+        name: { type: string }
+        target: { $ref: '#/components/schemas/DiagnosticTarget' }
+        condition: { type: [string, 'null'] }
+        minutes: { type: integer, minimum: 0 }
+        actions: { type: array, items: { type: string } }
+        level:
+          type: [string, 'null']
+          enum: [warning, danger, null]
+        codeRequired: { type: boolean }
+
+    DiagnosticExpressionResult:
+      type: object
+      required: [expression, result, values]
+      properties:
+        expression: { type: string }
+        result: { type: [string, number, boolean, 'null'] }
+        values:
+          type: array
+          items:
+            type: object
+            required: [label, value]
+            properties:
+              label: { type: string }
+              value: { type: [string, number, boolean, 'null'] }
+
     JeegoUpdateStatus:
       type: object
       required: [version, latest, enabled, state, reason, error, worker]

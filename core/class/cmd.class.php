@@ -1235,35 +1235,32 @@ class cmd {
 	 */
 	public static function deadCmd() {
 		$return = array();
-		foreach ((cmd::all()) as $cmd) {
+		$fields = array('actionCheckCmd' => 'Action sur valeur', 'jeedomPostExecCmd' => 'Post Exécution', 'jeedomPreExecCmd' => 'Pré Exécution');
+		foreach (cmd::all() as $cmd) {
 			if ($cmd->getConfiguration('core::cmd::noDeadAnalyze', 0) == 1) {
 				continue;
 			}
-			if (is_array($cmd->getConfiguration('actionCheckCmd', ''))) {
-				foreach ($cmd->getConfiguration('actionCheckCmd', '') as $actionCmd) {
-					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
-						if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
-							$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Action sur valeur', 'who' => $actionCmd['cmd']);
-						}
-					}
+			foreach ($fields as $key => $help) {
+				$actions = $cmd->getConfiguration($key, '');
+				if (!is_array($actions)) {
+					continue;
 				}
-			}
-			if (is_array($cmd->getConfiguration('jeedomPostExecCmd', ''))) {
-				foreach ($cmd->getConfiguration('jeedomPostExecCmd', '') as $actionCmd) {
-					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
-						if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
-							$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Post Exécution', 'who' => $actionCmd['cmd']);
-						}
+				foreach ($actions as $action) {
+					$reference = $action['cmd'] ?? '';
+					if (!is_string($reference) || strpos($reference, '#') === false || cmd::byId(str_replace('#', '', $reference))) {
+						continue;
 					}
-				}
-			}
-			if (is_array($cmd->getConfiguration('jeedomPreExecCmd', ''))) {
-				foreach ($cmd->getConfiguration('jeedomPreExecCmd', '') as $actionCmd) {
-					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
-						if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
-							$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Pré Exécution', 'who' => $actionCmd['cmd']);
-						}
+					$equipment = $cmd->getEqLogic();
+					if (!is_object($equipment)) {
+						continue;
 					}
+					$return[] = array(
+						'detail' => 'Commande ' . $cmd->getName() . ' de ' . $equipment->getName() . ' (' . $equipment->getEqType_name() . ')',
+						'help' => $help,
+						'who' => $reference,
+						'cmdId' => $cmd->getId(),
+						'eqLogicId' => $equipment->getId()
+					);
 				}
 			}
 		}
