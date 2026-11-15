@@ -152,7 +152,23 @@ class jeego {
 		return array($code, is_string($response) ? json_decode($response) : null);
 	}
 
-	private static function exchange(string $path, ?array $body, int $timeout): array {
+	/** @param resource $stream */
+	public static function requestLogArchive($stream): int {
+		$remaining = 110 * 1024 * 1024;
+		[$status, $completed] = self::exchange('/logs/archive', null, 75, array(
+			CURLOPT_WRITEFUNCTION => static function ($handle, string $chunk) use ($stream, &$remaining): int {
+				$length = strlen($chunk);
+				if ($length > $remaining) {
+					return 0;
+				}
+				$remaining -= $length;
+				return (int) fwrite($stream, $chunk);
+			},
+		));
+		return $completed === true ? $status : 0;
+	}
+
+	private static function exchange(string $path, ?array $body, int $timeout, array $options = array()): array {
 		if ($timeout < 1 || $path === '' || $path[0] !== '/') {
 			throw new InvalidArgumentException(__('Requête API Jeego invalide', __FILE__));
 		}
@@ -163,7 +179,7 @@ class jeego {
 			CURLOPT_CONNECTTIMEOUT => min(2, $timeout),
 			CURLOPT_FOLLOWLOCATION => false,
 			CURLOPT_PROXY => '',
-		));
+		) + $options);
 		$http->setNoReportError(true);
 		if ($body !== null) {
 			$http->setPost(json_encode((object) $body, JSON_THROW_ON_ERROR));
