@@ -16,12 +16,15 @@ final class Auth implements MiddlewareInterface
         if ($token !== null) {
             RequestSecurity::requireHttps($request);
         }
-        $identity = self::identity($token, $transport);
+        $identity = \session::resolve($token, $transport);
         if ($identity === null) {
             throw new ApiError(401, $transport === 'web' ? 'session_refresh_required' : 'invalid_access_token', 'Un accès REST valide est nécessaire.');
         }
         $session = $identity['session'];
         $user = $identity['user'];
+        if (!self::accountAllowed($user, $session['mode'], $session['scope'])) {
+            throw new ApiError(403, 'session_access_forbidden', 'Accès interdit depuis cette connexion.');
+        }
         $csrf = $transport === 'web' ? $session['csrf_token'] : null;
         $csrfOk = $csrf !== null && hash_equals($csrf, $request->getHeaderLine('X-CSRF-Token'));
         if ($transport === 'web' && !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true) && !$csrfOk) {
