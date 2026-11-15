@@ -451,7 +451,7 @@ paths:
       tags: [Système]
       operationId: getJeegoManagement
       summary: Lire l’image Jeedom et le catalogue de services Jeego
-      description: Réservé aux administrateurs.
+      description: Réservé aux administrateurs. Les mesures de ressources proviennent des derniers relevés Jeego.
       responses:
         '200':
           description: Informations Jeego.
@@ -6325,6 +6325,13 @@ components:
               policy: { $ref: '#/components/schemas/JeegoImagePolicy' }
         error: { type: string }
         busy: { type: boolean }
+    JeegoResources:
+      type: object
+      required: [cpu_percent, memory_bytes, disk_bytes]
+      properties:
+        cpu_percent: { type: number, nullable: true, minimum: 0, maximum: 100, description: Part de la capacité CPU totale de l’hôte. }
+        memory_bytes: { type: integer, nullable: true, minimum: 0, description: RAM utilisée en octets. }
+        disk_bytes: { type: integer, nullable: true, minimum: 0, description: Taille des volumes persistants gérés par Jeego en octets. }
     JeegoManagedImage:
       type: object
       required: [status, can_restart, can_change]
@@ -6341,6 +6348,7 @@ components:
         pending: { type: string }
         can_restart: { type: boolean }
         can_change: { type: boolean }
+        resources: { $ref: '#/components/schemas/JeegoResources' }
         history:
           type: array
           items:
@@ -6363,6 +6371,7 @@ components:
         pending: { type: boolean }
         can_update_image: { type: boolean }
         policy: { $ref: '#/components/schemas/JeegoImagePolicy' }
+        resources: { $ref: '#/components/schemas/JeegoResources' }
         error: { type: string }
         parameters:
           type: array
