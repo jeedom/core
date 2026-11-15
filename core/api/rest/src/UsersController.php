@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Jeedom\Api\Rest;
 
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use PragmaRX\Google2FA\Google2FA as Totp;
+use PragmaRX\Google2FAQRCode\Google2FA;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -276,8 +279,7 @@ final class UsersController
             if (!is_string($current) || $current === '') {
                 throw ApiError::field(422, 'validation_error', 'currentPassword', 'Le mot de passe actuel est obligatoire pour en changer.');
             }
-            $stored = $user->getPassword();
-            if (!password_verify($current, $stored) && !hash_equals($stored, \sha512($current))) {
+            if (!self::passwordMatches($user, $current)) {
                 throw ApiError::field(422, 'invalid_current_password', 'currentPassword', 'Mot de passe actuel incorrect.');
             }
         } elseif (array_key_exists('currentPassword', $body)) {
@@ -302,6 +304,84 @@ final class UsersController
             }
         }
         return Json::respond($response, self::meArray($user, $request->getAttribute('csrfToken')));
+    }
+
+    public function setupMyTwoFactor(Request $request, Response $response): Response
+    {
+        $user = self::currentWritable($request);
+        $sessionId = self::twoFactorSession($request, $user);
+        if (self::twoFactorEnabled($user)) {
+            throw new ApiError(409, 'two_factor_already_enabled', 'La double authentification est déjà activée.');
+        }
+
+        $google2fa = new Google2FA(null, new SvgImageBackEnd());
+        $cacheKey = 'rest::twoFactorSetup::' . $sessionId;
+        $secret = \cache::byKey($cacheKey)->getValue();
+        if ($secret === '') {
+            $secret = $google2fa->generateSecretKey(32);
+            \cache::set($cacheKey, $secret, 600);
+        }
+        $qrCode = $google2fa->getQRCodeInline('Jeedom ' . \config::byKey('name'), $user->getLogin(), $secret);
+        if (!str_starts_with($qrCode, 'data:')) {
+            $qrCode = 'data:image/svg+xml;base64,' . base64_encode($qrCode);
+        }
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), ['secret' => $secret, 'qrCode' => $qrCode]);
+    }
+
+    public function updateMyTwoFactor(Request $request, Response $response): Response
+    {
+        $user = self::currentWritable($request);
+        $sessionId = self::twoFactorSession($request, $user);
+        if (\user::isBan()) {
+            throw new ApiError(403, 'ip_banned', 'Adresse IP bannie après trop d\'échecs de connexion.');
+        }
+        $body = Json::body($request, 4096);
+        self::rejectUnknown($body, ['enabled', 'currentPassword', 'twoFactorCode']);
+        $enabled = $body['enabled'] ?? null;
+        $password = $body['currentPassword'] ?? null;
+        $code = $body['twoFactorCode'] ?? null;
+        if (!is_bool($enabled)) {
+            throw ApiError::field(422, 'validation_error', 'enabled', 'Un booléen est attendu.');
+        }
+        if (!is_string($password) || $password === '') {
+            throw ApiError::field(422, 'validation_error', 'currentPassword', 'Le mot de passe actuel est obligatoire.');
+        }
+        if (!is_string($code) || !preg_match('/\A[0-9]{6}\z/', $code)) {
+            throw ApiError::field(422, 'validation_error', 'twoFactorCode', 'Le code de double authentification doit contenir six chiffres.');
+        }
+
+        $cacheKey = 'rest::twoFactorSetup::' . $sessionId;
+        try {
+            $user = \session::changeCredentials($user, $sessionId, static function (\user $account) use ($enabled, $password, $code, $cacheKey): void {
+                if ($enabled === self::twoFactorEnabled($account)) {
+                    throw new ApiError(409, 'two_factor_state_changed', 'L’état de la double authentification a changé. Rechargez la page.');
+                }
+                if (!self::passwordMatches($account, $password)) {
+                    throw ApiError::field(422, 'invalid_current_password', 'currentPassword', 'Mot de passe actuel incorrect.');
+                }
+                $secret = $enabled ? \cache::byKey($cacheKey)->getValue() : $account->getOptions('twoFactorAuthentificationSecret');
+                if ($enabled && $secret === '') {
+                    throw new ApiError(409, 'two_factor_setup_expired', 'La configuration a expiré. Relancez l’activation.');
+                }
+                if (!(new Totp())->verifyKey($secret, $code)) {
+                    throw ApiError::field(422, 'two_factor_invalid', 'twoFactorCode', 'Code de double authentification invalide.');
+                }
+                $account->setOptions('twoFactorAuthentification', (int) $enabled, false);
+                $account->setOptions('twoFactorAuthentificationSecret', $enabled ? $secret : '', false);
+                self::save($account);
+            });
+        } catch (\DomainException $error) {
+            throw new ApiError(401, 'session_expired', $error->getMessage());
+        } catch (ApiError $error) {
+            if (in_array($error->errorCode, ['invalid_current_password', 'two_factor_invalid'], true)) {
+                \user::failedLogin(['login' => $user->getLogin(), 'reason' => $error->getMessage()]);
+                sleep(5);
+            }
+            throw $error;
+        }
+        \cache::delete($cacheKey);
+        \log::audit($enabled ? 'Two-factor authentication enabled' : 'Two-factor authentication disabled', ['login' => $user->getLogin()]);
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), ['enabled' => $enabled]);
     }
 
     public function myToken(Request $request, Response $response): Response
@@ -367,7 +447,7 @@ final class UsersController
                 default => (string) $value,
             };
         }
-        return [
+        $me = [
             'id' => (int) $user->getId(),
             'login' => (string) $user->getLogin(),
             'isAdmin' => $user->getProfils() === 'admin',
@@ -375,6 +455,10 @@ final class UsersController
             'preferences' => (object) $preferences,
             'csrfToken' => $csrfToken,
         ];
+        if ($csrfToken !== null && !self::isSystem($user) && $user->getLogin() !== 'demo') {
+            $me['twoFactorEnabled'] = self::twoFactorEnabled($user);
+        }
+        return $me;
     }
 
     // ---------------------------------------------------------------- outils
@@ -495,6 +579,27 @@ final class UsersController
             throw new ApiError(403, 'user_system', 'Les comptes système ne sont pas modifiables.');
         }
         return $user;
+    }
+
+    private static function twoFactorSession(Request $request, \user $user): string
+    {
+        $sessionId = $request->getAttribute('webSessionId');
+        if ($sessionId === null || $user->getLogin() === 'demo') {
+            throw new ApiError(403, 'forbidden', 'La gestion de la double authentification nécessite une session utilisateur.');
+        }
+        return $sessionId;
+    }
+
+    private static function twoFactorEnabled(\user $user): bool
+    {
+        return (int) $user->getOptions('twoFactorAuthentification', 0) === 1
+            && $user->getOptions('twoFactorAuthentificationSecret') !== '';
+    }
+
+    private static function passwordMatches(\user $user, string $password): bool
+    {
+        $stored = $user->getPassword();
+        return password_verify($password, $stored) || hash_equals($stored, \sha512($password));
     }
 
     public static function isSystem(\user $user): bool

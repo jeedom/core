@@ -708,8 +708,9 @@ class user {
 			&& strtotime($registeredDevices[$key]['datetime']) >= time() - self::registerDeviceLifetime();
 	}
 
-	public function setOptions($_key, $_value) {
-		if ($this->getId() && in_array($_key, ['twoFactorAuthentification', 'twoFactorAuthentificationSecret'], true)
+	// session::changeCredentials gère elle-même la révocation et conserve la session courante.
+	public function setOptions($_key, $_value, bool $_revokeWebSessions = true) {
+		if ($_revokeWebSessions && $this->getId() && in_array($_key, ['twoFactorAuthentification', 'twoFactorAuthentificationSecret'], true)
 			&& (string) $this->getOptions($_key) !== (string) $_value) {
 			$this->_revokeWebSessions = true;
 		}
