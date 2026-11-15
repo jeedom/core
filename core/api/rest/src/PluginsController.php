@@ -563,6 +563,8 @@ final class PluginsController
             'icon' => $icon !== '' && $icon !== 'core/img/no-image-plugin.png' ? $icon : null,
             'uiModule' => $active && self::uiAssetPath($id, 'ui.js') !== null ? 'api/v1/plugins/' . rawurlencode($id) . '/ui/ui.js' : null,
             'version' => $version !== '' ? $version : null,
+            'documentationUrl' => self::webUrl($plugin->getDocumentation()),
+            'issueUrl' => self::webUrl($plugin->getIssue()),
         ];
     }
 }

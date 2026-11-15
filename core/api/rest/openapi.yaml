@@ -6190,6 +6190,49 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
 
+  /market/support/tickets:
+    post:
+      tags: [Configuration]
+      operationId: createMarketSupportTicket
+      summary: Ouvrir un ticket d’assistance technique
+      description: Réservé aux administrateurs hors démo. Utilise la session Market de la box. L’accès du support requiert un choix explicite.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [category, title, message]
+              properties:
+                category: { type: string, maxLength: 96, pattern: '^(core(::scenario)?|plugin::[A-Za-z0-9_-][A-Za-z0-9_.-]*)$' }
+                title: { type: string, minLength: 1, maxLength: 120 }
+                message: { type: string, minLength: 25, maxLength: 6000 }
+                openSupport: { type: boolean, default: false }
+      responses:
+        '204':
+          description: Le Market a confirmé l’ouverture du ticket.
+        '400':
+          description: Corps JSON invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413':
+          description: Corps de la requête supérieur à 40 Kio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '429':
+          description: Le Market a limité l’envoi de tickets.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+
   /market/connection/synchronize:
     post:
       tags: [Configuration]
@@ -7451,6 +7494,8 @@ components:
             s'il n'en a pas. Toujours `null` pour un plugin désactivé.
           example: api/v1/plugins/zwavejs/ui/ui.js
         version: { type: [string, 'null'], description: Version installée. }
+        documentationUrl: { type: [string, 'null'], format: uri }
+        issueUrl: { type: [string, 'null'], format: uri }
         management: { $ref: '#/components/schemas/PluginManagement' }
 
     PluginRepository:

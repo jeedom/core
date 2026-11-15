@@ -142,6 +142,7 @@ final class App
             $api->post('/market/connection', $market->connect(...));
             $api->delete('/market/connection', $market->disconnect(...));
             $api->post('/market/connection/synchronize', $market->synchronize(...));
+            $api->post('/market/support/tickets', (new SupportController())->create(...));
 
             $jeego = new JeegoController();
             $api->get('/jeego', $jeego->status(...));
