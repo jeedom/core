@@ -23,7 +23,7 @@ class user {
     public static bool $enabled = true;
     private ?int $enable = null;
     public function __construct(private int $id) {}
-    public static function byHash($key) { return match ($key) { 'admin' => new self(1), 'member' => new self(2), default => null }; }
+    public static function isBan(): bool { return false; }
     public static function byId($id) { return in_array($id, [1, 2], true) ? new self($id) : null; }
     public static function byProfils($profile, $enabled) { return [new self(1)]; }
     public function getId() { return $this->id; }
@@ -35,16 +35,8 @@ class user {
     public function getOptions($key, $default = '') { return $default; }
     public function save(): void {}
 }
-class session {
-    public static function resolve(string $token): ?array {
-        return $token === 'browser-token' ? ['user' => user::byId(1), 'session' => [
-            'id' => 'browser-id', 'csrf_token' => 'browser-csrf', 'remembered' => 0,
-        ]] : null;
-    }
-    public static function touch(array $row): void {}
-    public static function revoke(user $user, string $id): bool { return false; }
-}
 class jeedom {
+    public static function apiModeResult(string $mode): bool { return $mode === 'enable'; }
     public static function version() { return trim(file_get_contents(dirname(__DIR__, 2) . '/core/config/version')); }
     public static function getDocUrl(...$args) { return 'https://doc.jeedom.com/changelog'; }
     public static function getHardwareName() { return 'docker'; }
@@ -213,10 +205,10 @@ $checks = 0;
 function check($condition, $message) { global $checks; $checks++; if (!$condition) throw new RuntimeException($message); }
 function call($method, $path, $status = 200, $body = null, $token = 'admin', $headers = [], $cookies = [], $files = []) {
     global $app;
-    $request = (new ServerRequestFactory())->createServerRequest($method, 'http://localhost/api/v1' . $path);
+    $request = (new ServerRequestFactory())->createServerRequest($method, 'https://localhost/api/v1' . $path);
     $query = parse_url($path, PHP_URL_QUERY); if ($query) { parse_str($query, $params); $request = $request->withQueryParams($params); }
     if ($body !== null) { $request->getBody()->write(json_encode($body)); $request = $request->withHeader('Content-Type', 'application/json'); }
-    if ($token !== null) $request = $request->withHeader('Authorization', 'Bearer ' . $token);
+    if ($token !== null) $request = $request->withHeader('Authorization', 'Bearer ' . fixtureRestToken($token));
     if ($files) $request = $request->withUploadedFiles($files);
     foreach ($headers as $name => $value) $request = $request->withHeader($name, $value);
     $response = $app->handle($request->withCookieParams($cookies));
@@ -337,7 +329,7 @@ queue::$items = [];
 check(call('GET', '/plugins/installations/' . $operation['id'] . '/status')['state'] === 'failed', 'Lost task reported as successful');
 call('GET', '/plugins/installations/invalid/status', 404);
 $csrf = 'browser-csrf';
-$cookies = ['JeedomSession' => 'browser-token'];
+$cookies = ['__Host-JeedomAccess' => fixtureRestToken('browser-token')];
 call('PATCH', '/plugins/fixture', 401, ['isEnable' => false], token: null, cookies: ['PHPSESSID' => 'browser-token']);
 call('PATCH', '/plugins/fixture', 403, ['isEnable' => false], token: null, cookies: $cookies);
 call('PATCH', '/plugins/fixture', body: ['isEnable' => false], token: null, cookies: $cookies, headers: ['X-CSRF-Token' => $csrf]);

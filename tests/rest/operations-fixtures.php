@@ -2,6 +2,36 @@
 
 // The standalone REST suites do not load the Core autoloader.
 require_once dirname(__DIR__, 2) . '/core/class/supportAccess.class.php';
+require_once dirname(__DIR__, 2) . '/core/class/daemonSession.class.php';
+
+function fixtureRestToken(string $name): string {
+    return hash('sha256', 'fixture-session:' . $name);
+}
+
+class session {
+    public static function resolve(?string $token, string $transport, bool $refresh = false): ?array {
+        if ($token === null || $refresh) {
+            return null;
+        }
+        $id = match (true) {
+            $transport === 'web' && $token === fixtureRestToken('browser-token') => 1,
+            $transport === 'api' && $token === fixtureRestToken('admin') => 1,
+            $transport === 'api' && $token === fixtureRestToken('member') => 2,
+            default => null,
+        };
+        $user = $id === null ? null : user::byId($id);
+        if ($user === null || !$user->isValidAndEnabled()) {
+            return null;
+        }
+        return ['user' => $user, 'session' => [
+            'id' => $transport === 'web' ? 'browser-id' : 'api-id-' . $id,
+            'csrf_token' => 'browser-csrf', 'remembered' => 0, 'mode' => $transport, 'scope' => '',
+        ]];
+    }
+
+    public static function touch(array $row): void {}
+    public static function revoke(user $user, string $id): bool { return false; }
+}
 
 /** Load the production operation methods against the REST suites' native doubles. */
 function defineRestOperationsFixture(string $class, string $fixture): void {
