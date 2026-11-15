@@ -423,6 +423,35 @@ paths:
         '502': { $ref: '#/components/responses/BadGateway' }
         '503': { $ref: '#/components/responses/ServiceUnavailable' }
 
+  /jeego/events:
+    get:
+      tags: [Système]
+      operationId: listJeegoEvents
+      summary: Lister les événements Jeego récents
+      description: Historique des opérations, réservé aux administrateurs en mode Jeego.
+      responses:
+        '200':
+          description: Résumés des 100 dernières opérations au plus, de la plus récente à la plus ancienne.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [events, truncated]
+                properties:
+                  events:
+                    type: array
+                    maxItems: 100
+                    items: { $ref: '#/components/schemas/JeegoEvent' }
+                  truncated:
+                    type: boolean
+                    description: Jeego conserve des opérations plus anciennes.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
   /jeego/tasks/{id}:
     get:
       tags: [Système]
@@ -6689,6 +6718,16 @@ components:
       required: [logs]
       properties:
         logs: { type: string }
+    JeegoEvent:
+      type: object
+      additionalProperties: false
+      required: [id, kind, status, started_at]
+      properties:
+        id: { type: string, pattern: '^[a-f0-9]{32}$' }
+        kind: { type: string }
+        status: { type: string, enum: [running, succeeded, failed, interrupted] }
+        started_at: { type: string, format: date-time }
+        finished_at: { type: string, format: date-time }
     JeegoTask:
       type: object
       required: [schema_version, id, kind, status, started_at, step, logs]

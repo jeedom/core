@@ -149,6 +149,7 @@ final class App
 
             $jeego = new JeegoController();
             $api->get('/jeego', $jeego->status(...));
+            $api->get('/jeego/events', $jeego->events(...));
             $api->get('/jeego/logs/sources', $jeego->logSources(...));
             $api->get('/jeego/logs/excerpt', $jeego->logExcerpt(...));
             $api->get('/jeego/logs/archive', $jeego->logArchive(...));

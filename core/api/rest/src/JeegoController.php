@@ -270,6 +270,39 @@ final class JeegoController
         return self::respond($response, $data, $status);
     }
 
+    public function events(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        $data = self::call('/tasks', 200);
+        $tasks = $data->tasks ?? null;
+        $truncated = $data->truncated ?? null;
+        if (!is_array($tasks) || count($tasks) > 100 || !is_bool($truncated)) {
+            throw self::badResponse();
+        }
+
+        $events = [];
+        foreach ($tasks as $task) {
+            $id = $task->id ?? null;
+            $kind = $task->kind ?? null;
+            $status = $task->status ?? null;
+            $started = $task->started_at ?? null;
+            $finished = $task->finished_at ?? null;
+            if (!self::validTaskId($id) || !is_string($kind) || $kind === ''
+                || !in_array($status, ['running', 'succeeded', 'failed', 'interrupted'], true)
+                || !is_string($started) || ($finished !== null && !is_string($finished))) {
+                throw self::badResponse();
+            }
+
+            // L’historique couvre aussi les opérations locales dont les journaux ne sont pas accessibles via le Core.
+            $event = ['id' => $id, 'kind' => $kind, 'status' => $status, 'started_at' => $started];
+            if ($finished !== null) {
+                $event['finished_at'] = $finished;
+            }
+            $events[] = $event;
+        }
+        return self::respond($response, ['events' => $events, 'truncated' => $truncated]);
+    }
+
     public function task(Request $request, Response $response, array $args): Response
     {
         self::requireJeego($request);
