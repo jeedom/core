@@ -53,6 +53,55 @@ final class JeegoController
         'policy' => ['enabled', 'time', 'stable_hours'],
     ];
 
+    public function logSources(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        return self::respond($response, self::call('/logs/sources', 200));
+    }
+
+    public function logExcerpt(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        $source = $request->getQueryParams()['source'] ?? null;
+        if (!is_string($source) || !preg_match('/^[a-z0-9][a-z0-9_.:-]{0,191}$/D', $source)) {
+            throw ApiError::field(422, 'validation_error', 'source', 'Identifiant de journal invalide.');
+        }
+        return self::respond($response, self::call('/logs/excerpt?source=' . rawurlencode($source), 200));
+    }
+
+    public function logArchive(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        $file = tmpfile();
+        if ($file === false) {
+            throw new ApiError(503, 'logs_unavailable', 'Création de l’archive impossible.');
+        }
+        try {
+            try {
+                $status = \jeego::requestLogArchive($file);
+            } catch (\Exception) {
+                $status = 0;
+            }
+            rewind($file);
+            if ($status !== 200) {
+                throw self::upstreamError($status, json_decode((string) fread($file, 8192)));
+            }
+            if (fread($file, 4) !== "PK\x03\x04") {
+                throw self::badResponse();
+            }
+            rewind($file);
+            $stream = new \Slim\Psr7\Stream($file);
+        } catch (\Throwable $error) {
+            fclose($file);
+            throw $error;
+        }
+        return $response->withBody($stream)
+            ->withHeader('Content-Type', 'application/zip')
+            ->withHeader('Content-Disposition', 'attachment; filename="jeego-logs.zip"')
+            ->withHeader('X-Content-Type-Options', 'nosniff')
+            ->withHeader('Cache-Control', 'private, no-store');
+    }
+
     public function management(Request $request, Response $response): Response
     {
         self::requireJeego($request);
@@ -281,30 +330,38 @@ final class JeegoController
         if ($status === $expectedStatus && $data instanceof \stdClass) {
             return $data;
         }
+        throw self::upstreamError($status, $data);
+    }
+
+    private static function upstreamError(int $status, mixed $data): ApiError
+    {
         $error = $data instanceof \stdClass && ($data->error ?? null) instanceof \stdClass ? $data->error : null;
         $code = $error->code ?? null;
         $message = $error->message ?? null;
         if (is_string($message) && $message !== '') {
             if ($status === 400 && in_array($code, ['invalid_request', 'unsupported_action'], true)) {
-                throw new ApiError(422, 'validation_error', $message);
+                return new ApiError(422, 'validation_error', $message);
             }
-            if ($status === 409 && in_array($code, ['busy', 'operation_conflict', 'operation_unavailable', 'observation_only', 'service_unavailable'], true)) {
-                throw new ApiError(409, $code, $message);
+            if ($status === 409 && in_array($code, ['busy', 'operation_conflict', 'operation_unavailable', 'observation_only', 'service_unavailable', 'logs_unavailable'], true)) {
+                return new ApiError(409, $code, $message);
             }
-            if ($status === 503 && in_array($code, ['settings_unavailable', 'update_unavailable', 'observation_pending'], true)) {
-                throw new ApiError(503, $code, $message);
+            if ($status === 503 && in_array($code, ['settings_unavailable', 'update_unavailable', 'observation_pending', 'logs_unavailable'], true)) {
+                return new ApiError(503, $code, $message);
             }
-            if ($status === 404 && in_array($code, ['task_not_found', 'unknown_service', 'unknown_action'], true)) {
-                throw new ApiError(404, $code, $message);
+            if ($status === 404 && in_array($code, ['task_not_found', 'unknown_service', 'unknown_action', 'unknown_log_source'], true)) {
+                return new ApiError(404, $code, $message);
             }
+        }
+        if (is_string($message) && (($status === 429 && $code === 'logs_busy') || ($status === 504 && $code === 'logs_timeout'))) {
+            return new ApiError($status, $code, $message);
         }
         if ($status === 404 && $code === 'not_found') {
-            throw new ApiError(503, 'jeego_update_required', 'Cette version de Jeego ne fournit pas encore cette fonctionnalité.');
+            return new ApiError(503, 'jeego_update_required', 'Cette version de Jeego ne fournit pas encore cette fonctionnalité.');
         }
         if (in_array($status, [0, 401, 403], true)) {
-            throw new ApiError(503, 'jeego_unavailable', 'La connexion à l’API locale Jeego est indisponible.');
+            return new ApiError(503, 'jeego_unavailable', 'La connexion à l’API locale Jeego est indisponible.');
         }
-        throw self::badResponse();
+        return self::badResponse();
     }
 
     private static function badResponse(): ApiError
