@@ -28,6 +28,8 @@ final class App
             $api->get('/objects/{id}/children', $objects->children(...));
             $api->post('/objects/{id}/eqLogics/order-by-usage', $objects->orderEqLogicsByUsage(...));
             $api->get('/objects/{id}/summary', $objects->summary(...));
+            $api->get('/objects/{id}/summary/configuration', $objects->summaryConfiguration(...));
+            $api->patch('/objects/{id}/summary/configuration', $objects->updateSummaryConfiguration(...));
             $api->get('/objects/{id}/summary/{key}/eqLogics', $objects->summaryEqLogics(...));
             $api->put('/objects/{id}/image', $objects->uploadImage(...));
             $api->delete('/objects/{id}/image', $objects->deleteImage(...));

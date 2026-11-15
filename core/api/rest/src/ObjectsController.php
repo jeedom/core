@@ -124,6 +124,106 @@ final class ObjectsController
         return Json::respond($response, is_array($value) ? (object) $value : $value);
     }
 
+    public function summaryConfiguration(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        return Json::respond($response, ['items' => self::summarySettings(self::find($args['id']), (array) \config::byKey('object:summary'))]);
+    }
+
+    public function updateSummaryConfiguration(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $object = self::find($args['id']);
+        $body = Json::body($request);
+        $items = $body['items'] ?? null;
+        if (array_keys($body) !== ['items'] || !is_array($items) || !array_is_list($items) || $items === []) {
+            throw ApiError::field(422, 'validation_error', 'items', 'Une liste de résumés à modifier est attendue.');
+        }
+        $definitions = (array) \config::byKey('object:summary');
+        $summaries = (array) $object->getConfiguration('summary', []);
+        $globalFlags = [];
+        foreach ($items as $index => $item) {
+            $field = 'items.' . $index;
+            $key = $item['key'] ?? null;
+            if (!is_string($key) || !isset($definitions[$key]) || array_key_exists($key, $globalFlags)) {
+                throw ApiError::field(422, 'validation_error', $field . '.key', 'Type de résumé inconnu ou en double.');
+            }
+            $global = $item['includeInGlobal'] ?? null;
+            $commands = $item['commands'] ?? null;
+            if (array_diff(array_keys($item), ['key', 'includeInGlobal', 'commands']) !== [] || !is_bool($global) || !is_array($commands) || !array_is_list($commands)) {
+                throw ApiError::field(422, 'validation_error', $field, 'Un booléen et une liste de commandes sont attendus.');
+            }
+            $existing = [];
+            foreach ((array) ($summaries[$key] ?? []) as $entry) {
+                if (is_string($entry['cmd'] ?? null)) {
+                    $existing[$entry['cmd']][] = $entry;
+                }
+            }
+            $summaries[$key] = [];
+            foreach ($commands as $position => $command) {
+                $summaries[$key][] = self::summaryCommand($command, $existing, $field . '.commands.' . $position);
+            }
+            $globalFlags[$key] = $global;
+        }
+        foreach ($globalFlags as $key => $global) {
+            $object->setConfiguration('summary::global::' . $key, (int) $global);
+        }
+        $object->setConfiguration('summary', $summaries);
+        $object->save();
+        return Json::respond($response, ['items' => self::summarySettings($object, $definitions)]);
+    }
+
+    private static function summarySettings(\jeeObject $object, array $definitions): array
+    {
+        $summaries = (array) $object->getConfiguration('summary', []);
+        $items = [];
+        foreach ($definitions as $key => $definition) {
+            $commands = [];
+            foreach ((array) ($summaries[$key] ?? []) as $entry) {
+                $expression = $entry['cmd'] ?? null;
+                if (!is_string($expression)) {
+                    continue;
+                }
+                $commands[] = [
+                    'expression' => $expression,
+                    'label' => \cmd::cmdToHumanReadable($expression),
+                    'enabled' => (int) ($entry['enable'] ?? 1) !== 0,
+                    'inverted' => (int) ($entry['invert'] ?? 0) === 1,
+                ];
+            }
+            $items[] = [
+                'key' => (string) $key,
+                'name' => (string) ($definition['name'] ?? $key),
+                'icon' => (string) ($definition['icon'] ?? ''),
+                'includeInGlobal' => (int) $object->getConfiguration('summary::global::' . $key, 0) === 1,
+                'commands' => $commands,
+            ];
+        }
+        return $items;
+    }
+
+    private static function summaryCommand(mixed $command, array &$existing, string $field): array
+    {
+        $expression = $command['expression'] ?? null;
+        $enabled = $command['enabled'] ?? null;
+        $inverted = $command['inverted'] ?? null;
+        if (!is_string($expression) || !is_bool($enabled) || !is_bool($inverted)
+            || array_diff(array_keys($command), ['expression', 'enabled', 'inverted']) !== []) {
+            throw ApiError::field(422, 'validation_error', $field, 'Une commande de résumé valide est attendue.');
+        }
+        // Les expressions existantes sont conservées. Les ajouts référencent uniquement des commandes info.
+        $entry = [];
+        if (!empty($existing[$expression])) {
+            $entry = array_shift($existing[$expression]);
+        } else {
+            $cmd = preg_match('/\A#([1-9][0-9]*)#\z/', $expression, $match) ? \cmd::byId($match[1]) : null;
+            if (!is_object($cmd) || $cmd->getType() !== 'info') {
+                throw ApiError::field(422, 'validation_error', $field . '.expression', 'Une commande info existante est attendue.');
+            }
+        }
+        return array_replace($entry, ['cmd' => $expression, 'enable' => (int) $enabled, 'invert' => (int) $inverted]);
+    }
+
     public function summaryEqLogics(Request $request, Response $response, array $args): Response
     {
         $query = $request->getQueryParams();

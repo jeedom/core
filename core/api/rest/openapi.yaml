@@ -4472,6 +4472,53 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '404': { $ref: '#/components/responses/NotFound' }
 
+  /objects/{id}/summary/configuration:
+    parameters:
+      - $ref: '#/components/parameters/ObjectId'
+    get:
+      tags: [Résumés]
+      operationId: getObjectSummaryConfiguration
+      summary: Lire la configuration des résumés d’un objet
+      description: Renvoie les types de résumé disponibles et leur configuration pour cet objet. Réservé aux administrateurs.
+      responses:
+        '200':
+          description: Configuration des résumés.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ObjectSummaryConfiguration' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    patch:
+      tags: [Résumés]
+      operationId: updateObjectSummaryConfiguration
+      summary: Modifier les résumés d’un objet
+      description: Remplace la liste des commandes et la participation au résumé global pour chaque type fourni. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [items]
+              properties:
+                items:
+                  type: array
+                  minItems: 1
+                  items: { $ref: '#/components/schemas/ObjectSummaryUpdate' }
+      responses:
+        '200':
+          description: Configuration des résumés après modification.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ObjectSummaryConfiguration' }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /objects/{id}/summary/{key}/eqLogics:
     parameters:
       - $ref: '#/components/parameters/ObjectId'
@@ -8710,6 +8757,49 @@ components:
         - type: [number, string, 'null']
         - type: object
           additionalProperties: true
+
+    ObjectSummaryCommandUpdate:
+      type: object
+      required: [expression, enabled, inverted]
+      properties:
+        expression:
+          type: string
+          description: Référence numérique `#id#` d’une commande info, ou expression existante à conserver.
+        enabled: { type: boolean }
+        inverted: { type: boolean }
+    ObjectSummaryUpdate:
+      type: object
+      additionalProperties: false
+      required: [key, includeInGlobal, commands]
+      properties:
+        key: { type: string }
+        includeInGlobal: { type: boolean }
+        commands:
+          type: array
+          items: { $ref: '#/components/schemas/ObjectSummaryCommandUpdate' }
+    ObjectSummaryConfiguration:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [key, name, icon, includeInGlobal, commands]
+            properties:
+              key: { type: string }
+              name: { type: string }
+              icon: { type: string, description: Icône déclarée dans la définition du résumé. }
+              includeInGlobal: { type: boolean }
+              commands:
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/components/schemas/ObjectSummaryCommandUpdate'
+                    - type: object
+                      required: [label]
+                      properties:
+                        label: { type: string, description: Référence lisible de la commande ou de l’expression. }
 
     DisplayTemplate:
       type: [string, 'null']
