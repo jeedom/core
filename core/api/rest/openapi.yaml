@@ -6459,7 +6459,7 @@ components:
         images_bytes: { type: integer }
         volumes_bytes: { type: integer, minimum: 0 }
         volumes_complete: { type: boolean }
-        reclaimable_bytes: { type: integer, nullable: true, minimum: 0 }
+        reclaimable_bytes: { type: [integer, 'null'], minimum: 0 }
         revision: { type: string, pattern: '^[a-f0-9]{64}$' }
         candidates:
           type: array
@@ -6474,9 +6474,9 @@ components:
       type: object
       required: [cpu_percent, memory_bytes, disk_bytes]
       properties:
-        cpu_percent: { type: number, nullable: true, minimum: 0, maximum: 100, description: Part de la capacité CPU totale de l’hôte. }
-        memory_bytes: { type: integer, nullable: true, minimum: 0, description: RAM utilisée en octets. }
-        disk_bytes: { type: integer, nullable: true, minimum: 0, description: Taille des volumes persistants gérés par Jeego en octets. }
+        cpu_percent: { type: [number, 'null'], minimum: 0, maximum: 100, description: Part de la capacité CPU totale de l’hôte. }
+        memory_bytes: { type: [integer, 'null'], minimum: 0, description: RAM utilisée en octets. }
+        disk_bytes: { type: [integer, 'null'], minimum: 0, description: Taille des volumes persistants gérés par Jeego en octets. }
     JeegoManagedImage:
       type: object
       required: [status, can_restart, can_change]
