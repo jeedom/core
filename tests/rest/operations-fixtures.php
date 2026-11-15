@@ -1,5 +1,8 @@
 <?php
 
+// The standalone REST suites do not load the Core autoloader.
+require_once dirname(__DIR__, 2) . '/core/class/supportAccess.class.php';
+
 /** Load the production operation methods against the REST suites' native doubles. */
 function defineRestOperationsFixture(string $class, string $fixture): void {
     $heading = match ($class) {

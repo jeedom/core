@@ -75,6 +75,7 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getPathImgIcon() { return 'https://outside.example/image.png'; }
     public function getDocumentation() { return $this->id === 'manual' ? '' : 'https://example.org/' . $this->id . '/docs'; }
     public function getDocumentation_beta() { return $this->id === 'hue' ? 'https://example.org/hue/beta-docs' : 'javascript:alert(1)'; }
+    public function getIssue() { return ''; }
     public function getChangelog() { return $this->id === 'manual' ? 'javascript:alert(1)' : 'https://example.org/' . $this->id . '/changes'; }
     public function getChangelog_beta() { return $this->id === 'hue' ? 'https://example.org/hue/beta-changes' : ''; }
 PHP);
