@@ -20,7 +20,7 @@ final class DiagnosticExpression
         // Les littéraux entre guillemets sont ignorés. Les valeurs sont liées au moteur
         // comme paramètres typés : le contenu d’une commande n’est jamais interprété.
         $pattern = <<<'REGEX'
-~"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|(?<function>\b(?:average|min|max|stateDuration|eqEnable|variable))\s*\((?<args>[^()]*)\)|(?<reference>#[\w]+#|#(?:\[[^\]\r\n]*\]){2,3}#)|(?<equal>(?<![=!<>])=(?!=))|(?<logic>\b(?:et|ou)\b)~iu
+~"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|(?<function>\b(?:average|min|max|stateDuration|eqEnable|variable))\s*\((?<args>(?:#(?:\[[^\]\r\n]*\]){2,3}#|#[\w]+#|[^()#]++)*)\)|(?<reference>#[\w]+#|#(?:\[[^\]\r\n]*\]){2,3}#)|(?<equal>(?<![=!<>])=(?!=))|(?<logic>\b(?:et|ou)\b)~iu
 REGEX;
         $normalized = preg_replace_callback($pattern, static function (array $match) use (&$bindings, &$names): string {
             if (($match['equal'] ?? '') === '=') {
@@ -130,6 +130,7 @@ REGEX;
             || (int) ($interval[1] ?: 1) * ['min' => 1, 'hour' => 60, 'day' => 1440, 'week' => 10080, 'month' => 44640][$interval[2]] > 527040) {
             throw self::invalid('La période doit être comprise entre une minute et un an.');
         }
+        $period = ($interval[1] ?: '1') . ' ' . $interval[2];
         $reference = '#' . $cmd->getId() . '#';
         $read = match (strtolower($function)) {
             'average' => static fn () => \scenarioExpression::average($reference, $period),
