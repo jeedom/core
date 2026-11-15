@@ -142,7 +142,10 @@ final class App
             $api->post('/market/connection', $market->connect(...));
             $api->delete('/market/connection', $market->disconnect(...));
             $api->post('/market/connection/synchronize', $market->synchronize(...));
-            $api->post('/market/support/tickets', (new SupportController())->create(...));
+            $support = new SupportController();
+            $api->post('/market/support/tickets', $support->create(...));
+            $api->get('/market/support/access', $support->status(...));
+            $api->delete('/market/support/access', $support->close(...));
 
             $jeego = new JeegoController();
             $api->get('/jeego', $jeego->status(...));
@@ -293,7 +296,9 @@ final class App
             $api->delete('/session', (new SessionController())->close(...));
         })->add(new Auth());
         // La connexion est accessible avant l’ouverture d’une session.
-        $app->post('/api/v1/session', (new SessionController())->open(...));
+        $sessions = new SessionController();
+        $app->post('/api/v1/session', $sessions->open(...));
+        $app->post('/api/v1/support/session', $sessions->openSupport(...));
         return $app;
     }
 }

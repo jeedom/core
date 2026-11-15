@@ -24,6 +24,7 @@ class user {
     public static function byHash($key) { return match ($key) { 'admin' => new self(1), 'member' => new self(2), default => null }; }
     public static function byId($id) { return new self($id); }
     public function getId() { return $this->id; }
+    public function getLogin() { return $this->id === 1 ? 'admin' : 'member'; }
     public function getEnable() { return 1; }
     public function getProfils() { return $this->id === 1 ? 'admin' : 'user'; }
     public function isValidAndEnabled() { return self::$enabled; }
@@ -75,6 +76,7 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getPathImgIcon() { return 'https://outside.example/image.png'; }
     public function getDocumentation() { return $this->id === 'manual' ? '' : 'https://example.org/' . $this->id . '/docs'; }
     public function getDocumentation_beta() { return $this->id === 'hue' ? 'https://example.org/hue/beta-docs' : 'javascript:alert(1)'; }
+    public function getIssue() { return ''; }
     public function getChangelog() { return $this->id === 'manual' ? 'javascript:alert(1)' : 'https://example.org/' . $this->id . '/changes'; }
     public function getChangelog_beta() { return $this->id === 'hue' ? 'https://example.org/hue/beta-changes' : ''; }
 PHP);

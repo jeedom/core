@@ -14,7 +14,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  */
 final class UsersController
 {
-    public const SYSTEM_LOGINS = ['internal_report', 'jeedom_support'];
+    public const SYSTEM_LOGINS = ['internal_report', 'jeedom_support', \supportAccess::LOGIN];
     private const PROFILES = ['admin', 'user', 'restrict'];
     private const KINDS = ['human', 'system', 'plugin'];
     private const API_MODES = ['enable', 'whiteip', 'localhost', 'disable'];

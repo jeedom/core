@@ -486,7 +486,7 @@ class user {
 	}
 
 	public static function raiseForInvalidLogin(string $_login): void {
-		if ($_login != '' && in_array($_login, ['internal_report', 'jeedom_support'])) {
+		if ($_login != '' && in_array($_login, ['internal_report', 'jeedom_support', supportAccess::LOGIN], true)) {
 			throw new RunTimeException(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $_login));
 		}
 	}
