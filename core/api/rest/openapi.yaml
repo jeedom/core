@@ -3469,7 +3469,7 @@ paths:
         enregistrement de l'appareil, journal et bannissement après trop
         d'échecs. Crée une ligne dans la table `session`, pose le cookie
         (qui porte le jeton, dont seule l'empreinte est stockée) et renvoie
-        l'utilisateur avec le jeton CSRF. Seule route accessible sans être connecté.
+        l'utilisateur avec le jeton CSRF.
       security: []
       requestBody:
         required: true
@@ -3514,6 +3514,30 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
+
+
+  /support/session:
+    post:
+      tags: [Session]
+      operationId: openSupportSession
+      summary: Ouvrir une session temporaire du support en HTTPS
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [grant, code]
+              properties:
+                grant: { type: string, pattern: '^[a-f0-9]{64}$' }
+                code: { type: string, pattern: '^[a-f0-9]{64}$' }
+      responses:
+        '204': { description: Cookie de la session temporaire créé. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /me:
     get:
@@ -6187,6 +6211,33 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/MarketConnection' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+
+  /market/support/access:
+    get:
+      tags: [Configuration]
+      operationId: getMarketSupportAccess
+      summary: Lire l’échéance de l’accès support de la box
+      responses:
+        '200':
+          description: Date d’expiration de l’accès, en secondes Unix.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [expiresAt]
+                properties:
+                  expiresAt: { type: integer, nullable: true }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    delete:
+      tags: [Configuration]
+      operationId: revokeMarketSupportAccess
+      summary: Révoquer l’accès support et ses sessions
+      responses:
+        '204': { description: Accès révoqué sur la box. }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
 

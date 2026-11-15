@@ -55,6 +55,23 @@ final class SupportController
         return $response->withStatus(204)->withHeader('Cache-Control', 'no-store');
     }
 
+    public function status(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'),
+            ['expiresAt' => \supportAccess::current()['expiresAt'] ?? null]);
+    }
+
+    public function close(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        if ($request->getAttribute('user')->getLogin() === 'demo') {
+            throw new ApiError(403, 'forbidden', 'Action indisponible en mode démo.');
+        }
+        \supportAccess::close();
+        return $response->withStatus(204)->withHeader('Cache-Control', 'no-store');
+    }
+
     private static function text(array $body, string $field, int $min, int $max): string
     {
         $value = is_string($body[$field] ?? null) ? trim($body[$field]) : '';

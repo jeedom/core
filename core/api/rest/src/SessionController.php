@@ -62,6 +62,30 @@ final class SessionController
         return Json::respond($response, ['user' => UsersController::meArray($connection['user'], $token), 'csrfToken' => $token]);
     }
 
+    public function openSupport(Request $request, Response $response): Response
+    {
+        if (self::cookieName($request) !== '__Host-JeedomSession'
+            || $request->getHeaderLine('Sec-Fetch-Site') === 'cross-site'
+            || !str_starts_with(strtolower($request->getHeaderLine('Content-Type')), 'application/json')) {
+            throw new ApiError(403, 'support_access_unavailable', 'Accès support indisponible.');
+        }
+        $body = Json::body($request, 1024, true);
+        if (!is_string($body['grant'] ?? null) || !is_string($body['code'] ?? null) || count($body) !== 2) {
+            throw new ApiError(422, 'validation_error', 'Demande de connexion support invalide.');
+        }
+        $previous = self::cookie($request);
+        $current = $previous === null ? null : Auth::browserSession($previous);
+        if ($current !== null && $current['user']->getLogin() !== \supportAccess::LOGIN) {
+            throw new ApiError(409, 'support_session_conflict', 'Ouvrez l’accès support dans un navigateur sans session Jeedom active.');
+        }
+        try {
+            $connection = \supportAccess::connect($body['grant'], $body['code'], $previous, getClientIp());
+        } catch (\Exception $error) {
+            throw new ApiError(403, 'support_access_unavailable', 'Accès support indisponible. Relancez la connexion depuis le Market.');
+        }
+        return self::withCookie($request, $response, $connection['token'], $connection['expires'])->withStatus(204);
+    }
+
     public function close(Request $request, Response $response): Response
     {
         $id = $request->getAttribute('webSessionId');

@@ -3,11 +3,14 @@
 final class session {
 	public const REMEMBERED_LIFETIME = 90 * 86400;
 
-	public static function create(user $actor, bool $remember, string $ip, ?string $previous): array {
-		return self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous): array {
+	public static function create(user $actor, bool $remember, string $ip, ?string $previous, ?int $expiresBefore = null): array {
+		return self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore): array {
 			$hours = (int) config::byKey('session_lifetime');
 			$lifetime = $remember ? self::REMEMBERED_LIFETIME : ($hours > 0 ? $hours : 24) * 3600;
-			$expires = time() + $lifetime;
+			$expires = min(time() + $lifetime, $expiresBefore ?? PHP_INT_MAX);
+			if ($expires <= time()) {
+				throw new DomainException('La session a expiré.');
+			}
 			$token = bin2hex(random_bytes(32));
 			$csrf = bin2hex(random_bytes(32));
 			if (self::validId($previous)) {

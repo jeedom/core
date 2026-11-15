@@ -22,7 +22,7 @@ final class Auth implements MiddlewareInterface
     {
         if (preg_match('/^Bearer\s+(\S+)$/', $request->getHeaderLine('Authorization'), $match)) {
             $user = \user::byHash($match[1]);
-            if (!is_object($user) || (int) $user->getEnable() !== 1) {
+            if (!is_object($user) || (int) $user->getEnable() !== 1 || $user->getLogin() === \supportAccess::LOGIN) {
                 throw new ApiError(401, 'unauthorized', 'Jeton invalide ou révoqué.');
             }
             return $this->handle($request->withAttribute('user', $user)->withAttribute('csrfToken', null), $handler);

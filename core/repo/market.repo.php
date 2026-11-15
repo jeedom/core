@@ -386,6 +386,19 @@ class repo_market {
 		return marketClient::supportAccess($_enable, $_key);
 	}
 
+	public static function redeemTemporarySupport(string $grant, string $code): array {
+		if (strtolower((string) parse_url(config::byKey('market::address'), PHP_URL_SCHEME)) !== 'https'
+			|| config::byKey('market::no_ssl_verify') == 1) {
+			throw new DomainException('La validation de l’accès support requiert une connexion HTTPS au Market.');
+		}
+		return marketClient::request('POST', '/boxes/{boxId}/support-access/redeem',
+			array('grant' => $grant, 'code' => $code), 10);
+	}
+
+	public static function closeTemporarySupport(string $grant): void {
+		marketClient::request('DELETE', '/boxes/{boxId}/support-access', array('grant' => $grant), 10);
+	}
+
 	public static function test() {
 		return marketClient::synchronize();
 	}
@@ -1268,28 +1281,18 @@ class marketClient {
 	}
 
 	public static function saveTicket($_ticket) {
-		// L'URL d'accès doit exister côté Market lors de la création du ticket.
-		// Si le ticket échoue, annuler les identifiants locaux créés pour cet accès.
-		$db = empty($_ticket['openSupport']) ? null : DB::getConnection();
-		$db?->beginTransaction();
-		try {
-			if ($db !== null) {
-				user::supportAccess(true);
-			}
-			$messages = array_column($_ticket['messages'] ?? array(), 'message');
-			self::request('POST', '/support/tickets', array(
-				'type' => ($_ticket['type'] ?? 'support') === 'support' ? 'technical' : ($_ticket['type'] ?? ''),
-				'subject' => (string) ($_ticket['title'] ?? ''),
-				'message' => implode("\n\n", $messages) ?: (string) ($_ticket['message'] ?? ''),
-				'category' => (string) ($_ticket['category'] ?? 'core')
-			), 300);
-			$db?->commit();
+		$messages = array_column($_ticket['messages'] ?? array(), 'message');
+		$ticket = array(
+			'type' => ($_ticket['type'] ?? 'support') === 'support' ? 'technical' : ($_ticket['type'] ?? ''),
+			'subject' => (string) ($_ticket['title'] ?? ''),
+			'message' => implode("\n\n", $messages) ?: (string) ($_ticket['message'] ?? ''),
+			'category' => (string) ($_ticket['category'] ?? 'core'),
+		);
+		$submit = static function (array $grant = array()) use ($ticket): string {
+			self::request('POST', '/support/tickets', $grant ? $ticket + array('supportAccess' => $grant) : $ticket, 300);
 			return 'ok';
-		} finally {
-			if ($db?->inTransaction()) {
-				$db->rollBack();
-			}
-		}
+		};
+		return empty($_ticket['openSupport']) ? $submit() : supportAccess::withTicket($submit);
 	}
 
 	public static function supportAccess($_enable = true, $_key = '') {
