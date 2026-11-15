@@ -108,6 +108,18 @@ final class JeegoController
         return self::respond($response, self::call('/management', 200));
     }
 
+    public function storage(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        return self::respond($response, self::call('/management/storage', 200, null, 67));
+    }
+
+    public function cleanImages(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        return self::startManagement($request, $response, '/management/storage/clean-images', 'images-clean', ['confirm', 'revision']);
+    }
+
     public function imageAction(Request $request, Response $response, array $args): Response
     {
         self::requireJeego($request);
@@ -279,7 +291,7 @@ final class JeegoController
     private static function canReadTask(string $kind): bool
     {
         if (in_array($kind, array_column(self::ACTIONS, 2), true) || in_array($kind, array_column(self::IMAGE_ACTIONS, 0), true)
-            || in_array($kind, ['managed-docker:update', 'managed-docker:restart', 'managed-docker:policy'], true)) {
+            || in_array($kind, ['managed-docker:update', 'managed-docker:restart', 'managed-docker:policy', 'images-clean'], true)) {
             return true;
         }
         return preg_match('/^managed-service:[a-z][a-z0-9-]{0,31}:([a-z]+)$/D', $kind, $matches) === 1
@@ -307,10 +319,10 @@ final class JeegoController
         return is_string($id) && preg_match('/^[a-f0-9]{32}$/D', $id) === 1;
     }
 
-    private static function call(string $path, int $expectedStatus, ?array $body = null): \stdClass
+    private static function call(string $path, int $expectedStatus, ?array $body = null, int $timeout = 8): \stdClass
     {
         try {
-            [$status, $data] = \jeego::requestResponse($path, $body);
+            [$status, $data] = \jeego::requestResponse($path, $body, $timeout);
         } catch (\Exception) {
             throw new ApiError(503, 'jeego_unavailable', 'La connexion à l’API locale Jeego est indisponible.');
         }

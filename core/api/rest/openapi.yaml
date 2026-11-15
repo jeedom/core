@@ -543,6 +543,56 @@ paths:
         '502': { $ref: '#/components/responses/BadGateway' }
         '503': { $ref: '#/components/responses/ServiceUnavailable' }
 
+  /jeego/management/storage:
+    get:
+      tags: [Système]
+      operationId: getJeegoStorage
+      summary: Analyser le stockage Docker
+      description: Réservé aux administrateurs en mode Jeego.
+      responses:
+        '200':
+          description: Analyse Docker.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoStorage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
+  /jeego/management/storage/clean-images:
+    post:
+      tags: [Système]
+      operationId: cleanJeegoImages
+      summary: Nettoyer les images Docker inutilisées
+      description: Réservé aux administrateurs en mode Jeego.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [confirm, revision]
+              properties:
+                confirm: { type: boolean, enum: [true] }
+                revision: { type: string, pattern: '^[a-f0-9]{64}$' }
+      responses:
+        '202':
+          description: Tâche de nettoyage acceptée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoTask' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
   /jeego/management/image/{action}:
     post:
       tags: [Système]
@@ -6402,6 +6452,24 @@ components:
               policy: { $ref: '#/components/schemas/JeegoImagePolicy' }
         error: { type: string }
         busy: { type: boolean }
+    JeegoStorage:
+      type: object
+      required: [images_bytes, volumes_bytes, volumes_complete, reclaimable_bytes, candidates, revision]
+      properties:
+        images_bytes: { type: integer }
+        volumes_bytes: { type: integer, minimum: 0 }
+        volumes_complete: { type: boolean }
+        reclaimable_bytes: { type: integer, nullable: true, minimum: 0 }
+        revision: { type: string, pattern: '^[a-f0-9]{64}$' }
+        candidates:
+          type: array
+          items:
+            type: object
+            required: [id, references, size_bytes]
+            properties:
+              id: { type: string }
+              references: { type: array, items: { type: string } }
+              size_bytes: { type: integer }
     JeegoResources:
       type: object
       required: [cpu_percent, memory_bytes, disk_bytes]

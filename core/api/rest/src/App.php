@@ -154,6 +154,8 @@ final class App
             $api->post('/jeego/management/docker/{id}/{action}', $jeego->dockerAction(...));
             $api->get('/jeego/management/docker/{id}/logs', $jeego->dockerLogs(...));
             $api->get('/jeego/management', $jeego->management(...));
+            $api->get('/jeego/management/storage', $jeego->storage(...));
+            $api->post('/jeego/management/storage/clean-images', $jeego->cleanImages(...));
             $api->post('/jeego/management/image/{action}', $jeego->imageAction(...));
             $api->post('/jeego/management/services/{service}/{action}', $jeego->serviceAction(...));
             $api->get('/jeego/management/services/{service}/logs', $jeego->serviceLogs(...));
