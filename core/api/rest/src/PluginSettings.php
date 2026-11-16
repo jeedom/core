@@ -71,6 +71,38 @@ final class PluginSettings
         }
     }
 
+    public static function redactPasswords(string $id, string $section, array $configuration): array
+    {
+        return array_diff_key($configuration, self::passwordFields($id, $section));
+    }
+
+    public static function resolveReferences(string $id, string $section, array $body): array
+    {
+        if (empty($body['configuration'])) return \jeedom::fromHumanReadable($body);
+        $passwords = array_intersect_key($body['configuration'], self::passwordFields($id, $section));
+        if ($passwords === []) return \jeedom::fromHumanReadable($body);
+        $body['configuration'] = array_diff_key($body['configuration'], $passwords);
+        $body = \jeedom::fromHumanReadable($body);
+        $body['configuration'] = array_replace($body['configuration'], $passwords);
+        return $body;
+    }
+
+    private static function passwordFields(string $id, string $section): array
+    {
+        // Plusieurs équipements ou commandes du même plugin peuvent figurer dans une réponse.
+        static $fields = [];
+        if (!isset($fields[$id][$section])) {
+            try {
+                $declaration = self::declaration($id);
+                $fields[$id][$section] = array_filter($declaration[$section] ?? [], static fn ($field) => ($field->type ?? null) === 'password');
+            } catch (ApiError) {
+                // Les listes d'équipements et de commandes restent disponibles si la déclaration est illisible.
+                $fields[$id][$section] = [];
+            }
+        }
+        return $fields[$id][$section];
+    }
+
     private static function section(string $id, string $section): array
     {
         return self::validateFields($id, $section, self::declaration($id)[$section] ?? []);
@@ -103,7 +135,7 @@ final class PluginSettings
     private static function validateFields(string $id, string $section, array $fields): array
     {
         if (count($fields) > 64) self::invalidSchema();
-        $properties = ['type', 'enum', 'label', 'description', 'min', 'max'];
+        $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max'];
         $properties = array_merge($properties, match ($section) {
             'eqLogic' => ['create', 'required', 'default'],
             'cmd' => ['when'],
@@ -111,18 +143,24 @@ final class PluginSettings
         });
         foreach ($fields as $key => $field) {
             if (!preg_match('/\A[A-Za-z][A-Za-z0-9_:-]{0,126}\z/', (string) $key)
-                || ($section === 'plugin' && \config::shouldBeEncrypted((string) $key, $id))
                 || ($section === 'cmd' && $key === 'actionCodeAccess')
                 || !$field instanceof \stdClass) {
                 self::invalidSchema();
             }
             $field = (array) $field;
-            if (array_diff(array_keys($field), $properties) || !in_array($field['type'] ?? null, ['boolean', 'number', 'string'], true)) {
+            if (array_diff(array_keys($field), $properties)
+                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string', 'password', 'select'], true)
+                || ($section === 'plugin' && $field['type'] !== 'password' && \config::shouldBeEncrypted((string) $key, $id))) {
                 self::invalidSchema();
             }
             if (array_key_exists('enum', $field)
                 && ($field['type'] !== 'string' || !is_array($field['enum']) || !array_is_list($field['enum'])
                     || $field['enum'] === [] || array_filter($field['enum'], static fn ($item) => !is_string($item)))) {
+                self::invalidSchema();
+            }
+            if ($field['type'] === 'select') {
+                $field['options'] = self::selectOptions($field['options'] ?? null);
+            } elseif (array_key_exists('options', $field)) {
                 self::invalidSchema();
             }
             foreach (['label', 'description'] as $text) {
@@ -138,7 +176,8 @@ final class PluginSettings
                 if (array_key_exists($flag, $field) && !is_bool($field[$flag])) self::invalidSchema();
             }
             if (($field['required'] ?? false) && (!($field['create'] ?? false) || $field['type'] === 'boolean')) self::invalidSchema();
-            if (array_key_exists('default', $field) && (!($field['create'] ?? false) || !self::valid($field['default'], $field))) {
+            if (array_key_exists('default', $field)
+                && (!($field['create'] ?? false) || $field['type'] === 'password' || !self::valid($field['default'], $field))) {
                 self::invalidSchema();
             }
             if (array_key_exists('when', $field)) {
@@ -155,9 +194,26 @@ final class PluginSettings
         return $fields;
     }
 
+    private static function selectOptions(mixed $options): array
+    {
+        if (!is_array($options) || !array_is_list($options) || $options === []) self::invalidSchema();
+        $seen = [];
+        foreach ($options as $option) {
+            if (!$option instanceof \stdClass
+                || array_diff(array_keys((array) $option), ['value', 'label'])
+                || !is_string($option->value ?? null) || !is_string($option->label ?? null)
+                || isset($seen[$option->value])) {
+                self::invalidSchema();
+            }
+            $seen[$option->value] = true;
+        }
+        return $options;
+    }
+
     public static function read(string $id, array $fields): object
     {
-        $stored = \config::byKeys(array_keys($fields), $id, null);
+        $visibleFields = array_filter($fields, static fn ($field) => $field['type'] !== 'password');
+        $stored = \config::byKeys(array_keys($visibleFields), $id, null);
         $values = [];
         foreach ($fields as $key => $field) {
             $value = $stored[$key] ?? null;
@@ -168,7 +224,8 @@ final class PluginSettings
                     default => null,
                 },
                 'number' => is_numeric($value) ? $value + 0 : null,
-                'string' => $value,
+                'select', 'string' => $value,
+                'password' => null,
             };
             $values[$key] = self::valid($value, $field) ? $value : null;
         }
@@ -200,6 +257,9 @@ final class PluginSettings
         return match ($field['type']) {
             'boolean' => is_bool($value),
             'number' => self::isNumber($value) && $value >= ($field['min'] ?? -INF) && $value <= ($field['max'] ?? INF),
+            'password' => is_string($value) && $value !== '',
+            'select' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
+                && in_array($value, array_column($field['options'], 'value'), true),
             'string' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
                 && (!isset($field['enum']) || in_array($value, $field['enum'], true)),
         };

@@ -550,7 +550,7 @@ final class EqLogicsController
                 $body['category'][$key] = (int) $value;
             }
         }
-        \utils::a2o($eqLogic, \jeedom::fromHumanReadable($body));
+        \utils::a2o($eqLogic, PluginSettings::resolveReferences($eqLogic->getEqType_name(), 'eqLogic', $body));
         try {
             $eqLogic->save();
         } catch (\Exception $e) {
@@ -598,7 +598,7 @@ final class EqLogicsController
         ];
         // Les plugins rangent parfois des identifiants dans la configuration (décision du 05/11).
         if ($user->getProfils() === 'admin') {
-            $data['configuration'] = (object) $configuration;
+            $data['configuration'] = (object) PluginSettings::redactPasswords($eqLogic->getEqType_name(), 'eqLogic', $configuration);
         }
         if ($withCmds) {
             $data['cmds'] = CmdsController::forEqLogic($eqLogic, $user);

@@ -567,7 +567,7 @@ final class CmdsController
             unset($body['accessCode']);
         }
 
-        \utils::a2o($cmd, \jeedom::fromHumanReadable($body));
+        \utils::a2o($cmd, PluginSettings::resolveReferences($cmd->getEqType(), 'cmd', $body));
         if ($changeAccessCode) {
             // Toujours hacher le texte fourni, même s'il a la forme d'un hash déjà calculé.
             $cmd->setConfiguration('actionCodeAccess', $accessCode === null ? null : \sha512($accessCode));
@@ -595,6 +595,7 @@ final class CmdsController
         $raw = \jeedom::toHumanReadable(\utils::o2a($cmd));
         $configuration = is_array($raw['configuration'] ?? null) ? $raw['configuration'] : [];
         unset($configuration['actionCodeAccess']);
+        $configuration = PluginSettings::redactPasswords($cmd->getEqType(), 'cmd', $configuration);
         $current = $cmd->getType() === 'action' ? $cmd->getConfiguration('lastCmdValue', null) : $cmd->execCmd();
         return [
             'id' => (int) $raw['id'],

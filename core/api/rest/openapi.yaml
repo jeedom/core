@@ -8312,10 +8312,19 @@ components:
       type: object
       required: [type]
       properties:
-        type: { type: string, enum: [boolean, number, string] }
+        type: { type: string, enum: [boolean, number, string, password, select] }
         label: { type: string }
         description: { type: string }
         enum: { type: array, items: { type: string }, minItems: 1 }
+        options:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required: [value, label]
+            properties:
+              value: { type: string }
+              label: { type: string }
         min: { type: number }
         max: { type: number }
     PluginEquipmentSettingField:
