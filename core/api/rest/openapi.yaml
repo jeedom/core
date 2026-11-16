@@ -5337,9 +5337,13 @@ paths:
         - name: subType
           in: query
           schema: { $ref: '#/components/schemas/CmdSubType' }
+        - name: eqType
+          in: query
+          description: Filtrer sur un ou plusieurs plugins d’équipement séparés par des virgules (ex. `alarm,mqtt2`).
+          schema: { type: string }
         - name: generic_type
           in: query
-          description: Ne garder que les commandes de ce type générique (ex. `LIGHT_STATE`).
+          description: Filtrer sur un ou plusieurs types génériques séparés par des virgules (ex. `LIGHT_STATE,SWITCH_STATE`).
           schema: { type: string }
         - name: isHistorized
           in: query
@@ -8311,6 +8315,13 @@ components:
               state: { type: string, enum: [queued, running, succeeded, failed, skipped] }
               error: { type: [string, 'null'] }
 
+    PluginCommandFilterValues:
+      oneOf:
+      - { type: string, minLength: 1 }
+      - type: array
+        minItems: 1
+        items: { type: string, minLength: 1 }
+
     PluginSettingField:
       type: object
       required: [type]
@@ -8337,7 +8348,8 @@ components:
             type: { type: string, enum: [info] }
             subType: { type: string, enum: [numeric, binary, string] }
             eqLogicId: { type: integer, minimum: 1 }
-            generic_type: { type: string }
+            eqType: { $ref: '#/components/schemas/PluginCommandFilterValues' }
+            generic_type: { $ref: '#/components/schemas/PluginCommandFilterValues' }
             isHistorized: { type: boolean }
         picker:
           type: object
@@ -8355,7 +8367,8 @@ components:
                 type: { $ref: '#/components/schemas/CmdType' }
                 subType: { $ref: '#/components/schemas/CmdSubType' }
                 eqLogicId: { type: integer, minimum: 1 }
-                generic_type: { type: string }
+                eqType: { $ref: '#/components/schemas/PluginCommandFilterValues' }
+                generic_type: { $ref: '#/components/schemas/PluginCommandFilterValues' }
                 isHistorized: { type: boolean }
             equipmentFilters:
               type: object

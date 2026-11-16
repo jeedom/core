@@ -8,7 +8,7 @@ final class PluginSettings
 {
     private const MAX_BYTES = 16384;
     private const PICKER_FILTERS = [
-        'commandFilters' => ['type', 'subType', 'eqLogicId', 'generic_type', 'isHistorized'],
+        'commandFilters' => ['type', 'subType', 'eqLogicId', 'eqType', 'generic_type', 'isHistorized'],
         'equipmentFilters' => ['eqType', 'logicalId', 'objectId', 'enabled', 'visible'],
         'scenarioFilters' => ['mode', 'group', 'objectId', 'active', 'visible'],
         'actionFilters' => ['expressions', 'scenarioActions'],
@@ -267,6 +267,11 @@ final class PluginSettings
 
     private static function validFilter(string $group, string $key, mixed $value): bool
     {
+        if ($group === 'commandFilters' && in_array($key, ['eqType', 'generic_type'], true)) {
+            $values = is_array($value) ? $value : [$value];
+            return array_is_list($values) && $values !== []
+                && !array_filter($values, static fn ($item) => !is_string($item) || trim($item) === '' || str_contains($item, ','));
+        }
         return match ($key) {
             'type' => in_array($value, ['info', 'action'], true),
             'subType' => in_array($value, ['numeric', 'binary', 'string', 'other', 'slider', 'message', 'color', 'select'], true),
