@@ -19,11 +19,17 @@ final class daemonSession {
 	}
 
 	public static function credentialFile(string $plugin, bool $reprovision = false): string {
-		if (!self::validPlugin($plugin) || (int) config::byKey('active', $plugin, 0, true) !== 1) {
-			throw new DomainException('Ce plugin est inactif.');
+		if (!self::validPlugin($plugin)) {
+			throw new DomainException('Identifiant du plugin invalide.');
 		}
 		return self::locked($plugin, static function (string $path) use ($plugin, $reprovision): string {
+			if ((int) config::byKey('active', $plugin, 0, true) !== 1) {
+				throw new DomainException('Ce plugin est inactif.');
+			}
 			$account = user::byLogin(self::login($plugin));
+			if ($reprovision && !$account instanceof user) {
+				throw new DomainException('Le plugin doit d’abord initialiser l’accès REST de son démon.');
+			}
 			if ($account instanceof user && !$reprovision) {
 				if (is_file($path) && !$account->getOptions('restDaemonProvisioning', 0) && session::connections($account) !== []) {
 					return $path;

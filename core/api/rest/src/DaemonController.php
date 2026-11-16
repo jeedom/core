@@ -20,7 +20,7 @@ final class DaemonController
         } catch (\Exception) {
             throw new ApiError(404, 'plugin_not_found', 'Plugin inconnu.');
         }
-        if (!$plugin instanceof \plugin || !$plugin->hasRestDaemon()) {
+        if (!$plugin instanceof \plugin || $plugin->getHasOwnDeamon() != 1) {
             throw new ApiError(409, 'daemon_rest_unavailable', 'Le démon du plugin ne prend pas en charge cet accès.');
         }
         try {
