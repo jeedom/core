@@ -8801,7 +8801,7 @@ components:
         name: { type: string, description: Nom du client. }
         type: { type: string, enum: [web, api, daemon, legacy] }
         scope: { type: [string, 'null'], description: Périmètre délégué ou identifiant du plugin. }
-        userAgent: { type: [string, 'null'], description: User-Agent relevé pour cette session, si disponible. }
+        userAgent: { type: [string, 'null'], description: 'User-Agent relevé pour cette session, si disponible.' }
 
     ActiveSessionList:
       type: object
