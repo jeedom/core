@@ -17,6 +17,10 @@ register_shutdown_function(static function () use ($testRoot): void {
 class config {
     public static array $values = ['core' => ['name' => 'Maison', 'enableQueue' => 1]];
     public static function byKey($key, $plugin = 'core', $default = '', $refresh = false) { return self::$values[$plugin][$key] ?? $default; }
+    public static function byKeys($keys, $plugin = 'core', $default = '') {
+        return array_replace(array_fill_keys($keys, $default), array_intersect_key(self::$values[$plugin] ?? [], array_flip($keys)));
+    }
+    public static function shouldBeEncrypted(string $key, string $plugin = 'core'): bool { return false; }
     public static function save($key, $value, $plugin = 'core') { self::$values[$plugin][$key] = $value; }
 }
 class user {
@@ -285,6 +289,17 @@ check($detail['update'] === null && $detail['compatible'], 'Local plugin without
 foreach (['/plugins/fixture', '/plugins/fixture/dependencies', '/plugins/fixture/daemon', '/plugins/fixture/community-post', '/plugins/installations/preview?marketId=123&version=stable', '/plugins/fixture/installations/latest'] as $path) call('GET', $path, 403, token: 'member');
 foreach (['/plugins/absent', '/plugins/..%2Fpasswd'] as $path) call('GET', $path, 404);
 call('GET', '/plugins/fixture?full=invalid', 422);
+
+$settingsPath = plugin::getPluginPath('fixture') . '/plugin_info/ui-settings.json';
+$formPath = '/plugins/fixture/configuration/form';
+$fields = ['recordDir' => ['type' => 'string']];
+config::save('recordDir', '/recordings', 'fixture');
+file_put_contents($settingsPath, json_encode($fields, JSON_THROW_ON_ERROR));
+check(call('GET', $formPath, 500)['error']['code'] === 'invalid_plugin_settings', 'Unversioned plugin settings must be rejected');
+file_put_contents($settingsPath, json_encode(['version' => 1, 'plugin' => $fields], JSON_THROW_ON_ERROR));
+$form = call('GET', $formPath);
+check($form['fields'] === $fields && $form['values'] === ['recordDir' => '/recordings'], 'Version 1 settings must read the existing plugin value');
+unlink($settingsPath);
 call('PATCH', '/plugins/fixture', body: ['isEnable' => true, 'functionality' => ['cron' => false], 'heartbeatDelay' => 5, 'heartbeatRestartDaemon' => true, 'logLevel' => 'debug']);
 check(config::byKey('active', 'fixture') === 1 && config::byKey('functionality::cron::enable', 'fixture') === 0, 'Native activation/options not saved');
 foreach ([['isEnable' => 1], ['heartbeatDelay' => -1], ['heartbeatDelay' => '5'], ['logLevel' => null], ['apiKey' => 'secret'], ['functionality' => ['health' => false]], ['functionality' => ['unknown' => true]], ['isEnable' => false, 'logLevel' => 'invalid']] as $invalid) call('PATCH', '/plugins/fixture', 422, $invalid);
