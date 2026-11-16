@@ -40,19 +40,34 @@ final class CmdsController
         }
         $type = (string) ($query['type'] ?? '');
         $subType = (string) ($query['subType'] ?? '');
-        $genericType = (string) ($query['generic_type'] ?? '');
+        $genericTypes = self::filterValues($query['generic_type'] ?? null, 'generic_type');
+        $equipmentTypes = self::filterValues($query['eqType'] ?? null, 'eqType');
         $historized = isset($query['isHistorized']) ? filter_var($query['isHistorized'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE) : null;
         $cmds = array_values(array_filter((array) $cmds, static fn ($cmd) => is_object($cmd)
             && ($type === '' || $cmd->getType() === $type)
             && ($subType === '' || $cmd->getSubType() === $subType)
-            && ($genericType === '' || (string) $cmd->getGeneric_type() === $genericType)
+            && ($genericTypes === [] || in_array((string) $cmd->getGeneric_type(), $genericTypes, true))
             && ($historized === null || (bool) (int) $cmd->getIsHistorized() === $historized)
             && self::canRead($cmd, $user)
+            && ($equipmentTypes === [] || in_array((string) $cmd->getEqLogic()->getEqType_name(), $equipmentTypes, true))
             && $search->matches([$cmd->getName(), $cmd->getEqLogic()->getName(), $cmd->getGeneric_type()])));
         usort($cmds, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName(), (int) $a->getId()] <=> [(int) $b->getOrder(), $b->getName(), (int) $b->getId()]);
         $page = $search->page($cmds);
         $page['items'] = array_map(self::toArray(...), $page['items']);
         return Json::respond($response, $page);
+    }
+
+    private static function filterValues(mixed $value, string $key): array
+    {
+        if ($value === null || $value === '') return [];
+        if (!is_string($value)) {
+            throw ApiError::field(422, 'validation_error', $key, 'Une valeur ou une liste séparée par des virgules est attendue.');
+        }
+        $values = array_map('trim', explode(',', $value));
+        if (in_array('', $values, true)) {
+            throw ApiError::field(422, 'validation_error', $key, 'Les valeurs du filtre doivent être renseignées.');
+        }
+        return $values;
     }
 
     public function genericTypes(Request $request, Response $response): Response
@@ -567,7 +582,7 @@ final class CmdsController
             unset($body['accessCode']);
         }
 
-        \utils::a2o($cmd, \jeedom::fromHumanReadable($body));
+        \utils::a2o($cmd, PluginSettings::resolveReferences($cmd->getEqType(), 'cmd', $body));
         if ($changeAccessCode) {
             // Toujours hacher le texte fourni, même s'il a la forme d'un hash déjà calculé.
             $cmd->setConfiguration('actionCodeAccess', $accessCode === null ? null : \sha512($accessCode));
@@ -595,6 +610,7 @@ final class CmdsController
         $raw = \jeedom::toHumanReadable(\utils::o2a($cmd));
         $configuration = is_array($raw['configuration'] ?? null) ? $raw['configuration'] : [];
         unset($configuration['actionCodeAccess']);
+        $configuration = PluginSettings::redactPasswords($cmd->getEqType(), 'cmd', $configuration);
         $current = $cmd->getType() === 'action' ? $cmd->getConfiguration('lastCmdValue', null) : $cmd->execCmd();
         return [
             'id' => (int) $raw['id'],
