@@ -9757,13 +9757,14 @@ components:
       type: object
       description: |
         Valeurs de configuration du core, indexées par nom de clé. Seules les
-        clés demandées sont présentes. Les clés chiffrées et les réglages de
-        destination Cloud et Samba sont absents pour un non-administrateur. Le nom de l'onglet de l'administration est indiqué
+        clés demandées sont présentes. Les clés chiffrées, les réglages de
+        destination Cloud et Samba et `calculHistory` sont absents pour un non-administrateur. Le nom de l'onglet de l'administration est indiqué
         dans chaque description.
       additionalProperties: false
       properties:
         'object:summary': { $ref: '#/components/schemas/ConfigSummaries' }
         'ui::menu': { $ref: '#/components/schemas/UiMenu' }
+        'calculHistory': { $ref: '#/components/schemas/HistoryCalculations' }
         'name':
           type: string
           description: 'Utilisé notamment par le market (onglet general).'
@@ -10324,6 +10325,7 @@ components:
       properties:
         'object:summary': { $ref: '#/components/schemas/ConfigSummaries' }
         'ui::menu': { $ref: '#/components/schemas/UiMenu' }
+        'calculHistory': { $ref: '#/components/schemas/HistoryCalculations' }
         'name':
           type: string
           description: 'Utilisé notamment par le market (onglet general).'
@@ -10919,6 +10921,41 @@ components:
         id: { $ref: '#/components/schemas/MenuIdentifier' }
         name: { type: string }
         items: { $ref: '#/components/schemas/UiMenu' }
+    HistoryCalculations:
+      type: array
+      maxItems: 100
+      description: |
+        Calculs d'historique enregistrés (« Mes calculs » de la page Historique), clé
+        `calculHistory` de l'ancienne interface. Réservé aux administrateurs, en lecture
+        comme en écriture : une formule peut lire n'importe quelle commande, comme
+        `/history/calculation`. Les formules sont renvoyées avec les noms lisibles des
+        commandes et enregistrées avec leurs identifiants.
+      items: { $ref: '#/components/schemas/HistoryCalculation' }
+    HistoryCalculation:
+      type: object
+      additionalProperties: false
+      required: [calcul]
+      properties:
+        name:
+          type: string
+          maxLength: 127
+          description: Nom affiché ; vide, le début de la formule est affiché.
+        calcul:
+          type: string
+          minLength: 1
+          description: 'Formule, commandes en `#id#` ou en nom lisible (`#[Objet][Équipement][Commande]#`).'
+          example: '#12# + #15#'
+        graphType:
+          type: string
+          enum: ['', line, area, column]
+          description: Type de courbe ; vide pour l'affichage par défaut.
+        groupingType:
+          type: string
+          pattern: '^((avg|max|high|min|low|sum)::(minute|hour|day|week|month|year))?$'
+          description: Regroupement ; vide pour aucun.
+        graphStep:
+          type: boolean
+          description: Tracé en escalier.
     ConfigSummaries:
       type: object
       description: Définitions des résumés (`object:summary`), indexées par clé.
