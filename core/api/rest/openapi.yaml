@@ -518,6 +518,33 @@ paths:
         '502': { $ref: '#/components/responses/BadGateway' }
         '503': { $ref: '#/components/responses/ServiceUnavailable' }
 
+  /jeego/metrics:
+    get:
+      tags: [Système]
+      operationId: getJeegoMetrics
+      summary: Lire l’historique des métriques Jeego
+      description: Relevés des 24 dernières heures pour une cible, réservés aux administrateurs en mode Jeego.
+      parameters:
+        - name: target
+          in: query
+          description: Identifiant fourni dans la liste des cibles, avec une limite de 512 octets. Une valeur vide sélectionne l’hôte.
+          schema: { type: string, default: host, maxLength: 512 }
+      responses:
+        '200':
+          description: Historique des ressources et, pour l’hôte, des débits réseau.
+          headers:
+            Cache-Control:
+              schema: { type: string, const: 'private, no-store' }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JeegoMetricsHistory' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '503': { $ref: '#/components/responses/ServiceUnavailable' }
+
   /jeego/tasks/{id}:
     get:
       tags: [Système]
@@ -7062,6 +7089,52 @@ components:
         status: { type: string, enum: [running, succeeded, failed, interrupted] }
         started_at: { type: string, format: date-time }
         finished_at: { type: string, format: date-time }
+    JeegoMetricsHistory:
+      type: object
+      required: [target, entities, points, network, from, to, interval_seconds]
+      properties:
+        target: { type: string }
+        entities:
+          type: array
+          items:
+            type: object
+            required: [id, name, kind]
+            properties:
+              id: { type: string }
+              name: { type: string }
+              kind: { type: string }
+        points:
+          type: array
+          maxItems: 288
+          items:
+            type: object
+            required: [at, cpu_percent, memory_bytes, disk_bytes]
+            properties:
+              at: { type: string, format: date-time }
+              cpu_percent: { type: [number, 'null'] }
+              memory_bytes: { type: [integer, 'null'] }
+              disk_bytes: { type: [integer, 'null'] }
+              battery_percent: { type: integer }
+        network:
+          type: array
+          items:
+            type: object
+            required: [name, points]
+            properties:
+              name: { type: string }
+              points:
+                type: array
+                maxItems: 288
+                items:
+                  type: object
+                  required: [at, receive_bytes_per_second, transmit_bytes_per_second]
+                  properties:
+                    at: { type: string, format: date-time }
+                    receive_bytes_per_second: { type: [number, 'null'] }
+                    transmit_bytes_per_second: { type: [number, 'null'] }
+        from: { type: string, format: date-time }
+        to: { type: string, format: date-time }
+        interval_seconds: { type: integer, minimum: 1 }
     JeegoTask:
       type: object
       required: [schema_version, id, kind, status, started_at, step, logs]

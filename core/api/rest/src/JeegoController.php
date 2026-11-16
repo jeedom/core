@@ -108,6 +108,27 @@ final class JeegoController
         return self::respond($response, self::call('/management', 200));
     }
 
+    public function metrics(Request $request, Response $response): Response
+    {
+        self::requireJeego($request);
+        $query = $request->getQueryParams();
+        $target = array_key_exists('target', $query) ? $query['target'] : '';
+        if (!is_string($target) || strlen($target) > 512) {
+            throw ApiError::field(422, 'validation_error', 'target', 'Cible de métriques invalide.');
+        }
+        $path = '/metrics';
+        if ($target !== '') {
+            $path .= '?target=' . rawurlencode($target);
+        }
+        $history = self::call($path, 200);
+        if (!is_string($history->target ?? null) || !is_string($history->from ?? null) || !is_string($history->to ?? null)
+            || !is_int($history->interval_seconds ?? null) || $history->interval_seconds < 1
+            || !is_array($history->entities ?? null) || !is_array($history->points ?? null) || !is_array($history->network ?? null)) {
+            throw self::badResponse();
+        }
+        return self::respond($response, $history);
+    }
+
     public function storage(Request $request, Response $response): Response
     {
         self::requireJeego($request);
@@ -378,7 +399,7 @@ final class JeegoController
             if ($status === 409 && in_array($code, ['busy', 'operation_conflict', 'operation_unavailable', 'observation_only', 'service_unavailable', 'logs_unavailable'], true)) {
                 return new ApiError(409, $code, $message);
             }
-            if ($status === 503 && in_array($code, ['settings_unavailable', 'update_unavailable', 'observation_pending', 'logs_unavailable'], true)) {
+            if ($status === 503 && in_array($code, ['settings_unavailable', 'update_unavailable', 'observation_pending', 'logs_unavailable', 'metrics_unavailable'], true)) {
                 return new ApiError(503, $code, $message);
             }
             if ($status === 404 && in_array($code, ['task_not_found', 'unknown_service', 'unknown_action', 'unknown_log_source'], true)) {
