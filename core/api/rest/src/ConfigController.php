@@ -289,7 +289,7 @@ final class ConfigController
     {
         static $keys = null;
         if ($keys === null) {
-            $keys = ['object:summary' => 'summary', 'ui::menu' => 'menu'] + array_merge(...array_values(self::SECTIONS));
+            $keys = ['object:summary' => 'summary', 'ui::menu' => 'menu', 'calculHistory' => 'calculHistory'] + array_merge(...array_values(self::SECTIONS));
             foreach (\update::listRepo() as $id => $repo) {
                 if (!empty($repo['scope']['proxy'])) {
                     $keys[$id . '::allowDNS'] = 'boolean';
@@ -312,7 +312,9 @@ final class ConfigController
             $storedKey = self::storedKey($key);
             if (!$admin && (\config::shouldBeEncrypted($storedKey) || str_starts_with($key, 'samba::backup::')
                 || str_starts_with($key, 'market::cloud::backup::') || str_starts_with($key, 'github::core::')
-                || str_starts_with($key, 'url::core::') || $key === 'notifications::settings')) {
+                || str_starts_with($key, 'url::core::') || $key === 'notifications::settings'
+                // Une formule peut lire n'importe quelle commande, comme /history/calculation.
+                || $key === 'calculHistory')) {
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
@@ -330,6 +332,7 @@ final class ConfigController
             'number' => is_numeric($value) ? $value + 0 : null,
             'summary' => (object) self::summariesToApi(is_array($value) ? $value : []),
             'menu' => self::menuToApi($value),
+            'calculHistory' => self::calculationsToApi($value),
             'notifications' => is_array($value) ? $value : ['destinations' => [], 'types' => []],
             default => is_scalar($value) ? (string) $value : json_encode($value, JSON_UNESCAPED_UNICODE),
         };
@@ -343,6 +346,9 @@ final class ConfigController
         }
         if ($type === 'menu') {
             return $value === null ? '' : self::validateMenu($value);
+        }
+        if ($type === 'calculHistory') {
+            return self::validateCalculations($value);
         }
         if ($type === 'notifications') {
             try {
@@ -395,6 +401,85 @@ final class ConfigController
     {
         return strlen($value) <= 4096 && filter_var($value, FILTER_VALIDATE_URL) !== false
             && in_array(strtolower((string) parse_url($value, PHP_URL_SCHEME)), ['http', 'https'], true);
+    }
+
+    private const CALCULATION_GROUPING = '/\A((avg|max|high|min|low|sum)::(minute|hour|day|week|month|year))?\z/';
+
+    /**
+     * Calculs d'historique enregistrés, au format de l'ancienne interface : formules en noms
+     * lisibles (comme `convertToHumanReadable`), `graphStep` en booléen. Les entrées illisibles sont ignorées.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private static function calculationsToApi(mixed $value): array
+    {
+        $result = [];
+        foreach (is_array($value) ? $value : [] as $item) {
+            if (!is_array($item) || !is_string($item['calcul'] ?? null) || trim($item['calcul']) === '') {
+                continue;
+            }
+            $graphType = (string) ($item['graphType'] ?? '');
+            $groupingType = (string) ($item['groupingType'] ?? '');
+            $result[] = [
+                'name' => (string) ($item['name'] ?? ''),
+                'calcul' => (string) \jeedom::toHumanReadable($item['calcul']),
+                'graphType' => in_array($graphType, ['', 'line', 'area', 'column'], true) ? $graphType : '',
+                'groupingType' => preg_match(self::CALCULATION_GROUPING, $groupingType) ? $groupingType : '',
+                'graphStep' => in_array($item['graphStep'] ?? '0', ['1', 1, true], true),
+            ];
+        }
+        return $result;
+    }
+
+    /**
+     * Valide la liste des calculs d'historique et la renvoie au format stocké par l'ancienne
+     * interface : formules avec identifiants (comme `fromHumanReadable`), `graphStep` en '0' / '1'.
+     *
+     * @return list<array<string, string>>
+     */
+    private static function validateCalculations(mixed $items): array
+    {
+        if (!is_array($items) || !array_is_list($items) || count($items) > 100) {
+            throw ApiError::field(422, 'validation_error', 'calculHistory', 'Une liste de 100 calculs au plus est attendue.');
+        }
+        $result = [];
+        foreach ($items as $i => $item) {
+            $path = "calculHistory.$i";
+            if (!is_array($item) || array_is_list($item) && $item !== []) {
+                throw ApiError::field(422, 'validation_error', $path, 'Chaque calcul doit être un objet.');
+            }
+            if ($unknown = array_diff(array_keys($item), ['name', 'calcul', 'graphType', 'groupingType', 'graphStep'])) {
+                throw ApiError::field(422, 'validation_error', "$path." . reset($unknown), 'Champ inconnu.');
+            }
+            $calcul = $item['calcul'] ?? null;
+            if (!is_string($calcul) || trim($calcul) === '') {
+                throw ApiError::field(422, 'validation_error', "$path.calcul", 'La formule est obligatoire.');
+            }
+            $name = $item['name'] ?? '';
+            if (!is_string($name) || mb_strlen($name) > 127) {
+                throw ApiError::field(422, 'validation_error', "$path.name", 'Un texte de 127 caractères au plus est attendu.');
+            }
+            $graphType = $item['graphType'] ?? '';
+            if (!in_array($graphType, ['', 'line', 'area', 'column'], true)) {
+                throw ApiError::field(422, 'validation_error', "$path.graphType", 'Type attendu : line, area, column ou vide.');
+            }
+            $groupingType = $item['groupingType'] ?? '';
+            if (!is_string($groupingType) || !preg_match(self::CALCULATION_GROUPING, $groupingType)) {
+                throw ApiError::field(422, 'validation_error', "$path.groupingType", 'Format attendu : fonction::période (ex. avg::hour) ou vide.');
+            }
+            $graphStep = $item['graphStep'] ?? false;
+            if (!is_bool($graphStep)) {
+                throw ApiError::field(422, 'validation_error', "$path.graphStep", 'Un booléen est attendu.');
+            }
+            $result[] = [
+                'name' => $name,
+                'calcul' => (string) \jeedom::fromHumanReadable($calcul),
+                'graphType' => $graphType,
+                'groupingType' => $groupingType,
+                'graphStep' => $graphStep ? '1' : '0',
+            ];
+        }
+        return $result;
     }
 
     /** Menu enregistré, ou null (menu par défaut) s'il est absent ou illisible. */
