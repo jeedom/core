@@ -3745,7 +3745,7 @@ paths:
     post:
       tags: [Session]
       operationId: openSupportSession
-      summary: Ouvrir une session temporaire du support en HTTPS
+      summary: Ouvrir une session temporaire du support
       security: []
       requestBody:
         required: true

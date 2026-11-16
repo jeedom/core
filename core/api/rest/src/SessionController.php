@@ -108,7 +108,6 @@ final class SessionController
 
     public function openSupport(Request $request, Response $response): Response
     {
-        RequestSecurity::requireHttps($request);
         RequestSecurity::requireOrigin($request);
         if ($request->hasHeader('Authorization') || !str_starts_with(strtolower($request->getHeaderLine('Content-Type')), 'application/json')) {
             throw new ApiError(403, 'support_access_unavailable', 'Accès support indisponible.');
