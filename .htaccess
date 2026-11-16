@@ -92,7 +92,8 @@ DirectoryIndex index.php
     RedirectMatch 403 (?i)^.*\/install\/.*$
     RedirectMatch 403 (?i)^.*\/log\/.*$
     RedirectMatch 403 (?i)^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.css.map|\.woff|\.woff2|\.ttf|\.svg|\.html|\.php).)*$
-    RedirectMatch 403 (?i)^.*\/support\/.*$
+    # The REST front controller handles only these exact support endpoints.
+    RedirectMatch 403 ^(?!/api/v1/(?:market/support/(?:tickets|access)|support/session)$)(?i:.*\/support\/.*)$
     RedirectMatch 403 (?i)^.*\/tests\/.*$
     RedirectMatch 403 (?i)^.*\/vendor\/.*$
 
