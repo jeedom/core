@@ -3581,9 +3581,14 @@ paths:
       operationId: openSession
       summary: Ouvrir une session REST
       description: |
-        Le mode Web vérifie Origin et pose deux cookies. Le mode API renvoie les jetons en JSON.
+        Le mode Web exige X-Jeedom-Web-Login et pose deux cookies. Le mode API renvoie les jetons en JSON.
         Les deux modes demandent la double authentification lorsqu’elle est activée.
       security: []
+      parameters:
+        - name: X-Jeedom-Web-Login
+          in: header
+          description: Obligatoire en mode Web. Ne doit pas être autorisé par CORS.
+          schema: { type: string, enum: ['1'] }
       requestBody:
         required: true
         content:
@@ -3605,7 +3610,7 @@ paths:
       tags: [Session]
       operationId: closeSession
       summary: Révoquer la session courante
-      description: En Web, vérifie Origin et CSRF et efface les deux cookies. Le cookie de renouvellement suffit après expiration du jeton d’accès.
+      description: En Web, vérifie le CSRF de la session et efface les deux cookies. Le cookie de renouvellement suffit après expiration du jeton d’accès.
       security:
         - sessionCookie: []
         - sessionCookieHttp: []
@@ -3623,7 +3628,7 @@ paths:
       operationId: refreshSession
       summary: Renouveler une session REST
       description: |
-        En Web, envoyer un objet vide avec les cookies, Origin et X-CSRF-Token. En API, envoyer le refresh token en JSON.
+        En Web, envoyer un objet vide avec les cookies et X-CSRF-Token. En API, envoyer le refresh token en JSON.
         Réutiliser la même clé d’idempotence et le même jeton pour relancer une tentative pendant 60 secondes.
         Un rejeu reconnu hors de cette relance révoque la session.
       security:

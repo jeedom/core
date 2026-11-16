@@ -19,7 +19,11 @@ final class SessionController
             self::mixed();
         }
         if ($mode === 'web') {
-            RequestSecurity::requireOrigin($request);
+            RequestSecurity::requireSameOriginFetch($request);
+            // Cet en-tête ne doit pas être autorisé par une politique CORS.
+            if ($request->getHeaderLine('X-Jeedom-Web-Login') !== '1') {
+                throw new ApiError(403, 'web_login_header_required', 'En-tête de connexion Web manquant ou invalide.');
+            }
         }
         foreach (['login', 'password'] as $field) {
             if (!is_string($body[$field] ?? null) || $body[$field] === '') {
@@ -44,7 +48,7 @@ final class SessionController
 
     public function inspect(Request $request, Response $response): Response
     {
-        RequestSecurity::requireOrigin($request, false);
+        RequestSecurity::requireSameOriginFetch($request);
         if ($request->hasHeader('Authorization')) {
             self::mixed();
         }
@@ -77,7 +81,7 @@ final class SessionController
             self::mixed();
         }
         if ($web) {
-            RequestSecurity::requireOrigin($request);
+            RequestSecurity::requireSameOriginFetch($request);
         }
         $token = $web ? self::refreshCookie($request) : $body['refreshToken'];
         if (!is_string($token)) {
@@ -131,7 +135,7 @@ final class SessionController
         [$transport, $access] = Auth::access($request);
         $identity = Auth::identity($access, $transport);
         if ($transport === 'web') {
-            RequestSecurity::requireOrigin($request);
+            RequestSecurity::requireSameOriginFetch($request);
             $identity = Auth::identity(self::refreshCookie($request), 'web', true) ?? $identity;
             if ($identity === null) {
                 $retry = \session::retryContext(self::refreshCookie($request), $request->getHeaderLine('Idempotency-Key'));

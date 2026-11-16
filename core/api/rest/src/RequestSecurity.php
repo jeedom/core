@@ -53,12 +53,18 @@ final class RequestSecurity
         return str_starts_with(self::origin($request), 'https://');
     }
 
-    public static function requireOrigin(Request $request, bool $required = true): void
+    public static function requireOrigin(Request $request): void
     {
-        $origin = $request->getHeaderLine('Origin');
+        if ($request->getHeaderLine('Origin') !== self::origin($request)) {
+            throw new ApiError(403, 'origin_invalid', 'Origine de la requête non autorisée.');
+        }
+        self::requireSameOriginFetch($request);
+    }
+
+    public static function requireSameOriginFetch(Request $request): void
+    {
         $site = $request->getHeaderLine('Sec-Fetch-Site');
-        if (($required || $origin !== '') && $origin !== self::origin($request)
-            || ($site !== '' && !in_array($site, ['same-origin', 'none'], true))) {
+        if ($site !== '' && !in_array($site, ['same-origin', 'none'], true)) {
             throw new ApiError(403, 'origin_invalid', 'Origine de la requête non autorisée.');
         }
     }
