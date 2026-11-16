@@ -99,9 +99,6 @@ class network {
 				return trim(config::byKey('internalProtocol') . '127.0.0.1:' . self::getPort($_mode) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
-				if (jeedom::isDocker()) {
-					return trim('http://' . config::byKey('internalAddr') . ':' . self::getPort($_mode, 'http') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
-				}
 				return trim('http://127.0.0.1:' . self::getPort($_mode, 'http') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			if (config::byKey('internalProtocol') == 'http://' && self::getPort($_mode) == 80) {
