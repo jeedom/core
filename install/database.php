@@ -25,6 +25,7 @@ require_once __DIR__ . '/../core/class/DB.class.php';
 echo "[START CHECK AND FIX DB]\n";
 try {
   DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true),'all',true);
+  DB::Prepare('DROP TABLE IF EXISTS `session_refresh_history`', []);
 } catch (\Exception $e) {
   echo "***ERROR*** " . $e->getMessage() . "\n";
 }

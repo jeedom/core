@@ -2448,6 +2448,46 @@
           "key": "",
           "default": null,
           "extra": ""
+        },
+        {
+          "name": "previous_refresh_hash",
+          "type": "char(64)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "previous_refresh_expires_at",
+          "type": "datetime",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "refresh_retry_attempt_hash",
+          "type": "char(64)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "refresh_retry_nonce",
+          "type": "char(64)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "refresh_retry_until",
+          "type": "datetime",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
       "indexes": {
@@ -2494,69 +2534,13 @@
               "Sub_part": null
             }
           }
-        }
-      },
-      "engine": "InnoDB"
-    },
-    {
-      "name": "session_refresh_history",
-      "fields": [
-        {
-          "name": "token_hash",
-          "type": "char(64)",
-          "null": "NO",
-          "key": "PRI",
-          "default": null,
-          "extra": ""
         },
-        {
-          "name": "session_id",
-          "type": "char(64)",
-          "null": "NO",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "attempt_hash",
-          "type": "char(64)",
-          "null": "NO",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "nonce",
-          "type": "char(64)",
-          "null": "NO",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "retry_until",
-          "type": "datetime",
-          "null": "NO",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "expires_at",
-          "type": "datetime",
-          "null": "NO",
-          "key": "",
-          "default": null,
-          "extra": ""
-        }
-      ],
-      "indexes": {
-        "session_refresh_history_expiry": {
-          "Key_name": "session_refresh_history_expiry",
-          "Non_unique": "1",
+        "session_previous_refresh": {
+          "Key_name": "session_previous_refresh",
+          "Non_unique": "0",
           "columns": {
             "1": {
-              "column": "expires_at",
+              "column": "previous_refresh_hash",
               "Sub_part": null
             }
           }

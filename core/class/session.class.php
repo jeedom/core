@@ -4,6 +4,8 @@ final class session {
 	public const ACCESS_LIFETIME = 86400;
 	public const REFRESH_LIFETIME = 90 * 86400;
 	private const RETRY_WINDOW = 60;
+	private const REFRESH_MATCH = '(refresh_hash = :hash OR (previous_refresh_hash = :previous
+		AND previous_refresh_expires_at > UTC_TIMESTAMP()))';
 
 	public static function create(user $actor, bool $remember, string $ip, ?string $previous, ?int $expiresBefore = null,
 		string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false, string $userAgent = ''): array {
@@ -57,13 +59,10 @@ final class session {
 		if (!self::validId($token) || $attempt === '') {
 			return null;
 		}
-		$previous = DB::Prepare('SELECT * FROM session_refresh_history WHERE token_hash = :hash AND expires_at > UTC_TIMESTAMP()
-			AND retry_until > UTC_TIMESTAMP()', ['hash' => self::digest($token)]);
-		if (!is_array($previous) || !hash_equals($previous['attempt_hash'], self::digest($attempt))) {
-			return null;
-		}
-		[, $refresh] = self::successors($token, $previous['nonce']);
-		return self::resolve($refresh, 'web', true);
+		$row = DB::Prepare("SELECT * FROM `session` WHERE previous_refresh_hash = :hash AND previous_refresh_expires_at > UTC_TIMESTAMP()
+			AND expires_at > UTC_TIMESTAMP() AND mode = 'web'", ['hash' => self::digest($token)]);
+		$pair = is_array($row) ? self::retry($row, $token, $attempt) : null;
+		return $pair === null ? null : self::resolve($pair['refreshToken'], 'web', true);
 	}
 
 	/**
@@ -76,9 +75,8 @@ final class session {
 			return null;
 		}
 		$hash = self::digest($token);
-		$current = DB::Prepare('SELECT id, user_id FROM `session` WHERE refresh_hash = :hash
-			UNION ALL SELECT s.id, s.user_id FROM session_refresh_history h JOIN `session` s ON s.id = h.session_id
-			WHERE h.token_hash = :old AND h.expires_at > UTC_TIMESTAMP()', ['hash' => $hash, 'old' => $hash]);
+		$tokens = ['hash' => $hash, 'previous' => $hash];
+		$current = DB::Prepare('SELECT id, user_id FROM `session` WHERE ' . self::REFRESH_MATCH, $tokens);
 		if (!is_array($current)) {
 			return null;
 		}
@@ -86,22 +84,19 @@ final class session {
 		DB::beginTransaction();
 		try {
 			$user = user::byId($current['user_id'], true);
-			$row = DB::Prepare('SELECT * FROM `session` WHERE id = :id AND expires_at > UTC_TIMESTAMP() FOR UPDATE', ['id' => $current['id']]);
+			$row = DB::Prepare('SELECT * FROM `session` WHERE id = :id AND expires_at > UTC_TIMESTAMP() AND '
+				. self::REFRESH_MATCH . ' FOR UPDATE', ['id' => $current['id']] + $tokens);
 			$result = null;
 			$replay = false;
 			if (is_array($row) && self::matchesTransport($row, $transport) && self::validAccount($user, $row)) {
 				$authorize($user, $row);
 				if (hash_equals($row['refresh_hash'], $hash)) {
-					$result = self::rotate($row, $token, $hash, $attempt, $ip, $userAgent);
+					$result = self::rotate($row, $token, $attempt, $ip, $userAgent);
 				} else {
-					$previous = DB::Prepare('SELECT * FROM session_refresh_history WHERE token_hash = :hash AND session_id = :id
-						AND expires_at > UTC_TIMESTAMP() FOR UPDATE', ['hash' => $hash, 'id' => $row['id']]);
-					if (is_array($previous)) {
-						$result = self::retry($row, $previous, $token, $attempt);
-						if ($result === null) {
-							DB::Prepare('DELETE FROM `session` WHERE id = :id', ['id' => $row['id']]);
-							$replay = true;
-						}
+					$result = self::retry($row, $token, $attempt);
+					if ($result === null) {
+						DB::Prepare('DELETE FROM `session` WHERE id = :id', ['id' => $row['id']]);
+						$replay = true;
 					}
 				}
 			}
@@ -116,21 +111,20 @@ final class session {
 		return $result === null ? null : $result + ['user' => $user, 'csrfToken' => $row['csrf_token'], 'remembered' => (bool) $row['remembered']];
 	}
 
-	private static function rotate(array $row, string $token, string $hash, string $attempt, string $ip, string $userAgent): array {
+	private static function rotate(array $row, string $token, string $attempt, string $ip, string $userAgent): array {
 		$nonce = self::secret();
 		[$access, $refresh] = self::successors($token, $nonce);
 		$pair = self::pair($access, $refresh, self::timestamp($row['hard_expires_at']));
-		DB::Prepare('INSERT INTO session_refresh_history (token_hash, session_id, attempt_hash, nonce, retry_until, expires_at)
-			VALUES (:hash, :id, :attempt, :nonce, :retry, :expires)', [
-			'hash' => $hash, 'id' => $row['id'], 'attempt' => self::digest($attempt), 'nonce' => $nonce,
-			'retry' => self::date(time() + self::RETRY_WINDOW), 'expires' => $row['expires_at'],
-		]);
 		$client = $row['access_expires_at'] === null
 			? self::clientMetadata($ip, $userAgent)
 			: ['ip' => $row['ip'], 'userAgent' => $row['user_agent']];
 		DB::Prepare('UPDATE `session` SET token_hash = :access, refresh_hash = :refresh, access_expires_at = :accessExpires,
+			previous_refresh_hash = :previous, previous_refresh_expires_at = :previousExpires,
+			refresh_retry_attempt_hash = :attempt, refresh_retry_nonce = :nonce, refresh_retry_until = :retry,
 			expires_at = :expires, last_activity_at = UTC_TIMESTAMP(), ip = :ip, user_agent = :userAgent WHERE id = :id', [
 			'access' => self::digest($access), 'refresh' => self::digest($refresh), 'accessExpires' => self::date($pair['expires']),
+			'previous' => $row['refresh_hash'], 'previousExpires' => $row['expires_at'],
+			'attempt' => self::digest($attempt), 'nonce' => $nonce, 'retry' => self::date(time() + self::RETRY_WINDOW),
 			'expires' => self::date($pair['refreshExpires']), 'id' => $row['id'],
 		] + $client);
 		return $pair;
@@ -142,11 +136,11 @@ final class session {
 		return ['ip' => filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '', 'userAgent' => $agent === '' ? null : $agent];
 	}
 
-	private static function retry(array $row, array $previous, string $token, string $attempt): ?array {
-		if (self::timestamp($previous['retry_until']) <= time() || !hash_equals($previous['attempt_hash'], self::digest($attempt))) {
+	private static function retry(array $row, string $token, string $attempt): ?array {
+		if (self::timestamp($row['refresh_retry_until']) <= time() || !hash_equals($row['refresh_retry_attempt_hash'], self::digest($attempt))) {
 			return null;
 		}
-		[$access, $refresh] = self::successors($token, $previous['nonce']);
+		[$access, $refresh] = self::successors($token, $row['refresh_retry_nonce']);
 		if (!hash_equals($row['refresh_hash'], self::digest($refresh)) || !hash_equals($row['token_hash'], self::digest($access))) {
 			return null;
 		}
@@ -241,7 +235,6 @@ final class session {
 
 	public static function clean(): void {
 		DB::Prepare('DELETE FROM `session` WHERE expires_at <= UTC_TIMESTAMP()', []);
-		DB::Prepare('DELETE FROM session_refresh_history WHERE expires_at <= UTC_TIMESTAMP()', []);
 	}
 
 	private static function withLockedAccount(user $actor, callable $operation) {

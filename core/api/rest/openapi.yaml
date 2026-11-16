@@ -3630,7 +3630,8 @@ paths:
       description: |
         En Web, envoyer un objet vide avec les cookies et X-CSRF-Token. En API, envoyer le refresh token en JSON.
         Réutiliser la même clé d’idempotence et le même jeton pour relancer une tentative pendant 60 secondes.
-        Un rejeu reconnu hors de cette relance révoque la session.
+        Seul le dernier refresh token remplacé est reconnu pour cette relance. Lorsqu’il est
+        encore dans sa période de validité initiale, un rejeu hors de la relance révoque la session.
       security:
         - refreshCookie: []
         - refreshCookieHttp: []
