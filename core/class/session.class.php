@@ -197,6 +197,20 @@ final class session {
 		return true;
 	}
 
+	/** @param array<int, user> $accounts */
+	public static function activeConnections(array $accounts): array {
+		$rows = DB::Prepare("SELECT id, user_id, credential_hash, ip, user_agent, last_activity_at, expires_at, client_name, mode, scope
+			FROM `session` WHERE expires_at > UTC_TIMESTAMP() AND mode IN ('web', 'api', 'daemon')", [], DB::FETCH_TYPE_ALL);
+		$active = [];
+		foreach ($rows as $row) {
+			if (self::validAccount($accounts[$row['user_id']] ?? null, $row)) {
+				unset($row['credential_hash']);
+				$active[] = $row;
+			}
+		}
+		return $active;
+	}
+
 	public static function revokeAll(int $userId, bool $remembered = false): void {
 		$where = ' WHERE user_id = :user' . ($remembered ? " AND remembered = 1 AND mode = 'web'" : '');
 		$params = ['user' => $userId];

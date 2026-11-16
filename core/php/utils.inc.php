@@ -1570,7 +1570,7 @@ function makeZipSupport() {
 	return realpath($outputfile);
 }
 
-function decodeSessionData($_data) {
+function decodeSessionData($_data, array $_options = array()) {
 	$return_data = array();
 	$offset = 0;
 	while ($offset < strlen($_data)) {
@@ -1581,7 +1581,7 @@ function decodeSessionData($_data) {
 		$num = $pos - $offset;
 		$varname = substr($_data, $offset, $num);
 		$offset += $num + 1;
-		$data = unserialize(substr($_data, $offset));
+		$data = unserialize(substr($_data, $offset), $_options);
 		$return_data[$varname] = $data;
 		$offset += strlen(serialize($data));
 	}

@@ -4251,6 +4251,39 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
 
+  /users/sessions:
+    get:
+      tags: [Utilisateurs]
+      operationId: listActiveSessions
+      summary: Lister les sessions actives de Jeedom (administrateur)
+      description: Inclut les sessions REST renouvelables et les sessions PHP historiques accessibles sur cette instance.
+      responses:
+        '200':
+          description: Les sessions actives, sans jetons ni identifiants de cookies.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ActiveSessionList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /users/{id}/legacy-sessions/{sessionId}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/SessionId'
+    delete:
+      tags: [Utilisateurs]
+      operationId: closeLegacySession
+      summary: Fermer une session PHP historique (administrateur)
+      responses:
+        '204': { description: Session fermée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: 'Utilisateur inconnu (`user_not_found`) ou session inconnue de cet utilisateur (`session_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
   /users/{id}/sessions:
     parameters:
       - $ref: '#/components/parameters/UserId'
@@ -8752,6 +8785,31 @@ components:
       properties:
         items: { type: array, items: { $ref: '#/components/schemas/SessionInfo' } }
         total: { type: integer }
+
+    ActiveSession:
+      type: object
+      required: [id, userId, login, kind, ip, datetime, expiresAt, current, name, type, scope, userAgent]
+      properties:
+        id: { type: string, pattern: '^[0-9a-f]{64}$', description: Identifiant public de la session. }
+        userId: { type: integer }
+        login: { type: string }
+        kind: { type: string, enum: [human, system, plugin] }
+        ip: { type: string }
+        datetime: { type: string, format: date-time, description: Dernière activité. }
+        expiresAt: { type: string, format: date-time, description: Expiration du renouvellement REST ou estimation d’expiration PHP. }
+        current: { type: boolean, description: Session de la requête en cours. }
+        name: { type: string, description: Nom du client. }
+        type: { type: string, enum: [web, api, daemon, legacy] }
+        scope: { type: [string, 'null'], description: Périmètre délégué ou identifiant du plugin. }
+        userAgent: { type: [string, 'null'], description: User-Agent relevé pour cette session, si disponible. }
+
+    ActiveSessionList:
+      type: object
+      required: [items, total, legacyAvailable]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/ActiveSession' } }
+        total: { type: integer }
+        legacyAvailable: { type: boolean, description: Les sessions PHP sont accessibles sur cette instance. }
 
     LoginRequest:
       type: object
