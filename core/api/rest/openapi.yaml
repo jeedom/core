@@ -3081,7 +3081,10 @@ paths:
             schema:
               type: object
               minProperties: 1
-              additionalProperties: { type: [boolean, number, string] }
+              additionalProperties:
+                oneOf:
+                - { type: [boolean, number, string] }
+                - { $ref: '#/components/schemas/PluginSettingActionOptions' }
       responses:
         '200':
           description: Réglages du plugin après l’enregistrement.
@@ -8327,6 +8330,47 @@ components:
               label: { type: string }
         min: { type: number }
         max: { type: number }
+        picker:
+          type: object
+          required: [allowed]
+          properties:
+            allowed:
+              type: array
+              minItems: 1
+              uniqueItems: true
+              items: { type: string, enum: [command, scenario, equipment, action] }
+            optionsKey: { type: string }
+            commandFilters:
+              type: object
+              properties:
+                type: { $ref: '#/components/schemas/CmdType' }
+                subType: { $ref: '#/components/schemas/CmdSubType' }
+                eqLogicId: { type: integer, minimum: 1 }
+                generic_type: { type: string }
+                isHistorized: { type: boolean }
+            equipmentFilters:
+              type: object
+              properties:
+                eqType: { type: string }
+                logicalId: { type: string }
+                objectId: { type: integer, minimum: 0 }
+                enabled: { type: boolean }
+                visible: { type: boolean }
+            scenarioFilters:
+              type: object
+              properties:
+                mode: { type: string, enum: [provoke, schedule, all] }
+                group: { type: string }
+                objectId: { type: integer, minimum: 1 }
+                active: { type: boolean }
+                visible: { type: boolean }
+            actionFilters:
+              type: object
+              properties:
+                expressions:
+                  type: array
+                  items: { type: string }
+                scenarioActions: { type: boolean }
     PluginEquipmentSettingField:
       allOf:
       - $ref: '#/components/schemas/PluginSettingField'
@@ -8358,7 +8402,13 @@ components:
           additionalProperties: { $ref: '#/components/schemas/PluginCommandSettingField' }
     PluginSettingValues:
       type: object
-      additionalProperties: { type: [boolean, number, string, 'null'] }
+      additionalProperties:
+        oneOf:
+        - { type: [boolean, number, string, 'null'] }
+        - { $ref: '#/components/schemas/PluginSettingActionOptions' }
+    PluginSettingActionOptions:
+      type: object
+      additionalProperties: { type: [boolean, number, string] }
     PluginDetails:
       allOf:
       - $ref: '#/components/schemas/Plugin'

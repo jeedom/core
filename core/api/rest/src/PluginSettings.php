@@ -7,6 +7,12 @@ namespace Jeedom\Api\Rest;
 final class PluginSettings
 {
     private const MAX_BYTES = 16384;
+    private const PICKER_FILTERS = [
+        'commandFilters' => ['type', 'subType', 'eqLogicId', 'generic_type', 'isHistorized'],
+        'equipmentFilters' => ['eqType', 'logicalId', 'objectId', 'enabled', 'visible'],
+        'scenarioFilters' => ['mode', 'group', 'objectId', 'active', 'visible'],
+        'actionFilters' => ['expressions', 'scenarioActions'],
+    ];
 
     private static function path(string $id): ?string
     {
@@ -46,7 +52,8 @@ final class PluginSettings
 
     public static function validateEquipment(string $id, array $changes, bool $creating): array
     {
-        foreach (self::section($id, 'eqLogic') as $key => $field) {
+        $fields = self::section($id, 'eqLogic');
+        foreach ($fields as $key => $field) {
             if ($creating && ($field['create'] ?? false) && !array_key_exists($key, $changes)) {
                 if (($field['required'] ?? false) && (!($field['create'] ?? false) || $field['type'] === 'boolean')) self::invalidSchema();
             if (array_key_exists('default', $field)) $changes[$key] = $field['default'];
@@ -58,14 +65,24 @@ final class PluginSettings
                 self::invalidValue($key);
             }
         }
+        foreach (self::optionFields($fields) as $key => $field) {
+            if (array_key_exists($key, $changes) && !self::validOptions($changes[$key])) self::invalidValue($key);
+        }
         return $changes;
     }
 
     public static function validateCommand(string $id, array $changes, array $command): void
     {
-        foreach (self::section($id, 'cmd') as $key => $field) {
+        $fields = self::section($id, 'cmd');
+        foreach ($fields as $key => $field) {
             if (array_key_exists($key, $changes)
                 && (array_diff_assoc((array) ($field['when'] ?? []), $command) !== [] || !self::validEntityValue($changes[$key], $field))) {
+                self::invalidValue($key);
+            }
+        }
+        foreach (self::optionFields($fields) as $key => $field) {
+            if (array_key_exists($key, $changes)
+                && (array_diff_assoc((array) ($field['when'] ?? []), $command) !== [] || !self::validOptions($changes[$key]))) {
                 self::invalidValue($key);
             }
         }
@@ -135,12 +152,13 @@ final class PluginSettings
     private static function validateFields(string $id, string $section, array $fields): array
     {
         if (count($fields) > 64) self::invalidSchema();
-        $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max'];
+        $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max', 'picker'];
         $properties = array_merge($properties, match ($section) {
             'eqLogic' => ['create', 'required', 'default'],
             'cmd' => ['when'],
             default => [],
         });
+        $usedKeys = array_fill_keys(array_keys($fields), true);
         foreach ($fields as $key => $field) {
             if (!preg_match('/\A[A-Za-z][A-Za-z0-9_:-]{0,126}\z/', (string) $key)
                 || ($section === 'cmd' && $key === 'actionCodeAccess')
@@ -162,6 +180,17 @@ final class PluginSettings
                 $field['options'] = self::selectOptions($field['options'] ?? null);
             } elseif (array_key_exists('options', $field)) {
                 self::invalidSchema();
+            }
+            if (array_key_exists('picker', $field)) {
+                if ($field['type'] !== 'string' || isset($field['enum'])) self::invalidSchema();
+                $field['picker'] = self::picker($field['picker'], $key);
+                $optionsKey = $field['picker']->optionsKey ?? null;
+                if ($optionsKey !== null) {
+                    if (isset($usedKeys[$optionsKey])
+                        || ($section === 'plugin' && \config::shouldBeEncrypted($optionsKey, $id))
+                        || ($section === 'cmd' && $optionsKey === 'actionCodeAccess')) self::invalidSchema();
+                    $usedKeys[$optionsKey] = true;
+                }
             }
             foreach (['label', 'description'] as $text) {
                 if (array_key_exists($text, $field) && !is_string($field[$text])) self::invalidSchema();
@@ -194,6 +223,65 @@ final class PluginSettings
         return $fields;
     }
 
+    private static function picker(mixed $picker, string $key): \stdClass
+    {
+        if (!$picker instanceof \stdClass) self::invalidSchema();
+        $allowed = $picker->allowed ?? null;
+        if (!is_array($allowed) || !array_is_list($allowed) || $allowed === []
+            || array_filter($allowed, static fn ($kind) => !in_array($kind, ['command', 'equipment', 'scenario', 'action'], true))
+            || count($allowed) !== count(array_unique($allowed))) self::invalidSchema();
+        $supported = array_map(static fn ($kind) => $kind . 'Filters', $allowed);
+        if (array_diff(array_keys((array) $picker), ['allowed', 'optionsKey', ...$supported])) self::invalidSchema();
+        foreach ($supported as $name) {
+            if (!property_exists($picker, $name)) continue;
+            if (!$picker->$name instanceof \stdClass) self::invalidSchema();
+            foreach ((array) $picker->$name as $filter => $value) {
+                if (!in_array($filter, self::PICKER_FILTERS[$name], true) || !self::validFilter($name, $filter, $value)) {
+                    self::invalidSchema();
+                }
+            }
+        }
+        if (in_array('command', $allowed, true) || in_array('action', $allowed, true)) {
+            $optionKey = property_exists($picker, 'optionsKey') ? $picker->optionsKey : $key . '::options';
+            if (!is_string($optionKey) || !preg_match('/\A[A-Za-z][A-Za-z0-9_:-]{0,126}\z/', $optionKey)) self::invalidSchema();
+            $picker->optionsKey = $optionKey;
+        } elseif (property_exists($picker, 'optionsKey')) {
+            self::invalidSchema();
+        }
+        return $picker;
+    }
+
+    private static function validFilter(string $group, string $key, mixed $value): bool
+    {
+        return match ($key) {
+            'type' => in_array($value, ['info', 'action'], true),
+            'subType' => in_array($value, ['numeric', 'binary', 'string', 'other', 'slider', 'message', 'color', 'select'], true),
+            'mode' => in_array($value, ['provoke', 'schedule', 'all'], true),
+            'eqLogicId' => is_int($value) && $value > 0,
+            'objectId' => is_int($value) && $value >= ($group === 'equipmentFilters' ? 0 : 1),
+            'isHistorized', 'enabled', 'visible', 'active', 'scenarioActions' => is_bool($value),
+            'expressions' => is_array($value) && array_is_list($value)
+                && !array_filter($value, static fn ($expression) => !is_string($expression) || $expression === ''),
+            'group' => is_string($value),
+            default => is_string($value) && $value !== '',
+        };
+    }
+
+    private static function optionFields(array $fields): array
+    {
+        $options = [];
+        foreach ($fields as $field) {
+            if (isset($field['picker']->optionsKey)) $options[$field['picker']->optionsKey] = $field;
+        }
+        return $options;
+    }
+
+    private static function validOptions(mixed $value): bool
+    {
+        return is_array($value) && ($value === [] || !array_is_list($value))
+            && !array_filter($value, static fn ($item) => !is_bool($item) && !is_string($item) && !self::isNumber($item));
+    }
+
     private static function selectOptions(mixed $options): array
     {
         if (!is_array($options) || !array_is_list($options) || $options === []) self::invalidSchema();
@@ -213,7 +301,8 @@ final class PluginSettings
     public static function read(string $id, array $fields): object
     {
         $visibleFields = array_filter($fields, static fn ($field) => $field['type'] !== 'password');
-        $stored = \config::byKeys(array_keys($visibleFields), $id, null);
+        $optionFields = self::optionFields($fields);
+        $stored = \config::byKeys(array_keys($visibleFields + $optionFields), $id, null);
         $values = [];
         foreach ($fields as $key => $field) {
             $value = $stored[$key] ?? null;
@@ -229,14 +318,21 @@ final class PluginSettings
             };
             $values[$key] = self::valid($value, $field) ? $value : null;
         }
+        foreach ($optionFields as $key => $field) {
+            $options = $stored[$key] ?? [];
+            $values[$key] = (object) (self::validOptions($options) ? $options : []);
+        }
         return (object) $values;
     }
 
     public static function update(string $id, array $fields, array $changes): void
     {
         if ($changes === []) throw new ApiError(422, 'validation_error', 'Aucun réglage à modifier.');
+        $optionFields = self::optionFields($fields);
         foreach ($changes as $key => $value) {
-            if (!isset($fields[$key]) || !self::valid($value, $fields[$key])) {
+            $valid = isset($optionFields[$key]) ? self::validOptions($value)
+                : isset($fields[$key]) && self::valid($value, $fields[$key]);
+            if (!$valid) {
                 throw ApiError::field(422, 'validation_error', (string) $key, 'Réglage inconnu ou valeur invalide.');
             }
         }
