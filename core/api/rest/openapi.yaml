@@ -6717,6 +6717,25 @@ paths:
                   expiresAt: { type: integer, nullable: true }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      tags: [Configuration]
+      operationId: openMarketSupportAccess
+      summary: Autoriser l’accès support de la box pendant sept jours
+      description: Réservé aux administrateurs hors sessions de support et mode démo. Conserve l’échéance d’un accès déjà ouvert.
+      responses:
+        '200':
+          description: Date d’expiration en secondes Unix, ou null si l’autorisation a été révoquée pendant l’ouverture.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [expiresAt]
+                properties:
+                  expiresAt: { type: integer, nullable: true }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '502': { $ref: '#/components/responses/BadGateway' }
     delete:
       tags: [Configuration]
       operationId: revokeMarketSupportAccess

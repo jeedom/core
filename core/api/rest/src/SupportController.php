@@ -62,6 +62,29 @@ final class SupportController
             ['expiresAt' => \supportAccess::current()['expiresAt'] ?? null]);
     }
 
+    public function open(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        if (in_array($request->getAttribute('user')->getLogin(), ['demo', \supportAccess::LOGIN], true)) {
+            throw new ApiError(403, 'forbidden', 'Cette session ne peut pas ouvrir l’accès support.');
+        }
+        if (!\repo_market::isConnected()) {
+            throw new ApiError(409, 'market_not_connected', 'Connectez ce Jeedom au Market avant d’ouvrir l’accès support.');
+        }
+
+        try {
+            \supportAccess::withAuthorization(\repo_market::openTemporarySupport(...));
+        } catch (\DomainException $exception) {
+            throw new ApiError(409, 'market_secure_connection_required', $exception->getMessage());
+        } catch (\Exception $exception) {
+            throw match ($exception->getCode()) {
+                401 => new ApiError(409, 'market_not_connected', 'Reconnectez ce Jeedom au Market.'),
+                default => new ApiError(502, 'market_unavailable', 'Le Market n’a pas confirmé l’ouverture de l’accès support.'),
+            };
+        }
+        return $this->status($request, $response);
+    }
+
     public function close(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
