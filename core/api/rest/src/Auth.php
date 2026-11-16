@@ -76,7 +76,7 @@ final class Auth implements MiddlewareInterface
             return false;
         }
         if ($mode === 'daemon') {
-            return \daemonSession::allowed($user, $scope);
+            return \plugin::allowsDaemonSession($user, $scope);
         }
         if ((int) $user->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
             return false;

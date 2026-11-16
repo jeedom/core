@@ -2,7 +2,6 @@
 
 // The standalone REST suites do not load the Core autoloader.
 require_once dirname(__DIR__, 2) . '/core/class/supportAccess.class.php';
-require_once dirname(__DIR__, 2) . '/core/class/daemonSession.class.php';
 
 function fixtureRestToken(string $name): string {
     return hash('sha256', 'fixture-session:' . $name);

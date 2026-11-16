@@ -24,7 +24,7 @@ final class DaemonController
             throw new ApiError(409, 'daemon_rest_unavailable', 'Le démon du plugin ne prend pas en charge cet accès.');
         }
         try {
-            \daemonSession::credentialFile($id, true);
+            \plugin::daemonCredentialFile($id, true);
         } catch (\DomainException $error) {
             throw new ApiError(409, 'daemon_rest_unavailable', $error->getMessage());
         }
@@ -34,7 +34,7 @@ final class DaemonController
     public function updateCommand(Request $request, Response $response, array $args): Response
     {
         $user = $request->getAttribute('user');
-        if (!\daemonSession::allowed($user, $args['id']) || $request->getAttribute('webSessionId') !== null) {
+        if (!\plugin::allowsDaemonSession($user, $args['id']) || $request->getAttribute('webSessionId') !== null) {
             throw new ApiError(403, 'scope_forbidden', 'Callback réservé au démon de ce plugin.');
         }
         $cmd = ctype_digit($args['commandId']) ? \cmd::byId($args['commandId']) : null;

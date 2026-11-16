@@ -492,7 +492,7 @@ final class UsersController
             'login' => (string) $user->getLogin(),
             'profils' => (string) $user->getProfils(),
             'enable' => (int) $user->getEnable() === 1,
-            'kind' => \daemonSession::reservedLogin($user->getLogin()) ? 'plugin' : (self::isSystem($user) ? 'system' : 'human'),
+            'kind' => \plugin::isDaemonAccount($user->getLogin()) ? 'plugin' : (self::isSystem($user) ? 'system' : 'human'),
             'twoFactorEnabled' => (int) $user->getOptions('twoFactorAuthentification', 0) === 1,
             'lastConnection' => is_string($last) && $last !== '' && strtotime($last) !== false ? date('c', strtotime($last)) : null,
             'options' => $options,
@@ -609,7 +609,7 @@ final class UsersController
 
     public static function isSystem(\user $user): bool
     {
-        return in_array($user->getLogin(), self::SYSTEM_LOGINS, true) || \daemonSession::reservedLogin($user->getLogin());
+        return in_array($user->getLogin(), self::SYSTEM_LOGINS, true) || \plugin::isDaemonAccount($user->getLogin());
     }
 
     /**
