@@ -190,10 +190,51 @@ final class UsersController
         return Json::respond($response, self::sessionList($request, self::find($args['id'])));
     }
 
+    public function activeSessions(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $accounts = [];
+        foreach (\user::all() as $user) {
+            if ($user->isValidAndEnabled()) {
+                $accounts[(int) $user->getId()] = $user;
+            }
+        }
+        $legacy = LegacySessions::active();
+        $current = $request->getAttribute('restSessionId');
+        $items = [];
+        foreach (array_merge(\session::activeConnections($accounts), $legacy ?? []) as $session) {
+            $user = $accounts[$session['user_id']] ?? null;
+            if ($user === null) {
+                continue;
+            }
+            $items[] = self::sessionInfo($session, $current) + [
+                'userId' => (int) $user->getId(), 'login' => $user->getLogin(), 'kind' => self::kind($user),
+                'userAgent' => $session['user_agent'],
+            ];
+        }
+        usort($items, static fn (array $a, array $b): int => [$b['current'], $b['datetime']] <=> [$a['current'], $a['datetime']]);
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), [
+            'items' => $items, 'total' => count($items), 'legacyAvailable' => $legacy !== null,
+        ]);
+    }
+
     public function closeSession(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
         self::closeOne($request, self::find($args['id']), $args['sessionId']);
+        return $response->withStatus(204);
+    }
+
+    public function closeLegacySession(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        if ($request->getAttribute('user')->getLogin() === 'demo') {
+            throw new ApiError(403, 'forbidden', 'Cette action est réservée aux administrateurs hors mode démo.');
+        }
+        $user = self::find($args['id']);
+        if (!preg_match('/\A[0-9a-f]{64}\z/', $args['sessionId']) || !LegacySessions::revoke($user, $args['sessionId'])) {
+            throw new ApiError(404, 'session_not_found', 'Session inconnue.');
+        }
         return $response->withStatus(204);
     }
 
@@ -491,7 +532,7 @@ final class UsersController
             'login' => (string) $user->getLogin(),
             'profils' => (string) $user->getProfils(),
             'enable' => (int) $user->getEnable() === 1,
-            'kind' => \plugin::isDaemonAccount($user->getLogin()) ? 'plugin' : (self::isSystem($user) ? 'system' : 'human'),
+            'kind' => self::kind($user),
             'twoFactorEnabled' => (int) $user->getOptions('twoFactorAuthentification', 0) === 1,
             'lastConnection' => is_string($last) && $last !== '' && strtotime($last) !== false ? date('c', strtotime($last)) : null,
             'options' => $options,
@@ -504,24 +545,34 @@ final class UsersController
         return (object) (is_array($rights) ? $rights : []);
     }
 
+    private static function kind(\user $user): string
+    {
+        return \plugin::isDaemonAccount($user->getLogin()) ? 'plugin' : (self::isSystem($user) ? 'system' : 'human');
+    }
+
     private static function sessionList(Request $request, \user $user, bool $remembered = false): array
     {
         $current = $request->getAttribute('restSessionId');
         $items = [];
         foreach (\session::connections($user, $remembered) as $session) {
-            $items[] = [
-                ($remembered ? 'key' : 'id') => $session['id'],
-                'ip' => $session['ip'],
-                'datetime' => str_replace(' ', 'T', $session['last_activity_at']) . 'Z',
-                'expiresAt' => str_replace(' ', 'T', $session['expires_at']) . 'Z',
-                'current' => $session['id'] === $current,
-            ] + ($remembered ? [] : [
-                'name' => $session['client_name'],
-                'type' => $session['mode'],
-                'scope' => $session['scope'] === '' ? null : $session['scope'],
-            ]);
+            $items[] = self::sessionInfo($session, $current, $remembered);
         }
         return ['items' => $items, 'total' => count($items)];
+    }
+
+    private static function sessionInfo(array $session, ?string $current, bool $remembered = false): array
+    {
+        return [
+            ($remembered ? 'key' : 'id') => $session['id'],
+            'ip' => $session['ip'],
+            'datetime' => str_replace(' ', 'T', $session['last_activity_at']) . 'Z',
+            'expiresAt' => str_replace(' ', 'T', $session['expires_at']) . 'Z',
+            'current' => $session['id'] === $current,
+        ] + ($remembered ? [] : [
+            'name' => $session['client_name'],
+            'type' => $session['mode'],
+            'scope' => $session['scope'] === '' ? null : $session['scope'],
+        ]);
     }
 
     private static function closeOne(Request $request, \user $user, string $id): void

@@ -272,6 +272,7 @@ final class App
             $users = new UsersController();
             $api->get('/users', $users->list(...));
             $api->post('/users', $users->create(...));
+            $api->get('/users/sessions', $users->activeSessions(...));
             $api->get('/users/{id}', $users->get(...));
             $api->patch('/users/{id}', $users->update(...));
             $api->delete('/users/{id}', $users->delete(...));
@@ -281,6 +282,7 @@ final class App
             $api->get('/users/{id}/sessions', $users->sessions(...));
             $api->delete('/users/{id}/sessions', $users->closeSessions(...));
             $api->delete('/users/{id}/sessions/{sessionId}', $users->closeSession(...));
+            $api->delete('/users/{id}/legacy-sessions/{sessionId}', $users->closeLegacySession(...));
             $api->get('/users/{id}/rights', $users->rights(...));
             $api->put('/users/{id}/rights', $users->replaceRights(...));
             $api->post('/users/{id}/rights/copy', $users->copyRights(...));
