@@ -936,6 +936,19 @@ class plugin {
 		return str_starts_with(strtolower($login), self::DAEMON_LOGIN_PREFIX);
 	}
 
+	public static function daemonAccountPluginName(string $login): ?string {
+		static $names = null;
+		if ($names === null) {
+			$names = [];
+			foreach (self::listPlugin() as $plugin) {
+				$id = $plugin->getId();
+				$name = trim((string) $plugin->getName());
+				$names[self::daemonLogin($id)] = $name === '' ? $id : $name;
+			}
+		}
+		return $names[$login] ?? null;
+	}
+
 	public static function allowsDaemonSession(user $account, string $pluginId): bool {
 		return self::validDaemonPluginId($pluginId)
 			&& $account->getLogin() === self::daemonLogin($pluginId)

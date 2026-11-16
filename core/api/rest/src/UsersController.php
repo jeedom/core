@@ -527,16 +527,17 @@ final class UsersController
         if (in_array($mode, self::API_MODES, true)) {
             $options['api::mode'] = $mode;
         }
+        $kind = self::kind($user);
         return [
             'id' => (int) $user->getId(),
             'login' => (string) $user->getLogin(),
             'profils' => (string) $user->getProfils(),
             'enable' => (int) $user->getEnable() === 1,
-            'kind' => self::kind($user),
+            'kind' => $kind,
             'twoFactorEnabled' => (int) $user->getOptions('twoFactorAuthentification', 0) === 1,
             'lastConnection' => is_string($last) && $last !== '' && strtotime($last) !== false ? date('c', strtotime($last)) : null,
             'options' => $options,
-        ];
+        ] + ($kind === 'plugin' ? ['daemonPluginName' => \plugin::daemonAccountPluginName($user->getLogin())] : []);
     }
 
     private static function rightsOf(\user $user): object

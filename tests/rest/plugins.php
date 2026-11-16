@@ -246,6 +246,12 @@ call('POST', '/plugins/without-handler/daemon/messages', 404, $messages, token: 
 check(fixture::$messages === [$messages['messages']], 'Only the authorized plugin daemon may deliver its message batch');
 config::save('active', 0, 'fixture');
 config::save('active', 0, 'without-handler');
+$daemonAccount = call('GET', '/users/3');
+check($daemonAccount['kind'] === 'plugin' && $daemonAccount['daemonPluginName'] === 'Plugin de recette'
+    && $daemonAccount['login'] === user::byId(3)->getLogin(), 'An existing daemon account should show the installed plugin name without changing its login');
+$missingPlugin = call('GET', '/users/4');
+check($missingPlugin['kind'] === 'plugin' && array_key_exists('daemonPluginName', $missingPlugin)
+    && $missingPlugin['daemonPluginName'] === null, 'Daemon accounts for removed plugins must remain visible');
 check(jeedom::version() === '5.0.0', 'Wrong Core version');
 call('GET', '/market/catalog', 401, token: null);
 call('GET', '/market/catalog', 403, token: 'member');

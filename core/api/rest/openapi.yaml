@@ -8621,6 +8621,10 @@ components:
         profils: { $ref: '#/components/schemas/UserProfile' }
         enable: { type: boolean, example: true }
         kind: { $ref: '#/components/schemas/UserKind' }
+        daemonPluginName:
+          type: [string, 'null']
+          readOnly: true
+          description: Nom du plugin du compte démon, ou null si le plugin est introuvable.
         twoFactorEnabled:
           type: boolean
           readOnly: true
