@@ -8326,7 +8326,7 @@ components:
       type: object
       required: [type]
       properties:
-        type: { type: string, enum: [boolean, number, string, password, select, expression] }
+        type: { type: string, enum: [boolean, number, string, password, select, expression, cron, textarea, icon, time, date, datetime] }
         label: { type: string }
         description: { type: string }
         enum: { type: array, items: { type: string }, minItems: 1 }

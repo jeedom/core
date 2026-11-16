@@ -167,7 +167,7 @@ final class PluginSettings
             }
             $field = (array) $field;
             if (array_diff(array_keys($field), $properties)
-                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string', 'password', 'select', 'expression'], true)
+                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string', 'password', 'select', 'expression', 'cron', 'textarea', 'icon', 'time', 'date', 'datetime'], true)
                 || ($section === 'plugin' && $field['type'] !== 'password' && \config::shouldBeEncrypted((string) $key, $id))) {
                 self::invalidSchema();
             }
@@ -332,7 +332,7 @@ final class PluginSettings
                     default => null,
                 },
                 'number' => is_numeric($value) ? $value + 0 : null,
-                'select', 'string', 'expression' => $value,
+                'select', 'string', 'expression', 'cron', 'textarea', 'icon', 'time', 'date', 'datetime' => $value,
                 'password' => null,
             };
             $values[$key] = self::valid($value, $field) ? $value : null;
@@ -375,9 +375,43 @@ final class PluginSettings
             'password' => is_string($value) && $value !== '',
             'select' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
                 && in_array($value, array_column($field['options'], 'value'), true),
-            'string', 'expression' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
+            'cron', 'time', 'date', 'datetime' => is_string($value) && ($value === ''
+                ? !($field['required'] ?? false)
+                : self::validFormattedValue($value, $field['type'])),
+            'string', 'expression', 'textarea', 'icon' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
                 && (!isset($field['enum']) || in_array($value, $field['enum'], true)),
         };
+    }
+
+    private static function validFormattedValue(string $value, string $type): bool
+    {
+        return match ($type) {
+            'cron' => self::validSchedule($value),
+            'time' => self::validTime($value),
+            'date' => self::validDate($value),
+            'datetime' => preg_match('/\A(\d{4}-\d{2}-\d{2})[ T](.+)\z/', $value, $parts)
+                && self::validDate($parts[1]) && self::validTime($parts[2]),
+        };
+    }
+
+    private static function validSchedule(string $value): bool
+    {
+        try {
+            return \Cron\CronExpression::isValidExpression(\checkAndFixCron($value));
+        } catch (\Throwable) {
+            return false;
+        }
+    }
+
+    private static function validDate(string $value): bool
+    {
+        return preg_match('/\A(\d{4})-(\d{2})-(\d{2})\z/', $value, $parts)
+            && checkdate((int) $parts[2], (int) $parts[3], (int) $parts[1]);
+    }
+
+    private static function validTime(string $value): bool
+    {
+        return preg_match('/\A(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?\z/', $value) === 1;
     }
 
     private static function validEntityValue(mixed $value, array $field): bool
