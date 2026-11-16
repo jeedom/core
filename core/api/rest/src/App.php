@@ -126,6 +126,12 @@ final class App
             $api->patch('/notes/{id}', $notes->update(...));
             $api->delete('/notes/{id}', $notes->delete(...));
 
+            $timeline = new TimelineController();
+            $api->get('/timeline', $timeline->list(...));
+            $api->delete('/timeline', $timeline->empty(...));
+            $api->get('/timeline/folders', $timeline->folders(...));
+            $api->delete('/timeline/future', $timeline->removeFuture(...));
+
             $crons = new CronsController();
             $api->get('/crons', $crons->list(...));
             $api->post('/crons', $crons->create(...));
