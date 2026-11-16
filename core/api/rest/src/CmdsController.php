@@ -230,9 +230,14 @@ final class CmdsController
 
     public function value(Request $request, Response $response, array $args): Response
     {
-        $cmd = self::findReadable($args['id'], $request->getAttribute('user'));
+        $user = $request->getAttribute('user');
+        $cmd = self::findReadable($args['id'], $user);
         if ($cmd->getType() !== 'info') {
-            return Json::respond($response, ['value' => self::scalar($cmd->getConfiguration('lastCmdValue', null)), 'collectDate' => null, 'valueDate' => null]);
+            $value = ['value' => self::scalar($cmd->getConfiguration('lastCmdValue', null)), 'collectDate' => null, 'valueDate' => null];
+            if ($user->getProfils() === 'admin' && $request->getAttribute('webSessionId') !== null) {
+                $value['lastExecutionUser'] = self::nullableString($cmd->getCache('lastExecutionUser'));
+            }
+            return Json::respond($response, $value);
         }
         $value = $cmd->execCmd();
         return Json::respond($response, [

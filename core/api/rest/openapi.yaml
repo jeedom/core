@@ -5580,7 +5580,8 @@ paths:
         Remplace l'ajax `execCmd` et le JSON-RPC `cmd::execCmd` sur une
         commande info (valeur du cache, sans interroger l'appareil). Pour
         une commande action, renvoie la dernière valeur envoyée
-        (`lastCmdValue`). Demande le droit de lecture.
+        (`lastCmdValue`). Une session web administrateur reçoit aussi
+        le dernier utilisateur ayant exécuté l'action. Demande le droit de lecture.
       responses:
         '200':
           description: Valeur courante.
@@ -9019,6 +9020,7 @@ components:
         value: { type: [string, number, boolean, 'null'], example: 21.5 }
         collectDate: { type: [string, 'null'], description: Dernière remontée., example: '2026-11-05 10:40:12' }
         valueDate: { type: [string, 'null'], description: Dernier changement de valeur. }
+        lastExecutionUser: { type: [string, 'null'], description: Dernier utilisateur ayant exécuté la commande action. Réservé aux sessions web administrateur. }
 
     CmdHistory:
       type: object
