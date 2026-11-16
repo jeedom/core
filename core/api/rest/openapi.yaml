@@ -3747,6 +3747,11 @@ paths:
       operationId: openSupportSession
       summary: Ouvrir une session temporaire du support
       security: []
+      parameters:
+        - name: X-Jeedom-Web-Login
+          in: header
+          description: Permet la connexion Web derrière un proxy. Ne doit pas être autorisé par CORS.
+          schema: { type: string, enum: ['1'] }
       requestBody:
         required: true
         content:

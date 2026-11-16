@@ -19,11 +19,7 @@ final class SessionController
             self::mixed();
         }
         if ($mode === 'web') {
-            RequestSecurity::requireSameOriginFetch($request);
-            // Cet en-tête ne doit pas être autorisé par une politique CORS.
-            if ($request->getHeaderLine('X-Jeedom-Web-Login') !== '1') {
-                throw new ApiError(403, 'web_login_header_required', 'En-tête de connexion Web manquant ou invalide.');
-            }
+            self::requireWebLogin($request);
         }
         foreach (['login', 'password'] as $field) {
             if (!is_string($body[$field] ?? null) || $body[$field] === '') {
@@ -108,7 +104,11 @@ final class SessionController
 
     public function openSupport(Request $request, Response $response): Response
     {
-        RequestSecurity::requireOrigin($request);
+        if ($request->hasHeader('X-Jeedom-Web-Login')) {
+            self::requireWebLogin($request);
+        } elseif ($request->getHeaderLine('Sec-Fetch-Site') !== 'same-origin') {
+            RequestSecurity::requireOrigin($request);
+        }
         if ($request->hasHeader('Authorization') || !str_starts_with(strtolower($request->getHeaderLine('Content-Type')), 'application/json')) {
             throw new ApiError(403, 'support_access_unavailable', 'Accès support indisponible.');
         }
@@ -241,6 +241,15 @@ final class SessionController
             ->withAddedHeader('Set-Cookie', self::accessCookieName($secure) . '=' . $connection['token'] . '; Path=/' . $flags . ($connection['remembered'] ? $expires($connection['expires']) : ''))
             ->withAddedHeader('Set-Cookie', self::refreshCookieName($secure) . '=' . $connection['refreshToken'] . '; Path=/api/v1/session' . $flags
                 . ($connection['remembered'] ? $expires($connection['refreshExpires']) : ''));
+    }
+
+    private static function requireWebLogin(Request $request): void
+    {
+        RequestSecurity::requireSameOriginFetch($request);
+        // Cet en-tête ne doit pas être autorisé par une politique CORS.
+        if ($request->getHeaderLine('X-Jeedom-Web-Login') !== '1') {
+            throw new ApiError(403, 'web_login_header_required', 'En-tête de connexion Web manquant ou invalide.');
+        }
     }
 
     private static function requireCsrf(Request $request, array $row): void
