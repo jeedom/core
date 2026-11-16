@@ -141,6 +141,8 @@ tags:
     description: Diagnostics et opérations système réservés aux administrateurs.
   - name: Diagnostic
     description: Références manquantes, règles et testeur d’expressions.
+  - name: Chronologie
+    description: Événements des commandes et des scénarios suivis dans la timeline.
 
 paths:
   /diagnostic/references:
@@ -5755,6 +5757,86 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
 
+  /timeline:
+    get:
+      tags: [Chronologie]
+      operationId: listTimeline
+      summary: Lister les événements de la chronologie
+      description: |
+        Remplace l'ajax `byFolder` de `timeline.ajax.php` (`timeline::byFolder`).
+        Événements du plus récent au plus ancien. Un événement dont la commande
+        ou le scénario n'existe plus, ou n'est pas lisible par l'utilisateur
+        (`timeline::hasRight`), n'est jamais renvoyé ni compté dans `total`.
+        La rétention (`timeline::maxevent`) est appliquée avant la lecture.
+        Contrairement à l'ajax, la réponse est structurée : pas de HTML.
+        Un événement appartient à un seul dossier ; le filtre est une égalité.
+      parameters:
+      - name: folder
+        in: query
+        description: Dossier à lire. `main` renvoie les événements de tous les dossiers.
+        schema: { type: string, default: main, maxLength: 127 }
+      - name: start
+        in: query
+        description: Nombre d'événements lisibles à sauter.
+        schema: { type: integer, minimum: 0, default: 0 }
+      - name: offset
+        in: query
+        description: "Nombre d'événements à renvoyer (comme `offset` de l'ajax, qui est une taille de page). `0` ou absent : tous."
+        schema: { type: integer, minimum: 0, maximum: 500, default: 0 }
+      responses:
+        '200':
+          description: Page d'événements ; `total` est le nombre d'événements lisibles du dossier, avant `start` et `offset`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      tags: [Chronologie]
+      operationId: emptyTimeline
+      summary: Vider la chronologie
+      description: Remplace l'ajax `deleteAll` (`timeline::clean(true)`). Supprime tous les événements, tous dossiers confondus. Réservé aux administrateurs.
+      responses:
+        '204': { description: Chronologie vidée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /timeline/folders:
+    get:
+      tags: [Chronologie]
+      operationId: listTimelineFolders
+      summary: Lister les dossiers de la chronologie
+      description: Remplace l'ajax `listFolder` (`timeline::listFolder`). `main` est toujours le premier, les autres sont triés par nom.
+      responses:
+        '200':
+          description: Noms des dossiers.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { type: string }
+                    example: [main, chauffage, securite]
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /timeline/future:
+    delete:
+      tags: [Chronologie]
+      operationId: removeFutureTimeline
+      summary: Supprimer les événements datés dans le futur
+      description: Remplace l'ajax `removeEventInFutur` (`timeline::removeEventInFutur`), comme `/history/future` pour l'historique. Réservé aux administrateurs.
+      responses:
+        '204': { description: Événements supprimés. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
   /history/future:
     delete:
       tags: [Commandes]
@@ -7690,6 +7772,43 @@ components:
       properties:
         name: { type: string, minLength: 1, maxLength: 127 }
         text: { type: string }
+    TimelineEvent:
+      type: object
+      required: [id, type, subtype, folder, link_id, datetime, name, options]
+      properties:
+        id: { type: integer, example: 412 }
+        type:
+          type: string
+          enum: [cmd, scenario]
+          description: Nature de l'élément suivi.
+        subtype:
+          type: [string, 'null']
+          enum: [action, info, null]
+          description: Pour une commande, `action` (exécution) ou `info` (changement de valeur) ; `null` pour un scénario.
+        folder: { type: string, example: main, description: "Dossier de l'événement (un seul)." }
+        link_id:
+          type: integer
+          description: Identifiant de la commande (`type` = `cmd`) ou du scénario (`type` = `scenario`).
+        datetime: { type: string, format: date-time, description: "Date de l'événement (heure du serveur, avec décalage)." }
+        name: { type: string, description: "Nom lisible de la commande ou du scénario, en texte brut." }
+        options:
+          type: object
+          description: Détails selon le type. Les clés absentes ne s'appliquent pas à l'événement.
+          properties:
+            value: { type: string, description: "Pour une info, valeur suivie de son unité." }
+            cmdType: { type: string, example: binary, description: "Pour une info, sous-type de la commande." }
+            trigger: { type: string, description: "Pour un scénario, déclencheur, en texte brut." }
+    TimelineList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimelineEvent'
+        total:
+          type: integer
+          minimum: 0
     NoteList:
       type: object
       required: [items, total]
