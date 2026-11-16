@@ -8,8 +8,9 @@ final class session {
 		AND previous_refresh_expires_at > UTC_TIMESTAMP()))';
 
 	public static function create(user $actor, bool $remember, string $ip, ?string $previous, ?int $expiresBefore = null,
-		string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false, string $userAgent = ''): array {
-		$connection = self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly, $userAgent): array {
+		string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false, string $userAgent = '',
+		bool $recordLastConnection = false): array {
+		$connection = self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly, $userAgent, $recordLastConnection): array {
 			$id = self::secret();
 			$csrf = self::secret();
 			$pair = self::pair(self::secret(), self::secret(), $expiresBefore);
@@ -34,6 +35,9 @@ final class session {
 				'mode' => $mode, 'name' => $name, 'scope' => $scope, 'accessExpires' => $refreshOnly ? null : self::date($pair['expires']),
 				'expires' => self::date($pair['refreshExpires']), 'hardExpires' => $expiresBefore === null ? null : self::date($expiresBefore),
 			] + self::clientMetadata($refreshOnly ? '' : $ip, $refreshOnly ? '' : $userAgent));
+			if ($recordLastConnection) {
+				$user->setOptions('lastConnection', date('Y-m-d H:i:s', $now))->save();
+			}
 			return ['id' => $id, 'user' => $user, 'csrfToken' => $csrf, 'remembered' => $remember] + $pair;
 		});
 		log::audit('REST session created', ['sessionId' => $connection['id'], 'userId' => $actor->getId(), 'mode' => $mode]);

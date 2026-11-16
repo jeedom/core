@@ -96,7 +96,8 @@ final class supportAccess {
 				$account->setEnable(1);
 				$account->save();
 			}
-			$connection = session::create($account, false, $ip, $previous, min(time() + 3600, $grant['expiresAt']), userAgent: $userAgent);
+			$connection = session::create($account, false, $ip, $previous, min(time() + 3600, $grant['expiresAt']),
+				userAgent: $userAgent, recordLastConnection: true);
 			log::audit('Support session opened', array('marketOperatorId' => $result['operatorId'], 'ip' => $ip));
 			return $connection;
 		});
