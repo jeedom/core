@@ -66,7 +66,7 @@ class timeline {
     );
     $sql = 'SELECT COUNT(`id`) AS number ' . '
     FROM `timeline`
-    WHERE FIND_IN_SET(:folder, folder) > 0';
+    WHERE `folder`=:folder';
     $count = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
     return $count['number'];
   }
@@ -89,7 +89,7 @@ class timeline {
     );
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline
-    WHERE FIND_IN_SET(:folder, folder) > 0';
+    WHERE `folder`=:folder';
     $sql .= ' ORDER BY datetime DESC';
     if ($_start != 0 || $_offset != 0) {
       $sql .= ' LIMIT '. $_start . ',' . $_offset;
