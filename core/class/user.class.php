@@ -62,6 +62,9 @@ class user {
 	 * @return user|false object user or false if authentication fails
 	 */
 	public static function connect(string $_login, string $_pswd) {
+		if (plugin::isDaemonAccount($_login)) {
+			return false;
+		}
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", 'LDAP Authentication');
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
@@ -486,7 +489,7 @@ class user {
 	}
 
 	public static function raiseForInvalidLogin(string $_login): void {
-		if ($_login != '' && in_array($_login, ['internal_report', 'jeedom_support', supportAccess::LOGIN], true)) {
+		if (plugin::isDaemonAccount($_login) || in_array($_login, ['internal_report', 'jeedom_support', supportAccess::LOGIN], true)) {
 			throw new RunTimeException(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $_login));
 		}
 	}

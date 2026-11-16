@@ -21,15 +21,17 @@ class config {
 class user {
     public static bool $enabled = true;
     public function __construct(private int $id) {}
-    public static function byHash($key) { return match ($key) { 'admin' => new self(1), 'member' => new self(2), default => null }; }
+    public static function isBan(): bool { return false; }
     public static function byId($id) { return new self($id); }
     public function getId() { return $this->id; }
     public function getLogin() { return $this->id === 1 ? 'admin' : 'member'; }
     public function getEnable() { return 1; }
     public function getProfils() { return $this->id === 1 ? 'admin' : 'user'; }
     public function isValidAndEnabled() { return self::$enabled; }
+    public function getOptions($key, $default = '') { return $default; }
 }
 class jeedom {
+    public static function apiModeResult(string $mode): bool { return $mode === 'enable'; }
     public static function version() { return '5.0.0'; }
     public static function getTmpFolder($name) { global $root; $path = $root . '/' . $name; if (!is_dir($path)) mkdir($path); return $path; }
     public static function getDocUrl(...$args) { return 'https://doc.jeedom.com/changelog'; }
@@ -124,9 +126,9 @@ $app = App::create(); $checks = 0;
 function check($condition, $message) { global $checks; $checks++; if (!$condition) throw new RuntimeException($message); }
 function call($method, $path, $status = 200, $body = null, $token = 'admin', $key = 'request-key-00000001') {
     global $app;
-    $request = (new ServerRequestFactory())->createServerRequest($method, 'http://localhost/api/v1' . $path);
+    $request = (new ServerRequestFactory())->createServerRequest($method, 'https://localhost/api/v1' . $path);
     if ($body !== null) { $request->getBody()->write(json_encode($body)); $request = $request->withHeader('Content-Type', 'application/json'); }
-    if ($token !== null) $request = $request->withHeader('Authorization', 'Bearer ' . $token);
+    if ($token !== null) $request = $request->withHeader('Authorization', 'Bearer ' . fixtureRestToken($token));
     if ($key !== null) $request = $request->withHeader('Idempotency-Key', $key);
     $response = $app->handle($request);
     $raw = (string) $response->getBody();
@@ -187,9 +189,13 @@ resetOperation(); system::$coreFails = false; system::$relaunch = true;
 $job = call('POST', '/updates/operations', 202, ['ids' => [1, 2]]); update::executeOperation($job['id']);
 check(call('GET', '/updates/operations/latest')['operation']['state'] === 'succeeded' && !system::$pendingRelaunch, 'Native Core relaunch was not followed to completion');
 system::$relaunch = false;
-resetOperation(); user::$enabled = false;
-$job = call('POST', '/updates/operations', 202, ['ids' => [2]]); update::executeOperation($job['id']);
-check(call('GET', '/updates/operations/latest')['operation']['state'] === 'failed', 'Revoked worker actor was accepted'); user::$enabled = true;
+resetOperation();
+$job = call('POST', '/updates/operations', 202, ['ids' => [2]]);
+user::$enabled = false;
+update::executeOperation($job['id']);
+call('GET', '/updates/operations/latest', 401);
+user::$enabled = true;
+check(call('GET', '/updates/operations/latest')['operation']['state'] === 'failed', 'Revoked worker actor was accepted');
 resetOperation();
 $job = call('POST', '/updates/operations', 202, ['ids' => [2]]);
 config::$values['core']['rest::updateOperation']['createdAt'] = date('c', time() - 130);

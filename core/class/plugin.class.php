@@ -928,6 +928,133 @@ class plugin {
 		}
 	}
 
+	/* Accès REST des démons */
+
+	private const DAEMON_LOGIN_PREFIX = '__rest_daemon_';
+
+	public static function isDaemonAccount(string $login): bool {
+		return str_starts_with(strtolower($login), self::DAEMON_LOGIN_PREFIX);
+	}
+
+	public static function allowsDaemonSession(user $account, string $pluginId): bool {
+		return self::validDaemonPluginId($pluginId)
+			&& $account->getLogin() === self::daemonLogin($pluginId)
+			&& (int) config::byKey('active', $pluginId, 0, true) === 1
+			&& in_array(getClientIp(), ['127.0.0.1', '::1'], true);
+	}
+
+	/** Le plugin transmet à son démon le chemin du fichier contenant le refresh token. */
+	public static function daemonCredentialFile(string $pluginId, bool $reprovision = false): string {
+		if (!self::validDaemonPluginId($pluginId)) {
+			throw new DomainException('Identifiant du plugin invalide.');
+		}
+		$path = self::daemonCredentialPath($pluginId);
+		return self::withDaemonLock($path, static function () use ($pluginId, $path, $reprovision): string {
+			if ((int) config::byKey('active', $pluginId, 0, true) !== 1) {
+				throw new DomainException('Ce plugin est inactif.');
+			}
+			$login = self::daemonLogin($pluginId);
+			$account = user::byLogin($login);
+			if (!$account instanceof user) {
+				if ($reprovision) {
+					throw new DomainException('Le plugin doit d’abord initialiser l’accès REST de son démon.');
+				}
+				$account = (new user())->setLogin($login)->setPassword(bin2hex(random_bytes(32)))
+					->setProfils('restrict')->setEnable(1)->setOptions('api::mode', 'disable');
+				$account->save();
+			} elseif (!$reprovision) {
+				if (is_file($path) && session::connections($account) !== []) {
+					return $path;
+				}
+				throw new DomainException('L’accès REST du démon doit être reprovisionné.');
+			} else {
+				// Une interruption laisse un fichier absent, jamais un ancien jeton avec une nouvelle session.
+				self::deleteDaemonCredential($path);
+				session::revokeAll((int) $account->getId());
+			}
+			$connection = session::create($account, false, '127.0.0.1', null, null, 'daemon', $pluginId, $pluginId, true);
+			try {
+				self::writeDaemonCredential($path, $connection['refreshToken']);
+			} catch (Throwable $error) {
+				session::revoke($account, $connection['id']);
+				throw $error;
+			}
+			return $path;
+		});
+	}
+
+	public static function revokeDaemonSession(string $pluginId): void {
+		if (!self::validDaemonPluginId($pluginId)) {
+			return;
+		}
+		$path = self::daemonCredentialPath($pluginId);
+		$login = self::daemonLogin($pluginId);
+		if (!is_file($path . '.lock') && !user::byLogin($login) instanceof user) {
+			return;
+		}
+		self::withDaemonLock($path, static function () use ($path, $login): void {
+			$account = user::byLogin($login);
+			if ($account instanceof user) {
+				session::revokeAll((int) $account->getId());
+			}
+			self::deleteDaemonCredential($path);
+		});
+	}
+
+	private static function withDaemonLock(string $path, callable $operation) {
+		$directory = dirname($path);
+		if (!is_dir($directory) && !@mkdir($directory, 0700) && !is_dir($directory)) {
+			throw new RuntimeException('Impossible de créer le stockage des accès des démons.');
+		}
+		$lock = fopen($path . '.lock', 'c');
+		if ($lock === false) {
+			throw new RuntimeException('Impossible de verrouiller l’accès du démon.');
+		}
+		try {
+			if (!flock($lock, LOCK_EX)) {
+				throw new RuntimeException('Impossible de verrouiller l’accès du démon.');
+			}
+			return $operation();
+		} finally {
+			fclose($lock);
+		}
+	}
+
+	private static function writeDaemonCredential(string $path, string $refreshToken): void {
+		$temp = tempnam(dirname($path), '.credential-');
+		if ($temp === false) {
+			throw new RuntimeException('Impossible de préparer l’accès du démon.');
+		}
+		try {
+			if (!chmod($temp, 0600) || file_put_contents($temp, json_encode(['refreshToken' => $refreshToken], JSON_THROW_ON_ERROR)) === false
+				|| !rename($temp, $path)) {
+				throw new RuntimeException('Impossible de remettre l’accès au démon.');
+			}
+		} finally {
+			if (is_file($temp)) {
+				unlink($temp);
+			}
+		}
+	}
+
+	private static function deleteDaemonCredential(string $path): void {
+		if (is_file($path) && !unlink($path)) {
+			throw new RuntimeException('Impossible de supprimer le fichier d’accès du démon.');
+		}
+	}
+
+	private static function validDaemonPluginId(string $pluginId): bool {
+		return preg_match('/\A[a-zA-Z0-9_-]{1,80}\z/', $pluginId) === 1;
+	}
+
+	private static function daemonLogin(string $pluginId): string {
+		return self::DAEMON_LOGIN_PREFIX . substr(hash('sha256', $pluginId), 0, 30);
+	}
+
+	private static function daemonCredentialPath(string $pluginId): string {
+		return dirname(__DIR__, 2) . '/data/daemon-sessions/' . $pluginId . '.json';
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function report($_format = 'pdf', $_parameters = array()) {

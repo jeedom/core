@@ -29,7 +29,7 @@ final class EventsController
         $user = $request->getAttribute('user');
 
         // Un onglet peut avoir gardé l'ancienne session après une reconnexion dans un autre onglet.
-        if ($request->hasHeader('X-CSRF-Token') && $request->getAttribute('csrfValid') === false) {
+        if ($request->hasHeader('X-CSRF-Token') && $request->getAttribute('webSessionId') !== null && $request->getAttribute('csrfValid') === false) {
             throw new ApiError(401, 'session_expired', 'Session expirée, reconnectez-vous.');
         }
 
@@ -74,8 +74,7 @@ final class EventsController
                 ->withHeader('Retry-After', '10');
         }
         $filter = new EventFilter($user, $types, $filters);
-        $cookie = $request->getAttribute('webSessionId') !== null ? SessionController::cookie($request) : null;
-        $authorized = $cookie === null ? null : static fn (): bool => Auth::browserSession($cookie) !== null;
+        $authorized = $request->getAttribute('sessionAuthorized');
         $stream = new EventStream($filter, $cursor === '' ? null : (float) $cursor, $maxDuration, $slot, $user, $authorized);
         return $response
             ->withBody($stream)

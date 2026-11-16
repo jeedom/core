@@ -227,6 +227,9 @@ function convertDuration($time) {
 }
 
 function getClientIp() {
+	if (isset($GLOBALS['_JEEDOM_REST_CLIENT_IP'])) {
+		return $GLOBALS['_JEEDOM_REST_CLIENT_IP'];
+	}
 	$sources = array(
 		'HTTP_CF_CONNECTING_IP',
 		'HTTP_X_REAL_IP',

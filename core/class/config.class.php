@@ -152,6 +152,9 @@ class config {
 		plugin=:plugin';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
+		if ($_plugin !== 'core' && $_key === 'active' && (int) $_value !== 1) {
+			plugin::revokeDaemonSession($_plugin);
+		}
 		$function = 'postConfig_' . str_replace(array('::', ':'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$class::$function($_value);
@@ -189,6 +192,9 @@ class config {
 			AND plugin=:plugin';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			unset(self::$cache[$_plugin . '::' . $_key]);
+		}
+		if ($_plugin !== 'core' && ($_key === '*' || ($_key === 'active' && (int) self::byKey('active', $_plugin, 0) !== 1))) {
+			plugin::revokeDaemonSession($_plugin);
 		}
 		return true;
 	}

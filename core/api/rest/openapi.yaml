@@ -39,19 +39,17 @@ info:
     Dans une liste, un élément que l'utilisateur n'a pas le droit de lire est
     simplement absent ; demandé directement, il renvoie 403.
 
-    La nouvelle UI ouvre une session avec `POST /session` (cookie
-    `SameSite=Strict`, même domaine que le core, pas de CORS). En
-    session, toute requête d'écriture (`POST`, `PUT`, `PATCH`, `DELETE`) doit
-    porter l'en-tête `X-CSRF-Token` avec le jeton reçu à l'ouverture ou lu
-    sur `/me` ; sans lui, 403 `csrf_invalid`. Le jeton n'est pas demandé avec
-    `Authorization: Bearer`. Une session expirée renvoie 401
-    `session_expired`, pour que l'UI revienne à l'écran de connexion.
+    Core UI ouvre sa session sur HTTPS avec `POST /session`. Les écritures
+    par cookie exigent l’en-tête `X-CSRF-Token`. Le code `session_refresh_required`
+    indique qu’il faut vérifier la session et renouveler l’accès si nécessaire.
+    Les applications tierces utilisent `Authorization: Bearer`.
 
-    ### Sessions de l'API
-    Les sessions de Core UI sont stockées dans la table InnoDB `session`.
-    Le cookie HttpOnly porte un jeton opaque dont seule l'empreinte est stockée.
-    La durée est de 24 h par défaut, ou de 90 jours avec « Rester connecté ».
-    L'ancienne interface utilise ses propres sessions PHP.
+    ### Sessions de l’API
+    La table InnoDB `session` stocke les empreintes des jetons, ainsi que l’IP
+    et le User-Agent du client à l’ouverture de la session. Le jeton d’accès dure
+    24 h. Le renouvellement repousse l’échéance du refresh token de 90 jours.
+    Core UI utilise par défaut des cookies persistants, HttpOnly, Secure et
+    SameSite=Strict. L’ancienne interface utilise ses propres sessions PHP.
 
     ## Routes déclarées par les plugins
     Un plugin installé et actif peut déclarer ses propres routes sous
@@ -3553,18 +3551,34 @@ paths:
         renvoie 404. Une tâche interrompue donne failed, jamais succeeded. Aucun GET ne lance ou ne rejoue une installation.
 
   /session:
+    get:
+      tags: [Session]
+      operationId: inspectSession
+      summary: Lire l’état de la session Web
+      description: Récupère le CSRF et vérifie le cookie d’accès sans modifier les échéances.
+      security:
+        - sessionCookie: []
+        - refreshCookie: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          schema: { type: string }
+          description: Clé d’une tentative dont la réponse a été perdue.
+      responses:
+        '200':
+          description: État de la session Web.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/WebSessionState' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
     post:
       tags: [Session]
       operationId: openSession
-      summary: Ouvrir une session (connexion)
+      summary: Ouvrir une session sur HTTPS
       description: |
-        Remplace l'ajax `user::login`, avec la même logique que `login()` de
-        `core/php/authentification.php` : compte actif, utilisateur « local
-        uniquement », double authentification hors du réseau local,
-        enregistrement de l'appareil, journal et bannissement après trop
-        d'échecs. Crée une ligne dans la table `session`, pose le cookie
-        (qui porte le jeton, dont seule l'empreinte est stockée) et renvoie
-        l'utilisateur avec le jeton CSRF.
+        Le mode Web vérifie Origin et pose deux cookies. Le mode API renvoie les jetons en JSON.
+        Les deux modes demandent la double authentification lorsqu’elle est activée.
       security: []
       requestBody:
         required: true
@@ -3573,43 +3587,119 @@ paths:
             schema: { $ref: '#/components/schemas/LoginRequest' }
       responses:
         '200':
-          description: Session ouverte (en-tête `Set-Cookie`).
+          description: Session Web ou paire de jetons API. La réponse porte Cache-Control no-store.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Session' }
-        '401':
-          description: |
-            Connexion refusée, avec un code stable :
-            `invalid_credentials` (identifiant ou mot de passe faux, compte
-            désactivé, ou utilisateur local connecté de l'extérieur),
-            `two_factor_required` (renvoyer la demande avec `twoFactorCode`),
-            `two_factor_invalid` (code faux).
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/Error' }
-        '403':
-          description: 'Adresse IP bannie après trop d''échecs (`code: ip_banned`).'
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/Error' }
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Session'
+                  - $ref: '#/components/schemas/ApiSessionTokens'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
     delete:
       tags: [Session]
       operationId: closeSession
-      summary: Fermer la session (déconnexion)
-      description: |
-        Révoque la session courante et efface son cookie. Demande l'en-tête `X-CSRF-Token`.
+      summary: Révoquer la session courante
+      description: En Web, vérifie Origin et CSRF et efface les deux cookies. Le cookie de renouvellement suffit après expiration du jeton d’accès.
       security:
         - sessionCookie: []
+        - refreshCookie: []
+        - bearerAuth: []
       responses:
-        '204': { description: 'Session fermée, cookie effacé.' }
+        '204': { description: Session fermée. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403':
-          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`).'
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /session/refresh:
+    post:
+      tags: [Session]
+      operationId: refreshSession
+      summary: Renouveler une session sur HTTPS
+      description: |
+        En Web, envoyer un objet vide avec les cookies, Origin et X-CSRF-Token. En API, envoyer le refresh token en JSON.
+        Réutiliser la même clé d’idempotence et le même jeton pour relancer une tentative pendant 60 secondes.
+        Un rejeu reconnu hors de cette relance révoque la session.
+      security:
+        - refreshCookie: []
+        - {}
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema: { type: string, pattern: '^[a-zA-Z0-9_-]{16,128}$' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                refreshToken: { type: string, pattern: '^[a-f0-9]{64}$' }
+      responses:
+        '200':
+          description: Cookies renouvelés en Web ou paire de jetons renouvelée en API. La réponse porte Cache-Control no-store.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Error' }
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Session'
+                  - $ref: '#/components/schemas/ApiSessionTokens'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
+  /plugins/{id}/daemon/session:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    post:
+      tags: [Plugins]
+      operationId: provisionDaemonSession
+      summary: Reprovisionner l’accès REST d’un démon
+      description: Administrateur. Révoque l’accès précédent et remet le nouveau jeton au prochain lancement du démon compatible.
+      responses:
+        '204': { description: Accès provisionné. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+
+  /plugins/{id}/daemon/commands/{commandId}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+      - name: commandId
+        in: path
+        required: true
+        schema: { type: integer, minimum: 1 }
+    post:
+      tags: [Plugins]
+      operationId: emitDaemonCommandEvent
+      summary: Publier la valeur d’une commande du plugin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [value]
+              properties:
+                value: { type: [string, number, boolean] }
+      responses:
+        '204': { description: Valeur transmise au Core. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /support/session:
     post:
@@ -3651,6 +3741,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Me' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
     patch:
       tags: [Session]
       operationId: updateMe
@@ -3665,7 +3756,7 @@ paths:
         passe demande l'ancien (`currentPassword`) : s'il est faux, 422
         `invalid_current_password` ; le nouveau suit la règle de
         `NewPassword` (sinon 422 `weak_password`). Le jeton API se gère avec
-        `/me/token`.
+        les accès enregistrés dans `/me/sessions`.
       requestBody:
         required: true
         content:
@@ -3716,7 +3807,6 @@ paths:
       operationId: setupMyTwoFactor
       summary: Préparer l’activation de la double authentification
       description: Crée une clé TOTP temporaire valable dix minutes pour la session courante. Ne modifie pas le compte.
-      security: [{ sessionCookie: [] }]
       parameters:
         - $ref: '#/components/parameters/csrfToken'
       responses:
@@ -3742,7 +3832,6 @@ paths:
       description: |
         Vérifie le mot de passe et le code TOTP. Pour l’activation, le code valide la clé issue de `/me/two-factor/setup`.
         Pour la désactivation, le code valide la clé active, qui est ensuite supprimée. Les autres sessions Core UI sont révoquées.
-      security: [{ sessionCookie: [] }]
       parameters:
         - $ref: '#/components/parameters/csrfToken'
       requestBody:
@@ -3776,51 +3865,13 @@ paths:
               schema: { $ref: '#/components/schemas/Error' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
-  /me/token:
-    get:
-      tags: [Session]
-      operationId: getMyToken
-      summary: Lire son jeton API
-      description: |
-        Renvoie le jeton (`hash` du core) à utiliser dans `Authorization:
-        Bearer …`. Le jeton n'apparaît jamais dans `/users`, même pour un
-        administrateur. Comptes système refusés.
-      responses:
-        '200':
-          description: Le jeton.
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/ApiToken' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
-    post:
-      tags: [Session]
-      operationId: regenerateMyToken
-      summary: Régénérer son jeton API
-      description: |
-        Crée un nouveau jeton ; l'ancien cesse aussitôt de fonctionner (les
-        intégrations qui l'utilisent devront être mises à jour). Remet à zéro
-        la date de rotation automatique (`hashGenerated`).
-      responses:
-        '201':
-          description: Le nouveau jeton.
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/ApiToken' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '403':
-          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`), ou compte système.'
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/Error' }
-
   /me/devices:
     get:
       tags: [Session]
       operationId: listMyDevices
       summary: Lister ses appareils enregistrés
       description: |
-        Sessions longues ouvertes avec « Rester connecté ». La clé identifie
+        Sessions Web persistantes. La clé identifie
         la session dans la liste, indépendamment du jeton du cookie.
       responses:
         '200':
@@ -3861,7 +3912,7 @@ paths:
       operationId: listMySessions
       summary: Lister ses sessions ouvertes
       description: |
-        Sessions actives de Core UI pour ce compte. L'identifiant public est
+        Sessions Web et API actives pour ce compte. L'identifiant public est
         indépendant du jeton d'authentification.
       responses:
         '200':
@@ -3870,6 +3921,28 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/SessionInfoList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+
+    post:
+      tags: [Session]
+      operationId: createApiSession
+      summary: Générer un accès API délégué
+      description: |
+        Demande le mot de passe et le code de double authentification si elle est activée.
+        Renvoie une seule fois le jeton de renouvellement initial. Le périmètre reste borné aux droits du compte.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DelegatedSessionRequest' }
+      responses:
+        '201':
+          description: Jeton initial. La réponse porte Cache-Control no-store.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DelegatedSession' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /me/sessions/{sessionId}:
     parameters:
@@ -6528,11 +6601,13 @@ components:
     sessionCookie:
       type: apiKey
       in: cookie
-      name: JeedomSession
-      description: |
-        Session de la nouvelle UI, ouverte par `POST /session` (cookie
-        `__Host-JeedomSession` en HTTPS). Les requêtes d'écriture exigent
-        l'en-tête `X-CSRF-Token`.
+      name: __Host-JeedomAccess
+      description: Cookie d’accès Web HTTPS. Les écritures exigent X-CSRF-Token.
+    refreshCookie:
+      type: apiKey
+      in: cookie
+      name: __Secure-JeedomRefresh
+      description: Cookie de renouvellement Web HTTPS limité à /api/v1/session.
 
   headers:
     SystemFileETag:
@@ -8487,16 +8562,6 @@ components:
           description: Commande de notification, au format `#[Objet][Équipement][Commande]#`.
           example: '#[Maison][Téléphone][Notification]#'
 
-    ApiToken:
-      type: object
-      required: [token, generatedAt]
-      properties:
-        token: { type: string, description: Jeton API (`hash` du core)., example: 'aBcD…' }
-        generatedAt:
-          type: [string, 'null']
-          format: date-time
-          description: Date de création du jeton (`options.hashGenerated`).
-
     MeUpdate:
       type: object
       additionalProperties: false
@@ -8533,6 +8598,9 @@ components:
         datetime: { type: string, format: date-time, description: Dernière activité. }
         expiresAt: { type: string, format: date-time, description: Expiration de la session. }
         current: { type: boolean, description: Session de la requête en cours. }
+        name: { type: string, description: Nom du client. }
+        type: { type: string, enum: [web, api, daemon] }
+        scope: { type: [string, 'null'], description: Périmètre délégué ou identifiant du plugin. }
 
     SessionInfoList:
       type: object
@@ -8547,14 +8615,15 @@ components:
       properties:
         login: { type: string, minLength: 1, example: admin }
         password: { type: string, format: password, minLength: 1 }
+        mode: { type: string, enum: [web, api], default: web }
+        clientName: { type: string, minLength: 1, maxLength: 100 }
         twoFactorCode:
           type: string
-          description: Code de la double authentification, demandé hors du réseau local si l'utilisateur l'a activée.
+          description: Code de la double authentification quand elle est activée.
           example: '123456'
         rememberDevice:
           type: boolean
-          default: false
-          description: Ouvre une session longue de 90 jours.
+          description: En mode Web, les cookies persistent par défaut après la fermeture du navigateur. Envoyer false pour limiter leur durée à la session du navigateur.
 
     Session:
       type: object
@@ -8562,6 +8631,40 @@ components:
       properties:
         user: { $ref: '#/components/schemas/Me' }
         csrfToken: { type: string, description: Jeton à renvoyer dans l'en-tête `X-CSRF-Token` des écritures. }
+
+    WebSessionState:
+      type: object
+      required: [sessionId, csrfToken, accessValid]
+      properties:
+        sessionId: { type: string }
+        csrfToken: { type: string }
+        accessValid: { type: boolean }
+
+    ApiSessionTokens:
+      type: object
+      required: [accessToken, refreshToken, accessExpiresAt, refreshExpiresAt]
+      properties:
+        accessToken: { type: string, pattern: '^[a-f0-9]{64}$' }
+        refreshToken: { type: string, pattern: '^[a-f0-9]{64}$' }
+        accessExpiresAt: { type: string, format: date-time }
+        refreshExpiresAt: { type: string, format: date-time }
+
+    DelegatedSessionRequest:
+      type: object
+      required: [clientName, scope, password]
+      properties:
+        clientName: { type: string, minLength: 1, maxLength: 100 }
+        scope: { type: string, enum: [read, control], description: Lecture domotique ou lecture avec exécution des commandes. }
+        password: { type: string, format: password, minLength: 1 }
+        twoFactorCode: { type: string }
+
+    DelegatedSession:
+      type: object
+      required: [id, refreshToken, refreshExpiresAt]
+      properties:
+        id: { type: string, pattern: '^[a-f0-9]{64}$' }
+        refreshToken: { type: string, pattern: '^[a-f0-9]{64}$' }
+        refreshExpiresAt: { type: string, format: date-time }
 
     CmdType:
       type: string
