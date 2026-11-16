@@ -48,4 +48,21 @@ final class DaemonController
         $cmd->event($body['value']);
         return $response->withStatus(204);
     }
+
+    public function receiveMessages(Request $request, Response $response, array $args): Response
+    {
+        $id = $args['id'];
+        if ($request->getAttribute('daemonPluginId') !== $id) {
+            throw new ApiError(403, 'scope_forbidden', 'Envoi réservé au démon de ce plugin.');
+        }
+        if (!method_exists($id, 'handleDaemonMessages') || !is_callable([$id, 'handleDaemonMessages'])) {
+            throw new ApiError(404, 'daemon_handler_not_found', 'Ce plugin ne traite pas de lots de messages.');
+        }
+        $body = Json::body($request, 5 * 1024 * 1024);
+        if (count($body) !== 1 || !is_array($body['messages'] ?? null)) {
+            throw ApiError::field(422, 'validation_error', 'messages', 'Un lot de messages est attendu.');
+        }
+        $id::handleDaemonMessages($body['messages']);
+        return $response->withStatus(204)->withHeader('Cache-Control', 'no-store');
+    }
 }

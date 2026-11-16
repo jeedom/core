@@ -24,10 +24,13 @@ class user {
     private ?int $enable = null;
     public function __construct(private int $id) {}
     public static function isBan(): bool { return false; }
-    public static function byId($id) { return in_array($id, [1, 2], true) ? new self($id) : null; }
+    public static function byId($id) { return in_array($id, [1, 2, 3, 4], true) ? new self($id) : null; }
     public static function byProfils($profile, $enabled) { return [new self(1)]; }
     public function getId() { return $this->id; }
-    public function getLogin() { return 'fixture-' . $this->id; }
+    public function getLogin() {
+        $daemon = [3 => 'fixture', 4 => 'without-handler'][$this->id] ?? null;
+        return $daemon === null ? 'fixture-' . $this->id : '__rest_daemon_' . substr(hash('sha256', $daemon), 0, 30);
+    }
     public function getProfils() { return $this->id === 1 ? 'admin' : 'user'; }
     public function getEnable() { return $this->enable ?? (self::$enabled ? 1 : 0); }
     public function isValidAndEnabled() { return $this->getEnable() === 1; }
@@ -50,7 +53,11 @@ class system {
 class log { public static function add(...$args) {} public static function audit(...$args) {} }
 class network { public static function getUserLocation() { return 'internal'; } }
 class eqLogic {}
-class fixture extends eqLogic {}
+class fixture extends eqLogic {
+    public static array $messages = [];
+    public static function handleDaemonMessages(array $messages): void { self::$messages[] = $messages; }
+}
+function getClientIp(): string { return $GLOBALS['_JEEDOM_REST_CLIENT_IP'] ?? ''; }
 defineRestOperationsFixture('plugin', <<<'PHP'
     public static int $dependencyInstalls = 0;
     public static array $daemon = ['state' => 'nok', 'launchable' => 'ok', 'launchable_message' => '', 'auto' => 1, 'log' => 'fixture', 'last_launch' => '2026-11-08'];
@@ -203,9 +210,9 @@ manifest('fixture');
 $app = App::create();
 $checks = 0;
 function check($condition, $message) { global $checks; $checks++; if (!$condition) throw new RuntimeException($message); }
-function call($method, $path, $status = 200, $body = null, $token = 'admin', $headers = [], $cookies = [], $files = []) {
+function call($method, $path, $status = 200, $body = null, $token = 'admin', $headers = [], $cookies = [], $files = [], $peer = '127.0.0.1') {
     global $app;
-    $request = (new ServerRequestFactory())->createServerRequest($method, 'https://localhost/api/v1' . $path);
+    $request = (new ServerRequestFactory())->createServerRequest($method, 'https://localhost/api/v1' . $path, ['REMOTE_ADDR' => $peer]);
     $query = parse_url($path, PHP_URL_QUERY); if ($query) { parse_str($query, $params); $request = $request->withQueryParams($params); }
     if ($body !== null) { $request->getBody()->write(json_encode($body)); $request = $request->withHeader('Content-Type', 'application/json'); }
     if ($token !== null) $request = $request->withHeader('Authorization', 'Bearer ' . fixtureRestToken($token));
@@ -226,6 +233,19 @@ function runJob($operation) {
     $queue->running = false; unset(queue::$items[$queue->getId()]);
 }
 $key = ['Idempotency-Key' => 'request-key-00000001'];
+config::save('active', 1, 'fixture');
+config::save('active', 1, 'without-handler');
+$messages = ['messages' => ['kitchen' => ['value' => 2], '0' => ['value' => false]]];
+call('POST', '/plugins/fixture/daemon/messages', 204, $messages, token: 'daemon-fixture');
+call('POST', '/plugins/fixture/daemon/messages', 422, ['messages' => 'invalid'], token: 'daemon-fixture');
+call('POST', '/plugins/fixture/daemon/messages', 403, $messages);
+call('POST', '/plugins/fixture/daemon/messages', 401, $messages, token: null);
+call('POST', '/plugins/fixture/daemon/messages', 403, $messages, token: 'daemon-without-handler');
+call('POST', '/plugins/fixture/daemon/messages', 403, $messages, token: 'daemon-fixture', peer: '192.0.2.20');
+call('POST', '/plugins/without-handler/daemon/messages', 404, $messages, token: 'daemon-without-handler');
+check(fixture::$messages === [$messages['messages']], 'Only the authorized plugin daemon may deliver its message batch');
+config::save('active', 0, 'fixture');
+config::save('active', 0, 'without-handler');
 check(jeedom::version() === '5.0.0', 'Wrong Core version');
 call('GET', '/market/catalog', 401, token: null);
 call('GET', '/market/catalog', 403, token: 'member');

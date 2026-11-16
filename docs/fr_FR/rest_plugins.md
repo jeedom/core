@@ -46,6 +46,8 @@ La route de cet exemple répond à `GET /api/v1/plugins/exemple/api/status` pour
 
 L'utilisateur authentifié est disponible via `$request->getAttribute('user')`. Une écriture par session passe par le contrôle CSRF du Core. Le plugin applique les droits adaptés à chaque opération, par exemple `Auth::requireAdmin()` et les droits sur l'équipement demandé. Les contrôleurs peuvent utiliser `Json::body()`, `Json::respond()` et `ApiError` pour le même format que le Core. Les routes de plugins sont isolées par identifiant de plugin et les routes standard du Core gardent leurs propres chemins.
 
+Un plugin qui doit traiter un lot de messages de son démon peut définir une méthode publique statique `handleDaemonMessages(array $messages): void` sur sa classe PHP. Le démon envoie `{"messages":{…}}` à `POST /api/v1/plugins/{id}/daemon/messages` avec son jeton Bearer. Le Core vérifie la session locale dédiée à ce plugin et transmet le lot à la méthode. Le plugin valide et traite le contenu propre à son protocole.
+
 ## Installation depuis le Market
 
 Le lien Market ouvre Core UI sous `/ui/#/plugins/install?marketId=1234&version=beta`. Le navigateur transmet uniquement l’identifiant numérique et la branche, jamais un secret ou une archive.

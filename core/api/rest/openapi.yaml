@@ -3741,6 +3741,49 @@ paths:
         '404': { $ref: '#/components/responses/NotFound' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /plugins/{id}/daemon/messages:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    post:
+      tags: [Plugins]
+      operationId: receiveDaemonMessages
+      summary: Transmettre un lot de messages du démon au plugin
+      description: Le jeton doit appartenir au démon de ce plugin et la requête doit être locale. Le plugin doit déclarer handleDaemonMessages.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [messages]
+              properties:
+                messages:
+                  type: [object, array]
+                  additionalProperties: true
+                  items: {}
+      responses:
+        '204': { description: Lot transmis au plugin. }
+        '400':
+          description: Corps JSON invalide.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '413':
+          description: Corps de la requête supérieur à 5 Mio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /support/session:
     post:
       tags: [Session]

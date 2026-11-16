@@ -16,6 +16,8 @@ class session {
             $transport === 'web' && $token === fixtureRestToken('browser-token') => 1,
             $transport === 'api' && $token === fixtureRestToken('admin') => 1,
             $transport === 'api' && $token === fixtureRestToken('member') => 2,
+            $transport === 'api' && $token === fixtureRestToken('daemon-fixture') => 3,
+            $transport === 'api' && $token === fixtureRestToken('daemon-without-handler') => 4,
             default => null,
         };
         $user = $id === null ? null : user::byId($id);
@@ -24,7 +26,8 @@ class session {
         }
         return ['user' => $user, 'session' => [
             'id' => $transport === 'web' ? 'browser-id' : 'api-id-' . $id,
-            'csrf_token' => 'browser-csrf', 'remembered' => 0, 'mode' => $transport, 'scope' => '',
+            'csrf_token' => 'browser-csrf', 'remembered' => 0, 'mode' => $id >= 3 ? 'daemon' : $transport,
+            'scope' => [3 => 'fixture', 4 => 'without-handler'][$id] ?? '',
         ]];
     }
 

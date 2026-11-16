@@ -33,6 +33,7 @@ final class Auth implements MiddlewareInterface
         $GLOBALS['_USER_GLOBAL'] = $user;
         try {
             return $handler->handle($request->withAttribute('user', $user)->withAttribute('restSessionId', $session['id'])
+                ->withAttribute('daemonPluginId', $session['mode'] === 'daemon' ? $session['scope'] : null)
                 ->withAttribute('webSessionId', $transport === 'web' ? $session['id'] : null)
                 ->withAttribute('webSessionRemembered', $transport === 'web' && (bool) $session['remembered'])
                 ->withAttribute('csrfToken', $csrf)->withAttribute('csrfValid', $csrfOk)
@@ -88,7 +89,8 @@ final class Auth implements MiddlewareInterface
         $method = $request->getMethod();
         if ($session['mode'] === 'daemon') {
             $base = '/api/v1/plugins/' . $session['scope'];
-            if ($method === 'POST' && preg_match('~\A' . preg_quote($base, '~') . '/daemon/commands/[1-9][0-9]*\z~', $path)) {
+            if ($method === 'POST' && ($path === $base . '/daemon/messages'
+                || preg_match('~\A' . preg_quote($base, '~') . '/daemon/commands/[1-9][0-9]*\z~', $path))) {
                 return;
             }
         } elseif ($session['scope'] === '') {

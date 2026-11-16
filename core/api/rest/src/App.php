@@ -305,6 +305,7 @@ final class App
             $daemon = new DaemonController();
             $api->post('/plugins/{id}/daemon/session', $daemon->provision(...));
             $api->post('/plugins/{id}/daemon/commands/{commandId}', $daemon->updateCommand(...));
+            $api->post('/plugins/{id}/daemon/messages', $daemon->receiveMessages(...));
         })->add(new Auth());
         // La connexion est accessible avant l’ouverture d’une session.
         $sessions = new SessionController();
