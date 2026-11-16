@@ -167,7 +167,7 @@ final class PluginSettings
             }
             $field = (array) $field;
             if (array_diff(array_keys($field), $properties)
-                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string', 'password', 'select'], true)
+                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string', 'password', 'select', 'expression'], true)
                 || ($section === 'plugin' && $field['type'] !== 'password' && \config::shouldBeEncrypted((string) $key, $id))) {
                 self::invalidSchema();
             }
@@ -313,7 +313,7 @@ final class PluginSettings
                     default => null,
                 },
                 'number' => is_numeric($value) ? $value + 0 : null,
-                'select', 'string' => $value,
+                'select', 'string', 'expression' => $value,
                 'password' => null,
             };
             $values[$key] = self::valid($value, $field) ? $value : null;
@@ -356,7 +356,7 @@ final class PluginSettings
             'password' => is_string($value) && $value !== '',
             'select' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
                 && in_array($value, array_column($field['options'], 'value'), true),
-            'string' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
+            'string', 'expression' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
                 && (!isset($field['enum']) || in_array($value, $field['enum'], true)),
         };
     }
