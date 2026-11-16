@@ -3085,6 +3085,7 @@ paths:
                 oneOf:
                 - { type: [boolean, number, string] }
                 - { $ref: '#/components/schemas/PluginSettingActionOptions' }
+                - { $ref: '#/components/schemas/PluginSettingList' }
       responses:
         '200':
           description: Réglages du plugin après l’enregistrement.
@@ -8326,7 +8327,7 @@ components:
       type: object
       required: [type]
       properties:
-        type: { type: string, enum: [boolean, number, string, password, select, expression, cron, textarea, icon, time, date, datetime] }
+        type: { type: string, enum: [boolean, number, string, password, select, expression, cron, textarea, icon, time, date, datetime, list] }
         label: { type: string }
         description: { type: string }
         enum: { type: array, items: { type: string }, minItems: 1 }
@@ -8341,6 +8342,11 @@ components:
               label: { type: string }
         min: { type: number }
         max: { type: number }
+        fields:
+          description: Champs d'une ligne pour le type list.
+          type: object
+          minProperties: 1
+          additionalProperties: { $ref: '#/components/schemas/PluginSettingListField' }
         commandFilters:
           description: Filtres de commandes Info pour les champs de type expression.
           type: object
@@ -8393,6 +8399,18 @@ components:
                   type: array
                   items: { type: string }
                 scenarioActions: { type: boolean }
+    PluginSettingListField:
+      allOf:
+      - $ref: '#/components/schemas/PluginSettingField'
+      - type: object
+        properties:
+          required: { type: boolean }
+          default: { type: [boolean, number, string] }
+    PluginSettingList:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
     PluginEquipmentSettingField:
       allOf:
       - $ref: '#/components/schemas/PluginSettingField'
@@ -8400,7 +8418,10 @@ components:
         properties:
           create: { type: boolean }
           required: { type: boolean }
-          default: { type: [boolean, number, string] }
+          default:
+            oneOf:
+            - { type: [boolean, number, string] }
+            - { $ref: '#/components/schemas/PluginSettingList' }
     PluginCommandSettingField:
       allOf:
       - $ref: '#/components/schemas/PluginSettingField'
@@ -8428,6 +8449,7 @@ components:
         oneOf:
         - { type: [boolean, number, string, 'null'] }
         - { $ref: '#/components/schemas/PluginSettingActionOptions' }
+        - { $ref: '#/components/schemas/PluginSettingList' }
     PluginSettingActionOptions:
       type: object
       additionalProperties: { type: [boolean, number, string] }

@@ -130,7 +130,7 @@ final class PluginSettings
         $path = self::path($id);
         if ($path === null) return [];
         $raw = @file_get_contents($path, false, null, 0, self::MAX_BYTES + 1);
-        $schema = $raw !== false && strlen($raw) <= self::MAX_BYTES ? json_decode($raw, false, 8) : null;
+        $schema = $raw !== false && strlen($raw) <= self::MAX_BYTES ? json_decode($raw, false, 16) : null;
         if (!$schema instanceof \stdClass) self::invalidSchema();
         $sections = (array) $schema;
         // Une clé de réglage historique peut elle-même s'appeler « version ».
@@ -152,10 +152,11 @@ final class PluginSettings
     private static function validateFields(string $id, string $section, array $fields): array
     {
         if (count($fields) > 64) self::invalidSchema();
-        $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max', 'picker', 'commandFilters'];
+        $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max', 'picker', 'commandFilters', 'fields'];
         $properties = array_merge($properties, match ($section) {
             'eqLogic' => ['create', 'required', 'default'],
             'cmd' => ['when'],
+            'row' => ['required', 'default'],
             default => [],
         });
         $usedKeys = array_fill_keys(array_keys($fields), true);
@@ -167,8 +168,15 @@ final class PluginSettings
             }
             $field = (array) $field;
             if (array_diff(array_keys($field), $properties)
-                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string', 'password', 'select', 'expression', 'cron', 'textarea', 'icon', 'time', 'date', 'datetime'], true)
+                || !in_array($field['type'] ?? null, ['boolean', 'number', 'string', 'password', 'select', 'expression', 'cron', 'textarea', 'icon', 'time', 'date', 'datetime', 'list'], true)
+                || ($section === 'row' && in_array($field['type'], ['list', 'password'], true))
                 || ($section === 'plugin' && $field['type'] !== 'password' && \config::shouldBeEncrypted((string) $key, $id))) {
+                self::invalidSchema();
+            }
+            if ($field['type'] === 'list') {
+                if (!(($field['fields'] ?? null) instanceof \stdClass) || (array) $field['fields'] === []) self::invalidSchema();
+                $field['fields'] = (object) self::validateFields($id, 'row', (array) $field['fields']);
+            } elseif (array_key_exists('fields', $field)) {
                 self::invalidSchema();
             }
             if (array_key_exists('enum', $field)
@@ -213,9 +221,10 @@ final class PluginSettings
             foreach (['create', 'required'] as $flag) {
                 if (array_key_exists($flag, $field) && !is_bool($field[$flag])) self::invalidSchema();
             }
-            if (($field['required'] ?? false) && (!($field['create'] ?? false) || $field['type'] === 'boolean')) self::invalidSchema();
+            $initializable = $section === 'row' || ($field['create'] ?? false);
+            if (($field['required'] ?? false) && (!$initializable || $field['type'] === 'boolean')) self::invalidSchema();
             if (array_key_exists('default', $field)
-                && (!($field['create'] ?? false) || $field['type'] === 'password' || !self::valid($field['default'], $field))) {
+                && (!$initializable || $field['type'] === 'password' || !self::valid($field['default'], $field))) {
                 self::invalidSchema();
             }
             if (array_key_exists('when', $field)) {
@@ -325,6 +334,11 @@ final class PluginSettings
         $values = [];
         foreach ($fields as $key => $field) {
             $value = $stored[$key] ?? null;
+            if ($field['type'] === 'list') {
+                // Les entrées des plugins existants restent visibles pour pouvoir les corriger dans le formulaire.
+                $values[$key] = self::readList($value);
+                continue;
+            }
             $value = match ($field['type']) {
                 'boolean' => match ($value) {
                     true, 1, '1' => true,
@@ -370,6 +384,7 @@ final class PluginSettings
     private static function valid(mixed $value, array $field): bool
     {
         return match ($field['type']) {
+            'list' => self::validList($value, $field),
             'boolean' => is_bool($value),
             'number' => self::isNumber($value) && $value >= ($field['min'] ?? -INF) && $value <= ($field['max'] ?? INF),
             'password' => is_string($value) && $value !== '',
@@ -381,6 +396,46 @@ final class PluginSettings
             'string', 'expression', 'textarea', 'icon' => is_string($value) && (!($field['required'] ?? false) || trim($value) !== '')
                 && (!isset($field['enum']) || in_array($value, $field['enum'], true)),
         };
+    }
+
+    private static function readList(mixed $value): ?array
+    {
+        if (!is_array($value) || !array_is_list($value)) return null;
+        $rows = [];
+        foreach ($value as $row) {
+            if (!$row instanceof \stdClass && (!is_array($row) || ($row !== [] && array_is_list($row)))) return null;
+            $rows[] = (object) $row;
+        }
+        return $rows;
+    }
+
+    private static function validList(mixed $value, array $field): bool
+    {
+        $rows = self::readList($value);
+        if ($rows === null || ($rows === [] && ($field['required'] ?? false))) return false;
+        $fields = (array) $field['fields'];
+        $options = self::optionFields($fields);
+        foreach ($rows as $row) {
+            $values = (array) $row;
+            foreach ($fields as $key => $definition) {
+                $value = $values[$key] ?? null;
+                // Afficher et déplacer les lignes historiques sans convertir leurs valeurs stockées.
+                $normalized = match ($definition['type']) {
+                    'boolean' => in_array($value, [0, 1, '0', '1'], true) ? (bool) (int) $value : $value,
+                    'number' => is_string($value) && is_numeric($value) ? $value + 0 : $value,
+                    'string', 'expression', 'textarea' => !isset($definition['enum']) && self::isNumber($value) ? (string) $value : $value,
+                    default => $value,
+                };
+                if (!self::validEntityValue($normalized, $definition)) return false;
+            }
+            foreach ($options as $key => $definition) {
+                if (!array_key_exists($key, $values)) continue;
+                $saved = $values[$key];
+                if ($saved instanceof \stdClass) $saved = (array) $saved;
+                if (!self::validOptions($saved)) return false;
+            }
+        }
+        return true;
     }
 
     private static function validFormattedValue(string $value, string $type): bool
