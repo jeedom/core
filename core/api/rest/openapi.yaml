@@ -8330,6 +8330,15 @@ components:
               label: { type: string }
         min: { type: number }
         max: { type: number }
+        commandFilters:
+          description: Filtres de commandes Info pour les champs de type expression.
+          type: object
+          properties:
+            type: { type: string, enum: [info] }
+            subType: { type: string, enum: [numeric, binary, string] }
+            eqLogicId: { type: integer, minimum: 1 }
+            generic_type: { type: string }
+            isHistorized: { type: boolean }
         picker:
           type: object
           required: [allowed]

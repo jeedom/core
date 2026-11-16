@@ -152,7 +152,7 @@ final class PluginSettings
     private static function validateFields(string $id, string $section, array $fields): array
     {
         if (count($fields) > 64) self::invalidSchema();
-        $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max', 'picker'];
+        $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max', 'picker', 'commandFilters'];
         $properties = array_merge($properties, match ($section) {
             'eqLogic' => ['create', 'required', 'default'],
             'cmd' => ['when'],
@@ -190,6 +190,15 @@ final class PluginSettings
                         || ($section === 'plugin' && \config::shouldBeEncrypted($optionsKey, $id))
                         || ($section === 'cmd' && $optionsKey === 'actionCodeAccess')) self::invalidSchema();
                     $usedKeys[$optionsKey] = true;
+                }
+            }
+            if (array_key_exists('commandFilters', $field)) {
+                if ($field['type'] !== 'expression') self::invalidSchema();
+                $filters = $field['commandFilters'];
+                self::validatePickerFilters('commandFilters', $filters);
+                if (($filters->type ?? 'info') !== 'info'
+                    || (isset($filters->subType) && !in_array($filters->subType, ['numeric', 'binary', 'string'], true))) {
+                    self::invalidSchema();
                 }
             }
             foreach (['label', 'description'] as $text) {
@@ -234,12 +243,7 @@ final class PluginSettings
         if (array_diff(array_keys((array) $picker), ['allowed', 'optionsKey', ...$supported])) self::invalidSchema();
         foreach ($supported as $name) {
             if (!property_exists($picker, $name)) continue;
-            if (!$picker->$name instanceof \stdClass) self::invalidSchema();
-            foreach ((array) $picker->$name as $filter => $value) {
-                if (!in_array($filter, self::PICKER_FILTERS[$name], true) || !self::validFilter($name, $filter, $value)) {
-                    self::invalidSchema();
-                }
-            }
+            self::validatePickerFilters($name, $picker->$name);
         }
         if (in_array('command', $allowed, true) || in_array('action', $allowed, true)) {
             $optionKey = property_exists($picker, 'optionsKey') ? $picker->optionsKey : $key . '::options';
@@ -249,6 +253,16 @@ final class PluginSettings
             self::invalidSchema();
         }
         return $picker;
+    }
+
+    private static function validatePickerFilters(string $group, mixed $filters): void
+    {
+        if (!$filters instanceof \stdClass) self::invalidSchema();
+        foreach ((array) $filters as $key => $value) {
+            if (!in_array($key, self::PICKER_FILTERS[$group], true) || !self::validFilter($group, $key, $value)) {
+                self::invalidSchema();
+            }
+        }
     }
 
     private static function validFilter(string $group, string $key, mixed $value): bool
