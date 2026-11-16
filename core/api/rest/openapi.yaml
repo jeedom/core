@@ -39,19 +39,17 @@ info:
     Dans une liste, un élément que l'utilisateur n'a pas le droit de lire est
     simplement absent ; demandé directement, il renvoie 403.
 
-    La nouvelle UI ouvre une session avec `POST /session` (cookie
-    `SameSite=Strict`, même domaine que le core, pas de CORS). En
-    session, toute requête d'écriture (`POST`, `PUT`, `PATCH`, `DELETE`) doit
-    porter l'en-tête `X-CSRF-Token` avec le jeton reçu à l'ouverture ou lu
-    sur `/me` ; sans lui, 403 `csrf_invalid`. Le jeton n'est pas demandé avec
-    `Authorization: Bearer`. Une session expirée renvoie 401
-    `session_expired`, pour que l'UI revienne à l'écran de connexion.
+    Core UI ouvre sa session sur HTTPS avec `POST /session`. Les écritures
+    par cookie exigent l’en-tête `X-CSRF-Token`. Le code `session_refresh_required`
+    indique qu’il faut vérifier la session et renouveler l’accès si nécessaire.
+    Les applications tierces utilisent `Authorization: Bearer`.
 
-    ### Sessions de l'API
-    Les sessions de Core UI sont stockées dans la table InnoDB `session`.
-    Le cookie HttpOnly porte un jeton opaque dont seule l'empreinte est stockée.
-    La durée est de 24 h par défaut, ou de 90 jours avec « Rester connecté ».
-    L'ancienne interface utilise ses propres sessions PHP.
+    ### Sessions de l’API
+    La table InnoDB `session` stocke les empreintes des jetons, ainsi que l’IP
+    et le User-Agent du client à l’ouverture de la session. Le jeton d’accès dure
+    24 h. Le renouvellement repousse l’échéance du refresh token de 90 jours.
+    Core UI utilise par défaut des cookies persistants, HttpOnly, Secure et
+    SameSite=Strict. L’ancienne interface utilise ses propres sessions PHP.
 
     ## Routes déclarées par les plugins
     Un plugin installé et actif peut déclarer ses propres routes sous
@@ -3873,7 +3871,7 @@ paths:
       operationId: listMyDevices
       summary: Lister ses appareils enregistrés
       description: |
-        Sessions longues ouvertes avec « Rester connecté ». La clé identifie
+        Sessions Web persistantes. La clé identifie
         la session dans la liste, indépendamment du jeton du cookie.
       responses:
         '200':
@@ -8625,8 +8623,7 @@ components:
           example: '123456'
         rememberDevice:
           type: boolean
-          default: false
-          description: Conserve les cookies d’une session Web à la fermeture du navigateur.
+          description: En mode Web, les cookies persistent par défaut après la fermeture du navigateur. Envoyer false pour limiter leur durée à la session du navigateur.
 
     Session:
       type: object

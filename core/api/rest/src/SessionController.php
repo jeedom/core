@@ -30,14 +30,15 @@ final class SessionController
                 throw ApiError::field(422, 'validation_error', $field, 'Ce champ est obligatoire.');
             }
         }
-        $remember = $body['rememberDevice'] ?? false;
+        $remember = $body['rememberDevice'] ?? ($mode === 'web');
         if (!is_bool($remember) || $mode === 'api' && $remember) {
             throw ApiError::field(422, 'validation_error', 'rememberDevice', 'Option réservée à une session Web.');
         }
         $name = self::clientName($body['clientName'] ?? ($mode === 'web' ? 'Core UI' : 'Client API'));
         $user = self::authenticate($body['login'], $body['password'], $body['twoFactorCode'] ?? null, $mode);
         try {
-            $connection = \session::create($user, $remember, \getClientIp(), self::refreshCookie($request), null, $mode, $name);
+            $connection = \session::create($user, $remember, \getClientIp(), self::refreshCookie($request),
+                mode: $mode, name: $name, userAgent: $request->getHeaderLine('User-Agent'));
         } catch (\DomainException $error) {
             throw new ApiError(401, 'invalid_credentials', $error->getMessage());
         }
@@ -100,7 +101,7 @@ final class SessionController
             if ($web) {
                 self::requireCsrf($request, $row);
             }
-        });
+        }, \getClientIp(), $request->getHeaderLine('User-Agent'));
         if ($connection === null) {
             throw self::expired();
         }
@@ -124,7 +125,7 @@ final class SessionController
             throw new ApiError(409, 'support_session_conflict', 'Ouvrez l’accès support dans un navigateur sans session Jeedom active.');
         }
         try {
-            $connection = \supportAccess::connect($body['grant'], $body['code'], $previous, \getClientIp());
+            $connection = \supportAccess::connect($body['grant'], $body['code'], $previous, \getClientIp(), $request->getHeaderLine('User-Agent'));
         } catch (\Exception) {
             throw new ApiError(403, 'support_access_unavailable', 'Accès support indisponible. Relancez la connexion depuis le Market.');
         }

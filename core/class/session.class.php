@@ -6,8 +6,8 @@ final class session {
 	private const RETRY_WINDOW = 60;
 
 	public static function create(user $actor, bool $remember, string $ip, ?string $previous, ?int $expiresBefore = null,
-		string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false): array {
-		$connection = self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly): array {
+		string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false, string $userAgent = ''): array {
+		$connection = self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly, $userAgent): array {
 			$id = self::secret();
 			$csrf = self::secret();
 			$pair = self::pair(self::secret(), self::secret(), $expiresBefore);
@@ -22,16 +22,16 @@ final class session {
 					self::revoke($user, $old['id']);
 				}
 			}
-			DB::Prepare('INSERT INTO `session` (id, user_id, token_hash, refresh_hash, csrf_token, credential_hash, ip, remembered,
+			DB::Prepare('INSERT INTO `session` (id, user_id, token_hash, refresh_hash, csrf_token, credential_hash, ip, user_agent, remembered,
 				mode, client_name, scope, created_at, last_activity_at, access_expires_at, expires_at, hard_expires_at)
-				VALUES (:id, :user, :hash, :refresh, :csrf, :credentials, :ip, :remembered, :mode, :name, :scope,
+				VALUES (:id, :user, :hash, :refresh, :csrf, :credentials, :ip, :userAgent, :remembered, :mode, :name, :scope,
 				UTC_TIMESTAMP(), UTC_TIMESTAMP(), :accessExpires, :expires, :hardExpires)', [
 				'id' => $id, 'user' => $user->getId(), 'hash' => self::digest($pair['token']),
 				'refresh' => self::digest($pair['refreshToken']), 'csrf' => $csrf, 'credentials' => self::credentials($user),
-				'ip' => filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '', 'remembered' => (int) $remember,
-				'mode' => $mode, 'name' => $name, 'scope' => $scope, 'accessExpires' => self::date($refreshOnly ? $now : $pair['expires']),
+				'remembered' => (int) $remember,
+				'mode' => $mode, 'name' => $name, 'scope' => $scope, 'accessExpires' => $refreshOnly ? null : self::date($pair['expires']),
 				'expires' => self::date($pair['refreshExpires']), 'hardExpires' => $expiresBefore === null ? null : self::date($expiresBefore),
-			]);
+			] + self::clientMetadata($refreshOnly ? '' : $ip, $refreshOnly ? '' : $userAgent));
 			return ['id' => $id, 'user' => $user, 'csrfToken' => $csrf, 'remembered' => $remember] + $pair;
 		});
 		log::audit('REST session created', ['sessionId' => $connection['id'], 'userId' => $actor->getId(), 'mode' => $mode]);
@@ -71,7 +71,7 @@ final class session {
 	 * Retry secrets are derived from the presented secret and a nonce, so a database
 	 * copy contains no recoverable access or refresh token.
 	 */
-	public static function refresh(string $token, string $transport, string $attempt, callable $authorize): ?array {
+	public static function refresh(string $token, string $transport, string $attempt, callable $authorize, string $ip = '', string $userAgent = ''): ?array {
 		if (!self::validId($token)) {
 			return null;
 		}
@@ -92,7 +92,7 @@ final class session {
 			if (is_array($row) && self::matchesTransport($row, $transport) && self::validAccount($user, $row)) {
 				$authorize($user, $row);
 				if (hash_equals($row['refresh_hash'], $hash)) {
-					$result = self::rotate($row, $token, $hash, $attempt);
+					$result = self::rotate($row, $token, $hash, $attempt, $ip, $userAgent);
 				} else {
 					$previous = DB::Prepare('SELECT * FROM session_refresh_history WHERE token_hash = :hash AND session_id = :id
 						AND expires_at > UTC_TIMESTAMP() FOR UPDATE', ['hash' => $hash, 'id' => $row['id']]);
@@ -116,7 +116,7 @@ final class session {
 		return $result === null ? null : $result + ['user' => $user, 'csrfToken' => $row['csrf_token'], 'remembered' => (bool) $row['remembered']];
 	}
 
-	private static function rotate(array $row, string $token, string $hash, string $attempt): array {
+	private static function rotate(array $row, string $token, string $hash, string $attempt, string $ip, string $userAgent): array {
 		$nonce = self::secret();
 		[$access, $refresh] = self::successors($token, $nonce);
 		$pair = self::pair($access, $refresh, self::timestamp($row['hard_expires_at']));
@@ -125,12 +125,21 @@ final class session {
 			'hash' => $hash, 'id' => $row['id'], 'attempt' => self::digest($attempt), 'nonce' => $nonce,
 			'retry' => self::date(time() + self::RETRY_WINDOW), 'expires' => $row['expires_at'],
 		]);
+		$client = $row['access_expires_at'] === null
+			? self::clientMetadata($ip, $userAgent)
+			: ['ip' => $row['ip'], 'userAgent' => $row['user_agent']];
 		DB::Prepare('UPDATE `session` SET token_hash = :access, refresh_hash = :refresh, access_expires_at = :accessExpires,
-			expires_at = :expires, last_activity_at = UTC_TIMESTAMP() WHERE id = :id', [
+			expires_at = :expires, last_activity_at = UTC_TIMESTAMP(), ip = :ip, user_agent = :userAgent WHERE id = :id', [
 			'access' => self::digest($access), 'refresh' => self::digest($refresh), 'accessExpires' => self::date($pair['expires']),
 			'expires' => self::date($pair['refreshExpires']), 'id' => $row['id'],
-		]);
+		] + $client);
 		return $pair;
+	}
+
+	private static function clientMetadata(string $ip, string $userAgent): array {
+		$agent = preg_replace('/[\x00-\x1F\x7F]/', '', mb_scrub($userAgent, 'UTF-8'));
+		$agent = trim(mb_strcut($agent, 0, 512, 'UTF-8'));
+		return ['ip' => filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '', 'userAgent' => $agent === '' ? null : $agent];
 	}
 
 	private static function retry(array $row, array $previous, string $token, string $attempt): ?array {

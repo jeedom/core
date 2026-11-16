@@ -2362,6 +2362,14 @@
           "extra": ""
         },
         {
+          "name": "user_agent",
+          "type": "varchar(512)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "remembered",
           "type": "tinyint(1)",
           "null": "NO",
