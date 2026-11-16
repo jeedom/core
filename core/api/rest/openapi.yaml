@@ -39,7 +39,7 @@ info:
     Dans une liste, un élément que l'utilisateur n'a pas le droit de lire est
     simplement absent ; demandé directement, il renvoie 403.
 
-    Core UI ouvre sa session sur HTTPS avec `POST /session`. Les écritures
+    Core UI ouvre sa session avec `POST /session`. Les écritures
     par cookie exigent l’en-tête `X-CSRF-Token`. Le code `session_refresh_required`
     indique qu’il faut vérifier la session et renouveler l’accès si nécessaire.
     Les applications tierces utilisent `Authorization: Bearer`.
@@ -48,8 +48,9 @@ info:
     La table InnoDB `session` stocke les empreintes des jetons, ainsi que l’IP
     et le User-Agent du client à l’ouverture de la session. Le jeton d’accès dure
     24 h. Le renouvellement repousse l’échéance du refresh token de 90 jours.
-    Core UI utilise par défaut des cookies persistants, HttpOnly, Secure et
-    SameSite=Strict. L’ancienne interface utilise ses propres sessions PHP.
+    Core UI utilise par défaut des cookies persistants, HttpOnly et
+    SameSite=Strict. En HTTPS, ils portent aussi l’attribut Secure et un préfixe
+    réservé aux cookies sécurisés. L’ancienne interface utilise ses propres sessions PHP.
 
     ## Routes déclarées par les plugins
     Un plugin installé et actif peut déclarer ses propres routes sous
@@ -95,6 +96,7 @@ servers:
 security:
   - bearerAuth: []
   - sessionCookie: []
+  - sessionCookieHttp: []
 
 tags:
   - name: Objets
@@ -3558,7 +3560,9 @@ paths:
       description: Récupère le CSRF et vérifie le cookie d’accès sans modifier les échéances.
       security:
         - sessionCookie: []
+        - sessionCookieHttp: []
         - refreshCookie: []
+        - refreshCookieHttp: []
       parameters:
         - name: Idempotency-Key
           in: header
@@ -3575,7 +3579,7 @@ paths:
     post:
       tags: [Session]
       operationId: openSession
-      summary: Ouvrir une session sur HTTPS
+      summary: Ouvrir une session REST
       description: |
         Le mode Web vérifie Origin et pose deux cookies. Le mode API renvoie les jetons en JSON.
         Les deux modes demandent la double authentification lorsqu’elle est activée.
@@ -3604,7 +3608,9 @@ paths:
       description: En Web, vérifie Origin et CSRF et efface les deux cookies. Le cookie de renouvellement suffit après expiration du jeton d’accès.
       security:
         - sessionCookie: []
+        - sessionCookieHttp: []
         - refreshCookie: []
+        - refreshCookieHttp: []
         - bearerAuth: []
       responses:
         '204': { description: Session fermée. }
@@ -3615,13 +3621,14 @@ paths:
     post:
       tags: [Session]
       operationId: refreshSession
-      summary: Renouveler une session sur HTTPS
+      summary: Renouveler une session REST
       description: |
         En Web, envoyer un objet vide avec les cookies, Origin et X-CSRF-Token. En API, envoyer le refresh token en JSON.
         Réutiliser la même clé d’idempotence et le même jeton pour relancer une tentative pendant 60 secondes.
         Un rejeu reconnu hors de cette relance révoque la session.
       security:
         - refreshCookie: []
+        - refreshCookieHttp: []
         - {}
       parameters:
         - name: Idempotency-Key
@@ -6603,11 +6610,21 @@ components:
       in: cookie
       name: __Host-JeedomAccess
       description: Cookie d’accès Web HTTPS. Les écritures exigent X-CSRF-Token.
+    sessionCookieHttp:
+      type: apiKey
+      in: cookie
+      name: JeedomAccess
+      description: Cookie d’accès Web HTTP. Les écritures exigent X-CSRF-Token.
     refreshCookie:
       type: apiKey
       in: cookie
       name: __Secure-JeedomRefresh
       description: Cookie de renouvellement Web HTTPS limité à /api/v1/session.
+    refreshCookieHttp:
+      type: apiKey
+      in: cookie
+      name: JeedomRefresh
+      description: Cookie de renouvellement Web HTTP limité à /api/v1/session.
 
   headers:
     SystemFileETag:

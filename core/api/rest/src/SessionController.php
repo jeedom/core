@@ -8,12 +8,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 final class SessionController
 {
-    private const ACCESS_COOKIE = '__Host-JeedomAccess';
-    private const REFRESH_COOKIE = '__Secure-JeedomRefresh';
-
     public function open(Request $request, Response $response): Response
     {
-        RequestSecurity::requireHttps($request);
         $body = Json::body($request, 8192);
         $mode = $body['mode'] ?? 'web';
         if (!in_array($mode, ['web', 'api'], true)) {
@@ -43,12 +39,11 @@ final class SessionController
             throw new ApiError(401, 'invalid_credentials', $error->getMessage());
         }
         \jeedom::event('user_connect', false, ['trigger_value' => $user->getLogin()]);
-        return self::respond($response, $connection, $mode);
+        return self::respond($request, $response, $connection, $mode);
     }
 
     public function inspect(Request $request, Response $response): Response
     {
-        RequestSecurity::requireHttps($request);
         RequestSecurity::requireOrigin($request, false);
         if ($request->hasHeader('Authorization')) {
             self::mixed();
@@ -76,7 +71,6 @@ final class SessionController
 
     public function refresh(Request $request, Response $response): Response
     {
-        RequestSecurity::requireHttps($request);
         $body = Json::body($request, 2048);
         $web = !array_key_exists('refreshToken', $body);
         if ($request->hasHeader('Authorization') || !$web && (self::cookie($request) !== null || self::refreshCookie($request) !== null)) {
@@ -105,7 +99,7 @@ final class SessionController
         if ($connection === null) {
             throw self::expired();
         }
-        return self::respond($response, $connection, $mode);
+        return self::respond($request, $response, $connection, $mode);
     }
 
     public function openSupport(Request $request, Response $response): Response
@@ -129,12 +123,11 @@ final class SessionController
         } catch (\Exception) {
             throw new ApiError(403, 'support_access_unavailable', 'Accès support indisponible. Relancez la connexion depuis le Market.');
         }
-        return self::withCookies($response, $connection)->withStatus(204);
+        return self::withCookies($request, $response, $connection)->withStatus(204);
     }
 
     public function close(Request $request, Response $response): Response
     {
-        RequestSecurity::requireHttps($request);
         [$transport, $access] = Auth::access($request);
         $identity = Auth::identity($access, $transport);
         if ($transport === 'web') {
@@ -191,22 +184,32 @@ final class SessionController
 
     public static function cookie(Request $request): ?string
     {
-        return self::readCookie($request, self::ACCESS_COOKIE);
+        return self::readCookie($request, self::accessCookieName(RequestSecurity::isHttps($request)));
     }
 
     public static function refreshCookie(Request $request): ?string
     {
-        return self::readCookie($request, self::REFRESH_COOKIE);
+        return self::readCookie($request, self::refreshCookieName(RequestSecurity::isHttps($request)));
     }
 
     public static function clearCookie(Request $request, Response $response): Response
     {
-        return self::withCookies($response, ['token' => '', 'refreshToken' => '', 'expires' => 1, 'refreshExpires' => 1, 'remembered' => true]);
+        return self::withCookies($request, $response, ['token' => '', 'refreshToken' => '', 'expires' => 1, 'refreshExpires' => 1, 'remembered' => true]);
     }
 
     public static function refreshPayload(array $connection): array
     {
         return ['refreshToken' => $connection['refreshToken'], 'refreshExpiresAt' => gmdate(DATE_ATOM, $connection['refreshExpires'])];
+    }
+
+    private static function accessCookieName(bool $secure): string
+    {
+        return $secure ? '__Host-JeedomAccess' : 'JeedomAccess';
+    }
+
+    private static function refreshCookieName(bool $secure): string
+    {
+        return $secure ? '__Secure-JeedomRefresh' : 'JeedomRefresh';
     }
 
     private static function readCookie(Request $request, string $name): ?string
@@ -215,7 +218,7 @@ final class SessionController
         return is_string($token) && $token !== '' ? $token : null;
     }
 
-    private static function respond(Response $response, array $connection, string $mode): Response
+    private static function respond(Request $request, Response $response, array $connection, string $mode): Response
     {
         if ($mode === 'api') {
             return Json::respond($response->withHeader('Cache-Control', 'no-store'), [
@@ -223,16 +226,17 @@ final class SessionController
             ] + self::refreshPayload($connection));
         }
         $csrf = $connection['csrfToken'];
-        return Json::respond(self::withCookies($response, $connection), ['user' => UsersController::meArray($connection['user'], $csrf), 'csrfToken' => $csrf]);
+        return Json::respond(self::withCookies($request, $response, $connection), ['user' => UsersController::meArray($connection['user'], $csrf), 'csrfToken' => $csrf]);
     }
 
-    private static function withCookies(Response $response, array $connection): Response
+    private static function withCookies(Request $request, Response $response, array $connection): Response
     {
+        $secure = RequestSecurity::isHttps($request);
         $expires = static fn (int $time): string => '; Expires=' . gmdate('D, d M Y H:i:s \G\M\T', $time);
-        $flags = '; HttpOnly; Secure; SameSite=Strict';
+        $flags = $secure ? '; HttpOnly; Secure; SameSite=Strict' : '; HttpOnly; SameSite=Strict';
         return $response->withHeader('Cache-Control', 'no-store')
-            ->withAddedHeader('Set-Cookie', self::ACCESS_COOKIE . '=' . $connection['token'] . '; Path=/' . $flags . ($connection['remembered'] ? $expires($connection['expires']) : ''))
-            ->withAddedHeader('Set-Cookie', self::REFRESH_COOKIE . '=' . $connection['refreshToken'] . '; Path=/api/v1/session' . $flags
+            ->withAddedHeader('Set-Cookie', self::accessCookieName($secure) . '=' . $connection['token'] . '; Path=/' . $flags . ($connection['remembered'] ? $expires($connection['expires']) : ''))
+            ->withAddedHeader('Set-Cookie', self::refreshCookieName($secure) . '=' . $connection['refreshToken'] . '; Path=/api/v1/session' . $flags
                 . ($connection['remembered'] ? $expires($connection['refreshExpires']) : ''));
     }
 

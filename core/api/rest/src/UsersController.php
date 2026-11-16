@@ -386,7 +386,6 @@ final class UsersController
 
     public function createApiSession(Request $request, Response $response): Response
     {
-        RequestSecurity::requireHttps($request);
         $user = self::currentWritable($request);
         if ($user->getLogin() === 'demo') {
             throw new ApiError(403, 'forbidden', 'Ce compte ne peut pas créer d’accès API.');

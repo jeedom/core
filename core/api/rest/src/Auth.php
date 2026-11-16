@@ -13,9 +13,6 @@ final class Auth implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         [$transport, $token] = self::access($request);
-        if ($token !== null) {
-            RequestSecurity::requireHttps($request);
-        }
         $identity = \session::resolve($token, $transport);
         if ($identity === null) {
             throw new ApiError(401, $transport === 'web' ? 'session_refresh_required' : 'invalid_access_token', 'Un accès REST valide est nécessaire.');

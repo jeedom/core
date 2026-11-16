@@ -43,9 +43,14 @@ final class RequestSecurity
 
     public static function requireHttps(Request $request): void
     {
-        if (!str_starts_with(self::origin($request), 'https://')) {
+        if (!self::isHttps($request)) {
             throw new ApiError(403, 'https_required', 'La connexion REST nécessite HTTPS.');
         }
+    }
+
+    public static function isHttps(Request $request): bool
+    {
+        return str_starts_with(self::origin($request), 'https://');
     }
 
     public static function requireOrigin(Request $request, bool $required = true): void
