@@ -299,6 +299,18 @@ check(call('GET', $formPath, 500)['error']['code'] === 'invalid_plugin_settings'
 file_put_contents($settingsPath, json_encode(['version' => 1, 'plugin' => $fields], JSON_THROW_ON_ERROR));
 $form = call('GET', $formPath);
 check($form['fields'] === $fields && $form['values'] === ['recordDir' => '/recordings'], 'Version 1 settings must read the existing plugin value');
+
+$storage = ['label' => 'Stockage', 'icon' => 'mdi:folder-open-outline', 'description' => 'Emplacement des enregistrements'];
+$grouped = ['recordDir' => $fields['recordDir'] + ['section' => 'storage']];
+$declaration = ['version' => 1, 'sections' => ['storage' => $storage], 'plugin' => $grouped, 'eqLogic' => $grouped, 'cmd' => $grouped];
+file_put_contents($settingsPath, json_encode($declaration, JSON_THROW_ON_ERROR));
+$resolved = ['recordDir' => $fields['recordDir'] + ['section' => ['id' => 'storage'] + $storage]];
+$form = call('GET', $formPath);
+check($form['fields'] === $resolved && $form['values'] === ['recordDir' => '/recordings'], 'Section metadata must not change the stored setting');
+check(call('GET', '/plugins/fixture/configuration/schema') === ['eqLogic' => $resolved, 'cmd' => $resolved], 'Entity settings must resolve section metadata');
+$declaration['plugin']['recordDir']['section'] = 'missing';
+file_put_contents($settingsPath, json_encode($declaration, JSON_THROW_ON_ERROR));
+check(call('GET', $formPath, 500)['error']['code'] === 'invalid_plugin_settings', 'A field cannot reference an undeclared section');
 unlink($settingsPath);
 call('PATCH', '/plugins/fixture', body: ['isEnable' => true, 'functionality' => ['cron' => false], 'heartbeatDelay' => 5, 'heartbeatRestartDaemon' => true, 'logLevel' => 'debug']);
 check(config::byKey('active', 'fixture') === 1 && config::byKey('functionality::cron::enable', 'fixture') === 0, 'Native activation/options not saved');
