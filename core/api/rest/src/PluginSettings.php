@@ -133,12 +133,7 @@ final class PluginSettings
         $schema = $raw !== false && strlen($raw) <= self::MAX_BYTES ? json_decode($raw, false, 16) : null;
         if (!$schema instanceof \stdClass) self::invalidSchema();
         $sections = (array) $schema;
-        // Une clé de réglage historique peut elle-même s'appeler « version ».
-        if (!array_key_exists('version', $sections) || $sections['version'] instanceof \stdClass) {
-            if ($sections === []) self::invalidSchema();
-            return ['plugin' => $sections];
-        }
-        if ($sections['version'] !== 1 || array_diff(array_keys($sections), ['version', 'plugin', 'eqLogic', 'cmd'])) {
+        if (($sections['version'] ?? null) !== 1 || array_diff(array_keys($sections), ['version', 'plugin', 'eqLogic', 'cmd'])) {
             self::invalidSchema();
         }
         unset($sections['version']);
