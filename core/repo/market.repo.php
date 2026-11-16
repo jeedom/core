@@ -399,6 +399,14 @@ class repo_market {
 		marketClient::request('DELETE', '/boxes/{boxId}/support-access', array('grant' => $grant), 10);
 	}
 
+	public static function openTemporarySupport(array $grant): void {
+		if (strtolower((string) parse_url(config::byKey('market::address'), PHP_URL_SCHEME)) !== 'https'
+			|| config::byKey('market::no_ssl_verify') == 1) {
+			throw new DomainException('L’ouverture de l’accès support requiert une connexion HTTPS vérifiée au Market.');
+		}
+		marketClient::request('POST', '/boxes/{boxId}/support-access', $grant, 10);
+	}
+
 	public static function test() {
 		return marketClient::synchronize();
 	}
@@ -1292,7 +1300,7 @@ class marketClient {
 			self::request('POST', '/support/tickets', $grant ? $ticket + array('supportAccess' => $grant) : $ticket, 300);
 			return 'ok';
 		};
-		return empty($_ticket['openSupport']) ? $submit() : supportAccess::withTicket($submit);
+		return empty($_ticket['openSupport']) ? $submit() : supportAccess::withAuthorization($submit);
 	}
 
 	public static function supportAccess($_enable = true, $_key = '') {

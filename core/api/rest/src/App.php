@@ -158,6 +158,7 @@ final class App
             $support = new SupportController();
             $api->post('/market/support/tickets', $support->create(...));
             $api->get('/market/support/access', $support->status(...));
+            $api->post('/market/support/access', $support->open(...));
             $api->delete('/market/support/access', $support->close(...));
 
             $jeego = new JeegoController();

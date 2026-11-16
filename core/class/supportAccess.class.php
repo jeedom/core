@@ -9,7 +9,7 @@ final class supportAccess {
 		return empty($state['pending']) ? $state : array();
 	}
 
-	public static function withTicket(callable $submit): string {
+	public static function withAuthorization(callable $submit): mixed {
 		$grant = self::locked(static function (): array {
 			$state = self::stored();
 			if (!$state || (!empty($state['pending']) && $state['expiresAt'] <= time() + 7 * 86400 - 300)) {
