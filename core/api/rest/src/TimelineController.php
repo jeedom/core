@@ -96,6 +96,7 @@ final class TimelineController
     /** Le core garde dans `name` et `trigger` des balises (<br/>, <strong>, <span class="label">) : texte brut seulement. */
     private static function text(mixed $html): string
     {
-        return trim(strip_tags((string) $html));
+        $text = preg_replace('#<br\s*/?>|</span>|</strong>#i', ' ', (string) $html);
+        return trim((string) preg_replace('/\s+/u', ' ', strip_tags((string) $text)));
     }
 }
