@@ -8342,6 +8342,15 @@ components:
         minItems: 1
         items: { type: string, minLength: 1 }
 
+    PluginSettingSection:
+      type: object
+      required: [id, label, icon]
+      properties:
+        id: { type: string }
+        label: { type: string }
+        icon: { type: string, example: 'mdi:lock-outline' }
+        description: { type: string }
+
     PluginSettingField:
       type: object
       required: [type]
@@ -8349,6 +8358,9 @@ components:
         type: { type: string, enum: [boolean, number, string, password, select, expression, cron, textarea, icon, time, date, datetime, list] }
         label: { type: string }
         description: { type: string }
+        section:
+          description: Section d’affichage facultative du champ. Les champs d’une ligne de liste ne déclarent pas de section.
+          $ref: '#/components/schemas/PluginSettingSection'
         enum: { type: array, items: { type: string }, minItems: 1 }
         options:
           type: array

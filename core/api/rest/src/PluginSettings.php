@@ -44,9 +44,10 @@ final class PluginSettings
     public static function entitySchema(string $id): array
     {
         $declaration = self::declaration($id);
+        $groups = $declaration['sections'] ?? [];
         return [
-            'eqLogic' => (object) self::validateFields($id, 'eqLogic', $declaration['eqLogic'] ?? []),
-            'cmd' => (object) self::validateFields($id, 'cmd', $declaration['cmd'] ?? []),
+            'eqLogic' => (object) self::validateFields($id, 'eqLogic', $declaration['eqLogic'] ?? [], $groups),
+            'cmd' => (object) self::validateFields($id, 'cmd', $declaration['cmd'] ?? [], $groups),
         ];
     }
 
@@ -122,7 +123,8 @@ final class PluginSettings
 
     private static function section(string $id, string $section): array
     {
-        return self::validateFields($id, $section, self::declaration($id)[$section] ?? []);
+        $declaration = self::declaration($id);
+        return self::validateFields($id, $section, $declaration[$section] ?? [], $declaration['sections'] ?? []);
     }
 
     private static function declaration(string $id): array
@@ -133,7 +135,7 @@ final class PluginSettings
         $schema = $raw !== false && strlen($raw) <= self::MAX_BYTES ? json_decode($raw, false, 16) : null;
         if (!$schema instanceof \stdClass) self::invalidSchema();
         $sections = (array) $schema;
-        if (($sections['version'] ?? null) !== 1 || array_diff(array_keys($sections), ['version', 'plugin', 'eqLogic', 'cmd'])) {
+        if (($sections['version'] ?? null) !== 1 || array_diff(array_keys($sections), ['version', 'plugin', 'eqLogic', 'cmd', 'sections'])) {
             self::invalidSchema();
         }
         unset($sections['version']);
@@ -141,10 +143,27 @@ final class PluginSettings
             if (!$fields instanceof \stdClass) self::invalidSchema();
             $fields = (array) $fields;
         }
+        $sections['sections'] = self::validateSections($sections['sections'] ?? []);
         return $sections;
     }
 
-    private static function validateFields(string $id, string $section, array $fields): array
+    private static function validateSections(array $sections): array
+    {
+        foreach ($sections as $key => $section) {
+            if (!preg_match('/\A[A-Za-z][A-Za-z0-9_-]{0,126}\z/', (string) $key)
+                || !$section instanceof \stdClass
+                || array_diff(array_keys((array) $section), ['label', 'icon', 'description'])
+                || !is_string($section->label ?? null) || trim($section->label) === ''
+                || !is_string($section->icon ?? null) || !preg_match('/\Amdi:[a-z0-9]+(?:-[a-z0-9]+)*\z/', $section->icon)
+                || (property_exists($section, 'description') && !is_string($section->description))) {
+                self::invalidSchema();
+            }
+            $sections[$key] = ['id' => $key] + (array) $section;
+        }
+        return $sections;
+    }
+
+    private static function validateFields(string $id, string $section, array $fields, array $groups = []): array
     {
         if (count($fields) > 64) self::invalidSchema();
         $properties = ['type', 'enum', 'options', 'label', 'description', 'min', 'max', 'picker', 'commandFilters', 'fields'];
@@ -154,6 +173,7 @@ final class PluginSettings
             'row' => ['required', 'default'],
             default => [],
         });
+        if ($section !== 'row') $properties[] = 'section';
         $usedKeys = array_fill_keys(array_keys($fields), true);
         foreach ($fields as $key => $field) {
             if (!preg_match('/\A[A-Za-z][A-Za-z0-9_:-]{0,126}\z/', (string) $key)
@@ -167,6 +187,11 @@ final class PluginSettings
                 || ($section === 'row' && in_array($field['type'], ['list', 'password'], true))
                 || ($section === 'plugin' && $field['type'] !== 'password' && \config::shouldBeEncrypted((string) $key, $id))) {
                 self::invalidSchema();
+            }
+            if (array_key_exists('section', $field)) {
+                $group = $field['section'];
+                if (!is_string($group) || !isset($groups[$group])) self::invalidSchema();
+                $field['section'] = $groups[$group];
             }
             if ($field['type'] === 'list') {
                 if (!(($field['fields'] ?? null) instanceof \stdClass) || (array) $field['fields'] === []) self::invalidSchema();
