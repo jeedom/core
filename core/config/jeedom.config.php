@@ -1212,6 +1212,13 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'type' => 'Info',
 				'subtype' => array('string')
 			),
+			'MEDIA_COVER' => array(
+				'name' => __('Pochette', __FILE__),
+				'familyid' => 'Multimedia',
+				'family' => __('Multimédia', __FILE__),
+				'type' => 'Info',
+				'subtype' => array('string')
+			),
 			'MEDIA_POWER' => array(
 				'name' => __('Power', __FILE__),
 				'familyid' => 'Multimedia',
