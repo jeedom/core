@@ -623,8 +623,9 @@ check(restClientIp('127.0.0.1', ['X-Forwarded-For' => '198.51.100.1']) === '127.
 config::$values['core']['network::trustedProxies'] = '127.0.0.1;::1';
 check(restClientIp('203.0.113.9', ['X-Forwarded-For' => '198.51.100.1', 'X-Real-IP' => '198.51.100.2', 'CF-Connecting-IP' => '198.51.100.3']) === '203.0.113.9', 'Forwarding headers trusted from untrusted peer');
 check(restClientIp('127.0.0.1', ['X-Forwarded-For' => '198.51.100.1, 203.0.113.9']) === '203.0.113.9', 'X-Forwarded-For not walked from the right');
-check(restClientIp('::1', ['CF-Connecting-IP' => '2001:DB8::1', 'X-Forwarded-For' => '198.51.100.1']) === '2001:db8::1', 'CF-Connecting-IP ignored from trusted peer');
-check(restClientIp('127.0.0.1', ['X-Real-IP' => 'invalid', 'X-Forwarded-For' => '198.51.100.1']) === '198.51.100.1', 'Invalid X-Real-IP not skipped');
+check(restClientIp('127.0.0.1', ['CF-Connecting-IP' => '198.51.100.3', 'X-Real-IP' => '198.51.100.2', 'X-Forwarded-For' => '198.51.100.1']) === '198.51.100.1', 'Single-value header preferred to X-Forwarded-For');
+check(restClientIp('::1', ['CF-Connecting-IP' => '2001:DB8::1', 'X-Forwarded-For' => 'unknown']) === '2001:db8::1', 'CF-Connecting-IP ignored without usable X-Forwarded-For');
+check(restClientIp('127.0.0.1', ['X-Real-IP' => 'invalid', 'CF-Connecting-IP' => '198.51.100.3']) === '198.51.100.3', 'Invalid X-Real-IP not skipped');
 unset(config::$values['core']['network::trustedProxies']);
 echo "OK $checks REST plugin checks on PHP " . PHP_VERSION . "\n";
 

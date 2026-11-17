@@ -22,16 +22,17 @@
  * le bootstrap (aucun proxy n'est alors de confiance) et par l'API REST.
  */
 class trustedProxy {
-	/** En-têtes lus d'un pair de confiance, par ordre de priorité ; null désigne X-Forwarded-For. */
-	private const HEADERS = array('HTTP_CF_CONNECTING_IP', 'HTTP_X_REAL_IP', null, 'HTTP_CLIENT_IP');
+	/** En-têtes à valeur unique lus d'un pair de confiance, à défaut de X-Forwarded-For. */
+	private const FALLBACK_HEADERS = array('HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP', 'HTTP_CLIENT_IP');
 
 	/**
 	 * Adresse du client pour une requête décrite à la manière de $_SERVER, ou '' sans pair
-	 * valide (CLI, cron). Un pair qui n'est pas de confiance est le client. Sinon le premier
-	 * en-tête renseigné l'emporte : CF-Connecting-IP, X-Real-IP, X-Forwarded-For (remonté
-	 * de droite à gauche tant que l'adresse est de confiance), Client-IP. Une valeur
-	 * illisible est ignorée ; dans X-Forwarded-For, elle arrête la remontée sur la dernière
-	 * adresse valide.
+	 * valide (CLI, cron). Un pair qui n'est pas de confiance est le client. Sinon
+	 * X-Forwarded-For est remonté de droite à gauche tant que l'adresse est de confiance ;
+	 * une entrée illisible arrête la remontée sur la dernière adresse valide. Ce n'est que
+	 * si la chaîne n'apporte aucune adresse (absente, ou entrée la plus à droite illisible)
+	 * que X-Real-IP, CF-Connecting-IP puis Client-IP sont lus : un proxy qui ajoute le pair
+	 * à X-Forwarded-For sans filtrer ces en-têtes ne laisse ainsi pas le client choisir.
 	 */
 	public static function clientIp(array $_server): string {
 		$peer = self::normalizeIp((string) ($_server['REMOTE_ADDR'] ?? ''));
@@ -41,14 +42,11 @@ class trustedProxy {
 		if (!self::isTrusted($peer)) {
 			return $peer;
 		}
-		foreach (self::HEADERS as $header) {
-			if ($header === null) {
-				$chain = trim((string) ($_server['HTTP_X_FORWARDED_FOR'] ?? ''));
-				if ($chain !== '') {
-					return self::walkForwardedFor($peer, $chain);
-				}
-				continue;
-			}
+		$client = self::walkForwardedFor((string) ($_server['HTTP_X_FORWARDED_FOR'] ?? ''));
+		if ($client !== null) {
+			return $client;
+		}
+		foreach (self::FALLBACK_HEADERS as $header) {
 			$value = explode(',', (string) ($_server[$header] ?? ''))[0];
 			$address = self::normalizeIp(trim($value));
 			if ($address !== null) {
@@ -116,8 +114,8 @@ class trustedProxy {
 		return (string) inet_ntop($binary);
 	}
 
-	private static function walkForwardedFor(string $_peer, string $_chain): string {
-		$client = $_peer;
+	private static function walkForwardedFor(string $_chain): ?string {
+		$client = null;
 		foreach (array_reverse(explode(',', $_chain)) as $address) {
 			$address = self::normalizeIp(trim($address));
 			if ($address === null) {

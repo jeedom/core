@@ -10475,9 +10475,10 @@ components:
             Proxys de confiance du Core et de l'API REST (onglet network, réservé aux
             administrateurs) : adresses IP ou plages CIDR IPv4/IPv6 séparées par `;`. Les
             en-têtes de proxy ne sont lus que d'un pair de confiance ; l'adresse du client est
-            alors, par ordre de priorité, `CF-Connecting-IP`, `X-Real-IP`, `X-Forwarded-For`
-            remonté depuis le pair tant que l'adresse est de confiance, puis `Client-IP`
-            (bannissement par IP, localisation interne/externe, audits).
+            alors prise en remontant `X-Forwarded-For` depuis le pair tant que l'adresse est de
+            confiance, et seulement si cette chaîne n'apporte aucune adresse, dans `X-Real-IP`,
+            `CF-Connecting-IP` puis `Client-IP` (bannissement par IP, localisation
+            interne/externe, audits).
             `X-Forwarded-Proto` et `X-Forwarded-Host` ne sont lus que d'un pair de confiance. La valeur par défaut fait confiance à tous les proxys ;
             `127.0.0.1;::1` n'accepte que le relais local. La variable d'environnement
             `JEEDOM_TRUSTED_PROXIES`, si elle est définie, remplace ce réglage.
