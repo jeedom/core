@@ -59,12 +59,7 @@ final class BackupsController
         if ($handle === false) {
             throw new ApiError(404, 'backup_not_found', 'Sauvegarde introuvable ou illisible.');
         }
-        $name = basename($path);
-        $fallback = preg_replace('/[^A-Za-z0-9_.-]/', '_', $name);
-        return $response->withBody(new Stream($handle))
-            ->withHeader('Content-Type', 'application/gzip')
-            ->withHeader('Content-Disposition', "attachment; filename=\"$fallback\"; filename*=UTF-8''" . rawurlencode($name))
-            ->withHeader('X-Content-Type-Options', 'nosniff')
+        return Attachment::headers($response->withBody(new Stream($handle)), basename($path), 'application/gzip')
             ->withHeader('Cache-Control', 'private, no-store');
     }
 
