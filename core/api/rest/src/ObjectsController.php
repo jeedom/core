@@ -15,8 +15,6 @@ use Psr\Http\Message\UploadedFileInterface;
  */
 final class ObjectsController
 {
-    private const MAX_IMAGE_SIZE = 5000000;
-    private const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp'];
 
     public function list(Request $request, Response $response): Response
     {
@@ -296,18 +294,20 @@ final class ObjectsController
         if (!$file instanceof UploadedFileInterface) {
             throw ApiError::field(422, 'validation_error', 'file', 'Un fichier image est attendu.');
         }
-        if (in_array($file->getError(), [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true) || $file->getSize() > self::MAX_IMAGE_SIZE) {
+        if (in_array($file->getError(), [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true) || $file->getSize() > \utils::IMAGE_MAX_SIZE) {
             throw new ApiError(413, 'image_too_large', 'Le fichier est trop gros (maximum 5 Mo).');
         }
-        $extension = strtolower((string) strrchr((string) $file->getClientFilename(), '.'));
-        if ($file->getError() !== UPLOAD_ERR_OK || !in_array($extension, self::IMAGE_EXTENSIONS, true)) {
-            throw ApiError::field(422, 'validation_error', 'file', 'Extension non valide (autorisé : .jpg .jpeg .png .gif .svg .webp).');
+        $invalid = static fn () => ApiError::field(422, 'validation_error', 'file', 'Extension non valide (autorisé : ' . implode(' ', \utils::IMAGE_EXTENSIONS) . ').');
+        if ($file->getError() !== UPLOAD_ERR_OK) {
+            throw $invalid();
         }
         $temporary = \jeedom::getTmpFolder('rest-images') . '/' . bin2hex(random_bytes(16));
         try {
             $file->moveTo($temporary);
-            if (filesize($temporary) > self::MAX_IMAGE_SIZE) {
-                throw new ApiError(413, 'image_too_large', 'Le fichier est trop gros (maximum 5 Mo).');
+            try {
+                $extension = \utils::checkUploadedImage((string) $file->getClientFilename(), $temporary);
+            } catch (\Exception $e) {
+                throw $e->getCode() === 413 ? new ApiError(413, 'image_too_large', 'Le fichier est trop gros (maximum 5 Mo).') : $invalid();
             }
             $store($temporary, $extension);
         } finally {
