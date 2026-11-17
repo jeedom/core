@@ -11,9 +11,6 @@ final class SupportController
     public function create(Request $request, Response $response): Response
     {
         Auth::requireAccountAdmin($request);
-        if ($request->getAttribute('user')->getLogin() === 'demo') {
-            throw new ApiError(403, 'forbidden', 'Action indisponible en mode démo.');
-        }
         $body = Json::body($request, 40 * 1024, true);
         if (array_diff(array_keys($body), ['category', 'title', 'message', 'openSupport']) !== []) {
             throw new ApiError(422, 'validation_error', 'Paramètre de demande de support inconnu.');
@@ -65,7 +62,7 @@ final class SupportController
     public function open(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        if (in_array($request->getAttribute('user')->getLogin(), ['demo', \supportAccess::LOGIN], true)) {
+        if ($request->getAttribute('user')->getLogin() === \supportAccess::LOGIN) {
             throw new ApiError(403, 'forbidden', 'Cette session ne peut pas ouvrir l’accès support.');
         }
         if (!\repo_market::isConnected()) {
@@ -88,9 +85,6 @@ final class SupportController
     public function close(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        if ($request->getAttribute('user')->getLogin() === 'demo') {
-            throw new ApiError(403, 'forbidden', 'Action indisponible en mode démo.');
-        }
         \supportAccess::close();
         return $response->withStatus(204)->withHeader('Cache-Control', 'no-store');
     }

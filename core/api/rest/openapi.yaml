@@ -3554,7 +3554,7 @@ paths:
         schema:
           type: string
           pattern: ^[A-Za-z0-9_-]{16,128}$
-      description: Administrateur, hors démo, CSRF en session. Branche explicite. La même clé pour la dernière opération
+      description: Administrateur, CSRF en session. Branche explicite. La même clé pour la dernière opération
         renvoie son état sans lancer une autre installation ; une autre clé concurrente donne 409. La queue native
         exécute update::doUpdate et revérifie les droits, l’accès Market et la compatibilité. Première installation
         inactive, réglages et état existants conservés. La réussite concerne les fichiers du plugin ; dépendances
@@ -6743,7 +6743,7 @@ paths:
       tags: [Configuration]
       operationId: openMarketSupportAccess
       summary: Autoriser l’accès support de la box pendant sept jours
-      description: Réservé aux administrateurs hors sessions de support et mode démo. Conserve l’échéance d’un accès déjà ouvert.
+      description: Réservé aux administrateurs hors sessions de support. Conserve l’échéance d’un accès déjà ouvert.
       responses:
         '200':
           description: Date d’expiration en secondes Unix, ou null si l’autorisation a été révoquée pendant l’ouverture.
@@ -6772,7 +6772,7 @@ paths:
       tags: [Configuration]
       operationId: createMarketSupportTicket
       summary: Ouvrir un ticket d’assistance technique
-      description: Réservé aux administrateurs hors démo. Utilise la session Market de la box. L’accès du support requiert un choix explicite.
+      description: Réservé aux administrateurs. Utilise la session Market de la box. L’accès du support requiert un choix explicite.
       requestBody:
         required: true
         content:
