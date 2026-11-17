@@ -2,6 +2,9 @@
 
 class jeego {
 	private const HARDWARE_CONFIG = 'jeego::hardware';
+	/** Clé de cache d'un échec récent de /info : évite un appel HTTP (2 s) à chaque lecture. */
+	private const HARDWARE_FAILURE_CACHE = 'jeego::hardware::failure';
+	private const HARDWARE_FAILURE_LIFETIME = 60;
 
 	public static function isDetected(): bool {
 		return (string) getenv('JEEGO_API_URL') !== '' || (string) getenv('JEEGO_API_KEY') !== '';
@@ -15,6 +18,9 @@ class jeego {
 
 		$previous = $hardware['name'] ?? null;
 		$fallback = is_string($previous) && $previous !== '' ? $previous : 'diy';
+		if (cache::byKey(self::HARDWARE_FAILURE_CACHE)->getValue(0) == 1) {
+			return $fallback;
+		}
 		$lock = self::openHardwareLock();
 		if ($lock === false) {
 			return $fallback;
@@ -40,20 +46,26 @@ class jeego {
 
 			try {
 				$info = self::request('/info', null, 2);
-				$detected = self::normalizeHardware($info['host'] ?? array());
 			} catch (Exception $e) {
+				cache::set(self::HARDWARE_FAILURE_CACHE, 1, self::HARDWARE_FAILURE_LIFETIME);
 				return 'diy';
 			}
-			if ($detected !== null) {
-				config::save(self::HARDWARE_CONFIG, $detected);
-			}
-			return $detected ?? 'diy';
+			// Type inconnu : on garde le type brut (ou diy) pour ne pas réinterroger l'API à chaque lecture.
+			$detected = self::normalizeHardware($info['host'] ?? array()) ?? self::rawHardware($info['host'] ?? array());
+			config::save(self::HARDWARE_CONFIG, $detected);
+			return $detected;
 		} finally {
 			fclose($lock);
 		}
 	}
 
+	private static function rawHardware($host): string {
+		$type = is_array($host) ? ($host['machine_type'] ?? null) : null;
+		return is_string($type) && trim($type) !== '' ? trim($type) : 'diy';
+	}
+
 	public static function resetHardwareName(): void {
+		cache::delete(self::HARDWARE_FAILURE_CACHE);
 		$lock = self::openHardwareLock();
 		if ($lock === false) {
 			config::remove(self::HARDWARE_CONFIG);

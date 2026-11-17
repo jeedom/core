@@ -138,7 +138,18 @@ final class SystemController
     public function ssh(Request $request, Response $response): Response
     {
         self::requireAdmin($request);
-        return self::respond($response, \system::executeConsoleCommand(self::textField($request, 'command')));
+        $command = self::textField($request, 'command');
+        try {
+            $result = \system::executeConsoleCommand($command);
+        } catch (\LengthException $e) {
+            throw new ApiError(413, 'shell_output_too_large', $e->getMessage());
+        } catch (\RuntimeException $e) {
+            if ($e->getCode() !== \system::CONSOLE_TIMEOUT_ERROR) {
+                throw $e;
+            }
+            throw new ApiError(504, 'shell_timeout', $e->getMessage());
+        }
+        return self::respond($response, $result);
     }
 
     private static function requireAdmin(Request $request): void

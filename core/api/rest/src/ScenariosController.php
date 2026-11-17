@@ -86,7 +86,7 @@ final class ScenariosController
         $scenario->setIsActive(1);
         $scenario->setIsVisible(1);
         $scenario->setMode('provoke');
-        self::apply($scenario, $body);
+        self::write($scenario, self::validate($body));
         return Json::respond($response, self::toArray(self::reload($scenario), true), 201);
     }
 
@@ -98,11 +98,10 @@ final class ScenariosController
         if ($body === []) {
             throw new ApiError(422, 'validation_error', 'Aucun champ à modifier.');
         }
-        // Décision du 06/11 : un scénario en cours est arrêté, puis mis à jour.
-        if ($scenario->running()) {
-            $scenario->stop();
-        }
-        self::apply($scenario, $body);
+        $body = self::validate($body);
+        // Décision du 06/11 : un scénario en cours est arrêté, puis mis à jour (après validation).
+        self::stopIfRunning($scenario);
+        self::write($scenario, $body);
         return Json::respond($response, self::toArray(self::reload($scenario), true));
     }
 
@@ -125,9 +124,12 @@ final class ScenariosController
         if ($unknown = array_diff(array_keys($changes), self::BULK_CHANGES)) {
             throw ApiError::field(422, 'validation_error', 'changes.' . reset($unknown), 'Seuls isActive, isVisible et group peuvent être modifiés en groupe.');
         }
+        $changes = self::validate($changes);
         $user = $request->getAttribute('user');
         return Json::respond($response, self::each($ids, static function (int $id) use ($user, $changes): void {
-            self::apply(self::find((string) $id, $user, 'w'), $changes);
+            $scenario = self::find((string) $id, $user, 'w');
+            self::stopIfRunning($scenario);
+            self::write($scenario, $changes);
         }));
     }
 
@@ -350,8 +352,15 @@ final class ScenariosController
         return ['done' => $done, 'failed' => $failed];
     }
 
-    /** Valide puis enregistre, comme l'ajax save (a2o, puis blocs par saveAjaxElement). */
-    private static function apply(\scenario $scenario, array $body): void
+    private static function stopIfRunning(\scenario $scenario): void
+    {
+        if ($scenario->running()) {
+            $scenario->stop();
+        }
+    }
+
+    /** Valide le corps sans rien écrire ; renvoie les valeurs normalisées pour write(). */
+    private static function validate(array $body): array
     {
         if ($unknown = array_diff(array_keys($body), self::FIELDS)) {
             throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu ou non modifiable.');
@@ -400,6 +409,53 @@ final class ScenariosController
         if (array_key_exists('elements', $body) && (!is_array($body['elements']) || !array_is_list($body['elements']))) {
             throw ApiError::field(422, 'validation_error', 'elements', 'Une liste de blocs est attendue.');
         }
+        foreach ($body['elements'] ?? [] as $element) {
+            self::validateElement($element);
+        }
+        return $body;
+    }
+
+    /**
+     * Vérifie la structure d'un bloc et l'existence des identifiants qu'il cite, avant
+     * tout saveAjaxElement : un bloc refusé en cours d'enregistrement laisserait les
+     * blocs précédents orphelins.
+     */
+    private static function validateElement(mixed $element): void
+    {
+        if (!is_array($element) || !isset($element['subElements']) || !is_array($element['subElements'])) {
+            throw ApiError::field(422, 'validation_error', 'elements', 'Chaque bloc doit avoir un type et des subElements.');
+        }
+        if (isset($element['id']) && $element['id'] != '' && !is_object(\scenarioElement::byId($element['id']))) {
+            throw ApiError::field(422, 'validation_error', 'elements', 'Bloc inconnu : ' . $element['id'] . '.');
+        }
+        foreach ($element['subElements'] as $sub) {
+            if (!is_array($sub) || !isset($sub['expressions']) || !is_array($sub['expressions'])) {
+                throw ApiError::field(422, 'validation_error', 'elements', 'Chaque sous-bloc doit avoir une liste expressions.');
+            }
+            $subId = isset($sub['id']) && $sub['id'] != '' ? $sub['id'] : null;
+            if ($subId !== null && !is_object(\scenarioSubElement::byId($subId))) {
+                throw ApiError::field(422, 'validation_error', 'elements', 'Sous-bloc inconnu : ' . $subId . '.');
+            }
+            foreach ($sub['expressions'] as $expression) {
+                if (!is_array($expression)) {
+                    throw ApiError::field(422, 'validation_error', 'elements', 'Chaque expression doit être un objet.');
+                }
+                // saveAjaxElement ignore l'id d'une expression rattachée à un autre sous-bloc.
+                $kept = isset($expression['id']) && $expression['id'] != ''
+                    && !(isset($expression['scenarioSubElement_id']) && ($subId === null || $expression['scenarioSubElement_id'] != $subId));
+                if ($kept && !is_object(\scenarioExpression::byId($expression['id']))) {
+                    throw ApiError::field(422, 'validation_error', 'elements', 'Expression inconnue : ' . $expression['id'] . '.');
+                }
+                if (($expression['type'] ?? null) === 'element') {
+                    self::validateElement($expression['element'] ?? null);
+                }
+            }
+        }
+    }
+
+    /** Enregistre un corps validé, comme l'ajax save (a2o, puis blocs par saveAjaxElement). */
+    private static function write(\scenario $scenario, array $body): void
+    {
         $elements = $body['elements'] ?? null;
         unset($body['elements']);
         if (isset($body['trigger'])) {
@@ -416,9 +472,6 @@ final class ScenariosController
                 $scenario->setConfiguration('has_return', str_contains((string) $encoded, 'scenario_return') ? 1 : 0);
                 $ids = [];
                 foreach ($elements as $element) {
-                    if (!is_array($element) || !isset($element['subElements']) || !is_array($element['subElements'])) {
-                        throw ApiError::field(422, 'validation_error', 'elements', 'Chaque bloc doit avoir un type et des subElements.');
-                    }
                     $ids[] = \scenarioElement::saveAjaxElement($element);
                 }
                 $scenario->setScenarioElement($ids);

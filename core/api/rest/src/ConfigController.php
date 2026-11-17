@@ -276,23 +276,19 @@ final class ConfigController
             && !self::isCoreUpdateUrl((string) ($values['url::core::url'] ?? \config::byKey('url::core::url')))) {
             throw ApiError::field(422, 'validation_error', 'url::core::url', 'Renseignez l’URL de l’archive du Core.');
         }
-        $atomic = array_intersect_key($values, self::SECTIONS['backups'] + self::SECTIONS['updates']) !== [];
-        if ($atomic) {
-            \DB::beginTransaction();
-        }
+        // Toujours en transaction : un hook preConfig_*/postConfig_* qui lève ne doit pas laisser
+        // les clés précédentes écrites. Les effets des hooks hors base (démarrage ou arrêt du
+        // service DNS, caches des résumés d'objets) ne sont pas annulés.
+        $sensitive = array_intersect_key($values, self::SECTIONS['backups'] + self::SECTIONS['updates']) !== [];
+        \DB::beginTransaction();
         try {
             foreach ($values as $key => $value) {
                 \config::save($key, $value);
             }
-            if ($atomic) {
-                \DB::commit();
-            }
+            \DB::commit();
         } catch (\Exception $e) {
-            if ($atomic) {
-                \DB::rollBack();
-                throw new ApiError(422, 'validation_error', 'Impossible d’enregistrer la configuration.');
-            }
-            throw new ApiError(422, 'validation_error', $e->getMessage());
+            \DB::rollBack();
+            throw new ApiError(422, 'validation_error', $sensitive ? 'Impossible d’enregistrer la configuration.' : $e->getMessage());
         }
         return Json::respond($response, (object) self::read(array_map('strval', array_keys($body)), true));
     }

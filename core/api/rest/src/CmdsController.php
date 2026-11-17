@@ -377,8 +377,10 @@ final class CmdsController
 
     public function calculatedHistory(Request $request, Response $response): Response
     {
-        // Une formule peut lire n'importe quelle commande, même illisible pour l'utilisateur.
-        Auth::requireAdmin($request);
+        // Une formule peut lire n'importe quelle commande : réservée aux profils sans restriction, comme l'ajax getHistory.
+        if (!in_array($request->getAttribute('user')?->getProfils(), ['admin', 'user'], true)) {
+            throw new ApiError(403, 'forbidden', 'Action réservée aux profils administrateur et utilisateur.');
+        }
         $query = $request->getQueryParams();
         $formula = $query['formula'] ?? '';
         if (!is_string($formula) || trim($formula) === '') {

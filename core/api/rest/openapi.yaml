@@ -1087,6 +1087,10 @@ paths:
       tags: [Système]
       operationId: executeSystemShellCommand
       summary: Exécuter une commande shell locale
+      description: |
+        La commande, et les processus qu'elle lance, sont tués au bout de
+        30 secondes (504 `shell_timeout`) ou dès que la sortie dépasse 2 Mio
+        (413 `shell_output_too_large`). La sortie partielle n'est pas renvoyée.
       requestBody:
         required: true
         content:
@@ -1106,7 +1110,9 @@ paths:
         '400': { $ref: '#/components/responses/SystemInvalidJson' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+        '413': { $ref: '#/components/responses/SystemShellOutputLimit' }
         '422': { $ref: '#/components/responses/ValidationError' }
+        '504': { $ref: '#/components/responses/SystemShellTimeout' }
 
   /system/files/roots:
     get:
@@ -1564,13 +1570,21 @@ paths:
       tags: [Sauvegardes]
       operationId: importRemoteBackup
       summary: Rapatrier une sauvegarde dans le dossier local
-      description: Copie l'archive depuis le dépôt. La restauration de Jeedom est une opération distincte.
+      description: |
+        Copie l'archive depuis le dépôt. Une sauvegarde locale du même nom
+        n'est jamais écrasée (409 `backup_already_exists`). La restauration de
+        Jeedom est une opération distincte.
       responses:
         '204':
           description: Sauvegarde rapatriée.
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/BackupNotFound' }
+        '409':
+          description: Une sauvegarde locale porte déjà ce nom (backup_already_exists).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
         '502': { $ref: '#/components/responses/BackupRepositoryFailed' }
   /backups/{id}/exports:
     parameters:
@@ -5938,7 +5952,8 @@ paths:
         (`history::getHistoryFromCalcul`), ex. `#12# + #15#` ou
         `#[Salon][Clim][Puissance]# * 2`. Une formule peut lire n'importe
         quelle commande, y compris une que l'utilisateur ne peut pas lire :
-        réservé aux administrateurs.
+        réservé aux profils administrateur et utilisateur, comme l'ajax
+        (refusé au profil restreint).
       parameters:
         - name: formula
           in: query
@@ -6193,8 +6208,10 @@ paths:
       summary: Modifier plusieurs scénarios
       description: |
         Active, désactive, montre, cache ou regroupe plusieurs scénarios.
-        Un scénario qui échoue n'arrête pas les autres. Réservé aux
-        administrateurs.
+        Un scénario qui échoue n'arrête pas les autres. `changes` est validé
+        avant toute écriture (422 sinon) ; comme pour la modification d'un
+        seul scénario, un scénario en cours est arrêté avant d'être modifié.
+        Réservé aux administrateurs.
       requestBody:
         required: true
         content:
@@ -6333,8 +6350,11 @@ paths:
         Remplace l'ajax `save` avec `id`. Seuls les champs envoyés sont
         modifiés ; `configuration` et `display` sont fusionnés clé par clé.
         `elements`, s'il est envoyé, remplace tout le contenu du scénario
-        (les blocs absents sont supprimés). Si le scénario est en cours
-        d'exécution, il est d'abord arrêté, puis mis à jour. Réservé aux
+        (les blocs absents sont supprimés). Le corps, blocs compris, est
+        entièrement validé avant toute écriture : une requête refusée (422)
+        n'arrête pas le scénario et ne laisse aucun bloc enregistré. Si le
+        scénario est en cours d'exécution, il est ensuite arrêté, puis mis à
+        jour. Réservé aux
         administrateurs ayant le droit d'écriture.
       requestBody:
         required: true
@@ -6673,7 +6693,12 @@ paths:
       description: |
         Seules les clés envoyées sont enregistrées (`config::save`). Une clé
         inconnue ou d'un mauvais type refuse toute la requête (422), rien
-        n'est enregistré. Renvoie les clés envoyées, relues.
+        n'est enregistré. L'enregistrement se fait dans une transaction : si
+        le traitement d'une clé échoue (422), aucune clé n'est enregistrée.
+        Les effets hors base déjà produits par les clés précédentes ne sont
+        pas annulés (démarrage ou arrêt du service DNS pour `dns::mode` et
+        `*::allowDNS`, recalcul des résumés d'objets pour `object:summary`).
+        Renvoie les clés envoyées, relues.
       requestBody:
         required: true
         content:
@@ -11546,6 +11571,16 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     SystemSqlError:
       description: Corps invalide ou requête refusée par la base de données.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemShellOutputLimit:
+      description: Sortie de la commande supérieure à 2 Mio (shell_output_too_large) ; la commande a été tuée.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemShellTimeout:
+      description: Commande toujours en cours après 30 secondes (shell_timeout) ; elle a été tuée.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }

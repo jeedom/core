@@ -221,9 +221,14 @@ class repo_samba {
 			if ($sudo !== '') {
 				com_shell::execute($sudo . 'chown -- ' . posix_geteuid() . ':' . posix_getegid() . ' ' . escapeshellarg($download));
 			}
-			if (!chmod($download, 0600) || !rename($download, $backup_dir . '/' . $_backup)) {
+			// link() refuse d'écraser une sauvegarde locale du même nom, comme jeedom::uploadBackup.
+			if (!chmod($download, 0600) || !@link($download, $backup_dir . '/' . $_backup)) {
+				if (file_exists($backup_dir . '/' . $_backup) || is_link($backup_dir . '/' . $_backup)) {
+					throw new RuntimeException('Une sauvegarde porte déjà ce nom.', 409);
+				}
 				throw new RuntimeException('Impossible d’enregistrer la sauvegarde Samba.');
 			}
+			unlink($download);
 		} finally {
 			rrmdir($temporary);
 		}

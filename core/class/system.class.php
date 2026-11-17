@@ -34,8 +34,19 @@ class system {
 
 	/*     * ***********************Methode static*************************** */
 
+	public const CONSOLE_TIMEOUT_ERROR = 1970;
+	private const CONSOLE_SECONDS = 30;
+	private const CONSOLE_BYTES = 2097152;
+
+	/**
+	 * Exécute une commande de la console : 30 secondes et 2 Mio de sortie au plus.
+	 * Au-delà, la commande et ses descendants sont tués et une exception est levée
+	 * (RuntimeException de code CONSOLE_TIMEOUT_ERROR, ou LengthException).
+	 */
 	public static function executeConsoleCommand(string $command): array {
-		$process = proc_open(['/bin/sh', '-c', $command], [
+		// Un groupe de processus à part permet de tuer aussi les commandes lancées par le shell.
+		$setsid = is_executable('/usr/bin/setsid') ? '/usr/bin/setsid' : (is_executable('/bin/setsid') ? '/bin/setsid' : null);
+		$process = proc_open(array_merge($setsid === null ? [] : [$setsid], ['/bin/sh', '-c', $command]), [
 			0 => ['file', '/dev/null', 'r'],
 			1 => ['pipe', 'w'],
 			2 => ['redirect', 1],
@@ -43,16 +54,61 @@ class system {
 		if ($process === false) {
 			throw new RuntimeException('Impossible de démarrer le shell.');
 		}
+		$output = '';
+		$error = null;
+		$deadline = microtime(true) + self::CONSOLE_SECONDS;
+		stream_set_blocking($pipes[1], false);
 		try {
-			$output = stream_get_contents($pipes[1]);
+			while (!feof($pipes[1])) {
+				$left = $deadline - microtime(true);
+				if ($left <= 0) {
+					$error = new RuntimeException('Le délai maximal de ' . self::CONSOLE_SECONDS . ' secondes est dépassé.', self::CONSOLE_TIMEOUT_ERROR);
+					break;
+				}
+				$read = [$pipes[1]];
+				$write = $except = null;
+				$ready = stream_select($read, $write, $except, (int) $left, (int) (($left - (int) $left) * 1000000));
+				if ($ready === false) {
+					$error = new RuntimeException('Impossible de lire la sortie du shell.');
+					break;
+				}
+				if ($ready === 0) {
+					continue;
+				}
+				$chunk = fread($pipes[1], 65536);
+				if ($chunk === false) {
+					$error = new RuntimeException('Impossible de lire la sortie du shell.');
+					break;
+				}
+				$output .= $chunk;
+				if (strlen($output) > self::CONSOLE_BYTES) {
+					$error = new LengthException('La sortie de la commande dépasse 2 Mio.');
+					break;
+				}
+			}
 		} finally {
+			if ($error !== null || !feof($pipes[1])) {
+				self::killConsoleProcess($process, $setsid !== null);
+			}
 			fclose($pipes[1]);
 			$exitCode = proc_close($process);
 		}
-		if ($output === false) {
-			throw new RuntimeException('Impossible de lire la sortie du shell.');
+		if ($error !== null) {
+			throw $error;
 		}
 		return ['output' => $output, 'exitCode' => $exitCode];
+	}
+
+	private static function killConsoleProcess($process, bool $ownGroup): void {
+		$pid = (int) (proc_get_status($process)['pid'] ?? 0);
+		if ($ownGroup && $pid > 1) {
+			if (function_exists('posix_kill')) {
+				posix_kill(-$pid, 9);
+			} else {
+				exec('kill -KILL -- -' . $pid . ' 2>/dev/null');
+			}
+		}
+		proc_terminate($process, 9);
 	}
 
 	public static function loadCommand() {

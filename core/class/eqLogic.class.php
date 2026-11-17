@@ -998,8 +998,8 @@ class eqLogic {
 	}
 
 	public function removeImage() {
-		$this->getConfiguration('image::data', '');
-		$this->getConfiguration('image::sha512', '');
+		$this->setConfiguration('image::type', '');
+		$this->setConfiguration('image::sha512', '');
 		$this->save(true);
 		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $this->getId() . '-*');
 		if (count($files)  > 0) {
