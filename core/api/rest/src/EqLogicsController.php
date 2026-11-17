@@ -35,8 +35,8 @@ final class EqLogicsController
         } else {
             $eqLogics = \eqLogic::all();
         }
-        $enabled = self::optionalFlag($query['enabled'] ?? null);
-        $visible = self::optionalFlag($query['visible'] ?? null);
+        $enabled = QueryParam::bool($query, 'enabled');
+        $visible = QueryParam::bool($query, 'visible');
         $eqLogics = array_values(array_filter((array) $eqLogics, static fn ($eqLogic) => is_object($eqLogic)
             && ($logicalId === '' || (string) $eqLogic->getLogicalId() === $logicalId)
             && ($enabled === null || (bool) (int) $eqLogic->getIsEnable() === $enabled)
@@ -592,11 +592,6 @@ final class EqLogicsController
     private static function includes(Request $request, string $what): bool
     {
         return in_array($what, explode(',', (string) ($request->getQueryParams()['include'] ?? '')), true);
-    }
-
-    private static function optionalFlag(mixed $value): ?bool
-    {
-        return $value === null ? null : filter_var($value, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
     }
 
     private static function objectId(mixed $value): ?int

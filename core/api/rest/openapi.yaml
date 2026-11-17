@@ -4547,6 +4547,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/ObjectList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
     post:
       tags: [Objets]
       operationId: createObject
@@ -4908,6 +4909,7 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
   /eqLogics:
     get:
       tags: [Équipements]

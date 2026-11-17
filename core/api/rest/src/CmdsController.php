@@ -255,7 +255,7 @@ final class CmdsController
         if ($grouping !== null && !preg_match('/^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$/', (string) $grouping)) {
             throw ApiError::field(422, 'validation_error', 'grouping', 'Format attendu : fonction::période (ex. avg::hour).');
         }
-        $derive = self::bool($request->getQueryParams()['derive'] ?? null, 'derive') ?? (bool) (int) $cmd->getDisplay('graphDerive');
+        $derive = QueryParam::bool($request->getQueryParams(), 'derive') ?? (bool) (int) $cmd->getDisplay('graphDerive');
         if ($derive) {
             $grouping = null;
         }
@@ -526,18 +526,6 @@ final class CmdsController
             throw ApiError::field(422, 'validation_error', 'start', 'Le début doit précéder la fin.');
         }
         return [$start->format(self::DATE), $end->format(self::DATE)];
-    }
-
-    private static function bool(mixed $value, string $field): ?bool
-    {
-        if ($value === null || $value === '') {
-            return null;
-        }
-        $bool = filter_var($value, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
-        if ($bool === null) {
-            throw ApiError::field(422, 'validation_error', $field, 'true ou false est attendu.');
-        }
-        return $bool;
     }
 
     private static function date(mixed $value, string $field): ?\DateTimeImmutable
