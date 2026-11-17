@@ -63,6 +63,22 @@ final class ListQuery
         return true;
     }
 
+    /** Vrai si `q` est renseigné : le filtre se fait alors en PHP, pas en SQL. */
+    public function hasSearch(): bool
+    {
+        return $this->words !== [];
+    }
+
+    public function limit(): ?int
+    {
+        return $this->limit;
+    }
+
+    public function offset(): int
+    {
+        return $this->offset;
+    }
+
     /** @return array{items: list<mixed>, total: int} */
     public function page(array $items): array
     {

@@ -45,7 +45,11 @@ class message {
 	 * @param bool $_writeMessage
 	 * @param string|null $_channel
 	 * @param bool $_notifySystem Whether the message can trigger system notifications
-	 * @param string $_level Message severity shown in the notification center
+	 * @param string $_level Message severity shown in the notification center (self::LEVELS).
+	 *   Correspondance dans le core : `error` pour les journaux error et au-delà (log::add), les alertes
+	 *   danger, la batterie danger, les expressions de scénario invalides et la désactivation d'un
+	 *   équipement ; `warning` pour les alertes warning, la batterie warning, le timeout d'équipement,
+	 *   le heartbeat et les crons de plugin bloqués ; `info` pour le reste.
 	 */
 	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null, bool $_notifySystem = true, string $_level = 'info') {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
@@ -198,7 +202,27 @@ class message {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function notificationList(string $_plugin = '', ?string $_level = null, ?bool $_read = null): array {
+	/**
+	 * Messages du centre de notifications (API REST) : non lus d'abord, puis du plus récent au plus ancien.
+	 * Sans $_limit, tous les messages correspondant aux filtres sont renvoyés.
+	 */
+	public static function notificationList(string $_plugin = '', ?string $_level = null, ?bool $_read = null, ?int $_limit = null, int $_offset = 0): array {
+		[$where, $values] = self::notificationFilters($_plugin, $_level, $_read);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM message' . $where . ' ORDER BY `read` ASC, date DESC, id DESC';
+		if ($_limit !== null || $_offset > 0) {
+			$sql .= ' LIMIT ' . max(0, $_offset) . ', ' . ($_limit === null ? PHP_INT_MAX : max(0, $_limit));
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function notificationCount(string $_plugin = '', ?string $_level = null, ?bool $_read = null): int {
+		[$where, $values] = self::notificationFilters($_plugin, $_level, $_read);
+		$count = DB::Prepare('SELECT COUNT(*) AS total FROM message' . $where, $values, DB::FETCH_TYPE_ROW);
+		return (int) $count['total'];
+	}
+
+	/** @return array{0: string, 1: array<string, mixed>} */
+	private static function notificationFilters(string $_plugin, ?string $_level, ?bool $_read): array {
 		$filters = [];
 		$values = [];
 		if ($_plugin !== '') {
@@ -213,15 +237,7 @@ class message {
 			$filters[] = '`read` = :read';
 			$values['read'] = (int) $_read;
 		}
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM message';
-		if ($filters !== []) {
-			$sql .= ' WHERE ' . implode(' AND ', $filters);
-		}
-		$sql .= ' ORDER BY `read` ASC, date DESC, id DESC';
-		if ($_plugin === '') {
-			$sql .= ' LIMIT 500';
-		}
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		return [$filters === [] ? '' : ' WHERE ' . implode(' AND ', $filters), $values];
 	}
 
 	/*     * *********************Methode d'instance************************* */

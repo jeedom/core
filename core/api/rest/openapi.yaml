@@ -2479,9 +2479,11 @@ paths:
       summary: Lister les messages
       description: |
         Reprend l'action `all` de `core/ajax/message.ajax.php` : les messages
-        non lus d'abord, puis du plus récent au plus ancien. Sans `plugin`, le core renvoie au plus les 500 derniers
-        messages (`message::all()`) ; avec `plugin`, tous ceux du plugin
-        (`message::byPlugin()`). `message` et `action` sont rendus comme dans
+        non lus d'abord, puis du plus récent au plus ancien. Contrairement à
+        l'ajax (500 derniers messages sans `plugin`), aucun plafond n'est
+        appliqué : `limit` et `offset` paginent, et `total` compte tous les
+        messages qui correspondent aux filtres (`plugin`, `level`, `read`, `q`).
+        `message` et `action` sont rendus comme dans
         l'ancienne interface (`message::toArray()`), puis assainis par l'API :
         un fragment HTML où ne restent que `<i>` sans attribut et `<a>` avec,
         au plus, un `href` http(s) ou relatif. Les autres attributs
@@ -2495,7 +2497,14 @@ paths:
           maxLength: 127
       - name: level
         in: query
-        description: Ne garder que les messages de ce niveau.
+        description: |
+          Ne garder que les messages de ce niveau. Le core envoie en `error`
+          les erreurs de journal (niveau error et au-delà), les alertes danger,
+          la batterie danger, les expressions de scénario invalides et la
+          désactivation d'un équipement qui ne répond plus ; en `warning` les
+          alertes warning, la batterie warning, le timeout d'un équipement, le
+          heartbeat d'un plugin et les crons de plugin bloqués ; le reste en
+          `info`. Un plugin choisit le niveau de ses propres messages.
         schema:
           $ref: '#/components/schemas/MessageLevel'
       - name: read
@@ -2569,11 +2578,12 @@ paths:
       tags:
       - Messages
       operationId: markMessagesRead
-      summary: Tout marquer comme lu
+      summary: Tout marquer comme lu (administrateur)
       description: |
         Marque comme lus tous les messages, ou seulement ceux de `plugin`.
-        L'état lu est commun à tous les comptes de la box. Déclenche
-        l'événement `message::refreshMessageNumber`.
+        L'état lu est commun à tous les comptes de la box : il est réservé
+        aux administrateurs, comme la suppression. Déclenche l'événement
+        `message::refreshMessageNumber`.
       parameters:
       - name: plugin
         in: query
@@ -2585,6 +2595,8 @@ paths:
           description: Messages marqués comme lus.
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '422':
           $ref: '#/components/responses/ValidationError'
   /messages/{id}/read:
@@ -2592,9 +2604,10 @@ paths:
       tags:
       - Messages
       operationId: markMessageRead
-      summary: Marquer un message comme lu
+      summary: Marquer un message comme lu (administrateur)
       description: |
-        Marque le message comme lu pour toute la box. Un message lu redevient
+        Marque le message comme lu pour toute la box, d'où la restriction aux
+        administrateurs. Un message lu redevient
         non lu quand il est envoyé de nouveau (`occurrences` augmente).
         Déclenche l'événement `message::refreshMessageNumber`.
       responses:
@@ -2602,6 +2615,8 @@ paths:
           description: Message marqué comme lu.
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           description: Message inconnu (message_not_found).
           content:
@@ -5934,8 +5949,10 @@ paths:
 
         **Droits.** Chaque événement est filtré avant envoi selon
         l'utilisateur : un événement sur un élément qu'il ne peut pas lire
-        n'est jamais envoyé. Les compteurs d'administration (`message::*`,
-        `update::*`) sont réservés aux administrateurs.
+        n'est jamais envoyé. `message::refreshMessageNumber` et `notify` sont
+        envoyés à tous, comme les messages sont lisibles par tous
+        (`GET /messages`) ; `update::refreshUpdateNumber` est réservé aux
+        administrateurs.
 
         **Reprise.** Le client renvoie le dernier curseur reçu dans l'en-tête
         `Last-Event-ID` : le flux reprend juste après. Le core ne garde que
@@ -8034,6 +8051,7 @@ components:
         total:
           type: integer
           minimum: 0
+          description: Nombre de messages correspondant aux filtres, avant `limit` et `offset`.
     MessageCount:
       type: object
       required:
