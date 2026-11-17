@@ -116,13 +116,14 @@ final class SessionController
         if (!is_string($body['grant'] ?? null) || !is_string($body['code'] ?? null) || count($body) !== 2) {
             throw new ApiError(422, 'validation_error', 'Demande de connexion support invalide.');
         }
-        $previous = self::refreshCookie($request);
+        // Le cookie de renouvellement (Path=/api/v1/session) n'arrive pas ici : la session
+        // support remplacée est celle du cookie d'accès.
         $current = Auth::identity(self::cookie($request), 'web');
         if ($current !== null && $current['user']->getLogin() !== \supportAccess::LOGIN) {
             throw new ApiError(409, 'support_session_conflict', 'Ouvrez l’accès support dans un navigateur sans session Jeedom active.');
         }
         try {
-            $connection = \supportAccess::connect($body['grant'], $body['code'], $previous, \getClientIp(), $request->getHeaderLine('User-Agent'));
+            $connection = \supportAccess::connect($body['grant'], $body['code'], $current['session']['id'] ?? null, \getClientIp(), $request->getHeaderLine('User-Agent'));
         } catch (\Exception) {
             throw new ApiError(403, 'support_access_unavailable', 'Accès support indisponible. Relancez la connexion depuis le Market.');
         }
@@ -166,11 +167,11 @@ final class SessionController
             || !Auth::accountAllowed($user, $mode)) {
             self::refuse($login, 'invalid_credentials', 'Identifiant ou mot de passe incorrect.');
         }
-        if ((int) $user->getOptions('twoFactorAuthentification', 0) === 1) {
+        if (UsersController::twoFactorEnabled($user)) {
             if ($twoFactor === null || trim($twoFactor) === '') {
                 throw new ApiError(401, 'two_factor_required', 'Double authentification requise.');
             }
-            if (!preg_match('/\A[0-9]{6}\z/', $twoFactor) || $user->getOptions('twoFactorAuthentificationSecret') === '' || !$user->validateTwoFactorCode($twoFactor)) {
+            if (!preg_match('/\A[0-9]{6}\z/', $twoFactor) || !$user->validateTwoFactorCode($twoFactor)) {
                 self::refuse($login, 'two_factor_invalid', 'Code de double authentification invalide.');
             }
         }

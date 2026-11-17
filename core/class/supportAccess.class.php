@@ -73,7 +73,8 @@ final class supportAccess {
 			&& is_int($grant['expiresAt'] ?? null) && $grant['expiresAt'] > time() ? $grant : array();
 	}
 
-	public static function connect(string $grantId, string $code, ?string $previous, string $ip, string $userAgent = ''): array {
+	/** $replacedSessionId : session support du navigateur, révoquée dans la même transaction que la création. */
+	public static function connect(string $grantId, string $code, ?string $replacedSessionId, string $ip, string $userAgent = ''): array {
 		if (!self::validCode($code) || !self::validCode($grantId)
 			|| !hash_equals(self::current()['grant'] ?? '', $grantId)) {
 			throw new DomainException('Accès support indisponible.');
@@ -82,7 +83,7 @@ final class supportAccess {
 		if (!is_int($result['operatorId'] ?? null) || $result['operatorId'] <= 0) {
 			throw new DomainException('Accès support indisponible.');
 		}
-		return self::locked(static function () use ($grantId, $result, $previous, $ip, $userAgent): array {
+		return self::locked(static function () use ($grantId, $result, $replacedSessionId, $ip, $userAgent): array {
 			$grant = self::current();
 			if (!hash_equals($grant['grant'] ?? '', $grantId)) {
 				throw new DomainException('Accès support indisponible.');
@@ -96,8 +97,8 @@ final class supportAccess {
 				$account->setEnable(1);
 				$account->save();
 			}
-			$connection = session::create($account, false, $ip, $previous, min(time() + 3600, $grant['expiresAt']),
-				userAgent: $userAgent, recordLastConnection: true);
+			$connection = session::create($account, false, $ip, null, min(time() + 3600, $grant['expiresAt']),
+				userAgent: $userAgent, recordLastConnection: true, replacedSessionId: $replacedSessionId);
 			log::audit('Support session opened', array('marketOperatorId' => $result['operatorId'], 'ip' => $ip));
 			return $connection;
 		});

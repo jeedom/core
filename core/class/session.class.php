@@ -9,8 +9,8 @@ final class session {
 
 	public static function create(user $actor, bool $remember, string $ip, ?string $previous, ?int $expiresBefore = null,
 		string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false, string $userAgent = '',
-		bool $recordLastConnection = false): array {
-		$connection = self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly, $userAgent, $recordLastConnection): array {
+		bool $recordLastConnection = false, ?string $replacedSessionId = null): array {
+		$connection = self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly, $userAgent, $recordLastConnection, $replacedSessionId): array {
 			$id = self::secret();
 			$csrf = self::secret();
 			$pair = self::pair(self::secret(), self::secret(), $expiresBefore);
@@ -24,6 +24,9 @@ final class session {
 				if (is_array($old)) {
 					self::revoke($user, $old['id']);
 				}
+			}
+			if ($replacedSessionId !== null) {
+				self::revoke($user, $replacedSessionId);
 			}
 			DB::Prepare('INSERT INTO `session` (id, user_id, token_hash, refresh_hash, csrf_token, credential_hash, ip, user_agent, remembered,
 				mode, client_name, scope, created_at, last_activity_at, access_expires_at, expires_at, hard_expires_at)
