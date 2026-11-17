@@ -122,10 +122,12 @@ try {
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
 				if (config::byKey('core::repo::provider') == 'default') {
-					// Pre-update can run this script with the previous Core classes.
+					// Copie de update::officialCoreRef() : le pre-update peut exécuter ce script avec les classes du Core précédent.
 					$branch = (string) config::byKey('core::branch', 'core', 'master');
-					$ref = strpos($branch, 'tag::') === 0 ? 'refs/tags/' . substr($branch, 5) : 'refs/heads/' . $branch;
-					$url = 'https://github.com/jeedom/core/archive/' . implode('/', array_map('rawurlencode', explode('/', $ref))) . '.zip';
+					$isTag = strpos($branch, 'tag::') === 0;
+					$name = $isTag ? substr($branch, 5) : $branch;
+					$ref = ($isTag ? 'refs/tags/' : 'refs/heads/') . implode('/', array_map('rawurlencode', explode('/', $name)));
+					$url = 'https://github.com/jeedom/core/archive/' . $ref . '.zip';
 					echo "Download url : " . $url . "\n";
 					echo "Download in progress...";
 					if (!is_writable($tmp_dir)) {
