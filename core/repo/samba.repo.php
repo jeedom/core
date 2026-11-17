@@ -203,10 +203,7 @@ class repo_samba {
 		if (!self::isBackupRestoreName($_backup)) {
 			throw new InvalidArgumentException('Nom de sauvegarde Samba invalide.', 422);
 		}
-		$backup_dir = calculPath(config::byKey('backup::path'));
-		if (!is_dir($backup_dir) && !@mkdir($backup_dir, 0770, true) && !is_dir($backup_dir)) {
-			throw new RuntimeException('Impossible de créer le dossier de sauvegarde.');
-		}
+		$backup_dir = jeedom::ensureBackupDir();
 		$temporary = $backup_dir . '/.samba-' . bin2hex(random_bytes(16));
 		if (!mkdir($temporary, 0700)) {
 			throw new RuntimeException('Impossible de préparer le rapatriement de la sauvegarde Samba.');

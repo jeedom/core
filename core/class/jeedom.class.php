@@ -1009,6 +1009,20 @@ class jeedom {
 		}
 	}
 
+	/**
+	 * Dossier des sauvegardes (backup::path), créé au besoin. Une création concurrente
+	 * (sauvegarde, envoi ou rapatriement simultanés) n'est pas une erreur.
+	 *
+	 * @throws RuntimeException si le dossier ne peut pas être créé
+	 */
+	public static function ensureBackupDir(): string {
+		$directory = calculPath(config::byKey('backup::path'));
+		if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) {
+			throw new RuntimeException(__('Impossible de créer le dossier de sauvegarde.', __FILE__), 500);
+		}
+		return $directory;
+	}
+
 	private static function getBackupDir() {
 		return realpath(calculPath(config::byKey('backup::path')));
 	}
@@ -1075,10 +1089,7 @@ class jeedom {
 		if ($_file->getError() !== UPLOAD_ERR_OK || !self::isBackupImportName($name)) {
 			throw new InvalidArgumentException('Un fichier .tar.gz est attendu.', 422);
 		}
-		$directory = calculPath(config::byKey('backup::path'));
-		if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) {
-			throw new RuntimeException('Impossible de créer le dossier de sauvegarde.', 500);
-		}
+		self::ensureBackupDir();
 		$directory = self::getBackupDir();
 		if ($directory === false || !is_writable($directory)) {
 			throw new RuntimeException('Le dossier de sauvegarde est inaccessible en écriture.', 500);

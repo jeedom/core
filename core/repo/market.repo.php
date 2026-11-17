@@ -1225,8 +1225,7 @@ class marketClient {
 		self::backupPassword();
 		self::backupSegment($_backup);
 		if (substr($_backup, -4) !== '.gpg') throw new Exception(__('Sauvegarde Cloud invalide.', __FILE__));
-		$directory = calculPath(config::byKey('backup::path'));
-		if (!is_dir($directory) && !mkdir($directory, 0770, true)) throw new Exception(__('Impossible de créer le dossier de sauvegarde.', __FILE__));
+		$directory = jeedom::ensureBackupDir();
 		$path = tempnam($directory, 'cloud-download-');
 		if ($path === false) throw new Exception(__('Impossible d’écrire la sauvegarde Cloud.', __FILE__));
 		$home = null;
