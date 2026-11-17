@@ -226,26 +226,16 @@ function convertDuration($time) {
 	return $result;
 }
 
+/**
+ * Adresse IP du client : une seule adresse valide, ou '' hors requête HTTP (CLI, cron).
+ * Les en-têtes de proxy ne sont lus que d'un pair de confiance (network::trustedProxies).
+ */
 function getClientIp() {
 	if (isset($GLOBALS['_JEEDOM_REST_CLIENT_IP'])) {
 		return $GLOBALS['_JEEDOM_REST_CLIENT_IP'];
 	}
-	$sources = array(
-		'HTTP_CF_CONNECTING_IP',
-		'HTTP_X_REAL_IP',
-		'HTTP_X_FORWARDED_FOR',
-		'HTTP_CLIENT_IP',
-		'REMOTE_ADDR',
-	);
-	foreach ($sources as $source) {
-		if (isset($_SERVER[$source])) {
-			if (strpos($_SERVER[$source], ',') !== false) {
-				return explode(',', $_SERVER[$source])[0];
-			}
-			return str_replace(' ', '', $_SERVER[$source]);
-		}
-	}
-	return '';
+	require_once __DIR__ . '/../class/trustedProxy.class.php';
+	return trustedProxy::clientIp($_SERVER);
 }
 
 function mySqlIsHere() {

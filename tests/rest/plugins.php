@@ -611,5 +611,20 @@ check((fileperms($archivePath) & 0777) === 0600, 'Uploaded ZIP is not private');
 runJob($op);
 check(call('GET', '/plugins/installations/' . $op['id'] . '/status')['state'] === 'succeeded' && !is_file($archivePath), 'File installation failed or retained ZIP');
 call('POST', '/plugins/installations/repository', 200, $fileRequest, headers: $directKey);
+// Adresse du client : résolution partagée avec getClientIp() (trustedProxy).
+function restClientIp(string $peer, array $headers = []): string {
+    $request = (new ServerRequestFactory())->createServerRequest('GET', 'https://localhost/api/v1/session', ['REMOTE_ADDR' => $peer]);
+    foreach ($headers as $name => $value) $request = $request->withHeader($name, $value);
+    $ip = \Jeedom\Api\Rest\RequestSecurity::clientIp($request);
+    check(\Jeedom\Api\Rest\RequestSecurity::withClientIp($request, static fn () => getClientIp()) === $ip, 'getClientIp diverges from REST client IP');
+    return $ip;
+}
+check(restClientIp('127.0.0.1', ['X-Forwarded-For' => '198.51.100.1']) === '127.0.0.1', 'Proxy trusted without configuration');
+config::$values['core']['network::trustedProxies'] = '127.0.0.1;::1';
+check(restClientIp('203.0.113.9', ['X-Forwarded-For' => '198.51.100.1', 'X-Real-IP' => '198.51.100.2', 'CF-Connecting-IP' => '198.51.100.3']) === '203.0.113.9', 'Forwarding headers trusted from untrusted peer');
+check(restClientIp('127.0.0.1', ['X-Forwarded-For' => '198.51.100.1, 203.0.113.9']) === '203.0.113.9', 'X-Forwarded-For not walked from the right');
+check(restClientIp('::1', ['CF-Connecting-IP' => '2001:DB8::1', 'X-Forwarded-For' => '198.51.100.1']) === '2001:db8::1', 'CF-Connecting-IP ignored from trusted peer');
+check(restClientIp('127.0.0.1', ['X-Real-IP' => 'invalid', 'X-Forwarded-For' => '198.51.100.1']) === '198.51.100.1', 'Invalid X-Real-IP not skipped');
+unset(config::$values['core']['network::trustedProxies']);
 echo "OK $checks REST plugin checks on PHP " . PHP_VERSION . "\n";
 
