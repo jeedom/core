@@ -1570,13 +1570,21 @@ paths:
       tags: [Sauvegardes]
       operationId: importRemoteBackup
       summary: Rapatrier une sauvegarde dans le dossier local
-      description: Copie l'archive depuis le dépôt. La restauration de Jeedom est une opération distincte.
+      description: |
+        Copie l'archive depuis le dépôt. Une sauvegarde locale du même nom
+        n'est jamais écrasée (409 `backup_already_exists`). La restauration de
+        Jeedom est une opération distincte.
       responses:
         '204':
           description: Sauvegarde rapatriée.
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/BackupNotFound' }
+        '409':
+          description: Une sauvegarde locale porte déjà ce nom (backup_already_exists).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
         '502': { $ref: '#/components/responses/BackupRepositoryFailed' }
   /backups/{id}/exports:
     parameters:

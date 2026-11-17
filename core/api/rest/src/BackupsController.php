@@ -147,7 +147,7 @@ final class BackupsController
         if (!self::validRemoteName($repo, $name)) {
             throw new ApiError(404, 'backup_not_found', 'Sauvegarde inconnue.');
         }
-        self::transfer(static fn () => $repo::backup_restore($name));
+        self::transfer(static fn () => $repo::backup_restore($name), true);
         return $response->withStatus(204);
     }
 
@@ -244,13 +244,17 @@ final class BackupsController
         return $repo === \repo_samba::class && \repo_samba::isBackupRestoreName($name);
     }
 
-    private static function transfer(callable $action): mixed
+    /** $import : le code 409 signale alors une sauvegarde locale du même nom (backup_restore des dépôts). */
+    private static function transfer(callable $action, bool $import = false): mixed
     {
         try {
             return $action();
         } catch (\Exception $e) {
             if ($e->getCode() === 404) {
                 throw new ApiError(404, 'backup_not_found', 'Sauvegarde distante introuvable.');
+            }
+            if ($import && $e->getCode() === 409) {
+                throw new ApiError(409, 'backup_already_exists', 'Une sauvegarde locale porte déjà ce nom.');
             }
             // Certaines erreurs des dépôts contiennent la commande ou l'URL utilisée.
             throw new ApiError(502, 'backup_repository_failed', 'Le transfert ou la lecture du dépôt de sauvegardes a échoué.');

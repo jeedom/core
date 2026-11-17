@@ -1230,17 +1230,28 @@ class marketClient {
 		$path = tempnam($directory, 'cloud-download-');
 		if ($path === false) throw new Exception(__('Impossible d’écrire la sauvegarde Cloud.', __FILE__));
 		$home = null;
+		$staging = $directory . '/.cloud-' . bin2hex(random_bytes(16));
+		$target = $directory . '/cloud-' . substr($_backup, 0, -4);
 		try {
 			self::cloudRequest('GET', self::backupUrl($_backup), null, 1800, null, $path);
 			$home = self::backupGpgHome();
 			com_shell::execute('printf %s ' . escapeshellarg(config::byKey('market::cloud::backup::password'))
 				. ' | gpg --pinentry-mode loopback --homedir ' . escapeshellarg($home) . ' --batch --yes --passphrase-fd 0 --output '
 				. escapeshellarg($home . '/restored') . ' -d ' . escapeshellarg($path));
-			if (!rename($home . '/restored', $directory . '/cloud-' . substr($_backup, 0, -4))) {
+			// Le dossier gnupg peut être sur un autre système de fichiers : on passe par une copie
+			// dans le dossier des sauvegardes, puis link() refuse d'écraser une sauvegarde existante.
+			if (!rename($home . '/restored', $staging)) {
+				throw new Exception(__('Impossible de publier la sauvegarde déchiffrée.', __FILE__));
+			}
+			if (!@link($staging, $target)) {
+				if (file_exists($target) || is_link($target)) {
+					throw new Exception(__('Une sauvegarde porte déjà ce nom.', __FILE__), 409);
+				}
 				throw new Exception(__('Impossible de publier la sauvegarde déchiffrée.', __FILE__));
 			}
 		} finally {
 			if (is_file($path)) unlink($path);
+			if (is_file($staging)) unlink($staging);
 			if ($home !== null) rrmdir($home);
 		}
 	}
