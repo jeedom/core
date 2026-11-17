@@ -9392,7 +9392,10 @@ components:
             color: { type: string, pattern: '^#[0-9a-fA-F]{6}$', description: 'Sous-type `color` (ex. `#ff0000`).' }
             select:
               type: [string, integer]
-              description: Sous-type `select`. Doit être une des valeurs de `configuration.listValue`.
+              description: |
+                Sous-type `select`, sans référence `#…#`. Si la commande a une
+                `configuration.listValue` non vide, la valeur doit en faire
+                partie ; sinon tout texte est accepté.
             title: { type: string, description: Sous-type `message`, sans référence `#…#`. }
             message: { type: string, description: Sous-type `message`, sans référence `#…#`. }
         codeAccess:
