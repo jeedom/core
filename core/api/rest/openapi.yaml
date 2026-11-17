@@ -2076,7 +2076,7 @@ paths:
       tags: [Rapports]
       operationId: deleteReportTemplate
       summary: Supprimer un modèle de rapport
-      description: Administrateurs uniquement.
+      description: Administrateurs uniquement. Supprime aussi les PDF archivés de ce modèle.
       responses:
         '204': { description: Modèle supprimé. }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -2091,9 +2091,9 @@ paths:
     post:
       tags: [Rapports]
       operationId: renderReportTemplate
-      summary: Générer un rapport PDF
+      summary: Prévisualiser un rapport PDF
       description: |
-        Administrateurs uniquement. Génère un PDF A4 depuis la composition enregistrée.
+        Administrateurs uniquement. Génère un PDF A4 temporaire depuis la composition enregistrée.
         Pour prévisualiser un brouillon, envoyer le champ `layout`. La composition et la
         révision enregistrées sont conservées. Les valeurs et les historiques sont lus à
         la génération. Les graphiques utilisent des moyennes par intervalle adapté à la période.
@@ -2132,6 +2132,90 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
+  /reportTemplates/{id}/reports:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer, minimum: 1, maximum: 2147483647 }
+    get:
+      tags: [Rapports]
+      operationId: listArchivedReports
+      summary: Lister les PDF d'un modèle
+      description: Administrateurs uniquement. Les PDF les plus récents apparaissent en premier.
+      responses:
+        '200':
+          description: Archives du modèle.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, total]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/ArchivedReport' }
+                  total: { type: integer, minimum: 0 }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
+    post:
+      tags: [Rapports]
+      operationId: createArchivedReport
+      summary: Générer et archiver un rapport PDF
+      description: Administrateurs uniquement. Utilise la dernière composition enregistrée avec les valeurs au moment de la génération.
+      responses:
+        '201':
+          description: Rapport conservé sur la box.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ArchivedReport' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '503':
+          description: Moteur indisponible ou délai de rendu dépassé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /reportTemplates/{id}/reports/{reportId}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer, minimum: 1, maximum: 2147483647 }
+      - name: reportId
+        in: path
+        required: true
+        schema: { type: string, pattern: '^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{16}$' }
+    get:
+      tags: [Rapports]
+      operationId: downloadArchivedReport
+      summary: Télécharger un PDF archivé
+      description: Administrateurs uniquement. Renvoie le fichier conservé lors de la génération.
+      responses:
+        '200':
+          description: Fichier PDF.
+          headers:
+            Content-Disposition:
+              schema: { type: string }
+          content:
+            application/pdf:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ArchivedReportNotFound' }
+    delete:
+      tags: [Rapports]
+      operationId: deleteArchivedReport
+      summary: Supprimer un PDF archivé
+      description: Administrateurs uniquement.
+      responses:
+        '204': { description: PDF supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ArchivedReportNotFound' }
   /notes:
     get:
       tags:
@@ -8112,6 +8196,13 @@ components:
         total:
           type: integer
           minimum: 0
+    ArchivedReport:
+      type: object
+      required: [id, created_at, size]
+      properties:
+        id: { type: string, pattern: '^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{16}$' }
+        created_at: { type: string, format: date-time }
+        size: { type: integer, minimum: 1, description: Taille du PDF en octets. }
     ReportTemplateSummary:
       type: object
       required: [id, name, revision, created_at, updated_at]
@@ -11991,6 +12082,11 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     VariableNotFound:
       description: Variable inconnue (variable_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ArchivedReportNotFound:
+      description: Modèle ou PDF archivé introuvable.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
