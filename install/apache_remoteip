@@ -1,3 +1,6 @@
 <IfModule mod_remoteip.c>
 RemoteIPHeader X-Forwarded-For
+# Seul le relais local (FRP) est de confiance ici ; les autres proxys sont
+# gérés par le Core (réglage network::trustedProxies).
+RemoteIPInternalProxy 127.0.0.1 ::1
 </IfModule>

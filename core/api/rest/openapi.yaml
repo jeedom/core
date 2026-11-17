@@ -6573,7 +6573,7 @@ paths:
       description: |
         Renvoie les clés demandées dans `keys` ; sans `keys`, toutes les clés
         exposées. Une clé hors de la liste exposée refuse la requête (422).
-        Les clés chiffrées et les réglages de destination Cloud, Samba et de notifications sont absents pour un non-administrateur.
+        Les clés chiffrées, les réglages de destination Cloud, Samba et de notifications et les proxys de confiance sont absents pour un non-administrateur.
       parameters:
         - name: keys
           in: query
@@ -10138,7 +10138,7 @@ components:
       description: |
         Valeurs de configuration du core, indexées par nom de clé. Seules les
         clés demandées sont présentes. Les clés chiffrées, les réglages de
-        destination Cloud et Samba et `calculHistory` sont absents pour un non-administrateur. Le nom de l'onglet de l'administration est indiqué
+        destination Cloud et Samba, `network::trustedProxies` et `calculHistory` sont absents pour un non-administrateur. Le nom de l'onglet de l'administration est indiqué
         dans chaque description.
       additionalProperties: false
       properties:
@@ -10329,6 +10329,17 @@ components:
           type: string
           description: 'Uniquement pour les installations sous Docker (format: 192.1 (onglet network).'
           default: '127.0.0.1;192.168.*.*;10.'
+        'network::trustedProxies':
+          type: string
+          description: |
+            Proxys de confiance de l'API REST (onglet network, réservé aux administrateurs) :
+            adresses IP ou plages CIDR IPv4/IPv6 séparées par `;`. L'adresse du client est
+            prise en remontant `X-Forwarded-For` depuis le pair tant que l'adresse est de
+            confiance ; `X-Forwarded-Proto` et `X-Forwarded-Host` ne sont lus que d'un pair
+            de confiance. La valeur par défaut fait confiance à tous les proxys ;
+            `127.0.0.1;::1` n'accepte que le relais local. La variable d'environnement
+            `JEEDOM_TRUSTED_PROXIES`, si elle est définie, remplace ce réglage.
+          default: '0.0.0.0/0;::/0'
         'proxyAddress':
           type: string
           description: 'Adresse du proxy (onglet network).'
@@ -10862,6 +10873,10 @@ components:
         'network::localip':
           type: string
           description: 'Uniquement pour les installations sous Docker (format: 192.1 (onglet network).'
+        'network::trustedProxies':
+          type: string
+          minLength: 1
+          description: 'Proxys de confiance de l''API REST (onglet network) : IP ou plages CIDR IPv4/IPv6 séparées par `;`, enregistrées normalisées. Une entrée invalide ou une liste vide refuse la requête (422).'
         'proxyAddress':
           type: string
           description: 'Adresse du proxy (onglet network).'

@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Configuration globale du core, par onglet de l'administration.
- * Lecture : tout utilisateur connecté, avec les secrets, destinations et notifications réservés aux admins.
+ * Lecture : tout utilisateur connecté, avec les secrets, destinations, notifications et proxys de confiance réservés aux admins.
  * Écriture : administrateurs. Les clés chiffrées ne sortent jamais en clair.
  */
 final class ConfigController
@@ -72,6 +72,7 @@ final class ConfigController
             'externalComplement' => 'string',
             'dns::mode' => 'string',
             'network::localip' => 'string',
+            'network::trustedProxies' => 'string',
             'proxyAddress' => 'string',
             'proxyPort' => 'number',
             'proxyLogin' => 'string',
@@ -313,6 +314,7 @@ final class ConfigController
             if (!$admin && (\config::shouldBeEncrypted($storedKey) || str_starts_with($key, 'samba::backup::')
                 || str_starts_with($key, 'market::cloud::backup::') || str_starts_with($key, 'github::core::')
                 || str_starts_with($key, 'url::core::') || $key === 'notifications::settings'
+                || $key === 'network::trustedProxies'
                 // Une formule peut lire n'importe quelle commande, comme /history/calculation.
                 || $key === 'calculHistory')) {
                 continue;
@@ -382,6 +384,16 @@ final class ConfigController
         }
         if (str_starts_with($key, 'samba::backup::') && !\repo_samba::validBackupSetting(substr($key, strlen('samba::backup::')), $value)) {
             throw ApiError::field(422, 'validation_error', $key, 'Paramètre Samba invalide.');
+        }
+        if ($key === 'network::trustedProxies') {
+            try {
+                $value = RequestSecurity::normalizeTrustedProxies($value);
+            } catch (\InvalidArgumentException $e) {
+                throw ApiError::field(422, 'validation_error', $key, 'Adresse IP ou plage CIDR invalide : ' . mb_substr($e->getMessage(), 0, 64) . '.');
+            }
+            if ($value === '') {
+                throw ApiError::field(422, 'validation_error', $key, 'Indiquez au moins une adresse IP ou plage CIDR (127.0.0.1;::1 pour n’accepter que le relais local).');
+            }
         }
         if ($key === 'market::cloud::backup::name' && $value !== '' && !\repo_market::isBackupFolderName($value)) {
             throw ApiError::field(422, 'validation_error', $key, 'Nom du dossier Cloud invalide.');
