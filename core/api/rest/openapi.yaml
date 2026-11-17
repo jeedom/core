@@ -4760,6 +4760,9 @@ paths:
       description: |
         Remplace le JSON-RPC `summary::global`. Sans `key`, renvoie toutes les
         clés de résumé définies avec leur valeur ; avec `key`, la valeur seule.
+        `key`, s'il est envoyé, doit être non vide (422 sinon) et être une clé
+        de résumé définie (404 `summary_not_found` sinon), comme pour
+        `GET /objects/{id}/summary`.
       parameters:
         - $ref: '#/components/parameters/SummaryKeyQuery'
       responses:
@@ -4769,6 +4772,8 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/SummaryResult' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /objects/summary/{key}/virtual:
     parameters:
@@ -7016,7 +7021,7 @@ components:
       name: key
       in: query
       description: Limiter le résultat à une clé de résumé.
-      schema: { type: string, example: temperature }
+      schema: { type: string, minLength: 1, example: temperature }
 
     ListLimit:
       name: limit
