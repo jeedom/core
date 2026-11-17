@@ -10073,7 +10073,10 @@ components:
     Event:
       type: object
       required: [type, data]
-      description: Contenu du champ `data` d'un message SSE. `data` reprend tel quel le `option` de l'événement du core.
+      description: |
+        Contenu du champ `data` d'un message SSE. `data` reprend tel quel le
+        `option` de l'événement du core, sauf pour `notify` (texte assaini,
+        voir `NotifyEvent`).
       properties:
         type: { $ref: '#/components/schemas/EventType' }
         data:
@@ -10126,6 +10129,10 @@ components:
           additionalProperties: true
     NotifyEvent:
       type: object
+      description: |
+        `title` et `message` sont assainis comme dans `GET /messages` : un
+        fragment HTML où ne restent que `<i>` sans attribut et `<a>` avec, au
+        plus, un `href` http(s) ou relatif.
       properties:
         title: { type: string }
         message: { type: string }
