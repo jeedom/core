@@ -140,10 +140,8 @@ final class PluginsController
         $plugin = self::find($args['id']);
         $prefix = 'plugins/' . $plugin->getId() . '/';
         $icon = $plugin->getPathImgIcon();
-        $root = realpath(\plugin::getPluginPath($plugin->getId()));
-        $path = $root !== false && str_starts_with($icon, $prefix) ? realpath($root . '/' . substr($icon, strlen($prefix))) : false;
-        if ($path === false || !str_starts_with($path, $root . '/')
-            || !str_ends_with($path, '.png') || !is_file($path) || ($stream = @fopen($path, 'rb')) === false) {
+        $path = str_starts_with($icon, $prefix) ? PluginFiles::path($plugin->getId(), substr($icon, strlen($prefix)), true) : null;
+        if ($path === null || !str_ends_with($path, '.png') || ($stream = @fopen($path, 'rb')) === false) {
             throw new ApiError(404, 'plugin_icon_not_found', 'Image du plugin introuvable.');
         }
         return self::assetResponse($response, $stream, 'image/png');
@@ -165,9 +163,8 @@ final class PluginsController
     {
         $id = $args['id'];
         $plugin = self::find($id);
-        $root = $plugin->isActive() ? realpath(\plugin::getPluginPath($id)) : false;
-        $file = $root === false ? null : $root . '/core/api/rest/routes.php';
-        if ($file === null || realpath($file) !== $file || !is_file($file)) {
+        $file = $plugin->isActive() ? PluginFiles::path($id, 'core/api/rest/routes.php') : null;
+        if ($file === null) {
             throw new ApiError(404, 'route_not_found', 'Route inconnue.');
         }
 
@@ -189,11 +186,8 @@ final class PluginsController
             || preg_match('~(?:^|/)(?:[.]|/|$)|[\x00-\x1F\x7F]~', $relative)) {
             return null;
         }
-        $root = realpath(\plugin::getPluginPath($id));
-        if ($root === false) return null;
-        $path = $root . '/ui/' . $relative;
         // N'autorise aucun lien symbolique à l'intérieur du plugin, y compris le dossier ui lui-même.
-        return realpath($path) === $path && is_file($path) ? $path : null;
+        return PluginFiles::path($id, 'ui/' . $relative);
     }
 
     /** @param resource $stream */

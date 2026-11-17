@@ -22,10 +22,10 @@ final class ObjectsController
     {
         $query = $request->getQueryParams();
         $user = $request->getAttribute('user');
-        $objects = array_values(array_filter(self::tree(null, self::flag($query['visible'] ?? null, true)), static fn ($object) => $object->hasRight('r', $user)));
+        $objects = array_values(array_filter(self::tree(null, QueryParam::bool($query, 'visible') ?? true), static fn ($object) => $object->hasRight('r', $user)));
         $type = (string) ($query['withEqLogicType'] ?? '');
         if ($type !== '') {
-            $children = self::flag($query['searchChildren'] ?? null, true);
+            $children = QueryParam::bool($query, 'searchChildren') ?? true;
             $objects = array_values(array_filter($objects, static fn ($object) => count($object->getEqLogic(true, false, $type, null, $children)) > 0));
         }
         $items = array_map(self::toArray(...), $objects);
@@ -85,19 +85,16 @@ final class ObjectsController
     public function reorder(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = Json::body($request)['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
-        }
-        // Même règle que l'ajax setOrder : positions 1, 2, 3… ; identifiants inconnus ignorés.
-        $position = 1;
-        foreach ($ids as $id) {
+        // Même règle que l'ajax setOrder.
+        Bulk::reorder(Json::body($request), static function (int $id, int $position): bool {
             $object = \jeeObject::byId($id);
-            if (is_object($object)) {
-                $object->setPosition($position++);
-                $object->save();
+            if (!is_object($object)) {
+                return false;
             }
-        }
+            $object->setPosition($position);
+            $object->save();
+            return true;
+        });
         return $response->withStatus(204);
     }
 
@@ -127,7 +124,7 @@ final class ObjectsController
         $query = $request->getQueryParams();
         $object = self::findReadable($args['id'], $request->getAttribute('user'));
         $key = self::summaryKey($query['key'] ?? null);
-        $value = $object->getSummary($key, self::flag($query['raw'] ?? null, false));
+        $value = $object->getSummary($key, QueryParam::bool($query, 'raw') ?? false);
         return Json::respond($response, is_array($value) ? (object) $value : $value);
     }
 
@@ -249,8 +246,8 @@ final class ObjectsController
         $user = $request->getAttribute('user');
         $found = self::findReadable($args['id'], $user)->getEqLogicsFromSummary(
             $args['key'],
-            self::flag($query['enabled'] ?? null, false),
-            self::flag($query['visible'] ?? null, false),
+            QueryParam::bool($query, 'enabled') ?? false,
+            QueryParam::bool($query, 'visible') ?? false,
         );
         if ($found === null) {
             throw new ApiError(404, 'summary_not_found', 'Clé de résumé inconnue.');
@@ -448,10 +445,5 @@ final class ObjectsController
             'isEnable' => (bool) (int) ($raw['isEnable'] ?? 0),
             'isVisible' => (bool) (int) ($raw['isVisible'] ?? 0),
         ];
-    }
-
-    private static function flag(mixed $value, bool $default): bool
-    {
-        return $value === null ? $default : filter_var($value, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE) ?? $default;
     }
 }

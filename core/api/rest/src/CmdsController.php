@@ -27,7 +27,6 @@ final class CmdsController
     private const REFERENCE = '/#(?:[\w:-]+|\[[^#]*\])#/u';
     /** Réglages utiles à l'affichage d'un widget, seuls renvoyés à un non-administrateur. */
     private const PUBLIC_CONFIGURATION = ['minValue', 'maxValue', 'listValue', 'actionConfirm', 'historizeRound'];
-    private const MAX_BULK = 1000;
     private const DATE = 'Y-m-d H:i:s';
 
     public function list(Request $request, Response $response): Response
@@ -162,11 +161,7 @@ final class CmdsController
     {
         Auth::requireAdmin($request);
         $body = Json::body($request);
-        $ids = $body['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || $ids === [] || count($ids) > self::MAX_BULK
-            || array_filter($ids, static fn ($id) => !is_int($id) || $id < 1) !== [] || count(array_unique($ids)) !== count($ids)) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste de 1 à ' . self::MAX_BULK . ' identifiants entiers distincts est attendue.');
-        }
+        $ids = Bulk::ids($body);
         $changes = $body['changes'] ?? null;
         if (!is_array($changes) || $changes === [] || array_is_list($changes)) {
             throw ApiError::field(422, 'validation_error', 'changes', 'Un objet JSON avec au moins un changement est attendu.');
@@ -175,38 +170,24 @@ final class CmdsController
             throw ApiError::field(422, 'validation_error', 'changes.' . reset($unknown), 'Seuls isVisible, isHistorized et generic_type peuvent être modifiés en groupe.');
         }
         $user = $request->getAttribute('user');
-        $done = [];
-        $failed = [];
-        foreach ($ids as $id) {
-            try {
-                self::apply(self::findWritable((string) $id, $user), $changes);
-                $done[] = $id;
-            } catch (ApiError $e) {
-                $failed[] = ['id' => $id, 'error' => ['code' => $e->errorCode, 'message' => $e->getMessage()]];
-            } catch (\Throwable $e) {
-                \log::add('api', 'error', $e->getMessage());
-                $failed[] = ['id' => $id, 'error' => ['code' => 'internal_error', 'message' => 'Erreur interne.']];
-            }
-        }
-        return Json::respond($response, ['done' => $done, 'failed' => $failed]);
+        return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user, $changes): void {
+            self::apply(self::findWritable((string) $id, $user), $changes);
+        }));
     }
 
     public function reorder(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = Json::body($request)['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
-        }
         // Seul l'ordre change, contrairement à l'ajax setOrder qui touche aussi la disposition.
-        $position = 1;
-        foreach ($ids as $id) {
+        Bulk::reorder(Json::body($request), static function (int $id, int $position): bool {
             $cmd = \cmd::byId($id);
-            if (is_object($cmd)) {
-                $cmd->setOrder($position++);
-                $cmd->save(true);
+            if (!is_object($cmd)) {
+                return false;
             }
-        }
+            $cmd->setOrder($position);
+            $cmd->save(true);
+            return true;
+        });
         return $response->withStatus(204);
     }
 
@@ -274,7 +255,7 @@ final class CmdsController
         if ($grouping !== null && !preg_match('/^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$/', (string) $grouping)) {
             throw ApiError::field(422, 'validation_error', 'grouping', 'Format attendu : fonction::période (ex. avg::hour).');
         }
-        $derive = self::bool($request->getQueryParams()['derive'] ?? null, 'derive') ?? (bool) (int) $cmd->getDisplay('graphDerive');
+        $derive = QueryParam::bool($request->getQueryParams(), 'derive') ?? (bool) (int) $cmd->getDisplay('graphDerive');
         if ($derive) {
             $grouping = null;
         }
@@ -545,18 +526,6 @@ final class CmdsController
             throw ApiError::field(422, 'validation_error', 'start', 'Le début doit précéder la fin.');
         }
         return [$start->format(self::DATE), $end->format(self::DATE)];
-    }
-
-    private static function bool(mixed $value, string $field): ?bool
-    {
-        if ($value === null || $value === '') {
-            return null;
-        }
-        $bool = filter_var($value, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
-        if ($bool === null) {
-            throw ApiError::field(422, 'validation_error', $field, 'true ou false est attendu.');
-        }
-        return $bool;
     }
 
     private static function date(mixed $value, string $field): ?\DateTimeImmutable

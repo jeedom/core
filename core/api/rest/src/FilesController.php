@@ -94,12 +94,7 @@ final class FilesController
             fclose($transfer);
             throw $error;
         }
-        $name = basename($location['path']);
-        $fallback = preg_replace('/[^A-Za-z0-9_.-]/', '_', $name);
-        return self::noStore($response)->withBody($body)
-            ->withHeader('Content-Type', 'application/octet-stream')
-            ->withHeader('Content-Disposition', "attachment; filename=\"$fallback\"; filename*=UTF-8''" . rawurlencode($name))
-            ->withHeader('X-Content-Type-Options', 'nosniff');
+        return Attachment::headers(self::noStore($response)->withBody($body), basename($location['path']), 'application/octet-stream');
     }
 
     public function read(Request $request, Response $response): Response

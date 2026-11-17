@@ -24,7 +24,6 @@ final class ScenariosController
     private const EXECUTION_FIELDS = ['elements', 'trigger', 'schedule', 'mode', 'timeout', 'configuration'];
     private const MODES = ['provoke', 'schedule', 'all'];
     private const STATES = ['stop', 'in progress', 'starting', 'error'];
-    private const MAX_BULK = 1000;
     /** Lecture maximale du journal par appel ; la suite vient à l'appel suivant. */
     private const MAX_LOG_READ = 1_048_576;
     /** Mots qui rendent un scénario dépendant de l'heure, comme l'ajax save. */
@@ -122,7 +121,7 @@ final class ScenariosController
     {
         Auth::requireAdmin($request);
         $body = Json::body($request);
-        $ids = self::ids($body);
+        $ids = Bulk::ids($body);
         $changes = $body['changes'] ?? null;
         if (!is_array($changes) || $changes === [] || array_is_list($changes)) {
             throw ApiError::field(422, 'validation_error', 'changes', 'Un objet JSON avec au moins un changement est attendu.');
@@ -132,7 +131,7 @@ final class ScenariosController
         }
         $changes = self::validate($changes);
         $user = $request->getAttribute('user');
-        return Json::respond($response, self::each($ids, static function (int $id) use ($user, $changes): void {
+        return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user, $changes): void {
             $scenario = self::find((string) $id, $user, 'w');
             self::stopIfExecutionChanges($scenario, $changes);
             self::write($scenario, $changes);
@@ -142,9 +141,9 @@ final class ScenariosController
     public function deleteMany(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = self::ids(Json::body($request));
+        $ids = Bulk::ids(Json::body($request));
         $user = $request->getAttribute('user');
-        return Json::respond($response, self::each($ids, static function (int $id) use ($user): void {
+        return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user): void {
             self::find((string) $id, $user, 'w')->remove();
         }));
     }
@@ -152,18 +151,15 @@ final class ScenariosController
     public function reorder(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = Json::body($request)['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
-        }
-        $position = 1;
-        foreach ($ids as $id) {
+        Bulk::reorder(Json::body($request), static function (int $id, int $position): bool {
             $scenario = \scenario::byId($id);
-            if (is_object($scenario)) {
-                $scenario->setOrder($position++);
-                $scenario->save(true);
+            if (!is_object($scenario)) {
+                return false;
             }
-        }
+            $scenario->setOrder($position);
+            $scenario->save(true);
+            return true;
+        });
         return $response->withStatus(204);
     }
 
@@ -326,36 +322,6 @@ final class ScenariosController
     private static function logFile(\scenario $scenario): string
     {
         return __DIR__ . '/../../../../log/scenarioLog/scenario' . (int) $scenario->getId() . '.log';
-    }
-
-    /** @return list<int> */
-    private static function ids(array $body): array
-    {
-        $ids = $body['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || $ids === [] || count($ids) > self::MAX_BULK
-            || array_filter($ids, static fn ($id) => !is_int($id) || $id < 1) !== [] || count(array_unique($ids)) !== count($ids)) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste de 1 à ' . self::MAX_BULK . ' identifiants entiers distincts est attendue.');
-        }
-        return $ids;
-    }
-
-    /** Exécute l'action pour chaque identifiant ; un échec n'arrête pas les autres. */
-    private static function each(array $ids, callable $action): array
-    {
-        $done = [];
-        $failed = [];
-        foreach ($ids as $id) {
-            try {
-                $action($id);
-                $done[] = $id;
-            } catch (ApiError $e) {
-                $failed[] = ['id' => $id, 'error' => ['code' => $e->errorCode, 'message' => $e->getMessage()]];
-            } catch (\Throwable $e) {
-                \log::add('api', 'error', $e->getMessage());
-                $failed[] = ['id' => $id, 'error' => ['code' => 'internal_error', 'message' => 'Erreur interne.']];
-            }
-        }
-        return ['done' => $done, 'failed' => $failed];
     }
 
     private static function stopIfExecutionChanges(\scenario $scenario, array $body): void

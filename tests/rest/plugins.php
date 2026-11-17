@@ -239,7 +239,7 @@ function call($method, $path, $status = 200, $body = null, $token = 'admin', $he
     $raw = (string) $response->getBody();
     check($response->getStatusCode() === $status, "$method $path: expected $status, got " . $response->getStatusCode() . ': ' . $raw);
     check(!isset($GLOBALS['_USER_GLOBAL']), 'REST user leaked between requests');
-    if ($response->getHeaderLine('Content-Type') === 'image/png') return $raw;
+    if (in_array($response->getHeaderLine('Content-Type'), ['image/png', 'text/javascript'], true)) return $raw;
     return $raw !== '' ? json_decode($raw, true, 512, JSON_THROW_ON_ERROR) : null;
 }
 function runJob($operation) {
@@ -529,6 +529,25 @@ file_put_contents($outside, $png);
 symlink($outside, $icon);
 call('GET', '/plugins/fixture/icon', 404);
 unlink($icon);
+// L'image suit un lien interne au plugin ; l'interface n'admet aucun lien sous la racine du plugin.
+$pluginRoot = plugin::getPluginPath('fixture');
+file_put_contents($pluginRoot . '/plugin_info/real.png', $png);
+symlink($pluginRoot . '/plugin_info/real.png', $icon);
+check(call('GET', '/plugins/fixture/icon') === $png, 'Plugin image behind an internal link not served');
+unlink($icon);
+unlink($pluginRoot . '/plugin_info/real.png');
+config::save('active', 1, 'fixture');
+mkdir($pluginRoot . '/ui', 0775, true);
+file_put_contents($pluginRoot . '/ui/ui.js', 'export default 1;');
+check(call('GET', '/plugins/fixture/ui/ui.js') === 'export default 1;', 'Plugin UI asset not served');
+call('GET', '/plugins/fixture/ui/../plugin_info/info.json', 404);
+symlink($pluginRoot . '/ui/ui.js', $pluginRoot . '/ui/link.js');
+call('GET', '/plugins/fixture/ui/link.js', 404);
+unlink($pluginRoot . '/ui/link.js');
+unlink($pluginRoot . '/ui/ui.js');
+rmdir($pluginRoot . '/ui');
+config::save('active', 0, 'fixture');
+call('GET', '/plugins/fixture/ui/ui.js', 404);
 call('GET', '/plugins?management=invalid', 422);
 call('GET', '/plugins?management=true', 403, token: 'member');
 call('GET', '/plugins/repositories', 403, token: 'member');

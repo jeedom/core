@@ -118,9 +118,10 @@ class display {
             $row->context = 'design';
             $row->context_id = $planId;
         }
+        $moved = $row->target_type !== $targetType || (int) $row->target_id !== $targetId;
         $row->target_type = $targetType;
         $row->target_id = $targetId;
-        $row->applySettings($settings);
+        $row->applySettings($settings, $moved);
     }
 
     public function getTemplate(): ?string {
@@ -163,7 +164,8 @@ class display {
         return ['context' => self::DASHBOARD, 'context_id' => self::DASHBOARD_ID];
     }
 
-    private function applySettings(?array $settings): void {
+    /** `$dirty` : la ligne a changé hors réglages (cible) et doit être enregistrée. */
+    private function applySettings(?array $settings, bool $dirty = false): void {
         $parameters = $settings['template_parameters'] ?? new stdClass();
         $values = [
             'template' => $settings['template'] ?? null,
@@ -178,9 +180,10 @@ class display {
             }
             return;
         }
-        $changed = $this->id === null;
+        $changed = $dirty || $this->id === null;
         foreach ($values as $field => $value) {
-            $changed = $changed || $this->$field !== $value;
+            // La base renvoie des chaînes ; les réglages fournis peuvent être des entiers.
+            $changed = $changed || ($this->$field === null ? null : (string) $this->$field) !== ($value === null ? null : (string) $value);
             $this->$field = $value;
         }
         if ($changed) {

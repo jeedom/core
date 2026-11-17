@@ -24,7 +24,8 @@ final class Usages
         ];
     }
 
-    private static function ref(mixed $item): ?array
+    /** Référence `{id, name}` d'un élément qui utilise la ressource (objet ou tableau), null s'il n'a pas d'identifiant. */
+    public static function ref(mixed $item): ?array
     {
         if (is_object($item) && method_exists($item, 'getId')) {
             $name = method_exists($item, 'getHumanName') ? $item->getHumanName() : (method_exists($item, 'getName') ? $item->getName() : '');

@@ -36,13 +36,6 @@ final class RequestSecurity
         return \trustedProxy::clientIp($server);
     }
 
-    public static function requireHttps(Request $request): void
-    {
-        if (!self::isHttps($request)) {
-            throw new ApiError(403, 'https_required', 'La connexion REST nécessite HTTPS.');
-        }
-    }
-
     public static function isHttps(Request $request): bool
     {
         return str_starts_with(self::origin($request), 'https://');

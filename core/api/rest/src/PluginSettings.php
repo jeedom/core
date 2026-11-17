@@ -17,9 +17,7 @@ final class PluginSettings
     private static function path(string $id): ?string
     {
         if (!preg_match('/\A[A-Za-z0-9_][A-Za-z0-9_-]{0,126}\z/', $id)) return null;
-        $root = realpath(\plugin::getPluginPath($id));
-        $path = $root === false ? false : realpath($root . '/plugin_info/ui-settings.json');
-        return $path !== false && str_starts_with($path, $root . '/') && is_file($path) ? $path : null;
+        return PluginFiles::path($id, 'plugin_info/ui-settings.json', true);
     }
 
     public static function exists(string $id): bool

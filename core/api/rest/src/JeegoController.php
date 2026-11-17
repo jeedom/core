@@ -214,7 +214,7 @@ final class JeegoController
 
     public function status(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         return self::respond($response, ['enabled' => \jeego::isDetected()]);
     }
 
@@ -352,17 +352,9 @@ final class JeegoController
             && isset(self::SERVICE_ACTIONS[$matches[1]]);
     }
 
-    private static function requireAdmin(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        if ((int) $request->getAttribute('user')->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
-            throw new ApiError(403, 'forbidden', 'Ce compte est limité au réseau local.');
-        }
-    }
-
     private static function requireJeego(Request $request): void
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         if (!\jeego::isDetected()) {
             throw new ApiError(404, 'jeego_disabled', 'Ce Jeedom ne fonctionne pas en mode Jeego.');
         }

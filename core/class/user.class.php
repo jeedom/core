@@ -337,11 +337,16 @@ class user {
 		log::audit("Login failed ({$newValue}/{$maxValue})", $_context);
 		if ($newValue > $maxValue) {
 			$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+			$newBan = !isset($ban_ips[$current_ip]);
 			$ban_ips[$current_ip] = strtotime('now');
 			cache::set('security::banip', json_encode($ban_ips));
 			log::audit('IP banned', [
 				'ip' => $current_ip,
 			]);
+			// Une seule fois par bannissement, et pas pour une adresse de la liste blanche (jamais bloquée).
+			if ($newBan && !self::isWhiteIp($current_ip)) {
+				jeedom::event('ip_ban', false, ['ip' => $current_ip, 'datetime' => $ban_ips[$current_ip]]);
+			}
 		}
 	}
 
@@ -355,33 +360,41 @@ class user {
 		if ($current_ip == '') {
 			return false;
 		}
-		$whiteIps = explode(';', config::byKey('security::whiteips'));
-		if (is_array($whiteIps) && count($whiteIps) > 0) {
-			foreach ($whiteIps as $whiteip) {
-				if (netMatch($whiteip, $current_ip)) {
-					return false;
-				}
-			}
+		if (self::isWhiteIp($current_ip)) {
+			return false;
 		}
 		$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
 		if (!is_array($ban_ips) || count($ban_ips) == 0) {
 			return false;
 		}
 		if (count($ban_ips) > 0 && is_int(intval(config::byKey('security::bantime')))) {
+			$expired = false;
 			foreach ($ban_ips as $ip => $datetime) {
 				if (!is_int(intval($datetime))) {
 					continue;
 				}
 				if (intval(config::byKey('security::bantime')) == -1 || intval($datetime) + intval(config::byKey('security::bantime')) > strtotime('now')) {
 					if ($ip == $current_ip) {
-						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => intval($datetime)]);
 						return true;
 					}
 					continue;
 				}
 				unset($ban_ips[$ip]);
+				$expired = true;
 			}
-			cache::set('security::banip', json_encode($ban_ips));
+			// Appelé à chaque requête : n'écrire que si un bannissement a expiré.
+			if ($expired) {
+				cache::set('security::banip', json_encode($ban_ips));
+			}
+		}
+		return false;
+	}
+
+	private static function isWhiteIp(string $ip): bool {
+		foreach (explode(';', config::byKey('security::whiteips')) as $whiteip) {
+			if (netMatch($whiteip, $ip)) {
+				return true;
+			}
 		}
 		return false;
 	}
