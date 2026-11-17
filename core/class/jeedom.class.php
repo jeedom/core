@@ -971,7 +971,7 @@ class jeedom {
 			$background = $command . ' 3>&-; exit $?';
 			if ($_action === 'restore') {
 				try {
-					$tracking = \Jeedom\Api\Rest\RestoreStatus::start();
+					$tracking = restoreTracking::start();
 				} catch (RuntimeException $error) {
 					// La restauration reste possible si le stockage de suivi est indisponible.
 					error_log($error->getMessage());
@@ -998,7 +998,7 @@ class jeedom {
 			return null;
 		} catch (Throwable $error) {
 			if ($tracking !== null) {
-				\Jeedom\Api\Rest\RestoreStatus::discard($tracking['id']);
+				restoreTracking::discard($tracking['id']);
 			}
 			throw $error;
 		} finally {

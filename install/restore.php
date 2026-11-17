@@ -115,7 +115,7 @@ try {
 	);
 	if (isset($_GET['restoreTracking'])) {
 		// Préserver les fichiers nécessaires au suivi si l’archive contient un ancien routeur.
-		$excludes = array_merge($excludes, \Jeedom\Api\Rest\Router::RESTORE_FILES);
+		$excludes = array_merge($excludes, restoreTracking::FILES);
 	}
 	$exclude = '';
 	foreach ($excludes as $folder) {

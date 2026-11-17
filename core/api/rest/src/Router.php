@@ -13,16 +13,6 @@ use Slim\Factory\AppFactory;
 /** Routeur REST et réponses d’erreur, utilisables avant le bootstrap du Core. */
 final class Router
 {
-    // Ces fichiers restent disponibles pendant une restauration suivie depuis l’interface.
-    public const RESTORE_FILES = [
-        'api/v1/.htaccess',
-        'core/api/rest/index.php',
-        'core/api/rest/src/Router.php',
-        'core/api/rest/src/RestoreStatus.php',
-        'core/api/rest/src/Json.php',
-        'core/api/rest/src/ApiError.php',
-    ];
-
     public static function create(): App
     {
         $app = AppFactory::create();

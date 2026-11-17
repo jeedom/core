@@ -639,19 +639,14 @@ class update {
 		$runningCore = $operation['kind'] === 'maintenance'
 			|| ($operation['items'][0]['type'] ?? null) === 'core' && $operation['items'][0]['state'] === 'running';
 		if ($runningCore && $operation['state'] === 'running'
-			&& preg_match_all('/\[PROGRESS\]\[(\d+)\]/', self::operationLogTail(), $matches)) {
-			$operation['progress'] = min(100, (int) end($matches[1]));
+			&& ($progress = progressLog::lastPercent(self::operationLogTail())) !== null) {
+			$operation['progress'] = $progress;
 		}
 		return $operation;
 	}
 
 	private static function operationLogTail(): string {
-		$handle = @fopen(log::getPathToLog('update'), 'rb');
-		if ($handle === false) return '';
-		fseek($handle, max(0, (int) fstat($handle)['size'] - 16384));
-		$value = stream_get_contents($handle);
-		fclose($handle);
-		return $value === false ? '' : $value;
+		return progressLog::tailOf(log::getPathToLog('update'));
 	}
 
 	private static function withOperationLock(string $name, callable $action, int $mode = LOCK_EX | LOCK_NB) {
