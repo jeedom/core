@@ -1087,6 +1087,10 @@ paths:
       tags: [Système]
       operationId: executeSystemShellCommand
       summary: Exécuter une commande shell locale
+      description: |
+        La commande, et les processus qu'elle lance, sont tués au bout de
+        30 secondes (504 `shell_timeout`) ou dès que la sortie dépasse 2 Mio
+        (413 `shell_output_too_large`). La sortie partielle n'est pas renvoyée.
       requestBody:
         required: true
         content:
@@ -1106,7 +1110,9 @@ paths:
         '400': { $ref: '#/components/responses/SystemInvalidJson' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+        '413': { $ref: '#/components/responses/SystemShellOutputLimit' }
         '422': { $ref: '#/components/responses/ValidationError' }
+        '504': { $ref: '#/components/responses/SystemShellTimeout' }
 
   /system/files/roots:
     get:
@@ -11444,6 +11450,16 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     SystemSqlError:
       description: Corps invalide ou requête refusée par la base de données.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemShellOutputLimit:
+      description: Sortie de la commande supérieure à 2 Mio (shell_output_too_large) ; la commande a été tuée.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    SystemShellTimeout:
+      description: Commande toujours en cours après 30 secondes (shell_timeout) ; elle a été tuée.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
