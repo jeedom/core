@@ -417,11 +417,6 @@ final class EqLogicsController
         Auth::requireAdmin($request);
         $eqLogic = self::find($args['id'], $request->getAttribute('user'), 'w');
         $eqLogic->removeImage();
-        // removeImage ne vide pas la configuration `image::*` : on l'efface ici, comme la spec le prévoit.
-        $eqLogic = self::reload($eqLogic);
-        $eqLogic->setConfiguration('image::type', '');
-        $eqLogic->setConfiguration('image::sha512', '');
-        $eqLogic->save(true);
         return $response->withStatus(204);
     }
 
