@@ -50,7 +50,8 @@ class plan {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM plan
-		WHERE planHeader_id=:planHeader_id';
+		WHERE planHeader_id=:planHeader_id
+		ORDER BY id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 

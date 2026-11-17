@@ -85,7 +85,8 @@ final class DesignsController
         } catch (\Exception $e) {
             throw new ApiError(422, 'validation_error', $e->getMessage());
         }
-        // planHeader::copy() recrée les éléments dans le même ordre ; on y rattache leurs réglages.
+        // planHeader::copy() recrée les éléments dans l'ordre des id (plan::byPlanHeaderId) ; les copies
+        // reçoivent des id croissants dans ce même ordre, ce qui permet d'y rattacher leurs réglages.
         foreach ((array) $copy->getPlan() as $index => $plan) {
             $source = $sources[$index] ?? null;
             $row = $source === null ? null : ($displays[(int) $source->getId()] ?? null);
@@ -134,14 +135,27 @@ final class DesignsController
         if ($extension === null || !isset(self::IMAGES[strtolower(trim(explode(';', $request->getHeaderLine('Content-Type'))[0]))])) {
             throw new ApiError(415, 'validation_error', 'Une image PNG, JPEG ou GIF est attendue.');
         }
-        self::removeImage($design);
+        // Écrire et enregistrer la nouvelle image avant de supprimer l'ancienne : un échec garde l'image en place.
+        $previous = self::imagePath($design);
         $design->setImage('type', $extension);
         $design->setImage('size', [$info[0], $info[1]]);
         $design->setImage('sha512', hash('sha512', $bytes));
-        if (file_put_contents(self::imagePath($design), $bytes) === false) {
+        $path = self::imagePath($design);
+        // Même empreinte et même type : le fichier en place a déjà ce contenu.
+        if (!($path === $previous && is_file($path)) && file_put_contents($path, $bytes) === false) {
             throw new ApiError(500, 'internal_error', 'Impossible d\'enregistrer l\'image.');
         }
-        $design->save();
+        try {
+            $design->save();
+        } catch (\Throwable $e) {
+            if ($path !== $previous && is_file($path)) {
+                unlink($path);
+            }
+            throw $e;
+        }
+        if ($previous !== null && $previous !== $path && is_file($previous)) {
+            unlink($previous);
+        }
         return Json::respond($response, self::toArray($design));
     }
 
