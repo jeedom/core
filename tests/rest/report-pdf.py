@@ -38,11 +38,19 @@ with tempfile.TemporaryDirectory() as workspace:
         ],
         "histories": {"weather": {"gap": 90, "points": [[0, 0], [60, 2], [120, None], [420, 9], [480, 7]]}},
     }
-    payload = root / "layout.json"
     pdf = root / "report.pdf"
-    command = ["/usr/bin/python3", "-I", str(RENDERER), str(payload), str(pdf)]
-    payload.write_text(json.dumps(document, ensure_ascii=False), encoding="utf-8")
-    subprocess.run(command, check=True)
+
+    def render(limit=25 * 1024 * 1024):
+        with pdf.open("wb") as output:
+            return subprocess.run(
+                ["/usr/bin/python3", "-I", str(RENDERER), str(limit)],
+                input=json.dumps(document, ensure_ascii=False).encode("utf-8"),
+                stdout=output,
+                stderr=subprocess.PIPE,
+            )
+
+    rendered = render()
+    assert rendered.returncode == 0, rendered.stderr.decode("utf-8")
     info = subprocess.check_output(["pdfinfo", str(pdf)], text=True)
     assert re.search(r"^Pages:\s+2$", info, re.MULTILINE), info
     assert re.search(r"^Page size:.*\(A4\)", info, re.MULTILINE), info
@@ -53,10 +61,12 @@ with tempfile.TemporaryDirectory() as workspace:
     assert re.search(r"^0[ \t]*W$", text, re.MULTILINE), text
     images = subprocess.check_output(["pdfimages", "-list", str(pdf)], text=True).splitlines()[2:]
     assert len(images) == 1, images
+    too_large = render(limit=1024)
+    assert too_large.returncode == 65 and b"taille maximale" in too_large.stderr, too_large
+    assert pdf.stat().st_size <= 1024
+
     document["pages"][0]["blocks"][0]["height"] = .1
-    payload.write_text(json.dumps(document, ensure_ascii=False), encoding="utf-8")
-    pdf.unlink()
-    overflow = subprocess.run(command, text=True, capture_output=True)
-    assert overflow.returncode == 65 and "Page energie, bloc titre" in overflow.stderr, overflow
-    assert not pdf.exists(), "Une erreur de composition ne doit pas produire de PDF partiel."
-    print("Rapports PDF : pages A4, texte, valeur zéro, image, graphique et débordement vérifiés.")
+    overflow = render()
+    assert overflow.returncode == 65 and b"Page energie, bloc titre" in overflow.stderr, overflow
+    assert pdf.stat().st_size == 0, "Une erreur de composition ne doit pas produire de PDF partiel."
+    print("Rapports PDF : pages A4, texte, valeur zéro, image, graphique, débordement et taille vérifiés.")

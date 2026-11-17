@@ -4,6 +4,7 @@ import errno
 import json
 import resource
 import sys
+from bisect import bisect_right
 from html import escape
 from math import isfinite
 from pathlib import Path
@@ -34,8 +35,8 @@ GRID = HexColor("#dbe0e6")
 COLORS = ("#689f19", "#2767b3", "#bc4d21", "#8156a3", "#157d79",
           "#aa4060", "#786329", "#3d5487", "#257042", "#895738")
 ALIGNMENTS = {"left": TA_LEFT, "center": TA_CENTER, "right": TA_RIGHT}
-MAX_PDF_BYTES = 25 * 1024 * 1024
 MAX_IMAGE_PIXELS = 16_000_000
+MAX_RENDER_MEMORY = 256 * 1024 * 1024
 
 
 class InvalidLayout(Exception):
@@ -56,15 +57,15 @@ def paragraph(pdf, text, x, top, width, height, size=10, color=INK, font=FONT, a
 
 
 def single_line(pdf, label, x, y, width, size=8, color=MUTED, font=FONT):
-    if width <= 0:
+    if not label or width <= 0:
         return
     if pdfmetrics.stringWidth(label, font, size) > width:
-        suffix = "…"
-        if pdfmetrics.stringWidth(suffix, font, size) > width:
+        available = width - pdfmetrics.stringWidth("…", font, size)
+        if available < 0:
             return
-        while label and pdfmetrics.stringWidth(label + suffix, font, size) > width:
-            label = label[:-1]
-        label += suffix
+        cut = bisect_right(range(len(label) + 1), available,
+                           key=lambda length: pdfmetrics.stringWidth(label[:length], font, size)) - 1
+        label = label[:cut] + "…"
     pdf.setFillColor(color)
     pdf.setFont(font, size)
     pdf.drawString(x, y, label)
@@ -193,7 +194,7 @@ def draw_block(pdf, page_id, block, histories):
     pdf.restoreState()
 
 
-def main(input_path, output_path):
+def main(max_pdf_bytes):
     try:
         for font in (FONT, BOLD):
             path = FONT_DIRECTORY / (font + ".ttf")
@@ -201,10 +202,10 @@ def main(input_path, output_path):
                 print(f"Police manquante : {path}", file=sys.stderr)
                 return 69
             pdfmetrics.registerFont(TTFont(font, str(path)))
-        resource.setrlimit(resource.RLIMIT_FSIZE, (MAX_PDF_BYTES, MAX_PDF_BYTES))
-        with open(input_path, encoding="utf-8") as handle:
-            document = json.load(handle)
-        pdf = Canvas(output_path, pagesize=A4, pageCompression=1)
+        resource.setrlimit(resource.RLIMIT_AS, (MAX_RENDER_MEMORY, MAX_RENDER_MEMORY))
+        resource.setrlimit(resource.RLIMIT_FSIZE, (max_pdf_bytes, max_pdf_bytes))
+        document = json.load(sys.stdin.buffer)
+        pdf = Canvas(sys.stdout.buffer, pagesize=A4, pageCompression=1)
         pdf.setTitle(document["name"])
         pdf.setCreator("Jeedom")
         for page in document["pages"]:
@@ -212,16 +213,20 @@ def main(input_path, output_path):
                 draw_block(pdf, page["id"], block, document["histories"])
             pdf.showPage()
         pdf.save()
+        sys.stdout.buffer.flush()
         return 0
     except InvalidLayout as error:
         print(error, file=sys.stderr)
         return 65
+    except MemoryError:
+        print("Le rapport nécessite trop de mémoire pour être rendu.", file=sys.stderr)
+        return 65
     except OSError as error:
         if error.errno != errno.EFBIG:
             raise
-        print("Le PDF dépasse 25 Mio.", file=sys.stderr)
+        print("Le PDF dépasse la taille maximale.", file=sys.stderr)
         return 65
 
 
 if __name__ == "__main__":
-    sys.exit(main(*sys.argv[1:]))
+    sys.exit(main(int(sys.argv[1])))

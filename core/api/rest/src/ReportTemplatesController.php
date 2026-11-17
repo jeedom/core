@@ -5,6 +5,7 @@ namespace Jeedom\Api\Rest;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Psr7\Stream;
 
 final class ReportTemplatesController
 {
@@ -91,10 +92,8 @@ final class ReportTemplatesController
         }
         $name = str_replace(['\\', '/'], '-', $template->getName());
         $name = trim((string) preg_replace('~[\x00-\x1f\x7f]+~', '-', $name), '. ');
-        $filename = "inline; filename=\"rapport-{$template->getId()}.pdf\"; filename*=UTF-8''" . rawurlencode(($name ?: 'rapport') . '.pdf');
-        $response->getBody()->write($pdf);
-        return $response->withHeader('Content-Type', 'application/pdf')
-            ->withHeader('Content-Disposition', $filename)
+        $response = $response->withBody(new Stream($pdf));
+        return Attachment::headers($response, ($name !== '' ? $name : 'rapport') . '.pdf', 'application/pdf', inline: true)
             ->withHeader('Cache-Control', 'private, no-store');
     }
 
