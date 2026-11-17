@@ -64,6 +64,7 @@ class fixture extends eqLogic {
 function getClientIp(): string { return $GLOBALS['_JEEDOM_REST_CLIENT_IP'] ?? ''; }
 defineRestOperationsFixture('plugin', <<<'PHP'
     public static int $dependencyInstalls = 0;
+    public static string $dependencyState = 'ok';
     public static array $daemon = ['state' => 'nok', 'launchable' => 'ok', 'launchable_message' => '', 'auto' => 1, 'log' => 'fixture', 'last_launch' => '2026-11-08'];
     public static function getPluginPath($id) { return jeedom::getTmpFolder('plugins') . '/' . $id; }
     public static function getPathById($id) { return self::getPluginPath($id) . '/plugin_info/info.json'; }
@@ -74,7 +75,12 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getName() { return 'Plugin de recette'; }
     public function getCategory() { return 'energy'; }
     public function isActive() { return config::byKey('active', $this->id, 0); }
-    public function setIsEnable($state) { config::save('active', $state, $this->id); }
+    public function setIsEnable($state, $_force = false, $_foreground = false, bool $_guided = false) {
+        config::save('active', $state, $this->id);
+        config::save('guidedActivationPending', (bool) $state && $_guided, $this->id);
+    }
+    public function isGuidedActivationPending(): bool { return config::byKey('guidedActivationPending', $this->id, false); }
+    public function finishGuidedActivation(): void { config::save('guidedActivationPending', false, $this->id); }
     public function getPathImgIcon() { return is_file(self::getPluginPath($this->id) . '/plugin_info/icon.png') ? 'plugins/' . $this->id . '/plugin_info/icon.png' : 'core/img/no-image-plugin.png'; }
     public function getDescription() { return '<b>Description</b>'; }
     public function getAuthor() { return 'Développeur'; }
@@ -83,6 +89,7 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getRequireOsVersion() { return '12'; }
     public function getPathToConfigurationById() { return ''; }
     public function getHasDependency() { return 1; }
+    public function getMaxDependancyInstallTime() { return 20; }
     public function getHasOwnDeamon() { return 1; }
     public function getUsedSpace() { return $this->full ? 1234 : null; }
     public function getInstallation() { return '<p>Installation</p>'; }
@@ -93,7 +100,7 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getIssue() { return 'https://user:secret@example.org/'; }
     public function getFunctionality() { return ['cron' => ['exists' => 1, 'controlable' => 1], 'health' => ['exists' => 1, 'controlable' => 0]]; }
     public function getLogList() { return ['fixture', '../secret', '/etc/passwd']; }
-    public function dependancy_info() { return ['state' => self::$dependencyInstalls ? 'in_progress' : 'ok', 'log' => 'fixture_dep', 'auto' => config::byKey('dependancyAutoMode', $this->id, 1), 'progression' => 42, 'duration' => 2]; }
+    public function dependancy_info() { return ['state' => self::$dependencyInstalls ? 'in_progress' : self::$dependencyState, 'log' => 'fixture_dep', 'auto' => config::byKey('dependancyAutoMode', $this->id, 1), 'progression' => 42, 'duration' => 2]; }
     public function dependancy_install($force) { if (self::$dependencyInstalls) throw new RuntimeException('Déjà en cours', 409); self::$dependencyInstalls++; }
     public function dependancy_changeAutoMode($auto) { config::save('dependancyAutoMode', $auto, $this->id); }
     public function deamon_info() { return self::$daemon; }
@@ -323,6 +330,25 @@ $declaration['plugin']['recordDir']['section'] = 'missing';
 file_put_contents($settingsPath, json_encode($declaration, JSON_THROW_ON_ERROR));
 check(call('GET', $formPath, 500)['error']['code'] === 'invalid_plugin_settings', 'A field cannot reference an undeclared section');
 unlink($settingsPath);
+
+call('PATCH', '/plugins/fixture', 422, ['guidedActivation' => true]);
+call('PATCH', '/plugins/fixture', 422, ['isEnable' => true, 'guidedActivation' => 'true']);
+$activation = call('PATCH', '/plugins/fixture', body: ['isEnable' => true, 'guidedActivation' => true]);
+check($activation['guidedActivationPending'] === true, 'Guided activation must suspend automatic management');
+plugin::$dependencyState = 'nok';
+config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), 'fixture');
+$dependencies = call('POST', '/plugins/fixture/dependencies/install', 202, (object) []);
+check(plugin::$dependencyInstalls === 0 && $dependencies['maxInstallMinutes'] === 20, 'A just-started dependency installation must have time to report progress');
+config::save('lastDependancyInstallTime', date('Y-m-d H:i:s', time() - 60), 'fixture');
+call('POST', '/plugins/fixture/dependencies/install', 202, (object) []);
+call('POST', '/plugins/fixture/dependencies/install', 202, (object) []);
+check(plugin::$dependencyInstalls === 1, 'Retrying during guided activation must not start dependencies twice');
+$activation = call('PATCH', '/plugins/fixture', body: ['guidedActivation' => false]);
+check($activation['guidedActivationPending'] === false && config::byKey('active', 'fixture') === 1, 'Finishing guided activation must keep the plugin enabled');
+call('PATCH', '/plugins/fixture', body: ['isEnable' => false]);
+plugin::$dependencyInstalls = 0;
+plugin::$dependencyState = 'ok';
+
 call('PATCH', '/plugins/fixture', body: ['isEnable' => true, 'functionality' => ['cron' => false], 'heartbeatDelay' => 5, 'heartbeatRestartDaemon' => true, 'logLevel' => 'debug']);
 check(config::byKey('active', 'fixture') === 1 && config::byKey('functionality::cron::enable', 'fixture') === 0, 'Native activation/options not saved');
 foreach ([['isEnable' => 1], ['heartbeatDelay' => -1], ['heartbeatDelay' => '5'], ['logLevel' => null], ['apiKey' => 'secret'], ['functionality' => ['health' => false]], ['functionality' => ['unknown' => true]], ['isEnable' => false, 'logLevel' => 'invalid']] as $invalid) call('PATCH', '/plugins/fixture', 422, $invalid);

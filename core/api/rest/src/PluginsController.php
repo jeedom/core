@@ -227,10 +227,11 @@ final class PluginsController
     {
         Auth::requireAdmin($request);
         $plugin = self::find($args['id']);
-        $body = self::body($request, ['isEnable', 'functionality', 'logLevel', 'heartbeatDelay', 'heartbeatRestartDaemon', 'updatesBlocked']);
-        foreach (['isEnable', 'heartbeatRestartDaemon', 'updatesBlocked'] as $field) {
+        $body = self::body($request, ['isEnable', 'guidedActivation', 'functionality', 'logLevel', 'heartbeatDelay', 'heartbeatRestartDaemon', 'updatesBlocked']);
+        foreach (['isEnable', 'guidedActivation', 'heartbeatRestartDaemon', 'updatesBlocked'] as $field) {
             if (array_key_exists($field, $body) && !is_bool($body[$field])) self::invalid($field);
         }
+        if (($body['guidedActivation'] ?? false) && ($body['isEnable'] ?? false) !== true) self::invalid('guidedActivation');
         if (array_key_exists('heartbeatDelay', $body) && (!is_int($body['heartbeatDelay']) || $body['heartbeatDelay'] < 0 || $body['heartbeatDelay'] > 2147483647)) self::invalid('heartbeatDelay');
         if (isset($body['logLevel']) && !in_array($body['logLevel'], ['default', 'debug', 'info', 'warning', 'error', 'none'], true)) self::invalid('logLevel');
         if (array_key_exists('logLevel', $body) && !is_string($body['logLevel'])) self::invalid('logLevel');
@@ -244,7 +245,10 @@ final class PluginsController
         self::mutate($plugin, static function () use ($plugin, $body): void {
             $id = $plugin->getId();
             if (isset($body['updatesBlocked'])) self::setUpdatesBlocked($id, $body['updatesBlocked']);
-            if (array_key_exists('isEnable', $body) && (bool) $plugin->isActive() !== $body['isEnable']) $plugin->setIsEnable((int) $body['isEnable']);
+            if (array_key_exists('isEnable', $body) && (bool) $plugin->isActive() !== $body['isEnable']) {
+                $plugin->setIsEnable((int) $body['isEnable'], _guided: $body['guidedActivation'] ?? false);
+            }
+            if (($body['guidedActivation'] ?? null) === false && $plugin->isGuidedActivationPending()) $plugin->finishGuidedActivation();
             foreach ($body['functionality'] ?? [] as $key => $value) \config::save('functionality::' . $key . '::enable', (int) $value, $id);
             if (array_key_exists('heartbeatDelay', $body)) \config::save('heartbeat::delay::' . $id, $body['heartbeatDelay']);
             if (array_key_exists('heartbeatRestartDaemon', $body)) \config::save('heartbeat::restartDeamon::' . $id, (int) $body['heartbeatRestartDaemon']);
@@ -304,7 +308,17 @@ final class PluginsController
         Auth::requireAdmin($request);
         self::body($request, [], true);
         $plugin = self::find($args['id']);
-        self::mutate($plugin, static fn () => $plugin->dependancy_install(true));
+        self::mutate($plugin, static function () use ($plugin): void {
+            if ($plugin->isGuidedActivationPending()) {
+                // Leave a short window for a just-started process to create its progress file.
+                $started = strtotime((string) \config::byKey('lastDependancyInstallTime', $plugin->getId(), '', true));
+                if ($plugin->dependancy_info(true)['state'] === 'nok' && ($started === false || time() - $started >= 12)) {
+                    $plugin->dependancy_install(true);
+                }
+            } else {
+                $plugin->dependancy_install(true);
+            }
+        });
         return self::respond($response, self::dependencyInfo($plugin), 202);
     }
 
@@ -420,6 +434,7 @@ final class PluginsController
             'hasUiSettings' => PluginSettings::exists($id),
             'hasDependency' => (bool) $plugin->getHasDependency() || is_file(\plugin::getPluginPath($id) . '/plugin_info/packages.json'),
             'hasOwnDaemon' => (bool) $plugin->getHasOwnDeamon(), 'usedSpace' => is_numeric($plugin->getUsedSpace()) ? (int) $plugin->getUsedSpace() : null,
+            'guidedActivationPending' => $plugin->isGuidedActivationPending(),
             'installation' => trim(html_entity_decode(strip_tags((string) $plugin->getInstallation()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),
             'links' => ['documentation' => self::webUrl($plugin->getDocumentation()), 'changelog' => self::webUrl($plugin->getChangelog()),
                 'issue' => self::webUrl($plugin->getIssue()),
@@ -471,7 +486,8 @@ final class PluginsController
             'log' => self::validLog($info['log'] ?? null) ? $info['log'] : null,
             'progression' => isset($info['progression']) && is_numeric($info['progression']) ? (float) $info['progression'] : null,
             'duration' => isset($info['duration']) && is_numeric($info['duration']) ? (float) $info['duration'] : null,
-            'lastLaunch' => isset($info['last_launch']) ? (string) $info['last_launch'] : null];
+            'lastLaunch' => isset($info['last_launch']) ? (string) $info['last_launch'] : null,
+            'maxInstallMinutes' => max(1, (int) $plugin->getMaxDependancyInstallTime())];
     }
 
     private static function daemonInfo(\plugin $plugin): array
@@ -479,7 +495,7 @@ final class PluginsController
         $info = $plugin->deamon_info();
         return ['state' => (string) ($info['state'] ?? 'nok'), 'launchable' => (string) ($info['launchable'] ?? 'nok'),
             'launchableMessage' => (string) ($info['launchable_message'] ?? ''), 'auto' => !empty($info['auto']),
-            'log' => self::validLog($info['log'] ?? null) ? $info['log'] : null,
+            'log' => self::validLog($info['log'] ?? null) ? $info['log'] : ($plugin->getHasOwnDeamon() ? $plugin->getId() . 'd' : null),
             'lastLaunch' => isset($info['last_launch']) ? (string) $info['last_launch'] : null];
     }
 
