@@ -16,7 +16,6 @@ final class EqLogicsController
 {
     private const FIELDS = ['name', 'eqType_name', 'logicalId', 'object_id', 'isEnable', 'isVisible', 'order', 'timeout', 'generic_type', 'tags', 'comment', 'category', 'configuration', 'display'];
     private const BULK_CHANGES = ['isEnable', 'isVisible', 'generic_type'];
-    private const MAX_BULK = 1000;
 
     public function list(Request $request, Response $response): Response
     {
@@ -106,7 +105,7 @@ final class EqLogicsController
     {
         Auth::requireAdmin($request);
         $body = Json::body($request);
-        $ids = self::ids($body);
+        $ids = Bulk::ids($body);
         $changes = $body['changes'] ?? null;
         if (!is_array($changes) || $changes === [] || array_is_list($changes)) {
             throw ApiError::field(422, 'validation_error', 'changes', 'Un objet JSON avec au moins un changement est attendu.');
@@ -115,7 +114,7 @@ final class EqLogicsController
             throw ApiError::field(422, 'validation_error', 'changes.' . reset($unknown), 'Seuls isEnable, isVisible et generic_type peuvent être modifiés en groupe.');
         }
         $user = $request->getAttribute('user');
-        return Json::respond($response, self::each($ids, static function (int $id) use ($user, $changes): void {
+        return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user, $changes): void {
             self::apply(self::find((string) $id, $user, 'w'), $changes);
         }));
     }
@@ -123,9 +122,9 @@ final class EqLogicsController
     public function deleteMany(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = self::ids(Json::body($request));
+        $ids = Bulk::ids(Json::body($request));
         $user = $request->getAttribute('user');
-        return Json::respond($response, self::each($ids, static function (int $id) use ($user): void {
+        return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user): void {
             self::remove(self::find((string) $id, $user, 'w'));
         }));
     }
@@ -415,35 +414,6 @@ final class EqLogicsController
         $eqLogic = self::find($args['id'], $request->getAttribute('user'), 'w');
         $eqLogic->removeImage();
         return $response->withStatus(204);
-    }
-
-    private static function each(array $ids, callable $action): array
-    {
-        $done = [];
-        $failed = [];
-        foreach ($ids as $id) {
-            try {
-                $action($id);
-                $done[] = $id;
-            } catch (ApiError $e) {
-                $failed[] = ['id' => $id, 'error' => ['code' => $e->errorCode, 'message' => $e->getMessage()]];
-            } catch (\Throwable $e) {
-                \log::add('api', 'error', $e->getMessage());
-                $failed[] = ['id' => $id, 'error' => ['code' => 'internal_error', 'message' => 'Erreur interne.']];
-            }
-        }
-        return ['done' => $done, 'failed' => $failed];
-    }
-
-    /** @return list<int> */
-    private static function ids(array $body): array
-    {
-        $ids = $body['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || $ids === [] || count($ids) > self::MAX_BULK
-            || array_filter($ids, static fn ($id) => !is_int($id) || $id < 1) !== [] || count(array_unique($ids)) !== count($ids)) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste de 1 à ' . self::MAX_BULK . ' identifiants entiers distincts est attendue.');
-        }
-        return $ids;
     }
 
     public static function find(string $id, \user $user, string $right): \eqLogic

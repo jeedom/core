@@ -27,7 +27,6 @@ final class CmdsController
     private const REFERENCE = '/#(?:[\w:-]+|\[[^#]*\])#/u';
     /** Réglages utiles à l'affichage d'un widget, seuls renvoyés à un non-administrateur. */
     private const PUBLIC_CONFIGURATION = ['minValue', 'maxValue', 'listValue', 'actionConfirm', 'historizeRound'];
-    private const MAX_BULK = 1000;
     private const DATE = 'Y-m-d H:i:s';
 
     public function list(Request $request, Response $response): Response
@@ -162,11 +161,7 @@ final class CmdsController
     {
         Auth::requireAdmin($request);
         $body = Json::body($request);
-        $ids = $body['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || $ids === [] || count($ids) > self::MAX_BULK
-            || array_filter($ids, static fn ($id) => !is_int($id) || $id < 1) !== [] || count(array_unique($ids)) !== count($ids)) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste de 1 à ' . self::MAX_BULK . ' identifiants entiers distincts est attendue.');
-        }
+        $ids = Bulk::ids($body);
         $changes = $body['changes'] ?? null;
         if (!is_array($changes) || $changes === [] || array_is_list($changes)) {
             throw ApiError::field(422, 'validation_error', 'changes', 'Un objet JSON avec au moins un changement est attendu.');
@@ -175,20 +170,9 @@ final class CmdsController
             throw ApiError::field(422, 'validation_error', 'changes.' . reset($unknown), 'Seuls isVisible, isHistorized et generic_type peuvent être modifiés en groupe.');
         }
         $user = $request->getAttribute('user');
-        $done = [];
-        $failed = [];
-        foreach ($ids as $id) {
-            try {
-                self::apply(self::findWritable((string) $id, $user), $changes);
-                $done[] = $id;
-            } catch (ApiError $e) {
-                $failed[] = ['id' => $id, 'error' => ['code' => $e->errorCode, 'message' => $e->getMessage()]];
-            } catch (\Throwable $e) {
-                \log::add('api', 'error', $e->getMessage());
-                $failed[] = ['id' => $id, 'error' => ['code' => 'internal_error', 'message' => 'Erreur interne.']];
-            }
-        }
-        return Json::respond($response, ['done' => $done, 'failed' => $failed]);
+        return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user, $changes): void {
+            self::apply(self::findWritable((string) $id, $user), $changes);
+        }));
     }
 
     public function reorder(Request $request, Response $response): Response
