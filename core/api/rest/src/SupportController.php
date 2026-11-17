@@ -10,7 +10,7 @@ final class SupportController
 {
     public function create(Request $request, Response $response): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         if ($request->getAttribute('user')->getLogin() === 'demo') {
             throw new ApiError(403, 'forbidden', 'Action indisponible en mode démo.');
         }

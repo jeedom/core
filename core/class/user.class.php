@@ -819,6 +819,14 @@ class user {
 			]);
 			return;
 		}
+		if ($cmd->getType() != 'action' || $cmd->getSubType() != 'message') {
+			log::audit(__('Demande de réinitialisation du mot de passe : la commande de notification n\'est pas une commande message, aucun envoi', __FILE__), [
+				'login' => $this->getLogin(),
+				'ip' => network::getClientIp(),
+				'cmdId' => $cmd->getId(),
+			]);
+			return;
+		}
 		try {
 			$key = config::genKey();
 			cache::set('user::resetPassword::' . $key, $this->getLogin(), 300);

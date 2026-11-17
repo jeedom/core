@@ -3615,7 +3615,7 @@ paths:
       summary: Ouvrir une session REST
       description: |
         Le mode Web exige X-Jeedom-Web-Login et pose deux cookies. Le mode API renvoie les jetons en JSON.
-        Les deux modes demandent la double authentification lorsqu’elle est activée.
+        Les deux modes demandent la double authentification lorsqu’elle est activée (indicateur actif et secret enregistré, comme `twoFactorEnabled`).
       security: []
       parameters:
         - name: X-Jeedom-Web-Login
@@ -3795,6 +3795,9 @@ paths:
       tags: [Session]
       operationId: openSupportSession
       summary: Ouvrir une session temporaire du support
+      description: |
+        Si le navigateur porte déjà une session de support (cookie d’accès), elle est
+        révoquée dans la même transaction que la création de la nouvelle.
       security: []
       parameters:
         - name: X-Jeedom-Web-Login
@@ -3848,9 +3851,14 @@ paths:
         inconnue (y compris les préférences de plugins `plugin::<id>::<clé>`,
         à traiter avec la spec des plugins) renvoie 422. Changer de mot de
         passe demande l'ancien (`currentPassword`) : s'il est faux, 422
-        `invalid_current_password` ; le nouveau suit la règle de
-        `NewPassword` (sinon 422 `weak_password`). Le jeton API se gère avec
-        les accès enregistrés dans `/me/sessions`.
+        `invalid_current_password`, compté comme un échec de connexion
+        (délai, puis bannissement de l'adresse : 403 `ip_banned`) ; le
+        nouveau suit la règle de `NewPassword` (sinon 422 `weak_password`).
+        `preferences.notification::cmd` doit désigner une commande action de
+        sous-type `message` (sinon 422 `validation_error`) que le compte peut
+        exécuter sans code d'accès ni confirmation (sinon 403 `forbidden`) :
+        elle sert à envoyer le lien de réinitialisation du mot de passe. Le
+        jeton API se gère avec les accès enregistrés dans `/me/sessions`.
       requestBody:
         required: true
         content:
@@ -3865,7 +3873,7 @@ paths:
               schema: { $ref: '#/components/schemas/Me' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403':
-          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`), ou compte système.'
+          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`), compte système, adresse bannie (`code: ip_banned`) ou commande de notification non exécutable par ce compte (`code: forbidden`).'
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -4116,7 +4124,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/User' }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '409': { $ref: '#/components/responses/UserConflict' }
         '422':
           description: |
@@ -4160,6 +4168,11 @@ paths:
           administrateur : 422 `user_self_lockout` ;
         - le dernier administrateur actif ne peut être ni désactivé ni
           rétrogradé : 422 `last_admin` ;
+        - son propre mot de passe se change par `PATCH /me`, qui demande le
+          mot de passe actuel et garde la session courante : 422
+          `user_self_password` ici ;
+        - une session de support temporaire ne modifie aucun compte : 403
+          `support_session_forbidden` ;
         - désactiver un compte (`enable: false`) révoque ses sessions Core UI.
 
         Les droits par élément ne passent pas ici mais par
@@ -4178,7 +4191,7 @@ paths:
               schema: { $ref: '#/components/schemas/User' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403':
-          description: 'Droits insuffisants, ou compte système non modifiable (`code: user_system`).'
+          description: 'Droits insuffisants, compte système non modifiable (`code: user_system`) ou session de support (`code: support_session_forbidden`).'
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -4188,7 +4201,8 @@ paths:
           description: |
             Données invalides (`validation_error`), `weak_password` (mot de
             passe hors de la règle de `NewPassword`), `user_self_lockout`
-            (se désactiver ou quitter son profil admin) ou `last_admin`.
+            (se désactiver ou quitter son profil admin), `user_self_password`
+            (son propre mot de passe : passer par `PATCH /me`) ou `last_admin`.
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -4202,7 +4216,7 @@ paths:
       responses:
         '204': { description: Utilisateur supprimé. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
         '422':
           description: '`ldap_enabled` (suppression impossible tant que LDAP est actif) ou `user_self_delete`.'
@@ -4235,7 +4249,7 @@ paths:
       responses:
         '204': { description: Appareils oubliés. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
 
   /users/{id}/devices/{key}:
@@ -4250,7 +4264,7 @@ paths:
       responses:
         '204': { description: Appareil oublié. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404':
           description: 'Utilisateur inconnu (`user_not_found`) ou appareil inconnu (`device_not_found`).'
           content:
@@ -4283,7 +4297,7 @@ paths:
       responses:
         '204': { description: Session fermée. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404':
           description: 'Utilisateur inconnu (`user_not_found`) ou session inconnue de cet utilisateur (`session_not_found`).'
           content:
@@ -4315,7 +4329,7 @@ paths:
       responses:
         '204': { description: Sessions fermées. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
 
   /users/{id}/sessions/{sessionId}:
@@ -4330,7 +4344,7 @@ paths:
       responses:
         '204': { description: Session fermée. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404':
           description: 'Utilisateur inconnu (`user_not_found`) ou session inconnue de cet utilisateur (`session_not_found`).'
           content:
@@ -4379,7 +4393,7 @@ paths:
               schema: { $ref: '#/components/schemas/UserRights' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403':
-          description: 'Droits insuffisants, ou compte système (`code: user_system`).'
+          description: 'Droits insuffisants, compte système (`code: user_system`) ou session de support (`code: support_session_forbidden`).'
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -4415,7 +4429,7 @@ paths:
               schema: { $ref: '#/components/schemas/UserRights' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403':
-          description: 'Droits insuffisants, ou cible compte système (`code: user_system`).'
+          description: 'Droits insuffisants, cible compte système (`code: user_system`) ou session de support (`code: support_session_forbidden`).'
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -6500,7 +6514,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Menu' }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/MenuNotFound' }
         '409': { $ref: '#/components/responses/MenuConflict' }
         '422': { $ref: '#/components/responses/ValidationError' }
@@ -6542,7 +6556,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Menu' }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/MenuNotFound' }
         '409': { $ref: '#/components/responses/MenuConflict' }
         '422': { $ref: '#/components/responses/ValidationError' }
@@ -6557,7 +6571,7 @@ paths:
       responses:
         '204': { description: Menu supprimé. }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/MenuNotFound' }
         '422':
           description: '`menu_default` : le menu par défaut ne peut pas être supprimé.'
@@ -6781,7 +6795,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '403': { $ref: '#/components/responses/Forbidden' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '409': { $ref: '#/components/responses/Conflict' }
         '413':
           description: Corps de la requête supérieur à 40 Kio.
@@ -8896,7 +8910,7 @@ components:
         twoFactorEnabled:
           type: boolean
           readOnly: true
-          description: Double authentification activée (indicateur seul, ni code ni secret).
+          description: Double authentification activée (indicateur actif et secret enregistré, même règle que la connexion ; ni code ni secret).
         lastConnection:
           type: [string, 'null']
           format: date-time
@@ -9009,7 +9023,10 @@ components:
         displayViewByDefault: { type: integer, enum: [0, 1] }
         'notification::cmd':
           type: string
-          description: Commande de notification, au format `#[Objet][Équipement][Commande]#`.
+          description: |
+            Commande de notification, au format `#[Objet][Équipement][Commande]#` :
+            commande action de sous-type `message` que le compte peut exécuter
+            sans code d'accès ni confirmation. Chaîne vide : aucune commande.
           example: '#[Maison][Téléphone][Notification]#'
 
     MeUpdate:
@@ -11516,6 +11533,15 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     Forbidden:
       description: Droits insuffisants (écriture réservée aux administrateurs, ou élément que l'utilisateur n'a pas le droit de lire).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    AccountAdminForbidden:
+      description: |
+        Droits insuffisants (`forbidden`), ou session de support temporaire
+        (`support_session_forbidden`) : comptes, menus et tickets ne se
+        modifient pas pendant l'accès support, car ces effets survivraient
+        à sa fermeture.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }

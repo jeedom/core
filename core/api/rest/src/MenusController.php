@@ -27,7 +27,7 @@ final class MenusController
 
     public function create(Request $request, Response $response): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $body = self::checkBody(Json::body($request), ['name', 'items', 'copyFrom']);
         if (!array_key_exists('name', $body)) {
             throw ApiError::field(422, 'validation_error', 'name', 'Le nom est obligatoire.');
@@ -42,7 +42,7 @@ final class MenusController
 
     public function update(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $body = self::checkBody(Json::body($request), ['name', 'items', 'isDefault']);
         if ($body === []) {
             throw new ApiError(422, 'validation_error', 'Aucune modification.');
@@ -55,7 +55,7 @@ final class MenusController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         self::run(static fn () => \uiMenu::remove((string) $args['id']));
         return $response->withStatus(204);
     }

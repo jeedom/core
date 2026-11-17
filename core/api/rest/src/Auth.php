@@ -108,4 +108,16 @@ final class Auth implements MiddlewareInterface
             throw new ApiError(403, 'forbidden', 'Action réservée aux administrateurs.');
         }
     }
+
+    /**
+     * Administrateur hors session de support : comptes, menus et tickets sont des
+     * effets qui survivraient à la fermeture de l'accès support temporaire.
+     */
+    public static function requireAccountAdmin(ServerRequestInterface $request): void
+    {
+        self::requireAdmin($request);
+        if ($request->getAttribute('user')->getLogin() === \supportAccess::LOGIN) {
+            throw new ApiError(403, 'support_session_forbidden', 'Action indisponible pendant une session de support.');
+        }
+    }
 }
