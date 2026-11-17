@@ -10,6 +10,8 @@ use Psr\Http\Message\UploadedFileInterface;
 /**
  * Ressource /objects (spec/openapi.yaml). Chaque route appelle les méthodes existantes
  * de jeeObject, comme core/ajax/object.ajax.php, sans dupliquer leur logique.
+ * Comme pour les équipements, un objet que l'utilisateur du jeton n'a pas le droit de
+ * lire est absent des listes et renvoie 403 quand il est demandé directement.
  */
 final class ObjectsController
 {
@@ -32,10 +34,11 @@ final class ObjectsController
 
     public function get(Request $request, Response $response, array $args): Response
     {
-        $object = self::find($args['id']);
+        $user = $request->getAttribute('user');
+        $object = self::findReadable($args['id'], $user);
         $data = self::toArray($object);
         if (in_array('eqLogics', explode(',', (string) ($request->getQueryParams()['include'] ?? '')), true)) {
-            $data['eqLogics'] = self::eqLogics($object, $request->getAttribute('user'));
+            $data['eqLogics'] = self::eqLogics($object, $user);
         }
         return Json::respond($response, $data);
     }
@@ -73,7 +76,9 @@ final class ObjectsController
 
     public function children(Request $request, Response $response, array $args): Response
     {
-        $items = array_map(self::toArray(...), self::find($args['id'])->getChild(false));
+        $user = $request->getAttribute('user');
+        $children = array_filter((array) self::findReadable($args['id'], $user)->getChild(false), static fn ($child) => is_object($child) && $child->hasRight('r', $user));
+        $items = array_map(self::toArray(...), array_values($children));
         return Json::respond($response, ['items' => $items, 'total' => count($items)]);
     }
 
@@ -120,7 +125,15 @@ final class ObjectsController
     public function summary(Request $request, Response $response, array $args): Response
     {
         $query = $request->getQueryParams();
-        $value = self::find($args['id'])->getSummary((string) ($query['key'] ?? ''), self::flag($query['raw'] ?? null, false));
+        $object = self::findReadable($args['id'], $request->getAttribute('user'));
+        $key = $query['key'] ?? null;
+        if (!is_string($key) || $key === '') {
+            throw ApiError::field(422, 'validation_error', 'key', 'La clé de résumé est obligatoire.');
+        }
+        if (!isset(((array) \config::byKey('object:summary'))[$key])) {
+            throw new ApiError(404, 'summary_not_found', 'Clé de résumé inconnue.');
+        }
+        $value = $object->getSummary($key, self::flag($query['raw'] ?? null, false));
         return Json::respond($response, is_array($value) ? (object) $value : $value);
     }
 
@@ -227,7 +240,8 @@ final class ObjectsController
     public function summaryEqLogics(Request $request, Response $response, array $args): Response
     {
         $query = $request->getQueryParams();
-        $found = self::find($args['id'])->getEqLogicsFromSummary(
+        $user = $request->getAttribute('user');
+        $found = self::findReadable($args['id'], $user)->getEqLogicsFromSummary(
             $args['key'],
             self::flag($query['enabled'] ?? null, false),
             self::flag($query['visible'] ?? null, false),
@@ -235,7 +249,11 @@ final class ObjectsController
         if ($found === null) {
             throw new ApiError(404, 'summary_not_found', 'Clé de résumé inconnue.');
         }
-        $items = array_map(self::eqLogicRef(...), array_values($found));
+        $readable = array_filter($found, static function ($raw) use ($user): bool {
+            $eqLogic = \eqLogic::byId((int) ($raw['id'] ?? 0));
+            return is_object($eqLogic) && $eqLogic->hasRight('r', $user);
+        });
+        $items = array_map(self::eqLogicRef(...), array_values($readable));
         return Json::respond($response, ['items' => $items, 'total' => count($items)]);
     }
 
@@ -315,6 +333,15 @@ final class ObjectsController
         $object = ctype_digit($id) ? \jeeObject::byId((int) $id) : null;
         if (!is_object($object)) {
             throw new ApiError(404, 'object_not_found', 'Objet inconnu.');
+        }
+        return $object;
+    }
+
+    private static function findReadable(string $id, \user $user): \jeeObject
+    {
+        $object = self::find($id);
+        if (!$object->hasRight('r', $user)) {
+            throw new ApiError(403, 'forbidden', 'Droits insuffisants sur cet objet.');
         }
         return $object;
     }

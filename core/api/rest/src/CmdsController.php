@@ -21,7 +21,12 @@ final class CmdsController
     ];
     private const FIELDS = ['eqLogic_id', 'name', 'type', 'subType', 'logicalId', 'generic_type', 'order', 'isVisible', 'isHistorized', 'unite', 'value', 'accessCode', 'configuration', 'display', 'template', 'alert'];
     private const BULK_CHANGES = ['isVisible', 'isHistorized', 'generic_type'];
-    private const EXEC_OPTIONS = ['slider', 'color', 'select', 'title', 'message'];
+    /** Options acceptées par sous-type d'action. */
+    private const EXEC_OPTIONS = ['other' => [], 'slider' => ['slider'], 'color' => ['color'], 'select' => ['select'], 'message' => ['title', 'message']];
+    /** Références que cmd::execCmd ou les plugins remplacent : #123#, #tag#, #[Objet][Équipement][Commande]#. */
+    private const REFERENCE = '/#(?:[\w:-]+|\[[^#]*\])#/u';
+    /** Réglages utiles à l'affichage d'un widget, seuls renvoyés à un non-administrateur. */
+    private const PUBLIC_CONFIGURATION = ['minValue', 'maxValue', 'listValue', 'actionConfirm', 'historizeRound'];
     private const MAX_BULK = 1000;
     private const DATE = 'Y-m-d H:i:s';
 
@@ -53,7 +58,7 @@ final class CmdsController
             && $search->matches([$cmd->getName(), $cmd->getEqLogic()->getName(), $cmd->getGeneric_type()])));
         usort($cmds, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName(), (int) $a->getId()] <=> [(int) $b->getOrder(), $b->getName(), (int) $b->getId()]);
         $page = $search->page($cmds);
-        $page['items'] = array_map(self::toArray(...), $page['items']);
+        $page['items'] = array_map(static fn ($cmd) => self::toArray($cmd, $user), $page['items']);
         return Json::respond($response, $page);
     }
 
@@ -94,7 +99,8 @@ final class CmdsController
 
     public function get(Request $request, Response $response, array $args): Response
     {
-        return Json::respond($response, self::toArray(self::findReadable($args['id'], $request->getAttribute('user'))));
+        $user = $request->getAttribute('user');
+        return Json::respond($response, self::toArray(self::findReadable($args['id'], $user), $user));
     }
 
     public function create(Request $request, Response $response): Response
@@ -125,7 +131,7 @@ final class CmdsController
         $cmd->setType($body['type']);
         unset($body['eqLogic_id'], $body['type']);
         self::apply($cmd, $body + ['isVisible' => true]);
-        return Json::respond($response, self::toArray(self::reload($cmd)), 201);
+        return Json::respond($response, self::toArray(self::reload($cmd), $request->getAttribute('user')), 201);
     }
 
     public function update(Request $request, Response $response, array $args): Response
@@ -142,7 +148,7 @@ final class CmdsController
             }
         }
         self::apply($cmd, $body);
-        return Json::respond($response, self::toArray(self::reload($cmd)));
+        return Json::respond($response, self::toArray(self::reload($cmd), $request->getAttribute('user')));
     }
 
     public function delete(Request $request, Response $response, array $args): Response
@@ -223,9 +229,7 @@ final class CmdsController
         if (!is_array($options) || array_is_list($options) && $options !== []) {
             throw ApiError::field(422, 'validation_error', 'options', 'Un objet JSON est attendu.');
         }
-        if ($unknown = array_diff(array_keys($options), self::EXEC_OPTIONS)) {
-            throw ApiError::field(422, 'validation_error', 'options.' . reset($unknown), 'Option inconnue.');
-        }
+        $options = self::execOptions($cmd, $options);
         if (!$cmd->checkAccessCode((string) ($body['codeAccess'] ?? ''))) {
             throw new ApiError(403, 'access_code_required', 'Cette action nécessite un code d\'accès.');
         }
@@ -425,7 +429,57 @@ final class CmdsController
     {
         $cmds = array_values(array_filter((array) $eqLogic->getCmd(), static fn ($cmd) => is_object($cmd) && self::canRead($cmd, $user)));
         usort($cmds, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName()] <=> [(int) $b->getOrder(), $b->getName()]);
-        return array_map(self::toArray(...), $cmds);
+        return array_map(static fn ($cmd) => self::toArray($cmd, $user), $cmds);
+    }
+
+    /**
+     * Type et valide chaque option selon le sous-type. cmd::execCmd remplace ensuite #123# par la
+     * valeur de la commande 123 sans contrôle de droits : aucune référence n'est donc acceptée.
+     */
+    private static function execOptions(\cmd $cmd, array $options): array
+    {
+        $allowed = self::EXEC_OPTIONS[$cmd->getSubType()] ?? [];
+        foreach ($options as $name => $value) {
+            $field = 'options.' . $name;
+            if (!in_array($name, $allowed, true)) {
+                throw ApiError::field(422, 'validation_error', $field, 'Option inconnue pour ce sous-type de commande.');
+            }
+            if ($name === 'slider') {
+                if (!is_int($value) && !(is_float($value) && is_finite($value))) {
+                    throw ApiError::field(422, 'validation_error', $field, 'Un nombre est attendu.');
+                }
+                continue;
+            }
+            if ($name === 'color') {
+                if (!is_string($value) || !preg_match('/\A#[0-9a-fA-F]{6}\z/', $value)) {
+                    throw ApiError::field(422, 'validation_error', $field, 'Une couleur #rrggbb est attendue.');
+                }
+                continue;
+            }
+            if ($name === 'select' && is_int($value)) {
+                $value = $options[$name] = (string) $value;
+            }
+            if (!is_string($value)) {
+                throw ApiError::field(422, 'validation_error', $field, 'Un texte est attendu.');
+            }
+            if (preg_match(self::REFERENCE, $value)) {
+                throw ApiError::field(422, 'validation_error', $field, 'Les références #…# ne sont pas acceptées.');
+            }
+            if ($name === 'select' && !in_array($value, self::listValues($cmd), true)) {
+                throw ApiError::field(422, 'validation_error', $field, 'Valeur absente de la liste de la commande.');
+            }
+        }
+        return $options;
+    }
+
+    /** Valeurs de `listValue` (« valeur|libellé;… »), comme cmd::toHtml. */
+    private static function listValues(\cmd $cmd): array
+    {
+        $list = trim((string) $cmd->getConfiguration('listValue', ''));
+        if ($list === '') {
+            return [];
+        }
+        return array_map(static fn ($element) => explode('|', $element)[0], explode(';', $list));
     }
 
     private static function find(string $id): \cmd
@@ -605,12 +659,15 @@ final class CmdsController
     }
 
     /** Convertit une commande du core au schéma `Cmd` (types JSON, références lisibles). */
-    private static function toArray(\cmd $cmd): array
+    private static function toArray(\cmd $cmd, \user $user): array
     {
         $raw = \jeedom::toHumanReadable(\utils::o2a($cmd));
         $configuration = is_array($raw['configuration'] ?? null) ? $raw['configuration'] : [];
         unset($configuration['actionCodeAccess']);
-        $configuration = PluginSettings::redactPasswords($cmd->getEqType(), 'cmd', $configuration);
+        // Comme pour les équipements, les plugins peuvent y ranger des identifiants.
+        $configuration = $user->getProfils() === 'admin'
+            ? PluginSettings::redactPasswords($cmd->getEqType(), 'cmd', $configuration)
+            : array_intersect_key($configuration, array_flip(self::PUBLIC_CONFIGURATION));
         $current = $cmd->getType() === 'action' ? $cmd->getConfiguration('lastCmdValue', null) : $cmd->execCmd();
         return [
             'id' => (int) $raw['id'],
