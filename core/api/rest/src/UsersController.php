@@ -12,8 +12,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 /**
  * Ressources /users (administrateurs) et /me (son propre compte). Reprend les
  * garde-fous de core/ajax/user.ajax.php : liste blanche de champs, comptes système
- * intouchables, pas d'auto-désactivation, refus si LDAP actif. Le mot de passe, le
- * `hash` et la double authentification ne sortent jamais de /users.
+ * intouchables, pas d'auto-désactivation, création et suppression refusées si LDAP est
+ * actif (le changement de mot de passe reste permis, comme l'ajax `save`/`saveProfils`).
+ * Le mot de passe, le `hash` et la double authentification ne sortent jamais de /users.
  */
 final class UsersController
 {
