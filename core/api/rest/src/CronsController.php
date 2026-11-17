@@ -123,15 +123,14 @@ final class CronsController
                 throw ApiError::field(422, 'validation_error', $field, 'Un entier de 0 à 2147483647 est attendu.');
             }
         }
-        // preSave() peut remplacer l'id par celui d'une autre tâche avec la même cible.
-        // Refuser le doublon avant save() évite d'écraser silencieusement cette autre tâche.
+        // preSave() remplace l'id par celui que renvoie cron::byClassAndFunction() : refuser
+        // ce cas avant save() évite d'écraser silencieusement cette autre tâche.
         if (empty($cron->getOption())) {
             $class = $body['class'] ?? $cron->getClass();
             $function = $body['function'] ?? $cron->getFunction();
-            foreach (\cron::all() as $other) {
-                if ((string) $other->getClass() === (string) $class && $other->getFunction() === $function && (int) $other->getId() !== (int) $cron->getId()) {
-                    throw ApiError::field(409, 'cron_target_taken', 'function', 'Une tâche utilise déjà cette classe et cette fonction.');
-                }
+            $other = \cron::byClassAndFunction($class, $function);
+            if (is_object($other) && (int) $other->getId() !== (int) $cron->getId()) {
+                throw ApiError::field(409, 'cron_target_taken', 'function', 'Une tâche utilise déjà cette classe et cette fonction.');
             }
         }
         try {
