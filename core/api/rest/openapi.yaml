@@ -6122,8 +6122,10 @@ paths:
       summary: Modifier plusieurs scénarios
       description: |
         Active, désactive, montre, cache ou regroupe plusieurs scénarios.
-        Un scénario qui échoue n'arrête pas les autres. Réservé aux
-        administrateurs.
+        Un scénario qui échoue n'arrête pas les autres. `changes` est validé
+        avant toute écriture (422 sinon) ; comme pour la modification d'un
+        seul scénario, un scénario en cours est arrêté avant d'être modifié.
+        Réservé aux administrateurs.
       requestBody:
         required: true
         content:
@@ -6262,8 +6264,11 @@ paths:
         Remplace l'ajax `save` avec `id`. Seuls les champs envoyés sont
         modifiés ; `configuration` et `display` sont fusionnés clé par clé.
         `elements`, s'il est envoyé, remplace tout le contenu du scénario
-        (les blocs absents sont supprimés). Si le scénario est en cours
-        d'exécution, il est d'abord arrêté, puis mis à jour. Réservé aux
+        (les blocs absents sont supprimés). Le corps, blocs compris, est
+        entièrement validé avant toute écriture : une requête refusée (422)
+        n'arrête pas le scénario et ne laisse aucun bloc enregistré. Si le
+        scénario est en cours d'exécution, il est ensuite arrêté, puis mis à
+        jour. Réservé aux
         administrateurs ayant le droit d'écriture.
       requestBody:
         required: true
