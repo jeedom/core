@@ -502,6 +502,14 @@ try {
 		shell_exec('sudo cp ' . __DIR__ . '/apache_remoteip /etc/apache2/conf-enabled/remoteip.conf');
 		echo "Update remoteip config file, you need to restart jeedom";
 		echo "OK\n";
+	} else {
+		// Remplace seulement l'ancienne version livrée, qui faisait confiance à tout client.
+		$remoteip = preg_replace('/\s+/', ' ', trim((string) @file_get_contents('/etc/apache2/conf-enabled/remoteip.conf')));
+		if ($remoteip === '<IfModule mod_remoteip.c> RemoteIPHeader X-Forwarded-For </IfModule>') {
+			echo "Update apache remote ip...";
+			echo shell_exec('sudo cp ' . __DIR__ . '/apache_remoteip /etc/apache2/conf-enabled/remoteip.conf;echo "systemctl reload apache2" | sudo at now');
+			echo "OK\n";
+		}
 	}
 
 	echo "Set cache hour...";
