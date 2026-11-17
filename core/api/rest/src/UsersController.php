@@ -66,7 +66,7 @@ final class UsersController
 
     public function create(Request $request, Response $response): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $me = $request->getAttribute('user');
         $body = Json::body($request);
         self::rejectUnknown($body, ['login', 'password']);
@@ -91,7 +91,7 @@ final class UsersController
 
     public function update(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $me = $request->getAttribute('user');
         $user = self::findWritable($args['id']);
         $body = Json::body($request);
@@ -110,6 +110,10 @@ final class UsersController
         $password = array_key_exists('password', $body) ? self::validPassword($body['password'], 'password', $login ?? (string) $user->getLogin()) : null;
         $disable = ($body['enable'] ?? null) === false;
         $demote = isset($body['profils']) && $body['profils'] !== 'admin';
+        if ((int) $user->getId() === (int) $me->getId() && $password !== null) {
+            throw ApiError::field(422, 'user_self_password', 'password',
+                'Pour changer votre propre mot de passe, utilisez PATCH /me avec le mot de passe actuel.');
+        }
         if ((int) $user->getId() === (int) $me->getId() && ($disable || $demote)) {
             throw new ApiError(422, 'user_self_lockout', $disable
                 ? 'Vous ne pouvez pas désactiver le compte avec lequel vous êtes connecté.'
@@ -139,7 +143,7 @@ final class UsersController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $me = $request->getAttribute('user');
         $user = self::find($args['id']);
         self::requireNoLdap('Suppression impossible tant que l\'authentification LDAP est active.');
@@ -162,19 +166,19 @@ final class UsersController
 
     public function forgetDevices(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         return self::forget($request, $response, self::find($args['id']), null);
     }
 
     public function forgetDevice(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         return self::forget($request, $response, self::find($args['id']), $args['key']);
     }
 
     public function closeSessions(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $actor = $request->getAttribute('user');
         $user = self::find($args['id']);
         \session::revokeAll((int) $user->getId());
@@ -220,14 +224,14 @@ final class UsersController
 
     public function closeSession(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         self::closeOne($request, self::find($args['id']), $args['sessionId']);
         return $response->withStatus(204);
     }
 
     public function closeLegacySession(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $user = self::find($args['id']);
         if (!preg_match('/\A[0-9a-f]{64}\z/', $args['sessionId']) || !LegacySessions::revoke($user, $args['sessionId'])) {
             throw new ApiError(404, 'session_not_found', 'Session inconnue.');
@@ -243,7 +247,7 @@ final class UsersController
 
     public function replaceRights(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $user = self::findWritable($args['id']);
         $body = Json::body($request);
         foreach ($body as $key => $value) {
@@ -269,7 +273,7 @@ final class UsersController
 
     public function copyRights(Request $request, Response $response, array $args): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $from = self::find($args['id']);
         $body = Json::body($request);
         self::rejectUnknown($body, ['to']);
@@ -309,16 +313,17 @@ final class UsersController
         if ($body === []) {
             throw new ApiError(422, 'validation_error', 'Aucun champ à modifier.');
         }
-        $preferences = array_key_exists('preferences', $body) ? self::validPreferences($body['preferences']) : [];
+        $preferences = array_key_exists('preferences', $body) ? self::validPreferences($body['preferences'], $user) : [];
         $password = null;
         if (array_key_exists('password', $body)) {
+            self::requireNotBanned();
             $password = self::validPassword($body['password'], 'password', (string) $user->getLogin());
             $current = $body['currentPassword'] ?? null;
             if (!is_string($current) || $current === '') {
                 throw ApiError::field(422, 'validation_error', 'currentPassword', 'Le mot de passe actuel est obligatoire pour en changer.');
             }
             if (!self::passwordMatches($user, $current)) {
-                throw ApiError::field(422, 'invalid_current_password', 'currentPassword', 'Mot de passe actuel incorrect.');
+                self::rejectCredential($user, ApiError::field(422, 'invalid_current_password', 'currentPassword', 'Mot de passe actuel incorrect.'));
             }
         } elseif (array_key_exists('currentPassword', $body)) {
             throw ApiError::field(422, 'validation_error', 'currentPassword', 'Utile seulement avec password.');
@@ -370,9 +375,7 @@ final class UsersController
     {
         $user = self::currentWritable($request);
         $sessionId = self::twoFactorSession($request, $user);
-        if (\user::isBan()) {
-            throw new ApiError(403, 'ip_banned', 'Adresse IP bannie après trop d\'échecs de connexion.');
-        }
+        self::requireNotBanned();
         $body = Json::body($request, 4096);
         self::rejectUnknown($body, ['enabled', 'currentPassword', 'twoFactorCode']);
         $enabled = $body['enabled'] ?? null;
@@ -411,11 +414,7 @@ final class UsersController
         } catch (\DomainException $error) {
             throw new ApiError(401, 'session_expired', $error->getMessage());
         } catch (ApiError $error) {
-            if (in_array($error->errorCode, ['invalid_current_password', 'two_factor_invalid'], true)) {
-                \user::failedLogin(['login' => $user->getLogin(), 'reason' => $error->getMessage()]);
-                sleep(5);
-            }
-            throw $error;
+            self::rejectCredential($user, $error);
         }
         \cache::delete($cacheKey);
         \log::audit($enabled ? 'Two-factor authentication enabled' : 'Two-factor authentication disabled', ['login' => $user->getLogin()]);
@@ -528,7 +527,7 @@ final class UsersController
             'profils' => (string) $user->getProfils(),
             'enable' => (int) $user->getEnable() === 1,
             'kind' => $kind,
-            'twoFactorEnabled' => (int) $user->getOptions('twoFactorAuthentification', 0) === 1,
+            'twoFactorEnabled' => self::twoFactorEnabled($user),
             'lastConnection' => is_string($last) && $last !== '' && strtotime($last) !== false ? date('c', strtotime($last)) : null,
             'options' => $options,
         ] + ($kind === 'plugin' ? ['daemonPluginName' => \plugin::daemonAccountPluginName($user->getLogin())] : []);
@@ -640,10 +639,28 @@ final class UsersController
         return $sessionId;
     }
 
-    private static function twoFactorEnabled(\user $user): bool
+    /** Règle unique, comme la connexion historique : l'indicateur ne suffit pas sans secret. */
+    public static function twoFactorEnabled(\user $user): bool
     {
         return (int) $user->getOptions('twoFactorAuthentification', 0) === 1
             && $user->getOptions('twoFactorAuthentificationSecret') !== '';
+    }
+
+    private static function requireNotBanned(): void
+    {
+        if (\user::isBan()) {
+            throw new ApiError(403, 'ip_banned', 'Adresse IP bannie après trop d\'échecs de connexion.');
+        }
+    }
+
+    /** Un mot de passe ou un code actuel faux compte comme un échec de connexion (bannissement, délai). */
+    private static function rejectCredential(\user $user, ApiError $error): never
+    {
+        if (in_array($error->errorCode, ['invalid_current_password', 'two_factor_invalid'], true)) {
+            \user::failedLogin(['login' => $user->getLogin(), 'reason' => $error->getMessage()]);
+            sleep(5);
+        }
+        throw $error;
     }
 
     private static function passwordMatches(\user $user, string $password): bool
@@ -752,7 +769,7 @@ final class UsersController
         return $options;
     }
 
-    private static function validPreferences(mixed $preferences): array
+    private static function validPreferences(mixed $preferences, \user $user): array
     {
         if (!is_array($preferences) || (array_is_list($preferences) && $preferences !== [])) {
             throw ApiError::field(422, 'validation_error', 'preferences', 'Un objet est attendu.');
@@ -771,10 +788,34 @@ final class UsersController
             }
             $result[$key] = match ($type) {
                 'id' => $value ?? '',
-                'cmd' => \jeedom::fromHumanReadable($value),
+                'cmd' => self::validNotificationCmd($value, $user, $field),
                 default => $value,
             };
         }
         return $result;
+    }
+
+    /**
+     * La commande de notification est exécutée par la réinitialisation du mot de passe,
+     * sans session : seule une commande message que le compte peut lui-même exécuter
+     * (droit, code d'accès, confirmation) est acceptée. Chaîne vide : aucune commande.
+     */
+    private static function validNotificationCmd(string $value, \user $user, string $field): string
+    {
+        $value = trim((string) \jeedom::fromHumanReadable($value));
+        if ($value === '') {
+            return '';
+        }
+        $cmd = preg_match('/\A#?([1-9][0-9]*)#?\z/', $value, $match) ? \cmd::byId((int) $match[1]) : null;
+        if (!is_object($cmd) || !is_object($cmd->getEqLogic())) {
+            throw ApiError::field(422, 'validation_error', $field, 'Commande inconnue.');
+        }
+        if ($cmd->getType() !== 'action' || $cmd->getSubType() !== 'message') {
+            throw ApiError::field(422, 'validation_error', $field, 'Une commande action de type message est attendue.');
+        }
+        if (!$cmd->hasRight($user) || !$cmd->checkAccessCode('') || (int) $cmd->getConfiguration('actionConfirm') === 1) {
+            throw ApiError::field(403, 'forbidden', $field, 'Ce compte ne peut pas exécuter cette commande (droit, code d\'accès ou confirmation requis).');
+        }
+        return '#' . $cmd->getId() . '#';
     }
 }

@@ -10,7 +10,7 @@ final class SupportController
 {
     public function create(Request $request, Response $response): Response
     {
-        Auth::requireAdmin($request);
+        Auth::requireAccountAdmin($request);
         $body = Json::body($request, 40 * 1024, true);
         if (array_diff(array_keys($body), ['category', 'title', 'message', 'openSupport']) !== []) {
             throw new ApiError(422, 'validation_error', 'Paramètre de demande de support inconnu.');
