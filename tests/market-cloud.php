@@ -35,6 +35,11 @@ class jeedom {
     public static function getHardwareKey() { return self::$hardware; }
     public static function getTmpFolder($type) { global $directory; return $directory; }
     public static function health() { return array(); }
+    public static function ensureBackupDir() {
+        $directory = calculPath(config::byKey('backup::path'));
+        if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) throw new RuntimeException('Backup directory fixture failure');
+        return $directory;
+    }
 }
 class com_shell {
     public static $commands = array();
