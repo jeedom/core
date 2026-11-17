@@ -111,9 +111,9 @@ final class ObjectsController
 
     public function globalSummary(Request $request, Response $response): Response
     {
-        $key = (string) ($request->getQueryParams()['key'] ?? '');
-        if ($key !== '') {
-            return Json::respond($response, \jeeObject::getGlobalSummary($key));
+        $query = $request->getQueryParams();
+        if (array_key_exists('key', $query)) {
+            return Json::respond($response, \jeeObject::getGlobalSummary(self::summaryKey($query['key'])));
         }
         $result = [];
         foreach ((array) \config::byKey('object:summary') as $summaryKey => $definition) {
@@ -126,15 +126,21 @@ final class ObjectsController
     {
         $query = $request->getQueryParams();
         $object = self::findReadable($args['id'], $request->getAttribute('user'));
-        $key = $query['key'] ?? null;
+        $key = self::summaryKey($query['key'] ?? null);
+        $value = $object->getSummary($key, self::flag($query['raw'] ?? null, false));
+        return Json::respond($response, is_array($value) ? (object) $value : $value);
+    }
+
+    /** Clé `key` : texte non vide (422), clé de résumé définie (404 `summary_not_found`). */
+    private static function summaryKey(mixed $key): string
+    {
         if (!is_string($key) || $key === '') {
             throw ApiError::field(422, 'validation_error', 'key', 'La clé de résumé est obligatoire.');
         }
         if (!isset(((array) \config::byKey('object:summary'))[$key])) {
             throw new ApiError(404, 'summary_not_found', 'Clé de résumé inconnue.');
         }
-        $value = $object->getSummary($key, self::flag($query['raw'] ?? null, false));
-        return Json::respond($response, is_array($value) ? (object) $value : $value);
+        return $key;
     }
 
     public function summaryConfiguration(Request $request, Response $response, array $args): Response
@@ -260,10 +266,7 @@ final class ObjectsController
     public function createSummaryVirtual(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        if (!isset(((array) \config::byKey('object:summary'))[$args['key']])) {
-            throw new ApiError(404, 'summary_not_found', 'Clé de résumé inconnue.');
-        }
-        \jeeObject::createSummaryToVirtual($args['key']);
+        \jeeObject::createSummaryToVirtual(self::summaryKey($args['key']));
         return $response->withStatus(204);
     }
 

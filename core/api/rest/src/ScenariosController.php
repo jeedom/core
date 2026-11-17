@@ -16,6 +16,12 @@ final class ScenariosController
 {
     private const FIELDS = ['name', 'group', 'isActive', 'isVisible', 'mode', 'schedule', 'trigger', 'timeout', 'object_id', 'order', 'description', 'display', 'configuration', 'elements'];
     private const BULK_CHANGES = ['isActive', 'isVisible', 'group'];
+    /**
+     * Champs lus par le moteur pendant une exécution (scenario::launch/execute) : leur
+     * changement arrête un scénario en cours. Les autres (nom, groupe, objet, visibilité,
+     * activation, ordre, description, affichage) ne l'arrêtent pas.
+     */
+    private const EXECUTION_FIELDS = ['elements', 'trigger', 'schedule', 'mode', 'timeout', 'configuration'];
     private const MODES = ['provoke', 'schedule', 'all'];
     private const STATES = ['stop', 'in progress', 'starting', 'error'];
     private const MAX_BULK = 1000;
@@ -99,8 +105,8 @@ final class ScenariosController
             throw new ApiError(422, 'validation_error', 'Aucun champ à modifier.');
         }
         $body = self::validate($body);
-        // Décision du 06/11 : un scénario en cours est arrêté, puis mis à jour (après validation).
-        self::stopIfRunning($scenario);
+        // Un scénario en cours est arrêté, après validation, si son exécution change.
+        self::stopIfExecutionChanges($scenario, $body);
         self::write($scenario, $body);
         return Json::respond($response, self::toArray(self::reload($scenario), true));
     }
@@ -128,7 +134,7 @@ final class ScenariosController
         $user = $request->getAttribute('user');
         return Json::respond($response, self::each($ids, static function (int $id) use ($user, $changes): void {
             $scenario = self::find((string) $id, $user, 'w');
-            self::stopIfRunning($scenario);
+            self::stopIfExecutionChanges($scenario, $changes);
             self::write($scenario, $changes);
         }));
     }
@@ -352,11 +358,40 @@ final class ScenariosController
         return ['done' => $done, 'failed' => $failed];
     }
 
-    private static function stopIfRunning(\scenario $scenario): void
+    private static function stopIfExecutionChanges(\scenario $scenario, array $body): void
     {
-        if ($scenario->running()) {
+        if (self::changesExecution($scenario, $body) && $scenario->running()) {
             $scenario->stop();
         }
+    }
+
+    /**
+     * Vrai si le corps validé change un champ d'EXECUTION_FIELDS. `elements` compte
+     * toujours comme un changement (le contenu est réenregistré) ; les autres champs
+     * sont appliqués à une copie, comme write(), puis comparés.
+     */
+    private static function changesExecution(\scenario $scenario, array $body): bool
+    {
+        $fields = array_intersect_key($body, array_flip(self::EXECUTION_FIELDS));
+        if ($fields === []) {
+            return false;
+        }
+        if (array_key_exists('elements', $fields)) {
+            return true;
+        }
+        $copy = clone $scenario;
+        if (isset($fields['trigger'])) {
+            $copy->setTrigger([]);
+        }
+        if (isset($fields['schedule'])) {
+            $copy->setSchedule([]);
+        }
+        \utils::a2o($copy, $fields);
+        return $copy->getTrigger() !== $scenario->getTrigger()
+            || $copy->getSchedule() !== $scenario->getSchedule()
+            || $copy->getMode() !== $scenario->getMode()
+            || $copy->getTimeout() !== $scenario->getTimeout()
+            || $copy->getConfiguration() !== $scenario->getConfiguration();
     }
 
     /** Valide le corps sans rien écrire ; renvoie les valeurs normalisées pour write(). */

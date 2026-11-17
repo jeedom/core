@@ -115,7 +115,7 @@ final class EventStream implements StreamInterface
             $this->cursor = (float) $row['datetime'];
             $data = self::decode($row['option']);
             if ($this->filter->accepts((string) $row['name'], $data)) {
-                $this->buffer .= self::message(self::formatCursor($this->cursor), (string) $row['name'], $data);
+                $this->buffer .= self::message(self::formatCursor($this->cursor), (string) $row['name'], self::present((string) $row['name'], $data));
             }
         }
     }
@@ -139,6 +139,23 @@ final class EventStream implements StreamInterface
         } catch (\JsonException) {
             return (string) $option;
         }
+    }
+
+    /**
+     * `notify` reprend le texte de message::save() : il est assaini comme dans
+     * GET /messages. La table `event`, lue aussi par event.ajax.php, n'est pas modifiée.
+     */
+    private static function present(string $type, mixed $data): mixed
+    {
+        if ($type !== 'notify' || !is_array($data)) {
+            return $data;
+        }
+        foreach (['title', 'message'] as $field) {
+            if (isset($data[$field]) && is_string($data[$field])) {
+                $data[$field] = MessageHtml::sanitize($data[$field]);
+            }
+        }
+        return $data;
     }
 
     /** Met à jour le curseur du client, y compris quand le flux est silencieux. */

@@ -467,8 +467,11 @@ final class CmdsController
             if (preg_match(self::REFERENCE, $value)) {
                 throw ApiError::field(422, 'validation_error', $field, 'Les références #…# ne sont pas acceptées.');
             }
-            if ($name === 'select' && !in_array($value, self::listValues($cmd), true)) {
-                throw ApiError::field(422, 'validation_error', $field, 'Valeur absente de la liste de la commande.');
+            if ($name === 'select') {
+                $list = self::listValues($cmd);
+                if ($list !== [] && !in_array($value, $list, true)) {
+                    throw ApiError::field(422, 'validation_error', $field, 'Valeur absente de la liste de la commande.');
+                }
             }
         }
         return $options;

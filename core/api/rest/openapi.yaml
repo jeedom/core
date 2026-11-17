@@ -2506,10 +2506,11 @@ paths:
       summary: Lister les messages
       description: |
         Reprend l'action `all` de `core/ajax/message.ajax.php` : les messages
-        non lus d'abord, puis du plus récent au plus ancien. Contrairement à
-        l'ajax (500 derniers messages sans `plugin`), aucun plafond n'est
-        appliqué : `limit` et `offset` paginent, et `total` compte tous les
-        messages qui correspondent aux filtres (`plugin`, `level`, `read`, `q`).
+        non lus d'abord, puis du plus récent au plus ancien. Sans `limit`, au
+        plus 500 messages sont renvoyés (avec ou sans `plugin`, alors que
+        l'ajax ne plafonne que sans `plugin`) ; `limit` et `offset` paginent,
+        et `total` compte tous les messages qui correspondent aux filtres
+        (`plugin`, `level`, `read`, `q`), pas seulement ceux renvoyés.
         `message` et `action` sont rendus comme dans
         l'ancienne interface (`message::toArray()`), puis assainis par l'API :
         un fragment HTML où ne restent que `<i>` sans attribut et `<a>` avec,
@@ -2544,7 +2545,10 @@ paths:
         schema:
           type: string
           maxLength: 200
-      - $ref: '#/components/parameters/ListLimit'
+      - name: limit
+        in: query
+        description: Nombre maximal d'éléments renvoyés (500 sans ce paramètre).
+        schema: { type: integer, minimum: 1, maximum: 500, default: 500, example: 50 }
       - $ref: '#/components/parameters/ListOffset'
       responses:
         '200':
@@ -4756,6 +4760,9 @@ paths:
       description: |
         Remplace le JSON-RPC `summary::global`. Sans `key`, renvoie toutes les
         clés de résumé définies avec leur valeur ; avec `key`, la valeur seule.
+        `key`, s'il est envoyé, doit être non vide (422 sinon) et être une clé
+        de résumé définie (404 `summary_not_found` sinon), comme pour
+        `GET /objects/{id}/summary`.
       parameters:
         - $ref: '#/components/parameters/SummaryKeyQuery'
       responses:
@@ -4765,6 +4772,8 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/SummaryResult' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /objects/summary/{key}/virtual:
     parameters:
@@ -6209,8 +6218,8 @@ paths:
       description: |
         Active, désactive, montre, cache ou regroupe plusieurs scénarios.
         Un scénario qui échoue n'arrête pas les autres. `changes` est validé
-        avant toute écriture (422 sinon) ; comme pour la modification d'un
-        seul scénario, un scénario en cours est arrêté avant d'être modifié.
+        avant toute écriture (422 sinon). Ces champs ne changent pas
+        l'exécution : un scénario en cours n'est pas arrêté.
         Réservé aux administrateurs.
       requestBody:
         required: true
@@ -6352,9 +6361,13 @@ paths:
         `elements`, s'il est envoyé, remplace tout le contenu du scénario
         (les blocs absents sont supprimés). Le corps, blocs compris, est
         entièrement validé avant toute écriture : une requête refusée (422)
-        n'arrête pas le scénario et ne laisse aucun bloc enregistré. Si le
-        scénario est en cours d'exécution, il est ensuite arrêté, puis mis à
-        jour. Réservé aux
+        n'arrête pas le scénario et ne laisse aucun bloc enregistré. Un
+        scénario en cours d'exécution est arrêté, puis mis à jour, seulement
+        si la requête change ce que lit le moteur : `elements` (dès qu'il est
+        envoyé), ou une valeur différente de `trigger`, `schedule`, `mode`,
+        `timeout` ou d'une clé de `configuration`. Les autres champs (`name`,
+        `group`, `object_id`, `isActive`, `isVisible`, `order`,
+        `description`, `display`) ne l'arrêtent pas. Réservé aux
         administrateurs ayant le droit d'écriture.
       requestBody:
         required: true
@@ -7008,7 +7021,7 @@ components:
       name: key
       in: query
       description: Limiter le résultat à une clé de résumé.
-      schema: { type: string, example: temperature }
+      schema: { type: string, minLength: 1, example: temperature }
 
     ListLimit:
       name: limit
@@ -9392,7 +9405,10 @@ components:
             color: { type: string, pattern: '^#[0-9a-fA-F]{6}$', description: 'Sous-type `color` (ex. `#ff0000`).' }
             select:
               type: [string, integer]
-              description: Sous-type `select`. Doit être une des valeurs de `configuration.listValue`.
+              description: |
+                Sous-type `select`, sans référence `#…#`. Si la commande a une
+                `configuration.listValue` non vide, la valeur doit en faire
+                partie ; sinon tout texte est accepté.
             title: { type: string, description: Sous-type `message`, sans référence `#…#`. }
             message: { type: string, description: Sous-type `message`, sans référence `#…#`. }
         codeAccess:
@@ -10062,7 +10078,10 @@ components:
     Event:
       type: object
       required: [type, data]
-      description: Contenu du champ `data` d'un message SSE. `data` reprend tel quel le `option` de l'événement du core.
+      description: |
+        Contenu du champ `data` d'un message SSE. `data` reprend tel quel le
+        `option` de l'événement du core, sauf pour `notify` (texte assaini,
+        voir `NotifyEvent`).
       properties:
         type: { $ref: '#/components/schemas/EventType' }
         data:
@@ -10115,6 +10134,10 @@ components:
           additionalProperties: true
     NotifyEvent:
       type: object
+      description: |
+        `title` et `message` sont assainis comme dans `GET /messages` : un
+        fragment HTML où ne restent que `<i>` sans attribut et `<a>` avec, au
+        plus, un `href` http(s) ou relatif.
       properties:
         title: { type: string }
         message: { type: string }
