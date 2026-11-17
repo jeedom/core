@@ -350,7 +350,7 @@ class plugin {
 					$message .= ' ' . __('n\'a pas recu de message depuis', __FILE__) . ' ' . $heartbeat . ' ' . __('min', __FILE__);
 					$action = '<a href="/' . $plugin->getLinkToConfiguration() . '">' . __('Configuration', __FILE__) . '</a>';
 					$logicalId = 'heartbeat' . $plugin->getId();
-					message::add($plugin->getId(), $message, $action, $logicalId);
+					message::add($plugin->getId(), $message, $action, $logicalId, true, null, true, 'warning');
 					if ($plugin->getHasOwnDeamon() && config::byKey('heartbeat::restartDeamon::' . $plugin->getId(), 'core', 0) == 1) {
 						$plugin->deamon_start(true);
 					}
@@ -369,7 +369,7 @@ class plugin {
 		if ($cache->getValue(0) > 3) {
 			$message = __('La tâche plugin::cron n\'arrive pas à finir à cause du plugin :', __FILE__) . ' ' . cache::byKey('plugin::cron::last')->getValue() . ' ' . __('nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__);
 			$action = '<a href="/index.php?v=d&p=plugin&id=' . cache::byKey('plugin::cron::last')->getValue() . '">' . __('Configuration', __FILE__) . '</a>';
-			message::add('core', $message, $action);
+			message::add('core', $message, $action, '', true, null, true, 'warning');
 		}
 		cache::set('plugin::cron::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -398,7 +398,7 @@ class plugin {
 		if ($cache->getValue(0) > 3) {
 			$message = __('La tâche plugin::cron5 n\'arrive pas à finir à cause du plugin :', __FILE__) . ' ' . cache::byKey('plugin::cron5::last')->getValue() . ' ' . __('nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__);
 			$action = '<a href="/index.php?v=d&p=plugin&id=' . cache::byKey('plugin::cron5::last')->getValue() . '">' . __('Configuration', __FILE__) . '</a>';
-			message::add('core', $message, $action);
+			message::add('core', $message, $action, '', true, null, true, 'warning');
 		}
 		cache::set('plugin::cron5::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -427,7 +427,7 @@ class plugin {
 		if ($cache->getValue(0) > 3) {
 			$message = __('La tâche plugin::cron10 n\'arrive pas à finir à cause du plugin :', __FILE__) . ' ' . cache::byKey('plugin::cron10::last')->getValue() . ' ' . __('nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__);
 			$action = '<a href="/index.php?v=d&p=plugin&id=' . cache::byKey('plugin::cron10::last')->getValue() . '">' . __('Configuration', __FILE__) . '</a>';
-			message::add('core', $message, $action);
+			message::add('core', $message, $action, '', true, null, true, 'warning');
 		}
 		cache::set('plugin::cron10::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -456,7 +456,7 @@ class plugin {
 		if ($cache->getValue(0) > 3) {
 			$message = __('La tâche plugin::cron15 n\'arrive pas à finir à cause du plugin :', __FILE__) . ' ' . cache::byKey('plugin::cron15::last')->getValue() . ' ' . __('nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__);
 			$action = '<a href="/index.php?v=d&p=plugin&id=' . cache::byKey('plugin::cron15::last')->getValue() . '">' . __('Configuration', __FILE__) . '</a>';
-			message::add('core', $message, $action);
+			message::add('core', $message, $action, '', true, null, true, 'warning');
 		}
 		cache::set('plugin::cron15::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -485,7 +485,7 @@ class plugin {
 		if ($cache->getValue(0) > 3) {
 			$message = __('La tâche plugin::cron30 n\'arrive pas à finir à cause du plugin :', __FILE__) . ' ' . cache::byKey('plugin::cron30::last')->getValue() . ' ' . __('nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__);
 			$action = '<a href="/index.php?v=d&p=plugin&id=' . cache::byKey('plugin::cron30::last')->getValue() . '">' . __('Configuration', __FILE__) . '</a>';
-			message::add('core', $message, $action);
+			message::add('core', $message, $action, '', true, null, true, 'warning');
 		}
 		cache::set('plugin::cron30::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -514,7 +514,7 @@ class plugin {
 		if ($cache->getValue(0) > 3) {
 			$message = __('La tâche plugin::cronDaily n\'arrive pas à finir à cause du plugin :', __FILE__) . ' ' . cache::byKey('plugin::cronDaily::last')->getValue() . ' ' . __('nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__);
 			$action = '<a href="/index.php?v=d&p=plugin&id=' . cache::byKey('plugin::cronDaily::last')->getValue() . '">' . __('Configuration', __FILE__) . '</a>';
-			message::add('core', $message, $action);
+			message::add('core', $message, $action, '', true, null, true, 'warning');
 		}
 		cache::set('plugin::cronDaily::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -543,7 +543,7 @@ class plugin {
 		if ($cache->getValue(0) > 3) {
 			$message = __('La tâche plugin::cronHourly n\'arrive pas à finir à cause du plugin :', __FILE__) . ' ' . cache::byKey('plugin::cronHourly::last')->getValue() . ' ' . __('nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__);
 			$action = '<a href="/index.php?v=d&p=plugin&id=' . cache::byKey('plugin::cronHourly::last')->getValue() . '">' . __('Configuration', __FILE__) . '</a>';
-			message::add('core', $message, $action);
+			message::add('core', $message, $action, '', true, null, true, 'warning');
 		}
 		cache::set('plugin::cronHourly::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {

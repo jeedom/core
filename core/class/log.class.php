@@ -126,9 +126,9 @@ class log extends AbstractLogger {
 		try {
 			$action = '<a href="/index.php?v=d&p=log&logfile=' . $_log . '">' . __('Log', __FILE__) . ' ' . $_log . '</a>';
 			if ($level == 400 && self::getConfig('addMessageForErrorLog') == 1) {
-				@message::add($_log, $_message, $action, $_logicalId);
+				@message::add($_log, $_message, $action, $_logicalId, true, null, true, 'error');
 			} elseif ($level >= 500 && $_log != 'update') {
-				@message::add($_log, $_message, $action, $_logicalId);
+				@message::add($_log, $_message, $action, $_logicalId, true, null, true, 'error');
 			}
 		} catch (Exception $e) {
 		}

@@ -403,7 +403,7 @@ class eqLogic {
 						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
-							message::add('core', $message, $action, $logicalId, true, null, false);
+							message::add('core', $message, $action, $logicalId, true, null, false, 'warning');
 						}
 						if ($prevStatus == 0) {
 							message::sendNotification('timeout', $message);
@@ -1224,7 +1224,7 @@ class eqLogic {
 				}
 
 				if (config::byKey('alert::addMessageOnBatterydanger') == 1) {
-					message::add($this->getEqType_name(), $message, $action, $lowBatteryId, true, null, false);
+					message::add($this->getEqType_name(), $message, $action, $lowBatteryId, true, null, false, 'error');
 				}
 
 				message::sendNotification('batterydanger', $message);
@@ -1243,7 +1243,7 @@ class eqLogic {
 				}
 
 				if (config::byKey('alert::addMessageOnBatterywarning') == 1) {
-					message::add($this->getEqType_name(), $message, $action, $warningBatteryId, true, null, false);
+					message::add($this->getEqType_name(), $message, $action, $warningBatteryId, true, null, false, 'warning');
 				}
 
 				message::sendNotification('batterywarning', $message);

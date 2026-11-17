@@ -156,7 +156,7 @@ class scenarioElement {
 				$message = __('Expression non valide', __FILE__) . '  [' . $expresssion_str . '] ' . __('trouvée dans le scénario :', __FILE__) . ' ' . $_scenario->getHumanName() . __(', résultat : ', __FILE__) . $result;
 				$action = '<a href="/' . $_scenario->getLinkToConfiguration() . '">' . __('Scenario', __FILE__) . '</a>';
 				$logicalId = 'invalidExprScenarioElement::' . $this->getId();
-				message::add('scenario', $message, $action, $logicalId);
+				message::add('scenario', $message, $action, $logicalId, true, null, true, 'error');
 				return;
 			}
 			if ($result) {
@@ -229,7 +229,7 @@ class scenarioElement {
 				$message = __('Expression non valide', __FILE__) . '  [' . $expresssion_str . '] ' . __('trouvée dans le scénario :', __FILE__) . ' ' . $_scenario->getHumanName() . __(', résultat : ', __FILE__) . $result;
 				$action = '<a href="/' . $_scenario->getLinkToConfiguration() . '">' . __('Scenario', __FILE__) . '</a>';
 				$logicalId = 'invalidExprScenarioElement::' . $this->getId();
-				message::add('scenario', $message, $action, $logicalId);
+				message::add('scenario', $message, $action, $logicalId, true, null, true, 'error');
 				return;
 			}
 			$endTime = time() + (int)config::byKey('scenario::element::maxExecutionTime', 'core', 3600);
