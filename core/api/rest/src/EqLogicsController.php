@@ -377,9 +377,8 @@ final class EqLogicsController
                     continue;
                 }
                 foreach ((array) $items as $used) {
-                    if (is_object($used) && method_exists($used, 'getId')) {
-                        $name = method_exists($used, 'getHumanName') ? $used->getHumanName() : (method_exists($used, 'getName') ? $used->getName() : '');
-                        $found[$types[$key]][(int) $used->getId()] = ['id' => (int) $used->getId(), 'name' => (string) $name];
+                    if (($ref = Usages::ref($used)) !== null) {
+                        $found[$types[$key]][$ref['id']] = $ref;
                     }
                 }
             }
@@ -398,7 +397,6 @@ final class EqLogicsController
         return $return;
     }
 
-    /** Exécute l'action pour chaque identifiant ; un échec n'arrête pas les autres. */
     public function uploadImage(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
