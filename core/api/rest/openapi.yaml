@@ -1767,7 +1767,7 @@ paths:
       - Variables
       operationId: listVariables
       summary: Lister les variables des scénarios
-      description: Variables de type `scenario`, triées par nom, comme `dataStore.ajax.php` (action `all`). Tout utilisateur authentifié. Sans pagination, retourne toutes les variables.
+      description: Variables de type `scenario`, triées par nom, comme `dataStore.ajax.php` (action `all`). Réservé aux profils administrateur et utilisateur (403 pour un profil restreint) ; une variable liée à un scénario n'apparaît que si l'utilisateur peut lire ce scénario. Sans pagination, retourne toutes les variables.
       parameters:
       - name: q
         in: query
@@ -1786,6 +1786,8 @@ paths:
                 $ref: '#/components/schemas/VariableList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '422':
           $ref: '#/components/responses/ValidationError'
     post:
@@ -1793,7 +1795,7 @@ paths:
       - Variables
       operationId: createVariable
       summary: Créer une variable globale
-      description: Crée une variable globale (`scenarioId` nul), comme l'écran Variables. Tout utilisateur authentifié.
+      description: Crée une variable globale (`scenarioId` nul), comme l'écran Variables. Réservé aux profils administrateur et utilisateur.
       requestBody:
         required: true
         content:
@@ -1809,6 +1811,8 @@ paths:
                 $ref: '#/components/schemas/Variable'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '409':
           description: Une variable globale porte déjà ce nom (variable_key_taken).
           content:
@@ -1830,6 +1834,7 @@ paths:
       - Variables
       operationId: getVariable
       summary: Lire une variable
+      description: Réservé aux profils administrateur et utilisateur ; une variable liée à un scénario demande le droit de lecture sur ce scénario.
       responses:
         '200':
           description: La variable.
@@ -1839,6 +1844,8 @@ paths:
                 $ref: '#/components/schemas/Variable'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/VariableNotFound'
     patch:
@@ -1846,7 +1853,7 @@ paths:
       - Variables
       operationId: updateVariable
       summary: Modifier la valeur d'une variable
-      description: Seule la valeur change ; le nom est fixe, comme `dataStore.ajax.php` (action `save` avec id).
+      description: Seule la valeur change ; le nom est fixe, comme `dataStore.ajax.php` (action `save` avec id). Réservé aux profils administrateur et utilisateur ; une variable liée à un scénario demande le droit d'écriture sur ce scénario.
       requestBody:
         required: true
         content:
@@ -1862,6 +1869,8 @@ paths:
                 $ref: '#/components/schemas/Variable'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/VariableNotFound'
         '422':
@@ -1871,12 +1880,14 @@ paths:
       - Variables
       operationId: deleteVariable
       summary: Supprimer une variable
-      description: Ne modifie pas les scénarios qui l'utilisent (voir `/variables/{id}/usages`).
+      description: Ne modifie pas les scénarios qui l'utilisent (voir `/variables/{id}/usages`). Mêmes droits que la modification.
       responses:
         '204':
           description: Variable supprimée.
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/VariableNotFound'
   /variables/{id}/usages:
@@ -1892,7 +1903,7 @@ paths:
       - Variables
       operationId: getVariableUsages
       summary: Utilisations d'une variable
-      description: Scénarios, équipements, commandes et interactions qui citent la variable (`getUsedBy`). Les autres listes sont toujours vides.
+      description: Scénarios, équipements, commandes et interactions qui citent la variable (`getUsedBy`), limités à ceux que l'utilisateur peut lire ; les interactions ne sont listées que pour un administrateur. Les autres listes sont toujours vides. Mêmes droits que la lecture.
       responses:
         '200':
           description: Utilisations.
@@ -1902,6 +1913,8 @@ paths:
                 $ref: '#/components/schemas/EqLogicUsages'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/VariableNotFound'
   /notes:
@@ -4554,6 +4567,7 @@ paths:
         Remplace l'ajax `byId` et les JSON-RPC `jeeObject::byId` /
         `jeeObject::fullById`. Avec `include=eqLogics`, ajoute les équipements
         de l'objet et leurs commandes, filtrés selon les droits de l'utilisateur.
+        Demande le droit de lecture sur l'objet (403 sinon).
       parameters:
         - name: include
           in: query
@@ -4570,6 +4584,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Object' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/NotFound' }
     patch:
       tags: [Objets]
@@ -4619,7 +4634,10 @@ paths:
       tags: [Objets]
       operationId: listObjectChildren
       summary: Lister les enfants directs d'un objet
-      description: Remplace l'ajax `getChild`.
+      description: |
+        Remplace l'ajax `getChild`. Demande le droit de lecture sur l'objet (403
+        sinon) ; les enfants que l'utilisateur n'a pas le droit de lire sont
+        retirés de la liste, et de `total`.
       responses:
         '200':
           description: Enfants directs.
@@ -4627,6 +4645,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/ObjectList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/NotFound' }
 
   /objects/{id}/eqLogics/order-by-usage:
@@ -4736,9 +4755,16 @@ paths:
       tags: [Résumés]
       operationId: getObjectSummary
       summary: Lire le résumé d'un objet
-      description: Remplace le JSON-RPC `summary::byId`.
+      description: |
+        Remplace le JSON-RPC `summary::byId`. Demande le droit de lecture sur
+        l'objet (403 sinon). `key` est obligatoire (422 sinon) et doit être une
+        clé de résumé définie (404 `summary_not_found` sinon).
       parameters:
-        - $ref: '#/components/parameters/SummaryKeyQuery'
+        - name: key
+          in: query
+          required: true
+          description: Clé de résumé.
+          schema: { type: string, example: temperature }
         - name: raw
           in: query
           description: Renvoyer les valeurs brutes, sans arrondi ni mise en forme.
@@ -4750,7 +4776,9 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/SummaryResult' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /objects/{id}/summary/configuration:
     parameters:
@@ -4807,7 +4835,10 @@ paths:
       tags: [Résumés]
       operationId: listSummaryEqLogics
       summary: Lister les équipements qui alimentent un résumé
-      description: Remplace l'ajax `getEqLogicsFromSummary`.
+      description: |
+        Remplace l'ajax `getEqLogicsFromSummary`. Demande le droit de lecture
+        sur l'objet (403 sinon) ; les équipements que l'utilisateur n'a pas le
+        droit de lire sont retirés de la liste, et de `total`.
       parameters:
         - name: enabled
           in: query
@@ -4831,6 +4862,7 @@ paths:
                     items: { $ref: '#/components/schemas/EqLogicRef' }
                   total: { type: integer }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/NotFound' }
   /eqLogics:
     get:
@@ -5559,7 +5591,9 @@ paths:
         commande action. Demande le droit d'exécution sur l'équipement.
         L'utilisateur inscrit dans les journaux est celui du jeton ou de la
         session, jamais une valeur envoyée par le client. Une commande info
-        renvoie 422 : sa valeur se lit avec `/cmds/{id}/value`.
+        renvoie 422 : sa valeur se lit avec `/cmds/{id}/value`. Les options
+        sont typées et validées selon le sous-type (voir `CmdExecRequest`) ;
+        une option invalide renvoie 422 avant toute exécution.
       requestBody:
         content:
           application/json:
@@ -6587,7 +6621,14 @@ paths:
       description: |
         Renvoie les clés demandées dans `keys` ; sans `keys`, toutes les clés
         exposées. Une clé hors de la liste exposée refuse la requête (422).
-        Les clés chiffrées, les réglages de destination Cloud, Samba et de notifications et les proxys de confiance sont absents pour un non-administrateur.
+        Un non-administrateur ne reçoit que les clés utiles à une interface :
+        `object:summary`, `ui::menu`, `name`, `display_name_login`, `language`,
+        `timezone`, `info::latitude`, `info::longitude`, `info::altitude`, les clés
+        de l'onglet interface, `battery::warning`, `battery::danger`,
+        `displayStatsWidget`, `historyCalculPeriod`, `historyCalculTendance`,
+        `history::smooth` et `history::defaultShowPeriod`. Les autres clés
+        (réseau, proxy, sécurité, LDAP, SSO, sauvegardes, cache, mises à jour,
+        notifications…) sont absentes de la réponse, même demandées dans `keys`.
       parameters:
         - name: keys
           in: query
@@ -9212,7 +9253,9 @@ components:
           description: |
             Réglages de la commande (`minValue`, `maxValue`,
             `calculValueOffset`, `actionConfirm`…) et clés propres au plugin.
-            Le code et son hash ne sont jamais renvoyés.
+            Le code et son hash ne sont jamais renvoyés. Un non-administrateur
+            ne reçoit que les réglages d'affichage `minValue`, `maxValue`,
+            `listValue`, `actionConfirm` et `historizeRound`.
           additionalProperties: true
         display: { type: object, additionalProperties: true }
         template:
@@ -9288,13 +9331,21 @@ components:
       properties:
         options:
           type: object
-          description: Options selon le sous-type.
+          description: |
+            Options selon le sous-type ; une option d'un autre sous-type est
+            refusée (422), et une commande `other` n'en accepte aucune. Les
+            textes ne doivent contenir aucune référence `#…#` (`#123#`,
+            `#tag#`, `#[Objet][Équipement][Commande]#`) : le core la
+            remplacerait par la valeur d'une commande sans contrôle de droits.
+          additionalProperties: false
           properties:
             slider: { type: number, description: Sous-type `slider`. }
-            color: { type: string, description: 'Sous-type `color` (ex. `#ff0000`).' }
-            select: { type: string, description: Sous-type `select`. }
-            title: { type: string, description: Sous-type `message`. }
-            message: { type: string, description: Sous-type `message`. }
+            color: { type: string, pattern: '^#[0-9a-fA-F]{6}$', description: 'Sous-type `color` (ex. `#ff0000`).' }
+            select:
+              type: [string, integer]
+              description: Sous-type `select`. Doit être une des valeurs de `configuration.listValue`.
+            title: { type: string, description: Sous-type `message`, sans référence `#…#`. }
+            message: { type: string, description: Sous-type `message`, sans référence `#…#`. }
         codeAccess:
           type: string
           description: Code d'accès, si la commande en demande un.
@@ -10154,8 +10205,8 @@ components:
       type: object
       description: |
         Valeurs de configuration du core, indexées par nom de clé. Seules les
-        clés demandées sont présentes. Les clés chiffrées, les réglages de
-        destination Cloud et Samba, `network::trustedProxies` et `calculHistory` sont absents pour un non-administrateur. Le nom de l'onglet de l'administration est indiqué
+        clés demandées sont présentes. Un non-administrateur ne reçoit que la
+        liste d'autorisation décrite sur `GET /config`. Le nom de l'onglet de l'administration est indiqué
         dans chaque description.
       additionalProperties: false
       properties:

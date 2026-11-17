@@ -8,7 +8,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Variables du moteur de scénarios (dataStore de type scenario).
- * Droits repris de dataStore.ajax.php : tout utilisateur authentifié.
+ * Réservé aux profils admin et user, comme le JSON-RPC datastore::byTypeLinkIdKey ;
+ * une variable liée à un scénario demande en plus le droit sur ce scénario.
  */
 final class VariablesController
 {
@@ -17,9 +18,13 @@ final class VariablesController
 
     public function list(Request $request, Response $response): Response
     {
+        $user = self::user($request);
         $query = ListQuery::from($request);
         $items = [];
         foreach (\dataStore::byTypeLinkId(self::TYPE) as $dataStore) {
+            if (!self::allowed($dataStore, $user, 'r')) {
+                continue;
+            }
             $item = self::toArray($dataStore);
             if ($query->matches([$item['key'], $item['value']])) {
                 $items[] = $item;
@@ -30,11 +35,12 @@ final class VariablesController
 
     public function get(Request $request, Response $response, array $args): Response
     {
-        return Json::respond($response, self::toArray(self::find($args['id'])));
+        return Json::respond($response, self::toArray(self::find($args['id'], self::user($request), 'r')));
     }
 
     public function create(Request $request, Response $response): Response
     {
+        self::user($request);
         $body = self::checkBody(Json::body($request), ['key', 'value']);
         if (!is_string($body['key']) || ($key = trim($body['key'])) === '' || mb_strlen($key) > 127) {
             throw ApiError::field(422, 'validation_error', 'key', 'Un texte non vide de 127 caractères au plus est attendu.');
@@ -53,7 +59,7 @@ final class VariablesController
 
     public function update(Request $request, Response $response, array $args): Response
     {
-        $dataStore = self::find($args['id']);
+        $dataStore = self::find($args['id'], self::user($request), 'w');
         $body = self::checkBody(Json::body($request), ['value']);
         self::saveValue($dataStore, $body['value']);
         return Json::respond($response, self::toArray($dataStore));
@@ -61,13 +67,22 @@ final class VariablesController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        self::find($args['id'])->remove();
+        self::find($args['id'], self::user($request), 'w')->remove();
         return $response->withStatus(204);
     }
 
     public function usages(Request $request, Response $response, array $args): Response
     {
-        return Json::respond($response, Usages::format((array) self::find($args['id'])->getUsedBy()));
+        $user = self::user($request);
+        $used = (array) self::find($args['id'], $user, 'r')->getUsedBy();
+        // Seuls les éléments que l'utilisateur peut lire sont nommés.
+        $used['cmd'] = array_filter((array) ($used['cmd'] ?? []), static fn ($cmd) => is_object($cmd) && is_object($cmd->getEqLogic()) && $cmd->hasRight($user));
+        $used['eqLogic'] = array_filter((array) ($used['eqLogic'] ?? []), static fn ($eqLogic) => is_object($eqLogic) && $eqLogic->hasRight('r', $user));
+        $used['scenario'] = array_filter((array) ($used['scenario'] ?? []), static fn ($scenario) => is_object($scenario) && $scenario->hasRight('r', $user));
+        if ($user->getProfils() !== 'admin') {
+            $used['interactDef'] = [];
+        }
+        return Json::respond($response, Usages::format($used));
     }
 
     /** Vérifie que le corps contient exactement les champs attendus. */
@@ -97,11 +112,34 @@ final class VariablesController
         }
     }
 
-    private static function find(string $id): \dataStore
+    private static function user(Request $request): \user
+    {
+        $user = $request->getAttribute('user');
+        if (!in_array($user?->getProfils(), ['admin', 'user'], true)) {
+            throw new ApiError(403, 'forbidden', 'Variables réservées aux profils administrateur et utilisateur.');
+        }
+        return $user;
+    }
+
+    /** Une variable de scénario suit les droits de ce scénario ; une variable globale n'en a pas. */
+    private static function allowed(\dataStore $dataStore, \user $user, string $right): bool
+    {
+        $linkId = (int) $dataStore->getLink_id();
+        if ($linkId <= 0) {
+            return true;
+        }
+        $scenario = \scenario::byId($linkId);
+        return !is_object($scenario) || $scenario->hasRight($right, $user);
+    }
+
+    private static function find(string $id, \user $user, string $right): \dataStore
     {
         $dataStore = ctype_digit($id) ? \dataStore::byId((int) $id) : null;
         if (!is_object($dataStore) || $dataStore->getType() !== self::TYPE) {
             throw new ApiError(404, 'variable_not_found', 'Variable inconnue.');
+        }
+        if (!self::allowed($dataStore, $user, $right)) {
+            throw new ApiError(403, 'forbidden', 'Droits insuffisants sur le scénario de cette variable.');
         }
         return $dataStore;
     }

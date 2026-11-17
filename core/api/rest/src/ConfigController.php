@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Configuration globale du core, par onglet de l'administration.
- * Lecture : tout utilisateur connecté, avec les secrets, destinations, notifications et proxys de confiance réservés aux admins.
+ * Lecture : tout utilisateur connecté ; un non-admin ne reçoit que les clés de USER_READABLE.
  * Écriture : administrateurs. Les clés chiffrées ne sortent jamais en clair.
  */
 final class ConfigController
@@ -213,6 +213,18 @@ final class ConfigController
     ];
 
     /**
+     * Clés lisibles par un non-administrateur : ce dont une interface utilisateur a besoin
+     * (identité et localisation de la box, thème, résumés, menu, affichage des historiques).
+     * Tout le reste (réseau, sécurité, sauvegardes, cache, mises à jour…) est réservé aux admins.
+     */
+    private const USER_READABLE = [
+        'object:summary', 'ui::menu',
+        'name', 'display_name_login', 'language', 'timezone', 'info::latitude', 'info::longitude', 'info::altitude',
+        'battery::warning', 'battery::danger', 'displayStatsWidget', 'historyCalculPeriod', 'historyCalculTendance',
+        'history::smooth', 'history::defaultShowPeriod',
+    ];
+
+    /**
      * Nom exposé => nom encore stocké en base, tant que le script de migration
      * du core n'a pas renommé ces clés.
      */
@@ -311,12 +323,7 @@ final class ConfigController
         $result = [];
         foreach ($keys as $key) {
             $storedKey = self::storedKey($key);
-            if (!$admin && (\config::shouldBeEncrypted($storedKey) || str_starts_with($key, 'samba::backup::')
-                || str_starts_with($key, 'market::cloud::backup::') || str_starts_with($key, 'github::core::')
-                || str_starts_with($key, 'url::core::') || $key === 'notifications::settings'
-                || $key === 'network::trustedProxies'
-                // Une formule peut lire n'importe quelle commande, comme /history/calculation.
-                || $key === 'calculHistory')) {
+            if (!$admin && !self::userReadable($key, $storedKey)) {
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');
@@ -585,6 +592,12 @@ final class ConfigController
             throw ApiError::field(422, 'validation_error', "object:summary.$key.count", 'Comptage attendu : vide ou binary.');
         }
         return $stored;
+    }
+
+    private static function userReadable(string $key, string $storedKey): bool
+    {
+        return (in_array($key, self::USER_READABLE, true) || array_key_exists($key, self::SECTIONS['interface']))
+            && !\config::shouldBeEncrypted($storedKey);
     }
 
     private static function storedKey(string $key): string
