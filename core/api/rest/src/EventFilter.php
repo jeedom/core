@@ -10,8 +10,11 @@ namespace Jeedom\Api\Rest;
  */
 final class EventFilter
 {
-    /** Événements réservés aux administrateurs (messages et mises à jour). */
-    private const ADMIN_ONLY = ['message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify'];
+    /**
+     * Événements réservés aux administrateurs. Les messages (`message::refreshMessageNumber`,
+     * `notify`) restent diffusés à tous, comme `GET /messages` et l'ancien event.ajax.php.
+     */
+    private const ADMIN_ONLY = ['update::refreshUpdateNumber'];
 
     /** @var array<string, ?array{object: ?int, eqLogic: ?int, cmd: ?int, scenario: ?int}> cache par élément, pour la durée du flux */
     private array $known = [];

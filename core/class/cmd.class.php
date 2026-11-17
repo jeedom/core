@@ -1731,7 +1731,7 @@ class cmd {
 				if ($numberTryWithoutSuccess >= config::byKey('numberOfTryBeforeEqLogicDisable')) {
 					$message = __('Désactivation de', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '"> ' . $eqLogic->getName() . '</a> ' . __('car il n\'a pas répondu ou mal répondu lors des 3 derniers essais', __FILE__);
 					$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-					message::add($type, $message, $action);
+					message::add($type, $message, $action, '', true, null, true, 'error');
 					$eqLogic->setIsEnable(0);
 					$eqLogic->save();
 				}
@@ -2639,7 +2639,7 @@ class cmd {
 			log::add('event', 'info', $message);
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting', false);
+				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting', false, $_level === 'danger' ? 'error' : 'warning');
 			}
 			message::sendNotification($_level, $message);
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {

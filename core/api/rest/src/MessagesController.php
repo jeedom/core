@@ -8,7 +8,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Centre de notifications du core, d'après core/ajax/message.ajax.php :
- * lecture pour tout utilisateur connecté, suppression réservée aux administrateurs.
+ * lecture pour tout utilisateur connecté ; état lu (commun à la box) et suppression
+ * réservés aux administrateurs.
  */
 final class MessagesController
 {
@@ -25,7 +26,13 @@ final class MessagesController
         if ($read !== null && !in_array($read, ['true', 'false', true, false], true)) {
             throw ApiError::field(422, 'validation_error', 'read', 'Un booléen est attendu.');
         }
-        $messages = \message::notificationList($plugin, $level, $read === null ? null : $read === 'true' || $read === true);
+        $read = $read === null ? null : $read === 'true' || $read === true;
+        if (!$query->hasSearch()) {
+            // Pagination en SQL, total compté sur tous les messages filtrés.
+            $items = array_map(self::toArray(...), \message::notificationList($plugin, $level, $read, $query->limit(), $query->offset()));
+            return Json::respond($response, ['items' => $items, 'total' => \message::notificationCount($plugin, $level, $read)]);
+        }
+        $messages = \message::notificationList($plugin, $level, $read);
         $items = [];
         foreach ($messages as $message) {
             if ($query->matches([$message->getPlugin(), $message->getLogicalId(), $message->getMessage()])) {
@@ -42,12 +49,14 @@ final class MessagesController
 
     public function markAllRead(Request $request, Response $response): Response
     {
+        Auth::requireAdmin($request);
         \message::markAllRead(self::plugin($request));
         return $response->withStatus(204);
     }
 
     public function markRead(Request $request, Response $response, array $args): Response
     {
+        Auth::requireAdmin($request);
         self::find($args['id'])->markRead();
         return $response->withStatus(204);
     }
