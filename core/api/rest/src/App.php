@@ -119,6 +119,13 @@ final class App
             $api->patch('/designs/{id}/items', $designs->moveItems(...));
             $api->patch('/designs/{id}/items/{itemId}', $designs->updateItem(...));
             $api->delete('/designs/{id}/items/{itemId}', $designs->deleteItem(...));
+            $reportTemplates = new ReportTemplatesController();
+            $api->get('/reportTemplates', $reportTemplates->list(...));
+            $api->post('/reportTemplates', $reportTemplates->create(...));
+            $api->get('/reportTemplates/{id}', $reportTemplates->get(...));
+            $api->patch('/reportTemplates/{id}', $reportTemplates->update(...));
+            $api->delete('/reportTemplates/{id}', $reportTemplates->delete(...));
+
             $notes = new NotesController();
             $api->get('/notes', $notes->list(...));
             $api->post('/notes', $notes->create(...));
