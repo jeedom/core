@@ -2506,10 +2506,11 @@ paths:
       summary: Lister les messages
       description: |
         Reprend l'action `all` de `core/ajax/message.ajax.php` : les messages
-        non lus d'abord, puis du plus récent au plus ancien. Contrairement à
-        l'ajax (500 derniers messages sans `plugin`), aucun plafond n'est
-        appliqué : `limit` et `offset` paginent, et `total` compte tous les
-        messages qui correspondent aux filtres (`plugin`, `level`, `read`, `q`).
+        non lus d'abord, puis du plus récent au plus ancien. Sans `limit`, au
+        plus 500 messages sont renvoyés (avec ou sans `plugin`, alors que
+        l'ajax ne plafonne que sans `plugin`) ; `limit` et `offset` paginent,
+        et `total` compte tous les messages qui correspondent aux filtres
+        (`plugin`, `level`, `read`, `q`), pas seulement ceux renvoyés.
         `message` et `action` sont rendus comme dans
         l'ancienne interface (`message::toArray()`), puis assainis par l'API :
         un fragment HTML où ne restent que `<i>` sans attribut et `<a>` avec,
@@ -2544,7 +2545,10 @@ paths:
         schema:
           type: string
           maxLength: 200
-      - $ref: '#/components/parameters/ListLimit'
+      - name: limit
+        in: query
+        description: Nombre maximal d'éléments renvoyés (500 sans ce paramètre).
+        schema: { type: integer, minimum: 1, maximum: 500, default: 500, example: 50 }
       - $ref: '#/components/parameters/ListOffset'
       responses:
         '200':

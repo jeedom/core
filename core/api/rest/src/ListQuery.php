@@ -19,14 +19,15 @@ final class ListQuery
     {
     }
 
-    public static function from(ServerRequestInterface $request): self
+    /** `$defaultLimit` : limite appliquée quand `limit` est absent (null : tout renvoyer). */
+    public static function from(ServerRequestInterface $request, ?int $defaultLimit = null): self
     {
         $query = $request->getQueryParams();
         $q = $query['q'] ?? '';
         if (!is_string($q) || mb_strlen($q) > 200) {
             throw ApiError::field(422, 'validation_error', 'q', 'Un texte de 200 caractères au plus est attendu.');
         }
-        $limit = null;
+        $limit = $defaultLimit;
         if (isset($query['limit'])) {
             if (!ctype_digit((string) $query['limit']) || (int) $query['limit'] < 1 || (int) $query['limit'] > self::MAX_LIMIT) {
                 throw ApiError::field(422, 'validation_error', 'limit', 'Un entier de 1 à ' . self::MAX_LIMIT . ' est attendu.');

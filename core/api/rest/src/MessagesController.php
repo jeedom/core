@@ -13,10 +13,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  */
 final class MessagesController
 {
+    /** Plafond sans `limit`, comme les 500 derniers messages de l'ajax. */
+    private const DEFAULT_LIMIT = 500;
+
     public function list(Request $request, Response $response): Response
     {
         $plugin = self::plugin($request);
-        $query = ListQuery::from($request);
+        $query = ListQuery::from($request, self::DEFAULT_LIMIT);
         $parameters = $request->getQueryParams();
         $level = $parameters['level'] ?? null;
         if ($level !== null && !in_array($level, \message::LEVELS, true)) {
