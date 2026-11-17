@@ -61,12 +61,7 @@ final class DesignsController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        $design = self::find($request, $args['id'], 'w');
-        foreach ((array) $design->getPlan() as $plan) {
-            $plan->remove();
-        }
-        self::removeImage($design);
-        $design->remove();
+        self::find($request, $args['id'], 'w')->remove();
         return $response->withStatus(204);
     }
 
@@ -78,23 +73,10 @@ final class DesignsController
             throw ApiError::field(422, 'validation_error', (string) array_key_first(array_diff_key($body, ['name' => 1])), 'Champ inconnu.');
         }
         $name = self::name($body['name'] ?? null);
-        $displays = \display::byPlanIds(array_map(static fn ($plan) => (int) $plan->getId(), (array) $design->getPlan()));
-        $sources = (array) $design->getPlan();
         try {
             $copy = $design->copy($name);
         } catch (\Exception $e) {
             throw new ApiError(422, 'validation_error', $e->getMessage());
-        }
-        // planHeader::copy() recrée les éléments dans l'ordre des id (plan::byPlanHeaderId) ; les copies
-        // reçoivent des id croissants dans ce même ordre, ce qui permet d'y rattacher leurs réglages.
-        foreach ((array) $copy->getPlan() as $index => $plan) {
-            $source = $sources[$index] ?? null;
-            $row = $source === null ? null : ($displays[(int) $source->getId()] ?? null);
-            if ($row !== null) {
-                \display::replaceForPlan((int) $plan->getId(), $row->getTargetType(), $row->getTargetId(), [
-                    'template' => $row->getTemplate(), 'template_parameters' => $row->getTemplateParameters(),
-                ]);
-            }
         }
         return Json::respond($response, self::toArray(\planHeader::byId($copy->getId())), 201);
     }
@@ -102,7 +84,7 @@ final class DesignsController
     public function background(Request $request, Response $response, array $args): Response
     {
         $design = self::find($request, $args['id'], 'r');
-        $path = self::imagePath($design);
+        $path = $design->getImagePath();
         if ($path === null || !is_file($path)) {
             throw new ApiError(404, 'design_not_found', 'Ce design n\'a pas d\'image de fond.');
         }
@@ -136,11 +118,11 @@ final class DesignsController
             throw new ApiError(415, 'validation_error', 'Une image PNG, JPEG ou GIF est attendue.');
         }
         // Écrire et enregistrer la nouvelle image avant de supprimer l'ancienne : un échec garde l'image en place.
-        $previous = self::imagePath($design);
+        $previous = $design->getImagePath();
         $design->setImage('type', $extension);
         $design->setImage('size', [$info[0], $info[1]]);
         $design->setImage('sha512', hash('sha512', $bytes));
-        $path = self::imagePath($design);
+        $path = $design->getImagePath();
         // Même empreinte et même type : le fichier en place a déjà ce contenu.
         if (!($path === $previous && is_file($path)) && file_put_contents($path, $bytes) === false) {
             throw new ApiError(500, 'internal_error', 'Impossible d\'enregistrer l\'image.');
@@ -162,7 +144,7 @@ final class DesignsController
     public function deleteBackground(Request $request, Response $response, array $args): Response
     {
         $design = self::find($request, $args['id'], 'w');
-        self::removeImage($design);
+        $design->removeImage();
         $design->save();
         return $response->withStatus(204);
     }
@@ -416,24 +398,6 @@ final class DesignsController
         }
     }
 
-    private static function imagePath(\planHeader $design): ?string
-    {
-        if ($design->getImage('sha512') == '' || !in_array($design->getImage('type'), self::IMAGES, true)) {
-            return null;
-        }
-        return __DIR__ . '/../../../../data/plan/planHeader' . (int) $design->getId() . '-'
-            . basename((string) $design->getImage('sha512')) . '.' . $design->getImage('type');
-    }
-
-    private static function removeImage(\planHeader $design): void
-    {
-        $path = self::imagePath($design);
-        if ($path !== null && is_file($path)) {
-            unlink($path);
-        }
-        $design->setImage('sha512', '');
-    }
-
     private static function summary(\planHeader $design): array
     {
         return [
@@ -448,7 +412,7 @@ final class DesignsController
     {
         $plans = (array) $design->getPlan();
         $displays = \display::byPlanIds(array_map(static fn ($plan) => (int) $plan->getId(), $plans));
-        $path = self::imagePath($design);
+        $path = $design->getImagePath();
         return self::summary($design) + [
             'width' => max(1, (int) $design->getConfiguration('desktopSizeX', 500)),
             'height' => max(1, (int) $design->getConfiguration('desktopSizeY', 500)),
