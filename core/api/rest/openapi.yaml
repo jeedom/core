@@ -2082,6 +2082,56 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
+  /reportTemplates/{id}/render:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer, minimum: 1, maximum: 2147483647 }
+    post:
+      tags: [Rapports]
+      operationId: renderReportTemplate
+      summary: Générer un rapport PDF
+      description: |
+        Administrateurs uniquement. Génère un PDF A4 depuis la composition enregistrée.
+        Pour prévisualiser un brouillon, envoyer le champ `layout`. La composition et la
+        révision enregistrées sont conservées. Les valeurs et les historiques sont lus à
+        la génération. Les graphiques utilisent des moyennes par intervalle adapté à la période.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                layout: { $ref: '#/components/schemas/ReportTemplateLayout' }
+      responses:
+        '200':
+          description: Rapport PDF affichable directement.
+          headers:
+            Content-Disposition:
+              schema: { type: string }
+            Cache-Control:
+              schema: { type: string, example: 'private, no-store' }
+          content:
+            application/pdf:
+              schema: { type: string, format: binary }
+        '400': { $ref: '#/components/responses/ReportTemplateInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
+        '413': { $ref: '#/components/responses/ReportTemplateRequestTooLarge' }
+        '422':
+          description: Composition invalide ou impossible à rendre (`validation_error` ou `report_render_invalid`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '503':
+          description: Moteur indisponible ou délai de rendu dépassé (`report_renderer_unavailable` ou `report_render_timeout`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
   /notes:
     get:
       tags:

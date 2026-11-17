@@ -24,7 +24,7 @@ final class Json
     }
 
     /** @return array<string, mixed> */
-    public static function body(ServerRequestInterface $request, ?int $maxBytes = null, bool $preserveObjects = false): array
+    public static function body(ServerRequestInterface $request, ?int $maxBytes = null, bool $preserveObjects = false, bool $allowEmpty = false): array
     {
         $stream = $request->getBody();
         if ($maxBytes === null) {
@@ -44,6 +44,9 @@ final class Json
             if (strlen($raw) > $maxBytes) {
                 throw new ApiError(413, 'request_too_large', 'Le corps de la requête dépasse la taille maximale.');
             }
+        }
+        if ($allowEmpty && $raw === '') {
+            return [];
         }
         try {
             $data = json_decode($raw === '' ? 'null' : $raw, !$preserveObjects, 64, JSON_THROW_ON_ERROR);

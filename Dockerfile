@@ -39,7 +39,7 @@ RUN apt -o Dpkg::Options::="--force-confdef" -y install chrony \
   ca-certificates unzip curl sudo cron locate tar telnet wget logrotate dos2unix htop \
   iotop vim iftop smbclient git python3 python3-pip libexpat1 ssl-cert \
   apt-transport-https gnupg xvfb cutycapt xauth at mariadb-client espeak-ng net-tools nmap ffmpeg usbutils \
-  gettext libcurl4 chromium librsync-dev ssl-cert iputils-ping \
+  gettext libcurl4 chromium librsync-dev ssl-cert iputils-ping python3-reportlab fonts-dejavu-core \
   apache2 apache2-utils libexpat1 ssl-cert \
   php libapache2-mod-php php-json php-mysql php-curl php-gd php-xml php-opcache php-soap php-xmlrpc \
   php-common php-dev php-zip php-ssh2 php-mbstring php-ldap php-yaml php-snmp && apt -y remove brltty

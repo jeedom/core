@@ -73,9 +73,34 @@ final class ReportTemplatesController
         return $response->withStatus(204);
     }
 
-    private static function body(Request $request, array $fields): array
+    public function render(Request $request, Response $response, array $args): Response
     {
-        $body = Json::body($request, self::MAX_BODY, preserveObjects: true);
+        Auth::requireAdmin($request);
+        $template = self::find($args['id']);
+        self::apply($template, self::body($request, ['layout'], allowEmpty: true));
+        try {
+            $pdf = \reportTemplateRenderer::render($template, $request->getAttribute('user'));
+        } catch (\DomainException $error) {
+            throw ApiError::field(422, 'report_render_invalid', 'layout', $error->getMessage());
+        } catch (\RuntimeException $error) {
+            throw match ($error->getCode()) {
+                \reportTemplateRenderer::UNAVAILABLE => new ApiError(503, 'report_renderer_unavailable', 'Le moteur PDF est indisponible. Vérifiez les dépendances du Core.'),
+                \reportTemplateRenderer::TIMEOUT => new ApiError(503, 'report_render_timeout', 'Le délai de génération du PDF est dépassé.'),
+                default => $error,
+            };
+        }
+        $name = str_replace(['\\', '/'], '-', $template->getName());
+        $name = trim((string) preg_replace('~[\x00-\x1f\x7f]+~', '-', $name), '. ');
+        $filename = "inline; filename=\"rapport-{$template->getId()}.pdf\"; filename*=UTF-8''" . rawurlencode(($name ?: 'rapport') . '.pdf');
+        $response->getBody()->write($pdf);
+        return $response->withHeader('Content-Type', 'application/pdf')
+            ->withHeader('Content-Disposition', $filename)
+            ->withHeader('Cache-Control', 'private, no-store');
+    }
+
+    private static function body(Request $request, array $fields, bool $allowEmpty = false): array
+    {
+        $body = Json::body($request, self::MAX_BODY, preserveObjects: true, allowEmpty: $allowEmpty);
         $unknown = array_diff(array_keys($body), $fields);
         if ($unknown !== []) {
             throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu.');

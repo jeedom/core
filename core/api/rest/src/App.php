@@ -125,6 +125,7 @@ final class App
             $api->get('/reportTemplates/{id}', $reportTemplates->get(...));
             $api->patch('/reportTemplates/{id}', $reportTemplates->update(...));
             $api->delete('/reportTemplates/{id}', $reportTemplates->delete(...));
+            $api->post('/reportTemplates/{id}/render', $reportTemplates->render(...));
 
             $notes = new NotesController();
             $api->get('/notes', $notes->list(...));
