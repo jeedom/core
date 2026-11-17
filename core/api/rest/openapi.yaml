@@ -6213,8 +6213,8 @@ paths:
       description: |
         Active, désactive, montre, cache ou regroupe plusieurs scénarios.
         Un scénario qui échoue n'arrête pas les autres. `changes` est validé
-        avant toute écriture (422 sinon) ; comme pour la modification d'un
-        seul scénario, un scénario en cours est arrêté avant d'être modifié.
+        avant toute écriture (422 sinon). Ces champs ne changent pas
+        l'exécution : un scénario en cours n'est pas arrêté.
         Réservé aux administrateurs.
       requestBody:
         required: true
@@ -6356,9 +6356,13 @@ paths:
         `elements`, s'il est envoyé, remplace tout le contenu du scénario
         (les blocs absents sont supprimés). Le corps, blocs compris, est
         entièrement validé avant toute écriture : une requête refusée (422)
-        n'arrête pas le scénario et ne laisse aucun bloc enregistré. Si le
-        scénario est en cours d'exécution, il est ensuite arrêté, puis mis à
-        jour. Réservé aux
+        n'arrête pas le scénario et ne laisse aucun bloc enregistré. Un
+        scénario en cours d'exécution est arrêté, puis mis à jour, seulement
+        si la requête change ce que lit le moteur : `elements` (dès qu'il est
+        envoyé), ou une valeur différente de `trigger`, `schedule`, `mode`,
+        `timeout` ou d'une clé de `configuration`. Les autres champs (`name`,
+        `group`, `object_id`, `isActive`, `isVisible`, `order`,
+        `description`, `display`) ne l'arrêtent pas. Réservé aux
         administrateurs ayant le droit d'écriture.
       requestBody:
         required: true
