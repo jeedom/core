@@ -15,7 +15,7 @@ orpheline n’ajoute pas de fausse carte.
 | `GET /api/v1/logs/update` | Journal natif partagé, lu uniquement à la demande |
 
 Ces routes sont réservées aux administrateurs. Les écritures vérifient aussi le
-mode démo et le jeton CSRF des sessions. Les deux POST d’opération exigent une
+jeton CSRF des sessions. Les deux POST d’opération exigent une
 `Idempotency-Key` : une réponse perdue peut être redemandée sans relancer le travail.
 Une autre sélection, un autre type d’opération ou un autre acteur avec la même clé
 donne un conflit. La dernière opération est conservée dans la configuration de la box.

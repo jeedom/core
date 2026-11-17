@@ -228,9 +228,6 @@ final class UsersController
     public function closeLegacySession(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        if ($request->getAttribute('user')->getLogin() === 'demo') {
-            throw new ApiError(403, 'forbidden', 'Cette action est réservée aux administrateurs hors mode démo.');
-        }
         $user = self::find($args['id']);
         if (!preg_match('/\A[0-9a-f]{64}\z/', $args['sessionId']) || !LegacySessions::revoke($user, $args['sessionId'])) {
             throw new ApiError(404, 'session_not_found', 'Session inconnue.');
@@ -428,9 +425,6 @@ final class UsersController
     public function createApiSession(Request $request, Response $response): Response
     {
         $user = self::currentWritable($request);
-        if ($user->getLogin() === 'demo') {
-            throw new ApiError(403, 'forbidden', 'Ce compte ne peut pas créer d’accès API.');
-        }
         $body = Json::body($request, 8192);
         self::rejectUnknown($body, ['clientName', 'scope', 'password', 'twoFactorCode']);
         $name = SessionController::clientName($body['clientName'] ?? null);
@@ -505,7 +499,7 @@ final class UsersController
             'preferences' => (object) $preferences,
             'csrfToken' => $csrfToken,
         ];
-        if (!self::isSystem($user) && $user->getLogin() !== 'demo') {
+        if (!self::isSystem($user)) {
             $me['twoFactorEnabled'] = self::twoFactorEnabled($user);
         }
         return $me;
@@ -640,7 +634,7 @@ final class UsersController
     private static function twoFactorSession(Request $request, \user $user): string
     {
         $sessionId = $request->getAttribute('restSessionId');
-        if ($sessionId === null || $user->getLogin() === 'demo') {
+        if ($sessionId === null) {
             throw new ApiError(403, 'forbidden', 'La gestion de la double authentification nécessite une session utilisateur.');
         }
         return $sessionId;
