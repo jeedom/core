@@ -971,7 +971,7 @@ class jeedom {
 			$background = $command . ' 3>&-; exit $?';
 			if ($_action === 'restore') {
 				try {
-					$tracking = \Jeedom\Api\Rest\RestoreStatus::start();
+					$tracking = restoreTracking::start();
 				} catch (RuntimeException $error) {
 					// La restauration reste possible si le stockage de suivi est indisponible.
 					error_log($error->getMessage());
@@ -998,7 +998,7 @@ class jeedom {
 			return null;
 		} catch (Throwable $error) {
 			if ($tracking !== null) {
-				\Jeedom\Api\Rest\RestoreStatus::discard($tracking['id']);
+				restoreTracking::discard($tracking['id']);
 			}
 			throw $error;
 		} finally {
@@ -1007,6 +1007,20 @@ class jeedom {
 			}
 			fclose($lock);
 		}
+	}
+
+	/**
+	 * Dossier des sauvegardes (backup::path), créé au besoin. Une création concurrente
+	 * (sauvegarde, envoi ou rapatriement simultanés) n'est pas une erreur.
+	 *
+	 * @throws RuntimeException si le dossier ne peut pas être créé
+	 */
+	public static function ensureBackupDir(): string {
+		$directory = calculPath(config::byKey('backup::path'));
+		if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) {
+			throw new RuntimeException(__('Impossible de créer le dossier de sauvegarde.', __FILE__), 500);
+		}
+		return $directory;
 	}
 
 	private static function getBackupDir() {
@@ -1075,10 +1089,7 @@ class jeedom {
 		if ($_file->getError() !== UPLOAD_ERR_OK || !self::isBackupImportName($name)) {
 			throw new InvalidArgumentException('Un fichier .tar.gz est attendu.', 422);
 		}
-		$directory = calculPath(config::byKey('backup::path'));
-		if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) {
-			throw new RuntimeException('Impossible de créer le dossier de sauvegarde.', 500);
-		}
+		self::ensureBackupDir();
 		$directory = self::getBackupDir();
 		if ($directory === false || !is_writable($directory)) {
 			throw new RuntimeException('Le dossier de sauvegarde est inaccessible en écriture.', 500);

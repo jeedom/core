@@ -44,6 +44,7 @@ class user {
     public function isValidAndEnabled() { return $this->getEnable() === 1; }
     public function setEnable(int $enable): void { $this->enable = $enable; }
     public function getOptions($key, $default = '') { return $default; }
+    public function hasTwoFactor(): bool { return false; }
     public function save(): void {}
 }
 class jeedom {

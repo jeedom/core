@@ -87,24 +87,18 @@ updateRegisterDeviceActivity();
 /* * **************************Definition des function************************** */
 
 function login(string $_login, string $_password, ?string $_twoFactor = null): bool {
-	$user = user::connect($_login, $_password);
-	if (!is_object($user) || $user->getEnable() == 0) {
+	$user = user::authenticate($_login, $_password);
+	if (!is_object($user)) {
 		user::failedLogin([
 			'login' => $_login,
-			'reason' => __('Nom d\'utilisateur ou mot de passe invalide ou utilisateur désactivé', __FILE__),
+			'reason' => $user === user::AUTH_LOCAL_ONLY
+				? __('Utilisateur local uniquement', __FILE__)
+				: __('Nom d\'utilisateur ou mot de passe invalide ou utilisateur désactivé', __FILE__),
 		]);
 		sleep(5);
 		return false;
 	}
-	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
-		user::failedLogin([
-			'login' => $_login,
-			'reason' => __('Utilisateur local uniquement', __FILE__),
-		]);
-		sleep(5);
-		return false;
-	}
-	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
+	if ($user->requiresTwoFactor()) {
 		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
 			user::failedLogin([
 				'login' => $_login,

@@ -3,6 +3,7 @@
 if (PHP_SAPI !== 'cli') throw new RuntimeException('CLI only.');
 require dirname(__DIR__, 2) . '/vendor/autoload.php';
 require __DIR__ . '/operations-fixtures.php';
+require_once dirname(__DIR__, 2) . '/core/class/progressLog.class.php';
 use Jeedom\Api\Rest\App;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
@@ -207,6 +208,10 @@ config::$values['core']['rest::updateOperation']['items'][0]['state'] = 'running
 file_put_contents(log::getPathToLog('update'), "[PROGRESS][35]\n");
 $lock = fopen(jeedom::getTmpFolder('rest-updates') . '/runner.lock', 'c'); flock($lock, LOCK_EX);
 check(call('GET', '/updates/operations/latest')['operation']['progress'] === 35, 'Native Core progress not exposed');
+file_put_contents(log::getPathToLog('update'), "[PROGRESS][36]\nDownload in progress...[PROGRESS][40]\n[PROGRESS][x]\n", FILE_APPEND);
+check(call('GET', '/updates/operations/latest')['operation']['progress'] === 40, 'Last progress marker not read');
+file_put_contents(log::getPathToLog('update'), str_repeat('-', progressLog::TAIL) . "\n", FILE_APPEND);
+check(!isset(call('GET', '/updates/operations/latest')['operation']['progress']), 'Progress read beyond the log tail');
 flock($lock, LOCK_UN); fclose($lock);
 check(call('GET', '/updates/operations/latest')['operation']['state'] === 'failed', 'Lost running worker not detected');
 resetOperation();

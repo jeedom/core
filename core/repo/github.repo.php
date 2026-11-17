@@ -193,7 +193,7 @@ class repo_github {
 	}
 
 	public static function downloadCore($_path) {
-		$request = self::coreRequest('/zipball/' . rawurlencode(config::byKey('github::core::branch', 'core', 'stable')));
+		$request = self::coreRequest('/zipball/' . update::encodeGitRef((string) config::byKey('github::core::branch', 'core', 'stable')));
 		$archive = fopen($_path, 'wb');
 		if ($archive === false) {
 			throw new RuntimeException(__('Impossible d’ouvrir l’archive du Core.', __FILE__));
@@ -208,7 +208,7 @@ class repo_github {
 
 	public static function versionCore() {
 		$request = self::coreRequest('/contents/core/config/version?ref='
-			. rawurlencode(config::byKey('github::core::branch', 'core', 'stable')), 'application/vnd.github.raw+json');
+			. update::encodeGitRef((string) config::byKey('github::core::branch', 'core', 'stable')), 'application/vnd.github.raw+json');
 		$request->setCURLOPT([CURLOPT_FAILONERROR => true]);
 		try {
 			return trim($request->exec(10, 1));

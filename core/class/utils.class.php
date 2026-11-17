@@ -29,6 +29,13 @@ require_once __DIR__ . '/../php/core.inc.php';
  * @see cron For async execution
  */
 class utils {
+	/*     * *************************Constantes****************************** */
+
+	/** Extensions acceptées pour l'image d'un objet ou d'un équipement (saveImage). */
+	const IMAGE_EXTENSIONS = array('.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp');
+	/** Taille maximale de ces images, en octets. */
+	const IMAGE_MAX_SIZE = 5000000;
+
 	/*     * *************************Attributs****************************** */
 
     /** @var array<string, ReflectionProperty[]> Cached reflection properties by class */
@@ -38,6 +45,25 @@ class utils {
 	private static $jeedom_encryption = null;
 
 	/*     * ***********************Methode static*************************** */
+
+	/**
+	 * Vérifie une image envoyée avant jeeObject::saveImage ou eqLogic::saveImage.
+	 *
+	 * @param string $_filename Nom du fichier d'origine (seule son extension compte)
+	 * @param string $_path Fichier reçu
+	 * @return string Extension en minuscules, point compris
+	 * @throws Exception code 415 si l'extension est refusée, 413 si le fichier est trop gros
+	 */
+	public static function checkUploadedImage($_filename, $_path) {
+		$extension = strtolower((string) strrchr((string) $_filename, '.'));
+		if (!in_array($extension, self::IMAGE_EXTENSIONS, true)) {
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :', __FILE__) . ' ' . $extension, 415);
+		}
+		if (filesize($_path) > self::IMAGE_MAX_SIZE) {
+			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__), 413);
+		}
+		return $extension;
+	}
 
     /**
      * Checks if attributes have changed between old and new values

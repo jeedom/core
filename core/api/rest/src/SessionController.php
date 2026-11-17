@@ -162,12 +162,13 @@ final class SessionController
         if ($twoFactor !== null && !is_string($twoFactor)) {
             throw ApiError::field(422, 'validation_error', 'twoFactorCode', 'Un texte est attendu.');
         }
-        $user = \user::connect($login, $password);
+        $user = \user::authenticate($login, $password);
         if (!$user instanceof \user || !$user->isValidAndEnabled() || $user->getLogin() === \supportAccess::LOGIN
             || !Auth::accountAllowed($user, $mode)) {
             self::refuse($login, 'invalid_credentials', 'Identifiant ou mot de passe incorrect.');
         }
-        if (UsersController::twoFactorEnabled($user)) {
+        // Décision propre à l'API : le code est exigé même depuis le réseau interne.
+        if ($user->requiresTwoFactor(true)) {
             if ($twoFactor === null || trim($twoFactor) === '') {
                 throw new ApiError(401, 'two_factor_required', 'Double authentification requise.');
             }

@@ -332,11 +332,23 @@ class update {
 			&& !preg_match('~\.\.|@\{|(?:^|/)\.|\.lock(?:/|$)|//|/\z|\.\z~', $branch);
 	}
 
+	/**
+	 * Encode une référence Git pour une URL, segment par segment : les « / » d'une branche
+	 * (feature/x) restent des séparateurs de chemin.
+	 */
+	public static function encodeGitRef(string $ref): string {
+		return implode('/', array_map('rawurlencode', explode('/', $ref)));
+	}
+
+	/**
+	 * Référence Git du Core officiel (core::branch, « tag::x » pour une étiquette).
+	 * install/update.php en garde une copie : le pre-update peut l'exécuter avec les classes du Core précédent.
+	 */
 	public static function officialCoreRef(): string {
 		$branch = (string) config::byKey('core::branch', 'core', 'master');
-		$isTag = str_starts_with($branch, 'tag::');
+		$isTag = strpos($branch, 'tag::') === 0;
 		$name = $isTag ? substr($branch, 5) : $branch;
-		return ($isTag ? 'refs/tags/' : 'refs/heads/') . implode('/', array_map('rawurlencode', explode('/', $name)));
+		return ($isTag ? 'refs/tags/' : 'refs/heads/') . self::encodeGitRef($name);
 	}
 
 	/* Opérations de mise à jour */
@@ -627,19 +639,14 @@ class update {
 		$runningCore = $operation['kind'] === 'maintenance'
 			|| ($operation['items'][0]['type'] ?? null) === 'core' && $operation['items'][0]['state'] === 'running';
 		if ($runningCore && $operation['state'] === 'running'
-			&& preg_match_all('/\[PROGRESS\]\[(\d+)\]/', self::operationLogTail(), $matches)) {
-			$operation['progress'] = min(100, (int) end($matches[1]));
+			&& ($progress = progressLog::lastPercent(self::operationLogTail())) !== null) {
+			$operation['progress'] = $progress;
 		}
 		return $operation;
 	}
 
 	private static function operationLogTail(): string {
-		$handle = @fopen(log::getPathToLog('update'), 'rb');
-		if ($handle === false) return '';
-		fseek($handle, max(0, (int) fstat($handle)['size'] - 16384));
-		$value = stream_get_contents($handle);
-		fclose($handle);
-		return $value === false ? '' : $value;
+		return progressLog::tailOf(log::getPathToLog('update'));
 	}
 
 	private static function withOperationLock(string $name, callable $action, int $mode = LOCK_EX | LOCK_NB) {

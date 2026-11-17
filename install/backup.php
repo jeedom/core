@@ -47,10 +47,7 @@ try {
 
 	global $CONFIG;
 	$jeedom_dir = realpath(__DIR__ . '/..');
-	$backup_dir = calculPath(config::byKey('backup::path'));
-	if (!file_exists($backup_dir)) {
-		mkdir($backup_dir, 0770, true);
-	}
+	$backup_dir = jeedom::ensureBackupDir();
 	if (!is_writable($backup_dir)) {
 		throw new Exception('Can\'t access backup folder. Check rights: ' . $backup_dir);
 	}

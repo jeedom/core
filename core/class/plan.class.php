@@ -155,7 +155,9 @@ class plan {
 		$link_type = $this->getLink_type();
 		if ($this->getLink_type() == 'image') {
 			$imgPath = $this->getDisplay('path', '');
-			if ($imgPath != '') {
+			// Une copie d'élément (planHeader::copy) partage l'image de l'original : seul le
+			// propriétaire du dossier plan_<id> supprime le fichier.
+			if ($imgPath != '' && strpos($imgPath, 'data/plan/plan_' . $this->getId() . '/') === 0) {
 				@unlink(str_replace('data/plan/', __DIR__ . '/../../data/plan/', $imgPath));
 				@rmdir(__DIR__ . '/../../data/plan/plan_' . $this->getId());
 			}

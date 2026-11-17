@@ -20,6 +20,11 @@
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenario {
+	/*     * *************************Constantes****************************** */
+
+	/** Variables dont la valeur dépend de l'heure système (configuration timeDependency). */
+	const TIME_KEYWORDS = array('#time#', '#seconde#', '#heure#', '#minute#', '#jour#', '#mois#', '#annee#', '#timestamp#', '#date#', '#semaine#', '#sjour#', '#njour#', '#smois#');
+
 	/*     * *************************Attributs****************************** */
 
 	private $id;
@@ -963,6 +968,26 @@ class scenario {
 		$this->persistLog();
 		return $this->getReturn();
 	}
+	/**
+	 * Recalcule les configurations timeDependency et has_return d'après le contenu du scénario
+	 * (JSON brut ou structure encodée en JSON), sans enregistrer.
+	 * @param string|array $_content
+	 */
+	public function refreshContentDependencies($_content): void {
+		if (!is_string($_content)) {
+			$_content = (string) json_encode($_content, JSON_UNESCAPED_UNICODE);
+		}
+		$timeDependency = 0;
+		foreach (self::TIME_KEYWORDS as $keyword) {
+			if (strpos($_content, $keyword) !== false) {
+				$timeDependency = 1;
+				break;
+			}
+		}
+		$this->setConfiguration('timeDependency', $timeDependency);
+		$this->setConfiguration('has_return', strpos($_content, 'scenario_return') !== false ? 1 : 0);
+	}
+
 	/**
 	 *
 	 * @param string $_name

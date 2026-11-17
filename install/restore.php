@@ -43,14 +43,7 @@ try {
 		$_GET['backup'] = $BACKUP_FILE;
 	}
 	if (!isset($_GET['backup']) || $_GET['backup'] == '') {
-		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-			$backup_dir = __DIR__ . '/../' . config::byKey('backup::path');
-		} else {
-			$backup_dir = config::byKey('backup::path');
-		}
-		if (!file_exists($backup_dir)) {
-			mkdir($backup_dir, 0770, true);
-		}
+		$backup_dir = jeedom::ensureBackupDir();
 		$backup = null;
 		$mtime = null;
 		foreach (scandir($backup_dir) as $file) {
@@ -122,7 +115,7 @@ try {
 	);
 	if (isset($_GET['restoreTracking'])) {
 		// Préserver les fichiers nécessaires au suivi si l’archive contient un ancien routeur.
-		$excludes = array_merge($excludes, \Jeedom\Api\Rest\Router::RESTORE_FILES);
+		$excludes = array_merge($excludes, restoreTracking::FILES);
 	}
 	$exclude = '';
 	foreach ($excludes as $folder) {

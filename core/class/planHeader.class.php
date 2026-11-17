@@ -89,11 +89,20 @@ class planHeader {
 		$planHeaderCopy->setName($_name);
 		$planHeaderCopy->setId('');
 		$planHeaderCopy->save();
-		foreach (($this->getPlan()) as $plan) {
+		$plans = (array) $this->getPlan();
+		$displays = display::byPlanIds(array_map(static fn ($plan) => (int) $plan->getId(), $plans));
+		foreach ($plans as $plan) {
 			$planCopy = clone $plan;
 			$planCopy->setId('');
 			$planCopy->setPlanHeader_id($planHeaderCopy->getId());
 			$planCopy->save();
+			// Les réglages d'affichage (display) suivent l'élément copié.
+			$row = $displays[(int) $plan->getId()] ?? null;
+			if ($row !== null) {
+				display::replaceForPlan((int) $planCopy->getId(), $row->getTargetType(), $row->getTargetId(), array(
+					'template' => $row->getTemplate(), 'template_parameters' => $row->getTemplateParameters(),
+				));
+			}
 		}
 		$filename1 = 'planHeader' . $this->getId() . '-' . $this->getImage('sha512') . '.' . $this->getImage('type');
 		if (file_exists(__DIR__ . '/../../data/plan/' . $filename1)) {
@@ -129,9 +138,38 @@ class planHeader {
 		DB::save($this);
 	}
 
+	/**
+	 * Supprime le design avec ses éléments (et leurs réglages d'affichage) et son image de fond.
+	 */
 	public function remove() {
+		foreach ((array) $this->getPlan() as $plan) {
+			$plan->remove();
+		}
+		$this->removeImage();
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'plan'));
 		DB::remove($this);
+	}
+
+	/**
+	 * Chemin de l'image de fond, ou null sans image (ou avec un type inattendu).
+	 */
+	public function getImagePath(): ?string {
+		if ($this->getImage('sha512') == '' || !in_array($this->getImage('type'), array('png', 'jpg', 'gif'), true)) {
+			return null;
+		}
+		return __DIR__ . '/../../data/plan/planHeader' . (int) $this->getId() . '-'
+			. basename((string) $this->getImage('sha512')) . '.' . $this->getImage('type');
+	}
+
+	/**
+	 * Supprime le fichier de l'image de fond et l'oublie (sans enregistrer le design).
+	 */
+	public function removeImage(): void {
+		$path = $this->getImagePath();
+		if ($path !== null && is_file($path)) {
+			unlink($path);
+		}
+		$this->setImage('sha512', '');
 	}
 
 	public function displayImage() {

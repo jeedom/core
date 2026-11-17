@@ -22,6 +22,12 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 use PragmaRX\Google2FA\Google2FA;
 
 class user {
+	/*     * *************************Constantes****************************** */
+
+	/** Refus renvoyés par user::authenticate(). */
+	const AUTH_INVALID_CREDENTIALS = 1;
+	const AUTH_LOCAL_ONLY = 2;
+
 	/*     * *************************Attributs****************************** */
 
 	private $id;
@@ -146,12 +152,12 @@ class user {
 		}
 		$user = self::byLogin($_login);
 		if (is_object($user)) {
-			$storedPassword = $user->getPassword();
-			if (password_verify($_pswd, $storedPassword)) {
-				if (password_needs_rehash($storedPassword, PASSWORD_DEFAULT)) {
+			$match = $user->passwordMatch($_pswd);
+			if ($match === 'native') {
+				if (password_needs_rehash($user->getPassword(), PASSWORD_DEFAULT)) {
 					$user->setPassword($_pswd);
 				}
-			} elseif (hash_equals($storedPassword, sha512($_pswd))) {
+			} elseif ($match === 'sha512') {
 				$user->setPassword($_pswd);
 				log::audit('Password migrated from sha512 to native hash', [
 					'login' => $_login
@@ -163,6 +169,25 @@ class user {
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
+		}
+		return $user;
+	}
+
+	/**
+	 * Vérifie une connexion par identifiant et mot de passe (user::connect), puis que le compte
+	 * est actif et, s'il est réservé au réseau local, que la demande en vient. La double
+	 * authentification reste à vérifier par l'appelant (requiresTwoFactor) ; aucun échec n'est
+	 * compté ici (failedLogin) : chaque point d'entrée applique sa politique.
+	 *
+	 * @return user|int l'utilisateur, ou self::AUTH_INVALID_CREDENTIALS / self::AUTH_LOCAL_ONLY
+	 */
+	public static function authenticate(string $_login, string $_password): user|int {
+		$user = self::connect($_login, $_password);
+		if (!is_object($user) || $user->getEnable() == 0) {
+			return self::AUTH_INVALID_CREDENTIALS;
+		}
+		if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+			return self::AUTH_LOCAL_ONLY;
 		}
 		return $user;
 	}
@@ -641,6 +666,40 @@ class user {
 			$_to->setRights($key, $value);
 		}
 		$_to->save();
+	}
+
+	/**
+	 * Vérifie le mot de passe local de ce compte, sans le modifier.
+	 */
+	public function checkPassword(string $_password): bool {
+		return $this->passwordMatch($_password) !== null;
+	}
+
+	/**
+	 * Empreinte qui correspond au mot de passe : 'native' (password_hash), 'sha512' (ancienne
+	 * empreinte, à migrer) ou null.
+	 */
+	private function passwordMatch(string $_password): ?string {
+		$stored = (string) $this->getPassword();
+		if (password_verify($_password, $stored)) {
+			return 'native';
+		}
+		return hash_equals($stored, sha512($_password)) ? 'sha512' : null;
+	}
+
+	/**
+	 * Double authentification activée (option et secret présents).
+	 */
+	public function hasTwoFactor(): bool {
+		return $this->getOptions('twoFactorAuthentification', 0) == 1 && $this->getOptions('twoFactorAuthentificationSecret') != '';
+	}
+
+	/**
+	 * Code de double authentification exigé à la connexion : depuis l'extérieur seulement pour
+	 * la connexion historique, partout si $_everywhere (API REST).
+	 */
+	public function requiresTwoFactor(bool $_everywhere = false): bool {
+		return $this->hasTwoFactor() && ($_everywhere || network::getUserLocation() != 'internal');
 	}
 
 	public function validateTwoFactorCode($_code) {

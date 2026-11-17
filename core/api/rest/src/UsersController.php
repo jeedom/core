@@ -12,8 +12,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 /**
  * Ressources /users (administrateurs) et /me (son propre compte). Reprend les
  * garde-fous de core/ajax/user.ajax.php : liste blanche de champs, comptes système
- * intouchables, pas d'auto-désactivation, refus si LDAP actif. Le mot de passe, le
- * `hash` et la double authentification ne sortent jamais de /users.
+ * intouchables, pas d'auto-désactivation, création et suppression refusées si LDAP est
+ * actif (le changement de mot de passe reste permis, comme l'ajax `save`/`saveProfils`).
+ * Le mot de passe, le `hash` et la double authentification ne sortent jamais de /users.
  */
 final class UsersController
 {
@@ -322,7 +323,7 @@ final class UsersController
             if (!is_string($current) || $current === '') {
                 throw ApiError::field(422, 'validation_error', 'currentPassword', 'Le mot de passe actuel est obligatoire pour en changer.');
             }
-            if (!self::passwordMatches($user, $current)) {
+            if (!$user->checkPassword($current)) {
                 self::rejectCredential($user, ApiError::field(422, 'invalid_current_password', 'currentPassword', 'Mot de passe actuel incorrect.'));
             }
         } elseif (array_key_exists('currentPassword', $body)) {
@@ -353,7 +354,7 @@ final class UsersController
     {
         $user = self::currentWritable($request);
         $sessionId = self::twoFactorSession($request, $user);
-        if (self::twoFactorEnabled($user)) {
+        if ($user->hasTwoFactor()) {
             throw new ApiError(409, 'two_factor_already_enabled', 'La double authentification est déjà activée.');
         }
 
@@ -394,10 +395,10 @@ final class UsersController
         $cacheKey = 'rest::twoFactorSetup::' . $sessionId;
         try {
             $user = \session::changeCredentials($user, $sessionId, static function (\user $account) use ($enabled, $password, $code, $cacheKey): void {
-                if ($enabled === self::twoFactorEnabled($account)) {
+                if ($enabled === $account->hasTwoFactor()) {
                     throw new ApiError(409, 'two_factor_state_changed', 'L’état de la double authentification a changé. Rechargez la page.');
                 }
-                if (!self::passwordMatches($account, $password)) {
+                if (!$account->checkPassword($password)) {
                     throw ApiError::field(422, 'invalid_current_password', 'currentPassword', 'Mot de passe actuel incorrect.');
                 }
                 $secret = $enabled ? \cache::byKey($cacheKey)->getValue() : $account->getOptions('twoFactorAuthentificationSecret');
@@ -499,7 +500,7 @@ final class UsersController
             'csrfToken' => $csrfToken,
         ];
         if (!self::isSystem($user)) {
-            $me['twoFactorEnabled'] = self::twoFactorEnabled($user);
+            $me['twoFactorEnabled'] = $user->hasTwoFactor();
         }
         return $me;
     }
@@ -527,7 +528,7 @@ final class UsersController
             'profils' => (string) $user->getProfils(),
             'enable' => (int) $user->getEnable() === 1,
             'kind' => $kind,
-            'twoFactorEnabled' => self::twoFactorEnabled($user),
+            'twoFactorEnabled' => $user->hasTwoFactor(),
             'lastConnection' => is_string($last) && $last !== '' && strtotime($last) !== false ? date('c', strtotime($last)) : null,
             'options' => $options,
         ] + ($kind === 'plugin' ? ['daemonPluginName' => \plugin::daemonAccountPluginName($user->getLogin())] : []);
@@ -639,13 +640,6 @@ final class UsersController
         return $sessionId;
     }
 
-    /** Règle unique, comme la connexion historique : l'indicateur ne suffit pas sans secret. */
-    public static function twoFactorEnabled(\user $user): bool
-    {
-        return (int) $user->getOptions('twoFactorAuthentification', 0) === 1
-            && $user->getOptions('twoFactorAuthentificationSecret') !== '';
-    }
-
     private static function requireNotBanned(): void
     {
         if (\user::isBan()) {
@@ -661,12 +655,6 @@ final class UsersController
             sleep(5);
         }
         throw $error;
-    }
-
-    private static function passwordMatches(\user $user, string $password): bool
-    {
-        $stored = $user->getPassword();
-        return password_verify($password, $stored) || hash_equals($stored, \sha512($password));
     }
 
     public static function isSystem(\user $user): bool
