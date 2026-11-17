@@ -900,7 +900,11 @@ class plugin {
 				}
 			}, wait: true);
 		} catch (Throwable $e) {
-			if ($e->getCode() !== 409) self::failInstallation($operation, $e);
+			// Ex. verrou refusé par une mise à jour en cours : la tâche quitte la queue, l’opération ne doit pas rester en attente.
+			$fresh = self::latestInstallation($operation['pluginId']);
+			if ($fresh !== null && $fresh['id'] === $operation['id'] && in_array($fresh['state'], array('queued', 'running'), true)) {
+				self::failInstallation($fresh, $e);
+			}
 		}
 	}
 
@@ -959,7 +963,12 @@ class plugin {
 			&& in_array(getClientIp(), ['127.0.0.1', '::1'], true);
 	}
 
-	/** Le plugin transmet à son démon le chemin du fichier contenant le refresh token. */
+	/**
+	 * À appeler dans deamon_start(), une fois l’ancien processus arrêté et juste avant de lancer le démon,
+	 * qui reçoit ce chemin. Chaque appel révoque les sessions précédentes du démon et écrit un refresh token
+	 * neuf : un redémarrage répare donc un accès perdu (désactivation, rotation non réécrite, expiration).
+	 * Avec $reprovision (route d’administration), le compte du démon doit déjà exister.
+	 */
 	public static function daemonCredentialFile(string $pluginId, bool $reprovision = false): string {
 		if (!self::validDaemonPluginId($pluginId)) {
 			throw new DomainException('Identifiant du plugin invalide.');
@@ -978,11 +987,6 @@ class plugin {
 				$account = (new user())->setLogin($login)->setPassword(bin2hex(random_bytes(32)))
 					->setProfils('restrict')->setEnable(1)->setOptions('api::mode', 'disable');
 				$account->save();
-			} elseif (!$reprovision) {
-				if (is_file($path) && session::connections($account) !== []) {
-					return $path;
-				}
-				throw new DomainException('L’accès REST du démon doit être reprovisionné.');
 			} else {
 				// Une interruption laisse un fichier absent, jamais un ancien jeton avec une nouvelle session.
 				self::deleteDaemonCredential($path);
@@ -1060,7 +1064,12 @@ class plugin {
 	}
 
 	private static function validDaemonPluginId(string $pluginId): bool {
-		return preg_match('/\A[a-zA-Z0-9_-]{1,80}\z/', $pluginId) === 1;
+		try {
+			self::validatePluginId($pluginId);
+			return true;
+		} catch (InvalidArgumentException) {
+			return false;
+		}
 	}
 
 	private static function daemonLogin(string $pluginId): string {

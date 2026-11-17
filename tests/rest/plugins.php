@@ -30,6 +30,10 @@ class user {
     public static function isBan(): bool { return false; }
     public static function byId($id) { return in_array($id, [1, 2, 3, 4], true) ? new self($id) : null; }
     public static function byProfils($profile, $enabled) { return [new self(1)]; }
+    public static function byLogin($login) {
+        foreach ([3, 4] as $id) if ((new self($id))->getLogin() === $login) return new self($id);
+        return null;
+    }
     public function getId() { return $this->id; }
     public function getLogin() {
         $daemon = [3 => 'fixture', 4 => 'without-handler'][$this->id] ?? null;
@@ -50,7 +54,8 @@ class jeedom {
     public static function getTmpFolder($name) { global $testRoot; $path = $testRoot . '/' . $name; if (!is_dir($path)) mkdir($path); return $path; }
 }
 class system {
-    public static function ps(...$args) { return []; }
+    public static array $ps = [];
+    public static function ps(...$args) { return self::$ps; }
     public static function getOsVersion() { return '13'; }
     public static function getDistrib() { return 'debian'; }
 }
@@ -68,7 +73,8 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public static array $daemon = ['state' => 'nok', 'launchable' => 'ok', 'launchable_message' => '', 'auto' => 1, 'log' => 'fixture', 'last_launch' => '2026-11-08'];
     public static function getPluginPath($id) { return jeedom::getTmpFolder('plugins') . '/' . $id; }
     public static function getPathById($id) { return self::getPluginPath($id) . '/plugin_info/info.json'; }
-    public static function byId($id, $full = false) { if (!is_file(self::getPathById($id))) throw new RuntimeException('Absent'); return new self($id, $full); }
+    public static array $byIdRequests = [];
+    public static function byId($id, $full = false) { self::$byIdRequests[] = $id; if (!is_file(self::getPathById($id))) throw new RuntimeException('Absent'); return new self($id, $full); }
     public static function listPlugin(...$args) { return [self::byId('fixture')]; }
     public function __construct(private string $id, private bool $full = false) {}
     public function getId() { return $this->id; }
@@ -108,7 +114,7 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function deamon_stop() { self::$daemon['state'] = 'nok'; }
     public function deamon_changeAutoMode($auto) { self::$daemon['auto'] = $auto; }
     public function getCommunityPost() { return ['url' => 'https://community.jeedom.com/new-topic?body=fixture', 'plugin' => $this->getName()]; }
-PHP);
+PHP, ["dirname(__DIR__, 2) . '/data/daemon-sessions/'" => "jeedom::getTmpFolder('daemon-sessions') . '/'"]);
 defineRestOperationsFixture('update', <<<'PHP'
     public static function listRepo() {
         $fields = [
@@ -255,6 +261,33 @@ call('POST', '/plugins/fixture/daemon/messages', 403, $messages, token: 'daemon-
 call('POST', '/plugins/fixture/daemon/messages', 403, $messages, token: 'daemon-fixture', peer: '192.0.2.20');
 call('POST', '/plugins/without-handler/daemon/messages', 404, $messages, token: 'daemon-without-handler');
 check(fixture::$messages === [$messages['messages']], 'Only the authorized plugin daemon may deliver its message batch');
+// Accès REST du démon : chaque lancement reçoit un jeton neuf, même après désactivation/réactivation ou rotation.
+$daemonToken = static fn (string $path): string => json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR)['refreshToken'];
+$credential = plugin::daemonCredentialFile('fixture');
+check(dirname($credential) === jeedom::getTmpFolder('daemon-sessions') && (fileperms($credential) & 0777) === 0600, 'Daemon credential written outside the private store');
+$firstToken = $daemonToken($credential);
+check(array_column(session::$daemonSessions, 'refreshToken') === [$firstToken] && array_values(session::$daemonSessions)[0]['scope'] === 'fixture'
+    && array_values(session::$daemonSessions)[0]['userId'] === 3, 'Daemon credential not bound to its local session');
+config::save('active', 0, 'fixture');
+plugin::revokeDaemonSession('fixture'); // effet de config::save('active', 0) natif
+check(!is_file($credential) && session::$daemonSessions === [], 'Disabling a plugin must revoke its daemon access');
+try { plugin::daemonCredentialFile('fixture'); check(false, 'An inactive plugin must not receive daemon credentials'); } catch (DomainException) { $checks++; }
+config::save('active', 1, 'fixture');
+$credential = plugin::daemonCredentialFile('fixture');
+$secondToken = $daemonToken($credential);
+check($secondToken !== $firstToken && array_column(session::$daemonSessions, 'refreshToken') === [$secondToken], 'Restart after reactivation must restore daemon access');
+// Redémarrage après une rotation par refresh que le fichier ne reflète pas : identifiants neufs, ancienne session révoquée.
+$thirdToken = $daemonToken(plugin::daemonCredentialFile('fixture'));
+check($thirdToken !== $secondToken && array_column(session::$daemonSessions, 'refreshToken') === [$thirdToken], 'Each daemon start must replace the previous session');
+unlink($credential);
+check(is_file(plugin::daemonCredentialFile('fixture')) && count(session::$daemonSessions) === 1, 'A missing credential file must be recreated');
+call('POST', '/plugins/fixture/daemon/session', 403, token: 'member');
+$before = $daemonToken($credential);
+call('POST', '/plugins/fixture/daemon/session', 204);
+check($daemonToken($credential) !== $before && count(session::$daemonSessions) === 1, 'Administrator reprovisioning must replace the daemon session');
+plugin::$byIdRequests = [];
+foreach (['unknown-plugin', 'without-handler', '-invalid'] as $unknown) call('POST', '/plugins/' . $unknown . '/daemon/session', 404);
+check(plugin::$byIdRequests === [], 'Reprovisioning must not load an absent plugin (plugin::byId disables it)');
 config::save('active', 0, 'fixture');
 config::save('active', 0, 'without-handler');
 $daemonAccount = call('GET', '/users/3');
@@ -335,6 +368,7 @@ call('PATCH', '/plugins/fixture', 422, ['guidedActivation' => true]);
 call('PATCH', '/plugins/fixture', 422, ['isEnable' => true, 'guidedActivation' => 'true']);
 $activation = call('PATCH', '/plugins/fixture', body: ['isEnable' => true, 'guidedActivation' => true]);
 check($activation['guidedActivationPending'] === true, 'Guided activation must suspend automatic management');
+check(call('PATCH', '/plugins/fixture', body: ['isEnable' => true, 'guidedActivation' => true])['guidedActivationPending'] === true, 'Replaying a pending guided activation must succeed');
 plugin::$dependencyState = 'nok';
 config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), 'fixture');
 $dependencies = call('POST', '/plugins/fixture/dependencies/install', 202, (object) []);
@@ -345,6 +379,8 @@ call('POST', '/plugins/fixture/dependencies/install', 202, (object) []);
 check(plugin::$dependencyInstalls === 1, 'Retrying during guided activation must not start dependencies twice');
 $activation = call('PATCH', '/plugins/fixture', body: ['guidedActivation' => false]);
 check($activation['guidedActivationPending'] === false && config::byKey('active', 'fixture') === 1, 'Finishing guided activation must keep the plugin enabled');
+$conflict = call('PATCH', '/plugins/fixture', 409, ['isEnable' => true, 'guidedActivation' => true]);
+check($conflict['error']['code'] === 'plugin_already_enabled' && config::byKey('guidedActivationPending', 'fixture') === false, 'Guided activation of an enabled plugin must be refused without effect');
 call('PATCH', '/plugins/fixture', body: ['isEnable' => false]);
 plugin::$dependencyInstalls = 0;
 plugin::$dependencyState = 'ok';
@@ -515,7 +551,9 @@ $direct = ['pluginId' => 'directplugin', 'source' => 'github', 'configuration' =
 $directKey = ['Idempotency-Key' => 'direct-request-key-0001'];
 call('POST', '/plugins/installations/repository', 403, $direct, token: 'member', headers: $directKey);
 call('POST', '/plugins/installations/repository', 403, $direct, token: null, cookies: $cookies, headers: $directKey);
-call('POST', '/plugins/installations/repository', 422, $direct);
+foreach ([[], ['Idempotency-Key' => 'short']] as $headers) {
+    check(call('POST', '/plugins/installations/repository', 422, $direct, headers: $headers)['error']['details'][0]['field'] === 'Idempotency-Key', 'Direct installation must validate its idempotency key like Market installations');
+}
 foreach ([['pluginId' => '../bad'], ['source' => 'market'], ['configuration' => ['user' => 'x;touch']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => '$(cmd)']], ['configuration' => ['user' => 'jeedom', 'repository' => 'repo', 'version' => 'main', 'unknown' => 'value']]] as $change) call('POST', '/plugins/installations/repository', 422, array_replace($direct, $change), headers: $directKey);
 $dispatchCount = count(queue::$dispatches);
 queue::$failDispatch = true;
@@ -537,6 +575,12 @@ config::save('active', 1, 'directplugin');
 $op = call('POST', '/plugins/installations/repository', 202, $different, headers: ['Idempotency-Key' => 'direct-request-key-0003']);
 update::$fail = true; runJob($op); update::$fail = false;
 check(call('GET', '/plugins/installations/' . $op['id'] . '/status')['state'] === 'failed' && update::byTypeAndLogicalId('plugin', 'directplugin')->getConfiguration('version') === 'main' && config::byKey('active', 'directplugin') === 1, 'Failed direct installation lost previous settings');
+// Une mise à jour démarrée entre la planification et le worker fait échouer l’installation avec la vraie cause.
+$op = call('POST', '/plugins/installations/repository', 202, $direct, headers: ['Idempotency-Key' => 'direct-request-key-0005']);
+system::$ps = ['install/update.php']; runJob($op); system::$ps = [];
+$blocked = call('GET', '/plugins/installations/' . $op['id'] . '/status');
+check($blocked['state'] === 'failed' && $blocked['error']['code'] === 'installation_failed' && $blocked['error']['message'] === 'Une mise à jour est déjà en cours.'
+    && !isset(plugin::latestInstallation('directplugin')['parameters']), 'An installation refused by an update must fail with its real cause');
 $op = call('POST', '/plugins/installations/repository', 202, $direct, headers: ['Idempotency-Key' => 'direct-request-key-0004']);
 config::save('github::enable', 0);
 runJob($op);

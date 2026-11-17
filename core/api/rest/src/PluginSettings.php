@@ -56,8 +56,7 @@ final class PluginSettings
         $fields = self::section($id, 'eqLogic');
         foreach ($fields as $key => $field) {
             if ($creating && ($field['create'] ?? false) && !array_key_exists($key, $changes)) {
-                if (($field['required'] ?? false) && (!($field['create'] ?? false) || $field['type'] === 'boolean')) self::invalidSchema();
-            if (array_key_exists('default', $field)) $changes[$key] = $field['default'];
+                if (array_key_exists('default', $field)) $changes[$key] = $field['default'];
                 elseif ($field['required'] ?? false) {
                     throw ApiError::field(422, 'validation_error', 'configuration.' . $key, 'Ce champ est obligatoire.');
                 }

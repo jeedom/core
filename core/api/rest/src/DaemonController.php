@@ -12,7 +12,13 @@ final class DaemonController
     {
         Auth::requireAdmin($request);
         $id = $args['id'];
-        if (!preg_match('/\A[a-zA-Z0-9_-]{1,80}\z/', $id)) {
+        try {
+            \plugin::validatePluginId($id);
+        } catch (\InvalidArgumentException) {
+            throw new ApiError(404, 'plugin_not_found', 'Plugin inconnu.');
+        }
+        // plugin::byId() désactive en base un plugin dont le manifeste manque.
+        if (!is_file(\plugin::getPathById($id))) {
             throw new ApiError(404, 'plugin_not_found', 'Plugin inconnu.');
         }
         try {
