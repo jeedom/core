@@ -8097,9 +8097,7 @@ components:
       type: object
       additionalProperties: false
       required: [revision]
-      anyOf:
-        - required: [name]
-        - required: [layout]
+      minProperties: 2
       properties:
         revision: { type: integer, minimum: 1, maximum: 4294967295 }
         name: { type: string, minLength: 1, maxLength: 127 }
@@ -8141,9 +8139,10 @@ components:
         y: { type: number, minimum: 0, maximum: 297 }
         width: { type: number, minimum: 0.1, maximum: 210 }
         height: { type: number, minimum: 0.1, maximum: 297 }
-        options: { type: object }
+        options: { type: object, additionalProperties: true }
       oneOf:
-        - properties:
+        - required: [type, options]
+          properties:
             type: { const: text }
             options:
               type: object
@@ -8154,7 +8153,8 @@ components:
                 fontSize: { type: number, minimum: 1, maximum: 200, description: Taille en points. }
                 color: { type: string, pattern: '^#[0-9a-fA-F]{6}$' }
                 align: { type: string, enum: [left, center, right] }
-        - properties:
+        - required: [type, options]
+          properties:
             type: { const: image }
             options:
               type: object
@@ -8162,7 +8162,8 @@ components:
               required: [imageId]
               properties:
                 imageId: { type: string, pattern: '^[a-f0-9]{32}$' }
-        - properties:
+        - required: [type, options]
+          properties:
             type: { const: value }
             options:
               type: object
@@ -8172,7 +8173,8 @@ components:
                 cmdId: { type: integer, minimum: 1, maximum: 2147483647 }
                 label: { type: string, maxLength: 127 }
                 showUnit: { type: boolean }
-        - properties:
+        - required: [type, options]
+          properties:
             type: { const: chart }
             options:
               type: object
