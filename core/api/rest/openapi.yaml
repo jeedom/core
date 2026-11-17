@@ -6615,7 +6615,12 @@ paths:
       description: |
         Seules les clés envoyées sont enregistrées (`config::save`). Une clé
         inconnue ou d'un mauvais type refuse toute la requête (422), rien
-        n'est enregistré. Renvoie les clés envoyées, relues.
+        n'est enregistré. L'enregistrement se fait dans une transaction : si
+        le traitement d'une clé échoue (422), aucune clé n'est enregistrée.
+        Les effets hors base déjà produits par les clés précédentes ne sont
+        pas annulés (démarrage ou arrêt du service DNS pour `dns::mode` et
+        `*::allowDNS`, recalcul des résumés d'objets pour `object:summary`).
+        Renvoie les clés envoyées, relues.
       requestBody:
         required: true
         content:
