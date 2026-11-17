@@ -27,8 +27,6 @@ final class ScenariosController
     private const MAX_BULK = 1000;
     /** Lecture maximale du journal par appel ; la suite vient à l'appel suivant. */
     private const MAX_LOG_READ = 1_048_576;
-    /** Mots qui rendent un scénario dépendant de l'heure, comme l'ajax save. */
-    private const TIME_KEYWORDS = ['#time#', '#seconde#', '#heure#', '#minute#', '#jour#', '#mois#', '#annee#', '#timestamp#', '#date#', '#semaine#', '#sjour#', '#njour#', '#smois#'];
 
     public function list(Request $request, Response $response): Response
     {
@@ -502,9 +500,7 @@ final class ScenariosController
         try {
             \utils::a2o($scenario, $body);
             if ($elements !== null) {
-                $encoded = json_encode($elements, JSON_UNESCAPED_UNICODE);
-                $scenario->setConfiguration('timeDependency', array_filter(self::TIME_KEYWORDS, static fn ($word) => str_contains((string) $encoded, $word)) !== [] ? 1 : 0);
-                $scenario->setConfiguration('has_return', str_contains((string) $encoded, 'scenario_return') ? 1 : 0);
+                $scenario->refreshContentDependencies($elements);
                 $ids = [];
                 foreach ($elements as $element) {
                     $ids[] = \scenarioElement::saveAjaxElement($element);
