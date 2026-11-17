@@ -5875,7 +5875,8 @@ paths:
         (`history::getHistoryFromCalcul`), ex. `#12# + #15#` ou
         `#[Salon][Clim][Puissance]# * 2`. Une formule peut lire n'importe
         quelle commande, y compris une que l'utilisateur ne peut pas lire :
-        réservé aux administrateurs.
+        réservé aux profils administrateur et utilisateur, comme l'ajax
+        (refusé au profil restreint).
       parameters:
         - name: formula
           in: query
