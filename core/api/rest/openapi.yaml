@@ -1718,6 +1718,53 @@ paths:
                 $ref: '#/components/schemas/Error'
       description: Applique log::remove(). removed=false signifie que le fichier existe encore, notamment lorsqu’il
         est protégé par le core.
+  /logs/{name}/excerpt:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Za-z0-9][A-Za-z0-9_.-]{0,254}$
+    get:
+      tags: [Journaux]
+      operationId: getLogExcerpt
+      summary: Lire la fin d’un journal ou reprendre sa lecture à partir d’un curseur (administrateur)
+      description: Sans curseur, lit depuis la fin du fichier. Fournir au plus un des deux curseurs.
+        Un curseur devenu caduc renvoie la fin actuelle avec reset à true. Les lignes sont brutes et
+        dans l’ordre du fichier. Limites de 1 Mio de contenu par réponse et de 64 Kio par ligne.
+      parameters:
+      - name: limit
+        in: query
+        schema: { type: integer, minimum: 1, maximum: 1000, default: 300 }
+      - name: before
+        in: query
+        description: Curseur previousCursor d'un extrait, pour lire les lignes qui le précèdent.
+        schema: { type: string, maxLength: 84 }
+      - name: after
+        in: query
+        description: Curseur nextCursor d'un extrait, pour lire les lignes suivantes ou suivre les ajouts.
+        schema: { type: string, maxLength: 84 }
+      responses:
+        '200':
+          description: Extrait issu du fichier demandé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LogExcerpt' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409':
+          description: Le journal a changé pendant la lecture (log_changed). La requête peut être répétée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '413':
+          description: Une ligne demandée dépasse 64 Kio (log_line_too_long).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
   /logs/{name}/download:
     parameters:
     - name: name
@@ -7670,6 +7717,28 @@ components:
           - 'null'
           minimum: 0
           description: Début de la page suivante, null en fin de fichier.
+    LogExcerpt:
+      type: object
+      required: [lines, fragment, previousCursor, nextCursor, hasMore, reset]
+      properties:
+        lines:
+          type: array
+          items: { type: string }
+        fragment:
+          type: [string, 'null']
+          description: Dernière ligne en cours d'écriture, sans saut de ligne. À remplacer au prochain appel.
+        previousCursor:
+          type: [string, 'null']
+          description: Curseur opaque pour remonter, null lorsque l'extrait atteint le début.
+        nextCursor:
+          type: string
+          description: Curseur opaque pour reprendre au premier octet de la prochaine ligne complète.
+        hasMore:
+          type: boolean
+          description: D'autres lignes suivent cet extrait dans le fichier actuel.
+        reset:
+          type: boolean
+          description: Le fichier associé au curseur a changé. Cet extrait remplace le précédent.
     LogRemoval:
       type: object
       required:

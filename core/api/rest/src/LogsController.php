@@ -74,6 +74,32 @@ final class LogsController
         ]);
     }
 
+    public function excerpt(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $query = $request->getQueryParams();
+        $limit = self::integer($query['limit'] ?? '300', 'limit', 1, 1000);
+        if (array_key_exists('before', $query) && array_key_exists('after', $query)) {
+            throw ApiError::field(422, 'validation_error', 'before', 'Utiliser un seul curseur à la fois.');
+        }
+        $direction = array_key_exists('before', $query) ? 'before' : 'after';
+        $cursor = $query[$direction] ?? null;
+        if ($cursor !== null && (!is_string($cursor) || preg_match('/\A(?:0|[1-9][0-9]{0,18})\.[a-f0-9]{64}\z/D', $cursor) !== 1)) {
+            throw ApiError::field(422, 'validation_error', $direction, 'Curseur de journal invalide.');
+        }
+        $path = self::find($args['name']);
+        $handle = @fopen($path, 'rb');
+        if ($handle === false) {
+            throw new ApiError(403, 'log_not_readable', 'Le journal ne peut pas être lu.');
+        }
+        try {
+            $page = (new LogExcerptReader($handle))->read($limit, $direction, $cursor);
+        } finally {
+            fclose($handle);
+        }
+        return Json::respond($response->withHeader('Cache-Control', 'private, no-store'), $page);
+    }
+
     public function clear(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
@@ -149,11 +175,11 @@ final class LogsController
 
     private static function find(string $name): string
     {
-        if (!self::validName($name) || !in_array($name, self::names(), true)) {
+        $path = \log::getPathToLog($name);
+        if (!self::validName($name) || !is_file($path)) {
             throw new ApiError(404, 'log_not_found', 'Journal inconnu.');
         }
-        // Un nom de fichier du répertoire log, jamais un chemin fourni par le client.
-        return \log::getPathToLog($name);
+        return $path;
     }
 
     private static function integer(mixed $value, string $field, int $min, int $max): int

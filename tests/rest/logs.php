@@ -1,0 +1,119 @@
+<?php
+declare(strict_types=1);
+
+use Jeedom\Api\Rest\ApiError;
+use Jeedom\Api\Rest\LogsController;
+use Slim\Psr7\Factory\ResponseFactory;
+use Slim\Psr7\Factory\ServerRequestFactory;
+
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+
+final class log
+{
+    public static string $directory;
+
+    public static function getPathToLog(string $name): string
+    {
+        return self::$directory . '/' . $name;
+    }
+}
+
+function expectSame(mixed $expected, mixed $actual, string $message): void
+{
+    if ($expected !== $actual) {
+        throw new RuntimeException($message . ': ' . var_export($actual, true));
+    }
+}
+
+function excerpt(array $query = [], string $name = 'test', string $profile = 'admin'): array
+{
+    $user = new class($profile) {
+        public function __construct(private string $profile) {}
+        public function getProfils(): string { return $this->profile; }
+    };
+    $request = (new ServerRequestFactory())->createServerRequest('GET', '/api/v1/logs/' . $name . '/excerpt')
+        ->withAttribute('user', $user)
+        ->withQueryParams($query);
+    $response = (new LogsController())->excerpt($request, (new ResponseFactory())->createResponse(), ['name' => $name]);
+    expectSame('private, no-store', $response->getHeaderLine('Cache-Control'), 'Aucun cache des extraits');
+    return json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+}
+
+function expectError(int $status, string $code, callable $read): void
+{
+    try {
+        $read();
+    } catch (ApiError $error) {
+        expectSame($status, $error->status, 'Statut HTTP');
+        expectSame($code, $error->errorCode, 'Code de l’erreur');
+        return;
+    }
+    throw new RuntimeException('Erreur attendue : ' . $code);
+}
+
+log::$directory = sys_get_temp_dir() . '/jeedom-rest-log-' . bin2hex(random_bytes(8));
+mkdir(log::$directory);
+$path = log::getPathToLog('test');
+
+try {
+    file_put_contents($path, "Un\nDeux\n  Trois\r\n\nQuatre");
+    $tail = excerpt(['limit' => '3']);
+    expectSame(['  Trois', ''], $tail['lines'], 'Fin du journal, CRLF, indentation et ligne vide');
+    expectSame('Quatre', $tail['fragment'], 'Fragment final');
+    expectSame(false, $tail['hasMore'], 'La fin tient dans un seul extrait');
+
+    $older = excerpt(['before' => $tail['previousCursor'], 'limit' => '3']);
+    expectSame(['Un', 'Deux'], $older['lines'], 'Extrait précédent');
+    expectSame(null, $older['previousCursor'], 'Début du fichier');
+    expectSame(true, $older['hasMore'], 'Pagination vers l’avant disponible');
+    expectSame($tail, excerpt(['after' => $older['nextCursor'], 'limit' => '3']), 'Navigation dans les deux sens');
+
+    file_put_contents($path, " suite\nCinq\n", FILE_APPEND);
+    $delta = excerpt(['after' => $tail['nextCursor']]);
+    expectSame(['Quatre suite', 'Cinq'], $delta['lines'], 'La ligne complète remplace son fragment');
+    expectSame(null, $delta['fragment'], 'Aucun fragment restant');
+    expectSame(false, $delta['reset'], 'Un ajout ne change pas le curseur');
+    expectSame([], excerpt(['after' => $delta['nextCursor']])['lines'], 'Aucune répétition');
+
+    // Même inode après troncature et repousse, comme avec log::chunkLog().
+    $inode = fileinode($path);
+    file_put_contents($path, str_repeat("Journal après réécriture\n", 100) . "Nouvelle fin\n");
+    clearstatcache(true, $path);
+    expectSame($inode, fileinode($path), 'Réécriture en place');
+    $reset = excerpt(['after' => $delta['nextCursor'], 'limit' => '2']);
+    expectSame(true, $reset['reset'], 'Détecte la réécriture malgré la nouvelle taille');
+    expectSame(['Journal après réécriture', 'Nouvelle fin'], $reset['lines'], 'Renvoie la fin actuelle');
+
+    file_put_contents($path, '');
+    $cleared = excerpt(['after' => $reset['nextCursor']]);
+    expectSame(true, $cleared['reset'], 'Détecte un journal vidé');
+    expectSame([], $cleared['lines'], 'Journal vide');
+
+    $file = fopen($path, 'wb');
+    ftruncate($file, 24 * 1024 * 1024);
+    fseek($file, 0, SEEK_END);
+    fwrite($file, "\nPremier\nDernier\n");
+    fclose($file);
+    clearstatcache(true, $path);
+    expectSame(['Premier', 'Dernier'], excerpt(['limit' => '2'])['lines'], 'Lecture depuis la fin d’un gros fichier');
+
+    $line = str_repeat('a', 65535) . "\n";
+    file_put_contents($path, str_repeat($line, 20));
+    $large = excerpt(['limit' => '1000']);
+    expectSame(16, count($large['lines']), 'Extrait de fin borné à 1 Mio');
+    $back = excerpt(['before' => $large['previousCursor'], 'limit' => '1000']);
+    expectSame(4, count($back['lines']), 'La limite de taille conserve les lignes précédentes');
+    expectSame($large, excerpt(['after' => $back['nextCursor'], 'limit' => '1000']), 'La pagination respecte la limite en octets');
+
+    file_put_contents($path, str_repeat('x', 65536) . "\n");
+    expectError(413, 'log_line_too_long', fn () => excerpt());
+    expectError(422, 'validation_error', fn () => excerpt(['after' => ['invalide']]));
+    expectError(422, 'validation_error', fn () => excerpt(['before' => $delta['nextCursor'], 'after' => $delta['nextCursor']]));
+    expectError(404, 'log_not_found', fn () => excerpt([], 'inconnu'));
+    expectError(403, 'forbidden', fn () => excerpt([], 'test', 'user'));
+} finally {
+    unlink($path);
+    rmdir(log::$directory);
+}
+
+echo "Journaux REST : OK\n";
