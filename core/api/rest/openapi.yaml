@@ -3013,6 +3013,7 @@ paths:
       - Plugins
       operationId: updatePlugin
       summary: Activer, désactiver et régler les options du plugin, dont le blocage des mises à jour.
+      description: guidedActivation à true sur un plugin déjà actif, hors activation guidée en cours, donne 409 plugin_already_enabled sans rien modifier.
       responses:
         '200':
           description: Résultat de l’opération.
@@ -3706,7 +3707,12 @@ paths:
       tags: [Plugins]
       operationId: provisionDaemonSession
       summary: Reprovisionner l’accès REST d’un démon
-      description: Administrateur. Révoque l’accès précédent et remet le nouveau jeton au prochain lancement du démon compatible.
+      description: |
+        Administrateur. Révoque immédiatement les sessions du démon (le démon en cours perd son accès) et écrit
+        un refresh token neuf dans data/daemon-sessions/{id}.json. Le compte du démon doit déjà exister.
+        Ce n’est pas nécessaire en temps normal : plugin::daemonCredentialFile(), appelé par le plugin à chaque
+        lancement de son démon, fournit déjà des identifiants neufs, y compris après une désactivation,
+        une rotation par refresh ou une expiration.
       responses:
         '204': { description: Accès provisionné. }
         '401': { $ref: '#/components/responses/Unauthorized' }

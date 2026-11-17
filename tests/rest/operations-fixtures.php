@@ -32,11 +32,31 @@ class session {
     }
 
     public static function touch(array $row): void {}
-    public static function revoke(user $user, string $id): bool { return false; }
+
+    /** Sessions de démon créées par plugin::daemonCredentialFile(), indexées par identifiant. */
+    public static array $daemonSessions = [];
+
+    public static function create(user $actor, bool $remember, string $ip, ?string $previous, ?int $expiresBefore = null,
+        string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false): array {
+        $id = bin2hex(random_bytes(32));
+        $refresh = bin2hex(random_bytes(32));
+        self::$daemonSessions[$id] = ['userId' => $actor->getId(), 'refreshToken' => $refresh, 'mode' => $mode, 'scope' => $scope];
+        return ['id' => $id, 'refreshToken' => $refresh];
+    }
+
+    public static function revoke(user $user, string $id): bool {
+        $known = (self::$daemonSessions[$id]['userId'] ?? null) === $user->getId();
+        if ($known) unset(self::$daemonSessions[$id]);
+        return $known;
+    }
+
+    public static function revokeAll(int $userId): void {
+        self::$daemonSessions = array_filter(self::$daemonSessions, static fn (array $row): bool => $row['userId'] !== $userId);
+    }
 }
 
 /** Load the production operation methods against the REST suites' native doubles. */
-function defineRestOperationsFixture(string $class, string $fixture): void {
+function defineRestOperationsFixture(string $class, string $fixture, array $replacements = []): void {
     $heading = match ($class) {
         'plugin' => '/* Installations de plugins */',
         'update' => '/* Opérations de mise à jour */',
@@ -53,7 +73,7 @@ function defineRestOperationsFixture(string $class, string $fixture): void {
         throw new RuntimeException("Fin de la section des opérations introuvable dans $class");
     }
 
-    $operations = substr($source, $start, $end - $start);
+    $operations = strtr(substr($source, $start, $end - $start), $replacements);
     $operations = str_replace('__DIR__', var_export($directory, true), $operations);
     eval("class $class {\n$fixture\n$operations\n}");
 }

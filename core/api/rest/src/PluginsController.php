@@ -218,8 +218,9 @@ final class PluginsController
         Auth::requireAdmin($request);
         $body = self::body($request, ['pluginId', 'source', 'configuration']);
         if (!is_string($body['pluginId'] ?? null) || !is_string($body['source'] ?? null) || !is_array($body['configuration'] ?? null)) self::invalid('pluginId/source/configuration');
+        $key = self::idempotencyKey($request);
         $operation = self::installationCall(fn () => \plugin::startRepositoryInstallation($body['pluginId'], $body['source'], $body['configuration'],
-            (int) $request->getAttribute('user')->getId(), $request->getHeaderLine('Idempotency-Key')));
+            (int) $request->getAttribute('user')->getId(), $key));
         return self::respond($response, self::operation($operation), in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
 
@@ -245,6 +246,9 @@ final class PluginsController
         self::mutate($plugin, static function () use ($plugin, $body): void {
             $id = $plugin->getId();
             if (isset($body['updatesBlocked'])) self::setUpdatesBlocked($id, $body['updatesBlocked']);
+            if (($body['guidedActivation'] ?? false) && (bool) $plugin->isActive() && !$plugin->isGuidedActivationPending()) {
+                throw new ApiError(409, 'plugin_already_enabled', 'Le plugin est déjà actif : l’activation guidée ne s’applique pas.');
+            }
             if (array_key_exists('isEnable', $body) && (bool) $plugin->isActive() !== $body['isEnable']) {
                 $plugin->setIsEnable((int) $body['isEnable'], _guided: $body['guidedActivation'] ?? false);
             }
@@ -387,8 +391,7 @@ final class PluginsController
         Auth::requireAdmin($request);
         $body = self::body($request, ['marketId', 'version']);
         if (!is_int($body['marketId'] ?? null) || !is_string($body['version'] ?? null)) self::invalid('marketId/version');
-        $key = $request->getHeaderLine('Idempotency-Key');
-        if (!preg_match('/\A[A-Za-z0-9_-]{16,128}\z/', $key)) self::invalid('Idempotency-Key');
+        $key = self::idempotencyKey($request);
         $operation = self::installationCall(fn () => \plugin::startMarketInstallation($body['marketId'], $body['version'], (int) $request->getAttribute('user')->getId(), $key));
         return self::respond($response, self::operation($operation), in_array($operation['state'], ['queued', 'running'], true) ? 202 : 200);
     }
@@ -534,6 +537,13 @@ final class PluginsController
         $body = Json::body($request);
         if ((!$empty && $body === []) || array_diff(array_keys($body), $fields)) throw new ApiError(422, 'validation_error', 'Champs absents, inconnus ou non modifiables.');
         return $body;
+    }
+
+    private static function idempotencyKey(Request $request): string
+    {
+        $key = $request->getHeaderLine('Idempotency-Key');
+        if (!preg_match('/\A[A-Za-z0-9_-]{16,128}\z/', $key)) self::invalid('Idempotency-Key');
+        return $key;
     }
 
     private static function invalid(string $field): never

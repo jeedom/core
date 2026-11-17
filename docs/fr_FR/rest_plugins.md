@@ -48,6 +48,17 @@ L'utilisateur authentifié est disponible via `$request->getAttribute('user')`. 
 
 Un plugin qui doit traiter un lot de messages de son démon peut définir une méthode publique statique `handleDaemonMessages(array $messages): void` sur sa classe PHP. Le démon envoie `{"messages":{…}}` à `POST /api/v1/plugins/{id}/daemon/messages` avec son jeton Bearer. Le Core vérifie la session locale dédiée à ce plugin et transmet le lot à la méthode. Le plugin valide et traite le contenu propre à son protocole.
 
+### Accès REST du démon
+
+Le démon d’un plugin s’authentifie avec une session locale dédiée, liée à un compte technique créé par le Core. Le contrat est le suivant :
+
+1. Dans sa méthode `deamon_start()`, après l’arrêt de l’éventuel processus précédent et juste avant de lancer le démon, le plugin appelle `plugin::daemonCredentialFile('<id>')`. Le plugin doit être actif. La méthode retourne le chemin `data/daemon-sessions/<id>.json`, que le plugin transmet au démon (argument ou variable d’environnement).
+2. Chaque appel révoque les sessions précédentes du démon et écrit de façon atomique un fichier `{"refreshToken":"…"}` neuf (droits `0600`). Un redémarrage du démon rétablit donc toujours son accès, y compris après une désactivation puis réactivation du plugin, une rotation du jeton ou l’expiration de la session (90 jours sans renouvellement).
+3. Au démarrage, le démon lit ce fichier puis appelle `POST /api/v1/session/refresh` avec `{"refreshToken":"…"}` et un en-tête `Idempotency-Key`. Il reçoit un jeton d’accès et un nouveau refresh token, qu’il garde en mémoire et renouvelle de la même façon avant expiration. Chaque renouvellement remplace le refresh token : l’ancien n’est plus accepté au-delà de la fenêtre de relance de 60 secondes, et le rejouer ensuite révoque la session. Le démon n’a donc pas à réécrire le fichier, qui ne sert qu’au démarrage suivant de `deamon_start()`.
+4. `plugin::daemonCredentialFile()` ne doit pas être appelée pendant que le démon tourne (par exemple depuis `deamon_info()` ou un cron) : le démon en cours perdrait immédiatement son accès. Le Core n’appelle la méthode `deamon_start()` du plugin que lorsque `deamon_info()` indique un démon arrêté, ou après `deamon_stop()` lors d’un redémarrage forcé.
+
+La désactivation du plugin révoque les sessions du démon et supprime le fichier ; le compte technique est conservé. Les requêtes du démon doivent venir de la box elle-même (`127.0.0.1` ou `::1`). `POST /api/v1/plugins/{id}/daemon/session` (administrateur) révoque immédiatement l’accès du démon et écrit un fichier neuf ; ce n’est pas nécessaire en fonctionnement normal.
+
 ## Installation depuis le Market
 
 Le lien Market ouvre Core UI sous `/ui/#/plugins/install?marketId=1234&version=beta`. Le navigateur transmet uniquement l’identifiant numérique et la branche, jamais un secret ou une archive.
