@@ -26,15 +26,18 @@ final class EventStream implements StreamInterface
     private float $lastSent;
     private float $nextSessionCheck;
     private bool $finished = false;
+    /** Créneau StreamSlots, libéré une seule fois à la fermeture. */
+    private ?string $slot;
 
     public function __construct(
         private readonly EventFilter $filter,
         private ?float $cursor,
         int $maxDuration,
-        private ?string $slot,
-        private readonly ?\user $slotUser = null,
+        string $slot,
+        private readonly \user $slotUser,
         private readonly ?\Closure $authorized = null,
     ) {
+        $this->slot = $slot;
         $now = microtime(true);
         $this->deadline = $now + $maxDuration;
         $this->lastSent = $now;
@@ -178,7 +181,7 @@ final class EventStream implements StreamInterface
     public function close(): void
     {
         $this->finished = true;
-        if ($this->slot !== null && $this->slotUser !== null) {
+        if ($this->slot !== null) {
             StreamSlots::release($this->slotUser, $this->slot);
         }
         $this->slot = null;
