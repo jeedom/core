@@ -152,10 +152,11 @@ final class PluginSettings
         foreach ($sections as $key => $section) {
             if (!preg_match('/\A[A-Za-z][A-Za-z0-9_-]{0,126}\z/', (string) $key)
                 || !$section instanceof \stdClass
-                || array_diff(array_keys((array) $section), ['label', 'icon', 'description'])
+                || array_diff(array_keys((array) $section), ['label', 'icon', 'description', 'width'])
                 || !is_string($section->label ?? null) || trim($section->label) === ''
                 || !is_string($section->icon ?? null) || !preg_match('/\Amdi:[a-z0-9]+(?:-[a-z0-9]+)*\z/', $section->icon)
-                || (property_exists($section, 'description') && !is_string($section->description))) {
+                || (property_exists($section, 'description') && !is_string($section->description))
+                || (property_exists($section, 'width') && (!is_int($section->width) || $section->width < 1 || $section->width > 12))) {
                 self::invalidSchema();
             }
             $sections[$key] = ['id' => $key] + (array) $section;

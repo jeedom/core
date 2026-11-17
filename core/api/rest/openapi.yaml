@@ -8350,6 +8350,11 @@ components:
         label: { type: string }
         icon: { type: string, example: 'mdi:lock-outline' }
         description: { type: string }
+        width:
+          type: integer
+          minimum: 1
+          maximum: 12
+          description: Largeur souhaitée sur 12 colonnes. Par défaut, la section occupe toute la ligne.
 
     PluginSettingField:
       type: object

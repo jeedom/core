@@ -308,6 +308,17 @@ $resolved = ['recordDir' => $fields['recordDir'] + ['section' => ['id' => 'stora
 $form = call('GET', $formPath);
 check($form['fields'] === $resolved && $form['values'] === ['recordDir' => '/recordings'], 'Section metadata must not change the stored setting');
 check(call('GET', '/plugins/fixture/configuration/schema') === ['eqLogic' => $resolved, 'cmd' => $resolved], 'Entity settings must resolve section metadata');
+$declaration['sections']['storage']['width'] = 6;
+$resolved['recordDir']['section']['width'] = 6;
+file_put_contents($settingsPath, json_encode($declaration, JSON_THROW_ON_ERROR));
+check(call('GET', $formPath)['fields'] === $resolved, 'Plugin settings must expose the section width');
+check(call('GET', '/plugins/fixture/configuration/schema') === ['eqLogic' => $resolved, 'cmd' => $resolved], 'Entity settings must expose the section width');
+foreach ([0, 13, '6', 6.5, null] as $invalidWidth) {
+    $declaration['sections']['storage']['width'] = $invalidWidth;
+    file_put_contents($settingsPath, json_encode($declaration, JSON_THROW_ON_ERROR));
+    check(call('GET', $formPath, 500)['error']['code'] === 'invalid_plugin_settings', 'Section width must be an integer between 1 and 12');
+}
+$declaration['sections']['storage'] = $storage;
 $declaration['plugin']['recordDir']['section'] = 'missing';
 file_put_contents($settingsPath, json_encode($declaration, JSON_THROW_ON_ERROR));
 check(call('GET', $formPath, 500)['error']['code'] === 'invalid_plugin_settings', 'A field cannot reference an undeclared section');
