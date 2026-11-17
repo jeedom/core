@@ -12,7 +12,7 @@ final class SystemController
 
     public function get(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         return self::respond($response, [
             'version' => \jeedom::version(),
             'hardware' => \jeedom::getHardwareName(),
@@ -22,7 +22,7 @@ final class SystemController
 
     public function health(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         $scope = $request->getQueryParams()['scope'] ?? null;
         if ($scope !== null && $scope !== 'core') {
             throw ApiError::field(422, 'validation_error', 'scope', 'Le seul périmètre explicite est core.');
@@ -40,7 +40,7 @@ final class SystemController
 
     public function benchmark(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         try {
             $durations = \jeedom::benchmark();
         } catch (\RuntimeException $e) {
@@ -55,7 +55,7 @@ final class SystemController
 
     public function reboot(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         self::requireSudo();
         \jeedom::rebootSystem();
         return $response->withStatus(204);
@@ -63,7 +63,7 @@ final class SystemController
 
     public function shutdown(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         self::requireSudo();
         \jeedom::haltSystem();
         return $response->withStatus(204);
@@ -71,21 +71,21 @@ final class SystemController
 
     public function resetTimeReference(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         \cache::delete('hour');
         return $response->withStatus(204);
     }
 
     public function consistency(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         \jeedom::consistency();
         return Json::respond($response, ['log' => 'consistency'], 202);
     }
 
     public function repairPermissions(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         self::requireSudo();
         \jeedom::cleanFileSystemRight();
         return $response->withStatus(204);
@@ -93,20 +93,20 @@ final class SystemController
 
     public function cleanDatabase(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         \jeedom::cleanDatabase();
         return Json::respond($response, ['log' => 'cleaningdb'], 202);
     }
 
     public function databaseSchema(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         return self::respond($response, ['tables' => (object) \DB::compareDatabase(self::referenceSchema())]);
     }
 
     public function repairDatabaseSchema(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         $table = self::textField($request, 'table');
         $schema = self::referenceSchema();
         if ($table !== 'all' && !in_array($table, array_column($schema['tables'], 'name'), true)) {
@@ -118,7 +118,7 @@ final class SystemController
 
     public function queryDatabase(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         $sql = self::textField($request, 'sql', self::MAX_SQL_BYTES);
         try {
             $result = \DB::executeConsoleQuery($sql);
@@ -137,7 +137,7 @@ final class SystemController
 
     public function ssh(Request $request, Response $response): Response
     {
-        self::requireAdmin($request);
+        Auth::requireAdmin($request);
         $command = self::textField($request, 'command');
         try {
             $result = \system::executeConsoleCommand($command);
@@ -150,14 +150,6 @@ final class SystemController
             throw new ApiError(504, 'shell_timeout', $e->getMessage());
         }
         return self::respond($response, $result);
-    }
-
-    private static function requireAdmin(Request $request): void
-    {
-        Auth::requireAdmin($request);
-        if ((int) $request->getAttribute('user')->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
-            throw new ApiError(403, 'forbidden', 'Ce compte est limité au réseau local.');
-        }
     }
 
     private static function requireSudo(): void
