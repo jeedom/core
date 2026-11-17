@@ -85,19 +85,16 @@ final class ObjectsController
     public function reorder(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = Json::body($request)['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
-        }
-        // Même règle que l'ajax setOrder : positions 1, 2, 3… ; identifiants inconnus ignorés.
-        $position = 1;
-        foreach ($ids as $id) {
+        // Même règle que l'ajax setOrder.
+        Bulk::reorder(Json::body($request), static function (int $id, int $position): bool {
             $object = \jeeObject::byId($id);
-            if (is_object($object)) {
-                $object->setPosition($position++);
-                $object->save();
+            if (!is_object($object)) {
+                return false;
             }
-        }
+            $object->setPosition($position);
+            $object->save();
+            return true;
+        });
         return $response->withStatus(204);
     }
 

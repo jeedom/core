@@ -194,19 +194,16 @@ final class CmdsController
     public function reorder(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = Json::body($request)['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
-        }
         // Seul l'ordre change, contrairement à l'ajax setOrder qui touche aussi la disposition.
-        $position = 1;
-        foreach ($ids as $id) {
+        Bulk::reorder(Json::body($request), static function (int $id, int $position): bool {
             $cmd = \cmd::byId($id);
-            if (is_object($cmd)) {
-                $cmd->setOrder($position++);
-                $cmd->save(true);
+            if (!is_object($cmd)) {
+                return false;
             }
-        }
+            $cmd->setOrder($position);
+            $cmd->save(true);
+            return true;
+        });
         return $response->withStatus(204);
     }
 

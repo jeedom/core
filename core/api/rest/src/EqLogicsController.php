@@ -133,19 +133,16 @@ final class EqLogicsController
     public function reorder(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = Json::body($request)['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
-        }
         // Seul l'ordre change, contrairement à l'ajax setOrder qui accepte tous les champs.
-        $position = 1;
-        foreach ($ids as $id) {
+        Bulk::reorder(Json::body($request), static function (int $id, int $position): bool {
             $eqLogic = \eqLogic::byId($id);
-            if (is_object($eqLogic)) {
-                $eqLogic->setOrder($position++);
-                $eqLogic->save(true);
+            if (!is_object($eqLogic)) {
+                return false;
             }
-        }
+            $eqLogic->setOrder($position);
+            $eqLogic->save(true);
+            return true;
+        });
         return $response->withStatus(204);
     }
 

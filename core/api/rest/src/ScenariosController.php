@@ -152,18 +152,15 @@ final class ScenariosController
     public function reorder(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
-        $ids = Json::body($request)['ids'] ?? null;
-        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
-            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
-        }
-        $position = 1;
-        foreach ($ids as $id) {
+        Bulk::reorder(Json::body($request), static function (int $id, int $position): bool {
             $scenario = \scenario::byId($id);
-            if (is_object($scenario)) {
-                $scenario->setOrder($position++);
-                $scenario->save(true);
+            if (!is_object($scenario)) {
+                return false;
             }
-        }
+            $scenario->setOrder($position);
+            $scenario->save(true);
+            return true;
+        });
         return $response->withStatus(204);
     }
 
