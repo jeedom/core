@@ -1975,11 +1975,32 @@ class scenarioExpression {
 			throw new RuntimeException(__('Le modèle de rapport est manquant ou introuvable.', __FILE__));
 		}
 		$reference = $this->getOptions('cmd');
-		$command = is_string($reference) && preg_match('/^#([1-9][0-9]*)#$/D', $reference, $match) ? cmd::byId($match[1]) : null;
-		if (!$command instanceof cmd || $command->getType() !== 'action' || $command->getSubType() !== 'message') {
-			throw new RuntimeException(__('La commande d’envoi est introuvable ou n’est pas une commande message.', __FILE__));
+		$command = null;
+		if ($reference !== '' && $reference !== null) {
+			$command = is_string($reference) && preg_match('/^#([1-9][0-9]*)#$/D', $reference, $match) ? cmd::byId($match[1]) : null;
+			if (!$command instanceof cmd || $command->getType() !== 'action' || $command->getSubType() !== 'message') {
+				throw new RuntimeException(__('La commande d’envoi est introuvable ou n’est pas une commande message.', __FILE__));
+			}
 		}
 
+		self::setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $template->getName());
+		$pdf = reportTemplateRenderer::renderForScenario($template);
+		try {
+			if ($command === null || in_array($this->getOptions('archive'), [true, 1, '1'], true)) {
+				reportTemplateArchive::save($templateId, $pdf);
+				rewind($pdf);
+				self::setLog($scenario, __('Rapport archivé', __FILE__) . ' ' . $template->getName());
+			}
+			if ($command !== null) {
+				$this->sendReportPdf($scenario, $template, $command, $pdf);
+			}
+		} finally {
+			fclose($pdf);
+		}
+	}
+
+	/** @param resource $pdf */
+	private function sendReportPdf(scenario &$scenario, reportTemplate $template, cmd $command, $pdf): void {
 		$name = $template->getName();
 		$date = date('Y-m-d H:i:s');
 		$title = $this->getOptions('title');
@@ -1996,24 +2017,13 @@ class scenarioExpression {
 		// execCmd() interprète les références #id# dans ses options, y compris les chemins.
 		$filename = mb_strcut(str_replace('#', '-', $template->getPdfName()), 0, 200, 'UTF-8');
 		$path = $directory . '/' . $filename . '-' . date('Y-m-d_H-i-s') . '.pdf';
-		$pdf = null;
 		try {
-			self::setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $name);
-			$pdf = reportTemplateRenderer::renderForScenario($template);
-			if (in_array($this->getOptions('archive'), [true, 1, '1'], true)) {
-				reportTemplateArchive::save($templateId, $pdf);
-				rewind($pdf);
-				self::setLog($scenario, __('Rapport archivé', __FILE__) . ' ' . $name);
-			}
 			if (file_put_contents($path, $pdf) !== fstat($pdf)['size']) {
 				throw new RuntimeException(__('Impossible d’écrire la pièce jointe du rapport.', __FILE__));
 			}
 			self::setLog($scenario, __('Envoi du rapport généré sur', __FILE__) . ' ' . $command->getHumanName());
 			$command->execCmd(['title' => $title, 'message' => $message, 'files' => [$path]]);
 		} finally {
-			if (is_resource($pdf)) {
-				fclose($pdf);
-			}
 			if (is_file($path)) {
 				unlink($path);
 			}
