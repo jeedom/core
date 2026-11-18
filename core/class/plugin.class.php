@@ -1226,7 +1226,7 @@ class plugin {
 	 * @return null
 	 * @throws Exception
 	 */
-	public function dependancy_install($_force = false, $_foreground  = false) {
+	public function dependancy_install($_force = false, $_foreground  = false, ?bool $_forcePackages = null) {
 		$plugin_id = $this->getId();
 		if (!$_force && config::byKey('dontProtectTooFastLaunchDependancy', 'core', 0) == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
 			$cache = cache::byKey('dependancy' . $this->getId());
@@ -1240,7 +1240,7 @@ class plugin {
 		if (file_exists(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json')) {
 			$this->deamon_stop();
 			config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), true, $_foreground, $plugin_id, $_force);
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), true, $_foreground, $plugin_id, $_forcePackages ?? $_force);
 			$cache = cache::byKey('dependancy' . $this->getId());
 			$cache->remove();
 			return;
