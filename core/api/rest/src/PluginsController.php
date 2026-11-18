@@ -307,12 +307,10 @@ final class PluginsController
             if ($plugin->isGuidedActivationPending()) {
                 // Leave a short window for a just-started process to create its progress file.
                 $started = strtotime((string) \config::byKey('lastDependancyInstallTime', $plugin->getId(), '', true));
-                if ($plugin->dependancy_info(true)['state'] === 'nok' && ($started === false || time() - $started >= 12)) {
-                    $plugin->dependancy_install(true);
-                }
-            } else {
-                $plugin->dependancy_install(true);
+                if ($plugin->dependancy_info(true)['state'] !== 'nok' || ($started !== false && time() - $started < 12)) return;
             }
+            // A retry can bypass the plugin cooldown without reinstalling satisfied packages.
+            $plugin->dependancy_install(_force: true, _forcePackages: false);
         });
         return self::respond($response, self::dependencyInfo($plugin), 202);
     }

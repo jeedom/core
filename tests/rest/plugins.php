@@ -108,7 +108,11 @@ defineRestOperationsFixture('plugin', <<<'PHP'
     public function getFunctionality() { return ['cron' => ['exists' => 1, 'controlable' => 1], 'health' => ['exists' => 1, 'controlable' => 0]]; }
     public function getLogList() { return ['fixture', '../secret', '/etc/passwd']; }
     public function dependancy_info() { return ['state' => self::$dependencyInstalls ? 'in_progress' : self::$dependencyState, 'log' => 'fixture_dep', 'auto' => config::byKey('dependancyAutoMode', $this->id, 1), 'progression' => 42, 'duration' => 2]; }
-    public function dependancy_install($force) { if (self::$dependencyInstalls) throw new RuntimeException('Déjà en cours', 409); self::$dependencyInstalls++; }
+    public function dependancy_install($_force = false, $_foreground = false, ?bool $_forcePackages = null) {
+        check($_force && $_forcePackages === false, 'REST retries must bypass only the plugin cooldown, without forcing package reinstallation');
+        if (self::$dependencyInstalls) throw new RuntimeException('Déjà en cours', 409);
+        self::$dependencyInstalls++;
+    }
     public function dependancy_changeAutoMode($auto) { config::save('dependancyAutoMode', $auto, $this->id); }
     public function deamon_info() { return self::$daemon; }
     public function deamon_start($force) { self::$daemon['state'] = 'ok'; }
