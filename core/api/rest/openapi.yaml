@@ -7646,6 +7646,7 @@ components:
               project_id: { type: string }
               actions: { type: array, items: { type: string, enum: [update, restart] } }
               revision: { type: string, pattern: '^[a-f0-9]{64}$' }
+              image_update_available: { type: boolean }
               policy: { $ref: '#/components/schemas/JeegoImagePolicy' }
         projects:
           type: array
@@ -7657,6 +7658,7 @@ components:
               name: { type: string }
               actions: { type: array, items: { type: string, enum: [update, restart] } }
               revision: { type: string, pattern: '^[a-f0-9]{64}$' }
+              image_update_available: { type: boolean }
               policy: { $ref: '#/components/schemas/JeegoImagePolicy' }
         error: { type: string }
         busy: { type: boolean }
@@ -7723,6 +7725,7 @@ components:
         installed: { type: boolean }
         pending: { type: boolean }
         can_update_image: { type: boolean }
+        image_update_available: { type: boolean }
         policy: { $ref: '#/components/schemas/JeegoImagePolicy' }
         resources: { $ref: '#/components/schemas/JeegoResources' }
         error: { type: string }
