@@ -601,6 +601,8 @@ paths:
           in: query
           required: true
           schema: { type: string, pattern: '^[a-z0-9][a-z0-9_.:-]{0,191}$' }
+        - $ref: '#/components/parameters/JeegoLogPaged'
+        - $ref: '#/components/parameters/JeegoLogBefore'
       responses:
         '200':
           description: Lire un extrait de journal Jeego.
@@ -802,6 +804,8 @@ paths:
           in: path
           required: true
           schema: { type: string, pattern: '^[a-z][a-z0-9-]{0,31}$' }
+        - $ref: '#/components/parameters/JeegoLogPaged'
+        - $ref: '#/components/parameters/JeegoLogBefore'
       responses:
         '200':
           description: Informations Jeego.
@@ -865,6 +869,8 @@ paths:
           in: path
           required: true
           schema: { type: string, pattern: '^[a-f0-9]{64}$' }
+        - $ref: '#/components/parameters/JeegoLogPaged'
+        - $ref: '#/components/parameters/JeegoLogBefore'
       responses:
         '200':
           description: Informations Jeego.
@@ -7299,6 +7305,16 @@ components:
       description: ETag fort du contenu du fichier.
       schema: { type: string, pattern: '^"[a-f0-9]{64}"$' }
   parameters:
+    JeegoLogPaged:
+      name: paged
+      in: query
+      description: Active la pagination sur une version compatible de Jeego.
+      schema: { type: integer, enum: [1] }
+    JeegoLogBefore:
+      name: before
+      in: query
+      description: Curseur previous_cursor pour lire les entrées précédentes de la même source.
+      schema: { type: string, maxLength: 768 }
     SystemFileRoot:
       name: root
       in: query
@@ -7708,12 +7724,15 @@ components:
       required: [logs, truncated]
       properties:
         logs: { type: string }
+        previous_cursor: { type: string, description: Curseur de la page précédente si disponible. }
         truncated: { type: boolean }
     JeegoServiceLogs:
       type: object
       required: [logs]
       properties:
         logs: { type: string }
+        truncated: { type: boolean }
+        previous_cursor: { type: string, description: Curseur de la page précédente si disponible. }
     JeegoEvent:
       type: object
       additionalProperties: false

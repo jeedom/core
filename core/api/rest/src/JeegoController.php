@@ -66,7 +66,8 @@ final class JeegoController
         if (!is_string($source) || !preg_match('/^[a-z0-9][a-z0-9_.:-]{0,191}$/D', $source)) {
             throw ApiError::field(422, 'validation_error', 'source', 'Identifiant de journal invalide.');
         }
-        return self::respond($response, self::call('/logs/excerpt?source=' . rawurlencode($source), 200));
+        $path = '/logs/excerpt?source=' . rawurlencode($source) . self::logPageSuffix($request, '&');
+        return self::respond($response, self::call($path, 200));
     }
 
     public function logArchive(Request $request, Response $response): Response
@@ -162,7 +163,7 @@ final class JeegoController
     {
         self::requireJeego($request);
         $service = self::serviceId($args['service']);
-        return self::respond($response, self::call('/services/' . $service . '/logs', 200));
+        return self::respond($response, self::call('/services/' . $service . '/logs' . self::logPageSuffix($request), 200));
     }
 
     public function dockerAction(Request $request, Response $response, array $args): Response
@@ -188,7 +189,24 @@ final class JeegoController
         if (preg_match('/^[a-f0-9]{64}$/D', $id) !== 1) {
             throw ApiError::field(422, 'validation_error', 'id', 'Identifiant Docker invalide.');
         }
-        return self::respond($response, self::call('/management/docker/' . $id . '/logs', 200));
+        return self::respond($response, self::call('/management/docker/' . $id . '/logs' . self::logPageSuffix($request), 200));
+    }
+
+    private static function logPageSuffix(Request $request, string $separator = '?'): string
+    {
+        $query = $request->getQueryParams();
+        $paged = $query['paged'] ?? null;
+        if ($paged !== null && !in_array($paged, ['1', 1], true)) {
+            throw ApiError::field(422, 'validation_error', 'paged', 'La valeur 1 est attendue.');
+        }
+        $before = $query['before'] ?? null;
+        if ($before === null) {
+            return $paged === null ? '' : $separator . 'paged=1';
+        }
+        if (!is_string($before) || preg_match('/\A[A-Za-z0-9_-]{1,768}\z/D', $before) !== 1) {
+            throw ApiError::field(422, 'validation_error', 'before', 'Curseur de journal invalide.');
+        }
+        return $separator . 'paged=1&before=' . rawurlencode($before);
     }
 
     private static function serviceId(string $id): string
@@ -385,7 +403,7 @@ final class JeegoController
         $code = $error->code ?? null;
         $message = $error->message ?? null;
         if (is_string($message) && $message !== '') {
-            if ($status === 400 && in_array($code, ['invalid_request', 'unsupported_action'], true)) {
+            if ($status === 400 && in_array($code, ['invalid_request', 'unsupported_action', 'invalid_log_cursor'], true)) {
                 return new ApiError(422, 'validation_error', $message);
             }
             if ($status === 409 && in_array($code, ['busy', 'operation_conflict', 'operation_unavailable', 'observation_only', 'service_unavailable', 'logs_unavailable'], true)) {
