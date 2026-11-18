@@ -129,9 +129,6 @@ class plan {
 		if ($this->getCss('z-index') == '') {
 			$this->setCss('z-index', 1000);
 		}
-		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
-			self::removeByLinkTypeLinkIdPlanHeaderId($this->getLink_type(), $this->getLink_id(), $this->getPlanHeader_id());
-		}
 	}
 
 	public function preSave() {
@@ -149,6 +146,33 @@ class plan {
 
 	public function save() {
 		DB::save($this);
+	}
+
+	public function saveForLegacyDesign() {
+		if ($this->getId() || !in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'), true)) {
+			$this->save();
+			return;
+		}
+
+		DB::beginTransaction();
+		try {
+			// L'éditeur historique ne sait représenter qu'une occurrence de chaque cible.
+			$matches = DB::Prepare('SELECT ' . DB::buildField(__CLASS__) . ' FROM plan
+				WHERE planHeader_id = :design AND link_type = :type AND link_id = :target LIMIT 2 FOR UPDATE',
+				array('design' => $this->getPlanHeader_id(), 'type' => $this->getLink_type(), 'target' => $this->getLink_id()),
+				DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			if (count($matches) > 1) {
+				throw new Exception(__('Ce design contient plusieurs occurrences de cet élément. Utilisez Core UI pour en ajouter une autre.', __FILE__));
+			}
+			if ($matches) {
+				$matches[0]->remove();
+			}
+			$this->save();
+			DB::commit();
+		} catch (Throwable $e) {
+			DB::rollBack();
+			throw $e;
+		}
 	}
 
 	public function remove() {

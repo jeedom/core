@@ -2588,7 +2588,7 @@ paths:
       tags: [Designs]
       operationId: createDesignItem
       summary: Poser un élément
-      description: Administrateurs ayant le droit d'écriture sur le design.
+      description: Administrateurs ayant le droit d'écriture sur le design. Une même cible peut figurer plusieurs fois, chaque occurrence ayant son propre identifiant, sa position et ses réglages d'affichage.
       requestBody:
         required: true
         content:
