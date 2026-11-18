@@ -85,7 +85,7 @@ final class ReportTemplatesController
         self::apply($template, self::body($request, ['layout'], allowEmpty: true));
         $pdf = self::renderPdf($template, $request);
         $response = $response->withBody(new Stream($pdf));
-        return Attachment::headers($response, self::pdfName($template) . '.pdf', 'application/pdf', inline: true)
+        return Attachment::headers($response, $template->getPdfName() . '.pdf', 'application/pdf', inline: true)
             ->withHeader('Cache-Control', 'private, no-store');
     }
 
@@ -151,7 +151,7 @@ final class ReportTemplatesController
         } catch (\OutOfBoundsException) {
             throw self::reportNotFound();
         }
-        $name = self::pdfName($template) . '-' . \reportTemplateArchive::filename($args['reportId']);
+        $name = $template->getPdfName() . '-' . \reportTemplateArchive::filename($args['reportId']);
         return Attachment::headers($response->withBody(new Stream($handle)), $name, 'application/pdf')
             ->withHeader('Cache-Control', 'private, no-store');
     }
@@ -187,13 +187,6 @@ final class ReportTemplatesController
                 default => $error,
             };
         }
-    }
-
-    private static function pdfName(\reportTemplate $template): string
-    {
-        $name = str_replace(['\\', '/'], '-', $template->getName());
-        $name = trim((string) preg_replace('~[\x00-\x1f\x7f]+~', '-', $name), '. ');
-        return $name !== '' ? $name : 'rapport';
     }
 
     private static function body(Request $request, array $fields, bool $allowEmpty = false): array
