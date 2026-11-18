@@ -7017,7 +7017,7 @@ paths:
         de l'onglet interface, `battery::warning`, `battery::danger`,
         `displayStatsWidget`, `historyCalculPeriod`, `historyCalculTendance`,
         `history::smooth` et `history::defaultShowPeriod`. Les autres clés
-        (réseau, proxy, sécurité, LDAP, SSO, sauvegardes, cache, mises à jour,
+        (réseau, proxy, sécurité, LDAP, sauvegardes, cache, mises à jour,
         notifications…) sont absentes de la réponse, même demandées dans `keys`.
       parameters:
         - name: keys
@@ -11278,12 +11278,6 @@ components:
         'ldap:filter:restrict':
           type: string
           description: 'Filtre permettant d''identifier les utilisateurs limités dans (onglet security).'
-        'sso:allowRemoteUser':
-          type: boolean
-          description: 'Activer l''authentification SSO (onglet security).'
-        'sso:remoteUserHeader':
-          type: string
-          description: 'Champ à utiliser pour déterminer l''entête HTTP contenant l''i (onglet security).'
         'dontProtectTooFastLaunchDependancy':
           type: boolean
           description: 'Autoriser l''installation des dépendances d''un même plugin à (onglet security).'
@@ -11791,12 +11785,6 @@ components:
         'ldap:filter:restrict':
           type: string
           description: 'Filtre permettant d''identifier les utilisateurs limités dans (onglet security).'
-        'sso:allowRemoteUser':
-          type: boolean
-          description: 'Activer l''authentification SSO (onglet security).'
-        'sso:remoteUserHeader':
-          type: string
-          description: 'Champ à utiliser pour déterminer l''entête HTTP contenant l''i (onglet security).'
         'dontProtectTooFastLaunchDependancy':
           type: boolean
           description: 'Autoriser l''installation des dépendances d''un même plugin à (onglet security).'

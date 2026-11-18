@@ -168,8 +168,6 @@ final class ConfigController
             'ldap:filter:admin' => 'string',
             'ldap:filter:user' => 'string',
             'ldap:filter:restrict' => 'string',
-            'sso:allowRemoteUser' => 'boolean',
-            'sso:remoteUserHeader' => 'string',
             'dontProtectTooFastLaunchDependancy' => 'boolean',
             'dontProtectTooFastLaunchDaemon' => 'boolean',
         ],
