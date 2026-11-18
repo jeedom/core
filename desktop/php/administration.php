@@ -770,9 +770,6 @@ $productName = config::byKey('product_name');
 							if ($frpError != '') {
 								$div .= '<div class="alert alert-warning">' . htmlspecialchars($frpError, ENT_QUOTES, 'UTF-8') . '</div>';
 							}
-							if (config::byKey('dns::mode') == 'frp') {
-								$div .= '<span class="label label-info">' . (frp::manager() == 'jeego' ? '{{Géré par Jeego}}' : '{{Géré par le core}}') . '</span> ';
-							}
 							$frpStatus = config::byKey('dns::mode') == 'frp' ? frp::status() : array();
 							$dnsRunning = count($frpStatus) > 0 ? !empty($frpStatus['running']) : network::dns_run();
 							if ($configs['market::allowDNS'] == 1 && $dnsRunning) {

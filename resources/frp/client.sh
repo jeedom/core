@@ -88,7 +88,7 @@ pause_client() {
 }
 
 random_retry_wait() {
-  # Même répartition à la milliseconde que le client Docker géré par Jeego.
+  # Délai aléatoire de 5 secondes à la limite demandée, à la milliseconde près.
   local retry_millis=$((5000 + ((RANDOM << 15) | RANDOM) % ($1*1000 - 4999)))
   printf -v retry_wait '%d.%03d' "$((retry_millis/1000))" "$((retry_millis%1000))"
 }
