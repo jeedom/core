@@ -26,7 +26,6 @@ class reportTemplateRenderer {
     private const MAX_DATA_BYTES = 8 * 1024 * 1024;
     private const MAX_PDF_BYTES = 25 * 1024 * 1024;
     private const MAX_HISTORY_READS = 64;
-    private const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
     private const COMMAND_TAG = '/#([1-9][0-9]{0,9})#/';
 
     /** @var array<int, cmd> */
@@ -51,7 +50,6 @@ class reportTemplateRenderer {
     private function document(reportTemplate $template): array {
         $layout = $template->getLayoutDocument();
         $this->loadCommands($layout->pages);
-        $images = dirname(__DIR__, 2) . '/data/reportTemplates/' . $template->getId() . '/images';
         foreach ($layout->pages as $page) {
             foreach ($page->blocks as $block) {
                 switch ($block->type) {
@@ -62,9 +60,7 @@ class reportTemplateRenderer {
                         $block->data = $this->chart($block->options, $page->id, $block->id);
                         break;
                     case 'image':
-                        $path = $images . '/' . $block->options->imageId;
-                        $size = realpath($path) === $path && is_file($path) ? filesize($path) : false;
-                        $block->data = $size !== false && $size <= self::MAX_IMAGE_BYTES ? $path : null;
+                        $block->data = reportTemplateImage::path((int) $template->getId(), $block->options->imageId);
                         break;
                 }
             }

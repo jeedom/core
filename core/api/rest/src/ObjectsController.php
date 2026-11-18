@@ -284,7 +284,7 @@ final class ObjectsController
      * Valide le fichier `file` d'un envoi multipart (mêmes règles que l'ajax `uploadImage`),
      * le copie dans un fichier temporaire et le passe à $store avec son extension.
      */
-    public static function withUploadedImage(Request $request, callable $store): void
+    public static function withUploadedImage(Request $request, callable $store): mixed
     {
         $files = $request->getUploadedFiles();
         $file = $files['file'] ?? null;
@@ -306,7 +306,7 @@ final class ObjectsController
             } catch (\Exception $e) {
                 throw $e->getCode() === 413 ? new ApiError(413, 'image_too_large', 'Le fichier est trop gros (maximum 5 Mo).') : $invalid();
             }
-            $store($temporary, $extension);
+            return $store($temporary, $extension);
         } finally {
             @unlink($temporary);
         }

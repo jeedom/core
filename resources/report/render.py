@@ -10,7 +10,7 @@ from math import isfinite
 from pathlib import Path
 
 try:
-    from PIL import Image
+    from PIL import Image, ImageOps
     from reportlab.lib.colors import HexColor
     from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
     from reportlab.lib.pagesizes import A4
@@ -74,8 +74,9 @@ def single_line(pdf, label, x, y, width, size=8, color=MUTED, font=FONT):
 def draw_image(pdf, filename, x, top, width, height):
     if filename:
         try:
-            with Image.open(filename, formats=("PNG", "JPEG")) as image:
-                if image.width * image.height <= MAX_IMAGE_PIXELS:
+            with Image.open(filename, formats=("PNG", "JPEG", "WEBP", "GIF")) as source:
+                if source.width * source.height <= MAX_IMAGE_PIXELS:
+                    image = ImageOps.exif_transpose(source)
                     ratio = min(width / image.width, height / image.height)
                     drawn_width, drawn_height = image.width * ratio, image.height * ratio
                     image.thumbnail((int(drawn_width * 3) or 1, int(drawn_height * 3) or 1))

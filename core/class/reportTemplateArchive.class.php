@@ -40,7 +40,7 @@ class reportTemplateArchive {
 
     /** @param resource $pdf */
     public static function save(int $templateId, $pdf): array {
-        return self::withTemplateLock($templateId, static function () use ($templateId, $pdf): array {
+        return reportTemplate::withLock($templateId, static function () use ($templateId, $pdf): array {
             $directory = self::directory($templateId);
             if (!self::exists($directory) && !mkdir($directory, 0750, true)) {
                 throw new RuntimeException('Impossible de créer le dossier des rapports.');
@@ -94,14 +94,14 @@ class reportTemplateArchive {
     }
 
     public static function removeTemplate(reportTemplate $template, int $templateId): void {
-        $directory = self::directory($templateId);
+        $directory = reportTemplate::dataDirectory($templateId);
         $discarded = null;
         try {
-            self::withTemplateLock($templateId, static function () use ($template, $directory, &$discarded): void {
+            reportTemplate::withLock($templateId, static function () use ($template, $directory, &$discarded): void {
                 if (self::exists($directory)) {
                     $target = $directory . '-deleted-' . bin2hex(random_bytes(8));
                     if (!rename($directory, $target)) {
-                        throw new RuntimeException('Impossible de retirer les PDF du modèle.');
+                        throw new RuntimeException('Impossible de retirer les fichiers du modèle.');
                     }
                     $discarded = $target;
                 }
@@ -109,25 +109,31 @@ class reportTemplateArchive {
             });
         } catch (Throwable $error) {
             if ($discarded !== null && !rename($discarded, $directory)) {
-                log::add('api', 'error', 'Impossible de remettre en place les PDF du modèle ' . $templateId);
+                log::add('api', 'error', 'Impossible de remettre en place les fichiers du modèle ' . $templateId);
             }
             throw $error;
         }
 
         if ($discarded !== null) {
-            foreach (new FilesystemIterator($discarded, FilesystemIterator::SKIP_DOTS) as $file) {
-                if ($file->isLink() || $file->isFile()) {
+            $files = new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator($discarded, FilesystemIterator::SKIP_DOTS),
+                RecursiveIteratorIterator::CHILD_FIRST
+            );
+            foreach ($files as $file) {
+                if ($file->isLink() || !$file->isDir()) {
                     @unlink($file->getPathname());
+                } else {
+                    @rmdir($file->getPathname());
                 }
             }
             if (!@rmdir($discarded)) {
-                log::add('api', 'warning', 'Nettoyage incomplet des PDF du modèle ' . $templateId);
+                log::add('api', 'warning', 'Nettoyage incomplet des fichiers du modèle ' . $templateId);
             }
         }
     }
 
     private static function directory(int $templateId): string {
-        return dirname(__DIR__, 2) . '/data/reportTemplates/' . $templateId . '/reports';
+        return reportTemplate::dataDirectory($templateId) . '/reports';
     }
 
     private static function exists(string $directory): bool {
@@ -156,21 +162,4 @@ class reportTemplateArchive {
         return ['id' => $id, 'created_at' => $date->format('Y-m-d\TH:i:s\Z'), 'size' => $size];
     }
 
-    /** Verrou commun à la publication d'un PDF et à la suppression du modèle. */
-    private static function withTemplateLock(int $templateId, callable $operation) {
-        DB::beginTransaction();
-        try {
-            if (!DB::Prepare('SELECT id FROM `reportTemplate` WHERE id = :id FOR UPDATE', ['id' => $templateId])) {
-                throw new OutOfBoundsException('Modèle de rapport introuvable.');
-            }
-            $result = $operation();
-            DB::commit();
-            return $result;
-        } catch (Throwable $error) {
-            if (DB::getConnection()->inTransaction()) {
-                DB::rollBack();
-            }
-            throw $error;
-        }
-    }
 }

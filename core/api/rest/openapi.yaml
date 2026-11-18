@@ -2138,6 +2138,79 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
+  /reportTemplates/{id}/images:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer, minimum: 1, maximum: 2147483647 }
+    post:
+      tags: [Rapports]
+      operationId: uploadReportTemplateImage
+      summary: Importer une image pour un modèle de rapport
+      description: Administrateurs uniquement. Formats PNG, JPEG, WebP et GIF (5 Mo et 16 mégapixels au maximum).
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        '201':
+          description: Identifiant de l'image à utiliser dans un bloc Image.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [imageId]
+                properties:
+                  imageId: { type: string, pattern: '^[a-f0-9]{32}$' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
+        '413':
+          description: Fichier trop volumineux (`image_too_large`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /reportTemplates/{id}/images/{imageId}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer, minimum: 1, maximum: 2147483647 }
+      - name: imageId
+        in: path
+        required: true
+        schema: { type: string, pattern: '^[a-f0-9]{32}$' }
+    get:
+      tags: [Rapports]
+      operationId: getReportTemplateImage
+      summary: Afficher une image du modèle
+      description: Administrateurs uniquement. Sert l'image dans son format d'origine.
+      responses:
+        '200':
+          description: Image du rapport.
+          content:
+            image/png:
+              schema: { type: string, format: binary }
+            image/jpeg:
+              schema: { type: string, format: binary }
+            image/webp:
+              schema: { type: string, format: binary }
+            image/gif:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: Modèle ou image introuvable (`report_template_not_found` ou `report_image_not_found`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
   /reportTemplates/{id}/reports:
     parameters:
       - name: id

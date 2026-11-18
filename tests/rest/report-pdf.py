@@ -20,6 +20,11 @@ with tempfile.TemporaryDirectory() as workspace:
     root = Path(workspace)
     picture = root / "image"
     Image.new("RGB", (100, 40), (109, 153, 205)).save(picture, format="PNG")
+    other_images = []
+    for index, format in enumerate(("JPEG", "WEBP", "GIF")):
+        path = root / format
+        Image.new("RGB", (100, 40), (109, 153, 205 - index * 30)).save(path, format=format)
+        other_images.append(block(format, "image", 165 + 35 * index, 30, {}, str(path)))
     document = {
         "name": "Bilan énergie",
         "pages": [
@@ -34,6 +39,7 @@ with tempfile.TemporaryDirectory() as workspace:
             {"id": "details", "blocks": [
                 block("perdu", "text", 30, 23, {"text": "Commande supprimée\nIndisponible"}),
                 block("vide", "chart", 70, 80, {}, {"series": []}),
+                *other_images,
             ]},
         ],
         "histories": {"weather": {"points": [[0, 0], [60, 2], [120, None], [420, 9], [480, 7]]}},
@@ -60,7 +66,7 @@ with tempfile.TemporaryDirectory() as workspace:
         assert label in text, (label, text)
     assert re.search(r"^0[ \t]*W$", text, re.MULTILINE), text
     images = subprocess.check_output(["pdfimages", "-list", str(pdf)], text=True).splitlines()[2:]
-    assert len(images) == 1, images
+    assert len(images) == 4, images
     preview = root / "chart"
     subprocess.run(["pdftoppm", "-f", "1", "-singlefile", "-r", "144", "-png", str(pdf), str(preview)], check=True)
     with Image.open(preview.with_suffix(".png")) as page:

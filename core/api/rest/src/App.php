@@ -127,6 +127,8 @@ final class App
             $api->patch('/reportTemplates/{id}', $reportTemplates->update(...));
             $api->delete('/reportTemplates/{id}', $reportTemplates->delete(...));
             $api->post('/reportTemplates/{id}/render', $reportTemplates->render(...));
+            $api->post('/reportTemplates/{id}/images', $reportTemplates->uploadImage(...));
+            $api->get('/reportTemplates/{id}/images/{imageId}', $reportTemplates->image(...));
             $api->get('/reportTemplates/{id}/reports', $reportTemplates->listReports(...));
             $api->post('/reportTemplates/{id}/reports', $reportTemplates->createReport(...));
             $api->get('/reportTemplates/{id}/reports/{reportId}', $reportTemplates->downloadReport(...));
