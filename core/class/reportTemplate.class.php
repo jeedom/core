@@ -50,6 +50,12 @@ class reportTemplate {
         $this->name = trim($_name);
     }
 
+    public function getPdfName(): string {
+        $name = str_replace(['\\', '/'], '-', $this->getName());
+        $name = trim((string) preg_replace('~[\x00-\x1f\x7f]+~', '-', $name), '. ');
+        return $name !== '' ? $name : 'rapport';
+    }
+
     public function setLayout(mixed $_layout): void {
         $layout = self::checkObject($_layout, ['schemaVersion', 'pages'], 'layout');
         if (($layout->schemaVersion ?? null) !== 1) {

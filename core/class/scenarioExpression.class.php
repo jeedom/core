@@ -1408,6 +1408,12 @@ class scenarioExpression {
 				}
 				return;
 			}
+			if ($this->getType() === 'action' && $this->getExpression() === 'generateReport') {
+				if ($scenario !== null && $scenario->getId() > 0) {
+					$this->executeReportTemplate($scenario);
+				}
+				return;
+			}
 			$options = $this->getOptions();
 			if (isset($options['enable'])) {
 				unset($options['enable']);
@@ -1959,6 +1965,59 @@ class scenarioExpression {
 			}
 		} catch (\Throwable $e) {
 			self::setLog($scenario, $message . log::exception($e));
+		}
+	}
+
+	private function executeReportTemplate(scenario &$scenario): void {
+		$templateId = filter_var($this->getOptions('report_id'), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+		$template = $templateId !== false ? reportTemplate::byId($templateId) : null;
+		if ($template === null) {
+			throw new RuntimeException(__('Le modèle de rapport est manquant ou introuvable.', __FILE__));
+		}
+		$reference = $this->getOptions('cmd');
+		$command = is_string($reference) && preg_match('/^#([1-9][0-9]*)#$/D', $reference, $match) ? cmd::byId($match[1]) : null;
+		if (!$command instanceof cmd || $command->getType() !== 'action' || $command->getSubType() !== 'message') {
+			throw new RuntimeException(__('La commande d’envoi est introuvable ou n’est pas une commande message.', __FILE__));
+		}
+
+		$name = $template->getName();
+		$date = date('Y-m-d H:i:s');
+		$title = $this->getOptions('title');
+		$message = $this->getOptions('message');
+		$title = is_string($title) ? trim(self::setTags($title, $scenario)) : '';
+		$message = is_string($message) ? trim(self::setTags($message, $scenario)) : '';
+		$title = $title !== '' ? $title : sprintf(__('Rapport %s du %s', __FILE__), $name, $date);
+		$message = $message !== '' ? $message : sprintf(__('Veuillez trouver ci-joint le rapport %s généré le %s.', __FILE__), $name, $date);
+
+		$directory = sys_get_temp_dir() . '/jeedom-report-' . bin2hex(random_bytes(12));
+		if (!mkdir($directory, 0700)) {
+			throw new RuntimeException(__('Impossible de préparer la pièce jointe du rapport.', __FILE__));
+		}
+		// execCmd() interprète les références #id# dans ses options, y compris les chemins.
+		$filename = mb_strcut(str_replace('#', '-', $template->getPdfName()), 0, 200, 'UTF-8');
+		$path = $directory . '/' . $filename . '-' . date('Y-m-d_H-i-s') . '.pdf';
+		$pdf = null;
+		try {
+			self::setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $name);
+			$pdf = reportTemplateRenderer::renderForScenario($template);
+			if (in_array($this->getOptions('archive'), [true, 1, '1'], true)) {
+				reportTemplateArchive::save($templateId, $pdf);
+				rewind($pdf);
+				self::setLog($scenario, __('Rapport archivé', __FILE__) . ' ' . $name);
+			}
+			if (file_put_contents($path, $pdf) !== fstat($pdf)['size']) {
+				throw new RuntimeException(__('Impossible d’écrire la pièce jointe du rapport.', __FILE__));
+			}
+			self::setLog($scenario, __('Envoi du rapport généré sur', __FILE__) . ' ' . $command->getHumanName());
+			$command->execCmd(['title' => $title, 'message' => $message, 'files' => [$path]]);
+		} finally {
+			if (is_resource($pdf)) {
+				fclose($pdf);
+			}
+			if (is_file($path)) {
+				unlink($path);
+			}
+			rmdir($directory);
 		}
 	}
 

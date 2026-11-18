@@ -35,11 +35,23 @@ class reportTemplateRenderer {
     private array $histories = [];
     private int $resolvedValueBytes = 0;
 
-    private function __construct(private user $user, private DateTimeImmutable $now) {
+    private function __construct(private ?user $user, private DateTimeImmutable $now) {
     }
 
     /** @return resource Flux PDF positionné au début. Son appelant en prend la responsabilité. */
     public static function render(reportTemplate $template, user $user) {
+        return self::renderPdf($template, $user);
+    }
+
+    /**
+     * @internal Rendu d'un modèle enregistré par le moteur de scénarios, y compris sans session.
+     * @return resource Flux PDF à fermer par l'appelant.
+     */
+    public static function renderForScenario(reportTemplate $template) {
+        return self::renderPdf($template, null);
+    }
+
+    private static function renderPdf(reportTemplate $template, ?user $user) {
         if (!function_exists('proc_open') || !is_executable('/usr/bin/python3') || !is_executable('/usr/bin/timeout')) {
             throw new RuntimeException('Moteur PDF indisponible.', self::UNAVAILABLE);
         }
@@ -96,7 +108,7 @@ class reportTemplateRenderer {
                 continue;
             }
             $command->setEqLogic($eqLogic);
-            if ($command->hasRight($this->user)) {
+            if ($this->user === null || $command->hasRight($this->user)) {
                 $this->commands[$command->getId()] = $command;
             }
         }
