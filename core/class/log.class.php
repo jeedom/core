@@ -308,15 +308,16 @@ class log extends AbstractLogger {
 	/**
 	 * Delete log file
 	 */
-	public static function remove(string $_log) {
+	public static function remove(string $_log, bool $_clearProtected = true) {
 		if (!self::canRemoveLog($_log)) {
-			self::clear($_log);
+			if ($_clearProtected) {
+				self::clear($_log);
+			}
 			return;
 		}
 
 		if (self::authorizeClearLog($_log)) {
-			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' cat /dev/null > ' . $path . ';rm ' . $path . ' 2>&1 > /dev/null');
+			com_shell::execute('rm -f -- ' . escapeshellarg(self::getPathToLog($_log)));
 			return true;
 		}
 	}

@@ -1644,8 +1644,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
-      description: Applique log::remove() à chaque journal autorisé. Les fichiers protégés par le core (http.error,
-        démons actifs…) sont vidés et conservés ; la réponse distingue fichiers retirés et conservés.
+      description: Supprime les journaux que le Core autorise à retirer. Les journaux protégés (http.error,
+        journaux de démons…) sont conservés avec leur contenu et listés dans retained.
   /logs/{name}:
     parameters:
     - name: name
@@ -1724,8 +1724,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-      description: Applique log::remove(). removed=false signifie que le fichier existe encore, notamment lorsqu’il
-        est protégé par le core.
+      description: Supprime le fichier journal. Pour un journal protégé par le Core, renvoie removed=false et conserve
+        son contenu.
   /logs/{name}/excerpt:
     parameters:
     - name: name

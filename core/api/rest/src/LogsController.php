@@ -114,11 +114,8 @@ final class LogsController
     public function delete(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        $path = self::find($args['name']);
-        \log::remove($args['name']);
-        clearstatcache(true, $path);
-        // Certains journaux (http.error, démons actifs) sont vidés et conservés par le core.
-        return Json::respond($response, ['removed' => !is_file($path)]);
+        self::find($args['name']);
+        return Json::respond($response, ['removed' => self::remove($args['name'])]);
     }
 
     public function deleteAll(Request $request, Response $response): Response
@@ -127,16 +124,23 @@ final class LogsController
         $removed = [];
         $retained = [];
         foreach (self::names() as $name) {
-            $path = \log::getPathToLog($name);
-            \log::remove($name);
-            clearstatcache(true, $path);
-            if (is_file($path)) {
-                $retained[] = $name;
-            } else {
+            if (self::remove($name)) {
                 $removed[] = $name;
+            } else {
+                $retained[] = $name;
             }
         }
         return Json::respond($response, ['removed' => $removed, 'retained' => $retained]);
+    }
+
+    private static function remove(string $name): bool
+    {
+        if (\log::remove($name, false) === true) {
+            return true;
+        }
+        $path = \log::getPathToLog($name);
+        clearstatcache(true, $path);
+        return !is_file($path);
     }
 
     private static function validName(string $name): bool

@@ -17,6 +17,23 @@ final class log
     {
         return self::$directory . '/' . $name;
     }
+
+    public static function liste(): array
+    {
+        return array_values(array_diff(scandir(self::$directory), ['.', '..']));
+    }
+
+    public static function remove(string $name, bool $clearProtected = true): ?bool
+    {
+        $path = self::getPathToLog($name);
+        if ($name === 'http.error') {
+            if ($clearProtected) {
+                file_put_contents($path, '');
+            }
+            return null;
+        }
+        return unlink($path);
+    }
 }
 
 function expectSame(mixed $expected, mixed $actual, string $message): void
@@ -55,6 +72,7 @@ function expectError(int $status, string $code, callable $read): void
 log::$directory = sys_get_temp_dir() . '/jeedom-rest-log-' . bin2hex(random_bytes(8));
 mkdir(log::$directory);
 $path = log::getPathToLog('test');
+$protectedPath = log::getPathToLog('http.error');
 
 try {
     file_put_contents($path, "Un\nDeux\n  Trois\r\n\nQuatre");
@@ -129,8 +147,34 @@ try {
     } finally {
         unlink($scenarioPath);
     }
+
+    file_put_contents($protectedPath, "Journal Apache\n");
+    $request = (new ServerRequestFactory())->createServerRequest('DELETE', '/api/v1/logs')
+        ->withAttribute('user', new class {
+            public function getProfils(): string { return 'admin'; }
+        });
+    $controller = new LogsController();
+    $delete = fn (string $name) => json_decode((string) $controller->delete(
+        $request, $responseFactory->createResponse(), ['name' => $name]
+    )->getBody(), true, 512, JSON_THROW_ON_ERROR);
+    expectSame(['removed' => false], $delete('http.error'), 'Le journal protégé ne peut pas être supprimé');
+    expectSame("Journal Apache\n", file_get_contents($protectedPath), 'La suppression ne vide pas le journal protégé');
+    expectSame(['removed' => true], $delete('test'), 'Le journal ordinaire est supprimé');
+    expectSame(false, file_exists($path), 'Le fichier ordinaire est retiré');
+    expectError(404, 'log_not_found', fn () => excerpt());
+
+    file_put_contents($path, "Autre journal\n");
+    $response = $controller->deleteAll($request, $responseFactory->createResponse());
+    $result = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+    expectSame(['removed' => ['test'], 'retained' => ['http.error']], $result, 'Suppression groupée des journaux autorisés');
+    expectSame(false, file_exists($path), 'La suppression groupée retire le fichier ordinaire');
+    expectSame("Journal Apache\n", file_get_contents($protectedPath), 'La suppression groupée conserve le contenu protégé');
 } finally {
-    unlink($path);
+    foreach ([$path, $protectedPath] as $file) {
+        if (is_file($file)) {
+            unlink($file);
+        }
+    }
     rmdir(log::$directory);
 }
 
