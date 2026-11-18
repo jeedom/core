@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Jeedom\Api\Rest;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
 /** Lecture bornée d'un journal ouvert, avec positions en octets stables lors des ajouts. */
 final class LogExcerptReader
 {
@@ -13,6 +16,41 @@ final class LogExcerptReader
 
     /** @param resource $file */
     public function __construct(private $file) {}
+
+    public static function respond(Request $request, Response $response, string $path, bool $allowMissing = false): Response
+    {
+        $query = $request->getQueryParams();
+        $limit = $query['limit'] ?? '300';
+        if ((!is_string($limit) && !is_int($limit)) || !ctype_digit((string) $limit) || (int) $limit < 1 || (int) $limit > 1000) {
+            throw ApiError::field(422, 'validation_error', 'limit', 'Un entier de 1 à 1000 est attendu.');
+        }
+        if (array_key_exists('before', $query) && array_key_exists('after', $query)) {
+            throw ApiError::field(422, 'validation_error', 'before', 'Utiliser un seul curseur à la fois.');
+        }
+        $direction = array_key_exists('before', $query) ? 'before' : 'after';
+        $cursor = $query[$direction] ?? null;
+        if ($cursor !== null && (!is_string($cursor) || preg_match('/\A(?:0|[1-9][0-9]{0,18})\.[a-f0-9]{64}\z/D', $cursor) !== 1)) {
+            throw ApiError::field(422, 'validation_error', $direction, 'Curseur de journal invalide.');
+        }
+        $response = $response->withHeader('Cache-Control', 'private, no-store');
+        $file = @fopen($path, 'rb');
+        if ($file !== false) {
+            try {
+                return Json::respond($response, (new self($file))->read((int) $limit, $direction, $cursor));
+            } finally {
+                fclose($file);
+            }
+        }
+        if ($allowMissing && !is_file($path)) {
+            // Le journal d'un scénario peut n'exister qu'après son premier lancement.
+            $emptyCursor = '0.' . str_repeat('0', 64);
+            return Json::respond($response, [
+                'lines' => [], 'fragment' => null, 'previousCursor' => null, 'nextCursor' => $emptyCursor,
+                'hasMore' => false, 'reset' => $cursor !== null && $cursor !== $emptyCursor,
+            ]);
+        }
+        throw new ApiError(403, 'log_not_readable', 'Le journal ne peut pas être lu.');
+    }
 
     public function read(int $limit, string $direction, ?string $cursor): array
     {

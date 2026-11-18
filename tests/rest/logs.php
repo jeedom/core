@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Jeedom\Api\Rest\ApiError;
+use Jeedom\Api\Rest\LogExcerptReader;
 use Jeedom\Api\Rest\LogsController;
 use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
@@ -111,6 +112,23 @@ try {
     expectError(422, 'validation_error', fn () => excerpt(['before' => $delta['nextCursor'], 'after' => $delta['nextCursor']]));
     expectError(404, 'log_not_found', fn () => excerpt([], 'inconnu'));
     expectError(403, 'forbidden', fn () => excerpt([], 'test', 'user'));
+
+    $scenarioPath = log::getPathToLog('scenario');
+    $request = (new ServerRequestFactory())->createServerRequest('GET', '/api/v1/scenarios/1/log/excerpt');
+    $responseFactory = new ResponseFactory();
+    $response = LogExcerptReader::respond($request, $responseFactory->createResponse(), $scenarioPath, allowMissing: true);
+    $empty = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+    expectSame([], $empty['lines'], 'Journal de scénario avant le premier lancement');
+    file_put_contents($scenarioPath, "Démarrage\n");
+    try {
+        $response = LogExcerptReader::respond($request->withQueryParams(['after' => $empty['nextCursor']]),
+            $responseFactory->createResponse(), $scenarioPath, allowMissing: true);
+        $started = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        expectSame(['Démarrage'], $started['lines'], 'Suivi du premier lancement');
+        expectSame(true, $started['reset'], 'Le journal du scénario a été créé');
+    } finally {
+        unlink($scenarioPath);
+    }
 } finally {
     unlink($path);
     rmdir(log::$directory);
