@@ -6831,6 +6831,47 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/ScenarioNotFound' }
 
+  /scenarios/{id}/log/excerpt:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    get:
+      tags: [Scénarios]
+      operationId: getScenarioLogExcerpt
+      summary: Lire le journal d’un scénario à partir de la fin ou d’un curseur (administrateur)
+      description: Utilise le même format que GET /logs/{name}/excerpt. Un scénario dont le journal n’existe pas encore renvoie un extrait vide.
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 1000, default: 300 }
+        - name: before
+          in: query
+          description: Curseur previousCursor pour remonter dans le journal.
+          schema: { type: string, maxLength: 84 }
+        - name: after
+          in: query
+          description: Curseur nextCursor pour lire les ajouts. Incompatible avec before.
+          schema: { type: string, maxLength: 84 }
+      responses:
+        '200':
+          description: Extrait du journal du scénario.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LogExcerpt' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+        '409':
+          description: Le journal a changé pendant la lecture.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '413':
+          description: Une ligne demandée dépasse 64 Kio.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /scenarios/{id}/usages:
     parameters:
       - $ref: '#/components/parameters/ScenarioId'

@@ -94,6 +94,7 @@ final class App
             $api->post('/scenarios/{id}/start', $scenarios->start(...));
             $api->post('/scenarios/{id}/stop', $scenarios->stop(...));
             $api->get('/scenarios/{id}/log', $scenarios->log(...));
+            $api->get('/scenarios/{id}/log/excerpt', $scenarios->logExcerpt(...));
             $api->delete('/scenarios/{id}/log', $scenarios->emptyLog(...));
             $api->get('/scenarios/{id}/usages', $scenarios->usages(...));
 

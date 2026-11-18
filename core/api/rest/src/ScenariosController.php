@@ -267,6 +267,13 @@ final class ScenariosController
         ]);
     }
 
+    public function logExcerpt(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $scenario = self::find($args['id'], $request->getAttribute('user'), 'r');
+        return LogExcerptReader::respond($request, $response, self::logFile($scenario), allowMissing: true);
+    }
+
     public function emptyLog(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
