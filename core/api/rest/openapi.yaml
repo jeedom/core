@@ -113,6 +113,8 @@ tags:
     description: Notes libres de l'écran Notes, administrateurs uniquement.
   - name: Designs
     description: Plans à fond libre (designs) où l'on pose équipements, commandes, scénarios, textes et liens. Le plan 3D n'est pas repris.
+  - name: Rapports
+    description: Modèles de rapports A4, administrateurs uniquement.
   - name: Crons
     description: Tâches planifiées du moteur cron, administrateurs uniquement.
   - name: Journaux
@@ -1978,6 +1980,108 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/VariableNotFound'
+  /reportTemplates:
+    get:
+      tags: [Rapports]
+      operationId: listReportTemplates
+      summary: Lister les modèles de rapports
+      description: Administrateurs uniquement. Retourne les métadonnées triées par nom, puis par identifiant.
+      parameters:
+        - name: q
+          in: query
+          description: Mots à chercher dans le nom du modèle.
+          schema: { type: string, maxLength: 200 }
+        - $ref: '#/components/parameters/ListLimit'
+        - $ref: '#/components/parameters/ListOffset'
+      responses:
+        '200':
+          description: Liste des modèles.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReportTemplateList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    post:
+      tags: [Rapports]
+      operationId: createReportTemplate
+      summary: Créer un modèle de rapport
+      description: Administrateurs uniquement. Si la composition est omise, le modèle commence avec une page A4 vide.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReportTemplateCreate' }
+      responses:
+        '201':
+          description: Modèle créé avec la révision 1.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReportTemplate' }
+        '400': { $ref: '#/components/responses/ReportTemplateInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '413': { $ref: '#/components/responses/ReportTemplateRequestTooLarge' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /reportTemplates/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer, minimum: 1, maximum: 2147483647 }
+    get:
+      tags: [Rapports]
+      operationId: getReportTemplate
+      summary: Lire un modèle avec sa composition
+      description: Administrateurs uniquement.
+      responses:
+        '200':
+          description: Modèle et composition.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReportTemplate' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
+    patch:
+      tags: [Rapports]
+      operationId: updateReportTemplate
+      summary: Enregistrer un modèle de rapport
+      description: |
+        Administrateurs uniquement. Une composition fournie remplace toutes les pages.
+        La sauvegarde incrémente la révision. Si la révision fournie ne correspond plus à celle enregistrée, retourne 409.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReportTemplateUpdate' }
+      responses:
+        '200':
+          description: Modèle enregistré avec sa nouvelle révision.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReportTemplate' }
+        '400': { $ref: '#/components/responses/ReportTemplateInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
+        '409':
+          description: Révision périmée (`report_template_revision_conflict`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '413': { $ref: '#/components/responses/ReportTemplateRequestTooLarge' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Rapports]
+      operationId: deleteReportTemplate
+      summary: Supprimer un modèle de rapport
+      description: Administrateurs uniquement.
+      responses:
+        '204': { description: Modèle supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ReportTemplateNotFound' }
   /notes:
     get:
       tags:
@@ -7958,6 +8062,155 @@ components:
         total:
           type: integer
           minimum: 0
+    ReportTemplateSummary:
+      type: object
+      required: [id, name, revision, created_at, updated_at]
+      properties:
+        id: { type: integer, minimum: 1, maximum: 2147483647 }
+        name: { type: string, minLength: 1, maxLength: 127 }
+        revision: { type: integer, minimum: 1, maximum: 4294967295 }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ReportTemplateList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/ReportTemplateSummary' }
+        total: { type: integer, minimum: 0 }
+    ReportTemplate:
+      allOf:
+        - $ref: '#/components/schemas/ReportTemplateSummary'
+        - type: object
+          required: [layout]
+          properties:
+            layout: { $ref: '#/components/schemas/ReportTemplateLayout' }
+    ReportTemplateCreate:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        layout: { $ref: '#/components/schemas/ReportTemplateLayout' }
+    ReportTemplateUpdate:
+      type: object
+      additionalProperties: false
+      required: [revision]
+      minProperties: 2
+      properties:
+        revision: { type: integer, minimum: 1, maximum: 4294967295 }
+        name: { type: string, minLength: 1, maxLength: 127 }
+        layout: { $ref: '#/components/schemas/ReportTemplateLayout' }
+    ReportTemplateLayout:
+      type: object
+      additionalProperties: false
+      required: [schemaVersion, pages]
+      description: Pages A4 portrait dans l'ordre d'impression. Les identifiants de page sont uniques dans le modèle.
+      properties:
+        schemaVersion: { type: integer, const: 1 }
+        pages:
+          type: array
+          minItems: 1
+          maxItems: 50
+          items:
+            type: object
+            additionalProperties: false
+            required: [id, blocks]
+            properties:
+              id: { type: string, pattern: '^[A-Za-z0-9_-]{1,64}$' }
+              name: { type: string, maxLength: 127 }
+              blocks:
+                type: array
+                maxItems: 100
+                items: { $ref: '#/components/schemas/ReportTemplateBlock' }
+    ReportTemplateBlock:
+      type: object
+      additionalProperties: false
+      required: [id, type, x, y, width, height, options]
+      description: |
+        Coordonnées et dimensions en millimètres, depuis le coin supérieur gauche.
+        Le bloc doit tenir dans la page de 210 × 297 mm. Les blocs sont enregistrés
+        dans leur ordre d'affichage et leurs identifiants sont uniques dans le modèle.
+      properties:
+        id: { type: string, pattern: '^[A-Za-z0-9_-]{1,64}$' }
+        type: { type: string, enum: [text, image, value, chart] }
+        x: { type: number, minimum: 0, maximum: 210 }
+        y: { type: number, minimum: 0, maximum: 297 }
+        width: { type: number, minimum: 0.1, maximum: 210 }
+        height: { type: number, minimum: 0.1, maximum: 297 }
+        options: { type: object, additionalProperties: true }
+      oneOf:
+        - required: [type, options]
+          properties:
+            type: { const: text }
+            options:
+              type: object
+              additionalProperties: false
+              required: [text]
+              properties:
+                text: { type: string, maxLength: 20000 }
+                fontSize: { type: number, minimum: 1, maximum: 200, description: Taille en points. }
+                color: { type: string, pattern: '^#[0-9a-fA-F]{6}$' }
+                align: { type: string, enum: [left, center, right] }
+        - required: [type, options]
+          properties:
+            type: { const: image }
+            options:
+              type: object
+              additionalProperties: false
+              required: [imageId]
+              properties:
+                imageId: { type: string, pattern: '^[a-f0-9]{32}$' }
+        - required: [type, options]
+          properties:
+            type: { const: value }
+            options:
+              type: object
+              additionalProperties: false
+              required: [cmdId]
+              properties:
+                cmdId: { type: integer, minimum: 1, maximum: 2147483647 }
+                label: { type: string, maxLength: 127 }
+                showUnit: { type: boolean }
+        - required: [type, options]
+          properties:
+            type: { const: chart }
+            options:
+              type: object
+              additionalProperties: false
+              required: [series, period]
+              properties:
+                title: { type: string, maxLength: 127 }
+                series:
+                  type: array
+                  minItems: 1
+                  maxItems: 10
+                  items:
+                    type: object
+                    additionalProperties: false
+                    required: [cmdId]
+                    properties:
+                      cmdId: { type: integer, minimum: 1, maximum: 2147483647 }
+                      label: { type: string, maxLength: 127 }
+                      color: { type: string, pattern: '^#[0-9a-fA-F]{6}$' }
+                period: { $ref: '#/components/schemas/ReportTemplateChartPeriod' }
+    ReportTemplateChartPeriod:
+      oneOf:
+        - type: object
+          additionalProperties: false
+          required: [type, preset]
+          properties:
+            type: { const: relative }
+            preset: { type: string, enum: [today, yesterday, last7Days, last30Days, thisMonth, previousMonth] }
+        - type: object
+          additionalProperties: false
+          required: [type, start, end]
+          description: Dates civiles dans le fuseau de Jeedom, début inclus et fin exclue. La fin doit suivre le début.
+          properties:
+            type: { const: fixed }
+            start: { type: string, format: date }
+            end: { type: string, format: date }
     Note:
       type: object
       required: [id, name, text]
@@ -11688,6 +11941,21 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     VariableNotFound:
       description: Variable inconnue (variable_not_found).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ReportTemplateNotFound:
+      description: Modèle de rapport inconnu (`report_template_not_found`).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ReportTemplateInvalidJson:
+      description: Le corps de la requête doit être un objet JSON valide (`invalid_json`).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ReportTemplateRequestTooLarge:
+      description: Le corps de la requête dépasse 1 Mio (`request_too_large`).
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
