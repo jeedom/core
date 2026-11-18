@@ -84,6 +84,7 @@ final class ConfigController
             'maxLineLog' => 'number',
             'maxSizeLog' => 'number',
             'log::level' => 'number',
+            LogLevels::KEY => 'logLevels',
             'alert::addMessageOnTimeout' => 'boolean',
             'alert::addMessageOnBatterywarning' => 'boolean',
             'alert::addMessageOnBatterydanger' => 'boolean',
@@ -262,6 +263,10 @@ final class ConfigController
         }
         $values = [];
         foreach ($body as $key => $value) {
+            if ($key === LogLevels::KEY) {
+                $values += LogLevels::changes($value);
+                continue;
+            }
             $values[self::storedKey((string) $key)] = self::validate((string) $key, $value);
         }
         $cloudPasswordChanged = array_key_exists('market::cloud::backup::password', $values)
@@ -313,11 +318,15 @@ final class ConfigController
     private static function read(array $keys, bool $admin): array
     {
         $types = self::exposedKeys();
-        $stored = \config::byKeys(array_map(self::storedKey(...), $keys));
+        $stored = \config::byKeys(array_map(self::storedKey(...), array_diff($keys, [LogLevels::KEY])));
         $result = [];
         foreach ($keys as $key) {
             $storedKey = self::storedKey($key);
             if (!$admin && !self::userReadable($key, $storedKey)) {
+                continue;
+            }
+            if ($key === LogLevels::KEY) {
+                $result[$key] = LogLevels::read();
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');

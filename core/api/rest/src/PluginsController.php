@@ -228,8 +228,7 @@ final class PluginsController
         }
         if (($body['guidedActivation'] ?? false) && ($body['isEnable'] ?? false) !== true) self::invalid('guidedActivation');
         if (array_key_exists('heartbeatDelay', $body) && (!is_int($body['heartbeatDelay']) || $body['heartbeatDelay'] < 0 || $body['heartbeatDelay'] > 2147483647)) self::invalid('heartbeatDelay');
-        if (isset($body['logLevel']) && !in_array($body['logLevel'], ['default', 'debug', 'info', 'warning', 'error', 'none'], true)) self::invalid('logLevel');
-        if (array_key_exists('logLevel', $body) && !is_string($body['logLevel'])) self::invalid('logLevel');
+        if (array_key_exists('logLevel', $body) && (!is_string($body['logLevel']) || !isset(LogLevels::VALUES[$body['logLevel']]))) self::invalid('logLevel');
         if (array_key_exists('functionality', $body)) {
             if (!is_array($body['functionality'])) self::invalid('functionality');
             foreach ($body['functionality'] as $key => $value) {
@@ -251,9 +250,7 @@ final class PluginsController
             if (array_key_exists('heartbeatDelay', $body)) \config::save('heartbeat::delay::' . $id, $body['heartbeatDelay']);
             if (array_key_exists('heartbeatRestartDaemon', $body)) \config::save('heartbeat::restartDeamon::' . $id, (int) $body['heartbeatRestartDaemon']);
             if (isset($body['logLevel'])) {
-                $levels = array_fill_keys(['100', '200', '300', '400', '1000', 'default'], 0);
-                $levels[self::LOG_LEVELS[$body['logLevel']]] = 1;
-                \config::save('log::level::' . $id, $levels);
+                \config::save('log::level::' . $id, LogLevels::encode($body['logLevel']));
             }
         });
         return self::respond($response, self::details($plugin));
@@ -406,8 +403,6 @@ final class PluginsController
         return self::respond($response, ['operation' => $operation === null ? null : self::operation($operation)]);
     }
 
-    private const LOG_LEVELS = ['debug' => '100', 'info' => '200', 'warning' => '300', 'error' => '400', 'none' => '1000', 'default' => 'default'];
-
     private static function details(\plugin $plugin): array
     {
         $id = $plugin->getId();
@@ -419,8 +414,7 @@ final class PluginsController
         }
         $levels = \config::byKey('log::level::' . $id, 'core', []);
         if (is_string($levels)) $levels = json_decode($levels, true);
-        $level = 'default';
-        foreach (self::LOG_LEVELS as $key => $value) if (!empty($levels[$value])) $level = $key;
+        $level = LogLevels::decode($levels);
         return self::toArray($plugin, (bool) $plugin->isActive(), $update ?: null) + [
             'description' => trim(html_entity_decode(strip_tags((string) $plugin->getDescription()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),
             'author' => (string) $plugin->getAuthor(), 'license' => (string) $plugin->getLicense(),

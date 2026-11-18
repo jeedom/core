@@ -76,8 +76,8 @@ info:
       voir `docs/inventaire-config.md` de jeevolution) ; le reste deviendra
       réservé aux administrateurs.
     - Les clés dynamiques gardées sont décrites par motif (`patternProperties`) :
-      `{dépôt}::enable` et `{dépôt}::allowDNS`. Les niveaux de log par module
-      (`log::level::*`), les modes d'accès API (`api::*::mode`, appelés à disparaître avec les utilisateurs techniques) et les
+      `{dépôt}::enable` et `{dépôt}::allowDNS`. Les niveaux de log par source sont regroupés
+      dans la clé administrateur `log::levels`. Les modes d'accès API (`api::*::mode`, appelés à disparaître avec les utilisateurs techniques) et les
       widgets par défaut (`widget::default::cmd::*`) ne sont pas exposés.
     - Non exposées : les clés jamais lues par le core (`info::address`,
       `info::postalCode`, `info::city`, `info::stateCode`, `info::livingSpace`,
@@ -10798,6 +10798,18 @@ components:
             type: string
             enum: [timeout, batterywarning, batterydanger, warning, danger, system]
           description: 'Types à envoyer à toutes les destinations.'
+    LogLevel:
+      type: string
+      enum: [default, debug, info, warning, error, none]
+    LogLevelSource:
+      type: object
+      required: [id, name, kind, level]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        kind: { type: string, enum: [plugin, system] }
+        level:
+          $ref: '#/components/schemas/LogLevel'
     ConfigValues:
       type: object
       description: |
@@ -11036,6 +11048,11 @@ components:
           type: [number, 'null']
           description: 'Niveau de log par défaut (onglet logs).'
           default: 400
+        'log::levels':
+          type: array
+          description: Niveaux des journaux système configurables et des plugins actifs (administrateur).
+          items:
+            $ref: '#/components/schemas/LogLevelSource'
         'notifications::settings':
           $ref: '#/components/schemas/NotificationSettings'
         'alert::addMessageOnTimeout':
@@ -11567,6 +11584,12 @@ components:
         'log::level':
           type: [number, 'null']
           description: 'Niveau de log par défaut (onglet logs).'
+        'log::levels':
+          type: object
+          minProperties: 1
+          description: Niveaux à modifier, indexés par identifiant de source. La valeur default suit le niveau global.
+          additionalProperties:
+            $ref: '#/components/schemas/LogLevel'
         'notifications::settings':
           $ref: '#/components/schemas/NotificationSettings'
         'alert::addMessageOnTimeout':
