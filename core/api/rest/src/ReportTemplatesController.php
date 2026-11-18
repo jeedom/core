@@ -5,6 +5,7 @@ namespace Jeedom\Api\Rest;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Psr7\Stream;
 
 final class ReportTemplatesController
 {
@@ -69,13 +70,105 @@ final class ReportTemplatesController
     public function delete(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        self::find($args['id'])->remove();
+        try {
+            self::find($args['id'])->remove();
+        } catch (\OutOfBoundsException) {
+            throw self::notFound();
+        }
         return $response->withStatus(204);
     }
 
-    private static function body(Request $request, array $fields): array
+    public function render(Request $request, Response $response, array $args): Response
     {
-        $body = Json::body($request, self::MAX_BODY, preserveObjects: true);
+        Auth::requireAdmin($request);
+        $template = self::find($args['id']);
+        self::apply($template, self::body($request, ['layout'], allowEmpty: true));
+        $pdf = self::renderPdf($template, $request);
+        $response = $response->withBody(new Stream($pdf));
+        return Attachment::headers($response, self::pdfName($template) . '.pdf', 'application/pdf', inline: true)
+            ->withHeader('Cache-Control', 'private, no-store');
+    }
+
+    public function listReports(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $template = self::find($args['id']);
+        $items = \reportTemplateArchive::list((int) $template->getId());
+        return Json::respond($response->withHeader('Cache-Control', 'private, no-store'), ['items' => $items, 'total' => count($items)]);
+    }
+
+    public function createReport(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $template = self::find($args['id']);
+        $pdf = self::renderPdf($template, $request);
+        try {
+            $report = \reportTemplateArchive::save((int) $template->getId(), $pdf);
+        } catch (\OutOfBoundsException) {
+            throw self::notFound();
+        } finally {
+            fclose($pdf);
+        }
+        return Json::respond($response->withHeader('Cache-Control', 'private, no-store'), $report, 201);
+    }
+
+    public function downloadReport(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $template = self::find($args['id']);
+        try {
+            $handle = \reportTemplateArchive::open((int) $template->getId(), $args['reportId']);
+        } catch (\OutOfBoundsException) {
+            throw self::reportNotFound();
+        }
+        $name = self::pdfName($template) . '-' . \reportTemplateArchive::filename($args['reportId']);
+        return Attachment::headers($response->withBody(new Stream($handle)), $name, 'application/pdf')
+            ->withHeader('Cache-Control', 'private, no-store');
+    }
+
+    public function deleteReport(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $template = self::find($args['id']);
+        try {
+            \reportTemplateArchive::remove((int) $template->getId(), $args['reportId']);
+        } catch (\OutOfBoundsException) {
+            throw self::reportNotFound();
+        }
+        return $response->withStatus(204);
+    }
+
+    private static function reportNotFound(): ApiError
+    {
+        return new ApiError(404, 'archived_report_not_found', 'Rapport archivé introuvable.');
+    }
+
+    /** @return resource */
+    private static function renderPdf(\reportTemplate $template, Request $request)
+    {
+        try {
+            return \reportTemplateRenderer::render($template, $request->getAttribute('user'));
+        } catch (\DomainException $error) {
+            throw ApiError::field(422, 'report_render_invalid', 'layout', $error->getMessage());
+        } catch (\RuntimeException $error) {
+            throw match ($error->getCode()) {
+                \reportTemplateRenderer::UNAVAILABLE => new ApiError(503, 'report_renderer_unavailable', 'Le moteur PDF est indisponible. Vérifiez les dépendances du Core.'),
+                \reportTemplateRenderer::TIMEOUT => new ApiError(503, 'report_render_timeout', 'Le délai de génération du PDF est dépassé.'),
+                default => $error,
+            };
+        }
+    }
+
+    private static function pdfName(\reportTemplate $template): string
+    {
+        $name = str_replace(['\\', '/'], '-', $template->getName());
+        $name = trim((string) preg_replace('~[\x00-\x1f\x7f]+~', '-', $name), '. ');
+        return $name !== '' ? $name : 'rapport';
+    }
+
+    private static function body(Request $request, array $fields, bool $allowEmpty = false): array
+    {
+        $body = Json::body($request, self::MAX_BODY, preserveObjects: true, allowEmpty: $allowEmpty);
         $unknown = array_diff(array_keys($body), $fields);
         if ($unknown !== []) {
             throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu.');

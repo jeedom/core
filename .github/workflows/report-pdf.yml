@@ -1,0 +1,41 @@
+name: PDF des rapports
+
+on:
+  pull_request:
+    paths:
+      - 'resources/report/**'
+      - 'core/class/reportTemplate*.class.php'
+      - 'core/api/rest/src/ReportTemplatesController.php'
+      - 'tests/rest/report-pdf.py'
+      - 'install/packages.json'
+      - 'Dockerfile'
+      - '.github/workflows/report-pdf.yml'
+  push:
+    branches: [eval-api-rest]
+    paths:
+      - 'resources/report/**'
+      - 'core/class/reportTemplate*.class.php'
+      - 'tests/rest/report-pdf.py'
+      - 'install/packages.json'
+      - '.github/workflows/report-pdf.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    name: PDF / Debian ${{ matrix.debian }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        debian: ['12', '13']
+    container: debian:${{ matrix.debian }}-slim
+    steps:
+      - name: Installer les paquets Debian
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends git ca-certificates python3-reportlab fonts-dejavu-core poppler-utils
+      - uses: actions/checkout@v7
+      - run: /usr/bin/python3 tests/rest/report-pdf.py

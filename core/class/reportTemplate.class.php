@@ -115,8 +115,9 @@ class reportTemplate {
     }
 
     public function remove(): void {
-        if ($this->getId() !== null) {
-            DB::remove($this);
+        $id = $this->getId();
+        if ($id !== null) {
+            reportTemplateArchive::removeTemplate($this, $id);
         }
     }
 
