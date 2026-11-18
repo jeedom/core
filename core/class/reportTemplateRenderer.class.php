@@ -182,12 +182,12 @@ class reportTemplateRenderer {
             throw new DomainException('Le rapport utilise plus de 64 combinaisons de commandes et de périodes.');
         }
         $days = (int) $start->diff($end)->days;
-        [$grouping, $gap] = match (true) {
-            $days <= 1 => ['avg::minute', 90],
-            $days <= 60 => ['avg::hour', 5400],
-            $days <= 730 => ['avg::day', 36 * 3600],
-            $days <= 36525 => ['avg::month', 45 * 86400],
-            default => ['avg::year', 550 * 86400],
+        $grouping = match (true) {
+            $days <= 1 => 'avg::minute',
+            $days <= 60 => 'avg::hour',
+            $days <= 730 => 'avg::day',
+            $days <= 36525 => 'avg::month',
+            default => 'avg::year',
         };
         $points = [];
         $lastSecond = $end->setTimestamp($end->getTimestamp() - 1);
@@ -196,7 +196,7 @@ class reportTemplateRenderer {
             $value = $point->getValue();
             $points[] = [$time->getTimestamp(), is_numeric($value) && is_finite((float) $value) ? (float) $value : null];
         }
-        $this->histories[$key] = ['gap' => $gap, 'points' => $points];
+        $this->histories[$key] = ['points' => $points];
         return $key;
     }
 

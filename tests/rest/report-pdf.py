@@ -36,7 +36,7 @@ with tempfile.TemporaryDirectory() as workspace:
                 block("vide", "chart", 70, 80, {}, {"series": []}),
             ]},
         ],
-        "histories": {"weather": {"gap": 90, "points": [[0, 0], [60, 2], [120, None], [420, 9], [480, 7]]}},
+        "histories": {"weather": {"points": [[0, 0], [60, 2], [120, None], [420, 9], [480, 7]]}},
     }
     pdf = root / "report.pdf"
 
@@ -61,6 +61,14 @@ with tempfile.TemporaryDirectory() as workspace:
     assert re.search(r"^0[ \t]*W$", text, re.MULTILINE), text
     images = subprocess.check_output(["pdfimages", "-list", str(pdf)], text=True).splitlines()[2:]
     assert len(images) == 1, images
+    preview = root / "chart"
+    subprocess.run(["pdftoppm", "-f", "1", "-singlefile", "-r", "144", "-png", str(pdf), str(preview)], check=True)
+    with Image.open(preview.with_suffix(".png")) as page:
+        # Isoler le tracé au-dessus de la légende, qui utilise la même couleur.
+        chart = page.convert("RGB").crop((0, int(150 / 25.4 * 144), page.width, int(240 / 25.4 * 144) - 40))
+        columns = {index % chart.width for index, (red, green, blue) in enumerate(chart.getdata())
+                   if green > red + 30 and green > blue + 80}
+    assert columns and (min(columns) + max(columns)) // 2 in columns, "La courbe est interrompue entre les relevés."
     too_large = render(limit=1024)
     assert too_large.returncode == 65 and b"taille maximale" in too_large.stderr, too_large
     assert pdf.stat().st_size <= 1024

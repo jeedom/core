@@ -151,19 +151,18 @@ def draw_chart(pdf, options, data, histories, x, top, width, height):
         pdf.setFillColor(color)
         pdf.setLineWidth(1)
         path = pdf.beginPath()
-        previous = None
+        started = False
         for time, value in trace["points"]:
             if value is None or not isfinite(value) or not data["start"] <= time < data["end"]:
-                previous = None
                 continue
             px = left + (right - left) * (time - data["start"]) / (data["end"] - data["start"])
             py = bottom + (ceiling - bottom) * (value - minimum) / (maximum - minimum)
-            if previous is None or time - previous > trace["gap"]:
+            if started:
+                path.lineTo(px, py)
+            else:
                 path.moveTo(px, py)
                 pdf.circle(px, py, .75, stroke=0, fill=1)
-            else:
-                path.lineTo(px, py)
-            previous = time
+                started = True
         pdf.drawPath(path)
         legend_x = x + 4 + legend_width * index
         legend_y = top - height + 7
