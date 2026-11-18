@@ -27,12 +27,14 @@ class reportTemplateRenderer {
     private const MAX_PDF_BYTES = 25 * 1024 * 1024;
     private const MAX_HISTORY_READS = 64;
     private const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
+    private const COMMAND_TAG = '/#([1-9][0-9]{0,9})#/';
 
     /** @var array<int, cmd> */
     private array $commands = [];
     /** @var array<int, string|null> */
     private array $values = [];
     private array $histories = [];
+    private int $resolvedValueBytes = 0;
 
     private function __construct(private user $user, private DateTimeImmutable $now) {
     }
@@ -53,6 +55,9 @@ class reportTemplateRenderer {
         foreach ($layout->pages as $page) {
             foreach ($page->blocks as $block) {
                 switch ($block->type) {
+                    case 'text':
+                        $block->options->text = $this->resolveText($block->options->text);
+                        break;
                     case 'value':
                         $block->data = $this->value($block->options);
                         break;
@@ -74,7 +79,12 @@ class reportTemplateRenderer {
         $ids = [];
         foreach ($pages as $page) {
             foreach ($page->blocks as $block) {
-                if ($block->type === 'value') {
+                if ($block->type === 'text') {
+                    preg_match_all(self::COMMAND_TAG, $block->options->text, $tags);
+                    foreach ($tags[1] as $id) {
+                        $ids[$id] = true;
+                    }
+                } elseif ($block->type === 'value') {
                     $ids[(int) $block->options->cmdId] = true;
                 } elseif ($block->type === 'chart') {
                     foreach ($block->options->series as $entry) {
@@ -101,17 +111,33 @@ class reportTemplateRenderer {
         }
     }
 
-    private function value(stdClass $options): array {
-        $id = $options->cmdId;
-        $command = $this->commands[$id] ?? null;
+    private function commandValue(int|string $id): ?string {
         if (!array_key_exists($id, $this->values)) {
-            $value = $command?->execCmd();
+            $value = ($this->commands[$id] ?? null)?->execCmd();
             $text = is_bool($value) ? (string) (int) $value : (is_scalar($value) ? (string) $value : '');
             $this->values[$id] = $text === '' ? null : mb_strcut($text, 0, 4096, 'UTF-8');
         }
+        return $this->values[$id];
+    }
+
+    private function resolveText(string $text): string {
+        return preg_replace_callback(self::COMMAND_TAG, function (array $tag): string {
+            $value = $this->commandValue($tag[1]) ?? 'Indisponible';
+            // Les répétitions d'un même tag peuvent dépasser la limite du document.
+            $this->resolvedValueBytes += strlen($value);
+            if ($this->resolvedValueBytes > self::MAX_DATA_BYTES) {
+                throw new DomainException('Les données du rapport dépassent la taille maximale.');
+            }
+            return $value;
+        }, $text);
+    }
+
+    private function value(stdClass $options): array {
+        $id = $options->cmdId;
+        $command = $this->commands[$id] ?? null;
         return [
             'label' => ($options->label ?? '') !== '' ? $options->label : ($command?->getName() ?? '#' . $id),
-            'value' => $this->values[$id],
+            'value' => $this->commandValue($id),
             'unit' => ($options->showUnit ?? true) ? (string) $command?->getUnite() : '',
         ];
     }
