@@ -25,14 +25,14 @@ with tempfile.TemporaryDirectory() as workspace:
         "pages": [
             {"id": "energie", "blocks": [
                 block("titre", "text", 18, 30, {"text": "Électricité <b>texte brut</b>\nCoût estimé en €", "fontSize": 20}),
-                block("valeur", "value", 57, 23, {}, {"label": "Puissance actuelle", "value": "0", "unit": "W"}),
+                block("puissance", "text", 57, 23, {"text": "Puissance actuelle\n0 W"}),
                 block("photo", "image", 90, 45, {}, str(picture)),
                 block("graphique", "chart", 150, 90, {"title": "Historique de puissance"},
                       {"start": 0, "end": 600, "series": [{"data": "weather", "label": "Prise salon", "color": "#689f19"}],
                        "labels": ["00:00", "00:02", "00:05", "00:07", "00:10"], "unit": "W"}),
             ]},
             {"id": "details", "blocks": [
-                block("perdu", "value", 30, 23, {}, {"label": "Commande supprimée", "value": None, "unit": ""}),
+                block("perdu", "text", 30, 23, {"text": "Commande supprimée\nIndisponible"}),
                 block("vide", "chart", 70, 80, {}, {"series": []}),
             ]},
         ],

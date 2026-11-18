@@ -58,9 +58,6 @@ class reportTemplateRenderer {
                     case 'text':
                         $block->options->text = $this->resolveText($block->options->text);
                         break;
-                    case 'value':
-                        $block->data = $this->value($block->options);
-                        break;
                     case 'chart':
                         $block->data = $this->chart($block->options, $page->id, $block->id);
                         break;
@@ -84,8 +81,6 @@ class reportTemplateRenderer {
                     foreach ($tags[1] as $id) {
                         $ids[$id] = true;
                     }
-                } elseif ($block->type === 'value') {
-                    $ids[(int) $block->options->cmdId] = true;
                 } elseif ($block->type === 'chart') {
                     foreach ($block->options->series as $entry) {
                         $ids[(int) $entry->cmdId] = true;
@@ -130,16 +125,6 @@ class reportTemplateRenderer {
             }
             return $value;
         }, $text);
-    }
-
-    private function value(stdClass $options): array {
-        $id = $options->cmdId;
-        $command = $this->commands[$id] ?? null;
-        return [
-            'label' => ($options->label ?? '') !== '' ? $options->label : ($command?->getName() ?? '#' . $id),
-            'value' => $this->commandValue($id),
-            'unit' => ($options->showUnit ?? true) ? (string) $command?->getUnite() : '',
-        ];
     }
 
     private function chart(stdClass $options, string $pageId, string $blockId): array {
