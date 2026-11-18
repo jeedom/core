@@ -121,6 +121,28 @@ class reportTemplate {
         }
     }
 
+    public static function dataDirectory(int $templateId): string {
+        return dirname(__DIR__, 2) . '/data/reportTemplates/' . $templateId;
+    }
+
+    /** Sérialise la publication des fichiers avec la suppression du modèle. */
+    public static function withLock(int $templateId, callable $operation): mixed {
+        DB::beginTransaction();
+        try {
+            if (!DB::Prepare('SELECT id FROM `reportTemplate` WHERE id = :id FOR UPDATE', ['id' => $templateId])) {
+                throw new OutOfBoundsException('Modèle de rapport introuvable.');
+            }
+            $result = $operation();
+            DB::commit();
+            return $result;
+        } catch (Throwable $error) {
+            if (DB::getConnection()->inTransaction()) {
+                DB::rollBack();
+            }
+            throw $error;
+        }
+    }
+
     public function getId(): ?int {
         return $this->id === null ? null : (int) $this->id;
     }

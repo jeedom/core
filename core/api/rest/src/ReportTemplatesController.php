@@ -97,6 +97,36 @@ final class ReportTemplatesController
         return Json::respond($response->withHeader('Cache-Control', 'private, no-store'), ['items' => $items, 'total' => count($items)]);
     }
 
+    public function uploadImage(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $id = (int) self::find($args['id'])->getId();
+        try {
+            $imageId = ObjectsController::withUploadedImage($request, static fn (string $path) => \reportTemplateImage::save($id, $path));
+        } catch (\InvalidArgumentException $error) {
+            throw ApiError::field(422, 'validation_error', 'file', $error->getMessage());
+        } catch (\OutOfBoundsException) {
+            throw self::notFound();
+        }
+        return Json::respond($response, ['imageId' => $imageId], 201);
+    }
+
+    public function image(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $id = (int) self::find($args['id'])->getId();
+        $path = \reportTemplateImage::path($id, $args['imageId']);
+        $info = $path === null ? false : @getimagesize($path);
+        $file = $info === false ? false : @fopen($path, 'rb');
+        if ($file === false) {
+            throw new ApiError(404, 'report_image_not_found', 'Image du rapport introuvable.');
+        }
+        return $response->withBody(new Stream($file))
+            ->withHeader('Content-Type', $info['mime'])
+            ->withHeader('X-Content-Type-Options', 'nosniff')
+            ->withHeader('Cache-Control', 'private, no-store');
+    }
+
     public function createReport(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
