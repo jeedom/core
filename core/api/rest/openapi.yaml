@@ -8335,7 +8335,7 @@ components:
         dans leur ordre d'affichage et leurs identifiants sont uniques dans le modèle.
       properties:
         id: { type: string, pattern: '^[A-Za-z0-9_-]{1,64}$' }
-        type: { type: string, enum: [text, image, value, chart] }
+        type: { type: string, enum: [text, image, chart] }
         x: { type: number, minimum: 0, maximum: 210 }
         y: { type: number, minimum: 0, maximum: 297 }
         width: { type: number, minimum: 0.1, maximum: 210 }
@@ -8363,17 +8363,6 @@ components:
               required: [imageId]
               properties:
                 imageId: { type: string, pattern: '^[a-f0-9]{32}$' }
-        - required: [type, options]
-          properties:
-            type: { const: value }
-            options:
-              type: object
-              additionalProperties: false
-              required: [cmdId]
-              properties:
-                cmdId: { type: integer, minimum: 1, maximum: 2147483647 }
-                label: { type: string, maxLength: 127 }
-                showUnit: { type: boolean }
         - required: [type, options]
           properties:
             type: { const: chart }

@@ -176,14 +176,6 @@ class reportTemplate {
                     self::invalid($optionsPath . '.imageId', 'Identifiant d’image invalide.');
                 }
                 break;
-            case 'value':
-                $options = self::checkObject($options, ['cmdId', 'label', 'showUnit'], $optionsPath);
-                self::checkCommand($options, $optionsPath);
-                self::checkText($options, 'label', 127, $optionsPath);
-                if (property_exists($options, 'showUnit') && !is_bool($options->showUnit)) {
-                    self::invalid($optionsPath . '.showUnit', 'Un booléen est attendu.');
-                }
-                break;
             case 'chart':
                 self::checkChart($options, $optionsPath);
                 break;

@@ -43,11 +43,11 @@ class InvalidLayout(Exception):
     """Composition qu'on ne peut pas rendre dans les dimensions demandées."""
 
 
-def paragraph(pdf, text, x, top, width, height, size=10, color=INK, font=FONT, align="left"):
+def paragraph(pdf, text, x, top, width, height, size=10, color=INK, align="left"):
     if not text:
         return 0
     markup = escape(text).replace("\r\n", "\n").replace("\r", "\n").replace("\n", "<br/>")
-    body = Paragraph(markup, ParagraphStyle("report", fontName=font, fontSize=size, leading=size * 1.22,
+    body = Paragraph(markup, ParagraphStyle("report", fontName=FONT, fontSize=size, leading=size * 1.22,
                                             textColor=color, alignment=ALIGNMENTS[align]))
     _, used = body.wrap(width, height)
     if used <= height + 1e-7:
@@ -69,22 +69,6 @@ def single_line(pdf, label, x, y, width, size=8, color=MUTED, font=FONT):
     pdf.setFillColor(color)
     pdf.setFont(font, size)
     pdf.drawString(x, y, label)
-
-
-def draw_value(pdf, data, x, top, width, height):
-    if height < 12:
-        return
-    if height >= 24:
-        single_line(pdf, data["label"], x, top - 9, width, size=8)
-        top -= 13
-        height -= 13
-    value = data["value"]
-    displayed = "Indisponible" if value is None else " ".join(filter(None, (value, data["unit"])))
-    size = min(18, height / 1.22)
-    for text_size in (size, min(size, 10)):
-        if paragraph(pdf, displayed, x, top, width, height, size=text_size, font=BOLD) is not None:
-            return
-    single_line(pdf, displayed, x, top - size, width, size=size, color=INK, font=BOLD)
 
 
 def draw_image(pdf, filename, x, top, width, height):
@@ -184,8 +168,6 @@ def draw_block(pdf, page_id, block, histories):
         color = HexColor(options.get("color", "#202630"))
         if paragraph(pdf, options["text"], x, top, width, height, size, color, align=options.get("align", "left")) is None:
             raise InvalidLayout(f"Page {page_id}, bloc {block['id']} : le texte dépasse de son cadre.")
-    elif block["type"] == "value":
-        draw_value(pdf, block["data"], x, top, width, height)
     elif block["type"] == "image":
         draw_image(pdf, block["data"], x, top, width, height)
     elif block["type"] == "chart":
