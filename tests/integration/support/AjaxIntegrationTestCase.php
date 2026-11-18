@@ -135,11 +135,11 @@ abstract class AjaxIntegrationTestCase extends TestCase {
 		$this->assertNotEmpty($row, "Table '{$table}' no longer exists");
 	}
 
-	private function registerCleanup(callable $callback): void {
+	protected function registerCleanup(callable $callback): void {
 		$this->cleanupStack[] = $callback;
 	}
 
-	private function callAjaxEndpoint(string $ajaxFile, array $postData): array {
+	protected function callAjaxEndpoint(string $ajaxFile, array $postData): array {
 		$this->assertNotNull(
 			$this->authenticatedUserId,
 			'Call givenAdminIsLoggedIn() before calling any when...()'

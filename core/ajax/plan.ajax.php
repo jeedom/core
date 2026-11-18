@@ -38,7 +38,7 @@ try {
 				$plan = new plan();
 			}
 			utils::a2o($plan, jeedom::fromHumanReadable($plan_ajax));
-			$plan->save();
+			$plan->saveForLegacyDesign();
 		}
 		ajax::success();
 	}
@@ -70,7 +70,7 @@ try {
 		unautorizedInDemo();
 		$plan = new plan();
 		utils::a2o($plan, json_decode(init('plan'), true));
-		$plan->save();
+		$plan->saveForLegacyDesign();
 		ajax::success($plan->getHtml(init('version')));
 	}
 
