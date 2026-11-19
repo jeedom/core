@@ -317,7 +317,9 @@ class log extends AbstractLogger {
 		}
 
 		if (self::authorizeClearLog($_log)) {
-			com_shell::execute('rm -f -- ' . escapeshellarg(self::getPathToLog($_log)));
+			$path = self::getPathToLog($_log);
+			com_shell::execute('rm -f -- ' . escapeshellarg($path));
+			clearstatcache(true, $path);
 			return true;
 		}
 	}
