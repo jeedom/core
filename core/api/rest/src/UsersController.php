@@ -659,7 +659,7 @@ final class UsersController
 
     public static function isSystem(\user $user): bool
     {
-        return in_array($user->getLogin(), self::SYSTEM_LOGINS, true) || \plugin::isDaemonAccount($user->getLogin());
+        return in_array($user->getLogin(), self::SYSTEM_LOGINS, true) || \plugin::isDaemonAccount($user->getLogin()) || CloudService::isLogin($user->getLogin());
     }
 
     /**
@@ -711,7 +711,7 @@ final class UsersController
         if (!is_string($login) || trim($login) === '' || mb_strlen($login) > 255) {
             throw ApiError::field(422, 'validation_error', 'login', 'Un texte non vide de 255 caractères au plus est attendu.');
         }
-        if (in_array($login, self::SYSTEM_LOGINS, true)) {
+        if (in_array($login, self::SYSTEM_LOGINS, true) || CloudService::isLogin($login)) {
             throw ApiError::field(422, 'validation_error', 'login', 'Ce login est réservé.');
         }
         $other = \user::byLogin($login);

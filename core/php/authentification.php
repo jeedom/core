@@ -123,7 +123,7 @@ function login(string $_login, string $_password, ?string $_twoFactor = null): b
 function loginByHash(string $_key): bool {
 	$key = explode('-', $_key);
 	$user = user::byHash($key[0]);
-	if (!is_object($user) || $user->getEnable() == 0) {
+	if (!is_object($user) || $user->getEnable() == 0 || \Jeedom\Api\Rest\CloudService::isLogin($user->getLogin())) {
 		user::failedLogin([
 			'login' => $key[0],
 			'reason' => __('Clé API utilisateur invalide ou utilisateur désactivé', __FILE__)

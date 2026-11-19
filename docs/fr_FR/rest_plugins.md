@@ -59,6 +59,19 @@ Le démon d’un plugin s’authentifie avec une session locale dédiée, liée 
 
 La désactivation du plugin révoque les sessions du démon et supprime le fichier ; le compte technique est conservé. Les requêtes du démon doivent venir de la box elle-même (`127.0.0.1` ou `::1`). `POST /api/v1/plugins/{id}/daemon/session` (administrateur) révoque immédiatement l’accès du démon et écrit un fichier neuf ; ce n’est pas nécessaire en fonctionnement normal.
 
+## Accès Jeedom Cloud Service
+
+Un plugin peut déclarer son point d’entrée en appelant
+`CloudService::register($routes, $service, $dispatch)` dans son fichier de routes REST.
+Le Core limite le compte technique `Jeedom Cloud Service` à `GET` et `POST` sur
+`/api/v1/plugins/{id}/api/cloud-service`. Le plugin doit être actif. Le GET vérifie
+l’identité de la session et le service. Le POST transmet un objet JSON au contrôleur du plugin.
+
+Après une confirmation par l’administrateur, `CloudService::associate($service, $url)`
+enregistre la box directement auprès du Cloud avec le Bearer Market de la box. Le
+Cloud réutilise la session technique si elle est valide. Si nécessaire, le Core
+fournit un nouveau refresh token et révoque l’ancien accès après confirmation.
+
 ## Installation depuis le Market
 
 Le lien Market ouvre Core UI sous `/ui/#/plugins/install?marketId=1234&version=beta`. Le navigateur transmet uniquement l’identifiant numérique et la branche, jamais un secret ou une archive.

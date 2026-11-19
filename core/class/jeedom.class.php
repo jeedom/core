@@ -715,7 +715,8 @@ class jeedom {
 		// an user apikey can only be used if an explicit apikey (apipro, apitts, apimarket or a plugin api key) was NOT provided
 		$user = $_plugin === 'core' ? user::byHash($_apikey) : null;
 		if (is_object($user)) {
-			if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
+			if ($user->getEnable() == 0 || \Jeedom\Api\Rest\CloudService::isLogin($user->getLogin())
+			    || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
 				return false;
 			}
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {

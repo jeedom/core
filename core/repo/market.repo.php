@@ -1051,6 +1051,13 @@ class marketClient {
 		return self::session()['accessToken'];
 	}
 
+	public static function associateCloudService(array $data): array {
+		$url = rtrim(config::byKey('service::cloud::url'), '/') . '/box/service-associations';
+		$response = self::cloudRequest('POST', $url, json_encode($data, JSON_THROW_ON_ERROR), 40, null, null,
+			array('Content-Type: application/json'));
+		return json_decode($response, true, 32, JSON_THROW_ON_ERROR);
+	}
+
 	/* Cloud backups. Transfers reuse com_http and stream encrypted files. */
 
 	private static function cloudRequest($method, $url, $data = null, $timeout = 30, $input = null, $destination = null, $headers = array()) {

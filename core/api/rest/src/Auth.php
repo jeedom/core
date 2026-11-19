@@ -33,6 +33,7 @@ final class Auth implements MiddlewareInterface
         $GLOBALS['_USER_GLOBAL'] = $user;
         try {
             return $handler->handle($request->withAttribute('user', $user)->withAttribute('restSessionId', $session['id'])
+                ->withAttribute('cloudServiceSession', $session['scope'] === CloudService::SCOPE)
                 ->withAttribute('daemonPluginId', $session['mode'] === 'daemon' ? $session['scope'] : null)
                 ->withAttribute('webSessionId', $transport === 'web' ? $session['id'] : null)
                 ->withAttribute('webSessionRemembered', $transport === 'web' && (bool) $session['remembered'])
@@ -73,6 +74,9 @@ final class Auth implements MiddlewareInterface
         if (\user::isBan()) {
             return false;
         }
+        if (CloudService::isLogin($user->getLogin()) || $scope === CloudService::SCOPE) {
+            return $mode === 'api' && $scope === CloudService::SCOPE && CloudService::isAccount($user);
+        }
         if ($mode === 'daemon') {
             return \plugin::allowsDaemonSession($user, $scope);
         }
@@ -87,7 +91,11 @@ final class Auth implements MiddlewareInterface
     {
         $path = $request->getUri()->getPath();
         $method = $request->getMethod();
-        if ($session['mode'] === 'daemon') {
+        if ($session['scope'] === CloudService::SCOPE) {
+            if (CloudService::allows($request)) {
+                return;
+            }
+        } elseif ($session['mode'] === 'daemon') {
             $base = '/api/v1/plugins/' . $session['scope'];
             if ($method === 'POST' && ($path === $base . '/daemon/messages'
                 || preg_match('~\A' . preg_quote($base, '~') . '/daemon/commands/[1-9][0-9]*\z~', $path))) {
