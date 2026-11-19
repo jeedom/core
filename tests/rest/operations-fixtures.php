@@ -7,7 +7,14 @@ function fixtureRestToken(string $name): string {
     return hash('sha256', 'fixture-session:' . $name);
 }
 
+abstract class FixtureMcpConfig {
+    public const MCP_ENABLED_KEY = 'security::mcp::enabled';
+    public static function mcpEnabled(): bool { return (bool) static::byKey(self::MCP_ENABLED_KEY); }
+}
+
 class session {
+    public const MCP_SCOPE = 'mcp';
+
     public static function resolve(?string $token, string $transport, bool $refresh = false): ?array {
         if ($token === null || $refresh) {
             return null;

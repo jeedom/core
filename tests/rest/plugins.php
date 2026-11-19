@@ -14,7 +14,7 @@ register_shutdown_function(static function () use ($testRoot): void {
     foreach ($iterator as $file) $file->isDir() ? rmdir($file->getPathname()) : unlink($file->getPathname());
     rmdir($testRoot);
 });
-class config {
+class config extends FixtureMcpConfig {
     public static array $values = ['core' => ['name' => 'Maison', 'enableQueue' => 1]];
     public static function byKey($key, $plugin = 'core', $default = '', $refresh = false) { return self::$values[$plugin][$key] ?? $default; }
     public static function byKeys($keys, $plugin = 'core', $default = '') {

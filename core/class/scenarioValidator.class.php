@@ -30,6 +30,7 @@ final class scenarioValidator {
 	private array $seen = [];
 	private array $warnings = [];
 	private array $commands = [];
+	private ?array $userMethods = null;
 
 	private function __construct(private readonly user $user, private readonly bool $submittedElements) {
 	}
@@ -53,16 +54,19 @@ final class scenarioValidator {
 			}
 		}
 		$mode = $changes['mode'] ?? $scenario->getMode();
-		$schedule = $changes['schedule'] ?? $scenario->getSchedule();
-		$schedules = array_values(array_filter((array) $schedule, static fn ($date) => trim((string) $date) !== ''));
-		if ($schedules === [] && in_array($mode, ['schedule', 'all'], true)) {
-			throw self::invalid('schedule', 'Une programmation est requise pour ce mode.');
+		if (in_array($mode, ['schedule', 'all'], true)) {
+			$schedules = array_filter((array) ($changes['schedule'] ?? $scenario->getSchedule()), static fn ($date) => trim((string) $date) !== '');
+			if ($schedules === []) {
+				throw self::invalid('schedule', 'Une programmation est requise pour ce mode.');
+			}
+			foreach ($schedules as $index => $date) {
+				$validator->schedule(trim((string) $date), "schedule.$index");
+			}
 		}
-		foreach ($schedules as $index => $date) {
-			$validator->schedule(trim((string) $date), "schedule.$index");
-		}
-		foreach (($changes['trigger'] ?? $scenario->getTrigger()) as $index => $trigger) {
-			$validator->trigger(trim((string) $trigger), "trigger.$index");
+		if ($mode !== 'schedule') {
+			foreach (($changes['trigger'] ?? $scenario->getTrigger()) as $index => $trigger) {
+				$validator->trigger(trim((string) $trigger), "trigger.$index");
+			}
 		}
 		foreach (($changes['elements'] ?? array_map(static fn ($block) => $block->getAjaxElement(), $stored)) as $index => $element) {
 			$validator->element($element, "elements.$index");
@@ -97,25 +101,37 @@ final class scenarioValidator {
 		foreach ($references as $reference) {
 			$this->requireCommand($reference, 'info', $field);
 		}
-		if (preg_match('/^#(?:variable|genericType)\(.+\)#$/sD', $trigger)
-			|| preg_match('/^#[a-zA-Z_][a-zA-Z_0-9.:-]*#$/D', $trigger)
-			|| ($references === [] && preg_match('/^[a-zA-Z_][a-zA-Z_0-9.:-]*$/D', $trigger))) {
-			// Le moteur accepte aussi des événements déclarés par les plugins.
+		// Même notation avec ou sans # que scenario::testTrigger(), y compris si
+		// le déclencheur est suivi d'une comparaison.
+		$condition = preg_replace('/#(variable|genericType)\((.*?)\)#/s', '$1($2)', $trigger);
+		if ($references !== [] || preg_match('/(?:variable|genericType)\(/', $condition)) {
+			$this->condition($condition, $field);
 			return;
 		}
-		if ($references === []) {
-			throw self::invalid($field, 'Déclencheur invalide.');
+		// Les plugins choisissent leur nom d'événement (espaces et accents compris).
+		if (preg_match('/\A#[^#]+#\z/u', $trigger) || preg_match('/\A[\pL_][\pL\pN _.:\/-]*\z/u', $trigger)) {
+			return;
 		}
-		$this->condition($trigger, $field);
+		if (preg_match('/#[^#]+#/', $trigger)) {
+			$this->condition($trigger, $field);
+			return;
+		}
+		throw self::invalid($field, 'Déclencheur invalide.');
 	}
 
-	private function element(mixed $element, string $field): void {
+	private function element(mixed $element, string $field, bool $enabled = true): void {
 		$type = is_array($element) ? ($element['type'] ?? null) : null;
 		if (!is_string($type) || !isset(self::PARTS[$type]) || !is_array($element['subElements'] ?? null) || !array_is_list($element['subElements'])) {
 			throw self::invalid($field, 'Type de bloc ou liste de sous-blocs invalide.');
 		}
 		$this->checkId($element, 'element', $field);
 		$parts = self::PARTS[$type];
+		// Le moteur vérifie enable sur le sous-bloc principal avant toute branche.
+		foreach ($element['subElements'] as $part) {
+			if (($part['type'] ?? null) === $type && ($part['options']['enable'] ?? 1) == 0) {
+				$enabled = false;
+			}
+		}
 		$seen = [];
 		foreach ($element['subElements'] as $index => $part) {
 			$partField = "$field.subElements.$index";
@@ -132,7 +148,7 @@ final class scenarioValidator {
 				default => $parts[$partType] === 'condition' ? ['condition'] : ['action', 'element'],
 			};
 			foreach ($part['expressions'] as $n => $expression) {
-				$this->expression($expression, $types, "$partField.expressions.$n", $part['id'] ?? null);
+				$this->expression($expression, $types, "$partField.expressions.$n", $part['id'] ?? null, $partType, $enabled);
 			}
 		}
 		unset($parts['else']);
@@ -141,13 +157,14 @@ final class scenarioValidator {
 		}
 	}
 
-	private function expression(mixed $expression, array $types, string $field, mixed $parent): void {
+	private function expression(mixed $expression, array $types, string $field, mixed $parent, string $partType, bool $enabled): void {
 		if (!is_array($expression) || !in_array($expression['type'] ?? null, $types, true)) {
 			throw self::invalid($field, 'Type d’expression invalide dans ce sous-bloc.');
 		}
 		$this->checkId($expression, 'expression', $field, $parent);
+		$enabled = $enabled && ($expression['options']['enable'] ?? 1) != 0;
 		if ($expression['type'] === 'element') {
-			$this->element($expression['element'] ?? null, "$field.element");
+			$this->element($expression['element'] ?? null, "$field.element", $enabled);
 			return;
 		}
 		$value = $expression['expression'] ?? '';
@@ -159,16 +176,25 @@ final class scenarioValidator {
 		switch ($expression['type']) {
 			case 'code':
 				try {
-					token_get_all("<?php function __jeedom_scenario_check() {\n" . $value . "\n}", TOKEN_PARSE);
+					token_get_all('<?php ' . $value, TOKEN_PARSE);
 				} catch (ParseError $error) {
-					throw self::invalid("$field.expression", 'Syntaxe PHP invalide à la ligne ' . max(1, $error->getLine() - 1) . ' du bloc.');
+					throw self::invalid("$field.expression", 'Syntaxe PHP invalide à la ligne ' . $error->getLine() . ' du bloc.');
 				}
 				break;
 			case 'action':
-				$this->action(trim($value), $options, $field);
+				try {
+					$this->action(trim($value), $options, $field);
+				} catch (scenarioValidationException $error) {
+					if ($enabled) {
+						throw $error;
+					}
+					$this->warnings[] = ['field' => $error->field, 'reference' => $value, 'message' => $error->getMessage()];
+				}
 				break;
 			case 'condition':
-				$this->condition($value, "$field.expression");
+				if ($partType !== 'in' || !is_numeric(str_replace(',', '.', $value))) {
+					$this->condition($value, "$field.expression");
+				}
 				$this->text($value, "$field.expression");
 				break;
 		}
@@ -193,11 +219,7 @@ final class scenarioValidator {
 	private function action(string $name, array $options, string $field): void {
 		if (!in_array($name, self::ACTIONS, true)) {
 			if (!preg_match('/^(?:#[0-9]+#|[0-9]+|#\[.+\]\[.+\]\[.+\]#)$/sD', $name)) {
-				// Les fonctions utilisateur déjà chargées font partie des actions du moteur.
-				$function = explode('(', $name, 2)[0];
-				if (!class_exists('userFunction', false) || !is_callable(['userFunction', $function])) {
-					throw self::invalid("$field.expression", 'Action de scénario inconnue.');
-				}
+				$this->userFunction($name, "$field.expression");
 			} else {
 				$this->requireCommand($name, 'action', "$field.expression");
 			}
@@ -206,7 +228,7 @@ final class scenarioValidator {
 			case 'scenario':
 			case 'remove_inat':
 				$id = $options['scenario_id'] ?? '';
-				if ($name === 'scenario' || (string) $id !== '' && (string) $id !== '0') {
+				if ($name === 'scenario' || !in_array($id, ['', null, 0, '0'], true) && !$this->runtimeTarget($id, "$field.options.scenario_id")) {
 					$target = $this->target($id, scenario::class, 'scenario', "$field.options.scenario_id");
 					$right = $name === 'scenario' && in_array($options['action'] ?? null, ['start', 'startsync', 'stop'], true) ? 'x' : 'w';
 					if (!$target->hasRight($right, $this->user)) {
@@ -225,12 +247,16 @@ final class scenarioValidator {
 				break;
 			case 'genericType':
 				$object = $options['object'] ?? '';
-				if (!in_array((string) $object, ['', 'all', '0', '-1'], true)) {
-					$target = $this->target($object, jeeObject::class, 'object', "$field.options.object");
+				if (!in_array($object, ['', null, 'all', '0', 0, '-1', -1], true) && !$this->runtimeTarget($object, "$field.options.object")) {
+					$target = is_string($object) && !is_numeric($object) && !str_contains($object, '#') ? jeeObject::byName($object) : null;
+					if (!$target instanceof jeeObject) {
+						$target = $this->target($object, jeeObject::class, 'object', "$field.options.object");
+					}
 					if (!$target->hasRight('r', $this->user)) {
 						throw self::invalid("$field.options.object", 'Objet inaccessible.');
 					}
 				}
+				unset($options['object']);
 				break;
 			case 'event':
 			case 'ask':
@@ -241,7 +267,10 @@ final class scenarioValidator {
 				unset($options['cmd']);
 				break;
 			case 'gotodesign':
-				$this->target($options['plan_id'] ?? null, planHeader::class, '', "$field.options.plan_id");
+				if (!$this->runtimeTarget($options['plan_id'] ?? null, "$field.options.plan_id")) {
+					$this->target($options['plan_id'] ?? null, planHeader::class, '', "$field.options.plan_id");
+				}
+				unset($options['plan_id']);
 				break;
 			case 'report':
 			case 'generateReport':
@@ -257,10 +286,16 @@ final class scenarioValidator {
 				} elseif ($name === 'report') {
 					switch ($options['type'] ?? null) {
 						case 'view':
-							$this->target($options['view_id'] ?? null, view::class, '', "$field.options.view_id");
+							if (!$this->runtimeTarget($options['view_id'] ?? null, "$field.options.view_id")) {
+								$this->target($options['view_id'] ?? null, view::class, '', "$field.options.view_id");
+							}
+							unset($options['view_id']);
 							break;
 						case 'plan':
-							$this->target($options['plan_id'] ?? null, planHeader::class, '', "$field.options.plan_id");
+							if (!$this->runtimeTarget($options['plan_id'] ?? null, "$field.options.plan_id")) {
+								$this->target($options['plan_id'] ?? null, planHeader::class, '', "$field.options.plan_id");
+							}
+							unset($options['plan_id']);
 							break;
 					}
 				}
@@ -269,6 +304,81 @@ final class scenarioValidator {
 		foreach ($options as $key => $value) {
 			$this->text($value, "$field.options.$key");
 		}
+	}
+
+	private function userFunction(string $expression, string $field): void {
+		if (!preg_match('/\A([a-zA-Z_\x80-\xff][\w\x80-\xff]*)(?:\(.*\))?\z/s', $expression, $match)) {
+			throw self::invalid($field, 'Action de scénario inconnue.');
+		}
+		$name = $match[1];
+		if (class_exists('userFunction', false)) {
+			if (method_exists('userFunction', $name) && is_callable(['userFunction', $name])) {
+				return;
+			}
+		} else {
+			$this->userMethods ??= self::readUserMethods(__DIR__ . '/../../data/php/user.function.class.php');
+			if (isset($this->userMethods['names'][strtolower($name)])) {
+				return;
+			}
+			if (!$this->userMethods['complete']) {
+				$this->warnings[] = ['field' => $field, 'reference' => $name, 'message' => 'Fonction utilisateur à vérifier au chargement de userFunction.'];
+				return;
+			}
+		}
+		throw self::invalid($field, 'Action de scénario inconnue.');
+	}
+
+	/** Lit les déclarations sans inclure le PHP local. Les traits, parents et classes
+	 * fournis par un autre fichier ne peuvent pas tous être résolus statiquement. */
+	private static function readUserMethods(string $file): array {
+		$result = ['names' => [], 'complete' => !is_file($file)];
+		if ($result['complete'] || ($source = @file_get_contents($file)) === false) {
+			return $result;
+		}
+		$tokens = array_values(array_filter(PhpToken::tokenize($source), static fn ($t) => !$t->isIgnorable()));
+		$start = null;
+		foreach ($tokens as $i => $token) {
+			if ($token->id === T_NAMESPACE) {
+				return $result;
+			}
+			if ($token->id === T_CLASS && strcasecmp($tokens[$i + 1]->text ?? '', 'userFunction') === 0) {
+				if ($start !== null || ($tokens[$i + 2]->text ?? '') !== '{') {
+					return $result;
+				}
+				$start = $i + 3;
+			}
+		}
+		if ($start === null) {
+			return $result;
+		}
+		$result['complete'] = true;
+		$depth = 1;
+		for ($i = $start; isset($tokens[$i]); $i++) {
+			$token = $tokens[$i];
+			if ($token->is([ord('{'), T_CURLY_OPEN, T_DOLLAR_OPEN_CURLY_BRACES])) {
+				$depth++;
+			} elseif ($token->id === ord('}')) {
+				if (--$depth === 0) {
+					break;
+				}
+			} elseif ($depth === 1 && $token->id === T_USE) {
+				$result['complete'] = false;
+			} elseif ($depth === 1 && $token->id === T_FUNCTION) {
+				$index = $i + 1;
+				if (($tokens[$index]->text ?? '') === '&') {
+					$index++;
+				}
+				$modifiers = [];
+				for ($j = $i - 1; $j >= 0 && $tokens[$j]->is([T_PUBLIC, T_STATIC, T_FINAL, T_PRIVATE, T_PROTECTED, T_ABSTRACT]); $j--) {
+					$modifiers[] = $tokens[$j]->id;
+				}
+				if (isset($tokens[$index]) && in_array(T_STATIC, $modifiers, true)
+					&& !array_intersect($modifiers, [T_PRIVATE, T_PROTECTED, T_ABSTRACT])) {
+					$result['names'][strtolower($tokens[$index]->text)] = true;
+				}
+			}
+		}
+		return $result;
 	}
 
 	private function commandList(mixed $value, string $type, string $field, bool $optional): void {
@@ -281,6 +391,23 @@ final class scenarioValidator {
 		foreach (explode('&&', (string) $value) as $reference) {
 			$this->requireCommand(trim($reference), $type, $field);
 		}
+	}
+
+	/** Options passées par setTags avant la recherche de la cible. Les références
+	 * numériques fournissent la valeur d'une commande info, pas son identifiant. */
+	private function runtimeTarget(mixed $value, string $field): bool {
+		if (!is_string($value)) {
+			return false;
+		}
+		$value = (string) jeedom::fromHumanReadable($value);
+		if (preg_match('/\A#(?:object|scenario|eqLogic)\d+#\z/', $value)) {
+			return false;
+		}
+		if (!preg_match('/#[^#\[\]\r\n]+#|\b[a-zA-Z][a-zA-Z1-9_]*\(/', $value)) {
+			return false;
+		}
+		$this->text($value, $field);
+		return true;
 	}
 
 	private function target(mixed $value, string $class, string $prefix, string $field): object {
@@ -318,7 +445,14 @@ final class scenarioValidator {
 	private static function references(string $value): array {
 		preg_match_all(cmd::ID_REFERENCE_PATTERN, $value, $numeric);
 		preg_match_all(cmd::HUMAN_REFERENCE_PATTERN, $value, $human);
-		return array_unique(array_merge($numeric[0], $human[0]));
+		$references = $numeric[0];
+		foreach (array_unique($human[0]) as $reference) {
+			// Un scénario et une commande partagent la notation à trois noms.
+			if (!preg_match('/^#scenario[0-9]+#$/D', (string) jeedom::fromHumanReadable($reference))) {
+				$references[] = $reference;
+			}
+		}
+		return array_unique($references);
 	}
 
 	private function text(mixed $value, string $field): void {
@@ -354,6 +488,20 @@ final class scenarioValidator {
 		try {
 			$language->lint($value, $names);
 		} catch (\Symfony\Component\ExpressionLanguage\SyntaxError) {
+			// setTags lit les arguments Jeedom comme du texte (ex. « first day of this month »).
+			// Contrôler les opérateurs autour des appels sans évaluer leurs arguments.
+			$mask = '~\b(?!(?:not|and|or|xor|in|matches)\b)[a-zA-Z][a-zA-Z1-9_]*(\((?:[^()]++|(?1))*\))~i';
+			$outer = preg_replace($mask, '1', $value);
+			if ($outer !== null) {
+				$outer = str_replace('""', '"', $outer);
+				if ($outer !== $value) {
+					try {
+						$language->lint($outer, $names);
+						return;
+					} catch (\Symfony\Component\ExpressionLanguage\SyntaxError) {
+					}
+				}
+			}
 			throw self::invalid($field, 'Syntaxe de l’expression invalide.');
 		}
 	}
