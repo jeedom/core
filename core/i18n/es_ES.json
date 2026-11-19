@@ -459,10 +459,7 @@
         "Impossible de transmettre les identifiants FRP": "No se pueden enviar los datos de identificación FRP",
         "Le client FRP ne s’est pas arrêté ; bascule annulée": "El cliente FRP no se ha detenido; cambio anulado",
         "Liste des relais FRP invalide": "Lista de relés FRP no válida",
-        "L’opération FRP a échoué dans Jeego": "La operación FRP ha fallado en Jeego",
-        "Une opération est encore en cours dans Jeego": "Todavía hay una operación en curso en Jeego",
-        "État FRP illisible": "Estado del FRP ilegible",
-        "État du service FRP indisponible dans Jeego": "Estado del servicio FRP no disponible en Jeego"
+        "État FRP illisible": "Estado del FRP ilegible"
     },
     "core\/class\/history.class.php": {
         "Commande": "Ordenado",
@@ -648,15 +645,6 @@
         "Vous pouvez lancer le redémarrage du système": "Puedes iniciar el reinicio del sistema",
         "Vérification de la configuration réseau interne": "Comprobación de la configuración interna de la red",
         "Vérifier la configuration de l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)": "Comprueba la configuración del acceso a la red externa (Ajustes > Sistema > Configuración, pestaña Redes)"
-    },
-    "core\/class\/jeego.class.php": {
-        "API locale Jeego indisponible ou requête refusée": "API local de Jeego no disponible o solicitud rechazada",
-        "Configuration de l’API locale Jeego absente ou invalide": "Configuración de la API local de Jeego ausente o no válida",
-        "Délai d’attente Jeego invalide": "El tiempo de espera de Jeego no es válido",
-        "Identifiant de service ou d’action Jeego invalide": "Identificador de servicio o acción de Jeego no válido",
-        "Identifiant de tâche Jeego invalide": "Identificador de tarea de Jeego no válido",
-        "Requête API Jeego invalide": "Solicitud de API de Jeego no válida",
-        "Une opération est encore en cours dans Jeego": "Todavía hay una operación en curso en Jeego"
     },
     "core\/class\/listener.class.php": {
         "La fonction ne peut pas être vide": "La función no puede estar vacía",
@@ -4207,8 +4195,6 @@
         "Guillemets automatiques": "Cotizaciones automáticas",
         "Général": "General",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Administra automáticamente las comillas para cadenas en expresiones (habilitado de forma predeterminada)",
-        "Géré par Jeego": "Gestionado por Jeego",
-        "Géré par le core": "Gestionado por el núcleo",
         "HTTP": "Http",
         "HTTPS": "HTTPS",
         "Hauteur": "Altura",

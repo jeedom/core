@@ -459,10 +459,7 @@
         "Impossible de transmettre les identifiants FRP": "Unable to transmit FRP credentials",
         "Le client FRP ne s’est pas arrêté ; bascule annulée": "The FRP client did not stop; switchback canceled",
         "Liste des relais FRP invalide": "Invalid FRP relay list",
-        "L’opération FRP a échoué dans Jeego": "The FRP operation failed in Jeego",
-        "Une opération est encore en cours dans Jeego": "An operation is still underway at Jeego",
-        "État FRP illisible": "Unreadable FRP status",
-        "État du service FRP indisponible dans Jeego": "FRP service status unavailable in Jeego"
+        "État FRP illisible": "Unreadable FRP status"
     },
     "core\/class\/history.class.php": {
         "Commande": "Command",
@@ -648,15 +645,6 @@
         "Vous pouvez lancer le redémarrage du système": "You can restart the system",
         "Vérification de la configuration réseau interne": "Checking the internal network configuration",
         "Vérifier la configuration de l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)": "Check the external network access settings (Settings > System > Configuration, Networks tab)"
-    },
-    "core\/class\/jeego.class.php": {
-        "API locale Jeego indisponible ou requête refusée": "Jeego local API unavailable or request denied",
-        "Configuration de l’API locale Jeego absente ou invalide": "Jeego local API configuration is missing or invalid",
-        "Délai d’attente Jeego invalide": "Invalid Jeego timeout",
-        "Identifiant de service ou d’action Jeego invalide": "Invalid Jeego service or action ID",
-        "Identifiant de tâche Jeego invalide": "Invalid Jeego task ID",
-        "Requête API Jeego invalide": "Invalid Jeego API request",
-        "Une opération est encore en cours dans Jeego": "An operation is still underway at Jeego"
     },
     "core\/class\/listener.class.php": {
         "La fonction ne peut pas être vide": "The function cannot be empty",
@@ -4207,8 +4195,6 @@
         "Guillemets automatiques": "Automatic quotes",
         "Général": "Main",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Automatically manage quotation marks for strings in expressions (enabled by default)",
-        "Géré par Jeego": "Powered by Jeego",
-        "Géré par le core": "Managed by the core",
         "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Hauteur": "Height",

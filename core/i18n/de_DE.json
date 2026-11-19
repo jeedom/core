@@ -459,10 +459,7 @@
         "Impossible de transmettre les identifiants FRP": "Die FRP-Anmeldedaten können nicht übertragen werden",
         "Le client FRP ne s’est pas arrêté ; bascule annulée": "Der FRP-Client wurde nicht angehalten; Umschaltung abgebrochen",
         "Liste des relais FRP invalide": "Ungültige Liste der FRP-Relais",
-        "L’opération FRP a échoué dans Jeego": "Der Vorgang „FRP“ ist in Jeego fehlgeschlagen",
-        "Une opération est encore en cours dans Jeego": "Bei Jeego läuft noch ein Vorgang",
-        "État FRP illisible": "FRP-Status unlesbar",
-        "État du service FRP indisponible dans Jeego": "FRP-Dienst in Jeego nicht verfügbar"
+        "État FRP illisible": "FRP-Status unlesbar"
     },
     "core\/class\/history.class.php": {
         "Commande": "Bestellt",
@@ -648,15 +645,6 @@
         "Vous pouvez lancer le redémarrage du système": "Sie können den Systemneustart starten",
         "Vérification de la configuration réseau interne": "Überprüfen der internen Netzwerkkonfiguration",
         "Vérifier la configuration de l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)": "Überprüfen Sie die Konfiguration des externen Netzwerkzugangs (Einstellungen > System > Konfiguration, Registerkarte „Netzwerke“)"
-    },
-    "core\/class\/jeego.class.php": {
-        "API locale Jeego indisponible ou requête refusée": "Jeego-API lokal nicht verfügbar oder Anfrage abgelehnt",
-        "Configuration de l’API locale Jeego absente ou invalide": "Die lokale Jeego-API ist nicht konfiguriert oder ungültig",
-        "Délai d’attente Jeego invalide": "Ungültige Jeego-Wartezeit",
-        "Identifiant de service ou d’action Jeego invalide": "Ungültige Jeego-Dienst- oder Aktions-ID",
-        "Identifiant de tâche Jeego invalide": "Ungültige Jeego-Aufgaben-ID",
-        "Requête API Jeego invalide": "Ungültige Jeego-API-Anfrage",
-        "Une opération est encore en cours dans Jeego": "Bei Jeego läuft noch ein Vorgang"
     },
     "core\/class\/listener.class.php": {
         "La fonction ne peut pas être vide": "Die Funktion kann nicht leer sein",
@@ -4207,8 +4195,6 @@
         "Guillemets automatiques": "Automatische Zitate",
         "Général": "Allgemein",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Anführungszeichen für Zeichenfolgen in Ausdrücken automatisch verwalten (standardmäßig aktiviert)",
-        "Géré par Jeego": "Verwaltet von Jeego",
-        "Géré par le core": "Vom Core verwaltet",
         "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Hauteur": "Höhe",
