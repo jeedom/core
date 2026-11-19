@@ -28,7 +28,11 @@ final class Auth implements MiddlewareInterface
             throw new ApiError(403, 'csrf_invalid', 'Jeton CSRF absent ou invalide.');
         }
         self::checkScope($request, $session);
-        \session::touch($session, \getClientIp(), $request->getHeaderLine('User-Agent'));
+        if ($session['mode'] === 'script') {
+            \session::touch($session, \getClientIp(), $request->getHeaderLine('User-Agent'));
+        } else {
+            \session::touch($session);
+        }
 
         $GLOBALS['_USER_GLOBAL'] = $user;
         try {
