@@ -476,9 +476,6 @@ final class UsersController
         if ($target !== null) {
             Auth::requireAccountAdmin($request->withAttribute('user', $confirmed));
             $user = self::findWritable($target);
-            if (!$mcp && (int) $user->getId() !== (int) $confirmed->getId() && $user->getProfils() !== 'restrict') {
-                throw new ApiError(403, 'script_access_forbidden', 'Vous pouvez générer un accès pour vous-même ou pour un compte restreint.');
-            }
         }
         if (!$user->isValidAndEnabled()) {
             throw new ApiError(403, $mcp ? 'mcp_access_forbidden' : 'script_access_forbidden', 'Le compte doit être actif.');

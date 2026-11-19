@@ -4797,10 +4797,10 @@ paths:
       operationId: createUserScriptSession
       summary: Générer un accès API pour un script (administrateur)
       description: |
-        Depuis une session Web d'administrateur, crée un accès pour son propre compte ou pour
-        un compte humain restreint, actif et dont l'accès API est activé.
+        Depuis une session Web d'administrateur, crée un accès Script pour tout compte humain actif.
         L'administrateur confirme avec son mot de passe et son code de double authentification si elle est activée.
-        Le jeton est affiché une seule fois et expire à la date indiquée.
+        Le jeton est affiché une seule fois et expire à la date indiquée. Le périmètre choisi est limité
+        par les droits et les restrictions réseau du compte destinataire.
       requestBody:
         required: true
         content:
