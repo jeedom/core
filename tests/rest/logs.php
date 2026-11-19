@@ -154,6 +154,18 @@ try {
             public function getProfils(): string { return 'admin'; }
         });
     $controller = new LogsController();
+    $append = fn (string $name) => $controller->add($request->withMethod('POST'), $responseFactory->createResponse(), ['name' => $name]);
+    expectError(422, 'validation_error', fn () => $append('.htaccess'));
+    expectError(422, 'validation_error', fn () => $append('../outside'));
+    expectError(422, 'validation_error', fn () => $append('new.php'));
+    $link = log::getPathToLog('alias');
+    symlink($path, $link);
+    try {
+        expectError(422, 'validation_error', fn () => $append('alias'));
+    } finally {
+        unlink($link);
+    }
+
     $delete = fn (string $name) => json_decode((string) $controller->delete(
         $request, $responseFactory->createResponse(), ['name' => $name]
     )->getBody(), true, 512, JSON_THROW_ON_ERROR);

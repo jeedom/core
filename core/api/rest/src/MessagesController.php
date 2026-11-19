@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Centre de notifications du core, d'après core/ajax/message.ajax.php :
- * lecture pour tout utilisateur connecté ; état lu (commun à la box) et suppression
+ * lecture pour tout utilisateur connecté ; ajout, état lu (commun à la box) et suppression
  * réservés aux administrateurs.
  */
 final class MessagesController
@@ -43,6 +43,30 @@ final class MessagesController
             }
         }
         return Json::respond($response, $query->page($items));
+    }
+
+    public function add(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $body = Json::body($request, 65536);
+        if ($unknown = array_diff(array_keys($body), ['plugin', 'message', 'action', 'logicalId', 'level'])) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ de message inconnu.');
+        }
+        $level = Json::textField($body, 'level', 7, 'info');
+        if (!in_array($level, \message::LEVELS, true)) {
+            throw ApiError::field(422, 'validation_error', 'level', 'Niveau de message invalide.');
+        }
+        $plugin = Json::textField($body, 'plugin', 127);
+        $logicalId = Json::textField($body, 'logicalId', 126, '');
+        // message::add échappe ces deux champs avant stockage et tronque le logicalId à 126 octets.
+        if (mb_strlen(\secureXSS($plugin)) > 127) {
+            throw ApiError::field(422, 'validation_error', 'plugin', 'Nom de source trop long après encodage.');
+        }
+        if (strlen(\secureXSS($logicalId)) > 126) {
+            throw ApiError::field(422, 'validation_error', 'logicalId', 'Identifiant trop long après encodage.');
+        }
+        \message::add($plugin, Json::textField($body, 'message', 8192), Json::textField($body, 'action', 8192, ''), $logicalId, _level: $level);
+        return $response->withStatus(204);
     }
 
     public function count(Request $request, Response $response): Response

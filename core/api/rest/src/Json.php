@@ -23,6 +23,15 @@ final class Json
         return self::respond($response, ['error' => $body], $error->status);
     }
 
+    public static function textField(array $body, string $key, int $maxLength, ?string $default = null): string
+    {
+        $value = array_key_exists($key, $body) ? $body[$key] : $default;
+        if (!is_string($value) || ($default === null && trim($value) === '') || mb_strlen($value) > $maxLength || str_contains($value, "\0")) {
+            throw ApiError::field(422, 'validation_error', $key, 'Champ texte manquant ou invalide.');
+        }
+        return $value;
+    }
+
     /** @return array<string, mixed> */
     public static function body(ServerRequestInterface $request, ?int $maxBytes = null, bool $preserveObjects = false, bool $allowEmpty = false): array
     {

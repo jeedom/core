@@ -95,6 +95,10 @@ class log extends AbstractLogger {
 		return self::getConfig('log::level');
 	}
 
+	public static function isValidLevel(string $_level): bool {
+		return isset(self::$level[$_level]);
+	}
+
 	public static function convertLogLevel($_level = 100) {
 		if ($_level >= 600) {
 			return 'none';

@@ -110,7 +110,7 @@ final class Auth implements MiddlewareInterface
             }
         } elseif ($session['scope'] === '') {
             return;
-        } elseif ($method === 'GET' && preg_match('~\A/api/v1/(?:objects(?:/[1-9][0-9]*)?|eqLogics(?:/[1-9][0-9]*)?|cmds(?:/[1-9][0-9]*(?:/(?:value|history|statistics))?)?)\z~', $path)
+        } elseif ($method === 'GET' && preg_match('~\A/api/v1/(?:system/(?:version|ping|datetime|ok)|objects(?:/[1-9][0-9]*)?|eqLogics(?:/[1-9][0-9]*)?|cmds(?:/[1-9][0-9]*(?:/(?:value|history|statistics))?)?)\z~', $path)
             || $session['scope'] === 'control' && $method === 'POST' && preg_match('~\A/api/v1/cmds/[1-9][0-9]*/exec\z~', $path)) {
             return;
         }
