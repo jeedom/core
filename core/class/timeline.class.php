@@ -144,14 +144,10 @@ class timeline {
     $results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
     $return = array('main');
     foreach ($results as $result) {
-      $infos = explode(',',$result['folder']);
-      foreach ($infos as $info) {
-        if($info == ''){
-          continue;
-        }
-        if(!in_array($info,$return)){
-          $return[] = $info;
-        }
+      $folder = $result['folder'];
+      // byFolder() compare le nom enregistré en entier, même pour les anciens dossiers avec virgules.
+      if ($folder !== null && $folder !== '' && $folder !== 'main') {
+        $return[] = $folder;
       }
     }
     return $return;
