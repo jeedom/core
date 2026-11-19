@@ -442,6 +442,10 @@ class repo_market {
 		return marketClient::getCloudToken();
 	}
 
+	public static function associateCloudService(array $data): array {
+		return marketClient::associateCloudService($data);
+	}
+
 	public static function getPassword() {
 		$password = config::byKey('market::password');
 		if (!is_sha1($password)) {

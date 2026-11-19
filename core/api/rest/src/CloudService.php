@@ -62,11 +62,11 @@ final class CloudService
                 throw new \RuntimeException('Impossible de verrouiller la session Jeedom Cloud Service.');
             }
             $payload = ['service' => $service, 'url' => $url];
-            $result = \marketClient::associateCloudService($payload);
+            $result = \repo_market::associateCloudService($payload);
             if (($result['state'] ?? '') === 'credentials_required') {
                 $account = self::account();
                 $session = \session::create($account, false, '', null, null, 'api', self::LOGIN, self::SCOPE, true);
-                $result = \marketClient::associateCloudService($payload + [
+                $result = \repo_market::associateCloudService($payload + [
                     'sessionId' => $session['id'], 'refreshToken' => $session['refreshToken'],
                 ]);
             }
