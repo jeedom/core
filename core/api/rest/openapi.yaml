@@ -4430,7 +4430,7 @@ paths:
       operationId: listMySessions
       summary: Lister ses sessions ouvertes
       description: |
-        Sessions Web et API actives pour ce compte. L'identifiant public est
+        Sessions Web, API et de scripts actives pour ce compte. L'identifiant public est
         indépendant du jeton d'authentification.
       responses:
         '200':
@@ -4442,22 +4442,24 @@ paths:
 
     post:
       tags: [Session]
-      operationId: createApiSession
-      summary: Générer un accès API délégué
+      operationId: createScriptSession
+      summary: Générer un accès API pour un script
       description: |
-        Demande le mot de passe et le code de double authentification si elle est activée.
-        Renvoie une seule fois le jeton de renouvellement initial. Le périmètre reste borné aux droits du compte.
+        Depuis une session Web, confirmez votre mot de passe et, si elle est activée, la double authentification.
+        Le jeton d'accès est renvoyé une seule fois et s'utilise directement avec `Authorization: Bearer` en HTTPS.
+        La durée est fixe, de 1 à 365 jours, sans renouvellement. Le périmètre reste borné aux droits
+        et aux restrictions réseau du compte. Pour obtenir des jetons renouvelables, utilisez `POST /session` en mode API.
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/DelegatedSessionRequest' }
+            schema: { $ref: '#/components/schemas/ScriptSessionRequest' }
       responses:
         '201':
-          description: Jeton initial. La réponse porte Cache-Control no-store.
+          description: Jeton d'accès. La réponse porte Cache-Control no-store.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/DelegatedSession' }
+              schema: { $ref: '#/components/schemas/ScriptSession' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
@@ -4737,6 +4739,30 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
+    post:
+      tags: [Utilisateurs]
+      operationId: createUserScriptSession
+      summary: Générer un accès API pour un script (administrateur)
+      description: |
+        Depuis une session Web d'administrateur, crée un accès pour son propre compte ou pour
+        un compte humain restreint, actif et dont l'accès API est activé.
+        L'administrateur confirme avec son mot de passe et son code de double authentification si elle est activée.
+        Le jeton est affiché une seule fois et expire à la date indiquée.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScriptSessionRequest' }
+      responses:
+        '201':
+          description: Jeton d'accès. La réponse porte Cache-Control no-store.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScriptSession' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
     delete:
       tags: [Utilisateurs]
       operationId: closeUserSessions
@@ -9764,7 +9790,7 @@ components:
         expiresAt: { type: string, format: date-time, description: Expiration de la session. }
         current: { type: boolean, description: Session de la requête en cours. }
         name: { type: string, description: Nom du client. }
-        type: { type: string, enum: [web, api, daemon] }
+        type: { type: string, enum: [web, api, daemon, script] }
         scope: { type: [string, 'null'], description: Périmètre délégué ou identifiant du plugin. }
 
     SessionInfoList:
@@ -9784,10 +9810,10 @@ components:
         kind: { type: string, enum: [human, system, plugin] }
         ip: { type: string }
         datetime: { type: string, format: date-time, description: Dernière activité. }
-        expiresAt: { type: string, format: date-time, description: Expiration du renouvellement REST ou estimation d’expiration PHP. }
+        expiresAt: { type: string, format: date-time, description: Expiration de la session REST ou estimation d’expiration PHP. }
         current: { type: boolean, description: Session de la requête en cours. }
         name: { type: string, description: Nom du client. }
-        type: { type: string, enum: [web, api, daemon, legacy] }
+        type: { type: string, enum: [web, api, daemon, script, legacy] }
         scope: { type: [string, 'null'], description: Périmètre délégué ou identifiant du plugin. }
         userAgent: { type: [string, 'null'], description: 'User-Agent relevé pour cette session, si disponible.' }
 
@@ -9839,22 +9865,23 @@ components:
         accessExpiresAt: { type: string, format: date-time }
         refreshExpiresAt: { type: string, format: date-time }
 
-    DelegatedSessionRequest:
+    ScriptSessionRequest:
       type: object
-      required: [clientName, scope, password]
+      required: [clientName, scope, durationDays, password]
       properties:
         clientName: { type: string, minLength: 1, maxLength: 100 }
         scope: { type: string, enum: [read, control], description: Lecture domotique ou lecture avec exécution des commandes. }
+        durationDays: { type: integer, minimum: 1, maximum: 365 }
         password: { type: string, format: password, minLength: 1 }
         twoFactorCode: { type: string }
 
-    DelegatedSession:
+    ScriptSession:
       type: object
-      required: [id, refreshToken, refreshExpiresAt]
+      required: [id, accessToken, accessExpiresAt]
       properties:
         id: { type: string, pattern: '^[a-f0-9]{64}$' }
-        refreshToken: { type: string, pattern: '^[a-f0-9]{64}$' }
-        refreshExpiresAt: { type: string, format: date-time }
+        accessToken: { type: string, pattern: '^[a-f0-9]{64}$' }
+        accessExpiresAt: { type: string, format: date-time }
 
     CmdType:
       type: string

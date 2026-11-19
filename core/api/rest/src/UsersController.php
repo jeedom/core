@@ -433,27 +433,54 @@ final class UsersController
         return Json::respond($response->withHeader('Cache-Control', 'no-store'), ['enabled' => $enabled]);
     }
 
-    public function createApiSession(Request $request, Response $response): Response
+    public function createScriptSession(Request $request, Response $response, array $args = []): Response
     {
-        $user = self::currentWritable($request);
+        if (isset($args['id'])) {
+            Auth::requireAccountAdmin($request);
+        }
+        if ($request->getAttribute('webSessionId') === null) {
+            throw new ApiError(403, 'forbidden', 'La création d’un accès pour un script nécessite une session Web.');
+        }
+        $actor = self::currentWritable($request);
         $body = Json::body($request, 8192);
-        self::rejectUnknown($body, ['clientName', 'scope', 'password', 'twoFactorCode']);
+        self::rejectUnknown($body, ['clientName', 'scope', 'durationDays', 'password', 'twoFactorCode']);
         $name = SessionController::clientName($body['clientName'] ?? null);
         $scope = $body['scope'] ?? null;
-        if (!in_array($scope, ['read', 'control'], true)) {
+        if (!in_array($scope, \session::SCRIPT_SCOPES, true)) {
             throw ApiError::field(422, 'validation_error', 'scope', 'Choisissez lecture ou contrôle.');
+        }
+        $days = $body['durationDays'] ?? null;
+        if (!is_int($days) || $days < 1 || $days > \session::SCRIPT_MAX_DURATION_DAYS) {
+            throw ApiError::field(422, 'validation_error', 'durationDays', 'Choisissez une durée de 1 à 365 jours.');
         }
         $password = $body['password'] ?? null;
         if (!is_string($password) || $password === '') {
             throw ApiError::field(422, 'validation_error', 'password', 'Le mot de passe est obligatoire.');
         }
-        $user = SessionController::authenticate($user->getLogin(), $password, $body['twoFactorCode'] ?? null, 'api');
+        $confirmed = SessionController::authenticate($actor->getLogin(), $password, $body['twoFactorCode'] ?? null, 'web');
+        if ((int) $confirmed->getId() !== (int) $actor->getId()) {
+            throw new ApiError(401, 'invalid_credentials', 'Le compte a changé. Reconnectez-vous.');
+        }
+        $user = $confirmed;
+        if (isset($args['id'])) {
+            Auth::requireAccountAdmin($request->withAttribute('user', $confirmed));
+            $user = self::findWritable($args['id']);
+            if ((int) $user->getId() !== (int) $confirmed->getId() && $user->getProfils() !== 'restrict') {
+                throw new ApiError(403, 'script_access_forbidden', 'Vous pouvez générer un accès pour vous-même ou pour un compte restreint.');
+            }
+        }
+        if (!$user->isValidAndEnabled() || $user->getOptions('api::mode', 'enable') === 'disable') {
+            throw new ApiError(403, 'script_access_forbidden', 'Le compte doit être actif et son accès API activé.');
+        }
         try {
-            $connection = \session::create($user, false, \getClientIp(), null, null, 'api', $name, $scope, true);
+            $connection = \session::create($user, false, '', null, time() + $days * 86400, 'script', $name, $scope);
         } catch (\DomainException $error) {
             throw new ApiError(401, 'invalid_credentials', $error->getMessage());
         }
-        return Json::respond($response->withHeader('Cache-Control', 'no-store'), ['id' => $connection['id']] + SessionController::refreshPayload($connection), 201);
+        \log::audit('REST script access created', ['sessionId' => $connection['id'], 'by' => $confirmed->getLogin(), 'login' => $user->getLogin()]);
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), [
+            'id' => $connection['id'], 'accessToken' => $connection['token'], 'accessExpiresAt' => gmdate(DATE_ATOM, $connection['expires']),
+        ], 201);
     }
 
     public function myDevices(Request $request, Response $response): Response

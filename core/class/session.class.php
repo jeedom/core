@@ -3,6 +3,8 @@
 final class session {
 	public const ACCESS_LIFETIME = 86400;
 	public const REFRESH_LIFETIME = 90 * 86400;
+	public const SCRIPT_MAX_DURATION_DAYS = 365;
+	public const SCRIPT_SCOPES = ['read', 'control'];
 	private const RETRY_WINDOW = 60;
 	private const REFRESH_MATCH = '(refresh_hash = :hash OR (previous_refresh_hash = :previous
 		AND previous_refresh_expires_at > UTC_TIMESTAMP()))';
@@ -10,12 +12,20 @@ final class session {
 	public static function create(user $actor, bool $remember, string $ip, ?string $previous, ?int $expiresBefore = null,
 		string $mode = 'web', string $name = 'Core UI', string $scope = '', bool $refreshOnly = false, string $userAgent = '',
 		bool $recordLastConnection = false, ?string $replacedSessionId = null): array {
-		$connection = self::withLockedAccount($actor, static function (user $user) use ($remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly, $userAgent, $recordLastConnection, $replacedSessionId): array {
+		$connection = self::withLockedAccount($actor, static function (user $user) use ($actor, $remember, $ip, $previous, $expiresBefore, $mode, $name, $scope, $refreshOnly, $userAgent, $recordLastConnection, $replacedSessionId): array {
 			$id = self::secret();
 			$csrf = self::secret();
-			$pair = self::pair(self::secret(), self::secret(), $expiresBefore);
 			$now = time();
-			if ($pair['expires'] <= $now) {
+			if ($mode === 'script') {
+				if ($expiresBefore === null || $expiresBefore > $now + self::SCRIPT_MAX_DURATION_DAYS * 86400
+					|| !in_array($scope, self::SCRIPT_SCOPES, true) || $actor->getProfils() !== $user->getProfils()) {
+					throw new DomainException('Impossible de créer cette session de script.');
+				}
+				$tokens = ['token' => self::secret(), 'expires' => $expiresBefore];
+			} else {
+				$tokens = self::pair(self::secret(), self::secret(), $expiresBefore);
+			}
+			if ($tokens['expires'] <= $now) {
 				throw new DomainException('La session a expiré.');
 			}
 			if ($mode === 'web' && self::validId($previous)) {
@@ -32,16 +42,17 @@ final class session {
 				mode, client_name, scope, created_at, last_activity_at, access_expires_at, expires_at, hard_expires_at)
 				VALUES (:id, :user, :hash, :refresh, :csrf, :credentials, :ip, :userAgent, :remembered, :mode, :name, :scope,
 				UTC_TIMESTAMP(), UTC_TIMESTAMP(), :accessExpires, :expires, :hardExpires)', [
-				'id' => $id, 'user' => $user->getId(), 'hash' => self::digest($pair['token']),
-				'refresh' => self::digest($pair['refreshToken']), 'csrf' => $csrf, 'credentials' => self::credentials($user),
+				'id' => $id, 'user' => $user->getId(), 'hash' => self::digest($tokens['token']),
+				'refresh' => isset($tokens['refreshToken']) ? self::digest($tokens['refreshToken']) : null,
+				'csrf' => $csrf, 'credentials' => self::credentials($user),
 				'remembered' => (int) $remember,
-				'mode' => $mode, 'name' => $name, 'scope' => $scope, 'accessExpires' => $refreshOnly ? null : self::date($pair['expires']),
-				'expires' => self::date($pair['refreshExpires']), 'hardExpires' => $expiresBefore === null ? null : self::date($expiresBefore),
+				'mode' => $mode, 'name' => $name, 'scope' => $scope, 'accessExpires' => $refreshOnly ? null : self::date($tokens['expires']),
+				'expires' => self::date($tokens['refreshExpires'] ?? $tokens['expires']), 'hardExpires' => $expiresBefore === null ? null : self::date($expiresBefore),
 			] + self::clientMetadata($refreshOnly ? '' : $ip, $refreshOnly ? '' : $userAgent));
 			if ($recordLastConnection) {
 				$user->setOptions('lastConnection', date('Y-m-d H:i:s', $now))->save();
 			}
-			return ['id' => $id, 'user' => $user, 'csrfToken' => $csrf, 'remembered' => $remember] + $pair;
+			return ['id' => $id, 'user' => $user, 'csrfToken' => $csrf, 'remembered' => $remember] + $tokens;
 		});
 		log::audit('REST session created', ['sessionId' => $connection['id'], 'userId' => $actor->getId(), 'mode' => $mode]);
 		return $connection;
@@ -55,7 +66,7 @@ final class session {
 		$expiry = $refresh ? '' : ' AND access_expires_at > UTC_TIMESTAMP()';
 		$row = DB::Prepare("SELECT * FROM `session` WHERE $field = :hash AND expires_at > UTC_TIMESTAMP()$expiry",
 			['hash' => self::digest($token)]);
-		if (!is_array($row) || !self::matchesTransport($row, $transport)) {
+		if (!is_array($row) || !self::matchesTransport($row, $transport, $refresh)) {
 			return null;
 		}
 		$user = user::byId($row['user_id']);
@@ -95,7 +106,7 @@ final class session {
 				. self::REFRESH_MATCH . ' FOR UPDATE', ['id' => $current['id']] + $tokens);
 			$result = null;
 			$replay = false;
-			if (is_array($row) && self::matchesTransport($row, $transport) && self::validAccount($user, $row)) {
+			if (is_array($row) && self::matchesTransport($row, $transport, true) && self::validAccount($user, $row)) {
 				$authorize($user, $row);
 				if (hash_equals($row['refresh_hash'], $hash)) {
 					$result = self::rotate($row, $token, $attempt, $ip, $userAgent);
@@ -165,7 +176,10 @@ final class session {
 			'refreshExpires' => min($now + self::REFRESH_LIFETIME, $cap ?? PHP_INT_MAX)];
 	}
 
-	private static function matchesTransport(array $row, string $transport): bool {
+	private static function matchesTransport(array $row, string $transport, bool $refresh): bool {
+		if ($row['mode'] === 'script') {
+			return $transport === 'api' && !$refresh;
+		}
 		return $row['mode'] === $transport || ($transport === 'api' && $row['mode'] === 'daemon');
 	}
 
@@ -173,7 +187,12 @@ final class session {
 		return $user instanceof user && $user->isValidAndEnabled() && hash_equals($row['credential_hash'], self::credentials($user));
 	}
 
-	public static function touch(array $row): void {
+	public static function touch(array $row, string $ip = '', string $userAgent = ''): void {
+		if ($row['mode'] === 'script' && $row['ip'] === '' && $ip !== '') {
+			DB::Prepare("UPDATE `session` SET ip = :ip, user_agent = :userAgent, last_activity_at = UTC_TIMESTAMP()
+				WHERE id = :id AND ip = ''", ['id' => $row['id']] + self::clientMetadata($ip, $userAgent));
+			return;
+		}
 		if (self::timestamp($row['last_activity_at']) <= time() - 60) {
 			DB::Prepare('UPDATE `session` SET last_activity_at = UTC_TIMESTAMP()
 				WHERE id = :id AND last_activity_at <= UTC_TIMESTAMP() - INTERVAL 1 MINUTE', ['id' => $row['id']]);
@@ -207,7 +226,7 @@ final class session {
 	/** @param array<int, user> $accounts */
 	public static function activeConnections(array $accounts): array {
 		$rows = DB::Prepare("SELECT id, user_id, credential_hash, ip, user_agent, last_activity_at, expires_at, client_name, mode, scope
-			FROM `session` WHERE expires_at > UTC_TIMESTAMP() AND mode IN ('web', 'api', 'daemon')", [], DB::FETCH_TYPE_ALL);
+			FROM `session` WHERE expires_at > UTC_TIMESTAMP() AND mode IN ('web', 'api', 'daemon', 'script')", [], DB::FETCH_TYPE_ALL);
 		$active = [];
 		foreach ($rows as $row) {
 			if (self::validAccount($accounts[$row['user_id']] ?? null, $row)) {
