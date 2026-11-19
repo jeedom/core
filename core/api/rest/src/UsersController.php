@@ -469,8 +469,8 @@ final class UsersController
                 throw new ApiError(403, 'script_access_forbidden', 'Vous pouvez générer un accès pour vous-même ou pour un compte restreint.');
             }
         }
-        if (!$user->isValidAndEnabled() || $user->getOptions('api::mode', 'enable') === 'disable') {
-            throw new ApiError(403, 'script_access_forbidden', 'Le compte doit être actif et son accès API activé.');
+        if (!$user->isValidAndEnabled()) {
+            throw new ApiError(403, 'script_access_forbidden', 'Le compte doit être actif.');
         }
         try {
             $connection = \session::create($user, false, '', null, time() + $days * 86400, 'script', $name, $scope);

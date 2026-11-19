@@ -4525,8 +4525,8 @@ paths:
       description: |
         Remplace l'ajax `user::save` sans `id`. Seuls `login` et `password`
         sont acceptés : le compte est créé avec le profil `user`, actif, et
-        l'accès API désactivé (`options.api::mode = disable`). Le profil, les
-        options et les droits se règlent ensuite avec `PATCH /users/{id}` et
+        l'accès à l'API historique désactivé (`options.api::mode = disable`).
+        Le profil, les options et les droits se règlent ensuite avec `PATCH /users/{id}` et
         `PUT /users/{id}/rights`. Refusé si l'authentification LDAP est
         active (les comptes viennent alors de l'annuaire).
       requestBody:
@@ -9659,7 +9659,7 @@ components:
         'api::mode':
           type: string
           enum: [enable, whiteip, localhost, disable]
-          description: Accès à l'API avec le jeton de cet utilisateur.
+          description: Accès à l'API historique avec la clé personnelle de cet utilisateur.
         doNotRotateHash: { type: integer, enum: [0, 1], description: Ne pas régénérer automatiquement le jeton tous les 3 mois. }
         menu:
           oneOf:
