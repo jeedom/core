@@ -46,7 +46,8 @@ info:
 
     ### Sessions de l’API
     La table InnoDB `session` stocke les empreintes des jetons, ainsi que l’IP
-    et le User-Agent du client à l’ouverture de la session. Le jeton d’accès dure
+    et le User-Agent relevés pour la session. Le User-Agent du compte technique
+    Jeedom Cloud Service est actualisé lorsqu’il change. Le jeton d’accès dure
     24 h. Le renouvellement repousse l’échéance du refresh token de 90 jours.
     Core UI utilise par défaut des cookies persistants, HttpOnly et
     SameSite=Strict. En HTTPS, ils portent aussi l’attribut Secure et un préfixe

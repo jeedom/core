@@ -193,6 +193,15 @@ final class session {
 				WHERE id = :id AND ip = ''", ['id' => $row['id']] + self::clientMetadata($ip, $userAgent));
 			return;
 		}
+		if ($row['mode'] === 'api' && $userAgent !== '') {
+			$agent = self::clientMetadata('', $userAgent)['userAgent'];
+			if ($agent !== null && $agent !== $row['user_agent']) {
+				DB::Prepare('UPDATE `session` SET user_agent = :userAgent, last_activity_at = UTC_TIMESTAMP()
+					WHERE id = :id AND (CAST(user_agent AS BINARY) <=> :previousUserAgent)',
+					['id' => $row['id'], 'userAgent' => $agent, 'previousUserAgent' => $row['user_agent']]);
+				return;
+			}
+		}
 		if (self::timestamp($row['last_activity_at']) <= time() - 60) {
 			DB::Prepare('UPDATE `session` SET last_activity_at = UTC_TIMESTAMP()
 				WHERE id = :id AND last_activity_at <= UTC_TIMESTAMP() - INTERVAL 1 MINUTE', ['id' => $row['id']]);

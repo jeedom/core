@@ -58,6 +58,7 @@ jobs:
       - name: Exercise plugin REST routes and installation jobs
         run: |
           php tests/rest/plugins.php
+          php tests/rest/cloud-session.php
           php tests/rest/updates.php
       - name: Exercise REST log excerpts
         run: php tests/rest/logs.php
