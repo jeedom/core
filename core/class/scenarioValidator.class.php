@@ -173,30 +173,28 @@ final class scenarioValidator {
 			throw self::invalid($field, 'Expression ou options invalides.');
 		}
 		$value = (string) $value;
-		switch ($expression['type']) {
-			case 'code':
-				try {
-					token_get_all('<?php ' . $value, TOKEN_PARSE);
-				} catch (ParseError $error) {
-					throw self::invalid("$field.expression", 'Syntaxe PHP invalide à la ligne ' . $error->getLine() . ' du bloc.');
-				}
-				break;
-			case 'action':
-				try {
-					$this->action(trim($value), $options, $field);
-				} catch (scenarioValidationException $error) {
-					if ($enabled) {
-						throw $error;
-					}
-					$this->warnings[] = ['field' => $error->field, 'reference' => $value, 'message' => $error->getMessage()];
-				}
-				break;
-			case 'condition':
+		if ($expression['type'] === 'code') {
+			try {
+				token_get_all('<?php ' . $value, TOKEN_PARSE);
+			} catch (ParseError $error) {
+				throw self::invalid("$field.expression", 'Syntaxe PHP invalide à la ligne ' . $error->getLine() . ' du bloc.');
+			}
+			return;
+		}
+		try {
+			if ($expression['type'] === 'action') {
+				$this->action(trim($value), $options, $field);
+			} elseif ($expression['type'] === 'condition') {
+				$this->text($value, "$field.expression");
 				if ($partType !== 'in' || !is_numeric(str_replace(',', '.', $value))) {
 					$this->condition($value, "$field.expression");
 				}
-				$this->text($value, "$field.expression");
-				break;
+			}
+		} catch (scenarioValidationException $error) {
+			if ($enabled) {
+				throw $error;
+			}
+			$this->warnings[] = ['field' => $error->field, 'reference' => $value, 'message' => $error->getMessage()];
 		}
 	}
 
@@ -210,10 +208,18 @@ final class scenarioValidator {
 			throw self::invalid("$field.id", 'Identifiant inconnu, répété ou appartenant à un autre scénario.');
 		}
 		$this->seen[$kind][$id] = true;
-		if ($kind === 'subelement' && (string) scenarioSubElement::byId($id)->getScenarioElement_id() !== (string) $parent
-			|| $kind === 'expression' && (string) scenarioExpression::byId($id)->getScenarioSubElement_id() !== (string) $parent) {
-			throw self::invalid("$field.id", 'Identifiant rattaché à un autre bloc.');
+		if ($kind === 'element') {
+			return;
 		}
+		$original = $kind === 'subelement' ? scenarioSubElement::byId($id)->getScenarioElement_id() : scenarioExpression::byId($id)->getScenarioSubElement_id();
+		if ((string) $original === (string) $parent) {
+			return;
+		}
+		// saveAjaxElement recrée une expression déplacée lorsque son ancien parent est fourni.
+		if ($kind === 'expression' && (string) $original === (string) ($item['scenarioSubElement_id'] ?? '')) {
+			return;
+		}
+		throw self::invalid("$field.id", 'Identifiant rattaché à un autre bloc.');
 	}
 
 	private function action(string $name, array $options, string $field): void {
@@ -476,7 +482,11 @@ final class scenarioValidator {
 		// Représente les tags et les fonctions évaluées par le moteur par des valeurs
 		// fictives. Le parseur vérifie la syntaxe sans lire d'équipement ni évaluer de code.
 		$value = preg_replace(cmd::HUMAN_REFERENCE_PATTERN, '1', $value);
-		$value = preg_replace('/##[^#\r\n]+##|#[^#\r\n]+#/', '1', $value);
+		// Dans une chaîne déjà délimitée, un # peut aussi être du texte (couleur, motif…).
+		$tagPattern = <<<'REGEX'
+~(?:"(?:[^"\\]++|\\.)*"|'(?:[^'\\]++|\\.)*')(*SKIP)(*F)|##[^#\r\n]+##|#[^#\r\n]+#~s
+REGEX;
+		$value = preg_replace($tagPattern, '1', $value);
 		$value = normalizeJeedomExpression($value);
 		$language = new \Symfony\Component\ExpressionLanguage\ExpressionLanguage();
 		preg_match_all('/\b([a-zA-Z_][a-zA-Z_0-9]*)\s*\(/', $value, $calls);
