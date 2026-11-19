@@ -25,6 +25,7 @@ class config {
 }
 class user {
     public static bool $enabled = true;
+    public static array $options = [];
     private ?int $enable = null;
     public function __construct(private int $id) {}
     public static function isBan(): bool { return false; }
@@ -43,7 +44,7 @@ class user {
     public function getEnable() { return $this->enable ?? (self::$enabled ? 1 : 0); }
     public function isValidAndEnabled() { return $this->getEnable() === 1; }
     public function setEnable(int $enable): void { $this->enable = $enable; }
-    public function getOptions($key, $default = '') { return $default; }
+    public function getOptions($key, $default = '') { return self::$options[$key] ?? $default; }
     public function hasTwoFactor(): bool { return false; }
     public function save(): void {}
 }
@@ -325,7 +326,10 @@ repo_market::$revoked = true;
 check(call('DELETE', '/market/connection') === ['connected' => false, 'login' => 'fixture'], 'Disconnection must support retries');
 repo_market::$connected = true;
 call('GET', '/plugins', 401, token: null);
+// L'accès REST reste utilisable quand la clé personnelle historique est désactivée.
+user::$options['api::mode'] = 'disable';
 call('GET', '/plugins', 200, token: 'member');
+unset(user::$options['api::mode']);
 call('GET', '/plugins?enabled=nonsense', 422);
 $detail = call('GET', '/plugins/fixture?full=true');
 check($detail['usedSpace'] === 1234 && $detail['description'] === 'Description', 'Full plugin metadata incorrect');

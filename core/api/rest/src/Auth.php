@@ -90,8 +90,7 @@ final class Auth implements MiddlewareInterface
         if ($mode === 'script' && !in_array($scope, \session::SCRIPT_SCOPES, true)) {
             return false;
         }
-        return !in_array($mode, ['api', 'script'], true) || ($user->getLogin() !== \supportAccess::LOGIN
-            && \jeedom::apiModeResult($user->getOptions('api::mode', 'enable')));
+        return !in_array($mode, ['api', 'script'], true) || $user->getLogin() !== \supportAccess::LOGIN;
     }
 
     private static function checkScope(ServerRequestInterface $request, array $session): void
