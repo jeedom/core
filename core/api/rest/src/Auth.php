@@ -28,16 +28,17 @@ final class Auth implements MiddlewareInterface
             throw new ApiError(403, 'csrf_invalid', 'Jeton CSRF absent ou invalide.');
         }
         self::checkScope($request, $session);
+        $cloudService = $session['mode'] === 'api' && $session['scope'] === CloudService::SCOPE;
         if ($session['mode'] === 'script') {
             \session::touch($session, \getClientIp(), $request->getHeaderLine('User-Agent'));
         } else {
-            \session::touch($session);
+            \session::touch($session, '', $cloudService ? $request->getHeaderLine('User-Agent') : '');
         }
 
         $GLOBALS['_USER_GLOBAL'] = $user;
         try {
             return $handler->handle($request->withAttribute('user', $user)->withAttribute('restSessionId', $session['id'])
-                ->withAttribute('cloudServiceSession', $session['mode'] === 'api' && $session['scope'] === CloudService::SCOPE)
+                ->withAttribute('cloudServiceSession', $cloudService)
                 ->withAttribute('daemonPluginId', $session['mode'] === 'daemon' ? $session['scope'] : null)
                 ->withAttribute('webSessionId', $transport === 'web' ? $session['id'] : null)
                 ->withAttribute('webSessionRemembered', $transport === 'web' && (bool) $session['remembered'])
