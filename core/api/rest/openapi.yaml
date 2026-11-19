@@ -9609,6 +9609,11 @@ components:
           format: date-time
           readOnly: true
           description: Dernière connexion (`options.lastConnection`).
+        lastActivity:
+          type: [string, 'null']
+          format: date-time
+          readOnly: true
+          description: Activité la plus récente des sessions REST actives du compte, ou null. Renseignée par GET /users.
         options: { $ref: '#/components/schemas/UserAdminOptions' }
       example:
         id: 2

@@ -49,14 +49,25 @@ final class UsersController
             }
         }
         $items = [];
+        $accounts = [];
         foreach (\user::all() as $user) {
             $item = self::toArray($user);
             if (($profils === null || $item['profils'] === $profils) && ($kind === null || $item['kind'] === $kind)
                 && ($enable === null || $item['enable'] === $enable)) {
-                $items[] = $item;
+                $accounts[$item['id']] = $user;
+                $items[$item['id']] = $item + ['lastActivity' => null];
             }
         }
-        return Json::respond($response, ['items' => $items, 'total' => count($items)]);
+        foreach (\session::activeConnections($accounts) as $session) {
+            $id = $session['user_id'];
+            $activity = self::sessionDate($session['last_activity_at']);
+            if ($items[$id]['lastActivity'] === null || $activity > $items[$id]['lastActivity']) {
+                $items[$id]['lastActivity'] = $activity;
+            }
+        }
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), [
+            'items' => array_values($items), 'total' => count($items),
+        ]);
     }
 
     public function get(Request $request, Response $response, array $args): Response
@@ -560,14 +571,19 @@ final class UsersController
         return [
             ($remembered ? 'key' : 'id') => $session['id'],
             'ip' => $session['ip'],
-            'datetime' => str_replace(' ', 'T', $session['last_activity_at']) . 'Z',
-            'expiresAt' => str_replace(' ', 'T', $session['expires_at']) . 'Z',
+            'datetime' => self::sessionDate($session['last_activity_at']),
+            'expiresAt' => self::sessionDate($session['expires_at']),
             'current' => $session['id'] === $current,
         ] + ($remembered ? [] : [
             'name' => $session['client_name'],
             'type' => $session['mode'],
             'scope' => $session['scope'] === '' ? null : $session['scope'],
         ]);
+    }
+
+    private static function sessionDate(string $datetime): string
+    {
+        return str_replace(' ', 'T', $datetime) . 'Z';
     }
 
     private static function closeOne(Request $request, \user $user, string $id): void
