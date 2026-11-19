@@ -68,7 +68,7 @@ cleanup() {
     write_status stopped || true
   fi
   if [[ -s $work_directory/bootstrap.json ]]; then
-    if curl --fail --silent --show-error --proto '=https' --tlsv1.2 \
+    if curl --user-agent Jeedom --fail --silent --show-error --proto '=https' --tlsv1.2 \
       --cacert "$ca_file" --connect-timeout 3 --max-time 5 \
       -H 'Content-Type: application/json' --data-binary "@$work_directory/bootstrap.json" \
       "https://$session_relay/frp/v1/close" >/dev/null 2>&1; then
@@ -106,7 +106,7 @@ request_relay() {
     connect_timeout=3
     request_timeout=5
   fi
-  http_status=$(curl --silent --show-error --proto '=https' --tlsv1.2 \
+  http_status=$(curl --user-agent Jeedom --silent --show-error --proto '=https' --tlsv1.2 \
     --cacert "$ca_file" --connect-timeout "$connect_timeout" --max-time "$request_timeout" \
     -H 'Content-Type: application/json' --data-binary "@$request_file" \
     -o "$response_file" -w '%{http_code}' "https://$relay/frp/v1/$endpoint") || request_result=$?

@@ -139,7 +139,7 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					exec('wget --progress=dot --dot=mega -O ' . escapeshellarg($tmp) . ' -- ' . escapeshellarg($url));
+					exec('wget --user-agent=Jeedom --progress=dot --dot=mega -O ' . escapeshellarg($tmp) . ' -- ' . escapeshellarg($url));
 				} else {
 					$class = 'repo_' . config::byKey('core::repo::provider');
 					if (!class_exists($class)) {

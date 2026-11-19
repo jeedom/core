@@ -139,7 +139,7 @@ step_5_php() {
 step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 6 - Jeedom download${NORMAL}"
-  wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
+  wget --user-agent=Jeedom https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
 
   if [ $? -ne 0 ]; then
     echo "${YELLOW}Cannot download Jeedom from GitHub. Using the deployment version if it exists.${NORMAL}"

@@ -196,6 +196,7 @@ class recovery {
 
 		curl_setopt_array($ch, [
 			CURLOPT_URL => $_url,
+			CURLOPT_USERAGENT => com_http::DEFAULT_USER_AGENT,
 			CURLOPT_HEADER => false,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_FILE => $fp,
@@ -267,7 +268,8 @@ class recovery {
 		$url = 'https://images.jeedom.com/';
 		$jsonUrl = $url . $_hardware . '/info.json';
 
-		$jsonContent = @file_get_contents($jsonUrl);
+		$context = stream_context_create(['http' => ['user_agent' => com_http::DEFAULT_USER_AGENT]]);
+		$jsonContent = @file_get_contents($jsonUrl, false, $context);
 		if ($jsonContent === false) {
 			throw new Exception(__("Impossible de récupérer les informations relatives aux images systèmes", __FILE__) . ' (' . $jsonUrl . ')');
 		}
@@ -278,7 +280,7 @@ class recovery {
 		$osVersion = ((int) $currentOsVersion > (int) $minOsVersion) ? $currentOsVersion : $minOsVersion;
 		if (isset($imgInfos[$osVersion]) && isset($imgInfos[$osVersion]['name']) && isset($imgInfos[$osVersion]['SHA256'])) {
 			$imgInfos[$osVersion]['url'] = $url . $_hardware . '/' . $imgInfos[$osVersion]['name'];
-			$imgInfos[$osVersion]['size'] = ceil((int) trim(shell_exec("curl -sI " . $imgInfos[$osVersion]['url'] . " | grep content-length | awk '{print $2}'")) / 1024);
+			$imgInfos[$osVersion]['size'] = ceil((int) trim(shell_exec("curl --user-agent " . escapeshellarg(com_http::DEFAULT_USER_AGENT) . " -sI " . $imgInfos[$osVersion]['url'] . " | grep content-length | awk '{print $2}'")) / 1024);
 			return $imgInfos[$osVersion];
 		}
 
