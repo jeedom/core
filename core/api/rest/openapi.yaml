@@ -8646,11 +8646,25 @@ components:
         left: { type: integer, minimum: 0 }
     DesignItemType:
       type: string
-      enum: [eqLogic, cmd, scenario, summary, plan, text]
+      enum: [eqLogic, cmd, scenario, summary, plan, text, chart]
       description: |
         `link_type` de la table `plan`. `summary` cible un objet, `plan` un autre design.
         Les autres types existants (`view`, `graph`, `image`, `zone`) sont renvoyés en
         lecture avec `supported: false` et ne peuvent pas être créés.
+    DesignChart:
+      type: object
+      additionalProperties: false
+      required: [commands, period, title, showLegend]
+      properties:
+        commands:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items: { type: integer, minimum: 1 }
+          description: Identifiants des commandes numériques ou binaires historisées, dans l’ordre d’affichage.
+        period: { type: string, enum: [1h, 24h, 7d, 30d, 1y] }
+        title: { type: string, maxLength: 100 }
+        showLegend: { type: boolean }
     DesignItemDisplay:
       type: object
       additionalProperties: false
@@ -8668,9 +8682,10 @@ components:
         type:
           type: string
           description: Un des `DesignItemType`, ou un ancien type non pris en charge.
-        target_id: { type: [integer, 'null'], description: Cible de l'élément (`link_id`) ; null pour un texte. }
+        target_id: { type: [integer, 'null'], description: "Cible de l'élément (`link_id`) ; null pour `text` et `chart`." }
         position: { $ref: '#/components/schemas/DesignPosition' }
         text: { type: string, description: "Contenu d'un élément `text` (texte brut, à échapper à l'affichage)." }
+        chart: { $ref: '#/components/schemas/DesignChart' }
         display: { $ref: '#/components/schemas/DesignItemDisplay' }
         supported: { type: boolean, description: Faux pour les anciens types que la nouvelle interface n'affiche pas. }
     DesignItemCreate:
@@ -8679,9 +8694,12 @@ components:
       required: [type, position]
       properties:
         type: { $ref: '#/components/schemas/DesignItemType' }
-        target_id: { type: integer, minimum: 1, description: Requis sauf pour `text`. }
+        target_id: { type: integer, minimum: 1, description: 'Requis sauf pour `text` et `chart`.' }
         position: { $ref: '#/components/schemas/DesignPosition' }
         text: { type: string, maxLength: 1000, description: Requis pour `text`. }
+        chart:
+          $ref: '#/components/schemas/DesignChart'
+          description: Requis pour `chart`.
         display: { $ref: '#/components/schemas/DesignItemDisplay' }
     DesignItemUpdate:
       type: object
@@ -8690,6 +8708,7 @@ components:
       properties:
         position: { $ref: '#/components/schemas/DesignPosition' }
         text: { type: string, maxLength: 1000 }
+        chart: { $ref: '#/components/schemas/DesignChart' }
         display: { $ref: '#/components/schemas/DesignItemDisplay' }
     CronList:
       type: object

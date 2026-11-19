@@ -7,13 +7,14 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
- * Designs (planHeader) et éléments posés (plan). Seuls la cible, la position et le texte
- * viennent de plan ; le widget et la largeur sont dans display (context = design).
+ * Designs (planHeader) et éléments posés (plan). Les réglages de widget et les dimensions
+ * d'un élément sont dans display (context = design).
  * Droits repris de plan.ajax.php : lecture avec le droit r, écriture admin et droit w.
  */
 final class DesignsController
 {
-    private const TYPES = ['eqLogic', 'cmd', 'scenario', 'summary', 'plan', 'text'];
+    private const TYPES = ['eqLogic', 'cmd', 'scenario', 'summary', 'plan', 'text', 'chart'];
+    private const CHART_PERIODS = ['1h', '24h', '7d', '30d', '1y'];
     private const DESIGN_FIELDS = ['name', 'icon', 'order', 'width', 'height', 'backgroundColor', 'backgroundTransparent'];
     private const IMAGES = ['image/png' => 'png', 'image/jpeg' => 'jpg', 'image/gif' => 'gif'];
     private const MAX_IMAGE = 5000000;
@@ -153,7 +154,7 @@ final class DesignsController
     {
         $design = self::find($request, $args['id'], 'w');
         $body = Json::body($request, 1048576, preserveObjects: true);
-        self::checkFields($body, ['type', 'target_id', 'position', 'text', 'display'], '');
+        self::checkFields($body, ['type', 'target_id', 'position', 'text', 'display', 'chart'], '');
         $type = $body['type'] ?? null;
         if (!in_array($type, self::TYPES, true)) {
             throw ApiError::field(422, 'validation_error', 'type', 'Type d\'élément non pris en charge.');
@@ -168,6 +169,10 @@ final class DesignsController
             if (!array_key_exists('text', $body)) {
                 throw ApiError::field(422, 'validation_error', 'text', 'Ce champ est obligatoire.');
             }
+        } elseif ($type === 'chart') {
+            if (!array_key_exists('chart', $body)) {
+                throw ApiError::field(422, 'validation_error', 'chart', 'Ce champ est obligatoire.');
+            }
         } else {
             $plan->setLink_id(self::target($type, $body['target_id'] ?? null, $request));
         }
@@ -181,7 +186,7 @@ final class DesignsController
         $design = self::find($request, $args['id'], 'w');
         $plan = self::findItem($design, $args['itemId']);
         $body = Json::body($request, 1048576, preserveObjects: true);
-        self::checkFields($body, ['position', 'text', 'display'], '');
+        self::checkFields($body, ['position', 'text', 'display', 'chart'], '');
         if ($body === []) {
             throw new ApiError(422, 'validation_error', 'Au moins un champ est attendu.');
         }
@@ -281,6 +286,12 @@ final class DesignsController
 
     private static function applyItem(\plan $plan, array $body, ?array $display): void
     {
+        if (array_key_exists('chart', $body)) {
+            if ($plan->getLink_type() !== 'chart') {
+                throw ApiError::field(422, 'validation_error', 'chart', 'Seul un élément graphique a des réglages de graphique.');
+            }
+            $plan->setDisplay('chart', self::chart($body['chart'], (array) $plan->getDisplay('chart', [])));
+        }
         if (array_key_exists('position', $body)) {
             $position = self::position($body['position'], 'position');
             $plan->setPosition('top', $position['top']);
@@ -296,6 +307,42 @@ final class DesignsController
         if (array_key_exists('display', $body)) {
             \display::replaceForPlan((int) $plan->getId(), (string) $plan->getLink_type(), (int) $plan->getLink_id(), $display);
         }
+    }
+
+    private static function chart(mixed $value, array $previous): array
+    {
+        if (!$value instanceof \stdClass) {
+            throw ApiError::field(422, 'validation_error', 'chart', 'Un objet JSON est attendu.');
+        }
+        $data = (array) $value;
+        self::checkFields($data, ['commands', 'period', 'title', 'showLegend'], 'chart.');
+        if (!is_array($data['commands'] ?? null) || $data['commands'] === []) {
+            throw ApiError::field(422, 'validation_error', 'chart.commands', 'Sélectionnez au moins une commande historisée.');
+        }
+        if (!in_array($data['period'] ?? null, self::CHART_PERIODS, true)) {
+            throw ApiError::field(422, 'validation_error', 'chart.period', 'Période inconnue.');
+        }
+        if (!is_string($data['title'] ?? null) || mb_strlen($data['title']) > 100) {
+            throw ApiError::field(422, 'validation_error', 'chart.title', 'Un titre de 100 caractères au plus est attendu.');
+        }
+        if (!is_bool($data['showLegend'] ?? null)) {
+            throw ApiError::field(422, 'validation_error', 'chart.showLegend', 'Un booléen est attendu.');
+        }
+        $seen = [];
+        foreach ($data['commands'] as $id) {
+            if (!is_int($id) || $id < 1 || isset($seen[$id])) {
+                throw ApiError::field(422, 'validation_error', 'chart.commands', 'Des identifiants entiers, positifs et uniques sont attendus.');
+            }
+            $seen[$id] = true;
+            if (in_array($id, $previous['commands'] ?? [], true)) {
+                continue;
+            }
+            $cmd = \cmd::byId($id);
+            if (!is_object($cmd) || $cmd->getType() !== 'info' || !in_array($cmd->getSubType(), ['numeric', 'binary'], true) || !$cmd->getIsHistorized()) {
+                throw ApiError::field(422, 'validation_error', 'chart.commands', 'Seules les commandes numériques ou binaires historisées sont acceptées.');
+            }
+        }
+        return $data;
     }
 
     /** @return array{top: int, left: int} */
@@ -430,12 +477,15 @@ final class DesignsController
         $item = [
             'id' => (int) $plan->getId(),
             'type' => $type,
-            'target_id' => $type === 'text' ? null : (int) $plan->getLink_id(),
+            'target_id' => in_array($type, ['text', 'chart'], true) ? null : (int) $plan->getLink_id(),
             'position' => ['top' => (int) $plan->getPosition('top', 0), 'left' => (int) $plan->getPosition('left', 0)],
             'supported' => in_array($type, self::TYPES, true),
         ];
         if ($type === 'text') {
             $item['text'] = (string) $plan->getDisplay('text', '');
+        }
+        if ($type === 'chart') {
+            $item['chart'] = $plan->getDisplay('chart');
         }
         $row = $displays[(int) $plan->getId()] ?? null;
         if ($row !== null) {
