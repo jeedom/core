@@ -451,6 +451,9 @@ final class UsersController
         if ($request->getAttribute('webSessionId') === null) {
             throw new ApiError(403, 'forbidden', 'La création d’un accès longue durée nécessite une session Web.');
         }
+        if ($mcp && !\config::mcpEnabled()) {
+            throw self::mcpDisabled();
+        }
         $actor = self::currentWritable($request);
         $body = Json::body($request, 8192);
         $fields = ['clientName', 'durationDays', 'password', 'twoFactorCode'];
@@ -483,12 +486,20 @@ final class UsersController
         try {
             $connection = \session::create($user, false, '', null, time() + $days * 86400, $mcp ? 'api' : 'script', $name, $scope);
         } catch (\DomainException $error) {
+            if ($mcp && $error->getCode() === \session::MCP_DISABLED_ERROR) {
+                throw self::mcpDisabled();
+            }
             throw new ApiError(401, 'invalid_credentials', $error->getMessage());
         }
         \log::audit($mcp ? 'REST MCP access created' : 'REST script access created', ['sessionId' => $connection['id'], 'by' => $confirmed->getLogin(), 'login' => $user->getLogin()]);
         return Json::respond($response->withHeader('Cache-Control', 'no-store'), [
             'id' => $connection['id'], 'accessToken' => $connection['token'], 'accessExpiresAt' => gmdate(DATE_ATOM, $connection['expires']),
         ], 201);
+    }
+
+    private static function mcpDisabled(): ApiError
+    {
+        return new ApiError(403, 'mcp_disabled', 'Le serveur MCP est désactivé.');
     }
 
     public function myDevices(Request $request, Response $response): Response

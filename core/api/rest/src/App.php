@@ -342,8 +342,12 @@ final class App
         $app->post('/api/v1/session/refresh', $sessions->refresh(...));
         $app->delete('/api/v1/session', $sessions->close(...));
         $app->post('/api/v1/support/session', $sessions->openSupport(...));
-        $app->add(static fn ($request, $handler) =>
-            RequestSecurity::withClientIp($request, static fn () => $handler->handle($request)));
+        $app->add(static function ($request, $handler) use ($app) {
+            if (rawurldecode($request->getUri()->getPath()) === '/api/v1/mcp' && !\config::mcpEnabled()) {
+                return Json::error($app->getResponseFactory()->createResponse(), new ApiError(404, 'route_not_found', 'Route inconnue.'));
+            }
+            return RequestSecurity::withClientIp($request, static fn () => $handler->handle($request));
+        });
         return $app;
     }
 }

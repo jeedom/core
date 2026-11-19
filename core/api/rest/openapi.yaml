@@ -152,7 +152,7 @@ paths:
     post:
       operationId: callMcp
       summary: Traiter une requête MCP en Streamable HTTP
-      description: Accepte les sessions API de portée mcp. Transport sans état, réponses JSON uniquement.
+      description: Disponible lorsque le serveur MCP est activé. Accepte les sessions API de portée mcp. Transport sans état, réponses JSON uniquement.
       security:
         - bearerAuth: []
       parameters:
@@ -187,7 +187,14 @@ paths:
         '400': { $ref: '#/components/responses/McpProtocolError' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
-        '404': { $ref: '#/components/responses/McpProtocolError' }
+        '404':
+          description: Serveur MCP désactivé ou méthode JSON-RPC inconnue.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Error'
+                  - $ref: '#/components/schemas/McpError'
         '406': { $ref: '#/components/responses/McpProtocolError' }
         '413': { $ref: '#/components/responses/McpProtocolError' }
         '429':
@@ -4835,7 +4842,7 @@ paths:
       operationId: createUserMcpSession
       summary: Générer un accès MCP pour un utilisateur
       description: |
-        Depuis une session Web d'administrateur, crée un accès MCP pour un compte humain actif.
+        Depuis une session Web d'administrateur, crée un accès MCP pour un compte humain actif si le serveur MCP est activé.
         L'administrateur confirme avec son mot de passe et son code de double authentification si elle est activée.
         Le jeton est affiché une seule fois et donne accès à POST /mcp jusqu'à la date indiquée.
       requestBody:
@@ -11504,6 +11511,10 @@ components:
           type: [number, 'null']
           description: 'Durée en secondes.  -1 : bannissement infini (onglet security).'
           default: 600
+        'security::mcp::enabled':
+          type: boolean
+          default: false
+          description: Active le serveur MCP. Désactiver le réglage révoque toutes les sessions MCP.
         'security::whiteips':
           type: string
           description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.* (onglet security).'
@@ -12009,6 +12020,9 @@ components:
         'security::bantime':
           type: [number, 'null']
           description: 'Durée en secondes.  -1 : bannissement infini (onglet security).'
+        'security::mcp::enabled':
+          type: boolean
+          description: Active le serveur MCP. Désactiver le réglage révoque toutes les sessions MCP.
         'security::whiteips':
           type: string
           description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.* (onglet security).'

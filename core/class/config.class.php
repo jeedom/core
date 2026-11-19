@@ -24,6 +24,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
  * @see jeedom
  */
 class config {
+	public const MCP_ENABLED_KEY = 'security::mcp::enabled';
 	public const NOTIFICATION_TYPES = ['timeout', 'batterywarning', 'batterydanger', 'warning', 'danger', 'system'];
 
 	/*     * *************************Attributs****************************** */
@@ -111,6 +112,9 @@ class config {
 	 * @return bool Success status
 	 */
 	public static function save($_key, $_value, $_plugin = 'core') {
+		if ($_plugin === 'core' && $_key === self::MCP_ENABLED_KEY) {
+			return self::saveMcpEnabled(in_array($_value, [true, 1, '1'], true));
+		}
 		$class = ($_plugin == 'core') ? 'config' : $_plugin;
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
@@ -170,6 +174,9 @@ class config {
 	 * @return bool Success status
 	 */
 	public static function remove(string $_key, string $_plugin = 'core') {
+		if ($_plugin === 'core' && $_key === self::MCP_ENABLED_KEY) {
+			return self::saveMcpEnabled(false);
+		}
 		if ($_key == "*" && $_plugin != 'core') {
 			$values = array(
 				'plugin' => $_plugin,
@@ -196,6 +203,43 @@ class config {
 		if ($_plugin !== 'core' && ($_key === '*' || ($_key === 'active' && (int) self::byKey('active', $_plugin, 0) !== 1))) {
 			plugin::revokeDaemonSession($_plugin);
 		}
+		return true;
+	}
+
+	/** La création d'une session verrouille la même ligne que la désactivation. */
+	public static function mcpEnabled(bool $forUpdate = false): bool {
+		$row = DB::Prepare("SELECT `value` FROM config WHERE plugin = 'core' AND `key` = :key" . ($forUpdate ? ' FOR UPDATE' : ''),
+			['key' => self::MCP_ENABLED_KEY], DB::FETCH_TYPE_ROW);
+		return (string) ($row['value'] ?? '0') === '1';
+	}
+
+	private static function saveMcpEnabled(bool $enabled): bool {
+		$ownsTransaction = !DB::getConnection()->inTransaction();
+		if ($ownsTransaction) {
+			DB::beginTransaction();
+		}
+		try {
+			$params = ['key' => self::MCP_ENABLED_KEY];
+			DB::Prepare("INSERT INTO config (plugin, `key`, `value`) VALUES ('core', :key, '0')
+				ON DUPLICATE KEY UPDATE `value` = `value`", $params);
+			$wasEnabled = self::mcpEnabled(true);
+			if ($enabled !== $wasEnabled) {
+				DB::Prepare("UPDATE config SET `value` = :value WHERE plugin = 'core' AND `key` = :key",
+					$params + ['value' => $enabled ? '1' : '0']);
+			}
+			if (!$enabled || !$wasEnabled) {
+				session::revokeMcpSessions();
+			}
+			if ($ownsTransaction) {
+				DB::commit();
+			}
+		} catch (Throwable $error) {
+			if ($ownsTransaction && DB::getConnection()->inTransaction()) {
+				DB::rollBack();
+			}
+			throw $error;
+		}
+		unset(self::$cache['core::' . self::MCP_ENABLED_KEY]);
 		return true;
 	}
 

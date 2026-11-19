@@ -6,6 +6,7 @@ final class session {
 	public const SCRIPT_MAX_DURATION_DAYS = 365;
 	public const SCRIPT_SCOPES = ['read', 'control'];
 	public const MCP_SCOPE = 'mcp';
+	public const MCP_DISABLED_ERROR = 1;
 	private const RETRY_WINDOW = 60;
 	private const REFRESH_MATCH = '(refresh_hash = :hash OR (previous_refresh_hash = :previous
 		AND previous_refresh_expires_at > UTC_TIMESTAMP()))';
@@ -18,6 +19,9 @@ final class session {
 			$csrf = self::secret();
 			$now = time();
 			$mcp = $mode === 'api' && $scope === self::MCP_SCOPE;
+			if ($mcp && !config::mcpEnabled(true)) {
+				throw new DomainException('Le serveur MCP est désactivé.', self::MCP_DISABLED_ERROR);
+			}
 			if ($mode === 'script' || $mcp) {
 				if ($expiresBefore === null || $expiresBefore > $now + self::SCRIPT_MAX_DURATION_DAYS * 86400
 					|| (!$mcp && !in_array($scope, self::SCRIPT_SCOPES, true))
@@ -251,6 +255,10 @@ final class session {
 			}
 		}
 		return $active;
+	}
+
+	public static function revokeMcpSessions(): void {
+		DB::Prepare("DELETE FROM `session` WHERE mode = 'api' AND scope = :scope", ['scope' => self::MCP_SCOPE]);
 	}
 
 	public static function revokeAll(int $userId, bool $remembered = false): void {
