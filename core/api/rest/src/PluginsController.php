@@ -5,7 +5,9 @@ namespace Jeedom\Api\Rest;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Factory\AppFactory;
+use Slim\Routing\RouteContext;
 
 /**
  * Plugin menu metadata stays readable by connected users. Management and Market
@@ -176,6 +178,14 @@ final class PluginsController
         // The subrouter only contains this plugin's routes and inherits the authenticated request.
         $app = AppFactory::create();
         $app->group('/api/v1/plugins/' . $id . '/api', $register);
+        if ($request->getAttribute('cloudServiceSession') === true) {
+            $app->add(static function (Request $request, RequestHandlerInterface $next): Response {
+                if (RouteContext::fromRequest($request)->getRoute()?->getName() !== CloudService::SCOPE) {
+                    throw new ApiError(403, 'scope_forbidden', 'Cette route du plugin ne reçoit pas les appels Cloud.');
+                }
+                return $next->handle($request);
+            });
+        }
         $app->addRoutingMiddleware();
         return $app->handle($request);
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Jeedom\Api\Rest;
 
@@ -28,6 +29,18 @@ final class CloudService
             && preg_match('~\A/api/v1/plugins/[A-Za-z0-9_][A-Za-z0-9_-]{0,126}/api/cloud-service\z~', $request->getUri()->getPath()) === 1;
     }
 
+    public static function acceptsUrl(string $url): bool
+    {
+        $parts = parse_url($url);
+        $host = $parts['host'] ?? '';
+        return strlen($url) <= 2048 && filter_var($url, FILTER_VALIDATE_URL) !== false
+            && strtolower($parts['scheme'] ?? '') === 'https'
+            && !isset($parts['user']) && !isset($parts['pass']) && !isset($parts['query']) && !isset($parts['fragment'])
+            && str_contains($host, '.') && preg_match('/(?:^|[.])(?:[0-9]+|0x[0-9a-f]*)$/iD', $host) !== 1
+            && filter_var($host, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) !== false
+            && preg_match('#\A[A-Za-z0-9_./~-]*\z#', $parts['path'] ?? '') === 1;
+    }
+
     public static function requireSession(Request $request): string
     {
         if ($request->getAttribute('cloudServiceSession') !== true) {
@@ -47,12 +60,15 @@ final class CloudService
                 ? ['service' => $service, 'sessionId' => $id]
                 : $dispatch(Json::body($request, 1048576));
             return Json::respond($response->withHeader('Cache-Control', 'no-store'), $result);
-        });
+        })->setName(self::SCOPE);
     }
 
     /** Called by a plugin after an administrator confirms the association. */
     public static function associate(string $service, string $url): void
     {
+        if (!self::acceptsUrl($url)) {
+            throw new \InvalidArgumentException('Un nom de domaine externe en HTTPS est nécessaire.');
+        }
         $lock = fopen(\jeedom::getTmpFolder() . '/cloud-service.lock', 'c');
         if ($lock === false) {
             throw new \RuntimeException('Impossible de verrouiller la session Jeedom Cloud Service.');
@@ -66,9 +82,17 @@ final class CloudService
             if (($result['state'] ?? '') === 'credentials_required') {
                 $account = self::account();
                 $session = \session::create($account, false, '', null, null, 'api', self::LOGIN, self::SCOPE, true);
-                $result = \repo_market::associateCloudService($payload + [
-                    'sessionId' => $session['id'], 'refreshToken' => $session['refreshToken'],
-                ]);
+                try {
+                    $result = \repo_market::associateCloudService($payload + [
+                        'sessionId' => $session['id'], 'refreshToken' => $session['refreshToken'],
+                    ]);
+                } catch (\Exception $error) {
+                    // A definitive refusal leaves no association. A lost reply can follow a successful commit.
+                    if (in_array($error->getCode(), [400, 401, 403, 422], true)) {
+                        \session::revoke($account, $session['id']);
+                    }
+                    throw $error;
+                }
             }
             $id = $result['sessionId'] ?? null;
             if (($result['state'] ?? '') !== 'ok' || !is_string($id) || preg_match('/^[a-f0-9]{64}$/D', $id) !== 1) {

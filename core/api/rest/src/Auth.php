@@ -33,7 +33,7 @@ final class Auth implements MiddlewareInterface
         $GLOBALS['_USER_GLOBAL'] = $user;
         try {
             return $handler->handle($request->withAttribute('user', $user)->withAttribute('restSessionId', $session['id'])
-                ->withAttribute('cloudServiceSession', $session['scope'] === CloudService::SCOPE)
+                ->withAttribute('cloudServiceSession', $session['mode'] === 'api' && $session['scope'] === CloudService::SCOPE)
                 ->withAttribute('daemonPluginId', $session['mode'] === 'daemon' ? $session['scope'] : null)
                 ->withAttribute('webSessionId', $transport === 'web' ? $session['id'] : null)
                 ->withAttribute('webSessionRemembered', $transport === 'web' && (bool) $session['remembered'])
@@ -74,11 +74,11 @@ final class Auth implements MiddlewareInterface
         if (\user::isBan()) {
             return false;
         }
-        if (CloudService::isLogin($user->getLogin()) || $scope === CloudService::SCOPE) {
-            return $mode === 'api' && $scope === CloudService::SCOPE && CloudService::isAccount($user);
-        }
         if ($mode === 'daemon') {
             return \plugin::allowsDaemonSession($user, $scope);
+        }
+        if (CloudService::isLogin($user->getLogin()) || $scope === CloudService::SCOPE) {
+            return $mode === 'api' && $scope === CloudService::SCOPE && CloudService::isAccount($user);
         }
         if ((int) $user->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
             return false;
@@ -91,7 +91,7 @@ final class Auth implements MiddlewareInterface
     {
         $path = $request->getUri()->getPath();
         $method = $request->getMethod();
-        if ($session['scope'] === CloudService::SCOPE) {
+        if ($session['mode'] === 'api' && $session['scope'] === CloudService::SCOPE) {
             if (CloudService::allows($request)) {
                 return;
             }
