@@ -20,6 +20,8 @@
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class com_http {
+	public const DEFAULT_USER_AGENT = 'Jeedom';
+
 	/*     * ***********************Attributs************************* */
 	
 	private $url;
@@ -37,7 +39,7 @@ class com_http {
 	private $cookiesession = false;
 	private $allowEmptyReponse = false;
 	private $noReportError = false;
-	private $userAgent = '';
+	private $userAgent = self::DEFAULT_USER_AGENT;
 	private $CURLOPT_HTTPAUTH = '';
 	private $CURLOPT = array();
 	private $getinfo = '';

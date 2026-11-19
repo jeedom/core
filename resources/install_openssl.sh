@@ -2,7 +2,7 @@ VERSION=3.2.0
 apt-get update
 apt-get install -y build-essential checkinstall zlib1g-dev
 cd /usr/local/src
-wget https://www.openssl.org/source/openssl-${VERSION}.tar.gz
+wget --user-agent=Jeedom https://www.openssl.org/source/openssl-${VERSION}.tar.gz
 tar -xf openssl-${VERSION}.tar.gz
 cd openssl-${VERSION}/
 ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib

@@ -120,7 +120,7 @@ class repo_github {
 	}
 
 	public static function getBranchInfo($_update) {
-		$headers = array('User-agent: jeedom');
+		$headers = array();
 		$token = $_update->getConfiguration('token', config::byKey('github::token', 'core', ''));
 		if ($token != '') {
 			$headers[] = 'Authorization: Bearer ' . $token;
@@ -156,11 +156,11 @@ class repo_github {
 		$branch = self::getBranchInfo($_update);
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball/' . $_update->getConfiguration('version', 'master');
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $pluginId . '...');
-		if ($token == '') {
-			exec('curl -s -f -L -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
-		} else {
-			exec('curl -s -f -L -H ' . escapeshellarg('Authorization: token ' . $token) . ' -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
+		$command = 'curl --user-agent ' . escapeshellarg(com_http::DEFAULT_USER_AGENT) . ' -s -f -L';
+		if ($token != '') {
+			$command .= ' -H ' . escapeshellarg('Authorization: token ' . $token);
 		}
+		exec($command . ' -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
 		if ($return_code !== 0 || !file_exists($tmp) || filesize($tmp) == 0) {
 			$error_msg = __('Erreur lors du téléchargement', __FILE__);
 			if (!empty($output)) {
@@ -226,7 +226,7 @@ class repo_github {
 			$headers[] = 'Authorization: Bearer ' . $token;
 		}
 		$request = new com_http('https://api.github.com/repos/' . $owner . '/' . $repository . $path);
-		return $request->setUserAgent('Jeedom')->setNoSslCheck(false)->setHeader($headers);
+		return $request->setNoSslCheck(false)->setHeader($headers);
 	}
 
 	/*     * *********************Methode d'instance************************* */

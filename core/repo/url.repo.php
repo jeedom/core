@@ -71,7 +71,8 @@ class repo_url {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
-		$result = exec('wget --no-check-certificate --progress=dot --dot=mega -O ' . escapeshellarg($tmp) . ' -- ' . escapeshellarg($_update->getConfiguration('url')));
+		$result = exec('wget --user-agent=' . escapeshellarg(com_http::DEFAULT_USER_AGENT)
+			. ' --no-check-certificate --progress=dot --dot=mega -O ' . escapeshellarg($tmp) . ' -- ' . escapeshellarg($_update->getConfiguration('url')));
 		log::add('update', 'alert', $result);
 		return array('path' => $tmp, 'localVersion' => date('Y-m-d H:i:s'));
 	}
@@ -87,7 +88,8 @@ class repo_url {
 	}
 
 	public static function downloadCore($_path) {
-		exec('wget --no-check-certificate --progress=dot --dot=mega -O ' . escapeshellarg($_path)
+		exec('wget --user-agent=' . escapeshellarg(com_http::DEFAULT_USER_AGENT)
+			. ' --no-check-certificate --progress=dot --dot=mega -O ' . escapeshellarg($_path)
 			. ' -- ' . escapeshellarg(config::byKey('url::core::url')), $output, $status);
 		if ($status !== 0) {
 			throw new RuntimeException(__('Impossible de télécharger l’archive du Core.', __FILE__));

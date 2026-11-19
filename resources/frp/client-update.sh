@@ -87,7 +87,7 @@ client_binary() {
   if [[ -r /etc/ssl/certs/ca-certificates.crt ]]; then cat /etc/ssl/certs/ca-certificates.crt > "$task_work/ca.pem"; fi
   cat "$task_ca" >> "$task_work/ca.pem" || exit 78
   printf 'Téléchargement du client FRP %s (%s), tentative %s/2.\n' "$task_target" "$task_arch" "$((task_attempts+1))" >&2
-  curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --tlsv1.2 --cacert "$task_work/ca.pem" \
+  curl --user-agent Jeedom --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --tlsv1.2 --cacert "$task_work/ca.pem" \
     --connect-timeout 10 --max-time 300 --max-filesize 67108864 -o "$task_work/archive.tar.gz" "$task_url" &
   task_fetch_pid=$!
   wait "$task_fetch_pid" || task_rc=$?

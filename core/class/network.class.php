@@ -273,6 +273,7 @@ class network {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
 		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_USERAGENT, com_http::DEFAULT_USER_AGENT);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_HEADER, false);

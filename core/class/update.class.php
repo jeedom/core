@@ -304,7 +304,7 @@ class update {
 		$branches = [];
 		for ($page = 1; ; $page++) {
 			$request = new com_http('https://api.github.com/repos/jeedom/core/branches?per_page=100&page=' . $page);
-			$request->setUserAgent('Jeedom')->setNoSslCheck(false)->setCURLOPT([CURLOPT_FAILONERROR => true]);
+			$request->setNoSslCheck(false)->setCURLOPT([CURLOPT_FAILONERROR => true]);
 			$items = json_decode($request->exec(10, 1), true, 512, JSON_THROW_ON_ERROR);
 			if (!is_array($items) || !array_is_list($items)) {
 				throw new RuntimeException('Liste des branches GitHub invalide.');

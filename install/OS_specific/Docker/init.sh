@@ -88,7 +88,7 @@ else
 		rm -f ${WEBSERVER_HOME}/initialisation
 	else
 		rm -rf /root/install.sh
-		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
+		wget --user-agent=Jeedom https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
 		INSTALL_SCRIPT=/root/install.sh
 		chmod +x ${INSTALL_SCRIPT}
 		${INSTALL_SCRIPT} -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
@@ -135,7 +135,7 @@ fi
 
 if [ ${JEEDOM_INSTALL} -eq 0 ] && [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
 	echo 'Need restore backup '${RESTOREBACKUP}
-	wget ${RESTOREBACKUP} -O /tmp/backup.tar.gz
+	wget --user-agent=Jeedom ${RESTOREBACKUP} -O /tmp/backup.tar.gz
 	php ${WEBSERVER_HOME}/install/restore.php backup=/tmp/backup.tar.gz
 	rm /tmp/backup.tar.gz
 	if [ ! -z "${UPDATEJEEDOM}" ] && [ "${UPDATEJEEDOM}" != 'NO' ]; then

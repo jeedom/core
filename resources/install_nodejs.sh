@@ -139,7 +139,7 @@ else
     armVer="22.23.2"
 
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
-    wget https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
+    wget --user-agent=Jeedom https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
     tar -xvf node-v${armVer}-linux-armv6l.tar.gz
     cd node-v${armVer}-linux-armv6l
     sudo cp -f -R * /usr/local/
@@ -154,7 +154,7 @@ else
     NODE_MAJOR=$installVer
     sudo mkdir -p /etc/apt/keyrings
     [[ -f /etc/apt/keyrings/nodesource.gpg ]] && sudo rm /etc/apt/keyrings/nodesource.gpg || true
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+    curl --user-agent Jeedom -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
     [[ -f /etc/apt/sources.list.d/nodesource.list ]] && sudo rm /etc/apt/sources.list.d/nodesource.list || true
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
     sudo apt-get update
