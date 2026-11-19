@@ -111,11 +111,8 @@ final class ObjectsController
         if (array_key_exists('key', $query)) {
             return Json::respond($response, \jeeObject::getGlobalSummary(self::summaryKey($query['key']), $user));
         }
-        $result = [];
-        foreach ((array) \config::byKey('object:summary') as $summaryKey => $definition) {
-            $result[$summaryKey] = \jeeObject::getGlobalSummary($summaryKey, $user);
-        }
-        return Json::respond($response, (object) $result);
+        $keys = array_keys((array) \config::byKey('object:summary'));
+        return Json::respond($response, (object) \jeeObject::getGlobalSummaries($keys, $user));
     }
 
     public function summary(Request $request, Response $response, array $args): Response

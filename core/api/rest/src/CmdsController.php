@@ -250,11 +250,8 @@ final class CmdsController
     public function history(Request $request, Response $response, array $args): Response
     {
         $cmd = self::findReadableInfo($args['id'], $request->getAttribute('user'));
-        [$start, $end] = self::period($request);
         $mcpLimit = $request->getAttribute('mcpHistoryLimit') === true;
-        if ($mcpLimit && (new \DateTimeImmutable($start))->modify('+7 days') < new \DateTimeImmutable($end)) {
-            throw ApiError::field(422, 'validation_error', 'start', 'Choisissez une période de sept jours au plus et un regroupement si nécessaire.');
-        }
+        [$start, $end] = self::period($request, $mcpLimit ? 7 : null);
         $grouping = $request->getQueryParams()['grouping'] ?? null;
         if ($grouping !== null && !preg_match('/^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$/', (string) $grouping)) {
             throw ApiError::field(422, 'validation_error', 'grouping', 'Format attendu : fonction::période (ex. avg::hour).');
@@ -524,13 +521,16 @@ final class CmdsController
     }
 
     /** @return array{0: string, 1: string} début et fin au format du core */
-    private static function period(Request $request): array
+    private static function period(Request $request, ?int $maxDays = null): array
     {
         $query = $request->getQueryParams();
         $end = self::date($query['end'] ?? null, 'end') ?? new \DateTimeImmutable();
         $start = self::date($query['start'] ?? null, 'start') ?? $end->modify('-1 day');
         if ($start > $end) {
             throw ApiError::field(422, 'validation_error', 'start', 'Le début doit précéder la fin.');
+        }
+        if ($maxDays !== null && $end > $start->modify("+$maxDays days")) {
+            throw ApiError::field(422, 'validation_error', 'start', "Choisissez une période de $maxDays jours au plus et un regroupement si nécessaire.");
         }
         return [$start->format(self::DATE), $end->format(self::DATE)];
     }

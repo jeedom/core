@@ -30,16 +30,16 @@ final class McpController
         try {
             $message = Json::body($request, self::MAX_REQUEST_BYTES, true);
         } catch (ApiError $error) {
-            $code = str_contains($error->getMessage(), "n'est pas du JSON") ? -32700 : -32600;
+            $code = $error->getPrevious() instanceof \JsonException ? -32700 : -32600;
             return self::error($response, $error->status, $code, $error->getMessage());
         }
         $id = $message['id'] ?? null;
         $method = $message['method'] ?? null;
-        $params = $message['params'] ?? new stdClass();
+        $params = array_key_exists('params', $message) ? $message['params'] : new stdClass();
         $notification = !array_key_exists('id', $message);
         if (($message['jsonrpc'] ?? null) !== '2.0' || !is_string($method) || $method === ''
             || (!$notification && !is_string($id) && !is_int($id))
-            || !$params instanceof stdClass || isset($message['result']) || isset($message['error'])) {
+            || !$params instanceof stdClass || array_key_exists('result', $message) || array_key_exists('error', $message)) {
             return self::error($response, 400, -32600, 'Requête JSON-RPC invalide.');
         }
 
@@ -105,7 +105,7 @@ final class McpController
                 break;
             case 'tools/call':
                 $name = $params->name ?? null;
-                $arguments = $params->arguments ?? new stdClass();
+                $arguments = property_exists($params, 'arguments') ? $params->arguments : new stdClass();
                 if (!is_string($name) || !McpTools::has($name) || !$arguments instanceof stdClass) {
                     return self::error($response, 400, -32602, 'Outil MCP inconnu ou arguments invalides.', $id);
                 }

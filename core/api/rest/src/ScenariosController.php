@@ -104,9 +104,7 @@ final class ScenariosController
             throw new ApiError(422, 'validation_error', 'Aucun champ à modifier.');
         }
         $body = self::validate($body);
-        $warnings = self::warningsForUpdate($request->getAttribute('user'), $scenario, $body);
-        self::stopIfExecutionChanges($scenario, $body);
-        self::write($scenario, $body);
+        $warnings = self::applyUpdate($request->getAttribute('user'), $scenario, $body);
         return Json::respond($response, self::saved($scenario, $warnings));
     }
 
@@ -133,9 +131,7 @@ final class ScenariosController
         $user = $request->getAttribute('user');
         return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user, $changes): void {
             $scenario = self::find((string) $id, $user, 'w');
-            self::warningsForUpdate($user, $scenario, $changes);
-            self::stopIfExecutionChanges($scenario, $changes);
-            self::write($scenario, $changes);
+            self::applyUpdate($user, $scenario, $changes);
         }));
     }
 
@@ -332,13 +328,6 @@ final class ScenariosController
         return __DIR__ . '/../../../../log/scenarioLog/scenario' . (int) $scenario->getId() . '.log';
     }
 
-    private static function stopIfExecutionChanges(\scenario $scenario, array $body): void
-    {
-        if (self::changesExecution($scenario, $body) && $scenario->running()) {
-            $scenario->stop();
-        }
-    }
-
     /**
      * Vrai si le corps validé change un champ d'EXECUTION_FIELDS. `elements` compte
      * toujours comme un changement (le contenu est réenregistré) ; les autres champs
@@ -430,12 +419,18 @@ final class ScenariosController
         }
     }
 
-    private static function warningsForUpdate(\user $user, \scenario $scenario, array $body): array
+    private static function applyUpdate(\user $user, \scenario $scenario, array $body): array
     {
-        if (($body['isActive'] ?? null) === 1 || array_key_exists('object_id', $body) || self::changesExecution($scenario, $body)) {
-            return self::validateDefinition($user, $scenario, $body);
+        $executionChanged = self::changesExecution($scenario, $body);
+        $warnings = [];
+        if ($executionChanged || ($body['isActive'] ?? null) === 1 || array_key_exists('object_id', $body)) {
+            $warnings = self::validateDefinition($user, $scenario, $body);
         }
-        return [];
+        if ($executionChanged && $scenario->running()) {
+            $scenario->stop();
+        }
+        self::write($scenario, $body);
+        return $warnings;
     }
 
     private static function saved(\scenario $scenario, array $warnings): array

@@ -67,11 +67,11 @@ final class McpTools
     /** Définition des outils et des seules opérations REST qu'ils peuvent atteindre. */
     private const TOOLS = [
         'list_objects' => ['Liste les objets accessibles.', ObjectsController::class, 'list', ['visible' => 'boolean'], [], 'localPage'],
-        'get_summary' => ['Lit un résumé global ou le résumé key d’un objet id.', ObjectsController::class, 'summary', ['id' => 'id', 'key' => 'string']],
+        'get_summary' => ['Lit un résumé global ou le résumé key d’un objet id.', ObjectsController::class, 'summary', ['id' => 'id', 'key' => 'string'], []],
         'list_equipments' => ['Recherche les équipements par objet, plugin (eqType) ou nom (q).', EqLogicsController::class, 'list', ['objectId' => 'integer', 'eqType' => 'string', 'q' => 'string', 'enabled' => 'boolean', 'visible' => 'boolean'], [], 'page'],
         'get_equipment' => ['Lit un équipement.', EqLogicsController::class, 'get', ['id' => 'id'], ['id']],
         'list_commands' => ['Recherche les commandes par équipement, type, type générique ou nom.', CmdsController::class, 'list', ['eqLogicId' => 'id', 'type' => 'string', 'generic_type' => 'string', 'q' => 'string', 'isHistorized' => 'boolean'], [], 'page'],
-        'get_command_value' => ['Lit la valeur d’une commande info.', CmdsController::class, 'value', ['id' => 'id'], ['id']],
+        'get_command_value' => ['Lit la valeur d’une commande info ou la dernière valeur d’une commande action.', CmdsController::class, 'value', ['id' => 'id'], ['id']],
         'get_command_history' => ['Lit jusqu’à 5 000 points sur sept jours. Utiliser des dates RFC 3339 et un regroupement comme avg::hour si nécessaire.', CmdsController::class, 'history', ['id' => 'id', 'start' => 'string', 'end' => 'string', 'grouping' => 'string', 'derive' => 'boolean'], ['id']],
         'list_generic_types' => ['Liste les types génériques de commandes.', CmdsController::class, 'genericTypes', [], [], 'localPage'],
         'list_scenarios' => ['Liste les scénarios accessibles.', ScenariosController::class, 'list', ['objectId' => 'id', 'group' => 'string', 'q' => 'string', 'active' => 'boolean', 'visible' => 'boolean'], [], 'page'],
@@ -127,11 +127,7 @@ final class McpTools
         try {
             return self::dispatch($request, $name, $arguments);
         } catch (ApiError $error) {
-            $body = ['code' => $error->errorCode, 'message' => $error->getMessage()];
-            if ($error->details !== []) {
-                $body['details'] = $error->details;
-            }
-            return self::result((object) ['error' => $body], true);
+            return self::result((object) ['error' => $error->toArray()], true);
         }
     }
 

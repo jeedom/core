@@ -31,16 +31,18 @@ final class scenarioValidator {
 	private array $warnings = [];
 	private array $commands = [];
 
-	private function __construct(private readonly user $user) {
+	private function __construct(private readonly user $user, private readonly bool $submittedElements) {
 	}
 
 	/** @return list<array{field:string, reference:string, message:string}> */
 	public static function validate(scenario $scenario, array $changes, user $user): array {
-		$validator = new self($user);
+		$validator = new self($user, array_key_exists('elements', $changes));
 		$stored = $scenario->getElement();
-		foreach ($stored as $element) {
-			foreach ($element->getAllId() as $kind => $ids) {
-				$validator->owned[$kind] += array_fill_keys($ids, true);
+		if ($validator->submittedElements) {
+			foreach ($stored as $element) {
+				foreach ($element->getAllId() as $kind => $ids) {
+					$validator->owned[$kind] += array_fill_keys($ids, true);
+				}
 			}
 		}
 		$objectId = array_key_exists('object_id', $changes) ? $changes['object_id'] : $scenario->getObject_id();
@@ -57,9 +59,7 @@ final class scenarioValidator {
 			throw self::invalid('schedule', 'Une programmation est requise pour ce mode.');
 		}
 		foreach ($schedules as $index => $date) {
-			if (!\Cron\CronExpression::isValidExpression(checkAndFixCron($date))) {
-				throw self::invalid("schedule.$index", 'Expression cron invalide.');
-			}
+			$validator->schedule(trim((string) $date), "schedule.$index");
 		}
 		foreach (($changes['trigger'] ?? $scenario->getTrigger()) as $index => $trigger) {
 			$validator->trigger(trim((string) $trigger), "trigger.$index");
@@ -68,6 +68,25 @@ final class scenarioValidator {
 			$validator->element($element, "elements.$index");
 		}
 		return $validator->warnings;
+	}
+
+	private function schedule(string $value, string $field): void {
+		if (\Cron\CronExpression::isValidExpression(checkAndFixCron($value))) {
+			return;
+		}
+		// cronIsDue accepte aussi une heure Gi ou une expression qui produit cette heure.
+		if (ctype_digit($value)) {
+			if (strlen($value) <= 4 && (int) $value < 2400 && (int) $value % 100 < 60) {
+				return;
+			}
+		} elseif (preg_match('/[#(0-9]/', $value)) {
+			$this->condition($value, $field, []);
+			foreach (self::references($value) as $reference) {
+				$this->requireCommand($reference, 'info', $field);
+			}
+			return;
+		}
+		throw self::invalid($field, 'Une programmation cron, une heure ou une expression horaire est attendue.');
 	}
 
 	private function trigger(string $trigger, string $field): void {
@@ -157,7 +176,8 @@ final class scenarioValidator {
 
 	private function checkId(array $item, string $kind, string $field, mixed $parent = null): void {
 		$id = $item['id'] ?? '';
-		if ($id === '') {
+		// Pour les blocs relus en base, les liens parent/enfant viennent du Core lui-même.
+		if (!$this->submittedElements || $id === '') {
 			return;
 		}
 		if ((!is_int($id) && !is_string($id)) || !isset($this->owned[$kind][$id]) || isset($this->seen[$kind][$id])) {
@@ -315,7 +335,7 @@ final class scenarioValidator {
 		}
 	}
 
-	private function condition(string $value, string $field): void {
+	private function condition(string $value, string $field, ?array $names = null): void {
 		if (trim($value) === '') {
 			return;
 		}
@@ -323,8 +343,7 @@ final class scenarioValidator {
 		// fictives. Le parseur vérifie la syntaxe sans lire d'équipement ni évaluer de code.
 		$value = preg_replace(cmd::HUMAN_REFERENCE_PATTERN, '1', $value);
 		$value = preg_replace('/#[^#\r\n]+#/', '1', $value);
-		$value = str_ireplace([' et ', ' and ', ' ou ', ' or ', ' xor '], [' && ', ' && ', ' || ', ' || ', ' ^ '], $value);
-		$value = preg_replace('/(?<![=!<>])=(?!=)/', '==', $value);
+		$value = normalizeJeedomExpression($value);
 		$language = new \Symfony\Component\ExpressionLanguage\ExpressionLanguage();
 		preg_match_all('/\b([a-zA-Z_][a-zA-Z_0-9]*)\s*\(/', $value, $calls);
 		foreach (array_unique($calls[1]) as $function) {
@@ -333,7 +352,7 @@ final class scenarioValidator {
 			}
 		}
 		try {
-			$language->lint($value, null);
+			$language->lint($value, $names);
 		} catch (\Symfony\Component\ExpressionLanguage\SyntaxError) {
 			throw self::invalid($field, 'Syntaxe de l’expression invalide.');
 		}
