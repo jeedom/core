@@ -134,6 +134,9 @@ final class SessionController
     {
         [$transport, $access] = Auth::access($request);
         $identity = Auth::identity($access, $transport);
+        if ($transport === 'api' && $identity === null && \session::resolve($access, 'mcp') !== null) {
+            throw new ApiError(403, 'scope_forbidden', 'Action hors du périmètre de cet accès.');
+        }
         if ($transport === 'web') {
             RequestSecurity::requireSameOriginFetch($request);
             $identity = Auth::identity(self::refreshCookie($request), 'web', true) ?? $identity;

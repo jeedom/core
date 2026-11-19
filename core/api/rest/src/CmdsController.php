@@ -251,6 +251,10 @@ final class CmdsController
     {
         $cmd = self::findReadableInfo($args['id'], $request->getAttribute('user'));
         [$start, $end] = self::period($request);
+        $mcpLimit = $request->getAttribute('mcpHistoryLimit') === true;
+        if ($mcpLimit && (new \DateTimeImmutable($start))->modify('+7 days') < new \DateTimeImmutable($end)) {
+            throw ApiError::field(422, 'validation_error', 'start', 'Choisissez une période de sept jours au plus et un regroupement si nécessaire.');
+        }
         $grouping = $request->getQueryParams()['grouping'] ?? null;
         if ($grouping !== null && !preg_match('/^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$/', (string) $grouping)) {
             throw ApiError::field(422, 'validation_error', 'grouping', 'Format attendu : fonction::période (ex. avg::hour).');
@@ -261,7 +265,10 @@ final class CmdsController
         }
         $items = [];
         $previous = null;
-        foreach ((array) \history::all($cmd->getId(), $start, $end, $grouping) as $point) {
+        foreach ((array) \history::all($cmd->getId(), $start, $end, $grouping, _limit: $mcpLimit ? 5001 : null) as $point) {
+            if ($mcpLimit && count($items) >= 5000) {
+                throw ApiError::field(422, 'validation_error', 'grouping', 'L’historique dépasse 5 000 points. Choisissez un regroupement ou une période plus courte.');
+            }
             $value = $point->getValue();
             $value = is_numeric($value) ? $value + 0 : self::nullableString($value);
             if ($derive) {

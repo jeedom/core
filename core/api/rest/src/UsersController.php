@@ -435,18 +435,29 @@ final class UsersController
 
     public function createScriptSession(Request $request, Response $response, array $args = []): Response
     {
-        if (isset($args['id'])) {
+        return $this->createLongLivedSession($request, $response, $args['id'] ?? null, false);
+    }
+
+    public function createMcpSession(Request $request, Response $response, array $args): Response
+    {
+        return $this->createLongLivedSession($request, $response, $args['id'], true);
+    }
+
+    private function createLongLivedSession(Request $request, Response $response, ?string $target, bool $mcp): Response
+    {
+        if ($target !== null) {
             Auth::requireAccountAdmin($request);
         }
         if ($request->getAttribute('webSessionId') === null) {
-            throw new ApiError(403, 'forbidden', 'La création d’un accès pour un script nécessite une session Web.');
+            throw new ApiError(403, 'forbidden', 'La création d’un accès longue durée nécessite une session Web.');
         }
         $actor = self::currentWritable($request);
         $body = Json::body($request, 8192);
-        self::rejectUnknown($body, ['clientName', 'scope', 'durationDays', 'password', 'twoFactorCode']);
+        $fields = ['clientName', 'durationDays', 'password', 'twoFactorCode'];
+        self::rejectUnknown($body, $mcp ? $fields : [...$fields, 'scope']);
         $name = SessionController::clientName($body['clientName'] ?? null);
-        $scope = $body['scope'] ?? null;
-        if (!in_array($scope, \session::SCRIPT_SCOPES, true)) {
+        $scope = $mcp ? \session::MCP_SCOPE : ($body['scope'] ?? null);
+        if (!$mcp && !in_array($scope, \session::SCRIPT_SCOPES, true)) {
             throw ApiError::field(422, 'validation_error', 'scope', 'Choisissez lecture ou contrôle.');
         }
         $days = $body['durationDays'] ?? null;
@@ -462,22 +473,22 @@ final class UsersController
             throw new ApiError(401, 'invalid_credentials', 'Le compte a changé. Reconnectez-vous.');
         }
         $user = $confirmed;
-        if (isset($args['id'])) {
+        if ($target !== null) {
             Auth::requireAccountAdmin($request->withAttribute('user', $confirmed));
-            $user = self::findWritable($args['id']);
-            if ((int) $user->getId() !== (int) $confirmed->getId() && $user->getProfils() !== 'restrict') {
+            $user = self::findWritable($target);
+            if (!$mcp && (int) $user->getId() !== (int) $confirmed->getId() && $user->getProfils() !== 'restrict') {
                 throw new ApiError(403, 'script_access_forbidden', 'Vous pouvez générer un accès pour vous-même ou pour un compte restreint.');
             }
         }
         if (!$user->isValidAndEnabled()) {
-            throw new ApiError(403, 'script_access_forbidden', 'Le compte doit être actif.');
+            throw new ApiError(403, $mcp ? 'mcp_access_forbidden' : 'script_access_forbidden', 'Le compte doit être actif.');
         }
         try {
-            $connection = \session::create($user, false, '', null, time() + $days * 86400, 'script', $name, $scope);
+            $connection = \session::create($user, false, '', null, time() + $days * 86400, $mcp ? 'api' : 'script', $name, $scope);
         } catch (\DomainException $error) {
             throw new ApiError(401, 'invalid_credentials', $error->getMessage());
         }
-        \log::audit('REST script access created', ['sessionId' => $connection['id'], 'by' => $confirmed->getLogin(), 'login' => $user->getLogin()]);
+        \log::audit($mcp ? 'REST MCP access created' : 'REST script access created', ['sessionId' => $connection['id'], 'by' => $confirmed->getLogin(), 'login' => $user->getLogin()]);
         return Json::respond($response->withHeader('Cache-Control', 'no-store'), [
             'id' => $connection['id'], 'accessToken' => $connection['token'], 'accessExpiresAt' => gmdate(DATE_ATOM, $connection['expires']),
         ], 201);

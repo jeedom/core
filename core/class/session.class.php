@@ -5,6 +5,7 @@ final class session {
 	public const REFRESH_LIFETIME = 90 * 86400;
 	public const SCRIPT_MAX_DURATION_DAYS = 365;
 	public const SCRIPT_SCOPES = ['read', 'control'];
+	public const MCP_SCOPE = 'mcp';
 	private const RETRY_WINDOW = 60;
 	private const REFRESH_MATCH = '(refresh_hash = :hash OR (previous_refresh_hash = :previous
 		AND previous_refresh_expires_at > UTC_TIMESTAMP()))';
@@ -16,10 +17,13 @@ final class session {
 			$id = self::secret();
 			$csrf = self::secret();
 			$now = time();
-			if ($mode === 'script') {
+			$mcp = $mode === 'api' && $scope === self::MCP_SCOPE;
+			if ($mode === 'script' || $mcp) {
 				if ($expiresBefore === null || $expiresBefore > $now + self::SCRIPT_MAX_DURATION_DAYS * 86400
-					|| !in_array($scope, self::SCRIPT_SCOPES, true) || $actor->getProfils() !== $user->getProfils()) {
-					throw new DomainException('Impossible de créer cette session de script.');
+					|| (!$mcp && !in_array($scope, self::SCRIPT_SCOPES, true))
+					|| ($mcp && ($remember || $refreshOnly || !in_array($user->getProfils(), ['admin', 'user', 'restrict'], true)))
+					|| $actor->getProfils() !== $user->getProfils()) {
+					throw new DomainException('Impossible de créer cet accès longue durée.');
 				}
 				$tokens = ['token' => self::secret(), 'expires' => $expiresBefore];
 			} else {
@@ -177,6 +181,9 @@ final class session {
 	}
 
 	private static function matchesTransport(array $row, string $transport, bool $refresh): bool {
+		if ($transport === 'mcp' || ($row['mode'] === 'api' && $row['scope'] === self::MCP_SCOPE)) {
+			return $transport === 'mcp' && $row['mode'] === 'api' && $row['scope'] === self::MCP_SCOPE && !$refresh;
+		}
 		if ($row['mode'] === 'script') {
 			return $transport === 'api' && !$refresh;
 		}
@@ -188,7 +195,7 @@ final class session {
 	}
 
 	public static function touch(array $row, string $ip = '', string $userAgent = ''): void {
-		if ($row['mode'] === 'script' && $row['ip'] === '' && $ip !== '') {
+		if (($row['mode'] === 'script' || $row['mode'] === 'api' && $row['scope'] === self::MCP_SCOPE) && $row['ip'] === '' && $ip !== '') {
 			DB::Prepare("UPDATE `session` SET ip = :ip, user_agent = :userAgent, last_activity_at = UTC_TIMESTAMP()
 				WHERE id = :id AND ip = ''", ['id' => $row['id']] + self::clientMetadata($ip, $userAgent));
 			return;

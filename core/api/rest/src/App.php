@@ -13,6 +13,7 @@ final class App
     {
         $app = Router::create();
         $app->group('/api/v1', static function (RouteCollectorProxy $api): void {
+            $api->post('/mcp', (new McpController())->handle(...))->setName('mcp');
             $links = new LinksController();
             $api->get('/links/{type}/{id}', $links->get(...));
 
@@ -304,6 +305,7 @@ final class App
             $api->delete('/users/{id}/devices/{key}', $users->forgetDevice(...));
             $api->get('/users/{id}/sessions', $users->sessions(...));
             $api->post('/users/{id}/sessions', $users->createScriptSession(...));
+            $api->post('/users/{id}/mcp-session', $users->createMcpSession(...));
             $api->delete('/users/{id}/sessions', $users->closeSessions(...));
             $api->delete('/users/{id}/sessions/{sessionId}', $users->closeSession(...));
             $api->delete('/users/{id}/legacy-sessions/{sessionId}', $users->closeLegacySession(...));

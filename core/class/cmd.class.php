@@ -25,6 +25,9 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
  * @see jeeObject
  */
 class cmd {
+	public const ID_REFERENCE_PATTERN = '/#([0-9]+)#/';
+	public const HUMAN_REFERENCE_PATTERN = '/#\[([^#]*)\]\[([^#]*)\]\[([^#]*)\]#/';
+
 	/*	 * *************************Attributs****************************** */
 
 	/** @var int|''|null Command ID */
@@ -855,7 +858,7 @@ class cmd {
 			return $_input;
 		}
 		$replace = array();
-		preg_match_all("/#\[([^#]*)\]\[([^#]*)\]\[([^#]*)\]#/", $_input, $matches);
+		preg_match_all(self::HUMAN_REFERENCE_PATTERN, $_input, $matches);
 		if (count($matches) == 4) {
 			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {
@@ -925,7 +928,7 @@ class cmd {
 		}
 		$json = is_json($_input);
 		$replace = array();
-		preg_match_all("/#([0-9]*)#/", $_input, $matches);
+		preg_match_all(self::ID_REFERENCE_PATTERN, $_input, $matches);
 		foreach ($matches[1] as $cmd_id) {
 			if (isset($replace['#' . $cmd_id . '#'])) {
 				continue;

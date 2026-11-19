@@ -372,7 +372,7 @@ class jeeObject {
 		}
 	}
 
-	public static function getGlobalSummary($_key) {
+	public static function getGlobalSummary($_key, ?user $user = null) {
 		if ($_key == '') {
 			return null;
 		}
@@ -380,7 +380,7 @@ class jeeObject {
 		$objects = self::all();
 		$value = array();
 		foreach ($objects as $object) {
-			if ($object->getConfiguration('summary::global::' . $_key, 0) == 0) {
+			if (($user !== null && !$object->hasRight('r', $user)) || $object->getConfiguration('summary::global::' . $_key, 0) == 0) {
 				continue;
 			}
 			$result = $object->getSummary($_key, true);

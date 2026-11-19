@@ -89,8 +89,10 @@ final class ScenariosController
         $scenario->setIsActive(1);
         $scenario->setIsVisible(1);
         $scenario->setMode('provoke');
-        self::write($scenario, self::validate($body));
-        return Json::respond($response, self::toArray(self::reload($scenario), true), 201);
+        $body = self::validate($body);
+        $warnings = self::validateDefinition($request->getAttribute('user'), $scenario, $body);
+        self::write($scenario, $body);
+        return Json::respond($response, self::saved($scenario, $warnings), 201);
     }
 
     public function update(Request $request, Response $response, array $args): Response
@@ -102,10 +104,10 @@ final class ScenariosController
             throw new ApiError(422, 'validation_error', 'Aucun champ à modifier.');
         }
         $body = self::validate($body);
-        // Un scénario en cours est arrêté, après validation, si son exécution change.
+        $warnings = self::warningsForUpdate($request->getAttribute('user'), $scenario, $body);
         self::stopIfExecutionChanges($scenario, $body);
         self::write($scenario, $body);
-        return Json::respond($response, self::toArray(self::reload($scenario), true));
+        return Json::respond($response, self::saved($scenario, $warnings));
     }
 
     public function delete(Request $request, Response $response, array $args): Response
@@ -131,6 +133,7 @@ final class ScenariosController
         $user = $request->getAttribute('user');
         return Json::respond($response, Bulk::each($ids, static function (int $id) use ($user, $changes): void {
             $scenario = self::find((string) $id, $user, 'w');
+            self::warningsForUpdate($user, $scenario, $changes);
             self::stopIfExecutionChanges($scenario, $changes);
             self::write($scenario, $changes);
         }));
@@ -415,48 +418,33 @@ final class ScenariosController
         if (array_key_exists('elements', $body) && (!is_array($body['elements']) || !array_is_list($body['elements']))) {
             throw ApiError::field(422, 'validation_error', 'elements', 'Une liste de blocs est attendue.');
         }
-        foreach ($body['elements'] ?? [] as $element) {
-            self::validateElement($element);
-        }
         return $body;
     }
 
-    /**
-     * Vérifie la structure d'un bloc et l'existence des identifiants qu'il cite, avant
-     * tout saveAjaxElement : un bloc refusé en cours d'enregistrement laisserait les
-     * blocs précédents orphelins.
-     */
-    private static function validateElement(mixed $element): void
+    private static function validateDefinition(\user $user, \scenario $scenario, array $body): array
     {
-        if (!is_array($element) || !isset($element['subElements']) || !is_array($element['subElements'])) {
-            throw ApiError::field(422, 'validation_error', 'elements', 'Chaque bloc doit avoir un type et des subElements.');
+        try {
+            return \scenarioValidator::validate($scenario, $body, $user);
+        } catch (\scenarioValidationException $error) {
+            throw ApiError::field(422, 'validation_error', $error->field, $error->getMessage());
         }
-        if (isset($element['id']) && $element['id'] != '' && !is_object(\scenarioElement::byId($element['id']))) {
-            throw ApiError::field(422, 'validation_error', 'elements', 'Bloc inconnu : ' . $element['id'] . '.');
+    }
+
+    private static function warningsForUpdate(\user $user, \scenario $scenario, array $body): array
+    {
+        if (($body['isActive'] ?? null) === 1 || array_key_exists('object_id', $body) || self::changesExecution($scenario, $body)) {
+            return self::validateDefinition($user, $scenario, $body);
         }
-        foreach ($element['subElements'] as $sub) {
-            if (!is_array($sub) || !isset($sub['expressions']) || !is_array($sub['expressions'])) {
-                throw ApiError::field(422, 'validation_error', 'elements', 'Chaque sous-bloc doit avoir une liste expressions.');
-            }
-            $subId = isset($sub['id']) && $sub['id'] != '' ? $sub['id'] : null;
-            if ($subId !== null && !is_object(\scenarioSubElement::byId($subId))) {
-                throw ApiError::field(422, 'validation_error', 'elements', 'Sous-bloc inconnu : ' . $subId . '.');
-            }
-            foreach ($sub['expressions'] as $expression) {
-                if (!is_array($expression)) {
-                    throw ApiError::field(422, 'validation_error', 'elements', 'Chaque expression doit être un objet.');
-                }
-                // saveAjaxElement ignore l'id d'une expression rattachée à un autre sous-bloc.
-                $kept = isset($expression['id']) && $expression['id'] != ''
-                    && !(isset($expression['scenarioSubElement_id']) && ($subId === null || $expression['scenarioSubElement_id'] != $subId));
-                if ($kept && !is_object(\scenarioExpression::byId($expression['id']))) {
-                    throw ApiError::field(422, 'validation_error', 'elements', 'Expression inconnue : ' . $expression['id'] . '.');
-                }
-                if (($expression['type'] ?? null) === 'element') {
-                    self::validateElement($expression['element'] ?? null);
-                }
-            }
+        return [];
+    }
+
+    private static function saved(\scenario $scenario, array $warnings): array
+    {
+        $data = self::toArray(self::reload($scenario), true);
+        if ($warnings !== []) {
+            $data['warnings'] = $warnings;
         }
+        return $data;
     }
 
     /** Enregistre un corps validé, comme l'ajax save (a2o, puis blocs par saveAjaxElement). */
@@ -470,6 +458,7 @@ final class ScenariosController
         if (isset($body['schedule'])) {
             $scenario->setSchedule([]);
         }
+        \DB::beginTransaction();
         try {
             \utils::a2o($scenario, $body);
             if ($elements !== null) {
@@ -481,10 +470,15 @@ final class ScenariosController
                 $scenario->setScenarioElement($ids);
             }
             $scenario->save();
-        } catch (ApiError $e) {
-            throw $e;
-        } catch (\Exception $e) {
-            throw new ApiError(422, 'validation_error', $e->getMessage());
+            \DB::commit();
+        } catch (\Throwable $error) {
+            if (\DB::getConnection()->inTransaction()) {
+                \DB::rollBack();
+            }
+            if ($error instanceof ApiError || !$error instanceof \Exception) {
+                throw $error;
+            }
+            throw new ApiError(422, 'validation_error', $error->getMessage());
         }
     }
 

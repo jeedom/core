@@ -107,12 +107,13 @@ final class ObjectsController
     public function globalSummary(Request $request, Response $response): Response
     {
         $query = $request->getQueryParams();
+        $user = $request->getAttribute('user');
         if (array_key_exists('key', $query)) {
-            return Json::respond($response, \jeeObject::getGlobalSummary(self::summaryKey($query['key'])));
+            return Json::respond($response, \jeeObject::getGlobalSummary(self::summaryKey($query['key']), $user));
         }
         $result = [];
         foreach ((array) \config::byKey('object:summary') as $summaryKey => $definition) {
-            $result[$summaryKey] = \jeeObject::getGlobalSummary($summaryKey);
+            $result[$summaryKey] = \jeeObject::getGlobalSummary($summaryKey, $user);
         }
         return Json::respond($response, (object) $result);
     }
