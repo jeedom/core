@@ -303,6 +303,7 @@ final class App
             $api->delete('/users/{id}/devices', $users->forgetDevices(...));
             $api->delete('/users/{id}/devices/{key}', $users->forgetDevice(...));
             $api->get('/users/{id}/sessions', $users->sessions(...));
+            $api->post('/users/{id}/sessions', $users->createScriptSession(...));
             $api->delete('/users/{id}/sessions', $users->closeSessions(...));
             $api->delete('/users/{id}/sessions/{sessionId}', $users->closeSession(...));
             $api->delete('/users/{id}/legacy-sessions/{sessionId}', $users->closeLegacySession(...));
@@ -321,7 +322,7 @@ final class App
             $api->patch('/me', $users->updateMe(...));
             $api->post('/me/two-factor/setup', $users->setupMyTwoFactor(...));
             $api->patch('/me/two-factor', $users->updateMyTwoFactor(...));
-            $api->post('/me/sessions', $users->createApiSession(...));
+            $api->post('/me/sessions', $users->createScriptSession(...));
             $api->get('/me/devices', $users->myDevices(...));
             $api->delete('/me/devices', $users->forgetMyDevices(...));
             $api->delete('/me/devices/{key}', $users->forgetMyDevice(...));

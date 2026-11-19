@@ -28,7 +28,11 @@ final class Auth implements MiddlewareInterface
             throw new ApiError(403, 'csrf_invalid', 'Jeton CSRF absent ou invalide.');
         }
         self::checkScope($request, $session);
-        \session::touch($session);
+        if ($session['mode'] === 'script') {
+            \session::touch($session, \getClientIp(), $request->getHeaderLine('User-Agent'));
+        } else {
+            \session::touch($session);
+        }
 
         $GLOBALS['_USER_GLOBAL'] = $user;
         try {
@@ -83,7 +87,10 @@ final class Auth implements MiddlewareInterface
         if ((int) $user->getOptions('localOnly', 0) === 1 && \network::getUserLocation() !== 'internal') {
             return false;
         }
-        return $mode !== 'api' || ($user->getLogin() !== \supportAccess::LOGIN
+        if ($mode === 'script' && !in_array($scope, \session::SCRIPT_SCOPES, true)) {
+            return false;
+        }
+        return !in_array($mode, ['api', 'script'], true) || ($user->getLogin() !== \supportAccess::LOGIN
             && \jeedom::apiModeResult($user->getOptions('api::mode', 'enable')));
     }
 
