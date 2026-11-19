@@ -29,10 +29,10 @@ final class session {
 					|| $actor->getProfils() !== $user->getProfils()) {
 					throw new DomainException('Impossible de créer cet accès longue durée.');
 				}
-				$tokens = ['token' => self::secret(), 'expires' => $expiresBefore];
-			} else {
-				$tokens = self::pair(self::secret(), self::secret(), $expiresBefore);
 			}
+			$tokens = ($mode === 'script' || $mcp) && !$refreshOnly
+				? ['token' => self::secret(), 'expires' => $expiresBefore]
+				: self::pair(self::secret(), self::secret(), $expiresBefore);
 			if ($tokens['expires'] <= $now) {
 				throw new DomainException('La session a expiré.');
 			}
@@ -189,7 +189,7 @@ final class session {
 			return $transport === 'mcp' && $row['mode'] === 'api' && $row['scope'] === self::MCP_SCOPE && !$refresh;
 		}
 		if ($row['mode'] === 'script') {
-			return $transport === 'api' && !$refresh;
+			return $transport === 'api';
 		}
 		return $row['mode'] === $transport || ($transport === 'api' && $row['mode'] === 'daemon');
 	}

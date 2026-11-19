@@ -457,7 +457,11 @@ final class UsersController
         $actor = self::currentWritable($request);
         $body = Json::body($request, 8192);
         $fields = ['clientName', 'durationDays', 'password', 'twoFactorCode'];
-        self::rejectUnknown($body, $mcp ? $fields : [...$fields, 'scope']);
+        self::rejectUnknown($body, $mcp ? $fields : [...$fields, 'scope', 'tokenType']);
+        $tokenType = array_key_exists('tokenType', $body) ? $body['tokenType'] : 'access';
+        if (!in_array($tokenType, ['access', 'refresh'], true)) {
+            throw ApiError::field(422, 'validation_error', 'tokenType', 'Choisissez un jeton d’accès ou de renouvellement.');
+        }
         $name = SessionController::clientName($body['clientName'] ?? null);
         $scope = $mcp ? \session::MCP_SCOPE : ($body['scope'] ?? null);
         if (!$mcp && !in_array($scope, \session::SCRIPT_SCOPES, true)) {
@@ -484,7 +488,7 @@ final class UsersController
             throw new ApiError(403, $mcp ? 'mcp_access_forbidden' : 'script_access_forbidden', 'Le compte doit être actif.');
         }
         try {
-            $connection = \session::create($user, false, '', null, time() + $days * 86400, $mcp ? 'api' : 'script', $name, $scope);
+            $connection = \session::create($user, false, '', null, time() + $days * 86400, $mcp ? 'api' : 'script', $name, $scope, $tokenType === 'refresh');
         } catch (\DomainException $error) {
             if ($mcp && $error->getCode() === \session::MCP_DISABLED_ERROR) {
                 throw self::mcpDisabled();
@@ -492,9 +496,10 @@ final class UsersController
             throw new ApiError(401, 'invalid_credentials', $error->getMessage());
         }
         \log::audit($mcp ? 'REST MCP access created' : 'REST script access created', ['sessionId' => $connection['id'], 'by' => $confirmed->getLogin(), 'login' => $user->getLogin()]);
-        return Json::respond($response->withHeader('Cache-Control', 'no-store'), [
-            'id' => $connection['id'], 'accessToken' => $connection['token'], 'accessExpiresAt' => gmdate(DATE_ATOM, $connection['expires']),
-        ], 201);
+        $token = $tokenType === 'refresh' ? SessionController::refreshPayload($connection) : [
+            'accessToken' => $connection['token'], 'accessExpiresAt' => gmdate(DATE_ATOM, $connection['expires']),
+        ];
+        return Json::respond($response->withHeader('Cache-Control', 'no-store'), ['id' => $connection['id']] + $token, 201);
     }
 
     private static function mcpDisabled(): ApiError
