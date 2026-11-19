@@ -476,7 +476,7 @@ final class scenarioValidator {
 		// Représente les tags et les fonctions évaluées par le moteur par des valeurs
 		// fictives. Le parseur vérifie la syntaxe sans lire d'équipement ni évaluer de code.
 		$value = preg_replace(cmd::HUMAN_REFERENCE_PATTERN, '1', $value);
-		$value = preg_replace('/#[^#\r\n]+#/', '1', $value);
+		$value = preg_replace('/##[^#\r\n]+##|#[^#\r\n]+#/', '1', $value);
 		$value = normalizeJeedomExpression($value);
 		$language = new \Symfony\Component\ExpressionLanguage\ExpressionLanguage();
 		preg_match_all('/\b([a-zA-Z_][a-zA-Z_0-9]*)\s*\(/', $value, $calls);

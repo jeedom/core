@@ -14,7 +14,7 @@ final class Auth implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         [$transport, $token] = self::access($request);
-        $mcp = RouteContext::fromRequest($request)->getRoute()?->getName() === 'mcp';
+        $mcp = $request->getAttribute(RouteContext::ROUTE)?->getName() === 'mcp';
         $identityTransport = $mcp ? 'mcp' : $transport;
         $identity = $mcp && $transport !== 'api' ? null : \session::resolve($token, $identityTransport);
         if ($identity === null) {
@@ -30,7 +30,7 @@ final class Auth implements MiddlewareInterface
         if ($transport === 'web' && !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true) && !$csrfOk) {
             throw new ApiError(403, 'csrf_invalid', 'Jeton CSRF absent ou invalide.');
         }
-        self::checkScope($request, $session);
+        self::checkScope($request, $session, $mcp);
         $cloudService = $session['mode'] === 'api' && $session['scope'] === CloudService::SCOPE;
         if ($session['mode'] === 'script' || $mcp) {
             \session::touch($session, \getClientIp(), $request->getHeaderLine('User-Agent'));
@@ -97,12 +97,12 @@ final class Auth implements MiddlewareInterface
         return !in_array($mode, ['api', 'script'], true) || $user->getLogin() !== \supportAccess::LOGIN;
     }
 
-    private static function checkScope(ServerRequestInterface $request, array $session): void
+    private static function checkScope(ServerRequestInterface $request, array $session, bool $mcp): void
     {
         $path = $request->getUri()->getPath();
         $method = $request->getMethod();
         if ($session['mode'] === 'api' && $session['scope'] === \session::MCP_SCOPE) {
-            if ($method === 'POST' && RouteContext::fromRequest($request)->getRoute()?->getName() === 'mcp') {
+            if ($method === 'POST' && $mcp) {
                 return;
             }
         } elseif ($session['mode'] === 'api' && $session['scope'] === CloudService::SCOPE) {
