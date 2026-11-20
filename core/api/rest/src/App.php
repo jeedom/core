@@ -200,6 +200,10 @@ final class App
 
             $system = new SystemController();
             $api->get('/system', $system->get(...));
+            $api->get('/system/version', $system->version(...));
+            $api->get('/system/ping', $system->ping(...));
+            $api->get('/system/datetime', $system->datetime(...));
+            $api->get('/system/ok', $system->ok(...));
             $api->get('/system/health', $system->health(...));
             $api->post('/system/health/benchmark', $system->benchmark(...));
             $api->post('/system/reboot', $system->reboot(...));
@@ -225,6 +229,7 @@ final class App
 
             $messages = new MessagesController();
             $api->get('/messages', $messages->list(...));
+            $api->post('/messages', $messages->add(...));
             $api->delete('/messages', $messages->clear(...));
             $api->get('/messages/count', $messages->count(...));
             $api->post('/messages/read', $messages->markAllRead(...));
@@ -235,6 +240,7 @@ final class App
             $api->get('/logs', $logs->list(...));
             $api->delete('/logs', $logs->deleteAll(...));
             $api->get('/logs/{name}', $logs->get(...));
+            $api->post('/logs/{name}/entries', $logs->add(...));
             $api->get('/logs/{name}/excerpt', $logs->excerpt(...));
             $api->get('/logs/{name}/download', $logs->download(...));
             $api->delete('/logs/{name}', $logs->delete(...));

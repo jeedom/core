@@ -900,6 +900,82 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
 
+  /system/version:
+    get:
+      tags: [Système]
+      operationId: getSystemVersion
+      summary: Lire la version du Core
+      description: Accessible aux profils admin, user et restrict avec une session valide, y compris les jetons de script read et control.
+      responses:
+        '200':
+          description: Lire la version du Core.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [version]
+                properties:
+                  version: { type: string }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/ping:
+    get:
+      tags: [Système]
+      operationId: pingSystem
+      summary: Vérifier que l’API répond
+      description: Accessible aux profils admin, user et restrict avec une session valide, y compris les jetons de script read et control.
+      responses:
+        '200':
+          description: Vérifier que l’API répond.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ping]
+                properties:
+                  ping: { type: string, enum: [pong] }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/datetime:
+    get:
+      tags: [Système]
+      operationId: getSystemDatetime
+      summary: Lire l’horodatage Unix de la box en secondes avec sa fraction
+      description: Accessible aux profils admin, user et restrict avec une session valide, y compris les jetons de script read et control.
+      responses:
+        '200':
+          description: Lire l’horodatage Unix de la box en secondes avec sa fraction.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [datetime]
+                properties:
+                  datetime: { type: number, format: double }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /system/ok:
+    get:
+      tags: [Système]
+      operationId: getSystemOk
+      summary: Lire le résultat du contrôle global Jeedom
+      description: Accessible aux profils admin, user et restrict avec une session valide, y compris les jetons de script read et control.
+      responses:
+        '200':
+          description: Lire le résultat du contrôle global Jeedom.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ok]
+                properties:
+                  ok: { type: boolean }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
   /system/health:
     get:
       tags: [Système]
@@ -1727,6 +1803,36 @@ paths:
                 $ref: '#/components/schemas/Error'
       description: Supprime le fichier journal. Pour un journal protégé par le Core, renvoie removed=false et conserve
         son contenu.
+  /logs/{name}/entries:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema: { type: string, pattern: '^[A-Za-z0-9][A-Za-z0-9_.-]{0,254}$' }
+    post:
+      tags: [Journaux]
+      operationId: addLogEntry
+      summary: Ajouter une entrée à un journal (administrateur)
+      description: Le Core applique le seuil de journalisation configuré. Un nouveau journal peut avoir un nom simple ou le suffixe .log.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [level, message]
+              properties:
+                level: { type: string, enum: [debug, info, notice, warning, error, critical, alert, emergency] }
+                message: { type: string, minLength: 1, maxLength: 8192 }
+                logicalId: { type: string, maxLength: 127 }
+      responses:
+        '204': { description: Envoi traité. }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '413': { $ref: '#/components/responses/WriteBodyTooLarge' }
+        '422': { $ref: '#/components/responses/ValidationError' }
   /logs/{name}/excerpt:
     parameters:
     - name: name
@@ -2864,6 +2970,32 @@ paths:
         minimum: 1
 
   /messages:
+    post:
+      tags: [Messages]
+      operationId: addMessage
+      summary: Ajouter un message au centre de notifications (administrateur)
+      description: Le Core regroupe les occurrences et applique les règles de notification configurées.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [plugin, message]
+              properties:
+                plugin: { type: string, minLength: 1, maxLength: 127 }
+                message: { type: string, minLength: 1, maxLength: 8192 }
+                action: { type: string, maxLength: 8192 }
+                logicalId: { type: string, maxLength: 126, description: Au plus 126 octets après échappement HTML. }
+                level: { $ref: '#/components/schemas/MessageLevel' }
+      responses:
+        '204': { description: Envoi traité. }
+        '400': { $ref: '#/components/responses/SystemInvalidJson' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '413': { $ref: '#/components/responses/WriteBodyTooLarge' }
+        '422': { $ref: '#/components/responses/ValidationError' }
     get:
       tags:
       - Messages
@@ -12230,6 +12362,11 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     SystemFileVersionConflict:
       description: Le fichier ou son répertoire a changé depuis sa lecture.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    WriteBodyTooLarge:
+      description: Le corps de la requête dépasse 64 Kio.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }

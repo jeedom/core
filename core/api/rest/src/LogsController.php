@@ -74,6 +74,31 @@ final class LogsController
         ]);
     }
 
+    public function add(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $name = $args['name'];
+        if (!self::validName($name)) {
+            throw ApiError::field(422, 'validation_error', 'name', 'Nom de journal invalide.');
+        }
+        $path = \log::getPathToLog($name);
+        // Autoriser les journaux existants et la création d’un nom simple ou suffixé .log.
+        $canCreate = !file_exists($path) && preg_match('/\A[\w-]+(?:\.log)?\z/D', $name);
+        if (is_link($path) || (!is_file($path) && !$canCreate)) {
+            throw ApiError::field(422, 'validation_error', 'name', 'Ce nom ne peut pas recevoir de journal.');
+        }
+        $body = Json::body($request, 65536);
+        if ($unknown = array_diff(array_keys($body), ['level', 'message', 'logicalId'])) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ de journal inconnu.');
+        }
+        $level = Json::textField($body, 'level', 9);
+        if (!\log::isValidLevel($level)) {
+            throw ApiError::field(422, 'validation_error', 'level', 'Niveau de journal invalide.');
+        }
+        \log::add($name, $level, Json::textField($body, 'message', 8192), Json::textField($body, 'logicalId', 127, ''));
+        return $response->withStatus(204);
+    }
+
     public function excerpt(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);

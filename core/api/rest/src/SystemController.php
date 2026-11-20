@@ -20,6 +20,26 @@ final class SystemController
         ]);
     }
 
+    public function version(Request $request, Response $response): Response
+    {
+        return self::respond($response, ['version' => \jeedom::version()]);
+    }
+
+    public function ping(Request $request, Response $response): Response
+    {
+        return self::respond($response, ['ping' => 'pong']);
+    }
+
+    public function datetime(Request $request, Response $response): Response
+    {
+        return self::respond($response, ['datetime' => \getmicrotime()]);
+    }
+
+    public function ok(Request $request, Response $response): Response
+    {
+        return self::respond($response, ['ok' => \jeedom::isOk()]);
+    }
+
     public function health(Request $request, Response $response): Response
     {
         Auth::requireAdmin($request);
