@@ -150,6 +150,7 @@ final class ConfigController
             'interact::autoreply::cmd::slider::min' => 'string',
         ],
         'security' => [
+            \config::MCP_ENABLED_KEY => 'boolean',
             'session_lifetime' => 'number',
             'security::registerDeviceLifetime' => 'number',
             'security::maxFailedLogin' => 'number',
@@ -318,7 +319,7 @@ final class ConfigController
     private static function read(array $keys, bool $admin): array
     {
         $types = self::exposedKeys();
-        $stored = \config::byKeys(array_map(self::storedKey(...), array_diff($keys, [LogLevels::KEY])));
+        $stored = \config::byKeys(array_map(self::storedKey(...), array_diff($keys, [LogLevels::KEY, \config::MCP_ENABLED_KEY])));
         $result = [];
         foreach ($keys as $key) {
             $storedKey = self::storedKey($key);
@@ -327,6 +328,10 @@ final class ConfigController
             }
             if ($key === LogLevels::KEY) {
                 $result[$key] = LogLevels::read();
+                continue;
+            }
+            if ($key === \config::MCP_ENABLED_KEY) {
+                $result[$key] = \config::mcpEnabled();
                 continue;
             }
             $value = self::toApi($types[$key], $stored[$storedKey] ?? '');

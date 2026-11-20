@@ -12,8 +12,18 @@ final class ApiError extends \RuntimeException
         public readonly string $errorCode,
         string $message,
         public readonly array $details = [],
+        ?\Throwable $previous = null,
     ) {
-        parent::__construct($message);
+        parent::__construct($message, 0, $previous);
+    }
+
+    public function toArray(): array
+    {
+        $error = ['code' => $this->errorCode, 'message' => $this->getMessage()];
+        if ($this->details !== []) {
+            $error['details'] = $this->details;
+        }
+        return $error;
     }
 
     public static function field(int $status, string $code, string $field, string $message): self

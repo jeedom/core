@@ -16,11 +16,7 @@ final class Json
 
     public static function error(ResponseInterface $response, ApiError $error): ResponseInterface
     {
-        $body = ['code' => $error->errorCode, 'message' => $error->getMessage()];
-        if ($error->details !== []) {
-            $body['details'] = $error->details;
-        }
-        return self::respond($response, ['error' => $body], $error->status);
+        return self::respond($response, ['error' => $error->toArray()], $error->status);
     }
 
     public static function textField(array $body, string $key, int $maxLength, ?string $default = null): string
@@ -59,8 +55,8 @@ final class Json
         }
         try {
             $data = json_decode($raw === '' ? 'null' : $raw, !$preserveObjects, 64, JSON_THROW_ON_ERROR);
-        } catch (\JsonException) {
-            throw new ApiError(400, 'invalid_json', 'Le corps de la requête n\'est pas du JSON valide.');
+        } catch (\JsonException $error) {
+            throw new ApiError(400, 'invalid_json', 'Le corps de la requête n\'est pas du JSON valide.', previous: $error);
         }
         if ($preserveObjects && $data instanceof \stdClass) {
             return (array) $data;

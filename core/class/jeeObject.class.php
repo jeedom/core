@@ -372,27 +372,35 @@ class jeeObject {
 		}
 	}
 
-	public static function getGlobalSummary($_key) {
+	public static function getGlobalSummary($_key, ?user $user = null) {
 		if ($_key == '') {
 			return null;
 		}
-		$def = config::byKey('object:summary');
-		$objects = self::all();
-		$value = array();
-		foreach ($objects as $object) {
-			if ($object->getConfiguration('summary::global::' . $_key, 0) == 0) {
+		return self::getGlobalSummaries([$_key], $user)[$_key];
+	}
+
+	/** Calcule les résumés demandés en parcourant une seule fois les objets lisibles. */
+	public static function getGlobalSummaries(array $keys, ?user $user = null): array {
+		if ($keys === []) {
+			return [];
+		}
+		$values = array_fill_keys($keys, []);
+		foreach (self::all() as $object) {
+			if ($user !== null && !$object->hasRight('r', $user)) {
 				continue;
 			}
-			$result = $object->getSummary($_key, true);
-			if ($result === null || !is_array($result)) {
-				continue;
+			foreach ($keys as $key) {
+				if ($object->getConfiguration('summary::global::' . $key, 0) != 0) {
+					array_push($values[$key], ...($object->getSummary($key, true) ?? []));
+				}
 			}
-			$value = array_merge($value, $result);
 		}
-		if (count($value) == 0) {
-			return null;
+		$definitions = config::byKey('object:summary');
+		$result = [];
+		foreach ($values as $key => $points) {
+			$result[$key] = $points === [] ? null : jeedom::calculStat($definitions[$key]['calcul'], $points);
 		}
-		return jeedom::calculStat($def[$_key]['calcul'], $value);
+		return $result;
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'dashboard') {
@@ -1105,12 +1113,12 @@ class jeeObject {
 			if (isset($infos['enable']) && $infos['enable'] == 0) {
 				continue;
 			}
-			preg_match_all("/#([0-9]*)#/", $infos['cmd'], $matches);
+			preg_match_all(cmd::ID_REFERENCE_PATTERN, $infos['cmd'], $matches);
 			if (count($matches[1]) == 0) {
 				continue;
 			}
 			$cmds = cmd::byIds($matches[1]);
-			if (count($cmds) == 0) {
+			if (empty($cmds)) {
 				continue;
 			}
 			foreach ($cmds as $cmd) {

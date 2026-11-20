@@ -13,6 +13,7 @@ final class App
     {
         $app = Router::create();
         $app->group('/api/v1', static function (RouteCollectorProxy $api): void {
+            $api->post('/mcp', (new McpController())->handle(...))->setName('mcp');
             $links = new LinksController();
             $api->get('/links/{type}/{id}', $links->get(...));
 
@@ -310,6 +311,7 @@ final class App
             $api->delete('/users/{id}/devices/{key}', $users->forgetDevice(...));
             $api->get('/users/{id}/sessions', $users->sessions(...));
             $api->post('/users/{id}/sessions', $users->createScriptSession(...));
+            $api->post('/users/{id}/mcp-session', $users->createMcpSession(...));
             $api->delete('/users/{id}/sessions', $users->closeSessions(...));
             $api->delete('/users/{id}/sessions/{sessionId}', $users->closeSession(...));
             $api->delete('/users/{id}/legacy-sessions/{sessionId}', $users->closeLegacySession(...));
@@ -346,8 +348,12 @@ final class App
         $app->post('/api/v1/session/refresh', $sessions->refresh(...));
         $app->delete('/api/v1/session', $sessions->close(...));
         $app->post('/api/v1/support/session', $sessions->openSupport(...));
-        $app->add(static fn ($request, $handler) =>
-            RequestSecurity::withClientIp($request, static fn () => $handler->handle($request)));
+        $app->add(static function ($request, $handler) use ($app) {
+            if (rawurldecode($request->getUri()->getPath()) === '/api/v1/mcp' && !\config::mcpEnabled()) {
+                return Json::error($app->getResponseFactory()->createResponse(), new ApiError(404, 'route_not_found', 'Route inconnue.'));
+            }
+            return RequestSecurity::withClientIp($request, static fn () => $handler->handle($request));
+        });
         return $app;
     }
 }

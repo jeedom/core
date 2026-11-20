@@ -1141,10 +1141,7 @@ function getIpFromString($_string) {
 	return $_string;
 }
 
-function evaluate($_string) {
-	if (!isset($GLOBALS['ExpressionLanguage'])) {
-		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
-	}
+function normalizeJeedomExpression($_string) {
 	$string = str_ireplace(array(' et ', ' and ', ' ou ', ' or ', ' xor '), array(' && ', ' && ', ' || ', ' || ', ' ^ '), $_string);
 	if (strpos($string, '"') !== false || strpos($string, '\'') !== false) {
 		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
@@ -1161,6 +1158,14 @@ function evaluate($_string) {
 	} else {
 		$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
 	}
+	return $expr;
+}
+
+function evaluate($_string) {
+	if (!isset($GLOBALS['ExpressionLanguage'])) {
+		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
+	}
+	$expr = normalizeJeedomExpression($_string);
 	try {
 		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 	} catch (Exception $e) {

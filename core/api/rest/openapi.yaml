@@ -148,6 +148,65 @@ tags:
     description: Événements des commandes et des scénarios suivis dans la timeline.
 
 paths:
+  /mcp:
+    post:
+      operationId: callMcp
+      summary: Traiter une requête MCP en Streamable HTTP
+      description: Disponible lorsque le serveur MCP est activé. Accepte les sessions API de portée mcp. Transport sans état, réponses JSON uniquement.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Accept
+          required: true
+          schema: { type: string, example: 'application/json, text/event-stream' }
+        - in: header
+          name: MCP-Protocol-Version
+          description: Version obligatoire pour les appels modernes et les appels legacy après initialisation.
+          schema: { type: string }
+        - in: header
+          name: Mcp-Method
+          description: Méthode JSON-RPC, obligatoire à partir de la version 2026-07-28.
+          schema: { type: string }
+        - in: header
+          name: Mcp-Name
+          description: Nom de l'outil, obligatoire pour les appels tools/call en version 2026-07-28.
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/McpRequest' }
+      responses:
+        '200':
+          description: Résultat de la découverte, du catalogue ou de l'outil MCP.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/McpResult' }
+        '202': { description: Notification legacy reçue. }
+        '400': { $ref: '#/components/responses/McpProtocolError' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: Serveur MCP désactivé ou méthode JSON-RPC inconnue.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Error'
+                  - $ref: '#/components/schemas/McpError'
+        '406': { $ref: '#/components/responses/McpProtocolError' }
+        '413': { $ref: '#/components/responses/McpProtocolError' }
+        '429':
+          description: Limite de 120 appels par minute sur cette session.
+          headers:
+            Retry-After:
+              schema: { type: integer, minimum: 1 }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/McpError' }
+        '503': { description: Service MCP temporairement indisponible. }
+
   /diagnostic/references:
     get:
       tags: [Diagnostic]
@@ -4579,9 +4638,9 @@ paths:
       summary: Générer un accès API pour un script
       description: |
         Depuis une session Web, confirmez votre mot de passe et, si elle est activée, la double authentification.
-        Le jeton d'accès est renvoyé une seule fois et s'utilise directement avec `Authorization: Bearer` en HTTPS.
-        La durée est fixe, de 1 à 365 jours, sans renouvellement. Le périmètre reste borné aux droits
-        et aux restrictions réseau du compte. Pour obtenir des jetons renouvelables, utilisez `POST /session` en mode API.
+        Par défaut, le jeton d’accès s’utilise directement en Bearer. Avec `tokenType: refresh`, seul le jeton
+        de renouvellement est renvoyé. Échangez-le sur `POST /session/refresh` et conservez son successeur après chaque échange.
+        La durée choisie borne la session, rotations comprises. Les droits et restrictions réseau du compte s’appliquent.
       requestBody:
         required: true
         content:
@@ -4589,10 +4648,13 @@ paths:
             schema: { $ref: '#/components/schemas/ScriptSessionRequest' }
       responses:
         '201':
-          description: Jeton d'accès. La réponse porte Cache-Control no-store.
+          description: Jeton demandé, affiché une fois. La réponse porte Cache-Control no-store.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ScriptSession' }
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ScriptSession'
+                  - $ref: '#/components/schemas/ScriptRefreshSession'
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
@@ -4877,10 +4939,10 @@ paths:
       operationId: createUserScriptSession
       summary: Générer un accès API pour un script (administrateur)
       description: |
-        Depuis une session Web d'administrateur, crée un accès pour son propre compte ou pour
-        un compte humain restreint, actif et dont l'accès API est activé.
+        Depuis une session Web d'administrateur, crée un accès Script pour tout compte humain actif.
         L'administrateur confirme avec son mot de passe et son code de double authentification si elle est activée.
-        Le jeton est affiché une seule fois et expire à la date indiquée.
+        Comme pour `POST /me/sessions`, le jeton peut être un accès direct ou un jeton de renouvellement.
+        Le périmètre choisi est limité par les droits et les restrictions réseau du compte destinataire.
       requestBody:
         required: true
         content:
@@ -4888,10 +4950,13 @@ paths:
             schema: { $ref: '#/components/schemas/ScriptSessionRequest' }
       responses:
         '201':
-          description: Jeton d'accès. La réponse porte Cache-Control no-store.
+          description: Jeton demandé, affiché une fois. La réponse porte Cache-Control no-store.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ScriptSession' }
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ScriptSession'
+                  - $ref: '#/components/schemas/ScriptRefreshSession'
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
@@ -4906,6 +4971,33 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/AccountAdminForbidden' }
         '404': { $ref: '#/components/responses/UserNotFound' }
+
+  /users/{id}/mcp-session:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    post:
+      tags: [Utilisateurs]
+      operationId: createUserMcpSession
+      summary: Générer un accès MCP pour un utilisateur
+      description: |
+        Depuis une session Web d'administrateur, crée un accès MCP pour un compte humain actif si le serveur MCP est activé.
+        L'administrateur confirme avec son mot de passe et son code de double authentification si elle est activée.
+        Le jeton est affiché une seule fois et donne accès à POST /mcp jusqu'à la date indiquée.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/McpSessionRequest' }
+      responses:
+        '201':
+          description: Jeton d'accès. La réponse porte Cache-Control no-store.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScriptSession' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/AccountAdminForbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
   /users/{id}/sessions/{sessionId}:
     parameters:
@@ -8974,6 +9066,16 @@ components:
           type: array
           description: Présent seulement avec `include=elements` (administrateurs), et après une création ou une modification.
           items: { $ref: '#/components/schemas/ScenarioElement' }
+        warnings:
+          type: array
+          description: Références non résolues dans les conditions ou les textes libres lors de l’enregistrement.
+          items:
+            type: object
+            required: [field, reference, message]
+            properties:
+              field: { type: string }
+              reference: { type: string }
+              message: { type: string }
 
     ScenarioCreate:
       type: object
@@ -10017,11 +10119,52 @@ components:
         accessExpiresAt: { type: string, format: date-time }
         refreshExpiresAt: { type: string, format: date-time }
 
+    McpSessionRequest:
+      type: object
+      required: [clientName, durationDays, password]
+      properties:
+        clientName: { type: string, minLength: 1, maxLength: 100 }
+        durationDays: { type: integer, minimum: 1, maximum: 365 }
+        password: { type: string, format: password, minLength: 1 }
+        twoFactorCode: { type: string }
+
+    McpRequest:
+      type: object
+      required: [jsonrpc, method]
+      properties:
+        jsonrpc: { type: string, enum: ['2.0'] }
+        id: { type: [integer, string] }
+        method: { type: string }
+        params: { type: object, additionalProperties: true }
+
+    McpResult:
+      type: object
+      required: [jsonrpc, id, result]
+      properties:
+        jsonrpc: { type: string, enum: ['2.0'] }
+        id: { type: [integer, string] }
+        result: { type: object, additionalProperties: true }
+
+    McpError:
+      type: object
+      required: [jsonrpc, id, error]
+      properties:
+        jsonrpc: { type: string, enum: ['2.0'] }
+        id: { type: [integer, string, 'null'] }
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: integer }
+            message: { type: string }
+            data: { type: object, additionalProperties: true }
+
     ScriptSessionRequest:
       type: object
       required: [clientName, scope, durationDays, password]
       properties:
         clientName: { type: string, minLength: 1, maxLength: 100 }
+        tokenType: { type: string, enum: [access, refresh], description: Jeton initial à délivrer (access par défaut). }
         scope: { type: string, enum: [read, control], description: Lecture domotique ou lecture avec exécution des commandes. }
         durationDays: { type: integer, minimum: 1, maximum: 365 }
         password: { type: string, format: password, minLength: 1 }
@@ -10034,6 +10177,14 @@ components:
         id: { type: string, pattern: '^[a-f0-9]{64}$' }
         accessToken: { type: string, pattern: '^[a-f0-9]{64}$' }
         accessExpiresAt: { type: string, format: date-time }
+
+    ScriptRefreshSession:
+      type: object
+      required: [id, refreshToken, refreshExpiresAt]
+      properties:
+        id: { type: string, pattern: '^[a-f0-9]{64}$' }
+        refreshToken: { type: string, pattern: '^[a-f0-9]{64}$' }
+        refreshExpiresAt: { type: string, format: date-time, description: Échéance de ce jeton (90 jours maximum et dans la durée de la session). }
 
     CmdType:
       type: string
@@ -11507,6 +11658,10 @@ components:
           type: [number, 'null']
           description: 'Durée en secondes.  -1 : bannissement infini (onglet security).'
           default: 600
+        'security::mcp::enabled':
+          type: boolean
+          default: false
+          description: Active le serveur MCP. Désactiver le réglage révoque toutes les sessions MCP.
         'security::whiteips':
           type: string
           description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.* (onglet security).'
@@ -12012,6 +12167,9 @@ components:
         'security::bantime':
           type: [number, 'null']
           description: 'Durée en secondes.  -1 : bannissement infini (onglet security).'
+        'security::mcp::enabled':
+          type: boolean
+          description: Active le serveur MCP. Désactiver le réglage révoque toutes les sessions MCP.
         'security::whiteips':
           type: string
           description: 'IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.* (onglet security).'
@@ -12300,6 +12458,11 @@ components:
         hidenumber: { type: boolean, description: 'Masquer le nombre.' }
         hidenulnumber: { type: boolean, description: 'Masquer le nombre s''il est nul.' }
   responses:
+    McpProtocolError:
+      description: Erreur JSON-RPC du transport ou du protocole MCP.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/McpError' }
     NetworkAccess:
       description: Adresses et état du tunnel DNS Jeedom.
       content:

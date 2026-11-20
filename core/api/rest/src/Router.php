@@ -34,7 +34,11 @@ final class Router
                     error_log($e->getMessage());
                 }
             }
-            return Json::error($app->getResponseFactory()->createResponse(), $error);
+            $response = $app->getResponseFactory()->createResponse();
+            if ($e instanceof HttpMethodNotAllowedException) {
+                $response = $response->withHeader('Allow', implode(', ', $e->getAllowedMethods()));
+            }
+            return Json::error($response, $error);
         });
 
         return $app;

@@ -376,7 +376,7 @@ class history {
 		}
 	}
 
-	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null, $_addFirstPreviousValue = false) {
+	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null, $_addFirstPreviousValue = false, ?int $_limit = null) {
 		$delta = false;
 		$values = array(
 			'cmd_id' => $_cmd_id,
@@ -491,6 +491,9 @@ class history {
 		$sql .= ' ORDER BY `datetime` ASC';
 		if ($delta) {
 			$sql .= ')c ';
+		}
+		if ($_limit !== null) {
+			$sql .= ' LIMIT ' . max(0, $_limit);
 		}
 		$return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		if ($_addFirstPreviousValue && count($return) > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
