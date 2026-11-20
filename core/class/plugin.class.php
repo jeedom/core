@@ -1102,10 +1102,21 @@ class plugin {
 
 	public function getLogList() {
 		$return = array();
+		$plugins_to_filter = array();
+		foreach (self::listPlugin(true) as $plugin) {
+			if (strpos($plugin->getId(), $this->getId()) === 0 && strlen($plugin->getId()) > strlen($this->getId())) {
+				$plugins_to_filter[] = $plugin->getId();
+			}
+		}
 		foreach (ls(log::getPathToLog(''), '*') as $log) {
 			if ($log == $this->getId()) {
 				$return[] = $log;
 				continue;
+			}
+			foreach ($plugins_to_filter as $plugin_to_filter) {
+				if (strpos($log, $plugin_to_filter) === 0) {
+					continue 2;
+				}
 			}
 			if (strpos($log, $this->getId()) === 0) {
 				$return[] = $log;
