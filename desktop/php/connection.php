@@ -163,6 +163,10 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 						</span>
 					</div>
 				</div>
+				<div>
+					<label>{{Code de double authentification (si activée)}}</label>
+					<input type="text" id="in_marketTwoFactorCode" inputmode="numeric" autocomplete="one-time-code">
+				</div>
 				<div class="center">
 					<button id="bt_validateMarket"><i class="fas fa-link"></i> {{Lier au Market}}</button>
 				</div>

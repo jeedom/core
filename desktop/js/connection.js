@@ -227,24 +227,17 @@ if (!jeeFrontEnd.connection) {
       if (!inputs) {
         return
       }
-      jeedom.config.save({
-        configuration: {
-          'market::username': inputs.username,
-          'market::password': inputs.password
-        },
+      jeedom.repo.connectMarket({
+        login: inputs.username,
+        password: inputs.password,
+        twoFactorCode: document.getElementById('in_marketTwoFactorCode').jeeValue().trim(),
         error: function(error) {
           jeeP.showError(error.message)
         },
         success: function() {
-          jeedom.repo.test({
-            repo: 'market',
-            error: function(error) {
-              jeeP.showError(error.message)
-            },
-            success: function() {
-              jeeP.goToIndex()
-            }
-          })
+          document.getElementById('in_marketPassword').jeeValue('')
+          document.getElementById('in_marketTwoFactorCode').jeeValue('')
+          jeeP.goToIndex()
         }
       })
     },
