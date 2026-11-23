@@ -11169,6 +11169,10 @@ components:
       properties:
         connected: { type: boolean }
         login: { type: string }
+        reason:
+          type: string
+          enum: [session_rejected]
+          description: Le Market a rejeté le renouvellement de la session de la box.
         warning: { type: string }
 
     MarketCredentials:
