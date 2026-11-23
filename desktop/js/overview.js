@@ -55,7 +55,9 @@ if (!jeeFrontEnd.overview) {
     },
     updateSummary: function(_className) {
       _className = _className.replace('objectSummaryContainer ', '')
-      var parent = document.querySelector('.' + _className).closest('.objectPreview')
+      const _classEl = document.querySelector('.' + _className)
+      if (!_classEl) return
+      var parent = _classEl.closest('.objectPreview')
       if (parent == null) return
       parent.querySelector('.topPreview')?.querySelectorAll('.objectSummaryParent')?.remove()
       var pResume = parent.querySelector('.resume')

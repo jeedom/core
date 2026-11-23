@@ -253,12 +253,16 @@ if (!jeeFrontEnd.types) {
       var eqName, cmdName, thisCmd, thisClass, select
       for (var _id in queryEqIds) {
         inner += '<div class="queryEq" data-id="' + _id + '">'
-        eqName = document.querySelector('li.eqLogic[data-id="' + _id + '"]').getAttribute('data-name')
+        const _eqEl = document.querySelector('li.eqLogic[data-id="' + _id + '"]')
+        if (!_eqEl) continue
+        eqName = _eqEl.getAttribute('data-name')
         inner += '<div class="center biggerText">' + eqName + '</div>'
         for (var _cmd in queryEqIds[_id].cmds) {
           thisCmd = queryEqIds[_id].cmds[_cmd]
           // console.log(thisCmd)
-          cmdName = document.querySelector('li.cmd[data-id="' + thisCmd.id + '"]').getAttribute('data-name')
+          const _cmdEl = document.querySelector('li.cmd[data-id="' + thisCmd.id + '"]')
+          if (!_cmdEl) continue
+          cmdName = _cmdEl.getAttribute('data-name')
           thisClass = thisCmd.type == 'info' ? 'alert-info' : 'alert-warning'
 
           inner += '<div class="form-group queryCmd" data-id="' + thisCmd.id + '">'
@@ -486,16 +490,18 @@ new jeeCtxMenu({
 
     return {
       callback: function(key, options) {
+        const _cmdEl = document.querySelector('li.cmd[data-id="' + cmdId + '"]')
+        if (!_cmdEl) return
         if (options.commands[key].id == 'delete_me') {
-          document.querySelector('li.cmd[data-id="' + cmdId + '"] .genericType').textContent = 'None'
-          document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-generic', '')
+          _cmdEl.querySelector('.genericType').textContent = 'None'
+          _cmdEl.setAttribute('data-generic', '')
         } else {
           //var text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].node.innerText
           var text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].name
-          document.querySelector('li.cmd[data-id="' + cmdId + '"] .genericType').textContent = text
-          document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-generic', options.commands[key].id.split('::')[1])
+          _cmdEl.querySelector('.genericType').textContent = text
+          _cmdEl.setAttribute('data-generic', options.commands[key].id.split('::')[1])
         }
-        document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-changed', '1')
+        _cmdEl.setAttribute('data-changed', '1')
         jeeFrontEnd.modifyWithoutSave = true
       },
       items: contextmenuitems
