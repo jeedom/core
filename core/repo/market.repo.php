@@ -1360,8 +1360,13 @@ class marketClient {
 
 	public static function connected() {
 		$session = config::byKey('market::restSession', 'core', array(), true);
-		if (!is_array($session) || !is_string($session['context'] ?? null) || !is_string($session['refreshToken'] ?? null)
-			|| $session['refreshToken'] === '') {
+		return self::sessionMatchesContext($session);
+	}
+
+	private static function sessionMatchesContext($session): bool {
+		if (!is_string($session['context'] ?? null) || !is_string($session['refreshToken'] ?? null)
+			|| $session['refreshToken'] === '' || !is_string($session['accessToken'] ?? null)
+			|| $session['accessToken'] === '' || !is_int($session['boxId'] ?? null) || $session['boxId'] < 1) {
 			return false;
 		}
 		try {
@@ -1372,7 +1377,12 @@ class marketClient {
 	}
 
 	public static function status() {
-		return array('connected' => self::connected(), 'login' => (string) config::byKey('market::username', 'core', '', true));
+		$session = config::byKey('market::restSession', 'core', array(), true);
+		$status = array('connected' => self::sessionMatchesContext($session), 'login' => (string) config::byKey('market::username', 'core', '', true));
+		if (($session['rejected'] ?? false) === true) {
+			$status['reason'] = 'session_rejected';
+		}
+		return $status;
 	}
 
 	public static function disconnect() {
@@ -1437,8 +1447,11 @@ class marketClient {
 				return $result;
 			} catch (Exception $exception) {
 				// Authentication middleware rejects the request before executing its action.
-				if ($exception->getCode() !== 401 || $attempt !== 0) {
+				if ($exception->getCode() !== 401) {
 					throw $exception;
+				}
+				if ($attempt !== 0) {
+					throw new Exception(__('Le Market n’a pas accepté le jeton renouvelé.', __FILE__), 502, $exception);
 				}
 				$session = self::session($session['accessToken']);
 			}
@@ -1452,11 +1465,10 @@ class marketClient {
 	private static function activeSession($rejectedToken = null, $timeout = 30) {
 		// Another PHP worker may have renewed the pair while this one waited for the lock.
 		$session = config::byKey('market::restSession', 'core', array(), true);
-		if (!is_array($session) || !isset($session['context'], $session['refreshToken'], $session['accessToken'], $session['boxId'])
-			|| !hash_equals($session['context'], self::context())) {
+		if (!self::sessionMatchesContext($session)) {
 			throw self::reconnect();
 		}
-		if (($session['expiresAt'] ?? 0) > time() + 60
+		if (empty($session['refreshAttempt']) && ($session['expiresAt'] ?? 0) > time() + 60
 			&& ($rejectedToken === null || !hash_equals($session['accessToken'], $rejectedToken))) {
 			return $session;
 		}
@@ -1464,16 +1476,24 @@ class marketClient {
 			$session['refreshAttempt'] = bin2hex(random_bytes(16));
 			config::save('market::restSession', $session);
 		}
-		try {
-			$tokens = self::send('POST', '/box-sessions/refresh', array('refreshToken' => $session['refreshToken']),
-				null, $timeout, null, array('Idempotency-Key: ' . $session['refreshAttempt']));
-		} catch (Exception $exception) {
-			if ($exception->getCode() === 401) {
-				config::remove('market::restSession');
-				throw self::reconnect();
+		$data = array('refreshToken' => $session['refreshToken']);
+		$headers = array('Idempotency-Key: ' . $session['refreshAttempt']);
+		for ($attempt = 0; ; ++$attempt) {
+			try {
+				$tokens = self::send('POST', '/box-sessions/refresh', $data, null, $timeout, null, $headers);
+				break;
+			} catch (Exception $exception) {
+				if ($exception->getCode() === 401) {
+					config::save('market::restSession', array('rejected' => true));
+					log::add('market', 'warning', sprintf(__('Le Market a refusé le renouvellement de la session de la box %d (HTTP 401, invalid_box_token).', __FILE__), $session['boxId']));
+					throw self::reconnect();
+				}
+				// Recover a rotation whose response may have been lost, using the same attempt key.
+				if ($attempt !== 0 || !in_array($exception->getCode(), array(0, 500, 502, 504), true)) {
+					throw $exception;
+				}
+				$timeout = min($timeout, 10);
 			}
-			// Keep the same refresh token and attempt key if the response was lost.
-			throw $exception;
 		}
 		return self::store($tokens);
 	}
@@ -1585,6 +1605,10 @@ class marketClient {
 			}
 			$result = json_decode((string) $body, true);
 			if ($status < 200 || $status >= 300) {
+				if ($status === 401 && ($token !== null || $path === '/box-sessions/refresh')
+					&& ($result['error']['code'] ?? null) !== 'invalid_box_token') {
+					throw new Exception(__('Le Market n’a pas pu confirmer cette session. Réessayez dans quelques instants.', __FILE__), 502);
+				}
 				$message = is_string($result['error']['message'] ?? null) ? $result['error']['message'] : __('Erreur de communication avec le Market.', __FILE__);
 				throw new Exception($message, $status);
 			}

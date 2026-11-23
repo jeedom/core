@@ -35,6 +35,10 @@ class jeedom {
     public static function getTmpFolder($type) { global $directory; return $directory; }
     public static function health() { return array(); }
 }
+class log {
+    public static $entries = array();
+    public static function add(...$entry) { self::$entries[] = $entry; }
+}
 class com_shell {
     public static $commands = array();
     public static $fail = false;
@@ -125,6 +129,37 @@ try {
     config::save('market::restSession', $session);
     check(repo_market::getCloudToken() === $renewed && repo_market::getCloudToken() === $renewed, 'Expired Market bearer was not renewed and reused');
     check(count(com_http::$calls) === 1 && strpos(com_http::$calls[0]->url, '/box-sessions/refresh') !== false, 'Cloud made a request beyond the normal Market refresh');
+    $invalidBoxToken = array(401, array('error' => array('code' => 'invalid_box_token', 'message' => 'Session rejected')));
+    resetState();
+    com_http::$replies = array($invalidBoxToken, array(401, '<html>Gateway authentication failed</html>'), array(401, ''));
+    failWith(502, function () { marketClient::request('GET', '/me'); });
+    check(marketClient::connected() && config::byKey('market::restSession')['accessToken'] === $token && log::$entries === array(),
+        'An intermediary HTTP 401 invalidated the Market session');
+    $failedRefresh = com_http::$calls[1];
+    $replayedRefresh = com_http::$calls[2];
+    check($failedRefresh->headers === $replayedRefresh->headers && $failedRefresh->options[CURLOPT_POSTFIELDS] === $replayedRefresh->options[CURLOPT_POSTFIELDS],
+        'The immediate renewal retry changed the attempt key or refresh token');
+    check(repo_market::getCloudToken() === $renewed && end(com_http::$calls)->headers === $failedRefresh->headers,
+        'A later request did not resume an interrupted renewal');
+
+    resetState();
+    com_http::$replies = array($invalidBoxToken, array(504, ''), array(200, array('boxId' => 7, 'accessToken' => $renewed,
+        'refreshToken' => 'box_r_7_' . str_repeat('d', 64), 'expiresIn' => 86400)), array(200, array('id' => 123)));
+    check(marketClient::request('GET', '/me') === array('id' => 123) && count(com_http::$calls) === 4,
+        'The Market request did not recover after a lost renewal response');
+    check(com_http::$calls[1]->headers === com_http::$calls[2]->headers && in_array('Authorization: Bearer ' . $renewed, com_http::$calls[3]->headers, true),
+        'Recovery did not use the same attempt key and the renewed bearer');
+
+    resetState();
+    com_http::$replies = array($invalidBoxToken, $invalidBoxToken);
+    failWith(401, function () { marketClient::request('GET', '/me'); });
+    check(config::byKey('market::restSession') === array('rejected' => true)
+        && repo_market::connectionStatus() === array('connected' => false, 'login' => 'alice', 'reason' => 'session_rejected'),
+        'An explicit rejection did not remove the tokens and preserve the status reason');
+    check(count(log::$entries) === 1 && log::$entries[0][0] === 'market' && strpos(log::$entries[0][2], 'invalid_box_token') !== false,
+        'The rejection was not logged in the Market log');
+    check(repo_market::disconnect() === array('connected' => false, 'login' => 'alice', 'revoked' => true),
+        'Explicit disconnection did not clear the rejection status');
     resetState();
     marketClient::applyBoxInformation(array('username' => 'Alice'));
     check(marketClient::connected() && config::byKey('market::username') === 'Alice', 'Canonicalizing a login disconnected the box');
