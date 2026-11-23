@@ -171,6 +171,7 @@ final class App
             $api->post('/market/connection', $market->connect(...));
             $api->delete('/market/connection', $market->disconnect(...));
             $api->post('/market/connection/synchronize', $market->synchronize(...));
+            $api->get('/market/cloud/services', $market->cloudServices(...));
             $support = new SupportController();
             $api->post('/market/support/tickets', $support->create(...));
             $api->get('/market/support/access', $support->status(...));

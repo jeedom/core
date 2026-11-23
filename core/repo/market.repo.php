@@ -446,6 +446,10 @@ class repo_market {
 		return marketClient::associateCloudService($data);
 	}
 
+	public static function cloudServices(): array {
+		return marketClient::cloudServices();
+	}
+
 	public static function getPassword() {
 		$password = config::byKey('market::password');
 		if (!is_sha1($password)) {
@@ -1060,6 +1064,40 @@ class marketClient {
 		$response = self::cloudRequest('POST', $url, json_encode($data, JSON_THROW_ON_ERROR), 40, null, null,
 			array('Content-Type: application/json'));
 		return json_decode($response, true, 32, JSON_THROW_ON_ERROR);
+	}
+
+	public static function cloudServices(): array {
+		$url = rtrim(config::byKey('service::cloud::url'), '/') . '/me/services';
+		$result = json_decode(self::cloudRequest('GET', $url, null, 10), false, 32, JSON_THROW_ON_ERROR);
+		if (($result->state ?? null) !== 'ok' || !is_array($result->services ?? null)) {
+			throw new UnexpectedValueException('Invalid Cloud services response');
+		}
+		$services = array();
+		foreach ($result->services as $service) {
+			if (!is_string($service->id ?? null) || $service->id === '' || !is_array($service->quotas ?? null)) {
+				throw new UnexpectedValueException('Invalid Cloud service');
+			}
+			$quotas = array();
+			foreach ($service->quotas as $quota) {
+				if (!in_array($quota->kind ?? null, array('requests', 'storage'), true) || !is_string($quota->unit ?? null)) {
+					throw new UnexpectedValueException('Invalid Cloud quota');
+				}
+				$entry = array('kind' => $quota->kind, 'unit' => $quota->unit);
+				foreach (array('total', 'remaining') as $key) {
+					$value = $quota->$key ?? null;
+					if (!property_exists($quota, $key) || ($value !== null && (!is_int($value) || $value < 0))) {
+						throw new UnexpectedValueException('Invalid Cloud quota count');
+					}
+					$entry[$key] = $value;
+				}
+				if (is_int($quota->windowSeconds ?? null) && $quota->windowSeconds > 0) {
+					$entry['windowSeconds'] = $quota->windowSeconds;
+				}
+				$quotas[] = $entry;
+			}
+			$services[] = array('id' => $service->id, 'quotas' => $quotas);
+		}
+		return $services;
 	}
 
 	/* Cloud backups. Transfers reuse com_http and stream encrypted files. */

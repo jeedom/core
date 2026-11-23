@@ -7592,6 +7592,28 @@ paths:
               schema: { $ref: '#/components/schemas/Error' }
         '502': { $ref: '#/components/responses/BadGateway' }
 
+  /market/cloud/services:
+    get:
+      tags: [Configuration]
+      operationId: getMarketCloudServices
+      summary: Consulter les services et quotas Cloud du compte Market
+      description: Réservé aux administrateurs. Utilise la session Market de la box pour consulter les quotas partagés par le compte.
+      responses:
+        '200':
+          description: Services accessibles avec leurs quotas au moment de la consultation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketCloudCatalog' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '429':
+          description: Le Cloud a limité les requêtes.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+
 components:
   securitySchemes:
     restoreCookie:
@@ -11179,6 +11201,36 @@ components:
         login: { type: string, minLength: 1 }
         password: { type: string, minLength: 1, format: password, writeOnly: true }
         twoFactorCode: { type: string, minLength: 6, maxLength: 6, pattern: '^[0-9]{6}$', writeOnly: true }
+
+    MarketCloudCatalog:
+      type: object
+      additionalProperties: false
+      required: [services]
+      properties:
+        services:
+          type: array
+          items: { $ref: '#/components/schemas/MarketCloudService' }
+
+    MarketCloudService:
+      type: object
+      additionalProperties: false
+      required: [id, quotas]
+      properties:
+        id: { type: string }
+        quotas:
+          type: array
+          items: { $ref: '#/components/schemas/MarketCloudQuota' }
+
+    MarketCloudQuota:
+      type: object
+      additionalProperties: false
+      required: [kind, unit, total, remaining]
+      properties:
+        kind: { type: string, enum: [requests, storage] }
+        unit: { type: string }
+        total: { type: integer, minimum: 0, nullable: true }
+        remaining: { type: integer, minimum: 0, nullable: true }
+        windowSeconds: { type: integer, minimum: 1, description: Durée de la fenêtre glissante en secondes. }
 
     NotificationSettings:
       type: object
