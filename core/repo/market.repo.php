@@ -1164,17 +1164,22 @@ class marketClient {
 	}
 
 	public static function cronHourly() {
-		if (!self::connected()) {
-			return;
-		}
-		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - (24 * 3600))) {
+		if (!self::connected() || !self::synchronizationDue()) {
 			return;
 		}
 		sleep(rand(0, 1800));
 		try {
 			self::synchronize();
-		} catch (Exception $e) {
+		} catch (Exception $exception) {
+			log::add('market', 'warning', __('La synchronisation périodique avec le Market a échoué.', __FILE__) . ' (' . $exception->getCode() . ')');
 		}
+	}
+
+	private static function synchronizationDue(): bool {
+		// The Market requires telemetry to update the box's last communication time.
+		$lastSynchronization = (int) config::byKey('market::lastSynchronization', 'core', 0);
+		$now = time();
+		return $lastSynchronization > $now || $lastSynchronization <= $now - 86400;
 	}
 
 	public static function cron5() {
@@ -1262,6 +1267,7 @@ class marketClient {
 		}
 		config::save('market::allowBeta', !empty($result['allowBeta']) ? 1 : 0);
 		self::applyBoxInformation($information);
+		config::save('market::lastSynchronization', time());
 		return 'ok';
 	}
 
@@ -1401,6 +1407,7 @@ class marketClient {
 				config::remove('market::restSession');
 				config::remove('market::password');
 				config::remove('market::allowBeta');
+				config::remove('market::lastSynchronization');
 			}
 			return self::status() + array('revoked' => $revoked);
 		});
@@ -1433,6 +1440,7 @@ class marketClient {
 			config::save('market::username', trim($login));
 			config::save('market::password', sha1($password));
 			self::store($tokens);
+			config::remove('market::lastSynchronization');
 			return true;
 		});
 	}
