@@ -190,6 +190,25 @@ try {
     resetState();
     $open = new ReflectionMethod('marketClient', 'openSession'); $open->setAccessible(true); $open->invoke(null, 'alice', 'fixture-password', '');
     check(repo_market::getCloudToken() === $renewed && count(com_http::$calls) === 1, 'Reconnection did not replace the shared bearer');
+    resetState();
+    config::save('service::cloud::url', 'https://cloud.example.test/');
+    $quota = array('kind' => 'requests', 'unit' => 'requests', 'total' => 30, 'remaining' => 0, 'windowSeconds' => 86400);
+    $storage = array('kind' => 'storage', 'unit' => 'bytes', 'total' => 3221225472, 'remaining' => null);
+    $services = array(array('id' => 'notif', 'quotas' => array($quota)), array('id' => 'webdav', 'quotas' => array($storage)),
+        array('id' => 'saint', 'quotas' => array()));
+    $remoteServices = $services;
+    $remoteServices[0]['token'] = 'private-remote-field';
+    $remoteServices[0]['quotas'][0]['detail'] = 'private-remote-field';
+    com_http::$replies = array(array(200, array('state' => 'ok', 'services' => $remoteServices)));
+    check(repo_market::cloudServices() === $services, 'Cloud catalog lost quota information or exposed extra fields');
+    $http = com_http::$calls[0];
+    check(count(com_http::$calls) === 1 && $http->url === 'https://cloud.example.test/me/services'
+        && $http->options[CURLOPT_CUSTOMREQUEST] === 'GET' && in_array('Authorization: Bearer ' . $token, $http->headers, true),
+        'Cloud catalog must reuse the authenticated Market transport');
+    com_http::$replies = array(array(200, array('state' => 'ok', 'services' => array('id' => 'invalid'))));
+    failWith(0, function () { repo_market::cloudServices(); });
+    com_http::$replies = array(array(401, 'remote-private-response'));
+    failWith(401, function () { repo_market::cloudServices(); });
     resetState(); check(repo_market::backup_list() === array('new.gpg', 'old.gpg'), 'WebDAV listing/isolation/order changed');
     foreach (com_http::$calls as $request) if (strpos($request->url, 'backup.example.test') !== false) {
         check(!$request->ssl && in_array('Authorization: Bearer ' . $token, $request->headers, true), 'Backup does not verify TLS/use Bearer');
