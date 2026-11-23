@@ -7592,10 +7592,10 @@ paths:
               schema: { $ref: '#/components/schemas/Error' }
         '502': { $ref: '#/components/responses/BadGateway' }
 
-  /market/cloud/services:
+  /cloud/services:
     get:
       tags: [Configuration]
-      operationId: getMarketCloudServices
+      operationId: getCloudServices
       summary: Consulter les services et quotas Cloud du compte Market
       description: Réservé aux administrateurs. Utilise la session Market de la box pour consulter les quotas partagés par le compte.
       responses:
@@ -7603,7 +7603,7 @@ paths:
           description: Services accessibles avec leurs quotas au moment de la consultation.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/MarketCloudCatalog' }
+              schema: { $ref: '#/components/schemas/CloudCatalog' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '409': { $ref: '#/components/responses/Conflict' }
@@ -11202,16 +11202,16 @@ components:
         password: { type: string, minLength: 1, format: password, writeOnly: true }
         twoFactorCode: { type: string, minLength: 6, maxLength: 6, pattern: '^[0-9]{6}$', writeOnly: true }
 
-    MarketCloudCatalog:
+    CloudCatalog:
       type: object
       additionalProperties: false
       required: [services]
       properties:
         services:
           type: array
-          items: { $ref: '#/components/schemas/MarketCloudService' }
+          items: { $ref: '#/components/schemas/CloudCatalogService' }
 
-    MarketCloudService:
+    CloudCatalogService:
       type: object
       additionalProperties: false
       required: [id, quotas]
@@ -11219,9 +11219,9 @@ components:
         id: { type: string }
         quotas:
           type: array
-          items: { $ref: '#/components/schemas/MarketCloudQuota' }
+          items: { $ref: '#/components/schemas/CloudQuota' }
 
-    MarketCloudQuota:
+    CloudQuota:
       type: object
       additionalProperties: false
       required: [kind, unit, total, remaining]
