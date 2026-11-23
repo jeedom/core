@@ -670,7 +670,7 @@ class FileCache {
 	public static function restore() {
 		$cache_dir = jeedom::getTmpFolder('cache');
 		if (!file_exists(__DIR__ . '/../../cache.tar.gz')) {
-			$cmd = 'mkdir ' . $cache_dir . ';';
+			$cmd = 'mkdir -p ' . $cache_dir . ';';
 			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
 			com_shell::execute($cmd);
 			return;
