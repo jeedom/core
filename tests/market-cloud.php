@@ -35,12 +35,23 @@ class jeedom {
     public static function getHardwareKey() { return self::$hardware; }
     public static function getTmpFolder($type) { global $directory; return $directory; }
     public static function health() { return array(); }
+    public static function version() { return '5.0.0'; }
+    public static function getApiKey($name) { return 'fixture-market-key'; }
+    public static function getHardwareName() { return 'diy'; }
     public static function ensureBackupDir() {
         $directory = calculPath(config::byKey('backup::path'));
         if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) throw new RuntimeException('Backup directory fixture failure');
         return $directory;
     }
 }
+class network {
+    public static function getNetworkAccess($scope, $part = '') {
+        return $part === 'ip' ? '192.0.2.10' : 'https://box.example.test';
+    }
+}
+class message { public static function nbMessage() { return 0; } }
+class update { public static function nbNeedUpdate() { return 0; } }
+class plugin { public static function listPlugin(...$args) { return array(); } }
 class log {
     public static $entries = array();
     public static function add(...$entry) { self::$entries[] = $entry; }
@@ -138,6 +149,24 @@ try {
     check($plugin->getMinJeedomVersion() === '6.0', 'The REST installation preview lost the minimum Core version');
     check($plugin->getParameters('os::stable::min') === '12' && $plugin->getParameters('os::stable::max') === '14', 'The REST installation preview lost the OS bounds');
     resetState();
+    $synchronizationDue = new ReflectionMethod('marketClient', 'synchronizationDue');
+    $synchronizationDue->setAccessible(true);
+    marketClient::request('GET', '/me');
+    check(config::byKey('market::lastCommunication') !== '' && $synchronizationDue->invoke(null),
+        'An authenticated Market call postponed the first telemetry synchronization');
+    com_http::$replies = array(array(200, array('boxId' => 7, 'url' => '')));
+    check(repo_market::synchronize() === 'ok' && !$synchronizationDue->invoke(null)
+        && strpos(end(com_http::$calls)->url, '/boxes/7/telemetry') !== false,
+        'Successful telemetry did not record its own synchronization time');
+    $previousSynchronization = time() - 86400;
+    config::save('market::lastSynchronization', $previousSynchronization);
+    marketClient::request('GET', '/me');
+    check($synchronizationDue->invoke(null), 'A recent Market call postponed telemetry after 24 hours');
+    com_http::$replies = array(array(503, ''));
+    failWith(503, function () { repo_market::synchronize(); });
+    check(config::byKey('market::lastSynchronization') === $previousSynchronization && $synchronizationDue->invoke(null),
+        'Failed telemetry postponed the next synchronization');
+    resetState();
     $token = 'box_a_7_' . str_repeat('a', 64);
     $renewed = 'box_a_7_' . str_repeat('c', 64);
     check(repo_market::getCloudToken() === $token && !com_http::$calls, 'Cloud did not reuse the Market bearer locally');
@@ -184,12 +213,16 @@ try {
     marketClient::applyBoxInformation(array('username' => 'Alice'));
     check(marketClient::connected() && config::byKey('market::username') === 'Alice', 'Canonicalizing a login disconnected the box');
     check(repo_market::getCloudToken() === $token && !com_http::$calls, 'Canonical login forced another Market authentication');
+    config::save('market::lastSynchronization', time());
     repo_market::disconnect();
     check(config::byKey('market::restSession') === '' && !marketClient::connected(), 'Disconnect retained the shared bearer');
+    check($synchronizationDue->invoke(null), 'Disconnect retained the synchronization time');
     failWith(401, function () { repo_market::getCloudToken(); });
     resetState();
+    config::save('market::lastSynchronization', time());
     $open = new ReflectionMethod('marketClient', 'openSession'); $open->setAccessible(true); $open->invoke(null, 'alice', 'fixture-password', '');
     check(repo_market::getCloudToken() === $renewed && count(com_http::$calls) === 1, 'Reconnection did not replace the shared bearer');
+    check($synchronizationDue->invoke(null), 'A new session inherited the last synchronization of the previous session');
     resetState();
     config::save('service::cloud::url', 'https://cloud.example.test/');
     $quota = array('kind' => 'requests', 'unit' => 'requests', 'total' => 30, 'remaining' => 0, 'windowSeconds' => 86400);
