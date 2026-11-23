@@ -32,15 +32,15 @@ if (!jeedom::apiAccess(init('apikey'), 'apitts')) {
 }
 
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
-$engine = config::byKey('tts::engine', 'core', 'pico');
+$engine = config::byKey('tts::engine', 'core', 'espeak');
 if (strpos($engine, 'plugin::') !== false) {
 	$engine = str_replace('plugin::', '', $engine);
 	if (!class_exists($engine) || !method_exists($engine, 'tts')) {
-		$engine = 'pico';
+		$engine = 'espeak';
 	}
 }
-if (trim($engine) == '') {
-	$engine = 'pico';
+if (trim($engine) == '' || ($engine === 'pico' && !com_shell::commandExists('pico2wave'))) {
+	$engine = 'espeak';
 }
 $text = init('text');
 if ($text == '') {
