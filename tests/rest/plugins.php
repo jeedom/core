@@ -162,13 +162,17 @@ class repo_market {
     public static int $synchronizations = 0;
     public static bool $revoked = true;
     public static int $catalogError = 0;
+    public static ?string $connectionReason = null;
     public static function catalogPage(string $name, int $offset): array {
         if (self::$catalogError) throw new RuntimeException('Remote error', self::$catalogError);
         return ['items' => [['id' => 123, 'pluginId' => 'newplugin', 'name' => $name,
             'summary' => 'Éclairage', 'cost' => 4.99, 'canInstall' => self::$connected]], 'nextOffset' => $offset + 12];
     }
     public static function isConnected(): bool { return self::$connected; }
-    public static function connectionStatus(): array { return ['connected' => self::$connected, 'login' => 'fixture']; }
+    public static function connectionStatus(): array {
+        $status = ['connected' => self::$connected, 'login' => 'fixture'];
+        return self::$connectionReason === null ? $status : $status + ['reason' => self::$connectionReason];
+    }
     public static function synchronize(): void { self::$synchronizations++; }
     public static function disconnect(): array {
         self::$connected = false;
@@ -318,6 +322,12 @@ call('POST', '/market/connection/synchronize', 403, token: 'member');
 call('DELETE', '/market/connection', 403, token: 'member');
 check(repo_market::$synchronizations === 0 && repo_market::$connected, 'A non-admin changed the Market connection');
 check(call('POST', '/market/connection/synchronize')['connected'] === true && repo_market::$synchronizations === 1, 'Market synchronization not delegated');
+repo_market::$connected = false;
+repo_market::$connectionReason = 'session_rejected';
+check(call('GET', '/market/connection') === ['connected' => false, 'login' => 'fixture', 'reason' => 'session_rejected'],
+    'Market connection status must explain the refused renewal');
+repo_market::$connectionReason = null;
+repo_market::$connected = true;
 repo_market::$revoked = false;
 $marketConnection = call('DELETE', '/market/connection');
 check($marketConnection['connected'] === false && isset($marketConnection['warning']), 'Local disconnection must report an unconfirmed remote revocation');

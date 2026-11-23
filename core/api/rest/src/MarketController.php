@@ -107,6 +107,9 @@ final class MarketController
     private static function respond(Response $response, array $status, ?string $warning = null): Response
     {
         $data = ['connected' => $status['connected'], 'login' => $status['login']];
+        if (isset($status['reason'])) {
+            $data['reason'] = $status['reason'];
+        }
         if ($warning !== null) {
             $data['warning'] = $warning;
         }
