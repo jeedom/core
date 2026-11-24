@@ -58,22 +58,27 @@ if (!jeeFrontEnd.update) {
         },
         dataType: 'json',
         global: false,
-        error: function (request, status, error) {
-          setTimeout(function () {
-            jeeP.getJeedomLog(_autoUpdate, _log)
-          }, 1000)
-        },
-        success: function (data) {
-          if (data.state != 'ok') {
+        error: function () {
+          if (_autoUpdate == 1) {
             setTimeout(function () {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000)
+          }
+        },
+        success: function (data) {
+          if (data.state != 'ok') {
+            if (_autoUpdate == 1) {
+              setTimeout(function () {
+                jeeP.getJeedomLog(_autoUpdate, _log)
+              }, 1000)
+            }
             return
           }
           let log = ''
           if (Array.isArray(data.result)) {
             for (const i in data.result.reverse()) {
               log += data.result[i] + "\n"
+              if (_autoUpdate != 1) continue
               //Update end success:
               if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
                 jeeP.progress = 100
@@ -591,6 +596,9 @@ document.getElementById('div_pageContainer').addEventListener('click', function 
             jeedom.update.do({
               id: id,
               error: function (error) {
+                jeeP.progress = -3
+                jeeP.updateProgressBar()
+                jeeP.getJeedomLog(0, 'update')
                 jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'

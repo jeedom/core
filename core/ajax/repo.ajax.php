@@ -26,6 +26,20 @@ try {
 
 	ajax::init();
 
+	if (init('action') == 'connectMarket') {
+		unautorizedInDemo();
+		ajax::success(repo_market::connect(init('login'), init('password'), init('twoFactorCode')));
+	}
+
+	if (init('action') == 'marketStatus') {
+		ajax::success(repo_market::connectionStatus());
+	}
+
+	if (init('action') == 'disconnectMarket') {
+		unautorizedInDemo();
+		ajax::success(repo_market::disconnect());
+	}
+
 	if (init('action') == 'uploadCloud') {
 		unautorizedInDemo();
 		repo_market::backup_send(init('backup'));

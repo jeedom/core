@@ -1,0 +1,26 @@
+name: Market Cloud client
+on:
+  pull_request:
+    branches: [develop]
+    paths: ['core/repo/market.repo.php', 'core/class/config.class.php', 'tests/market-cloud.php', '.github/workflows/market-cloud.yml']
+  push:
+    branches: [develop]
+    paths: ['core/repo/market.repo.php', 'core/class/config.class.php', 'tests/market-cloud.php', '.github/workflows/market-cloud.yml']
+permissions:
+  contents: read
+jobs:
+  cloud:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: curl, simplexml
+          coverage: none
+      - run: php tests/market-cloud.php
