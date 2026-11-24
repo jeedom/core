@@ -1093,9 +1093,7 @@ class marketClient {
 		try {
 			$encrypted = tempnam($home, 'upload-');
 			if ($encrypted === false) throw new Exception(__('Impossible de préparer la sauvegarde chiffrée.', __FILE__));
-			com_shell::execute('printf %s ' . escapeshellarg(config::byKey('market::cloud::backup::password'))
-				. ' | gpg --pinentry-mode loopback --homedir ' . escapeshellarg($home) . ' --batch --yes --passphrase-fd 0 --output '
-				. escapeshellarg($encrypted) . ' -c ' . escapeshellarg($_path));
+			self::backupGpg($home, $_path, $encrypted);
 			self::cloudRequest('PUT', self::backupUrl(basename($_path) . '.gpg'), null, 1800, $encrypted);
 		} finally {
 			rrmdir($home);
@@ -1107,6 +1105,24 @@ class marketClient {
 		if ($password === '') throw new Exception(__('Renseignez un mot de passe pour chiffrer les sauvegardes Cloud.', __FILE__));
 		if ($password !== config::byKey('market::cloud::backup::password_confirmation')) {
 			throw new Exception(__('Le mot de passe du backup Cloud n’est pas identique à la confirmation.', __FILE__));
+		}
+	}
+
+	private static function backupGpg($home, $input, $output, $decrypt = false) {
+		$password = config::byKey('market::cloud::backup::password');
+		$passphrase = tempnam($home, 'passphrase-');
+		if ($passphrase === false) {
+			throw new Exception(__('Impossible de préparer le mot de passe de la sauvegarde Cloud.', __FILE__));
+		}
+		try {
+			if (dirname($passphrase) !== realpath($home) || file_put_contents($passphrase, $password) !== strlen($password)) {
+				throw new Exception(__('Impossible de préparer le mot de passe de la sauvegarde Cloud.', __FILE__));
+			}
+			com_shell::execute('gpg --pinentry-mode loopback --homedir ' . escapeshellarg($home)
+				. ' --batch --yes --passphrase-file ' . escapeshellarg($passphrase) . ' --output ' . escapeshellarg($output)
+				. ($decrypt ? ' -d ' : ' -c ') . escapeshellarg($input));
+		} finally {
+			unlink($passphrase);
 		}
 	}
 
@@ -1151,9 +1167,7 @@ class marketClient {
 		try {
 			self::cloudRequest('GET', self::backupUrl($_backup), null, 1800, null, $path);
 			$home = self::backupGpgHome();
-			com_shell::execute('printf %s ' . escapeshellarg(config::byKey('market::cloud::backup::password'))
-				. ' | gpg --pinentry-mode loopback --homedir ' . escapeshellarg($home) . ' --batch --yes --passphrase-fd 0 --output '
-				. escapeshellarg($home . '/restored') . ' -d ' . escapeshellarg($path));
+			self::backupGpg($home, $path, $home . '/restored', true);
 			if (!rename($home . '/restored', $directory . '/cloud-' . substr($_backup, 0, -4))) {
 				throw new Exception(__('Impossible de publier la sauvegarde déchiffrée.', __FILE__));
 			}
@@ -1415,6 +1429,7 @@ class marketClient {
 
 	public static function connect($login, $password, $twoFactorCode = '') {
 		self::openSession($login, $password, $twoFactorCode);
+		message::removeAll('market', 'restReconnection');
 		try {
 			self::synchronize();
 		} catch (Exception $exception) {

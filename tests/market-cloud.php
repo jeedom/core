@@ -56,6 +56,11 @@ class com_shell {
     public static function execute($command) {
         self::$commands[] = $command;
         check(strpos($command, 'curl ') === false && strpos($command, 'wget ') === false, 'A Cloud credential reached a command line');
+        $password = config::byKey('market::cloud::backup::password');
+        check(strpos($command, $password) === false, 'The backup password reached the GPG command line');
+        check(preg_match("/--passphrase-file '([^']+)'/", $command, $passphrase) === 1
+            && (fileperms($passphrase[1]) & 0777) === 0600
+            && file_get_contents($passphrase[1]) === $password, 'GPG did not receive the password in a private file');
         if (self::$fail) throw new RuntimeException('GPG fixture failure');
         if (getenv('JEEDOM_TEST_FAKE_GPG')) {
             preg_match("/--output '([^']+)'/", $command, $match);
