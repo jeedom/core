@@ -49,7 +49,6 @@ jobs:
             phpstan-baseline.neon
           reviewers: |
             zoic21
-            Hotfirenet
             Salvialf
             Sekiro-kost
             reineabs
