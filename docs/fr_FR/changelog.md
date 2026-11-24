@@ -1,3 +1,42 @@
+# Jeedom 4.7 : les nouveautés
+
+> **Version en préparation** — Jeedom 4.7 est encore en développement. Cette présentation pourra être ajustée avant son arrivée sur le canal *release*.
+
+Avec Jeedom 4.7, plusieurs gestes du quotidien deviennent plus simples : se connecter, retrouver son accès, suivre ses mises à jour et garder la main sur ses historiques. Cette version apporte aussi des améliorations de fiabilité et de sécurité.
+
+## Se connecter et retrouver son compte
+
+La page de connexion a été repensée. Les étapes de connexion, de changement de mot de passe et de connexion au Market sont plus claires, y compris sur téléphone. Les messages d'erreur et de confirmation apparaissent directement là où vous en avez besoin.
+
+Vous avez oublié votre mot de passe ? Vous pouvez désormais demander un lien de réinitialisation depuis cette page. Pour recevoir ce lien, une commande de notification doit avoir été configurée au préalable dans votre profil Jeedom.
+
+Jeedom garde également mieux la trace des opérations liées aux comptes dans un nouveau journal d'audit. La durée de mémorisation des appareils enregistrés peut être réglée, et les appareils qui ne sont plus utilisés finissent par être retirés automatiquement.
+
+## Un Market plus facile à suivre
+
+La connexion au Market a été revue. **Après le passage en 4.7, il faudra reconnecter une fois votre compte Market**. Jeedom pourra ensuite renouveler cette connexion automatiquement.
+
+Si une mise à jour échoue, son motif est maintenant mieux affiché dans l'interface. L'ajout de plugins et les boutons du centre de mise à jour ont également été clarifiés. Lors d'une mise à jour de Jeedom, la mise à jour des plugins n'est plus sélectionnée par défaut : vous décidez si vous souhaitez la faire en même temps.
+
+## Des historiques adaptés à vos besoins
+
+Pour les commandes qui enregistrent des valeurs numériques, de nouveaux choix permettent de ne garder que les valeurs utiles : la dernière valeur de chaque jour ou de chaque mois, ou la première et la dernière. C'est pratique, par exemple, pour suivre un compteur d'électricité ou d'eau sans conserver chaque relevé intermédiaire.
+
+L'affichage des graphiques en direct a aussi été fiabilisé, notamment lorsque vous utilisez le zoom ou consultez un historique depuis un design.
+
+## Une utilisation plus fiable
+
+Plusieurs petits problèmes ont été corrigés dans l'édition des designs, les scénarios et les sauvegardes. La sélection des icônes propose davantage de choix. Un nouveau mode d'accès distant par Jeedom DNS est également disponible **en bêta** pour ceux qui souhaitent l'essayer.
+
+## Avant de mettre à jour
+
+- **Système** : Jeedom 4.7 prend en charge Debian 12 et Debian 13. Une installation sous Debian 11 peut encore fonctionner, mais elle affiche un avertissement et n'est plus officiellement prise en charge.
+- **Market** : prévoyez de reconnecter votre compte après la mise à jour, notamment si vous utilisez les services associés.
+- **Installations personnelles** : Jeedom ne propose plus la mise à jour du système et de ses paquets depuis son interface. Ces mises à jour restent à effectuer directement sur votre machine.
+- **InfluxDB** : l'ancienne intégration directement incluse dans le Core a été retirée. Si vous l'utilisiez encore, vérifiez votre solution de remplacement avant de passer en 4.7.
+
+---
+
 # Changelog Jeedom V4.6
 
 ## 4.6.2
