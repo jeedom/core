@@ -30,6 +30,15 @@ class config {
     }
     public static function remove($key) { global $directory; $data = self::all(); unset($data[$key]); file_put_contents($directory . '/config.json', json_encode($data)); }
 }
+class cache {
+    private static $values = array();
+    public static function set($key, $value) { self::$values[$key] = $value; }
+    public static function delete($key) { unset(self::$values[$key]); }
+    public static function byKey($key) { return new self($key); }
+    private $key;
+    private function __construct($key) { $this->key = $key; }
+    public function getValue($default = '') { return self::$values[$this->key] ?? $default; }
+}
 class jeedom {
     public static $hardware = 'fixture-hardware-key';
     public static function getHardwareKey() { return self::$hardware; }
@@ -275,6 +284,35 @@ try {
     $last = end(com_http::$calls);
     check(json_decode($body, true)['state'] === 'ok' && $last->options[CURLOPT_POSTFIELDS] === '{"health":[]}', 'Monitoring payload changed');
     check(in_array('Authorization: Bearer ' . $token, $last->headers, true) && !$last->ssl, 'Monitoring retained the historical account key');
+    check(!isset(repo_market::connectionStatus()['monitoring']), 'Monitoring advertised without the service right');
+    config::save('service::monitoring::enable', 1);
+    config::save('service::monitoring::url', 'https://monitoring.example.test');
+    $receipt = '2026-11-24T09:00:00Z';
+    $paused = array('state' => 'ok', 'enabled' => false, 'lastReceivedAt' => $receipt);
+    com_http::$replies = array(array(503, ''));
+    failWith(503, function () { repo_market::monitoring(false); });
+    check(repo_market::connectionStatus()['monitoring']['enabled'], 'A failed suspension stopped the heartbeat');
+    com_http::$replies = array(array(200, $paused));
+    check(repo_market::monitoring(false)['lastReceivedAt'] === $receipt, 'Missing Cloud receipt');
+    $last = end(com_http::$calls);
+    check($last->options[CURLOPT_CUSTOMREQUEST] === 'PUT' && json_decode($last->options[CURLOPT_POSTFIELDS], true)
+        === array('enabled' => false, 'hwkey' => jeedom::getHardwareKey()), 'Suspension did not identify the box');
+    check(!repo_market::connectionStatus()['monitoring']['enabled'], 'A confirmed suspension was lost');
+    com_http::$replies = array(array(200, array('state' => 'ok', 'channels' => array(array('channel' => 'mail', 'status' => 'accepted')))));
+    check(repo_market::testMonitoring('mail')['channels'][0]['status'] === 'accepted', 'Manual test failed during suspension');
+    $last = end(com_http::$calls);
+    check(json_decode($last->options[CURLOPT_POSTFIELDS], true)['channel'] === 'mail', 'Notification test ignored its channel');
+    $paused['enabled'] = true;
+    com_http::$replies = array(array(200, $paused));
+    check(repo_market::monitoring(true)['enabled'], 'A confirmed resume did not enable reporting');
+    config::save('market::cloud::monitoring::disable', 1);
+    $paused['enabled'] = false;
+    com_http::$replies = array(array(200, $paused));
+    marketClient::cron5();
+    check(end(com_http::$calls)->options[CURLOPT_CUSTOMREQUEST] === 'PUT', 'Legacy opt-out was not sent to the Cloud');
+    $callCount = count(com_http::$calls);
+    marketClient::cron5();
+    check(count(com_http::$calls) === $callCount, 'An opted-out box sent another request');
     $download = $directory . '/streamed';
     com_http::$replies = array(array(200, 'valid encrypted body'));
     $cloudRequest->invoke(null, 'GET', 'https://backup.example.test/webdav/alice/My%20box/file.gpg', null, 30, null, $download);

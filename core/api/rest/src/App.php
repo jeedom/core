@@ -173,6 +173,9 @@ final class App
             $api->post('/market/connection/synchronize', $market->synchronize(...));
             $cloud = new CloudController();
             $api->get('/cloud/services', $cloud->services(...));
+            $api->get('/cloud/monitoring', $cloud->monitoring(...));
+            $api->put('/cloud/monitoring', $cloud->monitoring(...));
+            $api->post('/cloud/monitoring/test', $cloud->testMonitoring(...));
             $support = new SupportController();
             $api->post('/market/support/tickets', $support->create(...));
             $api->get('/market/support/access', $support->status(...));

@@ -454,6 +454,16 @@ class repo_market {
 		return marketClient::cloudServices();
 	}
 
+	public const MONITORING_CHANNELS = array('mail', 'sms', 'telegram', 'slack', 'notif', 'mqtt');
+
+	public static function monitoring(?bool $enabled = null): array {
+		return marketClient::monitoring($enabled);
+	}
+
+	public static function testMonitoring(?string $channel): array {
+		return marketClient::testMonitoring($channel);
+	}
+
 	public static function getPassword() {
 		$password = config::byKey('market::password');
 		if (!is_sha1($password)) {
@@ -1104,6 +1114,72 @@ class marketClient {
 		return $services;
 	}
 
+	private static function monitoringRequest($method, $path, array $data, $timeout = 12): array {
+		$data['hwkey'] = jeedom::getHardwareKey();
+		$url = rtrim(config::byKey('service::monitoring::url'), '/') . '/service/monitoring' . $path;
+		$body = self::cloudRequest($method, $url, json_encode($data, JSON_THROW_ON_ERROR), $timeout, null, null, array('Content-Type: application/json'));
+		$result = json_decode($body, true, 32, JSON_THROW_ON_ERROR);
+		if (!is_array($result)) throw new UnexpectedValueException('Invalid monitoring response');
+		return $result;
+	}
+
+	private static function monitoringCacheKey(): string {
+		return 'market::monitoring::' . self::context();
+	}
+
+	private static function monitoringSnapshot(): array {
+		$key = self::monitoringCacheKey();
+		return array(
+			'enabled' => config::byKey('market::cloud::monitoring::disable', 'core', 0, true) == 0,
+			'lastReceivedAt' => cache::byKey($key . '::receipt')->getValue(null),
+			'failedAt' => cache::byKey($key . '::failure')->getValue(null),
+		);
+	}
+
+	public static function monitoring(?bool $enabled = null): array {
+		return self::locked(function () use ($enabled) {
+			$key = self::monitoringCacheKey();
+			// Older versions only stored the opt-out on the box. Confirm it with the Cloud once.
+			if ($enabled === null && config::byKey('market::cloud::monitoring::disable', 'core', 0, true)
+				&& !cache::byKey($key . '::paused')->getValue(false)) {
+				$enabled = false;
+			}
+			$result = self::monitoringRequest($enabled === null ? 'POST' : 'PUT', '/status', $enabled === null ? array() : array('enabled' => $enabled));
+			if (($result['state'] ?? '') !== 'ok' || !is_bool($result['enabled'] ?? null) || !array_key_exists('lastReceivedAt', $result)
+				|| ($result['lastReceivedAt'] !== null && (!is_string($result['lastReceivedAt']) || strtotime($result['lastReceivedAt']) === false))
+				|| ($enabled !== null && $result['enabled'] !== $enabled)) {
+				throw new UnexpectedValueException('Invalid monitoring status');
+			}
+			// Apply changes locally only after the Cloud has acknowledged the transition.
+			$disabled = !$result['enabled'];
+			if ((bool) config::byKey('market::cloud::monitoring::disable', 'core', 0, true) !== $disabled) {
+				config::save('market::cloud::monitoring::disable', $disabled ? 1 : 0);
+			}
+			if ($disabled) cache::set($key . '::paused', 1);
+			else cache::delete($key . '::paused');
+			if ($result['lastReceivedAt'] === null) cache::delete($key . '::receipt');
+			else cache::set($key . '::receipt', $result['lastReceivedAt']);
+			if ($enabled !== null) cache::delete($key . '::failure');
+			return array('lastReceivedAt' => $result['lastReceivedAt']) + self::monitoringSnapshot();
+		}, 'monitoring');
+	}
+
+	public static function testMonitoring(?string $channel): array {
+		$result = self::monitoringRequest('POST', '/test', $channel === null ? array() : array('channel' => $channel), 30);
+		if (!in_array($result['state'] ?? '', array('ok', 'nok'), true) || empty($result['channels']) || !is_array($result['channels'])) {
+			throw new UnexpectedValueException('Invalid monitoring test');
+		}
+		$channels = array();
+		foreach ($result['channels'] as $entry) {
+			if (!in_array($entry['channel'] ?? null, repo_market::MONITORING_CHANNELS, true)
+				|| !in_array($entry['status'] ?? null, array('accepted', 'failed', 'unconfirmed', 'unavailable', 'incomplete', 'quota_exceeded'), true)) {
+				throw new UnexpectedValueException('Invalid monitoring delivery');
+			}
+			$channels[] = array('channel' => $entry['channel'], 'status' => $entry['status']);
+		}
+		return array('channels' => $channels);
+	}
+
 	/* Cloud backups. Transfers reuse com_http and stream encrypted files. */
 
 	private static function cloudRequest($method, $url, $data = null, $timeout = 30, $input = null, $destination = null, $headers = array()) {
@@ -1342,31 +1418,39 @@ class marketClient {
 	}
 
 	public static function cron5() {
-		try {
-			if (self::connected() && config::byKey('service::monitoring::enable') && config::byKey('market::cloud::monitoring::disable', 'core', 0) == 0) {
-				sleep(rand(1, 120));
-				$data = array(
-					'health' => jeedom::health(),
-					'name' => config::byKey('name'),
-					'hwkey' => jeedom::getHardwareKey(),
-					'language' => config::byKey('language')
-				);
+		if (!self::connected() || !config::byKey('service::monitoring::enable')) return;
+		$key = self::monitoringCacheKey();
+		if (config::byKey('market::cloud::monitoring::disable', 'core', 0, true)) {
+			if (!cache::byKey($key . '::paused')->getValue(false)) {
 				try {
-					$result = json_decode(self::cloudRequest('POST', rtrim(config::byKey('service::monitoring::url'), '/') . '/service/monitoring',
-						json_encode($data), 60, null, null, array('Content-Type: application/json')), true);
-					if ($result == null || $result['state'] != 'ok') {
-						sleep(rand(5, 45));
-						$result = json_decode(self::cloudRequest('POST', rtrim(config::byKey('service::monitoring::url'), '/') . '/service/monitoring',
-						json_encode($data), 60, null, null, array('Content-Type: application/json')), true);
-					}
-					if ($result == null || $result['state'] != 'ok') {
-						log::add('monitoring_cloud', 'debug', __('Erreur sur le monitoring cloud :', __FILE__) . ' ' . json_encode($result));
-					}
-				} catch (\Exception $e) {
-					log::add('monitoring_cloud', 'debug', __('Erreur sur le monitoring cloud :', __FILE__) . ' ' . $e->getMessage());
+					// Recheck the current preference under the same lock as an interactive toggle.
+					self::monitoring();
+				} catch (Throwable $error) {
+					log::add('monitoring_cloud', 'debug', $error->getMessage());
 				}
 			}
-		} catch (Exception $e) {
+			return;
+		}
+		sleep(rand(1, 120));
+		if (config::byKey('market::cloud::monitoring::disable', 'core', 0, true)) return;
+		$attempt = gmdate(DATE_ATOM);
+		try {
+			$data = array('health' => jeedom::health(), 'name' => config::byKey('name'), 'language' => config::byKey('language'));
+			$result = self::monitoringRequest('POST', '', $data, 60);
+			if (($result['state'] ?? '') !== 'ok') {
+				sleep(rand(5, 45));
+				if (config::byKey('market::cloud::monitoring::disable', 'core', 0, true)) return;
+				$attempt = gmdate(DATE_ATOM);
+				$result = self::monitoringRequest('POST', '', $data, 60);
+			}
+			if (($result['state'] ?? '') !== 'ok') throw new UnexpectedValueException('Monitoring report refused');
+			if (is_string($result['receivedAt'] ?? null) && strtotime($result['receivedAt']) !== false) {
+				cache::set($key . '::receipt', $result['receivedAt']);
+			}
+			cache::delete($key . '::failure');
+		} catch (Throwable $error) {
+			cache::set($key . '::failure', $attempt);
+			log::add('monitoring_cloud', 'debug', __('Erreur sur le monitoring cloud :', __FILE__) . ' ' . $error->getMessage());
 		}
 	}
 
@@ -1545,6 +1629,9 @@ class marketClient {
 	public static function status() {
 		$session = config::byKey('market::restSession', 'core', array(), true);
 		$status = array('connected' => self::sessionMatchesContext($session), 'login' => (string) config::byKey('market::username', 'core', '', true));
+		if ($status['connected'] && config::byKey('service::monitoring::enable')) {
+			$status['monitoring'] = self::monitoringSnapshot();
+		}
 		if (($session['rejected'] ?? false) === true) {
 			$status['reason'] = 'session_rejected';
 		}
@@ -1683,8 +1770,8 @@ class marketClient {
 		return $session;
 	}
 
-	private static function locked($operation) {
-		$lock = fopen(jeedom::getTmpFolder('market') . '/session.lock', 'c');
+	private static function locked($operation, $name = 'session') {
+		$lock = fopen(jeedom::getTmpFolder('market') . '/' . $name . '.lock', 'c');
 		if ($lock === false) {
 			throw new Exception(__('Impossible de verrouiller la connexion Market.', __FILE__));
 		}

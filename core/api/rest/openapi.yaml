@@ -7614,6 +7614,72 @@ paths:
               schema: { $ref: '#/components/schemas/Error' }
         '502': { $ref: '#/components/responses/BadGateway' }
 
+  /cloud/monitoring:
+    get:
+      tags: [Configuration]
+      operationId: getCloudMonitoring
+      summary: Lire le suivi de la box
+      description: Réservé aux administrateurs de la box.
+      responses:
+        '200':
+          description: Opération terminée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CloudMonitoring' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+    put:
+      tags: [Configuration]
+      operationId: setCloudMonitoring
+      summary: Activer ou suspendre la surveillance de la box
+      description: Réservé aux administrateurs de la box.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CloudMonitoringSettings' }
+      responses:
+        '200':
+          description: Opération terminée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CloudMonitoring' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+
+  /cloud/monitoring/test:
+    post:
+      tags: [Configuration]
+      operationId: testCloudMonitoring
+      summary: Tester les alertes de monitoring
+      description: Réservé aux administrateurs de la box.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CloudMonitoringTest' }
+      responses:
+        '200':
+          description: Opération terminée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CloudMonitoringTestResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502': { $ref: '#/components/responses/BadGateway' }
+        '429':
+          description: Les tests sont limités à un par minute et par compte.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
 components:
   securitySchemes:
     restoreCookie:
@@ -11196,6 +11262,48 @@ components:
           enum: [session_rejected]
           description: Le Market a rejeté le renouvellement de la session de la box.
         warning: { type: string }
+        monitoring: { $ref: '#/components/schemas/CloudMonitoring' }
+
+    CloudMonitoring:
+      type: object
+      additionalProperties: false
+      required: [enabled, lastReceivedAt, failedAt]
+      properties:
+        enabled: { type: boolean }
+        lastReceivedAt: { type: string, format: date-time, nullable: true }
+        failedAt: { type: string, format: date-time, nullable: true }
+
+    CloudMonitoringSettings:
+      type: object
+      additionalProperties: false
+      required: [enabled]
+      properties:
+        enabled: { type: boolean }
+
+    CloudMonitoringChannel:
+      type: string
+      enum: [mail, sms, telegram, slack, notif, mqtt]
+
+    CloudMonitoringTest:
+      type: object
+      additionalProperties: false
+      properties:
+        channel: { $ref: '#/components/schemas/CloudMonitoringChannel' }
+
+    CloudMonitoringTestResult:
+      type: object
+      additionalProperties: false
+      required: [channels]
+      properties:
+        channels:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [channel, status]
+            properties:
+              channel: { $ref: '#/components/schemas/CloudMonitoringChannel' }
+              status: { type: string, enum: [accepted, failed, unconfirmed, unavailable, incomplete, quota_exceeded] }
 
     MarketCredentials:
       type: object
