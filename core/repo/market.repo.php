@@ -1062,6 +1062,7 @@ class repo_market {
 
 /** Market REST session, transport and cloud services. */
 class marketClient {
+	private const RECONNECTION_MESSAGE = 'restReconnection';
 
 	public static function catalogPage(array $query): array {
 		$path = '/catalog/items?' . http_build_query($query);
@@ -1645,7 +1646,9 @@ class marketClient {
 			try {
 				if (self::connected()) {
 					$session = self::activeSession(null, 10);
-					self::send('DELETE', '/boxes/' . $session['boxId'] . '/session', null, $session['accessToken'], 10);
+					if ($session !== null) {
+						self::send('DELETE', '/boxes/' . $session['boxId'] . '/session', null, $session['accessToken'], 10);
+					}
 					$revoked = true;
 				}
 			} catch (Exception $exception) {
@@ -1655,6 +1658,7 @@ class marketClient {
 				config::remove('market::password');
 				config::remove('market::allowBeta');
 				config::remove('market::lastSynchronization');
+				message::removeAll('market', self::RECONNECTION_MESSAGE);
 			}
 			return self::status() + array('revoked' => $revoked);
 		});
@@ -1685,6 +1689,7 @@ class marketClient {
 			$tokens = self::send('POST', '/box-sessions', $data);
 			self::store($tokens, $data['login'], sha1($password));
 			config::remove('market::lastSynchronization');
+			message::removeAll('market', self::RECONNECTION_MESSAGE);
 			return true;
 		});
 	}
@@ -1711,10 +1716,28 @@ class marketClient {
 	}
 
 	private static function session($rejectedToken = null) {
-		return self::locked(function () use ($rejectedToken) { return self::activeSession($rejectedToken); });
+		$session = self::locked(function () use ($rejectedToken) { return self::activeSession($rejectedToken); });
+		if ($session !== null) {
+			return $session;
+		}
+		// Message actions can call the Market again, so publish after releasing the session lock.
+		if ((self::status()['reason'] ?? '') === 'session_rejected') {
+			try {
+				message::add('market', __('Le Market a refusé la session de votre Jeedom. Reconnectez votre compte pour rétablir les mises à jour des plugins et les services Cloud.', __FILE__),
+					'<a href="index.php?v=d&p=administration#updatetab">' . __('Configuration > Mises à jour/Market', __FILE__) . '</a>', self::RECONNECTION_MESSAGE);
+			} catch (Throwable $exception) {
+				log::add('market', 'warning', __('Impossible de publier le message de reconnexion au Market.', __FILE__));
+			}
+			self::locked(function () {
+				if ((self::status()['reason'] ?? '') !== 'session_rejected') {
+					message::removeAll('market', self::RECONNECTION_MESSAGE);
+				}
+			});
+		}
+		throw self::reconnect();
 	}
 
-	private static function activeSession($rejectedToken = null, $timeout = 30) {
+	private static function activeSession($rejectedToken = null, $timeout = 30): ?array {
 		// Another PHP worker may have renewed the pair while this one waited for the lock.
 		$session = config::byKey('market::restSession', 'core', array(), true);
 		if (!self::sessionMatchesContext($session)) {
@@ -1738,7 +1761,7 @@ class marketClient {
 				if ($exception->getCode() === 401) {
 					config::save('market::restSession', array('rejected' => true));
 					log::add('market', 'warning', sprintf(__('Le Market a refusé le renouvellement de la session de la box %d (HTTP 401, invalid_box_token).', __FILE__), $session['boxId']));
-					throw self::reconnect();
+					return null;
 				}
 				// Recover a rotation whose response may have been lost, using the same attempt key.
 				if ($attempt !== 0 || !in_array($exception->getCode(), array(0, 500, 502, 504), true)) {

@@ -58,7 +58,22 @@ class network {
         return $part === 'ip' ? '192.0.2.10' : 'https://box.example.test';
     }
 }
-class message { public static function nbMessage() { return 0; } }
+class message {
+    public static $entries = array();
+    public static function nbMessage() { return count(self::$entries); }
+    public static function add($plugin, $text, $action, $id) {
+        global $directory;
+        $lock = fopen($directory . '/session.lock', 'c');
+        check(flock($lock, LOCK_EX | LOCK_NB), 'Message actions would run under the Market session lock');
+        fclose($lock);
+        self::$entries[] = array($plugin, $text, $action, $id);
+    }
+    public static function removeAll($plugin, $id) {
+        self::$entries = array_values(array_filter(self::$entries, static function ($entry) use ($plugin, $id) {
+            return $entry[0] !== $plugin || $entry[3] !== $id;
+        }));
+    }
+}
 class update { public static function nbNeedUpdate() { return 0; } }
 class plugin { public static function listPlugin(...$args) { return array(); } }
 class log {
@@ -144,6 +159,7 @@ function resetState() {
         'service::backup::url' => 'https://backup.example.test', 'service::backup::enable' => 1, 'market::cloud::backup::name' => 'My box',
         'market::cloud::backup::password' => 'fixture-encryption-password', 'market::cloud::backup::password_confirmation' => 'fixture-encryption-password', 'backup::path' => $directory)));
     com_http::$calls = com_http::$replies = array();
+    message::$entries = array();
 }
 // Load the source without a configured Jeedom database or installed plugins.
 $utils = file_get_contents($root . '/core/class/utils.class.php');
@@ -198,6 +214,7 @@ try {
     failWith(502, function () { marketClient::request('GET', '/me'); });
     check(marketClient::connected() && config::byKey('market::restSession')['accessToken'] === $token && log::$entries === array(),
         'An intermediary HTTP 401 invalidated the Market session');
+    check(message::$entries === array(), 'An intermediary HTTP 401 created a reconnection message');
     $failedRefresh = com_http::$calls[1];
     $replayedRefresh = com_http::$calls[2];
     check($failedRefresh->headers === $replayedRefresh->headers && $failedRefresh->options[CURLOPT_POSTFIELDS] === $replayedRefresh->options[CURLOPT_POSTFIELDS],
@@ -221,8 +238,18 @@ try {
         'An explicit rejection did not remove the tokens and preserve the status reason');
     check(count(log::$entries) === 1 && log::$entries[0][0] === 'market' && strpos(log::$entries[0][2], 'invalid_box_token') !== false,
         'The rejection was not logged in the Market log');
+    failWith(401, function () { repo_market::getCloudToken(); });
+    check(count(message::$entries) === 1 && message::$entries[0][0] === 'market' && message::$entries[0][3] === 'restReconnection'
+        && strpos(message::$entries[0][2], '#updatetab') !== false, 'The rejection did not produce a single actionable message');
     check(repo_market::disconnect() === array('connected' => false, 'login' => 'alice', 'revoked' => true),
         'Explicit disconnection did not clear the rejection status');
+    check(message::$entries === array(), 'Explicit disconnection did not clear the reconnection message');
+    resetState();
+    $session = config::byKey('market::restSession');
+    $session['expiresAt'] = 0;
+    config::save('market::restSession', $session);
+    com_http::$replies = array($invalidBoxToken);
+    check(repo_market::disconnect()['revoked'] && message::$entries === array(), 'Signing out with a rejected token created a message');
     resetState();
     marketClient::applyBoxInformation(array('username' => 'Alice'));
     check(marketClient::connected() && config::byKey('market::username') === 'Alice', 'Canonicalizing a login disconnected the box');
@@ -234,8 +261,10 @@ try {
     failWith(401, function () { repo_market::getCloudToken(); });
     resetState();
     config::save('market::lastSynchronization', time());
+    message::add('market', 'Previous reconnection notice', '', 'restReconnection');
     $open = new ReflectionMethod('marketClient', 'openSession'); $open->setAccessible(true); $open->invoke(null, 'alice', 'fixture-password', '');
     check(repo_market::getCloudToken() === $renewed && count(com_http::$calls) === 1, 'Reconnection did not replace the shared bearer');
+    check(message::$entries === array(), 'Successful login did not clear the reconnection message');
     check($synchronizationDue->invoke(null), 'A new session inherited the last synchronization of the previous session');
     resetState();
     config::save('service::cloud::url', 'https://cloud.example.test/');
@@ -270,6 +299,7 @@ try {
     com_http::$replies = array(array(401, ''));
     failWith(401, function () { repo_market::backup_list(); });
     check(count(com_http::$calls) === 1 && repo_market::getCloudToken() === $token, 'Cloud 401 triggered a Market refresh');
+    check(message::$entries === array(), 'A Cloud 401 created a Market reconnection message');
     com_http::$replies = array(array(403, 'private-cloud-response'));
     failWith(403, function () { repo_market::backup_list(); }); check(!com_http::$replies, '403 response not consumed');
     com_http::$replies = array(array(207, ''), array(207, '<broken>'));
