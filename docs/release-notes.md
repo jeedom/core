@@ -149,6 +149,7 @@
 ## Uncategorized
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-11-24 15:12:53 | Update update-phpstan-baseline.yml | [#3764](https://github.com/jeedom/core/pull/3764) |
 | 2026-11-24 15:01:57 | Migrer les échanges du Core avec le Market vers REST | [#3648](https://github.com/jeedom/core/pull/3648) |
 | 2026-11-19 09:45:44 | Retirer l’intégration Jeego de develop | [#3736](https://github.com/jeedom/core/pull/3736) |
 | 2026-11-03 13:56:32 | Intégration DNS FRP : Jeego et client natif | [#3611](https://github.com/jeedom/core/pull/3611) |
