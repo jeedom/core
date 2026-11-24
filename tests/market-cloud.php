@@ -315,6 +315,32 @@ try {
     check(json_decode($body, true)['state'] === 'ok' && $last->options[CURLOPT_POSTFIELDS] === '{"health":[]}', 'Monitoring payload changed');
     check(in_array('Authorization: Bearer ' . $token, $last->headers, true) && !$last->ssl, 'Monitoring retained the historical account key');
     check(!isset(repo_market::connectionStatus()['monitoring']), 'Monitoring advertised without the service right');
+
+    $slot = new ReflectionMethod('repo_market', 'monitoringCronSlot');
+    $slot->setAccessible(true);
+    $delay = new ReflectionMethod('marketClient', 'monitoringCronDelay');
+    $delay->setAccessible(true);
+    $hardware = jeedom::$hardware;
+    $slots = array();
+    for ($i = 0; $i < 2000; ++$i) {
+        jeedom::$hardware = 'monitoring-fixture-' . $i;
+        $offset = $slot->invoke(null);
+        $slots[$offset] = true;
+        if ($i === 0) {
+            $schedule = repo_market::monitoringCronSchedule();
+            check($offset === $slot->invoke(null) && $schedule === intdiv($offset, 60) . '-59/5 * * * *',
+                'The dedicated cron minute must match the fixed box slot');
+        }
+    }
+    jeedom::$hardware = $hardware;
+    check(count($slots) === 300 && min(array_keys($slots)) === 0 && max(array_keys($slots)) === 299,
+        'Monitoring slots must span all five minutes');
+    foreach (array('12:02:03' => 14, '12:07:03' => 14, '12:07:18' => 0, '12:08:00' => 0) as $time => $expected) {
+        check($delay->invoke(null, 137, new DateTimeImmutable('2026-11-24 ' . $time)) === $expected,
+            'Unexpected monitoring delay at ' . $time);
+    }
+    check(!method_exists('repo_market', 'cron5'), 'The shared cron must no longer send monitoring reports');
+
     config::save('service::monitoring::enable', 1);
     config::save('service::monitoring::url', 'https://monitoring.example.test');
     $receipt = '2026-11-24T09:00:00Z';
@@ -338,11 +364,20 @@ try {
     config::save('market::cloud::monitoring::disable', 1);
     $paused['enabled'] = false;
     com_http::$replies = array(array(200, $paused));
-    marketClient::cron5();
+    repo_market::cronMonitoring();
     check(end(com_http::$calls)->options[CURLOPT_CUSTOMREQUEST] === 'PUT', 'Legacy opt-out was not sent to the Cloud');
     $callCount = count(com_http::$calls);
-    marketClient::cron5();
+    repo_market::cronMonitoring();
     check(count(com_http::$calls) === $callCount, 'An opted-out box sent another request');
+    com_http::$replies = array(array(200, array_replace($paused, array('enabled' => true))));
+    repo_market::monitoring(true);
+    com_http::$replies = array(array(200, array('state' => 'ok', 'receivedAt' => $receipt)));
+    marketClient::cronMonitoring(0);
+    $last = end(com_http::$calls);
+    check($last->url === 'https://monitoring.example.test/service/monitoring'
+        && $last->options[CURLOPT_CUSTOMREQUEST] === 'POST'
+        && repo_market::connectionStatus()['monitoring']['lastReceivedAt'] === $receipt,
+        'The monitoring cron did not post and record the Cloud receipt');
     $download = $directory . '/streamed';
     com_http::$replies = array(array(200, 'valid encrypted body'));
     $cloudRequest->invoke(null, 'GET', 'https://backup.example.test/webdav/alice/My%20box/file.gpg', null, 30, null, $download);

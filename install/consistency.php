@@ -247,6 +247,19 @@ try {
 	$cron->setTimeout(5);
 	$cron->save();
 
+	$cron = cron::byClassAndFunction('repo_market', 'cronMonitoring');
+	if (!is_object($cron)) {
+		echo "Create repo_market::cronMonitoring\n";
+		$cron = new cron();
+	}
+	$cron->setClass('repo_market');
+	$cron->setFunction('cronMonitoring');
+	$cron->setSchedule(repo_market::monitoringCronSchedule());
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(5);
+	$cron->save();
+
 	$cron = cron::byClassAndFunction('jeedom', 'cron10');
 	if (!is_object($cron)) {
 		echo "Create jeedom::cron10\n";

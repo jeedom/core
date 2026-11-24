@@ -260,8 +260,17 @@ class repo_market {
 		return marketClient::cronHourly();
 	}
 
-	public static function cron5() {
-		return marketClient::cron5();
+	private static function monitoringCronSlot(): int {
+		// Seven hex digits fit in an integer on both 32-bit and 64-bit boxes.
+		return hexdec(substr(hash('sha256', jeedom::getHardwareKey()), 0, 7)) % 300;
+	}
+
+	public static function monitoringCronSchedule(): string {
+		return intdiv(self::monitoringCronSlot(), 60) . '-59/5 * * * *';
+	}
+
+	public static function cronMonitoring() {
+		marketClient::cronMonitoring(self::monitoringCronSlot());
 	}
 
 	public static function synchronize() {
@@ -1418,7 +1427,15 @@ class marketClient {
 		return $lastSynchronization > $now || $lastSynchronization <= $now - 86400;
 	}
 
-	public static function cron5() {
+	private static function monitoringCronDelay(int $slot, DateTimeInterface $now): int {
+		// A manual or delayed launch outside the scheduled minute can send immediately.
+		if ((int) $now->format('i') % 5 !== intdiv($slot, 60)) {
+			return 0;
+		}
+		return max(0, $slot % 60 - (int) $now->format('s'));
+	}
+
+	public static function cronMonitoring(int $slot) {
 		if (!self::connected() || !config::byKey('service::monitoring::enable')) return;
 		$key = self::monitoringCacheKey();
 		if (config::byKey('market::cloud::monitoring::disable', 'core', 0, true)) {
@@ -1432,7 +1449,10 @@ class marketClient {
 			}
 			return;
 		}
-		sleep(rand(1, 120));
+		$delay = self::monitoringCronDelay($slot, new DateTimeImmutable());
+		if ($delay > 0) {
+			sleep($delay);
+		}
 		if (config::byKey('market::cloud::monitoring::disable', 'core', 0, true)) return;
 		$attempt = gmdate(DATE_ATOM);
 		try {
