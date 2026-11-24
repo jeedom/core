@@ -153,6 +153,10 @@ class repo_market {
 	}
 
 	public static function checkUpdate(&$_update) {
+		if (!marketClient::connected()) {
+			return;
+		}
+
 		if (is_array($_update)) {
 			if (count($_update) < 1) {
 				return;
