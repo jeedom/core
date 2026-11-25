@@ -8,18 +8,10 @@ is_arm64_luna() {
     ( -e /dev/ttyLuna-Zigbee || $(cat /etc/hostname) == *Luna* ) ]]
 }
 
-can_keep_node22() {
-  [[ $1 == v22.* && $(lsb_release -sc 2>/dev/null) == bullseye ]] && is_arm64_luna
-}
-
-if [[ ${1:-} == --can-keep-node22 ]]; then
-  if can_keep_node22 "${2:-}"; then
-    echo 1
-  fi
-  exit 0
-fi
-
-if actual=$(node -v 2>/dev/null) && can_keep_node22 "$actual"; then
+# Keep the Node.js 22 runtime already installed on Debian 11 Luna systems.
+if actual=$(node -v 2>/dev/null) &&
+  [[ $actual == v22.* && $(lsb_release -sc 2>/dev/null) == bullseye ]] &&
+  is_arm64_luna; then
   echo "[Check Version NodeJS actuelle : ${actual} : [  OK  ]"
   exit 0
 fi
