@@ -289,7 +289,7 @@ if (!jeeFrontEnd.update) {
         tr += '<a class="btn btn-danger btn-xs roundedRight remove"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a> '
       } else {
         tr += '<a class="btn btn-xs roundedLeft" target="_blank" href="' + _update.changelog_url + '" id="bt_changelogCore"><i class="fas fa-file-code"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-        if (_update.status == 'update') {
+        if (_update.status == 'update' && jeephp2js.showUpdate == '1') {
           tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></a>'
           tr += '<a class="btn btn-warning btn-xs roundedRight updateJeedom"><i class="fas fa-sync-alt"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
         } else {

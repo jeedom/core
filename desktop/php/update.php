@@ -9,20 +9,29 @@ if (strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))) 
 		echo '<div class="alert alert-danger">{{Erreur sur la vérification des mises à jour :}}' . ' ' . log::exception($e) . '</div>';
 	}
 }
+$hardware = jeedom::getHardwareName();
 $distrib = system::getDistrib();
+$showUpdate = true;
+$showUpgrade = false;
 if ($distrib == 'debian') {
 	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
-	$minOsVersion = config::byKey('os::min');
-	if (version_compare($version, $minOsVersion, '<')) {
-		$system = strtoupper(jeedom::getHardwareName()) . ' - ' . ucfirst($distrib) . ' ' . $version;
-		$messageAlert = '{{Cette version de Debian n\'est plus officiellement prise en charge. Nous vous recommandons de passer à Debian}}';
-		$messageAlert .= ' <strong>' . $minOsVersion . '</strong>.';
-		if (config::byKey('doc::base_url', 'core') != '') {
-			$messageAlert .= '<br><em>{{Il est conseillé de procéder à une nouvelle installation en Debian}} ' . $minOsVersion . ' {{puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter}} <a href="' . jeedom::getDocUrl('installation') . '" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}</em>';
+	if (version_compare($version, config::byKey('os::min'), '<')) {
+		$system = strtoupper($hardware) . ' - ' . ucfirst($distrib) . ' ' . $version;
+		$showUpdate = false;
+		$alertLevel = 'alert alert-warning';
+		if ($hardware == 'miniplus' || $hardware == 'Jeedomboard') {
+			$messageAlert = '{{Votre système actuel fonctionnant correctement et n\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.}}';
+		} else {
+			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers}}';
+			$messageAlert .= ' <strong>Debian ' . config::byKey('os::min') . '</strong>.<br><em>';
+			if (config::byKey('doc::base_url', 'core') != '') {
+				$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian}} ' . config::byKey('os::min') . ' {{puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter}} <a href="' . jeedom::getDocUrl('installation') . '" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}' . '</em>';
+			}
 		}
-		echo '<div class="col-xs-12 text-center alert alert-warning"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
+		echo '<div class="col-xs-12 text-center ' . $alertLevel . '"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
 	}
 }
+sendVarToJS('jeephp2js.showUpdate', $showUpdate);
 $logUpdate = log::getLastLine('update');
 if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', 'sudo')) == 0) {
 	sendVarToJS('jeephp2js.isUpdating', '0');
@@ -39,8 +48,8 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 			<span class="input-group-btn">
 				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-check"></i> {{Vérifier les mises à jour}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-				</a><a href="#" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-sync-alt"></i> {{Mettre à jour}}
-				</a>
+				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-sync-alt"></i> {{Mettre à jour}}
+					</a><?php } ?>
 			</span>
 		</div>
 		<br /><br />
