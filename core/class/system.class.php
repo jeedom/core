@@ -570,11 +570,8 @@ class system {
 
 		$cmd = $debug ? "set -x\n" : '';
 		$cmd .= "echo '*******************Begin of package installation******************'\n";
-		$progress_file_arg = '/tmp/jeedom_install_in_progress';
-		if ($_plugin != '') {
-			$progress_file_arg .= "_$_plugin";
-		}
-		$progress_file_arg = escapeshellarg($progress_file_arg);
+		$progress_file_arg = escapeshellarg(self::packageInstallProgressFile($_plugin));
+		$cmd .= 'trap ' . escapeshellarg('rm -f -- ' . $progress_file_arg) . " EXIT\n";
 		$cmd .= "touch $progress_file_arg\n";
 		$count++;
 		$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
@@ -737,7 +734,6 @@ class system {
 		if ($_foreground || !$has_something_todo) {
 			return;
 		}
-		$cmd .= "rm $progress_file_arg\n";
 		$cmd .= "echo '*******************End of package installation******************'\n";
 		if (file_exists('/tmp/jeedom_fix_package')) {
 			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
@@ -746,24 +742,34 @@ class system {
 		self::launchScriptPackage($_plugin, $_force);
 	}
 
-	public static function installPackageInProgress(string $_plugin = ''): bool {
-		if (count(self::ps('dpkg ')) > 0 || count(self::ps('apt-get ')) > 0) {
+	public static function packageInstallProgressFile(string $_plugin = ''): string {
+		return '/tmp/jeedom_install_in_progress' . ($_plugin !== '' ? '_' . $_plugin : '');
+	}
+
+	public static function hasPackageInstallProgress(string $_plugin = '', int $_maxMinutes = 30): bool {
+		$progressFile = self::packageInstallProgressFile($_plugin);
+		clearstatcache(true, $progressFile);
+		$modified = @filemtime($progressFile);
+		if ($modified === false) {
+			return false;
+		}
+		$now = time();
+		if (($modified <= $now && $modified > $now - max(1, $_maxMinutes) * 60)
+			|| self::ps('/bin/bash[[:space:]]\+/tmp/jeedom_fix_package\([[:space:]]\|$\)')
+			|| self::ps('dpkg ') || self::ps('apt-get ')) {
 			return true;
 		}
-		$progress_file = '/tmp/jeedom_install_in_progress';
-		if ($_plugin != '') {
-			$progress_file .= "_$_plugin";
+		// An interrupted job can leave its progress file behind. Keep a file updated during the checks.
+		clearstatcache(true, $progressFile);
+		if (@filemtime($progressFile) === $modified) {
+			exec(self::getCmdSudo() . 'rm -f -- ' . escapeshellarg($progressFile));
 		}
-		if (file_exists($progress_file)) {
-			$mtime = filemtime($progress_file);
-			if ($mtime > strtotime('now')) {
-				shell_exec(self::getCmdSudo() . ' rm ' . escapeshellarg($progress_file));
-				return false;
-			}
-			if (strtotime('now') - $mtime > (30 * 60)) {
-				shell_exec(self::getCmdSudo() . ' rm ' . escapeshellarg($progress_file));
-				return false;
-			}
+		clearstatcache(true, $progressFile);
+		return is_file($progressFile);
+	}
+
+	public static function installPackageInProgress(string $_plugin = ''): bool {
+		if (self::ps('dpkg ') || self::ps('apt-get ') || self::hasPackageInstallProgress($_plugin)) {
 			return true;
 		}
 		if (shell_exec('ls /tmp/jeedom_install_in_progress* | wc -l 2> /dev/null') > 0) {

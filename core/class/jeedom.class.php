@@ -764,7 +764,10 @@ class jeedom {
 		$vendor = '';
 		$model = '';
 		$serial_by_id = '';
-		foreach (explode("\n", shell_exec('udevadm info --name=/dev/' . $_usb . ' --query=all')) as $line) {
+		$details = system::checkHasExec('udevadm')
+			? shell_exec('udevadm info --name=' . escapeshellarg('/dev/' . $_usb) . ' --query=all 2>/dev/null')
+			: '';
+		foreach (explode("\n", (string) $details) as $line) {
 			if (strpos($line, 'E: ID_USB_MODEL=') !== false) {
 				$model = trim(str_replace(array('E: ID_USB_MODEL=', '"'), '', $line));
 			}
