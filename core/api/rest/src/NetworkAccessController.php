@@ -66,7 +66,7 @@ final class NetworkAccessController
 
         if ($dnsChanged) {
             try {
-                // The existing config hook starts or stops the configured transport.
+                // The config hook starts or stops the tunnel.
                 \config::save('market::allowDNS', (int) ($externalMode === 'dns'));
             } catch (\Exception $error) {
                 \log::add('network', 'error', $error->getMessage());
@@ -128,7 +128,7 @@ final class NetworkAccessController
     private static function dnsAvailable(): bool
     {
         return \config::byKey('dns::token') !== '' && !\network::isExternalManagementDisabled()
-            && (\config::byKey('dns::mode') !== 'frp' || \frp::servers() !== []);
+            && (\network::dns_mode() !== 'frp' || \frp::servers() !== []);
     }
 
     private static function dnsState(string $mode, bool $available): string
@@ -140,7 +140,7 @@ final class NetworkAccessController
             return 'unavailable';
         }
         try {
-            if (\config::byKey('dns::mode') !== 'frp') {
+            if (\network::dns_mode() !== 'frp') {
                 $vpn = \eqLogic::byLogicalId('dnsjeedom', 'openvpn');
                 return is_callable([$vpn, 'getState']) && $vpn->getState() ? 'connected' : 'stopped';
             }

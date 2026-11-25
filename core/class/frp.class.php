@@ -349,6 +349,9 @@ class frp {
 				$busy = !empty($status['observation_busy']) || ($status['status'] ?? '') == 'busy';
 				return array('running' => !$busy && ($status['status'] ?? '') == 'running' && empty($status['pending']), 'manager' => 'jeego', 'state' => $busy || !empty($status['pending']) ? 'connecting' : ($status['status'] ?? 'unknown'));
 			}
+			if (jeego::isDetected()) {
+				return array('running' => false, 'manager' => 'jeego', 'state' => 'stopped');
+			}
 			$status = self::read('status');
 			$native = self::read('native');
 			$status['running'] = self::isNativeProcess($native)

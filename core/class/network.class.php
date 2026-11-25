@@ -301,6 +301,10 @@ class network {
 
 	/*     * *********************DNS************************* */
 
+	public static function dns_mode(): string {
+		return jeego::isDetected() ? 'frp' : config::byKey('dns::mode', 'core', 'openvpn');
+	}
+
 	public static function dns_create() {
 		if (config::byKey('dns::token') == '') {
 			return;
@@ -456,7 +460,7 @@ class network {
 			frp::stop();
 			return;
 		}
-		$mode = config::byKey('dns::mode', 'core', 'openvpn');
+		$mode = self::dns_mode();
 		if ($mode == 'frp') {
 			if (count(frp::servers()) == 0) {
 				frp::stop();
@@ -481,7 +485,7 @@ class network {
 		if (config::byKey('market::allowDNS') != 1 || config::byKey('dns::token') == '') {
 			return false;
 		}
-		if (config::byKey('dns::mode', 'core', 'openvpn') == 'frp') {
+		if (self::dns_mode() == 'frp') {
 			return !empty(frp::status()['running']);
 		}
 		return self::dns_openvpn_run();
@@ -522,7 +526,7 @@ class network {
 	}
 
 	public static function cron10() {
-		if (config::byKey('dns::mode', 'core', 'openvpn') == 'frp') {
+		if (self::dns_mode() == 'frp') {
 			try {
 				self::dns_start(false);
 			} catch (\Throwable $e) {
