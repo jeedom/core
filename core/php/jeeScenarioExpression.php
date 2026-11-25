@@ -37,6 +37,7 @@ if (!isset($cache['scenario'])) {
 cache::byKey(init('key'))->remove();
 if ($cache['scenario'] != null) {
 	$cache['scenario']->clearLog();
+	$cache['scenario']->resumeTrace($cache['scenario']->getTraceContext());
 	$cache['scenario']->setLog(__('Lancement en arrière-plan de :', __FILE__) . ' ' . init('key'));
 }
 $cache['scenarioExpression']->setOptions('background', 0);

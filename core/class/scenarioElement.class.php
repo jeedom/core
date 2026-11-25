@@ -137,16 +137,27 @@ class scenarioElement {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
 		}
-		if (!is_object($this->getSubElement($this->getType()))) {
+		$type = $this->getType();
+		$primary = $this->getSubElement($type);
+		if (!is_object($primary)) {
 			return;
 		}
+		if (in_array($type, ['if', 'action', 'code', 'for', 'while', 'in', 'at'], true) && $primary->getOptions('enable', 1) == 0) {
+			return true;
+		}
+		if ($_scenario === null || $type === 'comment') {
+			return $this->executeBlock($_scenario);
+		}
+		return $_scenario->traceStep('block:' . $this->getId(), function () use (&$_scenario) {
+			return $this->executeBlock($_scenario);
+		});
+	}
+
+	private function executeBlock(&$_scenario) {
 		if ($this->getType() == 'if') {
-			if ($this->getSubElement('if')->getOptions('enable', 1) == 0) {
-				return true;
-			}
 			$result = $this->getSubElement('if')->execute($_scenario);
 			if (is_string($result) && strlen($result) > 1) {
-				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result);
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result, true);
 				$expresssion_str = '';
 				if ($this->getSubElement('if')->getSubtype() == 'condition' && is_array($this->getSubElement('if')->getExpression())) {
 					foreach (($this->getSubElement('if')->getExpression()) as $expression) {
@@ -185,19 +196,10 @@ class scenarioElement {
 			}
 			return $this->getSubElement('else')->execute($_scenario);
 		} elseif ($this->getType() == 'action') {
-			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
-				return true;
-			}
 			return $this->getSubElement('action')->execute($_scenario);
 		} elseif ($this->getType() == 'code') {
-			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
-				return true;
-			}
 			return $this->getSubElement('code')->execute($_scenario);
 		} elseif ($this->getType() == 'for') {
-			if ($this->getSubElement('for')->getOptions('enable', 1) == 0) {
-				return true;
-			}
 			$limits = intval($this->getSubElement('for')->execute($_scenario));
 			if (!is_numeric($limits)) {
 				throw new Exception(__('La condition pour une boucle doit être numérique :', __FILE__) . ' ' . $limits);
@@ -207,19 +209,16 @@ class scenarioElement {
 			for ($i = 1; $i <= $limits; $i++) {
 				$return = $this->getSubElement('do')->execute($_scenario);
 				if (time() > $endTime) {
-					$_scenario->setLog(__('[For] Arrêt de la boucle pour cause de durée d\'exécution trop longue', __FILE__));
+					$_scenario->setLog(__('[For] Arrêt de la boucle pour cause de durée d\'exécution trop longue', __FILE__), true);
 					return false;
 				}
 				sleep(1);
 			}
 			return $return;
 		} elseif ($this->getType() == 'while') {
-			if ($this->getSubElement('while')->getOptions('enable', 1) == 0) {
-				return true;
-			}
 			$result = $this->getSubElement('while')->execute($_scenario);
 			if (is_string($result) && strlen($result) > 1) {
-				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result);
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result, true);
 				$expresssion_str = '';
 				if ($this->getSubElement('while')->getSubtype() == 'condition' && is_array($this->getSubElement('while')->getExpression())) {
 					foreach (($this->getSubElement('while')->getExpression()) as $expression) {
@@ -237,7 +236,7 @@ class scenarioElement {
 			while ($result) {
 				$return = $this->getSubElement('do')->execute($_scenario);
 				if (time() > $endTime) {
-					$_scenario->setLog(__('[While] Arrêt de la boucle pour cause de durée d\'exécution trop longue', __FILE__));
+					$_scenario->setLog(__('[While] Arrêt de la boucle pour cause de durée d\'exécution trop longue', __FILE__), true);
 					return false;
 				}
 				sleep(1);
@@ -245,9 +244,6 @@ class scenarioElement {
 			}
 			return $return;
 		} elseif ($this->getType() == 'in') {
-			if ($this->getSubElement('in')->getOptions('enable', 1) == 0) {
-				return true;
-			}
 			$time = str_replace(',', '.', $this->getSubElement('in')->execute($_scenario));
 			$time = is_numeric($time) ? ceil((float) $time) : 0;
 			if ($time < 0) {
@@ -257,6 +253,10 @@ class scenarioElement {
 				$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
+				$trace = $_scenario->getTraceContext();
+				if ($trace !== []) {
+					$cmd .= ' traceRun=' . escapeshellarg($trace['runId']) . ' traceStep=' . escapeshellarg($trace['step'] ?? '');
+				}
 				$cmd .= ' tags=\'' . json_encode($_scenario->getTags()) . '\'';
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
 				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduleNow']['txt']);
@@ -273,7 +273,7 @@ class scenarioElement {
 				$cron = new cron();
 				$cron->setClass('scenario');
 				$cron->setFunction('doIn');
-				$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s'), 'tags' => $_scenario->getTags()));
+				$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s'), 'tags' => $_scenario->getTags(), 'trace' => $_scenario->getTraceContext()));
 				$cron->setLastRun(date('Y-m-d H:i:s'));
 				$cron->setOnce(1);
 				$next = strtotime('+ ' . $time . ' min');
@@ -283,9 +283,6 @@ class scenarioElement {
 			}
 			return true;
 		} elseif ($this->getType() == 'at') {
-			if ($this->getSubElement('at')->getOptions('enable', 1) == 0) {
-				return true;
-			}
 			$next = $this->getSubElement('at')->execute($_scenario);
 			if (!is_numeric($next) || $next < 0) {
 				throw new Exception(__('Bloc type A :', __FILE__) . ' ' . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['invalideShedule']['txt'] . $next);
@@ -312,7 +309,7 @@ class scenarioElement {
 			$cron = new cron();
 			$cron->setClass('scenario');
 			$cron->setFunction('doIn');
-			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0, 'tags' => $_scenario->getTags()));
+			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0, 'tags' => $_scenario->getTags(), 'trace' => $_scenario->getTraceContext()));
 			$cron->setLastRun(date('Y-m-d H:i:s', strtotime('now')));
 			$cron->setOnce(1);
 			$cron->setSchedule(cron::convertDateToCron($next));

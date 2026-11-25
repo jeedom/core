@@ -273,13 +273,33 @@ final class ScenariosController
         return LogExcerptReader::respond($request, $response, self::logFile($scenario), allowMissing: true);
     }
 
+    public function runs(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $scenario = self::find($args['id'], $request->getAttribute('user'), 'r');
+        return Json::respond($response, [
+            'runs' => ScenarioRuns::read((int) $scenario->getId()),
+            'loggingEnabled' => $scenario->getConfiguration('logmode', 'default') !== 'none',
+        ]);
+    }
+
+    public function runDetail(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $scenario = self::find($args['id'], $request->getAttribute('user'), 'r');
+        $detail = preg_match('/^(?:[a-f0-9]{32}|legacy-[a-f0-9]{64})$/D', $args['runId'])
+            ? ScenarioRuns::read((int) $scenario->getId(), $args['runId']) : [];
+        if ($detail === []) {
+            throw new ApiError(404, 'scenario_run_not_found', 'Ce lancement ne figure plus dans le journal.');
+        }
+        return Json::respond($response, $detail);
+    }
+
     public function emptyLog(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        $file = self::logFile(self::find($args['id'], $request->getAttribute('user'), 'r'));
-        if (is_file($file)) {
-            unlink($file);
-        }
+        $scenario = self::find($args['id'], $request->getAttribute('user'), 'r');
+        \scenarioTrace::clear((int) $scenario->getId());
         return $response->withStatus(204);
     }
 
@@ -325,7 +345,7 @@ final class ScenariosController
 
     private static function logFile(\scenario $scenario): string
     {
-        return __DIR__ . '/../../../../log/scenarioLog/scenario' . (int) $scenario->getId() . '.log';
+        return \scenarioTrace::path((int) $scenario->getId());
     }
 
     /**

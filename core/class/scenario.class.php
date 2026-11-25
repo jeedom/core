@@ -36,6 +36,7 @@ class scenario {
 	private $scenarioElement;
 	private $trigger;
 	private $_log;
+	private ?scenarioTrace $_trace = null;
 	private $timeout = 0;
 	private $object_id = null;
 	private $isVisible = 0;
@@ -472,8 +473,9 @@ class scenario {
 		if (!is_object($scenario)) {
 			return;
 		}
+		$scenario->resumeTrace($_options['trace'] ?? []);
 		if ($scenario->getIsActive() == 0) {
-			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableNoSubtask']['txt']);
+			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableNoSubtask']['txt'], true);
 			$scenario->persistLog();
 			return;
 		}
@@ -484,7 +486,7 @@ class scenario {
 			$scenario->setLog(__('Tags :', __FILE__) . ' ' . json_encode($scenario->getTags(), JSON_UNESCAPED_UNICODE));
 		}
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
-			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['toStartUnfound']['txt']);
+			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['toStartUnfound']['txt'], true);
 			$scenario->persistLog();
 			return;
 		}
@@ -874,8 +876,7 @@ class scenario {
 		}
 		$this->setCache(array('startingTime' => strtotime('now'), 'state' => 'starting'));
 		if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
-			return $this->execute();
+			return $this->execute('', true);
 		} else {
 			$instance_id = config::genKey(16);
 			cache::set('scenarioInstanceAttr' . $this->getId() . '::' . $instance_id, array(
@@ -893,7 +894,7 @@ class scenario {
 	 *
 	 * @param string $instance_id
 	 */
-	public function execute($instance_id = '') {
+	public function execute($instance_id = '', bool $_sync = false) {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
@@ -948,24 +949,45 @@ class scenario {
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return;
 		}
-		if (count($this->getTags()) == 0) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $this->getTag('message') . '.');
-		} else {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $this->getTag('message') . '. Tags : ' . json_encode($this->getTags(), JSON_UNESCAPED_UNICODE));
+		$previousTrace = $this->_trace;
+		$this->_trace = null;
+		if ($this->getConfiguration('logmode', 'default') != 'none') {
+			$this->_trace = new scenarioTrace((int) $this->getId(), bin2hex(random_bytes(16)));
+			$this->_trace->start((string) ($this->getTag('trigger_message') ?: $this->getTag('message')), $this->getTraceRevision());
 		}
-		$this->setLastLaunch(date('Y-m-d H:i:s'));
-		$this->setState('in progress');
-		$this->setPID(getmypid());
-		foreach (($this->getElement()) as $element) {
-			if (!$this->getDo()) {
-				break;
+		try {
+			if ($_sync) {
+				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
 			}
-			$element->execute($this);
+			if (count($this->getTags()) == 0) {
+				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $this->getTag('message') . '.');
+			} else {
+				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $this->getTag('message') . '. Tags : ' . json_encode($this->getTags(), JSON_UNESCAPED_UNICODE));
+			}
+			$this->setLastLaunch(date('Y-m-d H:i:s'));
+			$this->setState('in progress');
+			$this->setPID(getmypid());
+			foreach (($this->getElement()) as $element) {
+				if (!$this->getDo()) {
+					break;
+				}
+				$element->execute($this);
+			}
+			$this->setState('stop');
+			$this->setPID();
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['finishOk']['txt']);
+			$this->persistLog();
+		} catch (Throwable $error) {
+			if ($this->_trace !== null) {
+				$this->_trace->exception($error);
+			}
+			throw $error;
+		} finally {
+			if ($this->_trace !== null) {
+				$this->_trace->finish();
+			}
+			$this->_trace = $previousTrace;
 		}
-		$this->setState('stop');
-		$this->setPID();
-		$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['finishOk']['txt']);
-		$this->persistLog();
 		return $this->getReturn();
 	}
 	/**
@@ -995,6 +1017,7 @@ class scenario {
 	 */
 	public function copy($_name) {
 		$scenarioCopy = clone $this;
+		$scenarioCopy->_trace = null;
 		$scenarioCopy->setName($_name);
 		$scenarioCopy->setId('');
 		$scenario_element_list = array();
@@ -1004,9 +1027,7 @@ class scenario {
 		$scenarioCopy->setScenarioElement($scenario_element_list);
 		$scenarioCopy->setLog('');
 		$scenarioCopy->save();
-		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log')) {
-			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log');
-		}
+		scenarioTrace::clear((int) $scenarioCopy->getId());
 		return $scenarioCopy;
 	}
 	/**
@@ -1148,9 +1169,7 @@ class scenario {
 		foreach (($this->getElement()) as $element) {
 			$element->remove();
 		}
-		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log')) {
-			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
-		}
+		scenarioTrace::clear((int) $this->getId());
 		cache::delete('scenarioCacheAttr' . $this->getId());
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'scenario'));
 		return DB::remove($this);
@@ -1555,16 +1574,11 @@ class scenario {
 		if ($this->getConfiguration('logmode', 'default') == 'none') {
 			return;
 		}
-		$path = __DIR__ . '/../../log/scenarioLog';
-		if (!file_exists($path)) {
-			mkdir($path);
+		$path = scenarioTrace::path((int) $this->getId());
+		if (!is_dir(dirname($path))) {
+			@mkdir(dirname($path));
 		}
-		$path .= '/scenario' . $this->getId() . '.log';
-		if ($_partial) {
-			file_put_contents($path, $this->getLog(), FILE_APPEND);
-		} else {
-			file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
-		}
+		file_put_contents($path, ($_partial ? '' : "------------------------------------\n") . $this->getLog(), FILE_APPEND | LOCK_EX);
 	}
 
 	public function toArray() {
@@ -1862,6 +1876,7 @@ class scenario {
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->scenarioElement, $_scenarioElement);
 		$this->scenarioElement = $_scenarioElement;
+		$this->setConfiguration('trace::revision', bin2hex(random_bytes(8)));
 		return $this;
 	}
 
@@ -1890,12 +1905,37 @@ class scenario {
 	 *
 	 * @param string $log
 	 */
-	public function setLog($log) {
-		$this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
+	public function setLog($log, bool $error = false) {
+		$line = '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log;
+		$this->_log .= $line . "\n";
+		if ($this->_trace !== null) {
+			$this->_trace->line($line, $error);
+		}
 		if ($this->getConfiguration('logmode', 'default') == 'realtime') {
 			$this->persistLog(true);
 			$this->_log = '';
 		}
+	}
+
+	public function getTraceRevision(): string {
+		return (string) $this->getConfiguration('trace::revision', '');
+	}
+
+	public function getTraceContext(): array {
+		return $this->_trace !== null ? $this->_trace->context() : [];
+	}
+
+	public function resumeTrace(array $context): void {
+		$run = $context['runId'] ?? '';
+		$step = $context['step'] ?? null;
+		if ($this->getConfiguration('logmode', 'default') != 'none' && preg_match('/^[a-f0-9]{32}$/D', $run)
+			&& ($step === null || preg_match('/^[a-f0-9-]+$/D', $step))) {
+			$this->_trace = new scenarioTrace((int) $this->getId(), $run, $step);
+		}
+	}
+
+	public function traceStep(string $key, callable $execute) {
+		return $this->_trace === null ? $execute() : $this->_trace->within($key, $execute);
 	}
 
 	public function getTimeout(): int {

@@ -7202,6 +7202,57 @@ paths:
               schema: { $ref: '#/components/schemas/Error' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /scenarios/{id}/runs:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    get:
+      tags: [Scénarios]
+      operationId: listScenarioRuns
+      summary: Lancements récents conservés dans les journaux du scénario
+      description: Réservé aux administrateurs. Au plus 50 lancements, du plus récent au plus ancien.
+      responses:
+        '200':
+          description: Historique des lancements.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [runs, loggingEnabled]
+                properties:
+                  runs:
+                    type: array
+                    items: { $ref: '#/components/schemas/ScenarioRun' }
+                  loggingEnabled: { type: boolean }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+
+  /scenarios/{id}/runs/{runId}:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+      - in: path
+        name: runId
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Scénarios]
+      operationId: getScenarioRun
+      summary: Journal et parcours d’un lancement
+      description: Réservé aux administrateurs. Les anciens journaux donnent uniquement les lignes textuelles.
+      responses:
+        '200':
+          description: Lancement et trace disponible.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScenarioRunDetail' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404':
+          description: Scénario ou lancement introuvable.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
   /scenarios/{id}/usages:
     parameters:
       - $ref: '#/components/parameters/ScenarioId'
@@ -11160,6 +11211,47 @@ components:
         title: { type: string }
         message: { type: string }
         category: { type: string }
+    ScenarioRun:
+      type: object
+      required: [id, startedAt, durationMs, trigger, status, revision]
+      properties:
+        id: { type: string }
+        startedAt: { type: string, format: date-time }
+        durationMs: { type: integer, minimum: 0, nullable: true }
+        trigger: { type: string }
+        status:
+          type: string
+          enum: [finished, error, incomplete, unknown]
+        revision:
+          type: string
+          nullable: true
+          description: Version des blocs au lancement. Null pour les anciens journaux textuels.
+
+    ScenarioRunDetail:
+      type: object
+      required: [run, steps, lines]
+      properties:
+        run: { $ref: '#/components/schemas/ScenarioRun' }
+        steps:
+          type: array
+          description: Passages dans des blocs, sous-éléments ou expressions.
+          items:
+            type: object
+            required: [id, parent, key]
+            properties:
+              id: { type: string }
+              parent: { type: string, nullable: true }
+              key: { type: string, example: 'block:42' }
+        lines:
+          type: array
+          items:
+            type: object
+            required: [step, text, error]
+            properties:
+              step: { type: string, nullable: true }
+              text: { type: string }
+              error: { type: boolean }
+
     ScenarioLog:
       type: object
       required: [lines, offset, reset]

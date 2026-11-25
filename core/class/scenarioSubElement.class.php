@@ -67,6 +67,15 @@ class scenarioSubElement {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
 		}
+		if ($_scenario === null || !in_array($this->getSubtype(), ['action', 'condition'], true)) {
+			return $this->executePart($_scenario);
+		}
+		return $_scenario->traceStep('part:' . $this->getId(), function () use (&$_scenario) {
+			return $this->executePart($_scenario);
+		});
+	}
+
+	private function executePart(&$_scenario) {
 		if ($this->getSubtype() == 'action') {
 			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execAction']['txt'] . $this->getType());
 			$return = true;

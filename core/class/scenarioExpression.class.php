@@ -1398,6 +1398,15 @@ class scenarioExpression {
 			system::php($cmd . ' >> /dev/null 2>&1 &');
 			return;
 		}
+		if ($scenario === null || !in_array($this->getType(), ['action', 'condition', 'code'], true)) {
+			return $this->executeExpression($scenario);
+		}
+		return $scenario->traceStep('expression:' . $this->getId(), function () use (&$scenario) {
+			return $this->executeExpression($scenario);
+		});
+	}
+
+	private function executeExpression(?scenario &$scenario) {
 		$message = '';
 		try {
 			if ($this->getType() == 'element') {
@@ -1444,7 +1453,7 @@ class scenarioExpression {
 					$result = self::wait($options['condition'], $options['timeout'], $scenario);
 					$expression = self::setTags($options['condition'], $scenario, true);
 					if ($result === 0) {
-						self::setLog($scenario, sprintf(__('[Wait] Dépassement du timeout: %s', __FILE__), $expression));
+						self::setLog($scenario, sprintf(__('[Wait] Dépassement du timeout: %s', __FILE__), $expression), true);
 					} else {
 						self::setLog($scenario, sprintf(__('[Wait] Condition valide: %s', __FILE__), $expression));
 					}
@@ -1466,7 +1475,7 @@ class scenarioExpression {
 						} catch (\Throwable $e) {
 						}
 					}
-					self::setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['invalidDuration']['txt'] . $options['duration']);
+					self::setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['invalidDuration']['txt'] . $options['duration'], true);
 					return;
 				} elseif ($this->getExpression() == 'stop') {
 					if ($scenario !== null) {
@@ -1940,7 +1949,7 @@ class scenarioExpression {
 						}
 						return $cmd->execCmd($options);
 					}
-					self::setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['noCmdFoundFor']['txt'] . $this->getExpression());
+					self::setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['noCmdFoundFor']['txt'] . $this->getExpression(), true);
 					return;
 				}
 			} elseif ($this->getType() == 'condition') {
@@ -1964,7 +1973,7 @@ class scenarioExpression {
 				return eval($this->getExpression());
 			}
 		} catch (\Throwable $e) {
-			self::setLog($scenario, $message . log::exception($e));
+			self::setLog($scenario, $message . log::exception($e), true);
 		}
 	}
 
@@ -2217,9 +2226,9 @@ class scenarioExpression {
 		return $this;
 	}
 
-	private static function setLog(?scenario &$_scenario, string $log) {
+	private static function setLog(?scenario &$_scenario, string $log, bool $error = false) {
 		if ($_scenario !== null) {
-			$_scenario->setLog($log);
+			$_scenario->setLog($log, $error);
 		}
 	}
 

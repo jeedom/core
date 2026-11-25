@@ -358,9 +358,7 @@ try {
 		}
 		$scenarios = scenario::all();
 		foreach ($scenarios as $scenario) {
-			if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
-				unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
-			}
+			scenarioTrace::clear((int) $scenario->getId());
 		}
 		ajax::success();
 	}
@@ -373,9 +371,7 @@ try {
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu', __FILE__));
 		}
-		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
-			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
-		}
+		scenarioTrace::clear((int) $scenario->getId());
 		ajax::success();
 	}
 

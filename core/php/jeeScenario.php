@@ -24,7 +24,8 @@ require_once __DIR__ . '/console.php';
 require_once __DIR__ . "/core.inc.php";
 
 if (init('scenarioElement_id') != '') {
-	scenario::doIn(array('scenario_id' => init('scenario_id'), 'scenarioElement_id' => init('scenarioElement_id'), 'second' => 0, 'tags' => json_decode(init('tags'), true)));
+	scenario::doIn(array('scenario_id' => init('scenario_id'), 'scenarioElement_id' => init('scenarioElement_id'), 'second' => 0, 'tags' => json_decode(init('tags'), true),
+		'trace' => ['runId' => init('traceRun'), 'step' => init('traceStep') ?: null]));
 } else {
 	try {
 		$scenario = scenario::byId(init('scenario_id'));
