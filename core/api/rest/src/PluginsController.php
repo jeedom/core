@@ -423,6 +423,16 @@ final class PluginsController
         $levels = \config::byKey('log::level::' . $id, 'core', []);
         if (is_string($levels)) $levels = json_decode($levels, true);
         $level = LogLevels::decode($levels);
+        $packageFile = \plugin::getPluginPath($id) . '/plugin_info/packages.json';
+        $hasPackages = is_file($packageFile);
+        $packages = $hasPackages ? json_decode((string) file_get_contents($packageFile), true) : [];
+        $requiredPlugins = [];
+        foreach ((array) ($packages['plugin'] ?? []) as $dependency => $options) {
+            if (is_string($dependency) && preg_match('/^[a-zA-Z0-9_-]+$/D', $dependency)
+                && $dependency !== $id && empty($options['optional']) && is_file(\plugin::getPathById($dependency))) {
+                $requiredPlugins[] = $dependency;
+            }
+        }
         return self::toArray($plugin, (bool) $plugin->isActive(), $update ?: null) + [
             'description' => trim(html_entity_decode(strip_tags((string) $plugin->getDescription()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),
             'author' => (string) $plugin->getAuthor(), 'license' => (string) $plugin->getLicense(),
@@ -431,7 +441,8 @@ final class PluginsController
                 && (\system::getDistrib() !== 'debian' || !$plugin->getRequireOsVersion() || version_compare(\system::getOsVersion(), (string) $plugin->getRequireOsVersion(), '>=')),
             'configurationPath' => $plugin->getPathToConfigurationById() ?: null,
             'hasUiSettings' => PluginSettings::exists($id),
-            'hasDependency' => (bool) $plugin->getHasDependency() || is_file(\plugin::getPluginPath($id) . '/plugin_info/packages.json'),
+            'hasDependency' => (bool) $plugin->getHasDependency() || $hasPackages,
+            'requiredPlugins' => $requiredPlugins,
             'hasOwnDaemon' => (bool) $plugin->getHasOwnDeamon(), 'usedSpace' => is_numeric($plugin->getUsedSpace()) ? (int) $plugin->getUsedSpace() : null,
             'guidedActivationPending' => $plugin->isGuidedActivationPending(),
             'installation' => trim(html_entity_decode(strip_tags((string) $plugin->getInstallation()), ENT_QUOTES | ENT_HTML5, 'UTF-8')),

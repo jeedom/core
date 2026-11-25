@@ -9590,6 +9590,11 @@ components:
             - 'null'
           hasDependency:
             type: boolean
+          requiredPlugins:
+            type: array
+            description: Identifiants des plugins requis déjà installés sur ce Jeedom.
+            items:
+              type: string
           hasOwnDaemon:
             type: boolean
           guidedActivationPending:
