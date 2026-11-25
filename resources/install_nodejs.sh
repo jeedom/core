@@ -84,16 +84,12 @@ then
 fi
 fi
 
-#bullseye doesn't support NodeJS 24
-lsb_release -c | grep bullseye
-if [ $? -eq 0 ]
-then
-  today=$(date +%Y%m%d)
-  if [[ "$today" > "20260831" ]];
-  then
-  echo "== ATTENTION Debian 11 Bullseye n'est officiellement plus supportée depuis le 31 aout 2026, merci de mettre à jour votre distribution !!!"
-  exit 1
-fi
+# Node.js 24 was tested on a Bullseye Luna with an ARM64 userspace.
+if [[ $(lsb_release -sc) == bullseye && $(date +%Y%m%d) > 20260831 ]]; then
+  if [[ $(dpkg --print-architecture) != arm64 || ( ! -e /dev/ttyLuna-Zigbee && $(cat /etc/hostname) != *Luna* ) ]]; then
+    echo "== ATTENTION Debian 11 Bullseye n'est officiellement plus supportée depuis le 31 aout 2026, merci de mettre à jour votre distribution !!!"
+    exit 1
+  fi
 fi
 
 #version to install for armv6 (to check on https://unofficial-builds.nodejs.org), nodejs 24 not supported anymore, installing nodejs 22 on best effort
