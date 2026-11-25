@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 installVer='24' 	#NodeJS major version to be installed
-minVer='24'	      #min NodeJS major version to be accepted
+minVer='22'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
@@ -84,20 +84,6 @@ then
 fi
 fi
 
-# Node.js 24 was tested on a Bullseye Luna with an ARM64 userspace.
-if [[ $(lsb_release -sc) == bullseye ]]; then
-  if [[ $(dpkg --print-architecture) != arm64 || ( ! -e /dev/ttyLuna-Zigbee && $(cat /etc/hostname) != *Luna* ) ]]; then
-    echo "== ATTENTION Debian 11 Bullseye n'est officiellement plus supportée depuis le 31 aout 2026, merci de mettre à jour votre distribution !!!"
-    exit 1
-  fi
-fi
-
-#version to install for armv6 (to check on https://unofficial-builds.nodejs.org), nodejs 24 not supported anymore, installing nodejs 22 on best effort
-if [[ $arch == "armv6l" ]]
-then
-    minVer='22'
-fi
-
 #x86 32 bits not supported by nodesource anymore
 bits=$(getconf LONG_BIT)
 if { [ "$arch" = "i386" ] || [ "$arch" = "i686" ]; } && [ "$bits" -eq "32" ]
@@ -117,6 +103,15 @@ then
   new=$actual
 else
   echo "[  KO  ]";
+
+  # Node.js 24 was tested on a Bullseye Luna with an ARM64 userspace.
+  if [[ $(lsb_release -sc) == bullseye ]]; then
+    if [[ $(dpkg --print-architecture) != arm64 || ( ! -e /dev/ttyLuna-Zigbee && $(cat /etc/hostname) != *Luna* ) ]]; then
+      echo "== ATTENTION Debian 11 Bullseye n'est officiellement plus supportée depuis le 31 aout 2026, merci de mettre à jour votre distribution !!!"
+      exit 1
+    fi
+  fi
+
   echo "Installation de NodeJS $installVer"
 
   #if npm exists
