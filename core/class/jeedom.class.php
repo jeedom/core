@@ -465,12 +465,15 @@ class jeedom {
 
 		// Node.js version
 		$nodeVersion = trim(shell_exec("node --version | tr -d 'v'"));
-		$installScript = file_get_contents(__DIR__ . '/../../resources/install_nodejs.sh');
+		$installScriptPath = __DIR__ . '/../../resources/install_nodejs.sh';
+		$installScript = file_get_contents($installScriptPath);
 		preg_match("/minVer='([^']+)'/", $installScript, $nodeMinVer);
 		preg_match("/installVer='([^']+)'/", $installScript, $nodeInstallVer);
 		$nodeState = true;
 		$nodeComment = __('Version de Node.js', __FILE__);
-		if (version_compare($nodeVersion, $nodeMinVer[1], '<')) {
+		$canKeepNode22 = strpos($nodeVersion, '22.') === 0
+			&& trim((string) shell_exec('bash ' . escapeshellarg($installScriptPath) . ' --can-keep-node22 ' . escapeshellarg('v' . $nodeVersion))) === '1';
+		if (!$canKeepNode22 && version_compare($nodeVersion, $nodeMinVer[1], '<')) {
 			$nodeState = false;
 			$nodeComment = sprintf(__('Node.js %s est nécessaire pour certains plugins, lancer la vérification générale (Réglages > Système > Configuration, onglet OS/DB)', __FILE__), $nodeInstallVer[1]);
 		} else if (version_compare(intval($nodeVersion), $nodeInstallVer[1], '>')) {
