@@ -345,6 +345,14 @@ $detail = call('GET', '/plugins/fixture?full=true');
 check($detail['usedSpace'] === 1234 && $detail['description'] === 'Description', 'Full plugin metadata incorrect');
 check($detail['logs'] === ['fixture'] && $detail['links']['changelog'] === null && $detail['links']['issue'] === null, 'Unsafe plugin metadata exposed');
 check($detail['update'] === null && $detail['compatible'], 'Local plugin without update not supported');
+$packageDirectory = plugin::getPluginPath('fixture') . '/plugin_info';
+mkdir(plugin::getPluginPath('mqtt2') . '/plugin_info', 0775, true);
+file_put_contents(plugin::getPathById('mqtt2'), '{}');
+file_put_contents($packageDirectory . '/packages.json', json_encode(['plugin' => [
+    'mqtt2' => [], 'fixture' => [], 'missing' => [], '../invalid' => [],
+]]));
+check(call('GET', '/plugins/fixture?full=true')['requiredPlugins'] === ['mqtt2'], 'Installed inactive plugin dependency not exposed');
+unlink($packageDirectory . '/packages.json');
 foreach (['/plugins/fixture', '/plugins/fixture/dependencies', '/plugins/fixture/daemon', '/plugins/fixture/community-post', '/plugins/installations/preview?marketId=123&version=stable', '/plugins/fixture/installations/latest'] as $path) call('GET', $path, 403, token: 'member');
 foreach (['/plugins/absent', '/plugins/..%2Fpasswd'] as $path) call('GET', $path, 404);
 call('GET', '/plugins/fixture?full=invalid', 422);
