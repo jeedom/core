@@ -1570,7 +1570,7 @@ class marketClient {
 				$servers = frp::servers($_result['dns::frp::servers']);
 				if (config::byKey('dns::frp::servers', 'core', array()) != $servers) {
 					config::save('dns::frp::servers', $servers);
-					$restart_dns = $restart_dns || config::byKey('dns::mode') == 'frp';
+					$restart_dns = $restart_dns || network::dns_mode() == 'frp';
 				}
 			}
 			if (isset($_result['register::vpnurl']) && config::byKey('dns::vpnurl') != $_result['register::vpnurl']) {
