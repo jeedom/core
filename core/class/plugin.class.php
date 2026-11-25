@@ -602,7 +602,8 @@ class plugin {
 					$plugin->dependancy_install();
 				} catch (Exception $e) {
 				}
-			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
+			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()
+				&& !is_file(self::getPluginPath($plugin->getId()) . '/plugin_info/packages.json')) {
 				if (isset($dependancy_info['progress_file']) && file_exists($dependancy_info['progress_file'])) {
 					shell_exec('rm ' . $dependancy_info['progress_file']);
 				}
@@ -1161,8 +1162,8 @@ class plugin {
 				$has_dep_to_install = true;
 			}
 			$return['state'] = ($has_dep_to_install) ? 'nok' : 'ok';
-			$return['progress_file'] = '/tmp/jeedom_install_in_progress_' . $plugin_id;
-			if (file_exists($return['progress_file'])) {
+			$return['progress_file'] = system::packageInstallProgressFile($plugin_id);
+			if (system::hasPackageInstallProgress($plugin_id, (int) $this->getMaxDependancyInstallTime())) {
 				$progression = trim(file_get_contents($return['progress_file']));
 				if ($progression != '') {
 					$return['progression'] = $progression;
