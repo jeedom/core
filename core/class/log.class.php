@@ -250,15 +250,7 @@ class log extends AbstractLogger {
 		return $activePluginsWithDaemon;
 	}
 
-	private static function canRemoveLog(string $_log): bool {
-		if (strpos($_log, 'http.error') !== false) {
-			return false;
-		}
-
-		if (substr($_log, -9) === '_packages' || substr($_log, -7) === '_update') {
-			return true;
-		}
-
+	private static function isCoreLog(string $_log): bool {
 		// if a new core log is added to the codebase, add it here to prevent a plugin with the same name from protecting it by mistake.
 		static $coreLogNames = [
 			'api',
@@ -292,7 +284,14 @@ class log extends AbstractLogger {
 			'tts',
 			'update',
 		];
-		if (in_array($_log, $coreLogNames)) {
+		return in_array($_log, $coreLogNames, true);
+	}
+
+	private static function canRemoveLog(string $_log): bool {
+		if (strpos($_log, 'http.error') !== false) {
+			return false;
+		}
+		if (str_ends_with($_log, '_packages') || str_ends_with($_log, '_update') || self::isCoreLog($_log)) {
 			return true;
 		}
 
@@ -319,12 +318,34 @@ class log extends AbstractLogger {
 			}
 			return;
 		}
+		return self::removeFile($_log);
+	}
 
+	private static function removeFile(string $_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
 			com_shell::execute('rm -f -- ' . escapeshellarg($path));
 			clearstatcache(true, $path);
 			return true;
+		}
+	}
+
+	public static function removePluginLogs(string $pluginId): void {
+		plugin::validatePluginId($pluginId);
+		$matchesPlugin = static fn (string $name, string $id): bool => $name === $id || $name === $id . 'd' || str_starts_with($name, $id . '_');
+		$otherPlugins = array_filter(plugin::listPlugin(false, false, false, true), static fn (string $id): bool =>
+			$id !== $pluginId && str_starts_with($id, $pluginId));
+		foreach (ls(self::getPathToLog(''), '*', false, array('files')) as $log) {
+			$name = preg_replace('/\.[0-9]+(?:\.gz)?$/D', '', $log);
+			if (!$matchesPlugin($name, $pluginId) || self::isCoreLog($name) || str_contains($name, 'http.error')) {
+				continue;
+			}
+			foreach ($otherPlugins as $otherId) {
+				if ($matchesPlugin($name, $otherId)) {
+					continue 2;
+				}
+			}
+			self::removeFile($log);
 		}
 	}
 

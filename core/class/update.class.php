@@ -802,6 +802,9 @@ class update {
 					break;
 			}
 			$this->remove();
+			if ($this->getType() === 'plugin' && !file_exists($cibDir)) {
+				log::removePluginLogs($this->getLogicalId());
+			}
 		}
 	}
 
