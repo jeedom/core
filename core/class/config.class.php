@@ -47,7 +47,6 @@ class config {
 		'market::cloud::backup::password',
 		'market::cloud::backup::password_confirmation',
 		'market::password',
-		'market::restSession',
 		'proxyPassword',
 		'samba::backup::ip',
 		'samba::backup::password',
@@ -482,16 +481,9 @@ class config {
 				network::dns_start();
 			}
 		} else {
-			network::dns_stop();
-		}
-	}
-
-	public static function postConfig_dns_mode($_value) {
-		if (!in_array($_value, array('openvpn', 'frp'), true)) {
-			throw new Exception(__('Mode DNS inconnu', __FILE__));
-		}
-		if (config::byKey('market::allowDNS') == 1) {
-			network::dns_start();
+			if (network::dns_run()) {
+				network::dns_stop();
+			}
 		}
 	}
 

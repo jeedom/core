@@ -1730,10 +1730,9 @@ class scenarioExpression {
 				} elseif ($this->getExpression() == 'remove_inat') {
 					if (isset($options['scenario_id']) && intval($options['scenario_id']) != 0) {
 						$targetScenario = scenario::byId($options['scenario_id']);
-						if (!is_object($targetScenario)) {
-							return;
+						if ($targetScenario !== null) {
+							$scenario = &$targetScenario;
 						}
-						$scenario = &$targetScenario;
 					}
 					if ($scenario === null) {
 						return;

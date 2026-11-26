@@ -451,14 +451,12 @@ class system {
 						if (isset($installPackage[mb_strtolower($alternative)])) {
 							$found = 2;
 							$alternative_found = $alternative;
-							$version = $installPackage[mb_strtolower($alternative)]['version'];
 							break;
 						}
 						$keys = array_values(preg_grep(mb_strtolower($alternative), array_keys($installPackage)));
 						if (is_array($keys) && count($keys) > 0) {
 							$found = 2;
 							$alternative_found = $keys[0];
-							$version = $installPackage[$keys[0]]['version'];
 							break;
 						}
 					}
