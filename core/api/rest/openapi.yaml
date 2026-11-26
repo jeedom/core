@@ -10612,7 +10612,7 @@ components:
               value:
                 type: [number, 'null']
                 description: '`null` si aucun point sur la période.'
-              unit: { type: string, description: Unité de la commande, vide si aucune. }
+              unit: { type: string, description: 'Unité de la commande, vide si aucune.' }
               count: { type: integer, description: Nombre de points utilisés. }
         errors:
           type: array
