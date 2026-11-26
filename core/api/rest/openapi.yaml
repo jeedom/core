@@ -9124,8 +9124,11 @@ components:
                 description: Commande info numérique historisée qui donne la valeur du flux.
         period:
           type: string
-          enum: [live, 24h, 7d, 30d, 1y]
-          description: '`live` : valeur actuelle de chaque commande, suivie en direct. Sinon, total sur la période glissante.'
+          enum: [live, 24h, 7d, 30d, 1y, today, month, year]
+          description: |
+            Au choix de l'utilisateur. `live` : valeur actuelle de chaque commande, suivie en direct.
+            `24h`, `7d`, `30d`, `1y` : période glissante jusqu'à maintenant. `today`, `month`, `year` :
+            depuis le début du jour, du mois ou de l'année en cours (heure de la box).
         mode:
           type: string
           enum: [delta, sum, avg]
