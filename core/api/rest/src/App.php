@@ -74,6 +74,7 @@ final class App
             $api->post('/cmds/{id}/history/copy', $cmds->copyHistory(...));
             $api->delete('/history/future', $cmds->removeFutureHistory(...));
             $api->get('/history/calculation', $cmds->calculatedHistory(...));
+            $api->get('/history/totals', $cmds->totals(...));
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
             $diagnostic = new DiagnosticController();

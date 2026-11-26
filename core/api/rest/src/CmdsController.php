@@ -385,6 +385,44 @@ final class CmdsController
         return Json::respond($response, ['items' => $items]);
     }
 
+    /** Totaux de plusieurs commandes info sur une même période (widgets de flux, ex. Sankey). */
+    public function totals(Request $request, Response $response): Response
+    {
+        $user = $request->getAttribute('user');
+        $query = $request->getQueryParams();
+        $ids = self::totalsIds($query['ids'] ?? null);
+        $mode = $query['mode'] ?? 'delta';
+        if (!in_array($mode, ['delta', 'sum', 'avg', 'last'], true)) {
+            throw ApiError::field(422, 'validation_error', 'mode', 'Valeurs possibles : delta, sum, avg, last.');
+        }
+        [$start, $end] = self::period($request);
+        $totals = [];
+        $errors = [];
+        foreach ($ids as $id) {
+            $cmd = \cmd::byId($id);
+            $error = match (true) {
+                !is_object($cmd) => ['not_found', 'Commande inconnue.'],
+                !self::canRead($cmd, $user) => ['forbidden', 'Commande non lisible.'],
+                $cmd->getType() !== 'info' => ['not_info', 'Disponible seulement pour une commande info.'],
+                !$cmd->getIsHistorized() => ['not_historized', 'Commande non historisée.'],
+                default => null,
+            };
+            if ($error !== null) {
+                $errors[] = ['id' => $id, 'code' => $error[0], 'message' => $error[1]];
+                continue;
+            }
+            [$value, $count] = self::total($id, $mode, $start, $end);
+            $totals[] = ['id' => $id, 'value' => $value, 'unit' => (string) $cmd->getUnite(), 'count' => $count];
+        }
+        return Json::respond($response, [
+            'start' => date(DATE_RFC3339, (int) strtotime($start)),
+            'end' => date(DATE_RFC3339, (int) strtotime($end)),
+            'mode' => $mode,
+            'totals' => $totals,
+            'errors' => $errors,
+        ]);
+    }
+
     public function statistics(Request $request, Response $response, array $args): Response
     {
         $cmd = self::findReadableInfo($args['id'], $request->getAttribute('user'));
@@ -479,6 +517,51 @@ final class CmdsController
             throw new ApiError(404, 'cmd_not_found', 'Commande inconnue.');
         }
         return $cmd;
+    }
+
+    /** @return list<int> */
+    private static function totalsIds(mixed $raw): array
+    {
+        if (!is_string($raw) || $raw === '') {
+            throw ApiError::field(422, 'validation_error', 'ids', 'Ce champ est obligatoire.');
+        }
+        $ids = explode(',', $raw);
+        foreach ($ids as $id) {
+            if (!ctype_digit($id) || (int) $id < 1) {
+                throw ApiError::field(422, 'validation_error', 'ids', 'Des entiers positifs séparés par des virgules sont attendus.');
+            }
+        }
+        $ids = array_map('intval', $ids);
+        if (count($ids) > 50) {
+            throw ApiError::field(422, 'validation_error', 'ids', '50 commandes au plus.');
+        }
+        if (count(array_unique($ids)) !== count($ids)) {
+            throw ApiError::field(422, 'validation_error', 'ids', 'Chaque commande ne doit figurer qu\'une fois.');
+        }
+        return $ids;
+    }
+
+    /** @return array{0: ?float, 1: int} valeur et nombre de points utilisés */
+    private static function total(int $id, string $mode, string $start, string $end): array
+    {
+        if ($mode === 'last') {
+            $point = \history::byCmdIdAtDatetime($id, $end);
+            return is_object($point) && is_numeric($point->getValue()) ? [(float) $point->getValue(), 1] : [null, 0];
+        }
+        $stats = (array) \history::getStatistique($id, $start, $end);
+        $count = (int) ($stats['count'] ?? 0);
+        if ($count === 0) {
+            return [null, 0];
+        }
+        if ($mode !== 'delta') {
+            return [is_numeric($stats[$mode] ?? null) ? (float) $stats[$mode] : null, $count];
+        }
+        $first = \history::byCmdIdAtDatetime($id, $start, false);
+        $last = \history::byCmdIdAtDatetime($id, $end);
+        if (!is_object($first) || !is_object($last) || !is_numeric($first->getValue()) || !is_numeric($last->getValue())) {
+            return [null, $count];
+        }
+        return [(float) $last->getValue() - (float) $first->getValue(), $count];
     }
 
     private static function canRead(\cmd $cmd, \user $user): bool
