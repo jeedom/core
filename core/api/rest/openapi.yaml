@@ -6604,6 +6604,64 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
+  /history/totals:
+    get:
+      tags: [Commandes]
+      operationId: getHistoryTotals
+      summary: Totaux de plusieurs commandes info sur une période
+      description: |
+        Une valeur par commande sur la même période, en un seul appel, pour
+        les widgets qui comparent des flux (diagramme de Sankey, répartition).
+        La valeur en direct se suit par `/events` ; cette route sert aux
+        périodes (jour, mois, année). Chaque commande est lue avec les droits
+        de l'utilisateur : une commande illisible ou inconnue n'arrête pas les
+        autres et figure dans `errors`. Une commande action ou non historisée
+        figure aussi dans `errors`.
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Identifiants des commandes info, séparés par des virgules (50 au plus).
+          style: form
+          explode: false
+          schema:
+            type: array
+            minItems: 1
+            maxItems: 50
+            uniqueItems: true
+            items: { type: integer, minimum: 1 }
+          example: [12, 15, 18]
+        - $ref: '#/components/parameters/HistoryStart'
+        - $ref: '#/components/parameters/HistoryEnd'
+        - name: mode
+          in: query
+          description: |
+            Calcul appliqué à chaque commande sur la période :
+            `delta` (dernière valeur moins première, pour un index de compteur
+            en kWh ou m³), `sum` (somme des valeurs), `avg` (moyenne, pour une
+            puissance), `last` (dernière valeur connue avant `end`).
+          schema:
+            type: string
+            enum: [delta, sum, avg, last]
+            default: delta
+      responses:
+        '200':
+          description: Totaux, dans l'ordre de `ids`, et commandes en échec.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HistoryTotals' }
+              example:
+                start: '2026-11-01T00:00:00+01:00'
+                end: '2026-12-01T00:00:00+01:00'
+                mode: delta
+                totals:
+                  - { id: 12, value: 412.6, unit: kWh, count: 8640 }
+                  - { id: 15, value: 180.2, unit: kWh, count: 8640 }
+                errors:
+                  - { id: 18, code: forbidden, message: Commande non lisible. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
   /cmds/{id}/usages:
     parameters:
       - $ref: '#/components/parameters/CmdId'
@@ -10536,6 +10594,35 @@ components:
         trend:
           type: number
           description: Pente de la tendance (`cmd::getTendance`), positive si la valeur monte.
+
+    HistoryTotals:
+      type: object
+      required: [start, end, mode, totals, errors]
+      properties:
+        start: { type: string, format: date-time }
+        end: { type: string, format: date-time }
+        mode: { type: string, enum: [delta, sum, avg, last] }
+        totals:
+          type: array
+          items:
+            type: object
+            required: [id, value, unit, count]
+            properties:
+              id: { type: integer }
+              value:
+                type: [number, 'null']
+                description: '`null` si aucun point sur la période.'
+              unit: { type: string, description: Unité de la commande, vide si aucune. }
+              count: { type: integer, description: Nombre de points utilisés. }
+        errors:
+          type: array
+          items:
+            type: object
+            required: [id, code, message]
+            properties:
+              id: { type: integer }
+              code: { type: string, enum: [not_found, forbidden, not_info, not_historized] }
+              message: { type: string }
 
     Object:
       type: object
