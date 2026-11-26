@@ -3,11 +3,6 @@
     throw new Exception('{{401 - Accès non autorisé}}');
   }
 
-  if (!repo_market::connectionStatus()['connected']) {
-    echo '<div class="alert alert-warning" role="status">{{Merci de connecter votre Jeedom au Market.}}</div>';
-    return;
-  }
-
   $type = init('type', null);
   $categorie = init('categorie', null) === '' ? null : init('categorie', null);
   $name = init('name', null) === '' ? null : init('name', null);

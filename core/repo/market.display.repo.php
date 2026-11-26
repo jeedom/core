@@ -3,11 +3,6 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-if (!repo_market::connectionStatus()['connected']) {
-  echo '<div class="alert alert-warning" role="status">{{Merci de connecter votre Jeedom au Market.}}</div>';
-  return;
-}
-
 if (init('id') != '') {
   $market = repo_market::byId(init('id'));
 }

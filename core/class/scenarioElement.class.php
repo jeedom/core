@@ -248,9 +248,8 @@ class scenarioElement {
 			if ($this->getSubElement('in')->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$time = str_replace(',', '.', $this->getSubElement('in')->execute($_scenario));
-			$time = is_numeric($time) ? ceil((float) $time) : 0;
-			if ($time < 0) {
+			$time = ceil(str_replace('.', ',', $this->getSubElement('in')->execute($_scenario)));
+			if (!is_numeric($time) || $time < 0) {
 				$time = 0;
 			}
 			if ($time == 0) {

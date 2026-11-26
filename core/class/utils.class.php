@@ -117,9 +117,9 @@ class utils {
 				$method = 'set' . ucfirst($key);
 				if (method_exists($_object, $method)) {
 					$function = new ReflectionMethod($_object, $method);
-					$value = ($value === null) ? null : is_json($value, $value);
+					$value = is_json($value, $value);
 					if (is_array($value)) {
-						if (in_array($function->getNumberOfRequiredParameters(), array(2, 3), true)) {
+						if ($function->getNumberOfRequiredParameters() == 2) {
 							foreach ($value as $arrayKey => $arrayValue) {
 								if (is_array($arrayValue)) {
 									if ($function->getNumberOfRequiredParameters() == 3) {
@@ -233,7 +233,6 @@ class utils {
 			}
 			if (empty($_attr)) {
 				if (is_array($_key)) {
-					$return = array();
 					foreach ($_key as $key) {
 						$return[$key] = $_default;
 					}
@@ -288,7 +287,7 @@ class utils {
 		if ($plaintext == '') {
 			return $plaintext;
 		}
-		if (strpos($plaintext, 'crypt:') === 0) {
+		if (strpos($plaintext, 'crypt:') !== false) {
 			return $plaintext;
 		}
 		if ($password == null) {
@@ -316,10 +315,10 @@ class utils {
 		if ($password == null) {
 			$password = self::getEncryptionPassword();
 		}
-		if (strpos($ciphertext, 'crypt:') !== 0) {
+		if (strpos($ciphertext, 'crypt:') === false) {
 			return $ciphertext;
 		}
-		$ciphertext = base64_decode(substr($ciphertext, 6));
+		$ciphertext = base64_decode(str_replace('crypt:', '', $ciphertext));
 		if (!hash_equals(hash_hmac('sha256', substr($ciphertext, 48) . substr($ciphertext, 0, 16), hash('sha256', $password, true), true), substr($ciphertext, 16, 32))) return null;
 		return openssl_decrypt(substr($ciphertext, 48), "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, substr($ciphertext, 0, 16));
 	}

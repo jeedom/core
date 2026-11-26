@@ -514,14 +514,6 @@ try {
 		echo shell_exec('sudo cp ' . __DIR__ . '/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl reload apache2" | sudo at now');
 		echo "OK\n";
 	}
-
-	// During an upgrade, the old Core may still be loaded in this PHP process.
-	if (config::byKey('market::enable') == 1 && config::byKey('market::username') !== ''
-		&& config::byKey('market::password') !== '' && empty(config::byKey('market::restSession'))
-		&& !message::byPluginLogicalId('market', 'restReconnection')) {
-		message::add('market', __('Après la mise à jour, reconnectez votre Jeedom au Market pour rétablir les mises à jour des plugins et les services Cloud.', __FILE__),
-			'<a href="index.php?v=d&p=administration#updatetab">' . __('Configuration > Mises à jour/Market', __FILE__) . '</a>', 'restReconnection');
-	}
 } catch (Exception $e) {
 	echo "\nError : ";
 	echo $e->getMessage();
