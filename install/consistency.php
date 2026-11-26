@@ -70,34 +70,7 @@ try {
 		}
 	}
 	// L’installation et la mise à jour passent ici, même à version de Core identique.
-	if ((int) config::byKey('name::initialized') !== 1) {
-		DB::beginTransaction();
-		try {
-			$initializing = DB::getConnection()->exec("INSERT IGNORE INTO config (plugin, `key`, `value`) VALUES ('core', 'name::initialized', '1')");
-			if ($initializing === 1) {
-				// Verrouille aussi le nom si une sauvegarde de la configuration intervient en parallèle.
-				DB::Prepare("INSERT INTO config (plugin, `key`, `value`) VALUES ('core', 'name', '')
-					ON DUPLICATE KEY UPDATE `value` = `value`", array());
-				$row = DB::Prepare("SELECT `value` FROM config WHERE plugin = 'core' AND `key` = 'name' FOR UPDATE", array());
-				$name = (string) ($row['value'] ?? '');
-				if ($name === '') {
-					$name = (string) (config::getDefaultConfiguration()['core']['name'] ?? '');
-				}
-				$name = trim($name);
-				if ($name === '' || strcasecmp($name, 'Jeedom') === 0) {
-					$mountains = array(
-						'Fuji', 'Etna', 'Teide', 'Denali', 'Aoraki', 'Makalu', 'Lhotse', 'Annapurna', 'Manaslu', 'Toubkal',
-						'Meru', 'Roraima', 'Shasta', 'Rinjani', 'Taranaki', 'Batur', 'Agung', 'Hekla', 'Katla', 'Vinson',
-					);
-					config::save('name', $mountains[random_int(0, count($mountains) - 1)] . ' ' . random_int(10, 99));
-				}
-			}
-			DB::commit();
-		} catch (Throwable $error) {
-			DB::rollBack();
-			throw $error;
-		}
-	}
+	config::initializeName();
 	// Samba ne fournit plus de mises à jour du Core.
 	if (config::byKey('core::repo::provider') === 'samba') {
 		config::save('core::repo::provider', 'default');

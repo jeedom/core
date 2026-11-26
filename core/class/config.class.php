@@ -755,6 +755,35 @@ class config {
 		return self::checkValueBetween($_value, 0, 1);
 	}
 
+	public static function initializeName(): void {
+		if ((int) self::byKey('name::initialized') === 1) {
+			return;
+		}
+
+		DB::beginTransaction();
+		try {
+			// Crée les lignes manquantes et verrouille les deux clés durant l’initialisation.
+			DB::Prepare("INSERT INTO config (plugin, `key`, `value`) VALUES ('core', 'name', ''), ('core', 'name::initialized', '0')
+				ON DUPLICATE KEY UPDATE `value` = `value`", []);
+
+			if ((int) self::byKey('name::initialized', 'core', '', true) !== 1) {
+				$name = self::byKey('name', 'core', '', true);
+				if (is_string($name) && in_array(strtolower(trim($name)), ['', 'jeedom'], true)) {
+					$mountains = [
+						'Fuji', 'Etna', 'Teide', 'Denali', 'Aoraki', 'Makalu', 'Lhotse', 'Annapurna', 'Manaslu', 'Toubkal',
+						'Meru', 'Roraima', 'Shasta', 'Rinjani', 'Taranaki', 'Batur', 'Agung', 'Hekla', 'Katla', 'Vinson',
+					];
+					self::save('name', $mountains[random_int(0, count($mountains) - 1)] . ' ' . random_int(10, 99));
+				}
+				self::save('name::initialized', '1');
+			}
+			DB::commit();
+		} catch (Throwable $error) {
+			DB::rollBack();
+			throw $error;
+		}
+	}
+
 	/**
 	 * Sanitizes name value
 	 *
