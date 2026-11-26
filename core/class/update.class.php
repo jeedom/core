@@ -793,6 +793,7 @@ class update {
 				}
 			} catch (\Throwable $e) {
 			}
+			$cibDir = null;
 			switch ($this->getType()) {
 				case 'plugin':
 					$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
@@ -802,7 +803,7 @@ class update {
 					break;
 			}
 			$this->remove();
-			if ($this->getType() === 'plugin' && !file_exists($cibDir)) {
+			if ($cibDir !== null && !file_exists($cibDir)) {
 				log::removePluginLogs($this->getLogicalId());
 			}
 		}
