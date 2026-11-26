@@ -13,7 +13,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  */
 final class DesignsController
 {
-    private const TYPES = ['eqLogic', 'cmd', 'scenario', 'summary', 'plan', 'text', 'chart'];
+    private const TYPES = ['eqLogic', 'cmd', 'scenario', 'summary', 'plan', 'text', 'chart', 'sankey'];
+    private const SANKEY_PERIODS = ['live', '24h', '7d', '30d', '1y', 'today', 'month', 'year'];
+    private const SANKEY_MODES = ['delta', 'sum', 'avg'];
     private const CHART_PERIODS = ['1h', '24h', '7d', '30d', '1y'];
     private const DESIGN_FIELDS = ['name', 'icon', 'order', 'width', 'height', 'backgroundColor', 'backgroundTransparent'];
     private const IMAGES = ['image/png' => 'png', 'image/jpeg' => 'jpg', 'image/gif' => 'gif'];
@@ -154,7 +156,7 @@ final class DesignsController
     {
         $design = self::find($request, $args['id'], 'w');
         $body = Json::body($request, 1048576, preserveObjects: true);
-        self::checkFields($body, ['type', 'target_id', 'position', 'text', 'display', 'chart'], '');
+        self::checkFields($body, ['type', 'target_id', 'position', 'text', 'display', 'chart', 'sankey'], '');
         $type = $body['type'] ?? null;
         if (!in_array($type, self::TYPES, true)) {
             throw ApiError::field(422, 'validation_error', 'type', 'Type d\'élément non pris en charge.');
@@ -169,9 +171,9 @@ final class DesignsController
             if (!array_key_exists('text', $body)) {
                 throw ApiError::field(422, 'validation_error', 'text', 'Ce champ est obligatoire.');
             }
-        } elseif ($type === 'chart') {
-            if (!array_key_exists('chart', $body)) {
-                throw ApiError::field(422, 'validation_error', 'chart', 'Ce champ est obligatoire.');
+        } elseif ($type === 'chart' || $type === 'sankey') {
+            if (!array_key_exists($type, $body)) {
+                throw ApiError::field(422, 'validation_error', $type, 'Ce champ est obligatoire.');
             }
         } else {
             $plan->setLink_id(self::target($type, $body['target_id'] ?? null, $request));
@@ -186,7 +188,7 @@ final class DesignsController
         $design = self::find($request, $args['id'], 'w');
         $plan = self::findItem($design, $args['itemId']);
         $body = Json::body($request, 1048576, preserveObjects: true);
-        self::checkFields($body, ['position', 'text', 'display', 'chart'], '');
+        self::checkFields($body, ['position', 'text', 'display', 'chart', 'sankey'], '');
         if ($body === []) {
             throw new ApiError(422, 'validation_error', 'Au moins un champ est attendu.');
         }
@@ -292,6 +294,12 @@ final class DesignsController
             }
             $plan->setDisplay('chart', self::chart($body['chart'], (array) $plan->getDisplay('chart', [])));
         }
+        if (array_key_exists('sankey', $body)) {
+            if ($plan->getLink_type() !== 'sankey') {
+                throw ApiError::field(422, 'validation_error', 'sankey', 'Seul un élément Sankey a des réglages de Sankey.');
+            }
+            $plan->setDisplay('sankey', self::sankey($body['sankey'], (array) $plan->getDisplay('sankey', [])));
+        }
         if (array_key_exists('position', $body)) {
             $position = self::position($body['position'], 'position');
             $plan->setPosition('top', $position['top']);
@@ -341,6 +349,87 @@ final class DesignsController
             if (!is_object($cmd) || $cmd->getType() !== 'info' || !in_array($cmd->getSubType(), ['numeric', 'binary'], true) || !$cmd->getIsHistorized()) {
                 throw ApiError::field(422, 'validation_error', 'chart.commands', 'Seules les commandes numériques ou binaires historisées sont acceptées.');
             }
+        }
+        return $data;
+    }
+
+    /**
+     * Valide un diagramme de Sankey (DesignSankey) : nœuds uniques, flux entre nœuds connus,
+     * sans boucle ni circuit, une commande info numérique historisée par flux. Une commande
+     * déjà enregistrée n'est pas revérifiée, comme pour `chart`.
+     */
+    private static function sankey(mixed $value, array $previous): array
+    {
+        if (!$value instanceof \stdClass) {
+            throw ApiError::field(422, 'validation_error', 'sankey', 'Un objet JSON est attendu.');
+        }
+        $data = json_decode((string) json_encode($value), true);
+        self::checkFields($data, ['nodes', 'flows', 'period', 'mode', 'title'], 'sankey.');
+        $nodes = $data['nodes'] ?? null;
+        if (!is_array($nodes) || !array_is_list($nodes) || count($nodes) < 2 || count($nodes) > 30) {
+            throw ApiError::field(422, 'validation_error', 'sankey.nodes', 'Entre 2 et 30 nœuds sont attendus.');
+        }
+        $ids = [];
+        foreach ($nodes as $node) {
+            if (!is_array($node) || array_diff(array_keys($node), ['id', 'label']) !== [] || !is_string($node['id'] ?? null)
+                || !preg_match('/^[A-Za-z0-9_-]{1,32}$/D', $node['id']) || isset($ids[$node['id']])
+                || !is_string($node['label'] ?? null) || $node['label'] === '' || mb_strlen($node['label']) > 50) {
+                throw ApiError::field(422, 'validation_error', 'sankey.nodes', 'Chaque nœud a un identifiant unique (lettres, chiffres, - ou _) et un libellé de 50 caractères au plus.');
+            }
+            $ids[$node['id']] = [];
+        }
+        $flows = $data['flows'] ?? null;
+        if (!is_array($flows) || !array_is_list($flows) || $flows === [] || count($flows) > 50) {
+            throw ApiError::field(422, 'validation_error', 'sankey.flows', 'Entre 1 et 50 flux sont attendus.');
+        }
+        $previousCmds = array_column((array) ($previous['flows'] ?? []), 'cmdId');
+        $cmds = [];
+        foreach ($flows as $flow) {
+            if (!is_array($flow) || array_diff(array_keys($flow), ['source', 'target', 'cmdId']) !== []
+                || !is_string($flow['source'] ?? null) || !is_string($flow['target'] ?? null)
+                || !isset($ids[$flow['source']], $ids[$flow['target']]) || $flow['source'] === $flow['target']) {
+                throw ApiError::field(422, 'validation_error', 'sankey.flows', 'Chaque flux relie deux nœuds différents du schéma.');
+            }
+            $id = $flow['cmdId'] ?? null;
+            if (!is_int($id) || $id < 1 || isset($cmds[$id])) {
+                throw ApiError::field(422, 'validation_error', 'sankey.flows', 'Chaque flux a sa propre commande.');
+            }
+            $cmds[$id] = true;
+            if (!in_array($id, $previousCmds, true)) {
+                $cmd = \cmd::byId($id);
+                if (!is_object($cmd) || $cmd->getType() !== 'info' || $cmd->getSubType() !== 'numeric' || !$cmd->getIsHistorized()) {
+                    throw ApiError::field(422, 'validation_error', 'sankey.flows', 'Seules les commandes numériques historisées sont acceptées.');
+                }
+            }
+            $ids[$flow['source']][] = $flow['target'];
+        }
+        // Parcours en profondeur : un nœud retrouvé sur le chemin en cours ferme un circuit.
+        $state = [];
+        $visit = static function (string $node) use (&$visit, &$state, $ids): void {
+            $state[$node] = 1;
+            foreach ($ids[$node] as $next) {
+                if (($state[$next] ?? 0) === 1) {
+                    throw ApiError::field(422, 'validation_error', 'sankey.flows', 'Les flux ne doivent pas former de circuit.');
+                }
+                if (!isset($state[$next])) {
+                    $visit($next);
+                }
+            }
+            $state[$node] = 2;
+        };
+        foreach (array_keys($ids) as $node) {
+            if (!isset($state[$node])) {
+                $visit((string) $node);
+            }
+        }
+        if (!in_array($data['period'] ?? null, self::SANKEY_PERIODS, true)) {
+            throw ApiError::field(422, 'validation_error', 'sankey.period', 'Période inconnue.');
+        }
+        if (array_key_exists('mode', $data) && !in_array($data['mode'], self::SANKEY_MODES, true)) {
+            throw ApiError::field(422, 'validation_error', 'sankey.mode', 'Valeurs possibles : delta, sum, avg.');
+        }
+        if (!is_string($data['title'] ?? null) || mb_strlen($data['title']) > 100) {
+            throw ApiError::field(422, 'validation_error', 'sankey.title', 'Un titre de 100 caractères au plus est attendu.');
         }
         return $data;
     }
@@ -477,7 +566,7 @@ final class DesignsController
         $item = [
             'id' => (int) $plan->getId(),
             'type' => $type,
-            'target_id' => in_array($type, ['text', 'chart'], true) ? null : (int) $plan->getLink_id(),
+            'target_id' => in_array($type, ['text', 'chart', 'sankey'], true) ? null : (int) $plan->getLink_id(),
             'position' => ['top' => (int) $plan->getPosition('top', 0), 'left' => (int) $plan->getPosition('left', 0)],
             'supported' => in_array($type, self::TYPES, true),
         ];
@@ -486,6 +575,9 @@ final class DesignsController
         }
         if ($type === 'chart') {
             $item['chart'] = $plan->getDisplay('chart');
+        }
+        if ($type === 'sankey') {
+            $item['sankey'] = $plan->getDisplay('sankey');
         }
         $row = $displays[(int) $plan->getId()] ?? null;
         if ($row !== null) {
