@@ -212,11 +212,20 @@ class jeego {
 	}
 
 	public static function registerPluginService(string $plugin, string $service): bool {
-		if (!preg_match('/^[a-z][a-z0-9_-]{0,63}$/D', $plugin)) {
+		if ($plugin === 'core' || !preg_match('/^[a-z][a-z0-9_-]{0,63}$/D', $plugin)) {
 			throw new InvalidArgumentException(__('Identifiant de plugin invalide', __FILE__));
 		}
 		$service = self::identifier($service);
 		$path = dirname(__DIR__, 2) . '/plugins/' . $plugin . '/plugin_info/jeego-' . $service . '.json';
+		return self::registerServiceDefinition($service, $path, array('plugin' => $plugin)) !== null;
+	}
+
+	public static function registerCoreService(string $service): ?string {
+		$service = self::identifier($service);
+		return self::registerServiceDefinition($service, __DIR__ . '/../config/jeego-' . $service . '.json', array('owner' => 'core'));
+	}
+
+	private static function registerServiceDefinition(string $service, string $path, array $owner): ?string {
 		$contents = is_file($path) ? file_get_contents($path, false, null, 0, 65537) : false;
 		if ($contents === false || strlen($contents) > 65536) {
 			throw new RuntimeException(__('Description du service Jeego absente ou trop volumineuse', __FILE__));
@@ -225,14 +234,14 @@ class jeego {
 		if (!is_object($definition) || ($definition->id ?? '') !== $service) {
 			throw new RuntimeException(__('Description du service Jeego invalide', __FILE__));
 		}
-		[$status, $result] = self::requestResponse('/services/' . $service . '/definition', array('plugin' => $plugin, 'definition' => $definition));
-		if ($status === 404 && ($result['error']['code'] ?? '') === 'not_found') {
-			return false;
+		[$status, $result] = self::requestResponse('/services/' . $service . '/definition', $owner + array('definition' => $definition));
+		if ($status === 404 && ($result->error->code ?? '') === 'not_found') {
+			return null;
 		}
-		if ($status !== 200 || ($result['id'] ?? '') !== $service) {
-			throw new RuntimeException($result['error']['message'] ?? __('Déclaration du service Jeego refusée', __FILE__), $status);
+		if ($status !== 200 || ($result->id ?? '') !== $service) {
+			throw new RuntimeException($result->error->message ?? __('Déclaration du service Jeego refusée', __FILE__), $status);
 		}
-		return true;
+		return hash('sha256', $contents);
 	}
 
 	public static function serviceAction(string $service, string $action, array $request = array()): array {

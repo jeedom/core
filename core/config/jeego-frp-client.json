@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "frp-client",
+  "name": "FRP — Accès distant Jeedom",
+  "setup_hint": "Activez le DNS Jeedom dans la configuration réseau de Jeedom. Le Core transmet les identifiants et les relais du Market. Le certificat est inclus dans l’image.",
+  "parameters": [
+    {
+      "id": "username",
+      "label": "Utilisateur DNS Jeedom",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "pattern": ".{1,255}"
+    },
+    {
+      "id": "password",
+      "label": "Mot de passe DNS Jeedom",
+      "type": "secret",
+      "default": "",
+      "required": true,
+      "pattern": ".{1,512}"
+    },
+    {
+      "id": "relay",
+      "label": "Serveurs relais FRP (séparés par des virgules)",
+      "type": "string",
+      "default": "jeeprdfrp-01.eu.jeedom.link",
+      "required": true,
+      "pattern": "(?:[a-z0-9](?:[a-z0-9\\-]{0,61}[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9\\-]{0,61}[a-z0-9])?(?: *, *(?:[a-z0-9](?:[a-z0-9\\-]{0,61}[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9\\-]{0,61}[a-z0-9])?){0,15}"
+    },
+    {
+      "id": "local-ip",
+      "label": "Adresse locale de Jeedom",
+      "type": "string",
+      "default": "127.0.0.1",
+      "required": true
+    },
+    {
+      "id": "local-port",
+      "label": "Port HTTP de Jeedom",
+      "type": "port",
+      "default": "80",
+      "required": true
+    },
+    {
+      "id": "ca-file",
+      "label": "Fichier du certificat CA sur la box",
+      "type": "string",
+      "hidden": true,
+      "default": "/etc/ssl/certs/ca-certificates.crt",
+      "required": true,
+      "pattern": "/etc/ssl/certs/[A-Za-z0-9._\\-]+"
+    }
+  ],
+  "containers": [
+    {
+      "id": "frpc",
+      "image": "ghcr.io/jeedom/frp-client:latest",
+      "network": "host",
+      "user": "10001:10001",
+      "environment": {
+        "FRP_USERNAME": "{{username}}",
+        "FRP_PASSWORD": "{{password}}",
+        "FRP_RELAY": "{{relay}}",
+        "FRP_LOCAL_IP": "{{local-ip}}",
+        "FRP_LOCAL_PORT": "{{local-port}}"
+      },
+      "mounts": [
+        {
+          "type": "tmpfs",
+          "target": "/tmp"
+        }
+      ]
+    }
+  ]
+}
