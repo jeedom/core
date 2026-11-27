@@ -109,10 +109,13 @@ class frp {
 		return $state;
 	}
 
-	private static function jeegoAction($action, $parameters, $fingerprint, $wait = false) {
+	private static function jeegoAction($action, $parameters, $fingerprint, $wait = false, $applyDefinition = false) {
 		$body = array('confirm' => true);
 		if ($parameters !== null) {
 			$body['parameters'] = $parameters;
+		}
+		if ($applyDefinition) {
+			$body['apply_definition'] = true;
 		}
 		$task = jeego::serviceAction('frp-client', $action, $body);
 		$state = array('manager' => 'jeego', 'fingerprint' => $fingerprint, 'task' => $task['id'], 'action' => $action, 'error' => '');
@@ -210,16 +213,28 @@ class frp {
 
 	private static function startJeego($settings, $fingerprint, $manual) {
 		$state = self::read('control');
-		$changed = ($state['fingerprint'] ?? '') != $fingerprint;
 		if (($state['manager'] ?? '') == 'jeego') {
 			$state = self::task($state, $manual);
 			if (!empty($state['task'])) {
 				return;
 			}
 		}
+		$definition = jeego::registerCoreService('frp-client');
+		$settingsFingerprint = $fingerprint;
+		if ($definition !== null) {
+			$fingerprint = hash('sha256', $fingerprint . $definition);
+		}
+		$changed = ($state['fingerprint'] ?? '') != $fingerprint;
 		self::stopNative();
 		$status = self::jeegoService($manual);
 		$failed = !empty($state['error']);
+		if (!$manual && !$failed && $definition !== null && ($state['fingerprint'] ?? '') === $settingsFingerprint
+			&& ($status['status'] ?? '') === 'running' && empty($status['pending'])) {
+			// Adopt a healthy client started with the embedded manifest without interrupting DNS.
+			$state['fingerprint'] = $fingerprint;
+			self::write('control', $state);
+			return;
+		}
 		if (!$manual && !$changed && $failed) {
 			return;
 		}
@@ -227,8 +242,18 @@ class frp {
 			self::jeegoAction('install', $settings, $fingerprint, $manual);
 			return;
 		}
+		if ($definition !== null && !empty($status['pending'])) {
+			if (!$manual && $failed) {
+				return;
+			}
+			self::jeegoAction('recreate', null, $state['fingerprint'] ?? '', $manual);
+			if (!$manual) {
+				return;
+			}
+			$status = self::jeegoService(true);
+		}
 		if ($changed || $failed) {
-			self::jeegoAction('configure', $settings, $fingerprint, $manual);
+			self::jeegoAction('configure', $settings, $fingerprint, $manual, $definition !== null);
 			return;
 		}
 		if ($manual && ($status['status'] ?? '') != 'running' && empty($status['pending'])) {
