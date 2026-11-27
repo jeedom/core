@@ -8385,6 +8385,9 @@ components:
         version: { type: string }
         hardware: { type: string }
         started: { type: boolean }
+        installationFingerprint:
+          type: string
+          description: Empreinte de l’installation utilisable dans les exports pour reconnaître l’origine des identifiants locaux.
     SystemHealth:
       type: object
       required: [items, total, phpExtensions, checkedAt]

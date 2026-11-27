@@ -17,6 +17,7 @@ final class SystemController
             'version' => \jeedom::version(),
             'hardware' => \jeedom::getHardwareName(),
             'started' => \jeedom::isStarted(),
+            'installationFingerprint' => hash_hmac('sha256', 'jeedom/rest/installation/v1', \jeedom::getHardwareKey()),
         ]);
     }
 
